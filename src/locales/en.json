@@ -1,0 +1,64 @@
+{
+  "navbar": {
+    "appbar": {
+      "step1": "Connect Your Facebook Page",
+      "step2": "Edit Cart Abandoned Message",
+      "step3": "Add A Consent Widget To Your Website",
+      "buttonUpgrade": "Upgrade Now"
+    },
+    "navdrawer": {
+      "Settings": "Settings",
+      "AbandonedCarts": "Abnadoned Carts",
+      "Widgets": "Widgets",
+      "Dashboard": "Dashboard",
+      "Campaigns": "Campaigns"
+    }
+  },
+  "settingsPage": {
+    "fbCard1": {
+      "header": "Connect Your Facebook Page",
+      "tooltipText": "Connect the Facebook page that will send messages to users. All the messages that the app provides will be sent by your Facebook page.Your personal details,including name will not be visible to message recipients",
+      "buttonHeader": "Connect your Facebook page",
+      "buttonText": "Login with Facebook",
+      "buttonFooter": "If you don't have a facebook page,you can create one ",
+      "hrefText": " here"
+    },
+    "fbCard2": {
+      "header": "Connect Your Facebook Page",
+      "info": "Connect the Facebook page that will send messages to users. All the messages that the app provides will be sent by your Facebook page.Your personal details,including name will not be visible to message recipients",
+      "subheader": "Choose the Facebook page that will be used to send messages to your users",
+      "dropdownHeader": "Select your Facebook Page",
+      "dropdownDefault": "Your Business Name",
+      "dropdownSubText": "The Facebook messages will be sent by the selected Page. Your name or other personal details will not be visible to users that receive your messages.",
+      "buttonText": "SAVE"
+    },
+    "fbCard3": {
+      "msg1": "Your Facebook Page",
+      "msg2": "is currently connected.",
+      "buttonText": "DISCONNECT"
+    },
+    "upgradeCard": {
+      "header1": "You are using our ",
+      "header2": " plan.",
+      "body1": "With ",
+      "body2": " you have up to ",
+      "body3": " individual Facebook cart recovery attempts, with up to 2 messages per recovery attempt. ",
+      "body4": " cart recovery attempts left this month. Upgrade to get more.",
+      "buttonText": "UPGRADE NOW"
+    },
+    "accInfoCard": {
+      "header": "Account Information",
+      "tooltipText": "Add your contact information information. We will use your email to send you reports about app performance such as recovered sales.",
+      "label1":"First Name",
+      "label2":"Last Name",
+      "label3":"E-mail",
+      "buttonText":"Save"
+    },
+    "tzCard": {
+      "header": "Timezone",
+      "tooltipText": "Add your timezone. All the displayed dates will be relative to the chosen timezone.",
+      "label":"Select Timezone",
+      "buttonText":"Save"
+    }
+  }
+}

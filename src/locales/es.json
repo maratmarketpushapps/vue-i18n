@@ -1,0 +1,65 @@
+{
+
+  "navbar": {
+    "appbar": {
+      "step1": "Conecta tu página de Facebook",
+      "step2": "Editar la cesta Mensaje abandonado",
+      "step3": "Añade un widget de consentimiento a tu página web",
+      "buttonUpgrade": "Actualícese ahora"
+    },
+    "navdrawer": {
+      "Settings": " Ajustes",
+      "AbandonedCarts": "Carros abandonados",
+      "Widgets": "Widgets",
+      "Dashboard": "Tablero de mandos",
+      "Campaigns": "Campañas"
+    }
+  },
+  "settingsPage": {
+    "fbCard1": {
+      "header": "Conecta tu página de Facebook",
+      "tooltipText": "Conecta la página de Facebook que enviará mensajes a los usuarios. Todos los mensajes que la aplicación proporciona serán enviados por tu página de Facebook. Tus datos personales, incluyendo el nombre, no serán visibles para los destinatarios del mensaje",
+      "buttonHeader": "Conecta tu página de Facebook",
+      "buttonText": "Iniciar sesión con Facebook",
+      "buttonFooter": "Si no tienes una página de facebook, puedes crear una ",
+      "hrefText": " aquí"
+    },
+    "fbCard2": {
+      "header": "Conecta tu página de Facebook",
+      "info": "Conecta la página de Facebook que enviará mensajes a los usuarios. Todos los mensajes que la aplicación proporciona serán enviados por tu página de Facebook. Tus datos personales, incluyendo el nombre, no serán visibles para los destinatarios del mensaje.",
+      "subheader": "Elija la página de Facebook que se utilizará para enviar mensajes a sus usuarios",
+      "dropdownHeader": "Selecciona tu página de Facebook",
+      "dropdownDefault": "El nombre de su empresa",
+      "dropdownSubText": "Los mensajes de Facebook serán enviados por la página seleccionada. Tu nombre u otros datos personales no serán visibles para los usuarios que reciban tus mensajes.",
+      "buttonText": "SALVAR"
+    },
+    "fbCard3": {
+      "msg1": "Tu página de Facebook",
+      "msg2": "está actualmente conectado.",
+      "buttonText": "DESCONEXIÓN"
+    },
+    "upgradeCard": {
+      "header1": "Usted está usando nuestro ",
+      "header2": " plan.",
+      "body1": "Con ",
+      "body2": " tienes hasta ",
+      "body3": " intentos individuales de recuperación del carrito de Facebook, con hasta 2 mensajes por intento de recuperación. ",
+      "body4": " los intentos de recuperación del carro que quedan este mes. Actualícese para obtener más.",
+      "buttonText": "ACTUALIZAR AHORA"
+    },
+    "accInfoCard": {
+      "header": "Información de la cuenta",
+      "tooltipText": "Añada su información de contacto. Usaremos tu correo electrónico para enviarte informes sobre el rendimiento de las aplicaciones, como las ventas recuperadas.",
+      "label1":"Nombre",
+      "label2":"Apellido",
+      "label3":"Correo electrónico",
+      "buttonText":"Guardar"
+    },
+    "tzCard": {
+      "header": "Zona horaria",
+      "tooltipText": "Añade tu zona horaria. Todas las fechas mostradas serán relativas a la zona horaria elegida.",
+      "label":"Seleccione la zona horaria",
+      "buttonText":"Guardar"
+    }
+  }
+}
