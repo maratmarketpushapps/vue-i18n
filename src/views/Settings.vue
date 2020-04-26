@@ -1,5 +1,5 @@
 <template>
-  <div class="pl-5 pt-2 pr-5 ma-0">
+  <div class="pl-5 pt-0 pr-5 ma-0">
     <v-container fluid class="pa-2">
       <h3>SETTINGS</h3>
       <v-row class="pt-5 pa-3">
