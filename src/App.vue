@@ -1,5 +1,6 @@
 <template>
-  <v-app :class="$vuetify.breakpoint.md?'scale':''">
+  <v-app :class="{'scale':!$vuetify.breakpoint.lgAndUp}"
+  >
     <v-content class="app_background">
       <v-container fluid >
         <v-row
