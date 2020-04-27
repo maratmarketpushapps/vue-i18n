@@ -1,16 +1,15 @@
 <template>
-  <v-app>
-    <v-content class="app_background ">
-      <v-container fluid>
+  <v-app :class="$vuetify.breakpoint.md?'scale':''">
+    <v-content class="app_background">
+      <v-container fluid >
         <v-row
           ><v-col><Navbar /></v-col
         ></v-row>
-        <v-row class="pt-5 mt-10"
+        <v-row class="pt-5"
           ><v-col>
             <transition name="rtr">
-            <router-view></router-view>
-            </transition>
-            </v-col
+              <router-view></router-view>
+            </transition> </v-col
         ></v-row>
       </v-container>
     </v-content>
@@ -69,5 +68,8 @@ export default {
 .rtr-leave-to {
   opacity: 0;
   transform: translateX(20%);
+}
+.scale{
+  transform: scale(.7);
 }
 </style>
