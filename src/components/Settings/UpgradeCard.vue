@@ -1,8 +1,8 @@
 <template>
-  <v-card tile height="330" width="97%" class="pa-0 ma-0">
+  <v-card tile height="35vh" width="97%" class="pa-0 ma-0 ">
     <v-img :src="upgImg" class="pa-0" height="100%">
-      <v-container class="pa-8">
-        <v-row width="100%" justify="center" align="center" class="pt-5">
+      <v-container class="pt-4 ">
+        <v-row width="100%" justify="center" align="center" class="pt-2 mt-0">
           <span class="upgheader-text white--text">{{ header }}</span>
         </v-row>
         <v-row width="100%" justify="center" align="center" class="pt-3">
@@ -12,8 +12,8 @@
             </p>
           </v-col>
         </v-row>
-        <v-row justify="center" class="pt-3">
-          <v-btn tile large class="primary" width="30%">
+        <v-row justify="center" class="pt-0">
+          <v-btn tile medium class="primary btn_font" width="30%" v-show ="showBtn" style="font-size:60%">
             {{ $t("settingsPage.upgradeCard.buttonText") }}
           </v-btn></v-row
         >
@@ -74,8 +74,17 @@ export default {
         this.getSettingsState.cart_recovery_attempts_done +
         "/" +
         recAttempts +
-        this.$t("settingsPage.upgradeCard.body4")
+        this.$t("settingsPage.upgradeCard.body4")+
+        this.upgTxt
       );
+    },
+    showBtn() {
+      return this.getPricingPlan === "Mogul" ? false : true;
+    },
+    upgTxt() {
+      return this.getPricingPlan === "Mogul"
+        ? ""
+        : this.$t("settingsPage.upgradeCard.body5");
     },
   },
 };
@@ -83,16 +92,20 @@ export default {
 
 <style>
 .upgheader-text {
-  font-size: x-large;
-  font: Regular 24px/40px Poppins;
+  font-size: 100%;
+  font-weight: 400;
 }
 .upgbody-text {
   color: white;
   text-align: center;
-  font-size: medium;
+  font-size: 70%;
   letter-spacing: 0px;
   opacity: 1;
+  font-weight: 300;
 }
 
-
+.btn_font {
+  /* font-size: 70% !important; */
+  overflow: hidden;
+}
 </style>

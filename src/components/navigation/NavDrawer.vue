@@ -3,9 +3,9 @@
     <v-navigation-drawer
       app
       permanent
-      class="right-shadow sidebar_background"
+      class="right-shadow sidebar_background drawer-dims"
       mini-variant
-      mini-variant-width="100"
+      mini-variant-width="6vw"
     >
       <v-list-item class="logo_background pa-0 ma-0">
         <v-list-item-content class="pa-0 ma-0">
@@ -28,33 +28,33 @@
         <br />
         <v-list-item-group class="list-dim" mandatory dark>
           <v-list-item
-            class="list-dim pa-0 ma-0 pb-4 pt-4"
+            class="list-dim "
             @click="setSelected('Dashboard')" to="/dashboard"
-            ><v-icon>$vuetify.icons.dashboard</v-icon></v-list-item
+            ><v-icon style="transform:scale(.75)">$vuetify.icons.dashboard</v-icon></v-list-item
           >
 
           <v-list-item
-            class="list-dim pa-0 ma-0 pb-4 pt-4"
+            class="list-dim "
             @click="setSelected('Widgets')" to="/widgets"
-            ><v-icon>$vuetify.icons.widgets</v-icon></v-list-item
+            ><v-icon style="transform:scale(.75)">$vuetify.icons.widgets</v-icon></v-list-item
           >
           
           <v-list-item
-            class="list-dim pa-0 ma-0 pb-4 pt-4"
+            class="list-dim"
             @click="setSelected('Campaigns')" to="/campaigns"
-            ><v-icon>$vuetify.icons.campaigns</v-icon></v-list-item
+            ><v-icon style="transform:scale(.75)">$vuetify.icons.campaigns</v-icon></v-list-item
           >
          
           <v-list-item
-            class="list-dim pa-0 ma-0 pb-4 pt-4" 
+            class="list-dim" 
             @click="setSelected('AbandonedCarts')" to="/abandonedcarts"
-            ><v-icon>$vuetify.icons.abandonedCarts</v-icon></v-list-item
+            ><v-icon style="transform:scale(.75)">$vuetify.icons.abandonedCarts</v-icon></v-list-item
           >
           
           <v-list-item
-            class="list-dim pa-0 ma-0 pb-4 pt-4"
+            class="list-dim"
             @click="setSelected('Settings')" to="/settings"
-            ><v-icon>$vuetify.icons.settings</v-icon></v-list-item
+            ><v-icon style="transform:scale(.75)">$vuetify.icons.settings</v-icon></v-list-item
           >
         </v-list-item-group>
       </v-list>
@@ -89,13 +89,14 @@ export default {
 
 <style>
 .navbar-div {
-  top: 0px;
-  left: 0px;
-  width: 100px;
-  height: 80px;
-  padding: 20px;
+  top: 0;
+  left: 0;
+  width: 6vw;
+  height: 10vh;
   text-align: center;
   text-justify: center;
+  align-content: center;
+  padding:20%
 }
 
 .list-dim {
@@ -108,5 +109,9 @@ export default {
 
 .right-shadow {
   box-shadow: 2px 0 8px rgb(146, 143, 143);
+}
+
+.drawer-dims{
+  height:100% !important
 }
 </style>

@@ -1,84 +1,109 @@
 <template>
-  <div>
-    <v-row fluid class="pl-10">
-      <!-- App Bar Component -->
-      <v-col>
-        <v-app-bar
-          elevation="4"
-          flat
-          height="80px"
-          class="appbar_background pr-10 text--bottom"
-          align-content="center"
-          fixed
+  <v-app-bar
+    elevation="4"
+    flat
+    height="100vh"
+    class="appbar_background  text--bottom"
+    align-content="center"
+    fixed
+  >
+    <v-row style="height:100% !important" class="pb-0 mb-0">
+      <v-col cols="1"><v-spacer></v-spacer></v-col>
+      <!-- Stepper component -->
+      <v-col cols="9" class="pb-0">
+        <v-stepper class="stepper" :value="step">
+          <v-stepper-header class="stepperhead">
+            <!-- Step 1 -->
+            <v-stepper-step
+              step="1"
+              :complete="step1Complete"
+              class="step-item"
+            >
+              <router-link
+                to="/"
+                @click.native="
+                  step = 1;
+                  step1Complete = true;
+                "
+                class="step-item-font"
+                >{{ $t("navbar.appbar.step1") }}
+              </router-link>
+            </v-stepper-step>
+
+            <v-divider class="divider">
+            </v-divider>
+
+            <!-- Step 2 -->
+            <v-stepper-step
+              step="2"
+              :complete="step2Complete"
+              class="step-item"
+            >
+              <router-link
+                v-if="step1Complete"
+                to="/dashboard"
+                @click.native="
+                  step = 2;
+                  step2Complete = true;
+                "
+                class="step-item-font"
+                >{{ $t("navbar.appbar.step2") }}
+              </router-link>
+              <router-link
+                v-else
+                to="/dashboard"
+                tag="button"
+                disabled
+                class="step-item-font"
+                >{{ $t("navbar.appbar.step2") }}
+              </router-link>
+            </v-stepper-step>
+
+            <v-divider class="divider"></v-divider>
+            <!-- Step 3 -->
+            <v-stepper-step
+              step="3"
+              :complete="step3Complete"
+              class="step-item"
+            >
+              <router-link
+                v-if="step2Complete"
+                to="/about"
+                @click.native="
+                  step = 3;
+                  step3Complete = true;
+                "
+                class="step-item-font"
+                >{{ $t("navbar.appbar.step3") }}
+              </router-link>
+              <router-link
+                v-else
+                to="/about"
+                tag="button"
+                disabled
+                class="step-item-font"
+                >{{ $t("navbar.appbar.step3") }}
+              </router-link>
+            </v-stepper-step>
+          </v-stepper-header>
+        </v-stepper></v-col
+      >
+
+      
+      <!-- Upgrade button component -->
+      <v-col cols="2" class="pl-8 mb-2" 
+        ><v-btn
+          tile
+          elevation="1"
+          outlined
+          class="appbar_btn_background white--text button-dims mt-0"
+          v-show="showUpgrade"
         >
-          <v-spacer></v-spacer>
-          <!-- Stepper component -->
-          <v-stepper class="stepper" :value="step">
-            <v-stepper-header class="stepperhead">
-              <!-- Step 1 -->
-              <v-stepper-step step="1" :complete="step1Complete">
-                <router-link
-                  to="/"
-                  @click.native="
-                    step = 1;
-                    step1Complete = true;
-                  "
-                  >{{ $t("navbar.appbar.step1") }}
-                </router-link>
-              </v-stepper-step>
-
-              <v-divider class="divider"></v-divider>
-
-              <!-- Step 2 -->
-              <v-stepper-step step="2" :complete="step2Complete">
-                <router-link
-                  v-if="step1Complete"
-                  to="/dashboard"
-                  @click.native="
-                    step = 2;
-                    step2Complete = true;
-                  "
-                  >{{ $t("navbar.appbar.step2") }}
-                </router-link>
-                <router-link v-else to="/dashboard" tag="button" disabled
-                  >{{ $t("navbar.appbar.step2") }}
-                </router-link>
-              </v-stepper-step>
-
-              <v-divider class="divider"></v-divider>
-              <!-- Step 3 -->
-              <v-stepper-step step="3" :complete="step3Complete">
-                <router-link
-                  v-if="step2Complete"
-                  to="/about"
-                  @click.native="
-                    step = 3;
-                    step3Complete = true;
-                  "
-                  >{{ $t("navbar.appbar.step2") }}
-                </router-link>
-                <router-link v-else to="/about" tag="button" disabled
-                  >{{ $t("navbar.appbar.step2") }}
-                </router-link>
-              </v-stepper-step>
-            </v-stepper-header>
-          </v-stepper>
-
-          <v-spacer></v-spacer>
-          <!-- Upgrade button component -->
-          <v-btn
-            tile
-            elevation="1"
-            outlined
-            class="appbar_btn_background white--text"
-            v-show="showUpgrade"
-          >
-            {{ $t("navbar.appbar.buttonUpgrade") }}
-          </v-btn>
-        </v-app-bar>
-      </v-col>
+          {{ $t("navbar.appbar.buttonUpgrade") }}
+        </v-btn></v-col
+      >
     </v-row>
-  </div>
+  </v-app-bar>
 </template>
 
 <script>
@@ -108,18 +133,39 @@ export default {
 <style>
 .stepper {
   box-shadow: none;
+  height: 7vh !important;
+  align-content: center !important;
+  width: 69vw !important;
 }
 .stepperhead {
   box-shadow: none;
+  height: 7vh !important;
+  align-content: center;
 }
 
 .divider {
   color: rgb(5, 5, 5);
-  width: 90px;
-  height: 5px;
+
 }
 
 a {
   text-decoration: none;
+}
+
+.step-item {
+  
+  align-content: center !important;
+}
+
+.step-item-font {
+  font-size: 70%;
+  word-wrap:initial;
+}
+
+.button-dims{
+  height:60% !important;
+  width:70% !important;
+  font-size: 60% !important;
+  position: relative;
 }
 </style>

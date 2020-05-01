@@ -1,5 +1,4 @@
 {
-
   "navbar": {
     "appbar": {
       "step1": "Conecta tu página de Facebook",
@@ -44,22 +43,23 @@
       "body1": "Con ",
       "body2": " tienes hasta ",
       "body3": " intentos individuales de recuperación del carrito de Facebook, con hasta 2 mensajes por intento de recuperación. ",
-      "body4": " los intentos de recuperación del carro que quedan este mes. Actualícese para obtener más.",
+      "body4": " los intentos de recuperación del carro que quedan este mes. ",
+      "body5": "Actualícese para obtener más.",
       "buttonText": "ACTUALIZAR AHORA"
     },
     "accInfoCard": {
       "header": "Información de la cuenta",
       "tooltipText": "Añada su información de contacto. Usaremos tu correo electrónico para enviarte informes sobre el rendimiento de las aplicaciones, como las ventas recuperadas.",
-      "label1":"Nombre",
-      "label2":"Apellido",
-      "label3":"Correo electrónico",
-      "buttonText":"Guardar"
+      "label1": "Nombre",
+      "label2": "Apellido",
+      "label3": "Correo electrónico",
+      "buttonText": "Guardar"
     },
     "tzCard": {
       "header": "Zona horaria",
       "tooltipText": "Añade tu zona horaria. Todas las fechas mostradas serán relativas a la zona horaria elegida.",
-      "label":"Seleccione la zona horaria",
-      "buttonText":"Guardar"
+      "label": "Seleccione la zona horaria",
+      "buttonText": "Guardar"
     }
   }
 }

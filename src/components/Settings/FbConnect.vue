@@ -1,16 +1,23 @@
 <template>
-  <v-card tile height="450" width="97%" class="pl-7 pt-5 pr-9">
+  <v-card
+    tile
+    height="50vh"
+    width="97%"
+    class="pl-7 pt-5 pr-9 font_dims"
+    style="position:static !important"
+  >
     <v-row>
       <v-col cols="6">
         <h3>{{ $t("settingsPage.fbCard1.header") }}</h3>
       </v-col>
-      <v-col cols="6" class="pa-2">
+      <v-col cols="6" class="pa-2 pt-0 pr-0">
         <v-row align="center" justify="end"
           ><TooltipIcon
             :posRight="true"
             :nudgeBottom="30"
             :nudgeLeft="5"
             :txt="$t('settingsPage.fbCard1.tooltipText')"
+            style="transform: scale(.8)"
         /></v-row>
       </v-col>
     </v-row>
@@ -30,15 +37,15 @@
           <v-row justify="center" class="pt-0 pb-1 mb-0">
             <v-btn
               tile
-              small
+              large
               class="fbbtn white--text"
               color="#3A559F"
-              height="50px"
+              width="170px"
               @click="step1Comp()"
             >
-              <fbIcon class="fbicon pr-2 pl-0" />
+              <fbIcon class="fbicon pr-2 pl-0" style="transform: scale(.7)" />
 
-              <span class="pl-1">
+              <span class="pl-1 font_dims_fb">
                 {{ $t("settingsPage.fbCard1.buttonText") }}</span
               >
             </v-btn></v-row
@@ -59,34 +66,39 @@
         v-show="fbStep == 2"
         align="center"
         justify="center"
-        style="height:80% "
         class="pt-0"
         key="fbStep2"
       >
         <v-col>
-          <v-row justify="start" class="pb-6 pl-4 pr-2">
+          <v-row justify="start" class="pb-6 mb-6 pl-4 pr-2">
             {{ $t("settingsPage.fbCard2.subheader") }}</v-row
           >
-          <v-row justify="center" class="pl-4 pr-3"
+          <v-row align="start" class="pl-4 pr-3 pt-0 mt-0"
             ><v-select
               :label="$t('settingsPage.fbCard2.dropdownHeader')"
               :items="pageList"
               v-model="PageSelectedId"
-              height="40px"
+              dense
+              class="pt-0 select_page"
+              style="font-size:110%"
             >
             </v-select
           ></v-row>
-          <v-row justify="center" class="pl-4 pb-8 pr-3 fbcard2-btnfooter_text">
+          <v-row
+            justify="center"
+            class="pl-4 pt-0 mt-0 pr-3 fbcard2-btnfooter_text"
+          >
             {{ $t("settingsPage.fbCard2.dropdownSubText") }}</v-row
           >
-          <v-row justify="center" class="mt-9 pt-8 pb-0 mb-0">
+          <v-row justify="center" class="mt-8 pt-2 pb-0 mb-0">
             <v-btn
               tile
-              large
+              medium
               class="primary"
               @click="step2Comp()"
-              width="175px"
+              width="28%"
               :disabled="card2BtnDisable"
+              style="font-size:100%"
             >
               {{ $t("settingsPage.fbCard2.buttonText") }}
             </v-btn></v-row
@@ -113,10 +125,11 @@
           <v-row justify="center" class="pt-10 pb-1 mb-0">
             <v-btn
               tile
-              large
+              medium
               class="primary"
               @click="step3Comp()"
-              width="175px"
+              width="35%"
+              style="font-size:100%"
             >
               {{ $t("settingsPage.fbCard3.buttonText") }}
             </v-btn></v-row
@@ -200,23 +213,38 @@ export default {
   transition: all 0.5s;
 }
 .fbcomps-enter-active,
-.card3-enter-active
-{
+.card3-enter-active {
   transition-delay: 0.5s;
 }
 
-.fbcomps-enter ,
-.card3-enter{
+.fbcomps-enter,
+.card3-enter {
   opacity: 0;
 }
-.fbcomps-leave-to,.card3-leave-to {
+.fbcomps-leave-to,
+.card3-leave-to {
   opacity: 0;
 }
-.fbcomps-leave,.card3-leave {
+.fbcomps-leave,
+.card3-leave {
   opacity: 1;
 }
 .fbcard2-btnfooter_text {
-  font-size: small;
+  font-size: 90% !important;
   word-wrap: normal;
+}
+
+.font_dims {
+  font-size: 60% !important;
+  overflow: hidden;
+}
+
+.select_page >>> label {
+  font-size: 100% !important;
+}
+
+.font_dims_fb {
+  font-size: 75% !important;
+  overflow: hidden;
 }
 </style>

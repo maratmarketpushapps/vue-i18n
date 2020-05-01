@@ -1,17 +1,20 @@
 <template>
-  <v-app :class="{'scale':!$vuetify.breakpoint.lgAndUp}"
-  >
+  <v-app class="scale">
     <v-content class="app_background">
-      <v-container fluid >
-        <v-row
-          ><v-col><Navbar /></v-col
-        ></v-row>
-        <v-row class="pt-5"
-          ><v-col>
-            <transition name="rtr">
-              <router-view></router-view>
-            </transition> </v-col
-        ></v-row>
+      <v-container fluid>
+        <v-row style="width:50vw"
+          ><v-col col="2"><NavDrawer style="width:50vw"/></v-col>
+          <v-col col="10" >
+            <AppBar style="height: 10vh" />
+          </v-col>
+        </v-row>
+          <v-row>
+            <v-col cols="12" class="pt-2 pl-12 pr-5" style="justify-content: center">
+              <transition name="rtr">
+              <router-view ></router-view>
+            </transition> 
+            </v-col>
+          </v-row>
       </v-container>
     </v-content>
   </v-app>
@@ -19,7 +22,8 @@
 
 //
 <script>
-import Navbar from "./components/Navbar";
+import AppBar from "@/components/navigation/AppBar.vue";
+import NavDrawer from "@/components/navigation/NavDrawer.vue";
 
 export default {
   name: "App",
@@ -39,7 +43,8 @@ export default {
   },
 
   components: {
-    Navbar,
+    AppBar,
+    NavDrawer
   },
 
   data: () => ({
@@ -70,7 +75,7 @@ export default {
   opacity: 0;
   transform: translateX(20%);
 }
-.scale{
-  transform: scale(.7);
-}
+
+
+
 </style>
