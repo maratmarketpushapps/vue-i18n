@@ -1,20 +1,24 @@
 <template>
-  <v-app class="scale">
+  <v-app class="app-style">
     <v-content class="app_background">
       <v-container fluid>
         <v-row style="width:50vw"
           ><v-col col="2"><NavDrawer style="width:50vw"/></v-col>
-          <v-col col="10" >
+          <v-col col="10">
             <AppBar style="height: 10vh" />
           </v-col>
         </v-row>
-          <v-row>
-            <v-col cols="12" class="pt-2 pl-12 pr-5" style="justify-content: center">
-              <transition name="rtr">
-              <router-view ></router-view>
-            </transition> 
-            </v-col>
-          </v-row>
+        <v-row>
+          <v-col
+            cols="12"
+            class="pt-2 pl-12 pr-5"
+            style="justify-content: center"
+          >
+            <transition name="rtr">
+              <router-view></router-view>
+            </transition>
+          </v-col>
+        </v-row>
       </v-container>
     </v-content>
   </v-app>
@@ -44,7 +48,7 @@ export default {
 
   components: {
     AppBar,
-    NavDrawer
+    NavDrawer,
   },
 
   data: () => ({
@@ -76,6 +80,11 @@ export default {
   transform: translateX(20%);
 }
 
-
-
+.app-style {
+  min-width: 1000px !important;
+  height: 100%;
+  white-space: nowrap;
+  overflow-y:hidden;
+  overflow-x: auto;
+}
 </style>

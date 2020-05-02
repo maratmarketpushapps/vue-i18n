@@ -1,5 +1,5 @@
 <template>
-  <v-card tile height="35vh" width="97%" class="pa-0 ma-0 ">
+  <v-card tile height="39vh" width="97%" class="pa-0 ma-0 ">
     <v-img :src="upgImg" class="pa-0" height="100%">
       <v-container class="pt-4 ">
         <v-row width="100%" justify="center" align="center" class="pt-2 mt-0">

@@ -1,7 +1,7 @@
 <template>
   <v-card
     tile
-    height="50vh"
+    height="53vh"
     width="97%"
     class="pl-7 pt-5 pr-9 font_dims"
     style="position:static !important"
@@ -54,11 +54,14 @@
             <span class="pr-1">{{
               $t("settingsPage.fbCard1.buttonFooter")
             }}</span>
-            <a
+            <span>
+              <a
               href="https://www.facebook.com/pages/create/?ref_type=universal_creation_hub"
               target="_blank"
+              style="text-decoration:underline"
               >{{ $t("settingsPage.fbCard1.hrefText") }}</a
             >
+            </span>
           </v-row>
         </v-col>
       </v-row>
@@ -70,7 +73,7 @@
         key="fbStep2"
       >
         <v-col>
-          <v-row justify="start" class="pb-6 mb-6 pl-4 pr-2">
+          <v-row justify="start" class="pb-3 mb-6 pl-4 pr-2">
             {{ $t("settingsPage.fbCard2.subheader") }}</v-row
           >
           <v-row align="start" class="pl-4 pr-3 pt-0 mt-0"
@@ -79,7 +82,7 @@
               :items="pageList"
               v-model="PageSelectedId"
               dense
-              class="pt-0 select_page"
+              class="pt-0 mt-0 select_page"
               style="font-size:110%"
             >
             </v-select
@@ -239,8 +242,13 @@ export default {
   overflow: hidden;
 }
 
-.select_page >>> label {
+.v-select >>> label {
   font-size: 100% !important;
+  color: black !important;
+}
+.v-label--active{
+  color: rgba(0, 0, 0, 0.993) !important;
+  opacity: 2;
 }
 
 .font_dims_fb {

@@ -1,5 +1,5 @@
 <template>
-  <v-card tile height="48vh" width="97%" class="pa-3 pt-0 ">
+  <v-card tile height="51vh" width="97%" class="pa-3 pt-0 ">
     <v-container fluid class="font_dims">
       <v-row>
         <v-col cols="6">
