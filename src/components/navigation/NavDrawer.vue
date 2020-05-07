@@ -22,39 +22,54 @@
 
       <v-divider></v-divider>
 
-      <v-list >
+      <v-list>
         <br />
         <br />
         <br />
-        <v-list-item-group class="list-dim" mandatory dark>
+        <v-list-item-group mandatory dark>
           <v-list-item
             class="list-dim "
-            @click="setSelected('Dashboard')" to="/dashboard"
-            ><v-icon style="transform:scale(.75)">$vuetify.icons.dashboard</v-icon></v-list-item
+            @click="setSelected('Dashboard')"
+            to="/dashboard"
+            ><v-icon class="navicon_scale"
+              >$vuetify.icons.dashboard</v-icon
+            ></v-list-item
           >
 
           <v-list-item
             class="list-dim "
-            @click="setSelected('Widgets')" to="/widgets"
-            ><v-icon style="transform:scale(.75)">$vuetify.icons.widgets</v-icon></v-list-item
+            @click="setSelected('Widgets')"
+            to="/widgets"
+            ><v-icon class="navicon_scale"
+              >$vuetify.icons.widgets</v-icon
+            ></v-list-item
           >
-          
+
           <v-list-item
             class="list-dim"
-            @click="setSelected('Campaigns')" to="/campaigns"
-            ><v-icon style="transform:scale(.75)">$vuetify.icons.campaigns</v-icon></v-list-item
+            @click="setSelected('Campaigns')"
+            to="/campaigns"
+            ><v-icon class="navicon_scale"
+              >$vuetify.icons.campaigns</v-icon
+            ></v-list-item
           >
-         
-          <v-list-item
-            class="list-dim" 
-            @click="setSelected('AbandonedCarts')" to="/abandonedcarts"
-            ><v-icon style="transform:scale(.75)">$vuetify.icons.abandonedCarts</v-icon></v-list-item
-          >
-          
+
           <v-list-item
             class="list-dim"
-            @click="setSelected('Settings')" to="/settings"
-            ><v-icon style="transform:scale(.75)">$vuetify.icons.settings</v-icon></v-list-item
+            @click="setSelected('AbandonedCarts')"
+            to="/abandonedcarts"
+            ><v-icon class="navicon_scale"
+              >$vuetify.icons.abandonedCarts</v-icon
+            ></v-list-item
+          >
+
+          <v-list-item
+            class="list-dim"
+            @click="setSelected('Settings')"
+            to="/settings"
+            ><v-icon class="navicon_scale"
+              >$vuetify.icons.settings</v-icon
+            ></v-list-item
           >
         </v-list-item-group>
       </v-list>
@@ -96,11 +111,12 @@ export default {
   text-align: center;
   text-justify: center;
   align-content: center;
-  padding:20%
+  padding: 20%;
 }
 
 .list-dim {
   align-content: center;
+  height: 70px;
 }
 
 .navicon {
@@ -111,7 +127,21 @@ export default {
   box-shadow: 2px 0 8px rgb(146, 143, 143);
 }
 
-.drawer-dims{
-  height:100% !important
+.drawer-dims {
+  height: 100% !important;
+}
+
+.navicon_scale {
+  transform: scale(0.75);
+}
+
+@media (min-width: 1400px) {
+  .navicon_scale {
+    transform: scale(.95);
+  }
+
+  .list-dim {
+    height: 90px;
+  }
 }
 </style>

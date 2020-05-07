@@ -76,4 +76,5 @@ export default {
   white-space: normal;
   align-content: center;
 }
+
 </style>

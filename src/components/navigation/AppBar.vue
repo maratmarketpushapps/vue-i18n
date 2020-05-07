@@ -30,8 +30,7 @@
               </router-link>
             </v-stepper-step>
 
-            <v-divider class="divider">
-            </v-divider>
+            <v-divider class="divider"> </v-divider>
 
             <!-- Step 2 -->
             <v-stepper-step
@@ -89,9 +88,8 @@
         </v-stepper></v-col
       >
 
-      
       <!-- Upgrade button component -->
-      <v-col cols="2" class="pl-8 mb-2" 
+      <v-col cols="2" class="pl-8 mb-2"
         ><v-btn
           tile
           elevation="1"
@@ -145,7 +143,6 @@ export default {
 
 .divider {
   color: rgb(5, 5, 5);
-
 }
 
 a {
@@ -153,19 +150,31 @@ a {
 }
 
 .step-item {
-  
   align-content: center !important;
 }
 
 .step-item-font {
   font-size: 70%;
-  word-wrap:initial;
+  word-wrap: initial;
 }
 
-.button-dims{
-  height:60% !important;
-  width:70% !important;
+.button-dims {
+  height: 60% !important;
+  width: 70% !important;
   font-size: 60% !important;
   position: relative;
+}
+
+@media (min-width: 1400px) {
+  .step-item-font {
+    font-size: 90%;
+  }
+
+  .button-dims {
+  height: 70% !important;
+  width: 70% !important;
+  font-size: 80% !important;
+  position: relative;
+}
 }
 </style>

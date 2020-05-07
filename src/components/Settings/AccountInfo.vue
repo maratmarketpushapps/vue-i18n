@@ -1,63 +1,67 @@
 <template>
-  <v-card tile height="51vh" width="97%" class="pa-3 pt-0 ">
-    <v-container fluid class="font_dims">
-      <v-row>
-        <v-col cols="6">
-          <h3>{{ $t("settingsPage.accInfoCard.header") }}</h3>
-        </v-col>
-        <v-col cols="6" class="pa-2 pt-0">
-          <v-row align="center" justify="end" class="pr-1 pt-1"
-            ><TooltipIcon
-              :posLeft="true"
-              :nudgeRight="10"
-              :nudgeBottom="10"
-              :txt="$t('settingsPage.accInfoCard.tooltipText')"
-              style="transform: scale(.8)"
-          /></v-row>
-        </v-col>
-      </v-row>
-      <v-text-field
-        :label="$t('settingsPage.accInfoCard.label1')"
-        :placeholder="accInfo.first_name"
-        v-model="first_name"
-        @change="detectChange"
-        dense
-        style="font-size:110%"
-        class="pt-4"
-      >
-      </v-text-field>
-      <v-text-field
-        :label="$t('settingsPage.accInfoCard.label2')"
-        :placeholder="accInfo.last_name"
-        v-model="last_name"
-        @change="detectChange"
-        dense
-        style="font-size:110%"
-      >
-      </v-text-field>
-      <v-text-field
-        :label="$t('settingsPage.accInfoCard.label3')"
-        :placeholder="accInfo.email"
-        v-model="email"
-        @change="detectChange"
-        dense
-        style="font-size:110%"
-      >
-      </v-text-field>
-      <v-row justify="center" class="pt-3 pb-5 mb-5">
-        <v-btn
-          tile
-          medium
-          class="primary mb-2"
-          width="25%"
-          :disabled="btnStatus"
-          @click="updAccInfo"
-          style="font-size:100%"
+  <v-card tile height="100%" width="97%" class=" pt-3 px-7 font_dims">
+    <v-row>
+      <v-col cols="6">
+        <h3>{{ $t("settingsPage.accInfoCard.header") }}</h3>
+      </v-col>
+      <v-col cols="6" class="pa-2 pt-0">
+        <v-row align="center" justify="end" class="pr-1 pt-1"
+          ><TooltipIcon
+            :posLeft="true"
+            :nudgeRight="10"
+            :nudgeBottom="10"
+            :txt="$t('settingsPage.accInfoCard.tooltipText')"
+            class="infoicon_scale"
+        /></v-row>
+      </v-col>
+    </v-row>
+    <v-row style="width:100%; height:80%; padding-top:2%" align="center" justify="center" class="pt-0 mt-0 pr-0">
+      <v-col>
+        <v-text-field
+          :label="$t('settingsPage.accInfoCard.label1')"
+          :placeholder="accInfo.first_name"
+          v-model="first_name"
+          @change="detectChange"
+          dense
+          style="font-size:110%"
+          class="pt-0 pb-1"
         >
-          {{ $t("settingsPage.accInfoCard.buttonText") }}
-        </v-btn></v-row
-      >
-    </v-container>
+        </v-text-field>
+        <v-text-field
+          :label="$t('settingsPage.accInfoCard.label2')"
+          :placeholder="accInfo.last_name"
+          v-model="last_name"
+          @change="detectChange"
+          dense
+          style="font-size:110%"
+          class="pt-2 pb-1"
+        >
+        </v-text-field>
+        <v-text-field
+          :label="$t('settingsPage.accInfoCard.label3')"
+          :placeholder="accInfo.email"
+          v-model="email"
+          @change="detectChange"
+          dense
+          style="font-size:110%"
+          class="pt-2 pb-1"
+        >
+        </v-text-field>
+        <v-row justify="center" style="padding-top:3%">
+          <v-btn
+            tile
+            height="40px"
+            class="primary mb-2"
+            width="20%"
+            :disabled="btnStatus"
+            @click="updAccInfo"
+            style="font-size:100%"
+          >
+            {{ $t("settingsPage.accInfoCard.buttonText") }}
+          </v-btn></v-row
+        >
+      </v-col>
+    </v-row>
   </v-card>
 </template>
 
@@ -118,12 +122,7 @@ export default {
 </script>
 
 <style>
-.font_dims{
-  font-size: 60% !important;
-  overflow: hidden;
-}
-
-.v-text-field label{
+.v-text-field label {
   font-size: 100%;
 }
 </style>

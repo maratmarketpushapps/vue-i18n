@@ -1,24 +1,24 @@
 <template>
   <v-container fluid class="pt-0 mt-0">
-    <v-row style="height:100%" class="pt-0 mt-0">
-      <h4 class="pl-7 pt-0 mt-0">SETTINGS</h4>
+    <v-row class="pt-0 mt-0">
+      <h3 class="header_dims">SETTINGS</h3>
     </v-row>
-    <v-row style="height:100% !important">
-      <v-col cols="6" class="pl-10">
-        <v-row>
+    <v-row style="height:100%">
+      <v-col cols="6" class="">
+        <v-row style="height:57%">
           <FbConnect />
         </v-row>
-        <v-row class="pt-4"> </v-row>
-        <v-row>
+        <v-row style="height:3%"> </v-row>
+        <v-row style="height:43%">
           <SetTimezone />
         </v-row>
       </v-col>
-      <v-col cols="6" class="pr-5">
-        <v-row>
+      <v-col cols="6" class="">
+        <v-row style="height:40%" >
           <UpgradeCard />
         </v-row>
-        <v-row class="pt-4"> </v-row>
-        <v-row>
+        <v-row style="height:3%"> </v-row>
+        <v-row style="height:60%">
           <AccountInfo />
         </v-row>
       </v-col>
@@ -44,4 +44,15 @@ export default {
   margin: 2px;
   border: 10px rgb(4, 51, 53);
 }
+
+.infoicon_scale{
+  transform: scale(.8);
+}
+
+@media (min-width: 1400px) {
+  .infoicon_scale{
+  transform: scale(1);
+}
+}
+
 </style>

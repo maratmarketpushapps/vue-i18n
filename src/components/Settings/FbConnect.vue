@@ -1,12 +1,6 @@
 <template>
-  <v-card
-    tile
-    height="53vh"
-    width="97%"
-    class="pl-7 pt-5 pr-9 font_dims"
-    style="position:static !important"
-  >
-    <v-row>
+  <v-card tile height="100%" width="97%" class="pl-6 pt-3 pr-9 font_dims">
+    <v-row style="height:10%">
       <v-col cols="6">
         <h3>{{ $t("settingsPage.fbCard1.header") }}</h3>
       </v-col>
@@ -17,128 +11,135 @@
             :nudgeBottom="30"
             :nudgeLeft="5"
             :txt="$t('settingsPage.fbCard1.tooltipText')"
-            style="transform: scale(.8)"
+            class="infoicon_scale"
         /></v-row>
       </v-col>
     </v-row>
-    <transition-group name="fbcomps">
-      <v-row
-        v-show="fbStep == 1"
-        align="center"
-        justify="center"
-        style="height:80% "
-        class="pa-12"
-        key="fbStep1"
-      >
-        <v-col>
-          <v-row justify="center" class="pb-6">
-            {{ $t("settingsPage.fbCard1.buttonHeader") }}</v-row
-          >
-          <v-row justify="center" class="pt-0 pb-1 mb-0">
-            <v-btn
-              tile
-              large
-              class="fbbtn white--text"
-              color="#3A559F"
-              width="170px"
-              @click="step1Comp()"
-            >
-              <fbIcon class="fbicon pr-2 pl-0" style="transform: scale(.7)" />
 
-              <span class="pl-1 font_dims_fb">
-                {{ $t("settingsPage.fbCard1.buttonText") }}</span
-              >
-            </v-btn></v-row
+    <v-row
+      v-show="fbStep == 1"
+      align="center"
+      justify="center"
+      key="fbStep1"
+      style="height:80%"
+    >
+      <v-col>
+        <v-row justify="center" class="pb-6">
+          {{ $t("settingsPage.fbCard1.buttonHeader") }}</v-row
+        >
+        <v-row justify="center" class="pt-0 pb-1 mb-0">
+          <v-btn
+            tile
+            large
+            class="fbbtn white--text"
+            color="#3A559F"
+            width="177px"
+            @click="step1Comp()"
           >
-          <v-row justify="center" class="pt-4">
-            <span class="pr-1">{{
-              $t("settingsPage.fbCard1.buttonFooter")
-            }}</span>
-            <span>
-              <a
+            <fbIcon class="fbicon pr-2 pl-0" style="transform: scale(.7)" />
+
+            <span class="pl-1 font_dims_fb">
+              {{ $t("settingsPage.fbCard1.buttonText") }}</span
+            >
+          </v-btn></v-row
+        >
+        <v-row justify="center" class="pt-4">
+          <span class="pr-1">{{
+            $t("settingsPage.fbCard1.buttonFooter")
+          }}</span>
+          <span>
+            <a
               href="https://www.facebook.com/pages/create/?ref_type=universal_creation_hub"
               target="_blank"
               style="text-decoration:underline"
               >{{ $t("settingsPage.fbCard1.hrefText") }}</a
             >
-            </span>
-          </v-row>
-        </v-col>
-      </v-row>
-      <v-row
-        v-show="fbStep == 2"
-        align="center"
-        justify="center"
-        class="pt-0"
-        key="fbStep2"
-      >
-        <v-col>
-          <v-row justify="start" class="pb-3 mb-6 pl-4 pr-2">
-            {{ $t("settingsPage.fbCard2.subheader") }}</v-row
+          </span>
+        </v-row>
+      </v-col>
+    </v-row>
+    <v-row
+      v-show="fbStep == 2"
+      align="center"
+      justify="center"
+      class="pt-0"
+      key="fbStep2"
+      style="height:80%"
+    >
+      <v-col>
+        <v-row
+          justify="start"
+          class="px-4"
+          style="padding-top: 0%;
+                   padding-bottom: 3%;"
+        >
+          {{ $t("settingsPage.fbCard2.subheader") }}</v-row
+        >
+        <v-row
+          align="start"
+          class="px-4"
+          style="padding-top: 5%;
+                   padding-bottom: 0%;"
+          ><v-select
+            :label="$t('settingsPage.fbCard2.dropdownHeader')"
+            :items="pageList"
+            v-model="PageSelectedId"
+            class="pt-0 mt-0 select_page"
+            style="font-size:110%;"
           >
-          <v-row align="start" class="pl-4 pr-3 pt-0 mt-0"
-            ><v-select
-              :label="$t('settingsPage.fbCard2.dropdownHeader')"
-              :items="pageList"
-              v-model="PageSelectedId"
-              dense
-              class="pt-0 mt-0 select_page"
-              style="font-size:110%"
-            >
-            </v-select
-          ></v-row>
-          <v-row
-            justify="center"
-            class="pl-4 pt-0 mt-0 pr-3 fbcard2-btnfooter_text"
+          </v-select
+        ></v-row>
+        <v-row
+          justify="center"
+          class="pl-4 pr-3 fbcard2-btnfooter_text"
+          style="padding-top: 0%;
+                   padding-bottom: 5%;"
+        >
+          {{ $t("settingsPage.fbCard2.dropdownSubText") }}</v-row
+        >
+        <v-row justify="center" class="fbStep_padding pb-0 mb-0">
+          <v-btn
+            tile
+            height="40px"
+            class="primary"
+            @click="step2Comp()"
+            width="22%"
+            :disabled="card2BtnDisable"
+            style="font-size:100%"
           >
-            {{ $t("settingsPage.fbCard2.dropdownSubText") }}</v-row
-          >
-          <v-row justify="center" class="mt-8 pt-2 pb-0 mb-0">
-            <v-btn
-              tile
-              medium
-              class="primary"
-              @click="step2Comp()"
-              width="28%"
-              :disabled="card2BtnDisable"
-              style="font-size:100%"
-            >
-              {{ $t("settingsPage.fbCard2.buttonText") }}
-            </v-btn></v-row
-          >
-        </v-col>
-      </v-row>
-    </transition-group>
+            {{ $t("settingsPage.fbCard2.buttonText") }}
+          </v-btn></v-row
+        >
+      </v-col>
+    </v-row>
 
     <v-row
       v-show="fbStep == 3"
       align="center"
       justify="center"
-      style="height:80% "
       class="pa-12"
       key="fbStep3"
+      style="height:80%"
     >
-      <transition name="card3">
-        <v-col>
-          <v-row justify="center" class="pb-10"
-            >{{ $t("settingsPage.fbCard3.msg1") }}
-            <b class="pl-1 pr-1">{{ card3Msg }}</b>
-            {{ $t("settingsPage.fbCard3.msg2") }}
-          </v-row>
-          <v-row justify="center" class="pt-10 pb-1 mb-0">
-            <v-btn
-              tile
-              medium
-              class="primary"
-              @click="step3Comp()"
-              width="35%"
-              style="font-size:100%"
-            >
-              {{ $t("settingsPage.fbCard3.buttonText") }}
-            </v-btn></v-row
+      <v-col>
+        <v-row justify="center" class="pb-10"
+          >{{ $t("settingsPage.fbCard3.msg1") }}
+          <b class="pl-1 pr-1">{{ card3Msg }}</b>
+          {{ $t("settingsPage.fbCard3.msg2") }}
+        </v-row>
+        <v-row justify="center" class="pt-0 pb-1 mb-0">
+          <v-btn
+            tile
+            height="40px"
+            class="primary"
+            @click="step3Comp()"
+            width="30%"
+            style="font-size:100%"
           >
-        </v-col>
-      </transition>
+            {{ $t("settingsPage.fbCard3.buttonText") }}
+          </v-btn></v-row
+        >
+      </v-col>
     </v-row>
   </v-card>
 </template>
@@ -202,7 +203,6 @@ export default {
 <style>
 .fbbtn {
   border: 1px solid #3a559f;
-  border-radius: 2px;
   text-transform: none;
 }
 .fbicon {
@@ -210,43 +210,29 @@ export default {
   justify-self: left;
 }
 .fbcomps-enter-active,
-.fbcomps-leave-active,
-.card3-enter-active,
-.card3-leave-active {
+.fbcomps-leave-active {
   transition: all 0.5s;
 }
-.fbcomps-enter-active,
-.card3-enter-active {
+.fbcomps-enter-active {
   transition-delay: 0.5s;
 }
 
-.fbcomps-enter,
-.card3-enter {
+.fbcomps-enter {
   opacity: 0;
 }
-.fbcomps-leave-to,
-.card3-leave-to {
+.fbcomps-leave-to {
   opacity: 0;
-}
-.fbcomps-leave,
-.card3-leave {
-  opacity: 1;
 }
 .fbcard2-btnfooter_text {
   font-size: 90% !important;
   word-wrap: normal;
 }
 
-.font_dims {
-  font-size: 60% !important;
-  overflow: hidden;
-}
-
 .v-select >>> label {
   font-size: 100% !important;
   color: black !important;
 }
-.v-label--active{
+.v-label--active {
   color: rgba(0, 0, 0, 0.993) !important;
   opacity: 2;
 }

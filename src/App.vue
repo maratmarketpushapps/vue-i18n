@@ -1,25 +1,28 @@
 <template>
-  <v-app class="app-style">
-    <v-content class="app_background">
-      <v-container fluid>
-        <v-row style="width:50vw"
-          ><v-col col="2"><NavDrawer style="width:50vw"/></v-col>
-          <v-col col="10">
-            <AppBar style="height: 10vh" />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col
-            cols="12"
-            class="pt-2 pl-12 pr-5"
-            style="justify-content: center"
+  <v-app >
+    <v-content class="app_background app-style">
+      <v-row style="height:100%"
+        ><v-col cols="1"><NavDrawer /></v-col>
+        <v-col cols="12">
+          <AppBar style="height: 10vh" />
+          <v-row style="height:3%">
+            <v-col>
+            </v-col>
+          </v-row>
+          
+          <v-row
+            style="width: 95%;height: 95%; padding-top:1%; margin-left:5%; margin-right:3%"
+            align="start"
+            
           >
-            <transition name="rtr">
-              <router-view></router-view>
-            </transition>
-          </v-col>
-        </v-row>
-      </v-container>
+            <v-col cols="12">
+              <transition name="rtr">
+                <router-view></router-view>
+              </transition>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
     </v-content>
   </v-app>
 </template>
@@ -81,10 +84,36 @@ export default {
 }
 
 .app-style {
-  min-width: 1000px !important;
+  min-width: 900px !important;
   height: 100%;
-  white-space: nowrap;
-  overflow-y:hidden;
+  overflow-y: hidden;
   overflow-x: auto;
+}
+
+.font_dims {
+  font-size: 60% !important;
+  overflow: hidden;
+}
+.header_dims {
+  font-size: 100% !important;
+  overflow: hidden;
+}
+
+.btnfonts_dims {
+  font-size: 60% !important;
+  overflow: hidden;
+}
+
+@media (min-width: 1400px) {
+  .font_dims {
+    font-size: 85% !important;
+  }
+  .header_dims {
+    font-size: 140% !important;
+    overflow: hidden;
+  }
+  .btnfonts_dims{
+    font-size: 85% !important;
+  }
 }
 </style>

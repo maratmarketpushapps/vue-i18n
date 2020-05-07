@@ -1,23 +1,43 @@
 <template>
-  <v-card tile height="39vh" width="97%" class="pa-0 ma-0 ">
-    <v-img :src="upgImg" class="pa-0" height="100%">
-      <v-container class="pt-4 ">
-        <v-row width="100%" justify="center" align="center" class="pt-2 mt-0">
-          <span class="upgheader-text white--text">{{ header }}</span>
-        </v-row>
-        <v-row width="100%" justify="center" align="center" class="pt-3">
-          <v-col>
-            <p class="upgbody-text">
-              {{ body }}
-            </p>
-          </v-col>
-        </v-row>
-        <v-row justify="center" class="pt-0">
-          <v-btn tile medium class="primary btn_font" width="30%" v-show ="showBtn" style="font-size:60%">
-            {{ $t("settingsPage.upgradeCard.buttonText") }}
-          </v-btn></v-row
-        >
-      </v-container>
+  <v-card
+    tile
+    height="100%"
+    width="97%"
+    class="pa-0 ma-0 "
+    style="justify:center; align:center"
+  >
+    <v-img
+      :src="upgImg"
+      class="pa-0"
+      height="100%"
+      style="justify:center; align:center"
+    >
+      <v-row style="height:100%" align="center">
+        <v-col>
+          <v-row width="100%" justify="center" align="center" class="pt-2 mt-0 pb-0">
+            <span class="upgheader-text white--text">{{ header }}</span>
+          </v-row>
+          <v-row width="100%" justify="center" align="center" class="pt-3">
+            <v-col>
+              <p class="upgbody-text">
+                {{ body }}
+              </p>
+            </v-col>
+          </v-row>
+          <v-row justify="center" class="pt-0">
+            <v-btn
+              tile
+              height="40px"
+              class="primary btnfonts_dims"
+              width="25%"
+              v-show="showBtn"
+              style="font-size:100%"
+            >
+              {{ $t("settingsPage.upgradeCard.buttonText") }}
+            </v-btn></v-row
+          >
+        </v-col>
+      </v-row>
     </v-img>
   </v-card>
 </template>
@@ -74,7 +94,7 @@ export default {
         this.getSettingsState.cart_recovery_attempts_done +
         "/" +
         recAttempts +
-        this.$t("settingsPage.upgradeCard.body4")+
+        this.$t("settingsPage.upgradeCard.body4") +
         this.upgTxt
       );
     },
@@ -92,16 +112,24 @@ export default {
 
 <style>
 .upgheader-text {
-  font-size: 100%;
+  font-size: 110%;
   font-weight: 400;
 }
 .upgbody-text {
   color: white;
   text-align: center;
   font-size: 70%;
-  letter-spacing: 0px;
-  opacity: 1;
   font-weight: 300;
+}
+
+@media (min-width: 1400px) {
+  .upgheader-text {
+    font-size: 150%;
+  }
+
+  .upgbody-text {
+    font-size: 100%;
+  }
 }
 
 .btn_font {
