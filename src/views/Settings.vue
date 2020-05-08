@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="pt-0 mt-0">
     <v-row class="pt-0 mt-0">
-      <h3 class="header_dims">SETTINGS</h3>
+      <h3 class="header_dims">{{ $t("navbar.navdrawer.Settings") }}</h3>
     </v-row>
     <v-row style="height:100%">
       <v-col cols="6" class="">
@@ -14,7 +14,7 @@
         </v-row>
       </v-col>
       <v-col cols="6" class="">
-        <v-row style="height:40%" >
+        <v-row style="height:40%">
           <UpgradeCard />
         </v-row>
         <v-row style="height:3%"> </v-row>
@@ -45,14 +45,13 @@ export default {
   border: 10px rgb(4, 51, 53);
 }
 
-.infoicon_scale{
-  transform: scale(.8);
+.infoicon_scale {
+  transform: scale(0.8);
 }
 
 @media (min-width: 1400px) {
-  .infoicon_scale{
-  transform: scale(1);
+  .infoicon_scale {
+    transform: scale(1);
+  }
 }
-}
-
 </style>

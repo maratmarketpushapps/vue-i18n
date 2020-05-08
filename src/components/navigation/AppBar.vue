@@ -154,7 +154,7 @@ a {
 }
 
 .step-item-font {
-  font-size: 70%;
+  font-size: 65%;
   word-wrap: initial;
 }
 
