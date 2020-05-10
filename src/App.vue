@@ -86,8 +86,6 @@ export default {
 .app-style {
   min-width: 900px !important;
   height: 100%;
-  overflow-y: hidden;
-  overflow-x: auto;
 }
 
 .font_dims {

@@ -33,7 +33,7 @@
             large
             class="fbbtn white--text"
             color="#3A559F"
-            width="177px"
+            width="185px"
             @click="step1Comp()"
           >
             <fbIcon class="fbicon pr-2 pl-0" style="transform: scale(.7)" />

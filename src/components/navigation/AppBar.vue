@@ -160,7 +160,7 @@ a {
 
 .button-dims {
   height: 60% !important;
-  width: 70% !important;
+  width: 80% !important;
   font-size: 60% !important;
   position: relative;
 }

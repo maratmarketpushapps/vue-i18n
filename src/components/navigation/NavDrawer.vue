@@ -137,7 +137,7 @@ export default {
 
 @media (min-width: 1400px) {
   .navicon_scale {
-    transform: scale(.95);
+    transform: scale(.9);
   }
 
   .list-dim {

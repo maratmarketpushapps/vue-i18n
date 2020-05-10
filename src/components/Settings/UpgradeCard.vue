@@ -12,7 +12,7 @@
       height="100%"
       style="justify:center; align:center"
     >
-      <v-row style="height:100%" align="center">
+      <v-row style="height:100%;" align="center" class="px-4" >
         <v-col>
           <v-row width="100%" justify="center" align="center" class="pt-2 mt-0 pb-0">
             <span class="upgheader-text white--text">{{ header }}</span>
