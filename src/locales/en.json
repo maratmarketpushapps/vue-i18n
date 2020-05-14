@@ -14,6 +14,25 @@
       "Campaigns": "Campaigns"
     }
   },
+  "abandonedCarts": {
+    "headerInfo":"The List displays all the Abandoned Carts your Wix Store had after installing Facebook Cart Recovery, regardless of whether they subscribed or not to receive notifications from Facebook.",
+    "tabs":{
+      "item1":"TODAY",
+      "item2":"LAST 7 DAYS",
+      "item3":"LAST 30 DAYS",
+      "item4":"CUSTOM RANGE"
+    },
+    "dataTab":{
+      "headers":{
+        "col1":"Cart Abandoned At",
+        "col2":"Order Value",
+        "col3":"Subscribed On Facebook",
+        "col4":"Message Sent",
+        "col5":"Cart Status",
+        "col6":"Cart Recovered At"
+      }
+    }
+  },
   "settingsPage": {
     "fbCard1": {
       "header": "Connect Your Facebook Page",
@@ -44,22 +63,22 @@
       "body2": " you have up to ",
       "body3": " individual Facebook cart recovery attempts, with up to 2 messages per recovery attempt. ",
       "body4": " cart recovery attempts left this month. ",
-      "body5":"Upgrade to get more.",
+      "body5": "Upgrade to get more.",
       "buttonText": "UPGRADE NOW"
     },
     "accInfoCard": {
       "header": "Account Information",
       "tooltipText": "Add your contact information information. We will use your email to send you reports about app performance such as recovered sales.",
-      "label1":"First Name",
-      "label2":"Last Name",
-      "label3":"E-mail",
-      "buttonText":"Save"
+      "label1": "First Name",
+      "label2": "Last Name",
+      "label3": "E-mail",
+      "buttonText": "Save"
     },
     "tzCard": {
       "header": "Timezone",
       "tooltipText": "Add your timezone. All the displayed dates will be relative to the chosen timezone.",
-      "label":"Select Timezone",
-      "buttonText":"Save"
+      "label": "Select Timezone",
+      "buttonText": "Save"
     }
   }
 }

@@ -1,21 +1,19 @@
 <template>
-  <v-app >
+  <v-app>
     <v-content class="app_background app-style">
-      <v-row style="height:100%"
-        ><v-col cols="1"><NavDrawer /></v-col>
+      <NavDrawer />
+      <AppBar style="height: 10vh" />
+
+      <v-row style="height: 100%; width: 100%;">
         <v-col cols="12">
-          <AppBar style="height: 10vh" />
-          <v-row style="height:3%">
-            <v-col>
-            </v-col>
+          <v-row style="height:10vh">
+            <v-col cols="12"></v-col>
           </v-row>
-          
-          <v-row
-            style="width: 95%;height: 95%; padding-top:1%; margin-left:5%; margin-right:3%"
-            align="start"
-            
-          >
-            <v-col cols="12">
+          <v-row align="center" justify="center">
+            <v-col cols="auto" style="width: 6vw;">
+
+            </v-col>
+            <v-col cols="11">
               <transition name="rtr">
                 <router-view></router-view>
               </transition>
@@ -85,7 +83,7 @@ export default {
 
 .app-style {
   min-width: 900px !important;
-  height: 100%;
+  height: auto;
 }
 
 .font_dims {
@@ -110,7 +108,7 @@ export default {
     font-size: 140% !important;
     overflow: hidden;
   }
-  .btnfonts_dims{
+  .btnfonts_dims {
     font-size: 85% !important;
   }
 }

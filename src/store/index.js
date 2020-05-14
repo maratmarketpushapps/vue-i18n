@@ -42,6 +42,18 @@ export default new Vuex.Store({
     navState: {
       currentSelected: "Dashboard",
     },
+    cartsState: {
+      carts: [
+        {
+          cart_abandoned_at: "",
+          order_value: "",
+          subscribed_on_facebook: "",
+          messages_sent: "",
+          cart_status: "",
+          cart_recovered_at: "",
+        },
+      ],
+    },
   },
   getters: {
     checkClicked: (state) => (id) => {
@@ -68,10 +80,17 @@ export default new Vuex.Store({
       console.log(JSON.stringify(state.planVars.plans));
       return JSON.parse(JSON.stringify(state.planVars.plans));
     },
+    getCartsState: (state) => {
+      console.log(JSON.stringify(state.cartsState.carts));
+      return JSON.parse(JSON.stringify(state.cartsState.carts));
+    },
   },
   mutations: {
     SET_SELECTED(state, id) {
       state.navState.currentSelected = id;
+    },
+    SET_CARTS_VAL(state, obj) {
+      state.cartsState.carts = obj.carts;
     },
     SET_SETTINGS_VALS(state, obj) {
       state.settingsVars.first_name = obj.first_name;
@@ -165,6 +184,27 @@ export default new Vuex.Store({
           });
       });
     },
+
+    getCarts({ commit }, dateObj) {
+      return new Promise((resolve, reject) => {
+        let url = `${process.env.VUE_APP_API_URL}/abandoned_carts/${this.state.instance_id}/${dateObj.startDate}/${dateObj.endDate}`;
+        let headers = {
+          TOKEN: this.state.TOKEN,
+        };
+        console.log(url);
+        axios
+          .get(url, headers)
+          .then((res) => {
+            console.log("CartsApi: " + JSON.parse(JSON.stringify(res.data)));
+            commit("SET_CARTS_VAL", JSON.parse(JSON.stringify(res.data)));
+            resolve("success");
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    },
+
     getPlan({ commit }) {
       return new Promise((resolve, reject) => {
         let url = `${process.env.VUE_APP_API_URL}/plans`;

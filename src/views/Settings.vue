@@ -1,20 +1,20 @@
 <template>
   <v-container fluid class="pt-0 mt-0">
-    <v-row class="pt-0 mt-0">
+    <v-row class="pt-6 mt-0">
       <h3 class="header_dims">{{ $t("navbar.navdrawer.Settings") }}</h3>
     </v-row>
     <v-row style="height:100%">
       <v-col cols="6" class="">
-        <v-row style="height:57%">
+        <v-row style="height:59%">
           <FbConnect />
         </v-row>
         <v-row style="height:3%"> </v-row>
-        <v-row style="height:43%">
+        <v-row style="height:46%">
           <SetTimezone />
         </v-row>
       </v-col>
       <v-col cols="6" class="">
-        <v-row style="height:40%">
+        <v-row style="height:45%">
           <UpgradeCard />
         </v-row>
         <v-row style="height:3%"> </v-row>
