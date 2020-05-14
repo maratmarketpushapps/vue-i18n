@@ -15,12 +15,18 @@
         /></v-row>
       </v-col>
     </v-row>
-    <v-row style="width:100%; height:80%; padding-top:2%" align="center" justify="center" class="pt-0 mt-0 pr-0">
+    <v-row
+      style="width:100%; height:80%; padding-top:2%"
+      align="center"
+      justify="center"
+      class="pt-0 mt-0 pr-0"
+    >
       <v-col>
         <v-text-field
           :label="$t('settingsPage.accInfoCard.label1')"
           v-model="first_name"
           @change="detectChange"
+          @input="detectChange"
           dense
           style="font-size:110%"
           class="pt-0 pb-1"
@@ -30,6 +36,7 @@
           :label="$t('settingsPage.accInfoCard.label2')"
           v-model="last_name"
           @change="detectChange"
+          @input="detectChange"
           dense
           style="font-size:110%"
           class="pt-2 pb-1"
@@ -39,9 +46,11 @@
           :label="$t('settingsPage.accInfoCard.label3')"
           v-model="email"
           @change="detectChange"
+          @input="detectChange"
           dense
           style="font-size:110%"
           class="pt-2 pb-1"
+          :rules="emailRules"
         >
         </v-text-field>
         <v-row justify="center" style="padding-top:3%">
@@ -76,6 +85,12 @@ export default {
       first_name: "",
       last_name: "",
       email: "",
+      emailRules: [
+        (v) =>
+          !v ||
+          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+          "E-mail must be valid",
+      ],
     };
   },
   methods: {
@@ -105,15 +120,14 @@ export default {
       });
     },
   },
-  beforeCreate(){
+  beforeCreate() {
     this.$store.dispatch("getSettings").then((res) => {
-        if (res === "success") {
-          this.first_name=this.$store.getters.getAccountInfo.first_name;
-          this.last_name=this.$store.getters.getAccountInfo.last_name;
-          this.email=this.$store.getters.getAccountInfo.email;
-        }
-      });
-    
+      if (res === "success") {
+        this.first_name = this.$store.getters.getAccountInfo.first_name;
+        this.last_name = this.$store.getters.getAccountInfo.last_name;
+        this.email = this.$store.getters.getAccountInfo.email;
+      }
+    });
   },
   computed: {
     ...mapGetters(["getAccountInfo"]),
@@ -131,5 +145,10 @@ export default {
 <style>
 .v-text-field label {
   font-size: 100%;
+}
+
+.v-application--is-ltr .v-messages {
+    text-align: left;
+    font-style: oblique;
 }
 </style>
