@@ -4,7 +4,7 @@
       <v-col cols="6" class="pb-0 mb-0">
         <h3 class="pt-3 pl-3">{{ $t("settingsPage.tzCard.header") }}</h3>
       </v-col>
-      <v-col cols="6" >
+      <v-col cols="6">
         <v-row align="center" justify="end" class="pr-6 pt-0 mt-0 pb-0 mb-0"
           ><TooltipIcon
             :posRight="true"
@@ -24,12 +24,11 @@
           class="pb-0 pt-0 mt-3 mb-3 px-3"
         >
           <v-col class="pt-0 mt-0">
-            <v-row justify="center" class="pl-4 pr-5 pt-0 pb-0 mb-0" 
+            <v-row justify="center" class="pl-4 pr-5 pt-0 pb-0 mb-0"
               ><v-col class="pb-0 mb-0">
                 <v-select
                   :label="$t('settingsPage.tzCard.label')"
                   :items="pageList"
-                  :placeholder="defTmz"
                   @change="enableSave"
                   v-model="timezone_id"
                   dense
@@ -37,7 +36,7 @@
                 >
                 </v-select> </v-col
             ></v-row>
-            <v-row justify="center" align="center" style="padding-top:5%" >
+            <v-row justify="center" align="center" style="padding-top:5%">
               <v-btn
                 tile
                 height="40px"
@@ -102,6 +101,16 @@ export default {
         ? moment.tz.guess()
         : this.getSettingsState.timezone_id;
     },
+  },
+
+  beforeCreate() {
+    this.$store.dispatch("getSettings").then((res) => {
+      if (res === "success") {
+        this.$store.getters.getSettingsState.timezone_id == ""
+          ? (this.timezone_id = moment.tz.guess())
+          : (this.timezone_id = this.getSettingsState.timezone_id);
+      }
+    });
   },
 };
 </script>

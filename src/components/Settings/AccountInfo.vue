@@ -19,7 +19,6 @@
       <v-col>
         <v-text-field
           :label="$t('settingsPage.accInfoCard.label1')"
-          :placeholder="accInfo.first_name"
           v-model="first_name"
           @change="detectChange"
           dense
@@ -29,7 +28,6 @@
         </v-text-field>
         <v-text-field
           :label="$t('settingsPage.accInfoCard.label2')"
-          :placeholder="accInfo.last_name"
           v-model="last_name"
           @change="detectChange"
           dense
@@ -39,7 +37,6 @@
         </v-text-field>
         <v-text-field
           :label="$t('settingsPage.accInfoCard.label3')"
-          :placeholder="accInfo.email"
           v-model="email"
           @change="detectChange"
           dense
@@ -107,6 +104,16 @@ export default {
         }
       });
     },
+  },
+  beforeCreate(){
+    this.$store.dispatch("getSettings").then((res) => {
+        if (res === "success") {
+          this.first_name=this.$store.getters.getAccountInfo.first_name;
+          this.last_name=this.$store.getters.getAccountInfo.last_name;
+          this.email=this.$store.getters.getAccountInfo.email;
+        }
+      });
+    
   },
   computed: {
     ...mapGetters(["getAccountInfo"]),

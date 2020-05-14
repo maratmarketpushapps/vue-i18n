@@ -1,6 +1,14 @@
 <template>
   <v-card height="auto" width="auto">
-    <v-data-table :headers="headers" :items="items">
+    <v-data-table
+      :headers="headers"
+      :items="items"
+      :footer-props="{
+        showFirstLastPage: true,
+        itemsPerPageOptions: [10, 25, 50, -1],
+        showCurrentPage: true
+      }"
+    >
       <template #item.cart_status="{item}">
         <span
           :style="
@@ -13,10 +21,10 @@
         >
       </template>
       <template #item.order_value="{item}">
-        <h4> {{ item.order_value }} </h4>
+        <h4>{{ item.order_value }}</h4>
       </template>
       <template #item.messages_sent="{item}">
-        <h4> {{ item.messages_sent }} </h4>
+        <h4>{{ item.messages_sent }}</h4>
       </template>
     </v-data-table>
   </v-card>
