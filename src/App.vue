@@ -10,9 +10,7 @@
             <v-col cols="12"></v-col>
           </v-row>
           <v-row align="center" justify="center">
-            <v-col cols="auto" style="width: 6vw;">
-
-            </v-col>
+            <v-col cols="auto" style="width: 6vw;"> </v-col>
             <v-col cols="11">
               <transition name="rtr">
                 <router-view></router-view>
@@ -98,6 +96,13 @@ export default {
 .btnfonts_dims {
   font-size: 60% !important;
   overflow: hidden;
+}
+
+.page_headers {
+  color: #323f4f;
+  font-weight: bold !important;
+  text-transform: uppercase;
+  
 }
 
 @media (min-width: 1400px) {

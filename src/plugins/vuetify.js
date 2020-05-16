@@ -7,7 +7,6 @@ import CampaignsIcon from "@/components/svgIcons/CampaignsIcon.vue";
 import WidgetsIcon from "@/components/svgIcons/WidgetsIcon.vue";
 import DashboardIcon from "@/components/svgIcons/DashboardIcon.vue";
 
-
 Vue.use(Vuetify);
 
 //theme custom colors set here
@@ -21,7 +20,7 @@ export default new Vuetify({
         appbar_background: "#FFFFFF",
         sidebar_background: "#4E5D6B",
         appbar_btn_background: "#FFB742",
-        primary:"#5686F6"
+        primary: "#5686F6",
       },
     },
   },

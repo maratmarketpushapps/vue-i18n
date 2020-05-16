@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="pt-0 mt-0">
     <v-row class="pt-6 mt-0">
-      <h3 class="header_dims">{{ $t("navbar.navdrawer.Settings") }}</h3>
+      <h3 class="header_dims page_headers">{{ $t("navbar.navdrawer.Settings") }}</h3>
     </v-row>
     <v-row style="height:100%">
       <v-col cols="6" class="">

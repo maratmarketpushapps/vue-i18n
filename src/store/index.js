@@ -62,6 +62,9 @@ export default new Vuex.Store({
     getLocale: (state) => {
       return state.globalVars.locale;
     },
+    getCreatedAt: (state)=>{
+      return state.globalVars.created_at;
+    },
     getAccountInfo: (state) => {
       let obj = {
         first_name: state.settingsVars.first_name,

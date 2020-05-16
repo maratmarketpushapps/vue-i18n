@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row class="pa-0 ma-0">
-      <v-col class="pa-0 ma-0">
+      <v-col class="pa-0 ma-0" cols="auto">
         <v-tabs
           background-color="transparent"
           v-model="tab"
@@ -26,22 +26,32 @@
             :nudge-bottom="20"
           >
             <template v-slot:activator="{ on }">
-              <v-tab class="font_dims" key="4" v-on="on">
+              <v-tab class="font_dims" key="4" v-on="on" style="width:auto">
                 <v-icon class="pr-1 infoicon_scale">event</v-icon>
                 <span class="pr-2">{{ custStDt }}</span
                 ><span>to</span> <span class="pl-2">{{ custEnDt }}</span>
                 <v-icon class="infoicon_scale">keyboard_arrow_down</v-icon>
+                <TooltipIcon
+                  :posRight="true"
+                  :nudgeBottom="30"
+                  :nudgeLeft="5"
+                  :txt="$t('abandonedCarts.custRangeInfo')"
+                  class="infoicon_scale "
+                  style="top:30%"
+                />
               </v-tab>
             </template>
             <v-date-picker
               v-model="custDates"
-              color="#f2f2f2"
+              color="grey-ligten-4"
               scrollable
               actions
               show-current="false"
               reactive
               no-title
               range
+              style="height:100%;width:100%"
+              :min="getStartDate"
             >
               <v-spacer /><v-spacer />
               <v-btn
@@ -60,56 +70,74 @@
               ></v-date-picker
             >
           </v-menu>
-          <v-tabs-items v-model="tab" style="height:100%; width:100%">
-            <v-tab-item key="1" style="height:auto; width:100%" :eager="false">
-              <CartsTable
-                :startDate="yestDate"
-                :endDate="currDate"
-                :key="itemKeyDat1"
-              />
-            </v-tab-item>
-            <v-tab-item key="2" :eager="false">
-              <CartsTable
-                :startDate="lstWeekDate"
-                :endDate="currDate"
-                :key="itemKeyDat2"
-              />
-            </v-tab-item>
-            <v-tab-item key="3" :eager="false">
-              <CartsTable
-                :startDate="lstMonthDate"
-                :endDate="currDate"
-                :key="itemKeyDat3"
-              />
-            </v-tab-item>
-
-            <v-tab-item key="4">
-              <CartsTable
-                :startDate="custStDt"
-                :endDate="custEnDt"
-                :key="custKey"
-              />
-            </v-tab-item>
-          </v-tabs-items>
         </v-tabs>
+      </v-col>
+
+      <v-col>
+        <v-row justify="end" class="pr-0 mr-1 mb-1">
+          <v-btn depressed icon class="refIcondim" @click="incrTabCount">
+            <v-icon color="#4E5D6B">refresh</v-icon>
+          </v-btn>
+        </v-row>
       </v-col>
     </v-row>
     <br />
-    <v-row style="height:auto; width:100%"> </v-row>
+    <v-row style="height:auto; width:100%">
+      <v-tabs-items v-model="tab" style="height:100%; width:100%">
+        <v-tab-item key="1" style="height:auto; width:100%" :eager="false">
+          <CartsTable
+            :startDate="yestDate"
+            :endDate="currDate"
+            :key="itemKeyDat1"
+          />
+        </v-tab-item>
+        <v-tab-item key="2" :eager="false">
+          <CartsTable
+            :startDate="lstWeekDate"
+            :endDate="currDate"
+            :key="itemKeyDat2"
+          />
+        </v-tab-item>
+        <v-tab-item key="3" :eager="false">
+          <CartsTable
+            :startDate="lstMonthDate"
+            :endDate="currDate"
+            :key="itemKeyDat3"
+          />
+        </v-tab-item>
+
+        <v-tab-item key="4">
+          <CartsTable
+            :startDate="custStDt"
+            :endDate="custEnDt"
+            :key="custKey"
+          />
+        </v-tab-item>
+      </v-tabs-items>
+    </v-row>
   </v-container>
 </template>
 
 <script>
 import CartsTable from "@/components/AbandonedCarts/CartsTable.vue";
+import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 import moment from "moment-timezone";
+import { mapGetters } from "vuex";
 export default {
   name: "Tabs",
-  components: { CartsTable },
+  components: { CartsTable, TooltipIcon },
   data() {
     return {
       tab: null,
       menu: false,
-      custDates: [],
+      custDates: [
+        moment(new Date() - 86400000 * 15)
+          .utc()
+          .format("YYYY-MM-DD"),
+        moment(new Date())
+          .utc()
+          .format("YYYY-MM-DD"),
+      ],
       custStDt: moment(new Date() - 86400000 * 15)
         .utc()
         .format("MM-DD-YYYY"),
@@ -120,16 +148,27 @@ export default {
       itemKeyDat1: 0,
       itemKeyDat2: 0,
       itemKeyDat3: 0,
+      activeTab: "1",
     };
   },
   methods: {
+    incrTabCount() {
+      this.activeTab == "1" ? this.refreshComp1() : "";
+      this.activeTab == "2" ? this.refreshComp2() : "";
+      this.activeTab == "3" ? this.refreshComp3() : "";
+      this.activeTab == "4" ? this.custKey++ : "";
+    },
+
     refreshComp1() {
+      this.activeTab = "1";
       this.itemKeyDat1++;
     },
     refreshComp2() {
+      this.activeTab = "2";
       this.itemKeyDat2++;
     },
     refreshComp3() {
+      this.activeTab = "3";
       this.itemKeyDat3++;
     },
 
@@ -138,6 +177,8 @@ export default {
     },
 
     setCustDt() {
+      console.log("DateTestsNew :: " + this.custDates[0]);
+      console.log("DateTestsNew :: " + this.custDates[1]);
       this.custDates[0] > this.custDates[1]
         ? (this.custStDt = moment(this.custDates[1])
             .utc()
@@ -156,12 +197,20 @@ export default {
 
       console.log("start date :: " + this.custStDt);
       console.log("end date :: " + this.custEnDt);
-
+      this.activeTab = "4";
       this.custKey++;
       this.menu = false;
     },
   },
   computed: {
+    ...mapGetters(["getCreatedAt"]),
+
+    getStartDate() {
+      return moment(this.getCreatedAt)
+        .utc()
+        .format("YYYY-MM-DD");
+    },
+
     currDate() {
       return moment(new Date())
         .utc()
@@ -203,14 +252,27 @@ export default {
   color: transparent;
 }
 .tab-item-color-active {
-  color: #5686f6 !important;
+  color: #006aff !important;
+  font-weight: bold;
+  font-size: 90% !important;
 }
 
 .theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) {
-  color: black;
+  color: #323f4f !important;
+  font-weight: bold;
+  font-size: 90% !important;
 }
 
 .v-date-picker-table .v-btn.v-btn--active {
   border-radius: 0px;
+}
+.refIcondim {
+  transform: scale(0.9);
+}
+
+@media (min-width: 1400px) {
+  .refIcondim {
+    transform: scale(1.2);
+  }
 }
 </style>
