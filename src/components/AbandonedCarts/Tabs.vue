@@ -8,13 +8,13 @@
           class="pa-0 mt-0 tabs-color"
           active-class="tab-item-color-active"
         >
-          <v-tab class="font_dims" key="1">
+          <v-tab class="font_dims" key="1" @click="refreshComp1()">
             {{ $t("abandonedCarts.tabs.item1") }}
           </v-tab>
-          <v-tab class="font_dims" key="2">
+          <v-tab class="font_dims" key="2" @click="refreshComp2()">
             {{ $t("abandonedCarts.tabs.item2") }}
           </v-tab>
-          <v-tab class="font_dims" key="3">
+          <v-tab class="font_dims" key="3" @click="refreshComp3()">
             {{ $t("abandonedCarts.tabs.item3") }}
           </v-tab>
           <v-menu
@@ -28,7 +28,8 @@
             <template v-slot:activator="{ on }">
               <v-tab class="font_dims" key="4" v-on="on">
                 <v-icon class="pr-1 infoicon_scale">event</v-icon>
-                <span class="pr-2">{{custStDt}}</span><span>to</span> <span class="pl-2">{{custEnDt}}</span>
+                <span class="pr-2">{{ custStDt }}</span
+                ><span>to</span> <span class="pl-2">{{ custEnDt }}</span>
                 <v-icon class="infoicon_scale">keyboard_arrow_down</v-icon>
               </v-tab>
             </template>
@@ -59,31 +60,42 @@
               ></v-date-picker
             >
           </v-menu>
+          <v-tabs-items v-model="tab" style="height:100%; width:100%">
+            <v-tab-item key="1" style="height:auto; width:100%" :eager="false">
+              <CartsTable
+                :startDate="yestDate"
+                :endDate="currDate"
+                :key="itemKeyDat1"
+              />
+            </v-tab-item>
+            <v-tab-item key="2" :eager="false">
+              <CartsTable
+                :startDate="lstWeekDate"
+                :endDate="currDate"
+                :key="itemKeyDat2"
+              />
+            </v-tab-item>
+            <v-tab-item key="3" :eager="false">
+              <CartsTable
+                :startDate="lstMonthDate"
+                :endDate="currDate"
+                :key="itemKeyDat3"
+              />
+            </v-tab-item>
+
+            <v-tab-item key="4">
+              <CartsTable
+                :startDate="custStDt"
+                :endDate="custEnDt"
+                :key="custKey"
+              />
+            </v-tab-item>
+          </v-tabs-items>
         </v-tabs>
       </v-col>
     </v-row>
     <br />
-    <v-row style="height:auto; width:100%">
-      <v-tabs-items v-model="tab" style="height:100%; width:100%">
-        <v-tab-item key="1" style="height:auto; width:100%">
-          <CartsTable :startDate="yestDate" :endDate="currDate" />
-        </v-tab-item>
-        <v-tab-item key="2">
-          <CartsTable :startDate="lstWeekDate" :endDate="currDate" />
-        </v-tab-item>
-        <v-tab-item key="3">
-          <CartsTable :startDate="lstMonthDate" :endDate="currDate" />
-        </v-tab-item>
-
-        <v-tab-item key="4">
-          <CartsTable
-            :startDate="custStDt"
-            :endDate="custEnDt"
-            :key="custKey"
-          />
-        </v-tab-item>
-      </v-tabs-items>
-    </v-row>
+    <v-row style="height:auto; width:100%"> </v-row>
   </v-container>
 </template>
 
@@ -105,9 +117,22 @@ export default {
         .utc()
         .format("MM-DD-YYYY"),
       custKey: 0,
+      itemKeyDat1: 0,
+      itemKeyDat2: 0,
+      itemKeyDat3: 0,
     };
   },
   methods: {
+    refreshComp1() {
+      this.itemKeyDat1++;
+    },
+    refreshComp2() {
+      this.itemKeyDat2++;
+    },
+    refreshComp3() {
+      this.itemKeyDat3++;
+    },
+
     setMenuactivator() {
       this.menuActivator = true;
     },

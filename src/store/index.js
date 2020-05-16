@@ -191,7 +191,7 @@ export default new Vuex.Store({
         let headers = {
           TOKEN: this.state.TOKEN,
         };
-        console.log(url);
+        console.log("CART-CHECK :: "+url);
         axios
           .get(url, headers)
           .then((res) => {
