@@ -69,7 +69,7 @@ export default {
     return {
       btnDisabled: true,
       pageList: moment.tz.names(),
-      timezone_id: "",
+      timezone_id: this.defTmz,
     };
   },
   methods: {

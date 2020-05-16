@@ -28,8 +28,8 @@
             <template v-slot:activator="{ on }">
               <v-tab class="font_dims" key="4" v-on="on" style="width:auto">
                 <v-icon class="pr-1 infoicon_scale">event</v-icon>
-                <span class="pr-2">{{ custStDt }}</span
-                ><span>to</span> <span class="pl-2">{{ custEnDt }}</span>
+                <span class="pr-2">{{ displayStDate }}</span
+                ><span>to</span> <span class="pl-2">{{ displayEnDate }}</span>
                 <v-icon class="infoicon_scale">keyboard_arrow_down</v-icon>
                 <TooltipIcon
                   :posRight="true"
@@ -131,12 +131,8 @@ export default {
       tab: null,
       menu: false,
       custDates: [
-        moment(new Date() - 86400000 * 15)
-          .utc()
-          .format("YYYY-MM-DD"),
-        moment(new Date())
-          .utc()
-          .format("YYYY-MM-DD"),
+        moment(new Date() - 86400000 * 15).format("YYYY-MM-DD"),
+        moment(new Date()).format("YYYY-MM-DD"),
       ],
       custStDt: moment(new Date() - 86400000 * 15)
         .utc()
@@ -209,6 +205,16 @@ export default {
       return moment(this.getCreatedAt)
         .utc()
         .format("YYYY-MM-DD");
+    },
+    displayStDate() {
+      return this.custDates[0] > this.custDates[1]
+        ? this.custDates[1]
+        : this.custDates[0];
+    },
+    displayEnDate() {
+      return this.custDates[0] > this.custDates[1]
+        ? this.custDates[0]
+        : this.custDates[1];
     },
 
     currDate() {
