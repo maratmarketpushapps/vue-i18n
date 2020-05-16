@@ -22,37 +22,39 @@
       class="pt-0 mt-0 pr-0"
     >
       <v-col>
-        <v-text-field
-          :label="$t('settingsPage.accInfoCard.label1')"
-          v-model="first_name"
-          @change="detectChange"
-          @input="detectChange"
-          dense
-          style="font-size:110%"
-          class="pt-0 pb-1"
-        >
-        </v-text-field>
-        <v-text-field
-          :label="$t('settingsPage.accInfoCard.label2')"
-          v-model="last_name"
-          @change="detectChange"
-          @input="detectChange"
-          dense
-          style="font-size:110%"
-          class="pt-2 pb-1"
-        >
-        </v-text-field>
-        <v-text-field
-          :label="$t('settingsPage.accInfoCard.label3')"
-          v-model="email"
-          @change="detectChange"
-          @input="detectChange"
-          dense
-          style="font-size:110%"
-          class="pt-2 pb-1"
-          :rules="emailRules"
-        >
-        </v-text-field>
+        <v-form v-model="formValid">
+          <v-text-field
+            :label="$t('settingsPage.accInfoCard.label1')"
+            v-model="first_name"
+            @change="detectChange"
+            @input="detectChange"
+            dense
+            style="font-size:110%"
+            class="pt-0 pb-1"
+          >
+          </v-text-field>
+          <v-text-field
+            :label="$t('settingsPage.accInfoCard.label2')"
+            v-model="last_name"
+            @change="detectChange"
+            @input="detectChange"
+            dense
+            style="font-size:110%"
+            class="pt-2 pb-1"
+          >
+          </v-text-field>
+          <v-text-field
+            :label="$t('settingsPage.accInfoCard.label3')"
+            v-model="email"
+            @change="detectChange"
+            @input="detectChange"
+            dense
+            style="font-size:110%"
+            class="pt-2 pb-1"
+            :rules="emailRules"
+          >
+          </v-text-field>
+        </v-form>
         <v-row justify="center" style="padding-top:3%">
           <v-btn
             tile
@@ -91,6 +93,7 @@ export default {
           /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
           "E-mail must be valid",
       ],
+      formValid: false,
     };
   },
   methods: {
@@ -132,7 +135,7 @@ export default {
   computed: {
     ...mapGetters(["getAccountInfo"]),
     btnStatus() {
-      return this.btnDisabled;
+      return this.btnDisabled || !this.formValid ? true : false;
     },
     accInfo() {
       let obj = this.getAccountInfo;
@@ -148,7 +151,7 @@ export default {
 }
 
 .v-application--is-ltr .v-messages {
-    text-align: left;
-    font-style: oblique;
+  text-align: left;
+  font-style: oblique;
 }
 </style>

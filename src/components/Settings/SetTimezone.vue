@@ -69,7 +69,7 @@ export default {
     return {
       btnDisabled: true,
       pageList: moment.tz.names(),
-      timezone_id: this.defTmz,
+      timezone_id: "",
     };
   },
   methods: {
@@ -111,6 +111,12 @@ export default {
           : (this.timezone_id = this.getSettingsState.timezone_id);
       }
     });
+  },
+  beforeMount() {
+    this.timezone_id =
+      this.getSettingsState.timezone_id == ""
+        ? moment.tz.guess()
+        : this.getSettingsState.timezone_id;
   },
 };
 </script>
