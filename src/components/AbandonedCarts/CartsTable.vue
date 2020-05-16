@@ -1,12 +1,13 @@
 <template>
   <v-card height="auto" width="auto">
     <v-data-table
+      :no-data-text = "$t('abandonedCarts.noDataTxt')"
       :headers="headers"
       :items="items"
       :footer-props="{
         showFirstLastPage: true,
         itemsPerPageOptions: [10, 25, 50, -1],
-        showCurrentPage: true
+        showCurrentPage: true,
       }"
     >
       <template #item.cart_status="{item}">

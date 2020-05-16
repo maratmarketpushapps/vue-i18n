@@ -17,6 +17,7 @@
   "abandonedCarts": {
     "headerInfo":"The List displays all the Abandoned Carts your Wix Store had after installing Facebook Cart Recovery, regardless of whether they subscribed or not to receive notifications from Facebook.",
     "custRangeInfo":"Select a start date and an end date to see the data for that specific period.",
+    "noDataTxt":"You currently have no abandoned carts. Please note that we only track the abandoned carts from the moment you installed the app.",
     "tabs":{
       "item1":"TODAY",
       "item2":"LAST 7 DAYS",
