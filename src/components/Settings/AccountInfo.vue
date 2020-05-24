@@ -63,7 +63,6 @@
             width="20%"
             :disabled="btnStatus"
             @click="updAccInfo"
-            style="font-size:100%"
           >
             {{ $t("settingsPage.accInfoCard.buttonText") }}
           </v-btn></v-row
@@ -147,7 +146,7 @@ export default {
 
 <style>
 .v-text-field label {
-  font-size: 100%;
+  font-size: 80%;
 }
 
 .v-application--is-ltr .v-messages {

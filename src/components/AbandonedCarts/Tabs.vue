@@ -1,11 +1,11 @@
 <template>
   <v-container fluid>
-    <v-row class="pa-0 ma-0">
+    <v-row class="pa-0 ma-0 mt-4" justify="start">
       <v-col class="pa-0 ma-0" cols="auto">
         <v-tabs
           background-color="transparent"
           v-model="tab"
-          class="pa-0 mt-0 tabs-color"
+          class="pa-0 mt-0 tabs-color tab-size"
           active-class="tab-item-color-active"
         >
           <v-tab class="font_dims" key="1" @click="refreshComp1()">
@@ -275,10 +275,18 @@ export default {
 .refIcondim {
   transform: scale(0.9);
 }
+.tab-size{
+    transform: scale(.9);
+    transform-origin: 0 0;
+  }
 
 @media (min-width: 1400px) {
   .refIcondim {
     transform: scale(1.2);
+  }
+  .tab-size{
+    transform: scale(1);
+    transform-origin: 0 0;
   }
 }
 </style>

@@ -17,6 +17,39 @@ export default new Vuex.Store({
       created_at: "",
       last_install: "",
     },
+    widgetVars: {
+      id: 0,
+      instance_id: "",
+      website_id: 0,
+      facebook_widget_type: "",
+      header_background_color: "",
+      popup_background_color: "",
+      pop_up_title: "",
+      pop_up_title_font_family: "",
+      pop_up_title_font_color: "",
+      pop_up_title_font_type: "",
+      pop_up_title_font_size: 0,
+      pop_up_message: "",
+      pop_up_message_font_family: "",
+      pop_up_message_font_color: "",
+      pop_up_message_font_type: "",
+      pop_up_message_font_size: 0,
+      pop_up_cancel: "",
+      pop_up_cancel_font_family: "",
+      pop_up_cancel_font_color: "",
+      pop_up_cancel_font_type: "",
+      pop_up_cancel_font_size: 0,
+      button_text:"",
+      button_background: "",
+      button_font_family:"",
+      button_font_color:"",
+      button_font_type:"",
+      button_font_size:0,
+      button_corners:"",
+      button_border_size:0,
+      button_border_color:"",
+      active: false,
+    },
     settingsVars: {
       first_name: "",
       last_name: "",
@@ -62,7 +95,7 @@ export default new Vuex.Store({
     getLocale: (state) => {
       return state.globalVars.locale;
     },
-    getCreatedAt: (state)=>{
+    getCreatedAt: (state) => {
       return state.globalVars.created_at;
     },
     getAccountInfo: (state) => {
@@ -79,12 +112,14 @@ export default new Vuex.Store({
     getSettingsState: (state) => {
       return state.settingsVars;
     },
+    getWidgetsState: (state) => {
+      console.log(state.widgetVars);
+      return state.widgetVars;
+    },
     getPlanState: (state) => {
-      console.log(JSON.stringify(state.planVars.plans));
       return JSON.parse(JSON.stringify(state.planVars.plans));
     },
     getCartsState: (state) => {
-      console.log(JSON.stringify(state.cartsState.carts));
       return JSON.parse(JSON.stringify(state.cartsState.carts));
     },
   },
@@ -95,6 +130,44 @@ export default new Vuex.Store({
     SET_CARTS_VAL(state, obj) {
       state.cartsState.carts = obj.carts;
     },
+
+    SET_WIDGETS_VAL(state, obj) {
+      state.widgetVars.id = obj.id;
+      state.widgetVars.instance_id = obj.instance_id;
+      state.widgetVars.website_id = obj.website_id;
+      state.widgetVars.facebook_widget_type = obj.facebook_widget_type;
+      state.widgetVars.header_background_color = obj.header_background_color;
+      state.widgetVars.popup_background_color = obj.popup_background_color;
+      state.widgetVars.pop_up_title = obj.pop_up_title;
+      state.widgetVars.pop_up_title_font_family = obj.pop_up_title_font_family;
+      state.widgetVars.pop_up_title_font_color = obj.pop_up_title_font_color;
+      state.widgetVars.pop_up_title_font_type = obj.pop_up_title_font_type;
+      state.widgetVars.pop_up_title_font_size = obj.pop_up_title_font_size;
+      state.widgetVars.pop_up_message = obj.pop_up_message;
+      state.widgetVars.pop_up_message_font_family =
+        obj.pop_up_message_font_family;
+      state.widgetVars.pop_up_message_font_color =
+        obj.pop_up_message_font_color;
+      state.widgetVars.pop_up_message_font_type = obj.pop_up_message_font_type;
+      state.widgetVars.pop_up_message_font_size = obj.pop_up_message_font_size;
+      state.widgetVars.pop_up_cancel = obj.pop_up_cancel;
+      state.widgetVars.pop_up_cancel_font_family =
+        obj.pop_up_cancel_font_family;
+      state.widgetVars.pop_up_cancel_font_color = obj.pop_up_cancel_font_color;
+      state.widgetVars.pop_up_cancel_font_type = obj.pop_up_cancel_font_type;
+      state.widgetVars.pop_up_cancel_font_size = obj.pop_up_cancel_font_size;
+      state.widgetVars.button_text= obj.button_text;
+      state.widgetVars.button_background= obj.button_background
+      state.widgetVars.button_font_family= obj.button_font_family
+      state.widgetVars.button_font_color= obj.button_font_color
+      state.widgetVars.button_font_type= obj.button_font_type
+      state.widgetVars.button_font_size= obj.button_font_size
+      state.widgetVars.button_corners= obj.button_corners
+      state.widgetVars.button_border_size= obj.button_border_size
+      state.widgetVars.button_border_color= obj.button_border_color
+      state.widgetVars.active = obj.active;
+    },
+
     SET_SETTINGS_VALS(state, obj) {
       state.settingsVars.first_name = obj.first_name;
       state.settingsVars.last_name = obj.last_name;
@@ -136,6 +209,31 @@ export default new Vuex.Store({
       state.settingsVars.last_name = obj.last_name;
       state.settingsVars.email = obj.email;
     },
+    SET_WDGT_HDR_CLR(state, color) {
+      state.widgetVars.header_background_color = color;
+    },
+    SET_WDGT_BDY_CLR(state, color) {
+      state.widgetVars.popup_background_color = color;
+    },
+    SET_WDGT_TYPE(state, type) {
+      state.widgetVars.facebook_widget_type = type;
+    },
+    SET_WDGT_HDR_TXT(state, txt) {
+      state.widgetVars.pop_up_title = txt;
+    },
+    SET_WDGT_HDR_FNT(state, fnt) {
+      state.widgetVars.pop_up_title_font_family = fnt;
+    },
+    SET_WDGT_TTL_CLR(state, color) {
+      state.widgetVars.pop_up_title_font_color = color;
+    },
+    SET_WDGT_HDR_FNT_WGHT(state, wght) {
+      state.widgetVars.pop_up_title_font_type = wght;
+    },
+    SET_WDGT_HDR_FNT_SZ(state, size) {
+      state.widgetVars.pop_up_title_font_size = size;
+    },
+
   },
   actions: {
     updateClick({ commit }, id) {
@@ -188,13 +286,31 @@ export default new Vuex.Store({
       });
     },
 
+    getWidgets({ commit }) {
+      return new Promise((resolve, reject) => {
+        let url = `${process.env.VUE_APP_API_URL}/widgets/${this.state.instance_id}`;
+        let headers = {
+          TOKEN: this.state.TOKEN,
+        };
+        axios
+          .get(url, headers)
+          .then((res) => {
+            commit("SET_WIDGETS_VAL", JSON.parse(JSON.stringify(res.data)));
+            resolve("success");
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    },
+
     getCarts({ commit }, dateObj) {
       return new Promise((resolve, reject) => {
         let url = `${process.env.VUE_APP_API_URL}/abandoned_carts/${this.state.instance_id}/${dateObj.startDate}/${dateObj.endDate}`;
         let headers = {
           TOKEN: this.state.TOKEN,
         };
-        console.log("CART-CHECK :: "+url);
+        console.log("CART-CHECK :: " + url);
         axios
           .get(url, headers)
           .then((res) => {
@@ -242,6 +358,54 @@ export default new Vuex.Store({
           .catch((error) => {
             reject(error);
           });
+      });
+    },
+    updWdgtHdrClr({ commit }, color) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_HDR_CLR", color);
+        resolve("success");
+      });
+    },
+    updWdgtBdyClr({ commit }, color) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_BDY_CLR", color);
+        resolve("success");
+      });
+    },
+    updWdgtType({ commit }, type) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_TYPE", type);
+        resolve("success");
+      });
+    },
+    updWdgtTtl({ commit }, txt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_HDR_TXT", txt);
+        resolve("success");
+      });
+    },
+    updWdgtTtlFnt({ commit }, fnt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_HDR_FNT", fnt);
+        resolve("success");
+      });
+    },
+    updTtlBdyClr({ commit }, color) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_TTL_CLR", color);
+        resolve("success");
+      });
+    },
+    updWdgtTtlFntWght({ commit }, wght) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_HDR_FNT_WGHT", wght);
+        resolve("success");
+      });
+    },
+    updWdgtTtlFntSize({ commit }, size) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_HDR_FNT_SZ", size);
+        resolve("success");
       });
     },
   },

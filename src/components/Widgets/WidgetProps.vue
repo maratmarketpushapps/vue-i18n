@@ -1,0 +1,407 @@
+<template>
+  <v-card tile height="100%" width="90%" class="font_dims">
+    <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0">
+      <v-row style="height:25%;width:100%" class="pa-0 ma-0 ">
+        <v-col cols="6">
+          <v-row
+            class="my-2 ml-2"
+            style="height:100%;width:100%"
+            align="center"
+          >
+            <h3>{{ $t("widgets.wdgtTypeHdr") }}</h3>
+          </v-row>
+        </v-col>
+        <v-col cols="6">
+          <v-row
+            class="my-2 mr-2"
+            style="height:100%;width:100%"
+            justify="end"
+            align="center"
+          >
+            <v-btn
+              tile
+              height="90%"
+              class="primary mb-2 font_dims"
+              width="50%"
+              :disabled="true"
+              style="text-transform:none; font-size:90% !important"
+            >
+              {{ $t("widgets.svBtn") }}
+            </v-btn>
+          </v-row>
+        </v-col>
+      </v-row>
+
+      <v-row
+        style="border-radius:0px; height:20%;width:100%"
+        class="px-0 mx-0 mt-2"
+      >
+        <v-col cols="1"></v-col>
+        <v-col cols="4 px-0 mx-0">
+          <v-row align="center" justify="start" style="width: 100%;">
+            <input
+              type="radio"
+              name="group"
+              value="Button"
+              id="Op1"
+              class="cust-chkbx  cust-chkbx-label cursor-hand"
+              v-model="radioSelect"
+            /><label class="cursor-hand lbl-props" for="Op1">{{
+              $t("widgets.btnChc")
+            }}</label>
+          </v-row>
+        </v-col>
+
+        <v-col cols="6">
+          <v-row align="center" style="width: 100%;">
+            <input
+              type="radio"
+              name="group"
+              value="Checkbox"
+              id="Op2"
+              class="cust-chkbx cust-chkbx-label cursor-hand"
+              v-model="radioSelect"
+            /><label class="cursor-hand lbl-props" for="Op2">{{
+              $t("widgets.chbxChc")
+            }}</label>
+          </v-row>
+        </v-col>
+      </v-row>
+
+      <v-row style="height:20%;width:100%" class="pa-0 ma-0" align="start">
+        <v-col cols="6">
+          <v-row class="my-2 ml-2" style="width:100%" align="center">
+            <h3>{{ $t("widgets.modalHdr") }}</h3>
+          </v-row>
+        </v-col>
+        <v-col cols="6">
+          <v-row class="my-0 mr-2" style="width:100%" justify="end">
+            <TooltipIcon
+              :posRight="true"
+              :nudgeBottom="30"
+              :nudgeLeft="5"
+              :txt="$t('widgets.modalInfo')"
+              class="infoicon_scale pt-0 mt-0"
+            />
+          </v-row>
+        </v-col>
+      </v-row>
+      <v-row style="height:20%;width:100%" align="center">
+        <v-col cols="1"></v-col>
+        <v-col cols="4">
+          <v-row align="center">
+            <ColorSelect
+              :color="hdrColor"
+              :label="$t('widgets.hdrColor')"
+              v-on:selectedColor="setHdrClr($event)"
+              :key="hdrKey"
+              class="item-scale"
+              style="width:auto"
+            />
+          </v-row>
+        </v-col>
+        <v-col cols="4">
+          <v-row align="center">
+            <ColorSelect
+              :color="bdyColor"
+              :label="$t('widgets.bdyColor')"
+              v-on:selectedColor="setBdyClr($event)"
+              :key="bdyKey"
+              class="item-scale"
+            />
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-divider></v-divider>
+    <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0">
+      <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0">
+        <v-col cols="1"></v-col>
+        <v-col cols="10">
+          <v-row align="start" style="height:70%" class="mb-0 pb-0">
+            <v-text-field
+              :label="$t('widgets.ttlTxt')"
+              v-model="ttlText"
+              class="text-fonts"
+            >
+            </v-text-field>
+          </v-row>
+        </v-col>
+      </v-row>
+      <v-row align="start" style="width:100%" class="mt-0 pt-0">
+        <v-col cols="1" class="mt-0 pt-0"></v-col>
+        <v-col cols="" class="mt-2 pt-0">
+          <v-row align="start" class="mt-0 pt-0 mr-2">
+            <v-select
+              dense
+              :items="fontLst"
+              :label="$t('widgets.fontFamily')"
+              class="text-fonts label-scale"
+              v-model="ttlFont"
+            >
+            </v-select>
+          </v-row>
+        </v-col>
+        <v-col cols="4" class="mt-0 pt-0 mr-0 ml-3">
+          <v-row align="start" class="mt-0 pt-0 mr-2">
+            <ColorSelect
+              :color="ttlColor"
+              :label="$t('widgets.fontColor')"
+              v-on:selectedColor="setTtlClr($event)"
+              :key="ttlKey"
+              class="item-scale"
+            />
+          </v-row>
+        </v-col>
+        <v-col cols="2" class="mt-2 pt-0 ml-0 pl-0">
+          <v-row align="start" class="mt-0 pt-0 mr-2">
+            <v-select
+              dense
+              :items="fontWeight"
+              :label="$t('widgets.fontWght')"
+              class="text-fonts label-scale"
+              v-model="ttlFontWght"
+            >
+            </v-select>
+          </v-row>
+        </v-col>
+        <v-col cols="2" class="mt-2 pt-0 ml-0 pl-0 ml-2">
+          <v-row align="start" class="mt-0 pt-0 pl-4">
+            <v-select
+              dense
+              :items="fontSize"
+              :label="$t('widgets.fontSize')"
+              class="text-fonts label-scale"
+              v-model="ttlFontSize"
+            >
+            </v-select>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-divider></v-divider>
+  </v-card>
+</template>
+
+<script>
+import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
+import ColorSelect from "@/components/GlobalComponents/ColorSelect.vue";
+import { mapGetters } from "vuex";
+
+export default {
+  name: "WidgetProps",
+  components: { TooltipIcon, ColorSelect },
+  data() {
+    return {
+      radioSelect: "",
+      headerColor: "#FFFFFF",
+      bcgColor: "#FFFFFF",
+      hdrClrKey: 0,
+      bdyClrKey: 0,
+      ttlText: "",
+      ttlFont: "",
+      fontLst: [
+        "Ariel",
+        "Georgia",
+        "Helvetica",
+        "Impact",
+        "Open sans",
+        "Poppins",
+        "Roboto",
+        "Times new roman",
+        "Verdana",
+      ],
+      fontSize: [8, 9, 10, 11, 12, 14, 18, 24, 30, 36],
+      fontWeight: ["lighter", "normal", "bolder"],
+      ttlFontWght: 0,
+      ttlFontSize: 0,
+      ttlClrKey: 0,
+    };
+  },
+  methods: {
+    setHdrClr(selectedColor) {
+      this.headerColor = selectedColor;
+      this.$store.dispatch("updWdgtHdrClr", selectedColor);
+    },
+    setBdyClr(selectedColor) {
+      this.bcgColor = selectedColor;
+      this.$store.dispatch("updWdgtBdyClr", selectedColor);
+    },
+    hdrIncr() {
+      this.hdrClrKey++;
+    },
+    bdyIncr() {
+      this.bdyClrKey++;
+    },
+    ttlIncr() {
+      this.ttlClrKey++;
+    },
+    setTtlClr(selectedColor) {
+      this.$store.dispatch("updTtlBdyClr", selectedColor);
+    },
+  },
+  computed: {
+    ...mapGetters(["getWidgetsState"]),
+    hdrColor() {
+      this.hdrIncr();
+      return this.getWidgetsState.header_background_color;
+    },
+    bdyColor() {
+      this.bdyIncr();
+      return this.getWidgetsState.popup_background_color;
+    },
+    hdrKey() {
+      return "h" + this.hdrClrKey;
+    },
+    bdyKey() {
+      return "b" + this.bdyClrKey;
+    },
+    ttlKey() {
+      return "ttl" + this.ttlClrKey;
+    },
+    ttlColor() {
+      this.ttlIncr();
+      return this.getWidgetsState.pop_up_title_font_color;
+    },
+  },
+  watch: {
+    radioSelect(newValue, oldValue) {
+      console.log(oldValue);
+      console.log(newValue);
+      this.$store.dispatch("updWdgtType", newValue);
+    },
+    ttlText(newValue) {
+      this.$store.dispatch("updWdgtTtl", newValue);
+    },
+    ttlFont(newValue) {
+      this.$store.dispatch("updWdgtTtlFnt", newValue);
+    },
+    ttlFontWght(newValue) {
+      this.$store.dispatch("updWdgtTtlFntWght", newValue);
+    },
+    ttlFontSize(newValue) {
+      this.$store.dispatch("updWdgtTtlFntSize", newValue);
+    },
+  },
+
+  mounted() {
+    this.$store.dispatch("getWidgets").then((response) => {
+      if (response) {
+        this.radioSelect = this.$store.getters.getWidgetsState.facebook_widget_type;
+        this.ttlText = this.$store.getters.getWidgetsState.pop_up_title;
+        this.ttlFont = this.$store.getters.getWidgetsState.pop_up_title_font_family;
+        this.ttlFontWght = this.$store.getters.getWidgetsState.pop_up_title_font_type;
+        this.ttlFontSize = this.$store.getters.getWidgetsState.pop_up_title_font_size;
+      }
+    });
+  },
+};
+</script>
+
+<style>
+.cust-chkbx {
+  height: 20px !important;
+  width: 20px !important;
+  border: 1px solid cornflowerblue;
+  border-radius: 2px;
+  margin: 2px;
+  -webkit-appearance: none;
+}
+
+.cursor-hand {
+  cursor: pointer;
+}
+
+.cust-chkbx:checked {
+  background-color: cornflowerblue;
+  padding: 1px !important;
+  background-size: 2px 2px !important;
+  background-clip: content-box;
+  color: cornflowerblue;
+}
+
+.cust-chkbx-label:checked + label {
+  color: cornflowerblue;
+  font-weight: bold;
+}
+
+.cust-chkbx:focus {
+  outline-color: transparent;
+}
+
+.lbl-props {
+  font-size: 85%;
+  font-weight: bold;
+  padding-inline-start: 5px;
+}
+
+.item-scale {
+  transform: scale(0.75);
+  transform-origin: 0 0;
+}
+
+.label-scale {
+  transform: scale(0.95);
+  transform-origin: 0 0;
+}
+.text-fonts {
+  font-size: 90%;
+}
+
+@media only screen and (max-width: 1399px) {
+  .lbl-props {
+    font-size: 100%;
+  }
+
+  .item-scale {
+    transform: scale(0.6);
+    transform-origin: 0 0;
+    padding-top: 8%
+  }
+  .label-scale {
+    transform: scale(0.9);
+    transform-origin: 0 0;
+  }
+}
+@media only screen and (max-width: 1230px) {
+  .lbl-props {
+    font-size: 80%;
+  }
+
+  .item-scale {
+    transform: scale(0.6);
+    transform-origin: 0 0;
+  }
+  .label-scale {
+    transform: scale(0.8);
+    transform-origin: 0 0;
+  }
+}
+@media only screen and (max-width: 1050px) {
+  .lbl-props {
+    font-size: 75%;
+  }
+
+  .item-scale {
+    transform: scale(0.6);
+    transform-origin: 0 0;
+  }
+  .label-scale {
+    transform: scale(0.8);
+    transform-origin: 0 0;
+  }
+}
+@media only screen and (min-width: 1455px) {
+  .lbl-props {
+    font-size: 90%;
+  }
+  .item-scale {
+    transform: scale(0.8);
+    transform-origin: 0 0;
+  }
+  .label-scale {
+    transform: scale(1);
+    transform-origin: 0 0;
+  }
+}
+</style>

@@ -33,14 +33,12 @@ export default {
   beforeCreate() {
     this.$store.dispatch("getGlobal").then((response) => {
       console.log(response);
-      console.log();
       this.$i18n.locale = this.$store.getters.getLocale;
     });
   },
   beforeUpdate() {
     this.$store.dispatch("getGlobal").then((response) => {
       console.log(response);
-      console.log();
       this.$i18n.locale = this.$store.getters.getLocale;
     });
   },

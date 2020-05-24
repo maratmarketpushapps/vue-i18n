@@ -35,6 +35,29 @@
       }
     }
   },
+  "widgets": {
+    "headerInfo":"The List displays all the Abandoned Carts your Wix Store had after installing Facebook Cart Recovery, regardless of whether they subscribed or not to receive notifications from Facebook.",
+    "wdgtTypeHdr":"Facebook Widget Type",
+    "svBtn":"Save Changes",
+    "btnChc":"Facebook Button Widget",
+    "chbxChc":"Facebook Checkbox Widget",
+    "modalHdr": "Modal Customization",
+    "modalInfo":"Customize the Consent Widget to match the style of your website.",
+    "hdrColor" : "Header Background Color",
+    "bdyColor" : "Modal Background Color",
+    "msngBtnText": "Send this to messenger",
+    "chckBxTxt1": "Send to",
+    "chckBxTxt2": "Messenger",
+    "fbUserName": "Sample User",
+    "wrngUsrTxt": "Not you",
+    "modalText1": "This is how your website will look like to your website visitors.",
+    "modalText2": "Please note that this interface is for showcasing purposes and it's not clickable.",
+    "ttlTxt":"Modal Title",
+    "fontFamily":"Font Family",
+    "fontColor": "Font Color",
+    "fontWght": "Font Type",
+    "fontSize": "Font Size"
+  },
   "settingsPage": {
     "fbCard1": {
       "header": "Connect Your Facebook Page",

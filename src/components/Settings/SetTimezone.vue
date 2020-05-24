@@ -123,7 +123,7 @@ export default {
 
 <style scoped>
 .v-select >>> label {
-  font-size: 100% !important;
+  font-size: 80% !important;
 }
 
 .v-select {

@@ -1,5 +1,6 @@
 // tooltip component. It accepts the following props for positioning and nudging
-// "posLeft", "posRight", "posTop", "posBottom", "txt","nudgeBottom","nudgeTop","nudgeRight","nudgeLeft"
+// "posLeft", "posRight", "posTop", "posBottom",
+"txt","nudgeBottom","nudgeTop","nudgeRight","nudgeLeft"
 
 <template>
   <div class="pa-0 ma-0">
@@ -13,6 +14,7 @@
       :nudge-top="nudgeTop"
       :nudge-right="nudgeRight"
       :nudge-left="nudgeLeft"
+      content-class="tooltip_color"
     >
       <template v-slot:activator="{ on }">
         <v-btn disable tile icon :ripple="false" class="tooltip_icon" v-on="on">
@@ -27,7 +29,17 @@
 <script>
 import InfoIcon from "@/assets/icons/global/icon-info-active.svg";
 export default {
-  props: ["posLeft", "posRight", "posTop", "posBottom", "txt","nudgeBottom","nudgeTop","nudgeRight","nudgeLeft"],
+  props: [
+    "posLeft",
+    "posRight",
+    "posTop",
+    "posBottom",
+    "txt",
+    "nudgeBottom",
+    "nudgeTop",
+    "nudgeRight",
+    "nudgeLeft",
+  ],
   name: "TooltipIcon",
   components: {
     InfoIcon,
@@ -44,5 +56,16 @@ export default {
   width: 300px;
   display: inline-block;
   word-wrap: break-word;
+  font-size: 80%;
+}
+.tooltip_color {
+  background-color: #323f4f !important;
+  opacity: .9 !important;
+}
+
+@media (min-width: 1400px) {
+  .tooltip_text {
+    font-size: 100%;
+  }
 }
 </style>

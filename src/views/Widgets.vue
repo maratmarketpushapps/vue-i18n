@@ -1,23 +1,106 @@
 <template>
-  <div class="div-style">
-    <h1>This is the Widgets Page</h1>
-    <div><v-icon>$vuetify.icons.widgets</v-icon></div>
-  </div>
+  <v-container fluid class="pt-0 mt-0">
+    <v-row class="pt-0 mt-0 pb-0 mb-0 row-style" align="center">
+      <v-col cols="auto" class="pt-0">
+        <h3 class="header_dims page_headers pr-0 mr-0 pt-0 mt-0">
+          {{ $t("navbar.navdrawer.Widgets") }}&nbsp;
+        </h3>
+      </v-col>
+      <v-col cols="1" class="pl-0 ml-0 pt-0">
+        <TooltipIcon
+          :posRight="true"
+          :nudgeBottom="30"
+          :nudgeLeft="5"
+          :txt="$t('widgets.headerInfo')"
+          class="infoicon_scale pt-0"
+        />
+      </v-col>
+
+      <v-col cols="8.75" class="pt-0">
+        <v-row align="center" justify="end" style="width:100%">
+          <v-col cols="auto"> </v-col>
+          <v-col cols="auto">
+            <span>GO LIVE</span>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+    <v-row
+      class="pt-1 mt-0"
+      align="center"
+      justify="center"
+      style="height:75vh"
+    >
+      <v-col cols="6" style="height:100%">
+        <v-row style="height:100%" align="start" justify="center">
+          <WidgetProps style="align:center" />
+        </v-row>
+      </v-col>
+      <v-col cols="6" style="height:100%">
+        <v-row
+          style="height:100%; width:100%"
+          align="center"
+          justify="center"
+          v-show="widgetType == 'Button'"
+        >
+          <WidgetView />
+        </v-row>
+        <v-row
+          style="height:100%; width:100%"
+          align="center"
+          justify="center"
+          v-show="widgetType == 'Checkbox'"
+        >
+          <WidgetViewCheckBox />
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
+import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
+import WidgetProps from "@/components/Widgets/WidgetProps.vue";
+import WidgetView from "@/components/Widgets/WidgetView.vue";
+import WidgetViewCheckBox from "@/components/Widgets/WidgetViewCheckBox.vue";
+import { mapGetters } from "vuex";
+
 export default {
-    name: "Widgets",
+  name: "Widgets",
+  components: {
+    TooltipIcon,
+    WidgetProps,
+    WidgetView,
+    WidgetViewCheckBox,
+  },
+  data() {
+    return {};
+  },
+  beforeCreate() {
+    this.$store.dispatch("getWidgets").then((response) => {
+      console.log(response);
+    });
+  },
+  computed: {
+    ...mapGetters(["getWidgetsState"]),
+    widgetType() {
+      console.log(
+        "widget type :: " + this.getWidgetsState.facebook_widget_type
+      );
+      return this.getWidgetsState.facebook_widget_type;
+    },
+  },
 };
 </script>
 
-<style>
-.div-style {
-  width: 200px;
-  height: 90px;
-  padding: 10px;
-  text-align: center;
-  margin:50px;
-  border: 10px rgb(4, 51, 53);
+<style scoped>
+.row-style {
+  height: 6vh;
+}
+
+@media (min-width: 1400px) {
+  .row-style {
+    height: 8vh;
+  }
 }
 </style>
