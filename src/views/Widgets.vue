@@ -29,25 +29,25 @@
       class="pt-1 mt-0"
       align="center"
       justify="center"
-      style="height:75vh"
+      style="height:auto"
     >
       <v-col cols="6" style="height:100%">
         <v-row style="height:100%" align="start" justify="center">
           <WidgetProps style="align:center" />
         </v-row>
       </v-col>
-      <v-col cols="6" style="height:100%">
+      <v-col cols="6" style="">
         <v-row
-          style="height:100%; width:100%"
-          align="center"
+          style="height:75vh; width:auto; position: fixed; top:35%"
+          align="start"
           justify="center"
           v-show="widgetType == 'Button'"
         >
           <WidgetView />
         </v-row>
         <v-row
-          style="height:100%; width:100%"
-          align="center"
+          style="height:75vh; width:auto; position: fixed; top:30%"
+          align="start"
           justify="center"
           v-show="widgetType == 'Checkbox'"
         >

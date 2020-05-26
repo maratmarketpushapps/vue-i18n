@@ -1,10 +1,10 @@
 <template>
   <v-app>
-    <v-content class="app_background app-style">
+    <v-content class="app_background app-style" style="height:auto">
       <NavDrawer />
       <AppBar style="height: 10vh" />
 
-      <v-row style="height: 100%; width: 100%;">
+      <v-row style="height: auto width: 100%;">
         <v-col cols="12">
           <v-row style="height:10vh">
             <v-col cols="12"></v-col>

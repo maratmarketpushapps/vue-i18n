@@ -2,7 +2,7 @@
   <v-card
     tile
     height="75%"
-    style="border-radius: 25px 25px 0 0; pr-0"
+    style="border-radius: 25px 25px 0 0;"
     width="90%"
     @click="toggleDialog()"
   >

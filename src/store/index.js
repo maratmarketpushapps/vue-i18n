@@ -39,15 +39,15 @@ export default new Vuex.Store({
       pop_up_cancel_font_color: "",
       pop_up_cancel_font_type: "",
       pop_up_cancel_font_size: 0,
-      button_text:"",
+      button_text: "",
       button_background: "",
-      button_font_family:"",
-      button_font_color:"",
-      button_font_type:"",
-      button_font_size:0,
-      button_corners:"",
-      button_border_size:0,
-      button_border_color:"",
+      button_font_family: "",
+      button_font_color: "",
+      button_font_type: "",
+      button_font_size: 0,
+      button_corners: "",
+      button_border_size: 0,
+      button_border_color: "",
       active: false,
     },
     settingsVars: {
@@ -156,15 +156,15 @@ export default new Vuex.Store({
       state.widgetVars.pop_up_cancel_font_color = obj.pop_up_cancel_font_color;
       state.widgetVars.pop_up_cancel_font_type = obj.pop_up_cancel_font_type;
       state.widgetVars.pop_up_cancel_font_size = obj.pop_up_cancel_font_size;
-      state.widgetVars.button_text= obj.button_text;
-      state.widgetVars.button_background= obj.button_background
-      state.widgetVars.button_font_family= obj.button_font_family
-      state.widgetVars.button_font_color= obj.button_font_color
-      state.widgetVars.button_font_type= obj.button_font_type
-      state.widgetVars.button_font_size= obj.button_font_size
-      state.widgetVars.button_corners= obj.button_corners
-      state.widgetVars.button_border_size= obj.button_border_size
-      state.widgetVars.button_border_color= obj.button_border_color
+      state.widgetVars.button_text = obj.button_text;
+      state.widgetVars.button_background = obj.button_background;
+      state.widgetVars.button_font_family = obj.button_font_family;
+      state.widgetVars.button_font_color = obj.button_font_color;
+      state.widgetVars.button_font_type = obj.button_font_type;
+      state.widgetVars.button_font_size = obj.button_font_size;
+      state.widgetVars.button_corners = obj.button_corners;
+      state.widgetVars.button_border_size = obj.button_border_size;
+      state.widgetVars.button_border_color = obj.button_border_color;
       state.widgetVars.active = obj.active;
     },
 
@@ -227,13 +227,42 @@ export default new Vuex.Store({
     SET_WDGT_TTL_CLR(state, color) {
       state.widgetVars.pop_up_title_font_color = color;
     },
+    SET_WDGT_MSG_CLR(state, color) {
+      state.widgetVars.pop_up_message_font_color = color;
+    },
     SET_WDGT_HDR_FNT_WGHT(state, wght) {
       state.widgetVars.pop_up_title_font_type = wght;
     },
     SET_WDGT_HDR_FNT_SZ(state, size) {
       state.widgetVars.pop_up_title_font_size = size;
     },
-
+    SET_WDGT_MSG_TXT(state, txt) {
+      state.widgetVars.pop_up_message = txt;
+    },
+    SET_WDGT_MSG_FNT(state, fnt) {
+      state.widgetVars.pop_up_message_font_family = fnt;
+    },
+    SET_WDGT_MSG_FNT_WGHT(state, wght) {
+      state.widgetVars.pop_up_message_font_type = wght;
+    },
+    SET_WIDGET_MSG_SZ(state, size) {
+      state.widgetVars.pop_up_message_font_size = size;
+    },
+    SET_WDGT_CNCL_TXT(state, txt) {
+      state.widgetVars.pop_up_cancel = txt;
+    },
+    SET_WDGT_CNCL_FNT(state, fnt) {
+      state.widgetVars.pop_up_cancel_font_family = fnt;
+    },
+    SET_WDGT_CNCL_FNT_WGHT(state, wght) {
+      state.widgetVars.pop_up_cancel_font_type = wght;
+    },
+    SET_WIDGET_CNCL_SZ(state, size) {
+      state.widgetVars.pop_up_cancel_font_size = size;
+    },
+    SET_WDGT_CNCL_CLR(state, color) {
+      state.widgetVars.pop_up_cancel_font_color = color;
+    },
   },
   actions: {
     updateClick({ commit }, id) {
@@ -396,6 +425,12 @@ export default new Vuex.Store({
         resolve("success");
       });
     },
+    updMsgBdyClr({ commit }, color) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_MSG_CLR", color);
+        resolve("success");
+      });
+    },
     updWdgtTtlFntWght({ commit }, wght) {
       return new Promise((resolve) => {
         commit("SET_WDGT_HDR_FNT_WGHT", wght);
@@ -405,6 +440,60 @@ export default new Vuex.Store({
     updWdgtTtlFntSize({ commit }, size) {
       return new Promise((resolve) => {
         commit("SET_WDGT_HDR_FNT_SZ", size);
+        resolve("success");
+      });
+    },
+    updWdgtMsg({ commit }, txt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_MSG_TXT", txt);
+        resolve("success");
+      });
+    },
+    updWdgtMsgFnt({ commit }, fnt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_MSG_FNT", fnt);
+        resolve("success");
+      });
+    },
+    updWdgtMsgFntWght({ commit }, wght) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_MSG_FNT_WGHT", wght);
+        resolve("success");
+      });
+    },
+    updWdgtMsgFntSz({ commit }, propName, propVal) {
+      return new Promise((resolve) => {
+        commit("SET_WIDGET_MSG_SZ", propName, propVal);
+        resolve("success");
+      });
+    },
+    updWdgtCnclTxt({ commit }, txt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_CNCL_TXT", txt);
+        resolve("success");
+      });
+    },
+    updWdgtCnclFnt({ commit }, fnt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_CNCL_FNT", fnt);
+        resolve("success");
+      });
+    },
+    updWdgtCnclFntWght({ commit }, wght) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_CNCL_FNT_WGHT", wght);
+        resolve("success");
+      });
+    },
+    updWdgtCnclFntSz({ commit }, propName, propVal) {
+      return new Promise((resolve) => {
+        commit("SET_WIDGET_CNCL_SZ", propName, propVal);
+        resolve("success");
+      });
+    },
+    updWdgtCnclClr({ commit }, color) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_CNCL_CLR", color);
         resolve("success");
       });
     },

@@ -1,5 +1,5 @@
 <template>
-  <v-card tile height="100%" width="90%" class="font_dims">
+  <v-card tile height="auto" width="95%" class="font_dims card-scroll">
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0">
       <v-row style="height:25%;width:100%" class="pa-0 ma-0 ">
         <v-col cols="6">
@@ -180,6 +180,157 @@
       </v-row>
     </v-container>
     <v-divider></v-divider>
+
+    <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0">
+      <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0">
+        <v-col cols="1"></v-col>
+        <v-col cols="10">
+          <v-row align="start" style="height:70%" class="mb-0 pb-0">
+            <v-text-field
+              :label="$t('widgets.msgTxt')"
+              v-model="msgTxt"
+              class="text-fonts"
+            >
+            </v-text-field>
+          </v-row>
+        </v-col>
+      </v-row>
+      <v-row align="start" style="width:100%" class="mt-0 pt-0">
+        <v-col cols="1" class="mt-0 pt-0"></v-col>
+        <v-col cols="" class="mt-2 pt-0">
+          <v-row align="start" class="mt-0 pt-0 mr-2">
+            <v-select
+              dense
+              :items="fontLst"
+              :label="$t('widgets.fontFamily')"
+              class="text-fonts label-scale"
+              v-model="msgFont"
+            >
+            </v-select>
+          </v-row>
+        </v-col>
+        <v-col cols="4" class="mt-0 pt-0 mr-0 ml-3">
+          <v-row align="start" class="mt-0 pt-0 mr-2">
+            <ColorSelect
+              :color="msgColor"
+              :label="$t('widgets.fontColor')"
+              v-on:selectedColor="setMsgClr($event)"
+              :key="msgKey"
+              class="item-scale"
+            />
+          </v-row>
+        </v-col>
+        <v-col cols="2" class="mt-2 pt-0 ml-0 pl-0">
+          <v-row align="start" class="mt-0 pt-0 mr-2">
+            <v-select
+              dense
+              :items="fontWeight"
+              :label="$t('widgets.fontWght')"
+              class="text-fonts label-scale"
+              v-model="msgFontWght"
+            >
+            </v-select>
+          </v-row>
+        </v-col>
+        <v-col cols="2" class="mt-2 pt-0 ml-0 pl-0 ml-2">
+          <v-row align="start" class="mt-0 pt-0 pl-4">
+            <v-select
+              dense
+              :items="fontSize"
+              :label="$t('widgets.fontSize')"
+              class="text-fonts label-scale"
+              v-model="msgFontSize"
+            >
+            </v-select>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-divider></v-divider>
+    <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0">
+      <v-row style="height:20%;width:100%" class="pa-0 ma-0" align="start">
+        <v-col cols="6">
+          <v-row class="my-2 ml-2" style="width:100%" align="center">
+            <h3>{{ $t("widgets.cnclHdr") }}</h3>
+          </v-row>
+        </v-col>
+        <v-col cols="6">
+          <v-row class="my-0 mr-2" style="width:100%" justify="end">
+            <TooltipIcon
+              :posRight="true"
+              :nudgeBottom="30"
+              :nudgeLeft="5"
+              :txt="$t('widgets.cnclInfo')"
+              class="infoicon_scale pt-0 mt-0"
+            />
+          </v-row>
+        </v-col>
+      </v-row>
+      <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0">
+        <v-col cols="1"></v-col>
+        <v-col cols="10">
+          <v-row align="start" style="height:70%" class="mb-0 pb-0">
+            <v-text-field
+              :label="$t('widgets.cnclTxt')"
+              v-model="cnclTxt"
+              class="text-fonts"
+            >
+            </v-text-field>
+          </v-row>
+        </v-col>
+      </v-row>
+      <v-row align="start" style="width:100%" class="mt-0 pt-0">
+        <v-col cols="1" class="mt-0 pt-0"></v-col>
+        <v-col cols="" class="mt-2 pt-0">
+          <v-row align="start" class="mt-0 pt-0 mr-2">
+            <v-select
+              dense
+              :items="fontLst"
+              :label="$t('widgets.fontFamily')"
+              class="text-fonts label-scale"
+              v-model="cnclFont"
+            >
+            </v-select>
+          </v-row>
+        </v-col>
+        <v-col cols="4" class="mt-0 pt-0 mr-0 ml-3">
+          <v-row align="start" class="mt-0 pt-0 mr-2">
+            <ColorSelect
+              :color="cnclColor"
+              :label="$t('widgets.fontColor')"
+              v-on:selectedColor="setCnclClr($event)"
+              :key="cnclKey"
+              class="item-scale"
+            />
+          </v-row>
+        </v-col>
+        <v-col cols="2" class="mt-2 pt-0 ml-0 pl-0">
+          <v-row align="start" class="mt-0 pt-0 mr-2">
+            <v-select
+              dense
+              :items="fontWeight"
+              :label="$t('widgets.fontWght')"
+              class="text-fonts label-scale"
+              v-model="cnclFontWght"
+            >
+            </v-select>
+          </v-row>
+        </v-col>
+        <v-col cols="2" class="mt-2 pt-0 ml-0 pl-0 ml-2">
+          <v-row align="start" class="mt-0 pt-0 pl-4">
+            <v-select
+              dense
+              :items="fontSize"
+              :label="$t('widgets.fontSize')"
+              class="text-fonts label-scale"
+              v-model="cnclFontSize"
+            >
+            </v-select>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-divider></v-divider>
   </v-card>
 </template>
 
@@ -216,6 +367,16 @@ export default {
       ttlFontWght: 0,
       ttlFontSize: 0,
       ttlClrKey: 0,
+      msgTxt: "",
+      msgFont: "",
+      msgClrKey: 0,
+      msgFontWght: 0,
+      msgFontSize: 0,
+      cnclTxt: "",
+      cnclFont: "",
+      cnclClrKey: 0,
+      cnclFontWght: 0,
+      cnclFontSize: 0,
     };
   },
   methods: {
@@ -236,8 +397,20 @@ export default {
     ttlIncr() {
       this.ttlClrKey++;
     },
+    msgIncr() {
+      this.msgClrKey++;
+    },
+    cnclIncr() {
+      this.cnclClrKey++;
+    },
     setTtlClr(selectedColor) {
       this.$store.dispatch("updTtlBdyClr", selectedColor);
+    },
+    setMsgClr(selectedColor) {
+      this.$store.dispatch("updMsgBdyClr", selectedColor);
+    },
+    setCnclClr(selectedColor) {
+      this.$store.dispatch("updWdgtCnclClr", selectedColor);
     },
   },
   computed: {
@@ -263,6 +436,24 @@ export default {
       this.ttlIncr();
       return this.getWidgetsState.pop_up_title_font_color;
     },
+    msgColor() {
+      this.msgIncr();
+      return this.getWidgetsState.pop_up_message_font_color;
+    },
+
+    cnclColor() {
+      this.cnclIncr();
+      return this.getWidgetsState.pop_up_cancel_font_color;
+    },
+
+    msgKey() {
+      return "msg" + this.msgClrKey;
+    },
+    cnclKey() {
+      return "cncl" + this.cnclClrKey;
+    },
+
+
   },
   watch: {
     radioSelect(newValue, oldValue) {
@@ -282,6 +473,30 @@ export default {
     ttlFontSize(newValue) {
       this.$store.dispatch("updWdgtTtlFntSize", newValue);
     },
+    msgTxt(newValue) {
+      this.$store.dispatch("updWdgtMsg", newValue);
+    },
+    msgFont(newValue) {
+      this.$store.dispatch("updWdgtMsgFnt", newValue);
+    },
+    msgFontWght(newValue) {
+      this.$store.dispatch("updWdgtMsgFntWght", newValue);
+    },
+    msgFontSize(newValue) {
+      this.$store.dispatch("updWdgtMsgFntSz", newValue);
+    },
+    cnclTxt(newValue) {
+      this.$store.dispatch("updWdgtCnclTxt", newValue);
+    },
+    cnclFont(newValue) {
+      this.$store.dispatch("updWdgtCnclFnt", newValue);
+    },
+    cnclFontWght(newValue) {
+      this.$store.dispatch("updWdgtCnclFntWght", newValue);
+    },
+    cnclFontSize(newValue) {
+      this.$store.dispatch("updWdgtCnclFntSz", newValue);
+    },
   },
 
   mounted() {
@@ -292,6 +507,14 @@ export default {
         this.ttlFont = this.$store.getters.getWidgetsState.pop_up_title_font_family;
         this.ttlFontWght = this.$store.getters.getWidgetsState.pop_up_title_font_type;
         this.ttlFontSize = this.$store.getters.getWidgetsState.pop_up_title_font_size;
+        this.msgTxt = this.$store.getters.getWidgetsState.pop_up_message;
+        this.msgFont = this.$store.getters.getWidgetsState.pop_up_message_font_family;
+        this.msgFontWght = this.$store.getters.getWidgetsState.pop_up_message_font_type;
+        this.msgFontSize = this.$store.getters.getWidgetsState.pop_up_message_font_size;
+        this.cnclTxt = this.$store.getters.getWidgetsState.pop_up_cancel;
+        this.cnclFont = this.$store.getters.getWidgetsState.pop_up_cancel_font_family;
+        this.cnclFontWght = this.$store.getters.getWidgetsState.pop_up_cancel_font_type;
+        this.cnclFontSize = this.$store.getters.getWidgetsState.pop_up_cancel_font_size;
       }
     });
   },
@@ -299,6 +522,11 @@ export default {
 </script>
 
 <style>
+.card-scroll {
+  overflow: auto;
+  scrollbar-width: 2px;
+}
+
 .cust-chkbx {
   height: 20px !important;
   width: 20px !important;
@@ -356,7 +584,7 @@ export default {
   .item-scale {
     transform: scale(0.6);
     transform-origin: 0 0;
-    padding-top: 8%
+    padding-top: 8%;
   }
   .label-scale {
     transform: scale(0.9);
