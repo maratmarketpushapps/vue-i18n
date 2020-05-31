@@ -20,7 +20,8 @@
         <v-row align="center" justify="end" style="width:100%">
           <v-col cols="auto"> </v-col>
           <v-col cols="auto">
-            <span>GO LIVE</span>
+            <v-switch v-model="live" :label="liveLbl" color="#4E5D6B">
+            </v-switch>
           </v-col>
         </v-row>
       </v-col>
@@ -38,7 +39,7 @@
       </v-col>
       <v-col cols="6" style="">
         <v-row
-          style="height:75vh; width:auto; position: fixed; top:35%"
+          style="height:75vh; width:auto; position: fixed; top:25%"
           align="start"
           justify="center"
           v-show="widgetType == 'Button'"
@@ -46,7 +47,7 @@
           <WidgetView />
         </v-row>
         <v-row
-          style="height:75vh; width:auto; position: fixed; top:30%"
+          style="height:75vh; width:auto; position: fixed; top:25%"
           align="start"
           justify="center"
           v-show="widgetType == 'Checkbox'"
@@ -74,7 +75,9 @@ export default {
     WidgetViewCheckBox,
   },
   data() {
-    return {};
+    return {
+      live: false,
+    };
   },
   beforeCreate() {
     this.$store.dispatch("getWidgets").then((response) => {
@@ -88,6 +91,9 @@ export default {
         "widget type :: " + this.getWidgetsState.facebook_widget_type
       );
       return this.getWidgetsState.facebook_widget_type;
+    },
+    liveLbl() {
+      return this.live ? this.$t('widgets.liveLbl') : this.$t('widgets.offLbl');
     },
   },
 };

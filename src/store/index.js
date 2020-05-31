@@ -49,6 +49,8 @@ export default new Vuex.Store({
       button_border_size: 0,
       button_border_color: "",
       active: false,
+      wdgt_key_internal: 0,
+      changesSaved: true,
     },
     settingsVars: {
       first_name: "",
@@ -166,6 +168,7 @@ export default new Vuex.Store({
       state.widgetVars.button_border_size = obj.button_border_size;
       state.widgetVars.button_border_color = obj.button_border_color;
       state.widgetVars.active = obj.active;
+      state.widgetVars.changesSaved = true;
     },
 
     SET_SETTINGS_VALS(state, obj) {
@@ -211,57 +214,167 @@ export default new Vuex.Store({
     },
     SET_WDGT_HDR_CLR(state, color) {
       state.widgetVars.header_background_color = color;
+      state.widgetVars.changesSaved = false;
     },
     SET_WDGT_BDY_CLR(state, color) {
       state.widgetVars.popup_background_color = color;
+      state.widgetVars.changesSaved = false;
     },
     SET_WDGT_TYPE(state, type) {
+      type == state.widgetVars.facebook_widget_type
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
       state.widgetVars.facebook_widget_type = type;
     },
     SET_WDGT_HDR_TXT(state, txt) {
+      txt == state.widgetVars.pop_up_title
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
       state.widgetVars.pop_up_title = txt;
     },
     SET_WDGT_HDR_FNT(state, fnt) {
+      fnt == state.widgetVars.pop_up_title_font_family
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
       state.widgetVars.pop_up_title_font_family = fnt;
     },
     SET_WDGT_TTL_CLR(state, color) {
+      color == state.widgetVars.pop_up_title_font_color
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
       state.widgetVars.pop_up_title_font_color = color;
     },
     SET_WDGT_MSG_CLR(state, color) {
+      color == state.widgetVars.pop_up_message_font_color
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
       state.widgetVars.pop_up_message_font_color = color;
     },
     SET_WDGT_HDR_FNT_WGHT(state, wght) {
+      wght == state.widgetVars.pop_up_title_font_type
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
       state.widgetVars.pop_up_title_font_type = wght;
     },
     SET_WDGT_HDR_FNT_SZ(state, size) {
+      size == state.widgetVars.pop_up_title_font_size
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
       state.widgetVars.pop_up_title_font_size = size;
     },
     SET_WDGT_MSG_TXT(state, txt) {
+      txt == state.widgetVars.pop_up_message
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
       state.widgetVars.pop_up_message = txt;
     },
     SET_WDGT_MSG_FNT(state, fnt) {
+      fnt == state.widgetVars.pop_up_message_font_family
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
       state.widgetVars.pop_up_message_font_family = fnt;
     },
     SET_WDGT_MSG_FNT_WGHT(state, wght) {
+      wght == state.widgetVars.pop_up_message_font_type
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
       state.widgetVars.pop_up_message_font_type = wght;
     },
     SET_WIDGET_MSG_SZ(state, size) {
+      size == state.widgetVars.pop_up_message_font_size
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
       state.widgetVars.pop_up_message_font_size = size;
     },
     SET_WDGT_CNCL_TXT(state, txt) {
+      txt == state.widgetVars.pop_up_cancel
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
       state.widgetVars.pop_up_cancel = txt;
     },
     SET_WDGT_CNCL_FNT(state, fnt) {
+      fnt == state.widgetVars.pop_up_cancel_font_family
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
       state.widgetVars.pop_up_cancel_font_family = fnt;
     },
     SET_WDGT_CNCL_FNT_WGHT(state, wght) {
+      wght == state.widgetVars.pop_up_cancel_font_type
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
       state.widgetVars.pop_up_cancel_font_type = wght;
     },
     SET_WIDGET_CNCL_SZ(state, size) {
+      size == state.widgetVars.pop_up_cancel_font_size
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
       state.widgetVars.pop_up_cancel_font_size = size;
     },
     SET_WDGT_CNCL_CLR(state, color) {
+      color == state.widgetVars.pop_up_cancel_font_color
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
       state.widgetVars.pop_up_cancel_font_color = color;
+    },
+    SET_WDGT_BTN_TXT(state, txt) {
+      txt == state.widgetVars.button_text
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.button_text = txt;
+    },
+    SET_WDGT_BTN_BCG_CLR(state, color) {
+      color == state.widgetVars.button_background
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.button_background = color;
+      state.widgetVars.wdgt_key_internal++;
+    },
+    SET_WDGT_BTN_FNT(state, fnt) {
+      fnt == state.widgetVars.button_font_family
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.button_font_family = fnt;
+      state.widgetVars.wdgt_key_internal++;
+    },
+    SET_WDGT_BTN_FNT_CLR(state, color) {
+      color == state.widgetVars.button_font_color
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.button_font_color = color;
+    },
+    SET_WDGT_BTN_FNT_WGHT(state, wght) {
+      wght == state.widgetVars.button_font_type
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.button_font_type = wght;
+    },
+    SET_WIDGET_BTN_FNT_SZ(state, size) {
+      size == state.widgetVars.button_font_size
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.button_font_size = size;
+      state.widgetVars.wdgt_key_internal++;
+    },
+    SET_WIDGET_BTN_CRNR(state, tp) {
+      tp == state.widgetVars.button_corners
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.button_corners = tp;
+      state.widgetVars.wdgt_key_internal++;
+    },
+    SET_WIDGET_BTN_BRDR_SZ(state, size) {
+      size == state.widgetVars.button_border_size
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.button_border_size = size;
+      state.widgetVars.wdgt_key_internal++;
+    },
+    SET_WDGT_BTN_BRDR_CLR(state, color) {
+      color == state.widgetVars.button_border_color
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.button_border_color = color;
+      state.widgetVars.wdgt_key_internal++;
     },
   },
   actions: {
@@ -495,6 +608,79 @@ export default new Vuex.Store({
       return new Promise((resolve) => {
         commit("SET_WDGT_CNCL_CLR", color);
         resolve("success");
+      });
+    },
+    updWdgtBtnTxt({ commit }, txt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_BTN_TXT", txt);
+        resolve("success");
+      });
+    },
+    updWdgtBtnBcgClr({ commit }, color) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_BTN_BCG_CLR", color);
+        resolve("success");
+      });
+    },
+    updWdgtBtnFnt({ commit }, fnt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_BTN_FNT", fnt);
+        resolve("success");
+      });
+    },
+    updWdgtBtnFntClr({ commit }, color) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_BTN_FNT_CLR", color);
+        resolve("success");
+      });
+    },
+    updWdgtBtnFntWght({ commit }, wght) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_BTN_FNT_WGHT", wght);
+        resolve("success");
+      });
+    },
+    updWdgtBtnFntSz({ commit }, propName, propVal) {
+      return new Promise((resolve) => {
+        commit("SET_WIDGET_BTN_FNT_SZ", propName, propVal);
+        resolve("success");
+      });
+    },
+    updWdgtBtnCrnr({ commit }, tp) {
+      return new Promise((resolve) => {
+        commit("SET_WIDGET_BTN_CRNR", tp);
+        resolve("success");
+      });
+    },
+    updWdgtBtnBrdrSz({ commit }, size) {
+      return new Promise((resolve) => {
+        commit("SET_WIDGET_BTN_BRDR_SZ", size);
+        resolve("success");
+      });
+    },
+    updWdgtBtnBrdrClr({ commit }, color) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_BTN_BRDR_CLR", color);
+        resolve("success");
+      });
+    },
+    setWdgts() {
+      return new Promise((resolve, reject) => {
+        let url = `${process.env.VUE_APP_API_URL}/widgets/${this.state.instance_id}`;
+        let headers = {
+          TOKEN: this.state.TOKEN,
+        };
+        let data = this.state.widgetVars;
+        console.log(data);
+        axios
+          .post(url, headers, data)
+          .then((res) => {
+            console.log(res);
+            resolve("success");
+          })
+          .catch((error) => {
+            reject(error);
+          });
       });
     },
   },

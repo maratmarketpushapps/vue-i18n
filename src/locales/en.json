@@ -9,7 +9,7 @@
     "navdrawer": {
       "Settings": "Settings",
       "AbandonedCarts": "Abandoned Carts",
-      "Widgets": "Widgets",
+      "Widgets": "Widget",
       "Dashboard": "Dashboard",
       "Campaigns": "Campaigns"
     }
@@ -60,7 +60,17 @@
     "msgTxt": "Modal Message",
     "cnclHdr": "Cancel Link Settings",
     "cnclInfo": "If the customer does not want to offer the consent to be contacted via Facebook, then clicking this button will close the modal without offering it.",
-    "cnclTxt":"Link Text"
+    "cnclTxt":"Link Text",
+    "btnHdr":"Submit Button Settings",
+    "btnInfo": "Button text to be provided",
+    "btnTxt":"Button Text",
+    "btnColor": "Background Color",
+    "btnCrnr": "Button Corners",
+    "btnBrdrSz": "Border Size",
+    "btnBrdrClr": "Border Color",
+    "resetButton":"RESET TO LAST CHANGES",
+    "liveLbl":"LIVE",
+    "offLbl": "GO-LIVE"
   },
   "settingsPage": {
     "fbCard1": {

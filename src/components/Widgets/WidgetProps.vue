@@ -18,13 +18,15 @@
             justify="end"
             align="center"
           >
+            <!-- save button -->
             <v-btn
               tile
               height="90%"
               class="primary mb-2 font_dims"
               width="50%"
-              :disabled="true"
+              :disabled="detectChange"
               style="text-transform:none; font-size:90% !important"
+              @click="svChanges"
             >
               {{ $t("widgets.svBtn") }}
             </v-btn>
@@ -129,9 +131,9 @@
         </v-col>
       </v-row>
       <v-row align="start" style="width:100%" class="mt-0 pt-0">
-        <v-col cols="1" class="mt-0 pt-0"></v-col>
-        <v-col cols="" class="mt-2 pt-0">
-          <v-row align="start" class="mt-0 pt-0 mr-2">
+        <v-col cols="1" class=""></v-col>
+        <v-col cols="3" class="">
+          <v-row align="start" class="mr-2">
             <v-select
               dense
               :items="fontLst"
@@ -142,8 +144,8 @@
             </v-select>
           </v-row>
         </v-col>
-        <v-col cols="4" class="mt-0 pt-0 mr-0 ml-3">
-          <v-row align="start" class="mt-0 pt-0 mr-2">
+        <v-col cols="4" class="mr-0 ml-3">
+          <v-row align="start" class="mr-2">
             <ColorSelect
               :color="ttlColor"
               :label="$t('widgets.fontColor')"
@@ -153,8 +155,8 @@
             />
           </v-row>
         </v-col>
-        <v-col cols="2" class="mt-2 pt-0 ml-0 pl-0">
-          <v-row align="start" class="mt-0 pt-0 mr-2">
+        <v-col cols="2" class="ml-0 pl-0">
+          <v-row align="start" class="mr-0">
             <v-select
               dense
               :items="fontWeight"
@@ -165,8 +167,8 @@
             </v-select>
           </v-row>
         </v-col>
-        <v-col cols="2" class="mt-2 pt-0 ml-0 pl-0 ml-2">
-          <v-row align="start" class="mt-0 pt-0 pl-4">
+        <v-col cols="1" class="ml-0 pl-0 ml-4">
+          <v-row align="start" class="pl-0">
             <v-select
               dense
               :items="fontSize"
@@ -196,9 +198,9 @@
         </v-col>
       </v-row>
       <v-row align="start" style="width:100%" class="mt-0 pt-0">
-        <v-col cols="1" class="mt-0 pt-0"></v-col>
-        <v-col cols="" class="mt-2 pt-0">
-          <v-row align="start" class="mt-0 pt-0 mr-2">
+        <v-col cols="1" class=""></v-col>
+        <v-col cols="3" class="">
+          <v-row align="start" class=" mr-2">
             <v-select
               dense
               :items="fontLst"
@@ -209,8 +211,8 @@
             </v-select>
           </v-row>
         </v-col>
-        <v-col cols="4" class="mt-0 pt-0 mr-0 ml-3">
-          <v-row align="start" class="mt-0 pt-0 mr-2">
+        <v-col cols="4" class=" mr-0 ml-3">
+          <v-row align="start" class="mr-2">
             <ColorSelect
               :color="msgColor"
               :label="$t('widgets.fontColor')"
@@ -220,8 +222,8 @@
             />
           </v-row>
         </v-col>
-        <v-col cols="2" class="mt-2 pt-0 ml-0 pl-0">
-          <v-row align="start" class="mt-0 pt-0 mr-2">
+        <v-col cols="2" class="ml-0 pl-0">
+          <v-row align="start" class="mr-0">
             <v-select
               dense
               :items="fontWeight"
@@ -232,8 +234,8 @@
             </v-select>
           </v-row>
         </v-col>
-        <v-col cols="2" class="mt-2 pt-0 ml-0 pl-0 ml-2">
-          <v-row align="start" class="mt-0 pt-0 pl-4">
+        <v-col cols="1" class="ml-0 pl-0 ml-4">
+          <v-row align="start" class=" pl-0">
             <v-select
               dense
               :items="fontSize"
@@ -242,6 +244,150 @@
               v-model="msgFontSize"
             >
             </v-select>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-divider></v-divider>
+    <v-container
+      fluid
+      style="height:auto;width:100%"
+      class="mb-0 pb-0"
+      v-show="radioSelect == 'Checkbox'"
+    >
+      <v-row style="height:20%;width:100%" class="pa-0 ma-0" align="start">
+        <v-col cols="6">
+          <v-row class="my-2 ml-2" style="width:100%" align="center">
+            <h3>{{ $t("widgets.btnHdr") }}</h3>
+          </v-row>
+        </v-col>
+        <v-col cols="6">
+          <v-row class="my-0 mr-2" style="width:100%" justify="end">
+            <TooltipIcon
+              :posRight="true"
+              :nudgeBottom="30"
+              :nudgeLeft="5"
+              :txt="$t('widgets.btnInfo')"
+              class="infoicon_scale pt-0 mt-0"
+            />
+          </v-row>
+        </v-col>
+      </v-row>
+
+      <!-- Start of submit group  -->
+      <v-row align="center" style="height:30% width:100%" class="mb-0 pb-0">
+        <v-col cols="1"></v-col>
+        <v-col cols="6">
+          <v-row align="center" style="height:100%" class="">
+            <v-text-field
+              :label="$t('widgets.btnTxt')"
+              v-model="btnTxt"
+              class="text-fonts"
+              dense
+            >
+            </v-text-field>
+          </v-row>
+        </v-col>
+        <v-col cols="auto" class="mr-0 ml-6">
+          <v-row align="center" style="height:100%" class="">
+            <ColorSelect
+              :color="btnBcgColor"
+              :label="$t('widgets.btnColor')"
+              v-on:selectedColor="setBtnBcgClr($event)"
+              :key="btnBcgKey"
+              class="item-scale"
+            />
+          </v-row>
+        </v-col>
+      </v-row>
+      <v-row align="start" style="width:100%" class="mt-0 pt-0">
+        <v-col cols="1" class="mt-0 pt-0"></v-col>
+        <v-col cols="3" class="">
+          <v-row align="start" class="mr-2">
+            <v-select
+              dense
+              :items="fontLst"
+              :label="$t('widgets.fontFamily')"
+              class="text-fonts label-scale"
+              v-model="btnFont"
+            >
+            </v-select>
+          </v-row>
+        </v-col>
+        <v-col cols="4" class="mr-0 ml-3">
+          <v-row align="start" class="mt-0 pt-0 mr-2">
+            <ColorSelect
+              :color="btnFntColor"
+              :label="$t('widgets.fontColor')"
+              v-on:selectedColor="setBtnFntClr($event)"
+              :key="btnFntKey"
+              class="item-scale"
+              style="height:100%"
+            />
+          </v-row>
+        </v-col>
+        <v-col cols="2" class="ml-1 pl-0">
+          <v-row align="start" class="mt-0 pt-0 mr-0">
+            <v-select
+              dense
+              :items="fontWeight"
+              :label="$t('widgets.fontWght')"
+              class="text-fonts label-scale"
+              v-model="btnFontWght"
+            >
+            </v-select>
+          </v-row>
+        </v-col>
+        <v-col cols="1" class=" ml-2 mr-0 pr-0">
+          <v-row align="start" class="mt-0 pt-0 pl-0">
+            <v-select
+              dense
+              :items="btnfontSizeArr"
+              :label="$t('widgets.fontSize')"
+              class="text-fonts label-scale"
+              v-model="btnFontSize"
+            >
+            </v-select>
+          </v-row>
+        </v-col>
+      </v-row>
+
+      <v-row align="start" style="width:100%" class="mt-0 pt-0">
+        <v-col cols="1" class="mt-0 pt-0"></v-col>
+        <v-col cols="3" class="">
+          <v-row align="start" class="mr-0">
+            <v-select
+              dense
+              :items="btnCrnrArr"
+              :label="$t('widgets.btnCrnr')"
+              class="text-fonts label-scale"
+              v-model="btnCrnr"
+            >
+            </v-select>
+          </v-row>
+        </v-col>
+        <v-col cols="2" class=" mr-2">
+          <v-row align="start" class="mt-0 pt-0 pl-2">
+            <v-select
+              dense
+              :items="btnBrdrSzArr"
+              :label="$t('widgets.btnBrdrSz')"
+              class="text-fonts label-scale"
+              v-model="btnBrdrSz"
+            >
+            </v-select>
+          </v-row>
+        </v-col>
+        <v-col cols="4" class="mr-0 ml-3">
+          <v-row align="start" class="mt-0 pt-0 mr-2">
+            <ColorSelect
+              :color="btnBrdrColor"
+              :label="$t('widgets.btnBrdrClr')"
+              v-on:selectedColor="setBtnBrdrClr($event)"
+              :key="clrBtnBrdrKey"
+              class="item-scale"
+              style="height:100%"
+            />
           </v-row>
         </v-col>
       </v-row>
@@ -280,9 +426,9 @@
         </v-col>
       </v-row>
       <v-row align="start" style="width:100%" class="mt-0 pt-0">
-        <v-col cols="1" class="mt-0 pt-0"></v-col>
-        <v-col cols="" class="mt-2 pt-0">
-          <v-row align="start" class="mt-0 pt-0 mr-2">
+        <v-col cols="1" class=""></v-col>
+        <v-col cols="3" class="">
+          <v-row align="start" class=" mr-2">
             <v-select
               dense
               :items="fontLst"
@@ -293,8 +439,8 @@
             </v-select>
           </v-row>
         </v-col>
-        <v-col cols="4" class="mt-0 pt-0 mr-0 ml-3">
-          <v-row align="start" class="mt-0 pt-0 mr-2">
+        <v-col cols="4" class="mr-0 ml-3">
+          <v-row align="start" class=" mr-2">
             <ColorSelect
               :color="cnclColor"
               :label="$t('widgets.fontColor')"
@@ -304,8 +450,8 @@
             />
           </v-row>
         </v-col>
-        <v-col cols="2" class="mt-2 pt-0 ml-0 pl-0">
-          <v-row align="start" class="mt-0 pt-0 mr-2">
+        <v-col cols="2" class=" ml-0 pl-0">
+          <v-row align="start" class=" mr-0">
             <v-select
               dense
               :items="fontWeight"
@@ -316,8 +462,8 @@
             </v-select>
           </v-row>
         </v-col>
-        <v-col cols="2" class="mt-2 pt-0 ml-0 pl-0 ml-2">
-          <v-row align="start" class="mt-0 pt-0 pl-4">
+        <v-col cols="1" class=" ml-0 pl-0 ml-4">
+          <v-row align="start" class=" pl-0">
             <v-select
               dense
               :items="fontSize"
@@ -377,6 +523,18 @@ export default {
       cnclClrKey: 0,
       cnclFontWght: 0,
       cnclFontSize: 0,
+      btnTxt: "",
+      btnBcgClrKey: 0,
+      btnFont: "",
+      btnFntClrKey: 0,
+      btnFontWght: 0,
+      btnFontSize: 0,
+      btnfontSizeArr: [8, 9, 10, 11, 12, 14, 18, 24],
+      btnCrnrArr: ["Round", "Tile"],
+      btnCrnr: "",
+      btnBrdrSzArr: [1, 2, 3, 4, 5, 6],
+      btnBrdrSz: 0,
+      btnBrdrClrKey: 0,
     };
   },
   methods: {
@@ -403,6 +561,15 @@ export default {
     cnclIncr() {
       this.cnclClrKey++;
     },
+    btnBrdrIncr() {
+      this.btnBrdrClrKey++;
+    },
+    btnBcgIncr() {
+      this.btnBcgClrKey++;
+    },
+    btnFntIncr() {
+      this.btnFntClrKey++;
+    },
     setTtlClr(selectedColor) {
       this.$store.dispatch("updTtlBdyClr", selectedColor);
     },
@@ -412,9 +579,29 @@ export default {
     setCnclClr(selectedColor) {
       this.$store.dispatch("updWdgtCnclClr", selectedColor);
     },
+    setBtnBcgClr(selectedColor) {
+      this.$store.dispatch("updWdgtBtnBcgClr", selectedColor);
+    },
+    setBtnFntClr(selectedColor) {
+      this.$store.dispatch("updWdgtBtnFntClr", selectedColor);
+    },
+    setBtnBrdrClr(selectedColor) {
+      this.$store.dispatch("updWdgtBtnBrdrClr", selectedColor);
+    },
+    svChanges() {
+      this.$store.dispatch("setWdgts").then((response) => {
+        if (response) {
+          this.$store.dispatch("getWidgets");
+        }
+      });
+    },
   },
   computed: {
     ...mapGetters(["getWidgetsState"]),
+    detectChange() {
+      return this.getWidgetsState.changesSaved;
+    },
+
     hdrColor() {
       this.hdrIncr();
       return this.getWidgetsState.header_background_color;
@@ -446,14 +633,34 @@ export default {
       return this.getWidgetsState.pop_up_cancel_font_color;
     },
 
+    btnBcgColor() {
+      this.btnBcgIncr();
+      return this.getWidgetsState.button_background;
+    },
+
     msgKey() {
       return "msg" + this.msgClrKey;
     },
     cnclKey() {
       return "cncl" + this.cnclClrKey;
     },
-
-
+    btnBcgKey() {
+      return "btnBcg" + this.btnBcgClrKey;
+    },
+    btnFntColor() {
+      this.btnFntIncr();
+      return this.getWidgetsState.button_font_color;
+    },
+    btnFntKey() {
+      return "btnFnt" + this.btnFntClrKey;
+    },
+    btnBrdrColor() {
+      this.btnBrdrIncr();
+      return this.getWidgetsState.button_border_color;
+    },
+    clrBtnBrdrKey() {
+      return "btnBrdr" + this.btnBrdrClrKey;
+    },
   },
   watch: {
     radioSelect(newValue, oldValue) {
@@ -497,6 +704,24 @@ export default {
     cnclFontSize(newValue) {
       this.$store.dispatch("updWdgtCnclFntSz", newValue);
     },
+    btnTxt(newValue) {
+      this.$store.dispatch("updWdgtBtnTxt", newValue);
+    },
+    btnFont(newValue) {
+      this.$store.dispatch("updWdgtBtnFnt", newValue);
+    },
+    btnFontWght(newValue) {
+      this.$store.dispatch("updWdgtBtnFntWght", newValue);
+    },
+    btnFontSize(newValue) {
+      this.$store.dispatch("updWdgtBtnFntSz", newValue);
+    },
+    btnCrnr(newValue) {
+      this.$store.dispatch("updWdgtBtnCrnr", newValue);
+    },
+    btnBrdrSz(newValue) {
+      this.$store.dispatch("updWdgtBtnBrdrSz", newValue);
+    },
   },
 
   mounted() {
@@ -515,6 +740,12 @@ export default {
         this.cnclFont = this.$store.getters.getWidgetsState.pop_up_cancel_font_family;
         this.cnclFontWght = this.$store.getters.getWidgetsState.pop_up_cancel_font_type;
         this.cnclFontSize = this.$store.getters.getWidgetsState.pop_up_cancel_font_size;
+        this.btnTxt = this.$store.getters.getWidgetsState.button_text;
+        this.btnFont = this.$store.getters.getWidgetsState.button_font_family;
+        this.btnFontWght = this.$store.getters.getWidgetsState.button_font_type;
+        this.btnFontSize = this.$store.getters.getWidgetsState.button_font_size;
+        this.btnCrnr = this.$store.getters.getWidgetsState.button_corners;
+        this.btnBrdrSz = this.$store.getters.getWidgetsState.button_border_size;
       }
     });
   },
@@ -564,7 +795,7 @@ export default {
 }
 
 .item-scale {
-  transform: scale(0.75);
+  transform: scale(0.95);
   transform-origin: 0 0;
 }
 
@@ -573,7 +804,7 @@ export default {
   transform-origin: 0 0;
 }
 .text-fonts {
-  font-size: 90%;
+  font-size: 92%;
 }
 
 @media only screen and (max-width: 1399px) {
@@ -582,9 +813,8 @@ export default {
   }
 
   .item-scale {
-    transform: scale(0.6);
+    transform: scale(0.9);
     transform-origin: 0 0;
-    padding-top: 8%;
   }
   .label-scale {
     transform: scale(0.9);
@@ -597,7 +827,7 @@ export default {
   }
 
   .item-scale {
-    transform: scale(0.6);
+    transform: scale(0.8);
     transform-origin: 0 0;
   }
   .label-scale {
@@ -611,7 +841,7 @@ export default {
   }
 
   .item-scale {
-    transform: scale(0.6);
+    transform: scale(0.8);
     transform-origin: 0 0;
   }
   .label-scale {
@@ -621,10 +851,10 @@ export default {
 }
 @media only screen and (min-width: 1455px) {
   .lbl-props {
-    font-size: 90%;
+    font-size: 95%;
   }
   .item-scale {
-    transform: scale(0.8);
+    transform: scale(1);
     transform-origin: 0 0;
   }
   .label-scale {
