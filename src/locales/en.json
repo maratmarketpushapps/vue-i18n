@@ -36,7 +36,7 @@
     }
   },
   "widgets": {
-    "headerInfo": "The List displays all the Abandoned Carts your Wix Store had after installing Facebook Cart Recovery, regardless of whether they subscribed or not to receive notifications from Facebook.",
+    "headerInfo": "In order to send Facebook messages to your customers, they must first consent to be contacted via Facebook. The purpose of this widget is to enable your customers to offer that consent. If EU privacy laws apply to your company, it's recommended to select the Checkbox Consent widget. Feel free to customize the widget so that it matches the style of your website.",
     "wdgtTypeHdr": "Facebook Widget Type",
     "svBtn": "Save Changes",
     "btnChc": "Facebook Button Widget",
@@ -62,7 +62,7 @@
     "cnclInfo": "If the customer does not want to offer the consent to be contacted via Facebook, then clicking this button will close the modal without offering it.",
     "cnclTxt":"Link Text",
     "btnHdr":"Submit Button Settings",
-    "btnInfo": "Button text to be provided",
+    "btnInfo": "The customer will be able to click this button if the checkbox is checked. The button will submit the consent and close the modal.",
     "btnTxt":"Button Text",
     "btnColor": "Background Color",
     "btnCrnr": "Button Corners",

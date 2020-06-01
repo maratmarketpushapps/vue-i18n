@@ -20,13 +20,17 @@
           class="text-fonts"
           dense
         >
-          <v-icon slot="append" :color="selectedColor">mdi-sticker</v-icon>
+          <v-icon slot="append" :color="stickerColor">mdi-sticker</v-icon>
         </v-text-field>
       </template>
       <v-color-picker mode="hexa" flat hide-mode-switch v-model="selectedColor">
       </v-color-picker>
       <v-row justify="end" class="pr-3 menu-bcg">
-        <v-btn text color="primary" @click="cancelClick" style="font-weight:bold"
+        <v-btn
+          text
+          color="primary"
+          @click="cancelClick"
+          style="font-weight:bold"
           >Cancel</v-btn
         >
         <v-btn
@@ -47,10 +51,12 @@ export default {
   methods: {
     colorSelected() {
       this.menu = false;
+      this.stickerColor = this.selectedColor;
       console.log("child color ::" + this.selectedColor);
       this.$emit("selectedColor", this.selectedColor);
     },
     cancelClick() {
+      this.stickerColor = this.color;
       this.selectedColor = this.color;
       this.menu = false;
     },
@@ -69,11 +75,13 @@ export default {
     return {
       menu: null,
       selectedColor: "#5686F6",
+      stickerColor: "#FFFFFF",
     };
   },
 
   mounted() {
     this.selectedColor = this.color;
+    this.stickerColor = this.color;
   },
 };
 </script>
