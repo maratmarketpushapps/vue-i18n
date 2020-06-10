@@ -34,6 +34,8 @@ export default {
     this.$store.dispatch("getGlobal").then((response) => {
       console.log(response);
       this.$i18n.locale = this.$store.getters.getLocale;
+      console.log("Query Parameters :: " + this.$route.query.instance);
+      this.$store.dispatch("updateToken",this.$route.query.instance)
     });
   },
   beforeUpdate() {
@@ -100,7 +102,6 @@ export default {
   color: #323f4f;
   font-weight: bold !important;
   text-transform: uppercase;
-  
 }
 
 @media (min-width: 1400px) {

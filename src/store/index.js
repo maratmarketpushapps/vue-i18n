@@ -132,6 +132,9 @@ export default new Vuex.Store({
     SET_CARTS_VAL(state, obj) {
       state.cartsState.carts = obj.carts;
     },
+    SET_TOKEN(state, token) {
+      state.TOKEN = token;
+    },
 
     SET_WIDGETS_VAL(state, obj) {
       state.widgetVars.id = obj.id;
@@ -378,6 +381,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    updateToken({ commit }, token) {
+      commit("SET_TOKEN", token);
+    },
     updateClick({ commit }, id) {
       commit("SET_SELECTED", id);
     },
