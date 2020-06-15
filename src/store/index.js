@@ -382,7 +382,10 @@ export default new Vuex.Store({
   },
   actions: {
     updateToken({ commit }, token) {
-      commit("SET_TOKEN", token);
+      return new Promise((resolve) => {
+        commit("SET_TOKEN", token);
+        resolve("success");
+      });
     },
     updateClick({ commit }, id) {
       commit("SET_SELECTED", id);
@@ -401,10 +404,13 @@ export default new Vuex.Store({
     },
     getGlobal({ commit }) {
       return new Promise((resolve, reject) => {
-        let url = `${process.env.VUE_APP_API_URL}/websites/${this.state.instance_id}`;
+        let url = `${process.env.VUE_APP_API_URL_DEV}/websites/${this.state.instance_id}`;
         let headers = {
-          TOKEN: this.state.TOKEN,
+          headers: {
+            authorization: this.state.TOKEN,
+          },
         };
+        console.log("headers :: " + this.state.TOKEN);
         axios
           .get(url, headers)
           .then((res) => {

@@ -31,12 +31,15 @@ import NavDrawer from "@/components/navigation/NavDrawer.vue";
 export default {
   name: "App",
   beforeCreate() {
-    this.$store.dispatch("getGlobal").then((response) => {
-      console.log(response);
-      this.$i18n.locale = this.$store.getters.getLocale;
-      console.log("Query Parameters :: " + this.$route.query.instance);
-      this.$store.dispatch("updateToken",this.$route.query.instance)
-    });
+    this.$store.dispatch("updateToken", this.$route.query.instance).
+      then((resp) => {
+        console.log(resp);
+        this.$store.dispatch("getGlobal").then((response) => {
+          console.log(response);
+          this.$i18n.locale = this.$store.getters.getLocale;
+          console.log("Query Parameters :: " + this.$route.query.instance);
+        });
+      });
   },
   beforeUpdate() {
     this.$store.dispatch("getGlobal").then((response) => {
