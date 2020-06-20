@@ -442,9 +442,12 @@ export default new Vuex.Store({
 
     getWidgets({ commit }) {
       return new Promise((resolve, reject) => {
-        let url = `${process.env.VUE_APP_API_URL}/widgets/${this.state.instance_id}`;
+        let url = `${process.env.VUE_APP_API_URL_DEV}/widgets`;
         let headers = {
-          TOKEN: this.state.TOKEN,
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
         };
         axios
           .get(url, headers)
@@ -678,14 +681,19 @@ export default new Vuex.Store({
     },
     setWdgts() {
       return new Promise((resolve, reject) => {
-        let url = `${process.env.VUE_APP_API_URL}/widgets/${this.state.instance_id}`;
+        let url = `${process.env.VUE_APP_API_URL_DEV}/widgets`;
         let headers = {
-          TOKEN: this.state.TOKEN,
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
         };
         let data = this.state.widgetVars;
-        console.log(data);
+        console.log("headers" + headers);
+        console.log("data" + data);
+
         axios
-          .post(url, headers, data)
+          .post(url, data, headers)
           .then((res) => {
             console.log(res);
             resolve("success");
