@@ -147,6 +147,8 @@
 <script>
 import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 import fbIcon from "@/assets/icons/settings/fbIcon.svg";
+import Vue from "vue";
+
 export default {
   name: "FbConnect",
   components: {
@@ -178,6 +180,9 @@ export default {
   },
   methods: {
     step1Comp() {
+      Vue.FB.login((resp) => {
+        console.log(resp);
+      });
       this.fbStep = 2;
     },
     step2Comp() {
