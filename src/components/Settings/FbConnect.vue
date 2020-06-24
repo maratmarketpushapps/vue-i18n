@@ -180,9 +180,15 @@ export default {
   },
   methods: {
     step1Comp() {
-      Vue.FB.login((resp) => {
-        console.log(resp);
-      });
+      Vue.FB.login(
+        (resp) => {
+          console.log(resp);
+        },
+        {
+          scope: "pages_show_list,pages_messaging",
+          return_scopes: true,
+        }
+      );
       this.fbStep = 2;
     },
     step2Comp() {
