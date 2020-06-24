@@ -148,6 +148,7 @@
 import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 import fbIcon from "@/assets/icons/settings/fbIcon.svg";
 import Vue from "vue";
+import axios from "axios";
 
 export default {
   name: "FbConnect",
@@ -183,14 +184,26 @@ export default {
       Vue.FB.login(
         (resp) => {
           console.log(resp);
-          this.fbStep = 2;
+
+          if (resp.status == "connected") {
+            let url = `https://graph.facebook.com/${resp.authResponse.userID}/accounts?access_token=${resp.authResponse.accessToken}`;
+
+            axios
+              .get(url)
+              .then((res) => {
+                console.log("PageResponse ::" + res);
+                this.fbStep = 2;
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }
         },
         {
           scope: "pages_show_list,pages_messaging",
           return_scopes: true,
         }
       );
-      
     },
     step2Comp() {
       this.fbStep = 3;
