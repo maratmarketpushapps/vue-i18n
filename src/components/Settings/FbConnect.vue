@@ -191,7 +191,7 @@ export default {
             axios
               .get(url)
               .then((res) => {
-                console.log("PageResponse ::" + res);
+                console.log("PageResponse ::" + JSON.stringify(res));
                 this.fbStep = 2;
               })
               .catch((error) => {
