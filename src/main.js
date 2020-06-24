@@ -7,11 +7,10 @@ import vuetify from "./plugins/vuetify";
 import SvgTransition from "vue-svg-transition";
 import { initFbSdk } from "./lib/FacebookSdk";
 
-initFbSdk(Vue, process.env.VUE_APP_FACEBOOK_CLIENT_ID);
+await initFbSdk(Vue, process.env.VUE_APP_FACEBOOK_CLIENT_ID);
 
 Vue.use(SvgTransition);
 Vue.config.productionTip = false;
-
 
 new Vue({
   router,
