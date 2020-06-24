@@ -183,13 +183,14 @@ export default {
       Vue.FB.login(
         (resp) => {
           console.log(resp);
+          this.fbStep = 2;
         },
         {
           scope: "pages_show_list,pages_messaging",
           return_scopes: true,
         }
       );
-      this.fbStep = 2;
+      
     },
     step2Comp() {
       this.fbStep = 3;
