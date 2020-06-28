@@ -250,7 +250,7 @@ export default {
       });
     },
   },
-  created() {
+  mounted() {
     console.log("Step to display" + this.fbStep);
     console.log(
       "step1Completed" +
@@ -259,7 +259,13 @@ export default {
     this.$store.getters.getSettingsState.setup_step_1_completed
       ? (this.fbStep = 3)
       : (this.fbStep = 1);
-    this.cardKey++;
+  },
+  beforeCreate() {
+    this.$store.dispatch("getSettings").then((res) => {
+      if (res === "success") {
+        console.log(res);
+      }
+    });
   },
   computed: {
     ...mapGetters(["getSettingsState"]),
