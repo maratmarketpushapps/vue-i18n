@@ -674,7 +674,7 @@ export default new Vuex.Store({
     },
     setSettings() {
       return new Promise((resolve, reject) => {
-        let url = `${process.env.VUE_APP_API_URL}/settings`;
+        let url = `${process.env.VUE_APP_API_URL_DEV}/settings`;
         let headers = {
           headers: {
             authorization: this.state.TOKEN,
