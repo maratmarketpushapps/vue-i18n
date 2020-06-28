@@ -386,6 +386,7 @@ export default new Vuex.Store({
       state.settingsVars.facebook_user_id = obj.facebook_user_id;
       state.settingsVars.facebook_short_access_token =
         obj.facebook_short_access_token;
+      state.settingsVars.setup_step_1_completed = obj.setup_step_1_completed;
     },
   },
   actions: {
