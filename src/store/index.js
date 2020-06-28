@@ -440,6 +440,7 @@ export default new Vuex.Store({
             "Content-Type": "application/json",
           },
         };
+        console.log("Settings called");
         axios
           .get(url, headers)
           .then((res) => {
