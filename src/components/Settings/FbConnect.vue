@@ -251,7 +251,11 @@ export default {
     },
   },
   created() {
-    console.log(this.fbStep);
+    console.log("Step to display" + this.fbStep);
+    console.log(
+      "step1Completed" +
+        this.$store.getters.getSettingsState.setup_step_1_completed
+    );
     this.$store.getters.getSettingsState.setup_step_1_completed
       ? (this.fbStep = 3)
       : (this.fbStep = 1);
