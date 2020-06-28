@@ -23,7 +23,7 @@
     </v-row>
 
     <v-row
-      v-show="fbStep == 1"
+      v-show="stepShow == 1"
       align="center"
       justify="center"
       key="fbStep1"
@@ -65,7 +65,7 @@
       </v-col>
     </v-row>
     <v-row
-      v-show="fbStep == 2"
+      v-show="stepShow == 2"
       align="center"
       justify="center"
       class="pt-0"
@@ -120,7 +120,7 @@
     </v-row>
 
     <v-row
-      v-show="fbStep == 3"
+      v-show="stepShow == 3"
       align="center"
       justify="center"
       class="pa-12"
@@ -263,6 +263,9 @@ export default {
     },
     card3Msg() {
       return ` ${this.getSettingsState.facebook_page_name} `;
+    },
+    stepShow() {
+      return this.fbStep;
     },
   },
 };
