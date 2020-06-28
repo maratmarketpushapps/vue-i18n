@@ -218,6 +218,7 @@ export default {
     step2Comp() {
       let pageObj = this.pageList.find((o) => o.value === this.PageSelectedId);
       this.$store.dispatch("updFbSettings", pageObj).then((res) => {
+        console.log(res);
         this.fbStep = 3;
       });
     },
