@@ -219,7 +219,10 @@ export default {
       let pageObj = this.pageList.find((o) => o.value === this.PageSelectedId);
       this.$store.dispatch("updFbSettings", pageObj).then((res) => {
         console.log(res);
-        this.fbStep = 3;
+        this.$store.dispatch("setSettings").then((response) => {
+          console.log(response);
+          this.fbStep = 3;
+        });
       });
     },
     step3Comp() {
@@ -232,8 +235,11 @@ export default {
       };
       this.$store.dispatch("updFbSettings", fbObj).then((res) => {
         console.log(res);
-        this.PageSelectedId = 1;
-        this.fbStep = 1;
+        this.$store.dispatch("setSettings").then((response) => {
+          console.log(response);
+          this.PageSelectedId = 1;
+          this.fbStep = 1;
+        });
       });
     },
   },

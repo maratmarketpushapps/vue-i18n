@@ -432,9 +432,12 @@ export default new Vuex.Store({
     },
     getSettings({ commit }) {
       return new Promise((resolve, reject) => {
-        let url = `${process.env.VUE_APP_API_URL}/settings/${this.state.instance_id}`;
+        let url = `${process.env.VUE_APP_API_URL_DEV}/settings`;
         let headers = {
-          TOKEN: this.state.TOKEN,
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
         };
         axios
           .get(url, headers)
@@ -506,25 +509,7 @@ export default new Vuex.Store({
           });
       });
     },
-    setSettings() {
-      return new Promise((resolve, reject) => {
-        let url = `${process.env.VUE_APP_API_URL}/settings/${this.state.instance_id}`;
-        let headers = {
-          TOKEN: this.state.TOKEN,
-        };
-        let data = this.state.settingsVars;
-        console.log(data);
-        axios
-          .post(url, headers, data)
-          .then((res) => {
-            console.log(res);
-            resolve("success");
-          })
-          .catch((error) => {
-            reject(error);
-          });
-      });
-    },
+
     updWdgtHdrClr({ commit }, color) {
       return new Promise((resolve) => {
         commit("SET_WDGT_HDR_CLR", color);
@@ -685,6 +670,28 @@ export default new Vuex.Store({
       return new Promise((resolve) => {
         commit("SET_WDGT_BTN_BRDR_CLR", color);
         resolve("success");
+      });
+    },
+    setSettings() {
+      return new Promise((resolve, reject) => {
+        let url = `${process.env.VUE_APP_API_URL}/settings`;
+        let headers = {
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
+        };
+        let data = this.state.settingsVars;
+        console.log(data);
+        axios
+          .post(url, data, headers)
+          .then((res) => {
+            console.log(res);
+            resolve("success");
+          })
+          .catch((error) => {
+            reject(error);
+          });
       });
     },
     setWdgts() {
