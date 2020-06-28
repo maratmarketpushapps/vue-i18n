@@ -166,7 +166,7 @@ export default {
   data() {
     return {
       cardKey: 0,
-      fbStep: 1,
+      fbStep: 0,
       PageSelectedId: 1,
       arrVal: 1,
       pageList: [
@@ -250,7 +250,8 @@ export default {
       });
     },
   },
-  mounted() {
+  created() {
+    console.log(this.fbStep);
     this.$store.getters.getSettingsState.setup_step_1_completed
       ? (this.fbStep = 3)
       : (this.fbStep = 1);
