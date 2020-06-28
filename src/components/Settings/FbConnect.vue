@@ -178,6 +178,7 @@ export default {
 
           if (resp.status == "connected") {
             let url = `https://graph.facebook.com/${resp.authResponse.userID}/accounts?access_token=${resp.authResponse.accessToken}`;
+            let fbUsrId = resp.authResponse.userID
 
             axios
               .get(url)
@@ -190,6 +191,10 @@ export default {
                     value: this.arrVal,
                     text: element.name,
                     disabled: false,
+                    facebook_page_name: element.name,
+                    facebook_page_id: element.id,
+                    facebook_user_id: fbUsrId,
+                    facebook_short_access_token: element.access_token
                   };
                   this.pageList.push(pgObj);
                 });
