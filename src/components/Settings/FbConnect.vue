@@ -243,7 +243,7 @@ export default {
       });
     },
   },
-  mounted() {
+  beforeMount() {
     this.$store.getters.getSettingsState.setup_step_1_completed
       ? (this.fbStep = 3)
       : (this.fbStep = 1);
