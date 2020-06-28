@@ -223,8 +223,18 @@ export default {
       });
     },
     step3Comp() {
-      this.fbStep = 1;
-      this.PageSelectedId = 1;
+      let fbObj = {
+        facebook_page_name: "",
+        facebook_page_id: "",
+        facebook_user_id: "",
+        facebook_short_access_token: "",
+        setup_step_1_completed: false,
+      };
+      this.$store.dispatch("updFbSettings", fbObj).then((res) => {
+        console.log(res);
+        this.PageSelectedId = 1;
+        this.fbStep = 1;
+      });
     },
   },
   mounted() {
