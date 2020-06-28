@@ -259,10 +259,11 @@ export default {
           "step1Completed" +
             this.$store.getters.getSettingsState.setup_step_1_completed
         );
-        this.$store.getters.getSettingsState.setup_step_1_completed &&
         this.fbStep != 2
-          ? (this.fbStep = 3)
-          : (this.fbStep = 1);
+          ? this.$store.getters.getSettingsState.setup_step_1_completed
+            ? (this.fbStep = 3)
+            : (this.fbStep = 1)
+          : (this.fbStep = 2);
       }
     });
   },
