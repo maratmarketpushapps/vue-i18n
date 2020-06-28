@@ -149,6 +149,7 @@ import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 import fbIcon from "@/assets/icons/settings/fbIcon.svg";
 import Vue from "vue";
 import axios from "axios";
+import { mapGetters } from "vuex";
 
 export default {
   name: "FbConnect",
@@ -178,7 +179,7 @@ export default {
 
           if (resp.status == "connected") {
             let url = `https://graph.facebook.com/${resp.authResponse.userID}/accounts?access_token=${resp.authResponse.accessToken}`;
-            let fbUsrId = resp.authResponse.userID
+            let fbUsrId = resp.authResponse.userID;
 
             axios
               .get(url)
@@ -194,7 +195,8 @@ export default {
                     facebook_page_name: element.name,
                     facebook_page_id: element.id,
                     facebook_user_id: fbUsrId,
-                    facebook_short_access_token: element.access_token
+                    facebook_short_access_token: element.access_token,
+                    setup_step_1_completed: true,
                   };
                   this.pageList.push(pgObj);
                 });
@@ -214,20 +216,28 @@ export default {
       );
     },
     step2Comp() {
-      this.fbStep = 3;
+      let pageObj = this.pageList.find((o) => o.value === this.PageSelectedId);
+      this.$store.dispatch("updFbSettings", pageObj).then((res) => {
+        this.fbStep = 3;
+      });
     },
     step3Comp() {
       this.fbStep = 1;
       this.PageSelectedId = 1;
     },
   },
+  mounted() {
+    this.$store.getters.getSettingsState.setup_step_1_completed
+      ? (this.fbStep = 3)
+      : (this.fbStep = 1);
+  },
   computed: {
+    ...mapGetters(["getSettingsState"]),
     card2BtnDisable() {
       return this.PageSelectedId == 1 ? true : false;
     },
     card3Msg() {
-      let pageObj = this.pageList.find((o) => o.value === this.PageSelectedId);
-      return ` ${pageObj.text} `;
+      return ` ${this.getSettingsState.facebook_page_name} `;
     },
   },
 };

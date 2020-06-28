@@ -60,6 +60,7 @@ export default new Vuex.Store({
       facebook_page_id: "",
       website_id: "",
       facebook_user_id: "",
+      facebook_short_access_token: "",
       timezone_id: "",
       message_id_1: "",
       message_id_2: "",
@@ -378,6 +379,13 @@ export default new Vuex.Store({
         : (state.widgetVars.changesSaved = false);
       state.widgetVars.button_border_color = color;
       state.widgetVars.wdgt_key_internal++;
+    },
+    SET_FB_SETTINGS(state, obj) {
+      state.settingsVars.facebook_page_id = obj.facebook_page_id;
+      state.settingsVars.facebook_page_name = obj.facebook_page_name;
+      state.settingsVars.facebook_user_id = obj.facebook_user_id;
+      state.settingsVars.facebook_short_access_token =
+        obj.facebook_short_access_token;
     },
   },
   actions: {
@@ -701,6 +709,12 @@ export default new Vuex.Store({
           .catch((error) => {
             reject(error);
           });
+      });
+    },
+    updFbSettings({ commit }, obj) {
+      return new Promise((resolve) => {
+        commit("SET_FB_SETTINGS", obj);
+        resolve("success");
       });
     },
   },
