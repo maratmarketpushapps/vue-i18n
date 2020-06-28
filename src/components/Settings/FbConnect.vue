@@ -160,21 +160,12 @@ export default {
     return {
       fbStep: 1,
       PageSelectedId: 1,
+      arrVal: 1,
       pageList: [
         {
           value: 1,
           text: "Your Business Name",
           disabled: true,
-        },
-        {
-          value: 2,
-          text: "FB Page1",
-          disabled: false,
-        },
-        {
-          value: 3,
-          text: "FB Page2",
-          disabled: false,
         },
       ],
     };
@@ -192,7 +183,19 @@ export default {
               .get(url)
               .then((res) => {
                 console.log("PageResponse ::" + JSON.stringify(res));
-                this.fbStep = 2;
+                let pgList = JSON.parse(JSON.stringify(res)).data.data;
+                pgList.forEach((element) => {
+                  this.arrVal++;
+                  let pgObj = {
+                    value: this.arrVal,
+                    text: element.name,
+                    disabled: false,
+                  };
+                  this.pageList.push(pgObj);
+                });
+                if (this.arrVal - 1 == pgList.length) {
+                  this.fbStep = 2;
+                }
               })
               .catch((error) => {
                 console.log(error);
