@@ -1,5 +1,11 @@
 <template>
-  <v-card tile height="100%" width="97%" class="pl-6 pt-3 pr-9 font_dims">
+  <v-card
+    tile
+    height="100%"
+    width="97%"
+    class="pl-6 pt-3 pr-9 font_dims"
+    :key="cardKey"
+  >
     <v-row style="height:10%">
       <v-col cols="6">
         <h3>{{ $t("settingsPage.fbCard1.header") }}</h3>
@@ -159,6 +165,7 @@ export default {
   },
   data() {
     return {
+      cardKey: 0,
       fbStep: 1,
       PageSelectedId: 1,
       arrVal: 1,
@@ -243,10 +250,11 @@ export default {
       });
     },
   },
-  beforeMount() {
+  mounted() {
     this.$store.getters.getSettingsState.setup_step_1_completed
       ? (this.fbStep = 3)
       : (this.fbStep = 1);
+    this.cardKey++;
   },
   computed: {
     ...mapGetters(["getSettingsState"]),
