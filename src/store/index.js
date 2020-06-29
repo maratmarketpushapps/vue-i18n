@@ -194,6 +194,8 @@ export default new Vuex.Store({
       state.settingsVars.setup_step_3_completed = obj.setup_step_3_completed;
       state.settingsVars.cart_recovery_attempts_done =
         obj.cart_recovery_attempts_done;
+      state.settingsVars.facebook_short_access_token =
+        obj.facebook_short_access_token;
     },
     SET_GLOBAL_VALS(state, obj) {
       state.globalVars.locale = obj.locale;

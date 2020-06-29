@@ -181,50 +181,82 @@ export default {
   methods: {
     step1Comp() {
       Vue.FB.getLoginStatus(function(response) {
-        console.log("FBAUTH status :: "+response.status);
-      });
+        console.log("FBAUTH status :: " + response.status);
 
-      Vue.FB.login(
-        (resp) => {
-          console.log(resp);
+        if (response.status == "connected") {
+          let url = `https://graph.facebook.com/${this.$store.getters.getSettingsState.facebook_user_id}/accounts?access_token=${this.$store.getters.getSettingsState.facebook_short_access_token}`;
+          let fbUsrId = resp.authResponse.userID;
 
-          if (resp.status == "connected") {
-            let url = `https://graph.facebook.com/${resp.authResponse.userID}/accounts?access_token=${resp.authResponse.accessToken}`;
-            let fbUsrId = resp.authResponse.userID;
-
-            axios
-              .get(url)
-              .then((res) => {
-                console.log("PageResponse ::" + JSON.stringify(res));
-                let pgList = JSON.parse(JSON.stringify(res)).data.data;
-                pgList.forEach((element) => {
-                  this.arrVal++;
-                  let pgObj = {
-                    value: this.arrVal,
-                    text: element.name,
-                    disabled: false,
-                    facebook_page_name: element.name,
-                    facebook_page_id: element.id,
-                    facebook_user_id: fbUsrId,
-                    facebook_short_access_token: element.access_token,
-                    setup_step_1_completed: true,
-                  };
-                  this.pageList.push(pgObj);
-                });
-                if (this.arrVal - 1 == pgList.length) {
-                  this.fbStep = 2;
-                }
-              })
-              .catch((error) => {
-                console.log(error);
+          axios
+            .get(url)
+            .then((res) => {
+              console.log("PageResponse ::" + JSON.stringify(res));
+              let pgList = JSON.parse(JSON.stringify(res)).data.data;
+              pgList.forEach((element) => {
+                this.arrVal++;
+                let pgObj = {
+                  value: this.arrVal,
+                  text: element.name,
+                  disabled: false,
+                  facebook_page_name: element.name,
+                  facebook_page_id: element.id,
+                  facebook_user_id: fbUsrId,
+                  facebook_short_access_token: element.access_token,
+                  setup_step_1_completed: true,
+                };
+                this.pageList.push(pgObj);
               });
-          }
-        },
-        {
-          scope: "pages_show_list,pages_messaging",
-          return_scopes: true,
+              if (this.arrVal - 1 == pgList.length) {
+                this.fbStep = 2;
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } else {
+          Vue.FB.login(
+            (resp) => {
+              console.log(resp);
+
+              if (resp.status == "connected") {
+                let url = `https://graph.facebook.com/${resp.authResponse.userID}/accounts?access_token=${resp.authResponse.accessToken}`;
+                let fbUsrId = resp.authResponse.userID;
+
+                axios
+                  .get(url)
+                  .then((res) => {
+                    console.log("PageResponse ::" + JSON.stringify(res));
+                    let pgList = JSON.parse(JSON.stringify(res)).data.data;
+                    pgList.forEach((element) => {
+                      this.arrVal++;
+                      let pgObj = {
+                        value: this.arrVal,
+                        text: element.name,
+                        disabled: false,
+                        facebook_page_name: element.name,
+                        facebook_page_id: element.id,
+                        facebook_user_id: fbUsrId,
+                        facebook_short_access_token: element.access_token,
+                        setup_step_1_completed: true,
+                      };
+                      this.pageList.push(pgObj);
+                    });
+                    if (this.arrVal - 1 == pgList.length) {
+                      this.fbStep = 2;
+                    }
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
+              }
+            },
+            {
+              scope: "pages_show_list,pages_messaging",
+              return_scopes: true,
+            }
+          );
         }
-      );
+      });
     },
     step2Comp() {
       let pageObj = this.pageList.find((o) => o.value === this.PageSelectedId);
