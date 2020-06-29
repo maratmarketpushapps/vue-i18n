@@ -185,7 +185,7 @@ export default {
 
         if (response.status == "connected") {
           let url = `https://graph.facebook.com/${this.$store.getters.getSettingsState.facebook_user_id}/accounts?access_token=${this.$store.getters.getSettingsState.facebook_short_access_token}`;
-          let fbUsrId = resp.authResponse.userID;
+          let fbUsrId = this.$store.getters.getSettingsState.facebook_user_id;
 
           axios
             .get(url)
