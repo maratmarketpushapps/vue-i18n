@@ -498,9 +498,12 @@ export default new Vuex.Store({
 
     getPlan({ commit }) {
       return new Promise((resolve, reject) => {
-        let url = `${process.env.VUE_APP_API_URL}/plans`;
+        let url = `${process.env.VUE_APP_API_URL_DEV}/plans`;
         let headers = {
-          TOKEN: this.state.TOKEN,
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
         };
         axios
           .get(url, headers)
