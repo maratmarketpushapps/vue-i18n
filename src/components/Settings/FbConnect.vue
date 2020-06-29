@@ -180,7 +180,7 @@ export default {
   },
   methods: {
     step1Comp() {
-      Vue.FB.getLoginStatus(function(response) {
+      Vue.FB.getLoginStatus((response) => {
         console.log("FBAUTH status :: " + response.status);
 
         if (response.status == "connected") {
