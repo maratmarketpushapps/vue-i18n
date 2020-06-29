@@ -182,13 +182,6 @@ export default {
     step1Comp() {
       Vue.FB.getLoginStatus(function(response) {
         console.log("FBAUTH status :: " + response.status);
-        console.log(
-          "User Id :: " + this.$store.getters.getSettingsState.facebook_user_id
-        );
-        console.log(
-          "Access Token ::" +
-            this.$store.getters.getSettingsState.facebook_short_access_token
-        );
 
         if (response.status == "connected") {
           let fbUsrId = response.authResponse.userID;
