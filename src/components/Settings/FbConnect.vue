@@ -193,6 +193,7 @@ export default {
             .then((res) => {
               console.log("PageResponse ::" + JSON.stringify(res));
               let pgList = JSON.parse(JSON.stringify(res)).data.data;
+              this.arrVal = 1;
               pgList.forEach((element) => {
                 this.arrVal++;
                 let pgObj = {
