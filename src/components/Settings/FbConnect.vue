@@ -182,11 +182,17 @@ export default {
     step1Comp() {
       Vue.FB.getLoginStatus(function(response) {
         console.log("FBAUTH status :: " + response.status);
-        console.log(this.$store.getters.getSettingsState.facebook_user_id);
+        console.log("User Id :: "+this.$store.getters.getSettingsState.facebook_user_id);
+        console.log(
+          "Access Token ::" +
+            this.$store.getters.getSettingsState.facebook_short_access_token
+        );
 
         if (response.status == "connected") {
-          let url = `https://graph.facebook.com/${this.$store.getters.getSettingsState.facebook_user_id}/accounts?access_token=${this.$store.getters.getSettingsState.facebook_short_access_token}`;
           let fbUsrId = this.$store.getters.getSettingsState.facebook_user_id;
+          let accessTokenFB = this.$store.getters.getSettingsState
+            .facebook_short_access_token;
+          let url = `https://graph.facebook.com/${fbUsrId}/accounts?access_token=${accessTokenFB}`;
 
           axios
             .get(url)
