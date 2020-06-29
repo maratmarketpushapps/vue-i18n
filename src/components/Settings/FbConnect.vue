@@ -181,7 +181,7 @@ export default {
   methods: {
     step1Comp() {
       Vue.FB.getLoginStatus(function(response) {
-        console.log("FBAUTH status :: "+response);
+        console.log("FBAUTH status :: "+response.status);
       });
 
       Vue.FB.login(
