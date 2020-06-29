@@ -180,6 +180,10 @@ export default {
   },
   methods: {
     step1Comp() {
+      Vue.FB.getLoginStatus(function(response) {
+        console.log(response);
+      });
+
       Vue.FB.login(
         (resp) => {
           console.log(resp);
