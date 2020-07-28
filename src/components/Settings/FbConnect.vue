@@ -253,7 +253,7 @@ export default {
               }
             },
             {
-              scope: "pages_show_list,pages_messaging",
+              scope: "pages_show_list, pages_messaging, messaging_optins",
               return_scopes: true,
             }
           );
