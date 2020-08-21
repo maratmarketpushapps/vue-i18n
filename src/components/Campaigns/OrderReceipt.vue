@@ -32,6 +32,7 @@
             width="70%"
             :disabled="svBtnDsbldOrdrRcpt"
             style="font-size:100%; text-transform:none;"
+            @click="saveOrdrRcpt()"
           >
             {{ $t("widgets.svBtn") }}
           </v-btn>
@@ -39,7 +40,12 @@
       </v-col>
       <v-col>
         <v-row style="width:100%" align="center" justify="center">
-          <v-switch v-model="ordrRcptSwitchLive" color="#4E5D6B"> </v-switch>
+          <v-switch
+            v-model="ordrRcptSwitchLive"
+            color="#4E5D6B"
+            @change="activeStateChng()"
+          >
+          </v-switch>
         </v-row>
       </v-col>
     </v-row>
@@ -311,9 +317,9 @@ export default {
       ordrRcptTitle: "",
       ordrRcptSubTitle: "",
       ordrRcptBtnText: "",
-      ordrRcptQckRpl1: "Sounds great",
-      ordrRcptQckRpl2: "I have more questions",
-      ordrRcptQckRpl3: "Unsubscribe",
+      ordrRcptQckRpl1: "",
+      ordrRcptQckRpl2: "",
+      ordrRcptQckRpl3: "",
       overlayOrdrRcptQckRpl1: false,
       ordrRcptQckRplEdit1: "",
       ordrRcptQckRplEdit1Btn: true,
@@ -326,6 +332,10 @@ export default {
     };
   },
   methods: {
+    activeStateChng() {
+      this.ordrRcptSwitchLive = !this.ordrRcptSwitchLive;
+      this.ordrRcptBtnDisabled = false;
+    },
     incrTabCount() {
       this.activeTab == "1" ? this.refreshComp1() : "";
       this.activeTab == "2" ? this.refreshComp2() : "";
@@ -401,11 +411,43 @@ export default {
       this.overlayOrdrRcptQckRpl3 = false;
       this.ordrRcptQckRplEdit3Btn = true;
     },
+    saveOrdrRcpt() {
+      let obj = {
+        active: this.ordrRcptSwitchLive,
+        intro_message: this.ordrRcptIntroMsg,
+        title: this.ordrRcptTitle,
+        subtitle: this.ordrRcptSubTitle,
+        button_text: this.ordrRcptBtnText,
+        quick_reply_thank_you_text: this.ordrRcptQckRpl1,
+        quick_reply_more_questions_text: this.ordrRcptQckRpl2,
+        quick_reply_unsubscribe_text: this.ordrRcptQckRpl3,
+      };
+
+      this.$store.dispatch("updOrdrRcpt", obj).then((response) => {
+        console.log(response);
+        this.$store.dispatch("setMsg").then((resp) => {
+          console.log(resp);
+          this.ordrRcptBtnDisabled = true;
+          this.$store.dispatch("getMsg").then((response) => {
+            console.log(response);
+
+            this.ordrRcptSwitchLive = this.$store.getters.getOrderReceipt.active;
+            this.ordrRcptIntroMsg = this.$store.getters.getOrderReceipt.intro_message;
+            this.ordrRcptTitle = this.$store.getters.getOrderReceipt.title;
+            this.ordrRcptSubTitle = this.$store.getters.getOrderReceipt.subtitle;
+            this.ordrRcptBtnText = this.$store.getters.getOrderReceipt.button_text;
+            this.ordrRcptQckRpl1 = this.$store.getters.getOrderReceipt.quick_reply_thank_you_text;
+            this.ordrRcptQckRpl2 = this.$store.getters.getOrderReceipt.quick_reply_more_questions_text;
+            this.ordrRcptQckRpl3 = this.$store.getters.getOrderReceipt.quick_reply_unsubscribe_text;
+          });
+        });
+      });
+    },
   },
   computed: {
     // ...mapGetters(["getCreatedAt"]),
     getOrdrRcptMsgCnt() {
-      return 0;
+      return this.$store.getters.getMsgCounts.sent_count_order_receipt;
     },
     svBtnDsbldOrdrRcpt() {
       return this.ordrRcptBtnDisabled;
@@ -421,15 +463,30 @@ export default {
     },
   },
   watch: {
-    ordrRcptQckRpl1() {
-      this.ordrRcptBtnDisabled = false;
+    ordrRcptQckRpl1(newVal, oldVal) {
+      if (oldVal == "") {
+        this.ordrRcptBtnDisabled = true;
+      } else if (oldVal != newVal) {
+        this.ordrRcptBtnDisabled = false;
+      }
     },
-    ordrRcptQckRpl2() {
-      this.ordrRcptBtnDisabled = false;
+    ordrRcptQckRpl2(newVal, oldVal) {
+      if (oldVal == "") {
+        this.ordrRcptBtnDisabled = true;
+      } else if (oldVal != newVal) {
+        this.ordrRcptBtnDisabled = false;
+      }
     },
-    ordrRcptQckRpl3() {
-      this.ordrRcptBtnDisabled = false;
+    ordrRcptQckRpl3(newVal, oldVal) {
+      if (oldVal == "") {
+        this.ordrRcptBtnDisabled = true;
+      } else if (oldVal != newVal) {
+        this.ordrRcptBtnDisabled = false;
+      }
     },
+    // ordrRcptSwitchLive() {
+    //   this.ordrRcptBtnDisabled = false;
+    // },
   },
 
   beforeCreate() {
@@ -444,6 +501,7 @@ export default {
       this.ordrRcptQckRpl1 = this.$store.getters.getOrderReceipt.quick_reply_thank_you_text;
       this.ordrRcptQckRpl2 = this.$store.getters.getOrderReceipt.quick_reply_more_questions_text;
       this.ordrRcptQckRpl3 = this.$store.getters.getOrderReceipt.quick_reply_unsubscribe_text;
+      this.ordrRcptBtnDisabled = true;
     });
   },
 };

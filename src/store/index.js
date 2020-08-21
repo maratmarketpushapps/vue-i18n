@@ -6,8 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    TOKEN:
-      "ugi6ce900a-qQSaxxZX5ZYd1N4lHB7cXPa2CQ_mmnFM.eyJpbnN0YW5jZUlkIjoiYmYxMWVhOWQtZjMyNC00MjkxLTkwMzAtMDJiMzliOTcxOWUwIiwiYXBwRGVmSWQiOiIxYzE1ODA5Zi0wNzE1LTQyN2QtOTY5ZC0zZjBmMzkzOTQxOGYiLCJzaWduRGF0ZSI6IjIwMjAtMDgtMjFUMTU6NTU6MDIuMjUyWiIsInVpZCI6IjE5ZTkyNDcyLTcyYTktNGE0NS05ZTMzLWEyODUwN2Q0OWU0YyIsInBlcm1pc3Npb25zIjoiT1dORVIiLCJkZW1vTW9kZSI6ZmFsc2UsInNpdGVPd25lcklkIjoiMTllOTI0NzItNzJhOS00YTQ1LTllMzMtYTI4NTA3ZDQ5ZTRjIiwic2l0ZU1lbWJlcklkIjoiMTllOTI0NzItNzJhOS00YTQ1LTllMzMtYTI4NTA3ZDQ5ZTRjIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDIwLTA4LTIxVDE5OjU1OjAyLjI1MloiLCJsb2dpbkFjY291bnRJZCI6IjE5ZTkyNDcyLTcyYTktNGE0NS05ZTMzLWEyODUwN2Q0OWU0YyJ9",
+    TOKEN: "JWT_TOKEN",
     instance_id: "bb-cc-dd",
     globalVars: {
       locale: "",
@@ -522,6 +521,19 @@ export default new Vuex.Store({
       state.msgVars.sent_count.sent_count_order_shipped =
         obj.sent_count.sent_count_order_shipped;
     },
+    SET_ORDR_RCPT(state, obj) {
+      state.msgVars.order_receipt.button_text = obj.button_text;
+      state.msgVars.order_receipt.quick_reply_thank_you_text =
+        obj.quick_reply_thank_you_text;
+      state.msgVars.order_receipt.quick_reply_unsubscribe_text =
+        obj.quick_reply_unsubscribe_text;
+      state.msgVars.intro_message = obj.intro_message;
+      state.msgVars.order_receipt.title = obj.title;
+      state.msgVars.order_receipt.active = obj.active;
+      state.msgVars.order_receipt.subtitle = obj.subtitle;
+      state.msgVars.order_receipt.quick_reply_more_questions_text =
+        obj.quick_reply_more_questions_text;
+    },
   },
   actions: {
     updateToken({ commit }, token) {
@@ -885,6 +897,36 @@ export default new Vuex.Store({
           .catch((error) => {
             reject(error);
           });
+      });
+    },
+    setMsg() {
+      return new Promise((resolve, reject) => {
+        let url = `${process.env.VUE_APP_API_URL_DEV}/messages`;
+        let headers = {
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
+        };
+        let data = this.state.msgVars;
+        console.log("headers" + headers);
+        console.log("data" + data);
+
+        axios
+          .post(url, data, headers)
+          .then((res) => {
+            console.log(res);
+            resolve("success");
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    },
+    updOrdrRcpt({ commit }, obj) {
+      return new Promise((resolve) => {
+        commit("SET_ORDR_RCPT", obj);
+        resolve("success");
       });
     },
   },
