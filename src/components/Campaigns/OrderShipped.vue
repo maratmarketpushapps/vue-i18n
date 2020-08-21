@@ -8,7 +8,7 @@
           align="center"
           justify="start"
         >
-          <h3>{{ $t("campaigns.ordrrcpt.headerTxt") }}</h3>
+          <h3>{{ $t("campaigns.ordeshpd.headerTxt") }}</h3>
         </v-row>
       </v-col>
       <v-col cols="3">
@@ -64,44 +64,6 @@
         >
         </v-text-field>
       </v-row>
-      <v-row style="height:15%; width:100%" class="mt-2 pl-4 pr-3">
-        <v-text-field
-          :label="$t('campaigns.ordrrcpt.title')"
-          v-model="ordrRcptTitle"
-          @change="detectChange"
-          @input="detectChange"
-          dense
-          style="font-size:110%"
-          class="mt-5 pb-1 ml-6 mr-9"
-        >
-        </v-text-field>
-      </v-row>
-      <v-row style="height:15%; width:100%" class="pl-4 pr-3">
-        <v-col cols="6">
-          <v-text-field
-            :label="$t('campaigns.ordrrcpt.subTitle')"
-            v-model="ordrRcptSubTitle"
-            @change="detectChange"
-            @input="detectChange"
-            dense
-            style="font-size:110%"
-            class="mt-2 pb-1 ml-3 mr-3"
-          >
-          </v-text-field>
-        </v-col>
-        <v-col cols="6">
-          <v-text-field
-            :label="$t('campaigns.ordrrcpt.btnTxt')"
-            v-model="ordrRcptBtnText"
-            @change="detectChange"
-            @input="detectChange"
-            dense
-            style="font-size:110%"
-            class="mt-2 pb-1 ml-3 mr-7"
-          >
-          </v-text-field>
-        </v-col>
-      </v-row>
       <v-row style="height:15%; width:100%" class="pl-4 pr-3">
         <v-col>
           <v-row align="center">
@@ -112,7 +74,7 @@
               :posRight="true"
               :nudgeBottom="30"
               :nudgeLeft="5"
-              :txt="$t('campaigns.infocons.msg3')"
+              :txt="$t('campaigns.infocons.msg5')"
               class="infoicon_scale mt-0 pt-0"
               style="top:30%; transform:scale(.85)"
             />
@@ -142,6 +104,8 @@
           </v-row>
         </v-col>
       </v-row>
+      <v-row style="height:15%; width:100%" class="mt-2 pl-4 pr-3"> </v-row>
+      <v-row style="height:15%; width:100%" class="pl-4 pr-3"> </v-row>
 
       <v-row style="height:20%; width:100%" class="pl-4 pr-3"> </v-row>
     </v-row>
@@ -302,7 +266,7 @@ import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 // import moment from "moment-timezone";
 // import { mapGetters } from "vuex";
 export default {
-  name: "OrderReceipt",
+  name: "OrderShipped",
   components: { TooltipIcon },
   data() {
     return {
@@ -333,10 +297,8 @@ export default {
   },
   methods: {
     activeStateChng() {
-      console.log("old active status" + this.ordrRcptSwitchLive);
       // this.ordrRcptSwitchLive = !this.ordrRcptSwitchLive;
       this.ordrRcptBtnDisabled = false;
-      console.log("new active status" + this.ordrRcptSwitchLive);
     },
     incrTabCount() {
       this.activeTab == "1" ? this.refreshComp1() : "";
@@ -425,7 +387,7 @@ export default {
         quick_reply_unsubscribe_text: this.ordrRcptQckRpl3,
       };
 
-      this.$store.dispatch("updOrdrRcpt", obj).then((response) => {
+      this.$store.dispatch("updOrdrShipped", obj).then((response) => {
         console.log(response);
         this.$store.dispatch("setMsg").then((resp) => {
           console.log(resp);
@@ -433,14 +395,14 @@ export default {
           this.$store.dispatch("getMsg").then((response) => {
             console.log(response);
 
-            this.ordrRcptSwitchLive = this.$store.getters.getOrderReceipt.active;
-            this.ordrRcptIntroMsg = this.$store.getters.getOrderReceipt.intro_message;
-            this.ordrRcptTitle = this.$store.getters.getOrderReceipt.title;
-            this.ordrRcptSubTitle = this.$store.getters.getOrderReceipt.subtitle;
-            this.ordrRcptBtnText = this.$store.getters.getOrderReceipt.button_text;
-            this.ordrRcptQckRpl1 = this.$store.getters.getOrderReceipt.quick_reply_thank_you_text;
-            this.ordrRcptQckRpl2 = this.$store.getters.getOrderReceipt.quick_reply_more_questions_text;
-            this.ordrRcptQckRpl3 = this.$store.getters.getOrderReceipt.quick_reply_unsubscribe_text;
+            this.ordrRcptSwitchLive = this.$store.getters.getOrderShipped.active;
+            this.ordrRcptIntroMsg = this.$store.getters.getOrderShipped.intro_message;
+            this.ordrRcptTitle = this.$store.getters.getOrderShipped.title;
+            this.ordrRcptSubTitle = this.$store.getters.getOrderShipped.subtitle;
+            this.ordrRcptBtnText = this.$store.getters.getOrderShipped.button_text;
+            this.ordrRcptQckRpl1 = this.$store.getters.getOrderShipped.quick_reply_thank_you_text;
+            this.ordrRcptQckRpl2 = this.$store.getters.getOrderShipped.quick_reply_more_questions_text;
+            this.ordrRcptQckRpl3 = this.$store.getters.getOrderShipped.quick_reply_unsubscribe_text;
           });
         });
       });
@@ -449,7 +411,7 @@ export default {
   computed: {
     // ...mapGetters(["getCreatedAt"]),
     getOrdrRcptMsgCnt() {
-      return this.$store.getters.getMsgCounts.sent_count_order_receipt;
+      return this.$store.getters.getMsgCounts.sent_count_order_shipped;
     },
     svBtnDsbldOrdrRcpt() {
       return this.ordrRcptBtnDisabled;
@@ -495,14 +457,14 @@ export default {
     this.$store.dispatch("getMsg").then((response) => {
       console.log(response);
 
-      this.ordrRcptSwitchLive = this.$store.getters.getOrderReceipt.active;
-      this.ordrRcptIntroMsg = this.$store.getters.getOrderReceipt.intro_message;
-      this.ordrRcptTitle = this.$store.getters.getOrderReceipt.title;
-      this.ordrRcptSubTitle = this.$store.getters.getOrderReceipt.subtitle;
-      this.ordrRcptBtnText = this.$store.getters.getOrderReceipt.button_text;
-      this.ordrRcptQckRpl1 = this.$store.getters.getOrderReceipt.quick_reply_thank_you_text;
-      this.ordrRcptQckRpl2 = this.$store.getters.getOrderReceipt.quick_reply_more_questions_text;
-      this.ordrRcptQckRpl3 = this.$store.getters.getOrderReceipt.quick_reply_unsubscribe_text;
+      this.ordrRcptSwitchLive = this.$store.getters.getOrderShipped.active;
+      this.ordrRcptIntroMsg = this.$store.getters.getOrderShipped.intro_message;
+      this.ordrRcptTitle = this.$store.getters.getOrderShipped.title;
+      this.ordrRcptSubTitle = this.$store.getters.getOrderShipped.subtitle;
+      this.ordrRcptBtnText = this.$store.getters.getOrderShipped.button_text;
+      this.ordrRcptQckRpl1 = this.$store.getters.getOrderShipped.quick_reply_thank_you_text;
+      this.ordrRcptQckRpl2 = this.$store.getters.getOrderShipped.quick_reply_more_questions_text;
+      this.ordrRcptQckRpl3 = this.$store.getters.getOrderShipped.quick_reply_unsubscribe_text;
       this.ordrRcptBtnDisabled = true;
     });
   },

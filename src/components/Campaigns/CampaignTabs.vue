@@ -47,6 +47,14 @@
             style="text-transform:none;"
           >
             {{ $t("campaigns.tabs.item3") }}
+            <TooltipIcon
+              :posRight="true"
+              :nudgeBottom="30"
+              :nudgeLeft="5"
+              :txt="$t('campaigns.infocons.msg4')"
+              class="infoicon_scale "
+              style="top:30%"
+            />
           </v-tab>
         </v-tabs>
       </v-col>
@@ -87,7 +95,7 @@
           </v-expansion-panels>
         </v-tab-item>
         <v-tab-item key="2" :eager="false"> <OrderReceipt /> </v-tab-item>
-        <v-tab-item key="3" :eager="false"> </v-tab-item>
+        <v-tab-item key="3" :eager="false"><OrderShipped /> </v-tab-item>
       </v-tabs-items>
     </v-row>
   </v-container>
@@ -96,11 +104,12 @@
 <script>
 import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 import OrderReceipt from "@/components/Campaigns/OrderReceipt.vue";
+import OrderShipped from "@/components/Campaigns/OrderShipped.vue";
 // import moment from "moment-timezone";
 // import { mapGetters } from "vuex";
 export default {
   name: "CampaignTabs",
-  components: { TooltipIcon, OrderReceipt },
+  components: { TooltipIcon, OrderReceipt, OrderShipped },
   data() {
     return {
       tab: null,

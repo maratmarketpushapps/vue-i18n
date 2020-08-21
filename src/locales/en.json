@@ -41,7 +41,9 @@
     "infocons": {
       "msg1": "Send customers that abandon a shop order Facebook messages to remind them of their lost order. The customers have to consent in order to be contacted via Facebook and you can send them a maximum of 2 messages within 24 hours. You can consider adding a discount code to the messages and increase the sale conversion rate.",
       "msg2": "First Facebook message used to recover the abandoned cart. This message will be sent to customers that have consented to receive Facebook notifications from you.",
-      "msg3": "After completing an order, send customers a Facebook message to inform them that you've received their order. The customers have to consent in order to be contacted via Facebook. In order to drive repeated sales from the contacted customers, you can consider adding a voucher code with a discount that they can apply to a future order on your shop."
+      "msg3": "After completing an order, send customers a Facebook message to inform them that you've received their order. The customers have to consent in order to be contacted via Facebook. In order to drive repeated sales from the contacted customers, you can consider adding a voucher code with a discount that they can apply to a future order on your shop.",
+      "msg4": "After processing an order, send customers a Facebook message to inform them that you've shipped their order. The customers have to consent in order to be contacted via Facebook.",
+      "msg5": "Quick Replies are possible reply variants that are offered to the user as part of your message. Feel free to customize the texts in your own language! There are 3 types of replies: \"Sounds good\" - the user can use this to let you know everything is fine. \"I have more questions\" - in this case, you should personally engage the user to clarify the questions related to the order. \"Unsubscribe\" - in this case, the user is not interested in purchasing and the app will not send any other messages."
     },
     "tabs": {
       "item1": "Abandoned Cart Messages",
@@ -60,6 +62,9 @@
       "subTitle": "Subtitle",
       "btnTxt": "Button Text",
       "qckRply": "Quick Replies"
+    },
+    "ordeshpd": {
+      "headerTxt": "Order Shipped Message"
     },
 
     "qckRplyOvrly": {

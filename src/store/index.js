@@ -182,6 +182,9 @@ export default new Vuex.Store({
     getOrderReceipt: (state) => {
       return state.msgVars.order_receipt;
     },
+    getOrderShipped: (state) => {
+      return state.msgVars.order_shipped;
+    },
     getMsgCounts: (state) => {
       return state.msgVars.sent_count;
     },
@@ -532,6 +535,19 @@ export default new Vuex.Store({
       state.msgVars.order_receipt.active = obj.active;
       state.msgVars.order_receipt.subtitle = obj.subtitle;
       state.msgVars.order_receipt.quick_reply_more_questions_text =
+        obj.quick_reply_more_questions_text;
+    },
+    SET_ORDR_SHIPPED(state, obj) {
+      state.msgVars.order_shipped.button_text = obj.button_text;
+      state.msgVars.order_shipped.quick_reply_thank_you_text =
+        obj.quick_reply_thank_you_text;
+      state.msgVars.order_shipped.quick_reply_unsubscribe_text =
+        obj.quick_reply_unsubscribe_text;
+      state.msgVars.intro_message = obj.intro_message;
+      state.msgVars.order_shipped.title = obj.title;
+      state.msgVars.order_shipped.active = obj.active;
+      state.msgVars.order_shipped.subtitle = obj.subtitle;
+      state.msgVars.order_shipped.quick_reply_more_questions_text =
         obj.quick_reply_more_questions_text;
     },
   },
@@ -926,6 +942,12 @@ export default new Vuex.Store({
     updOrdrRcpt({ commit }, obj) {
       return new Promise((resolve) => {
         commit("SET_ORDR_RCPT", obj);
+        resolve("success");
+      });
+    },
+    updOrdrShipped({ commit }, obj) {
+      return new Promise((resolve) => {
+        commit("SET_ORDR_SHIPPED", obj);
         resolve("success");
       });
     },
