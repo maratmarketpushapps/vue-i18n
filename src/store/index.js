@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    TOKEN: "JWT_TOKEN",
+    TOKEN:
+      "ugi6ce900a-qQSaxxZX5ZYd1N4lHB7cXPa2CQ_mmnFM.eyJpbnN0YW5jZUlkIjoiYmYxMWVhOWQtZjMyNC00MjkxLTkwMzAtMDJiMzliOTcxOWUwIiwiYXBwRGVmSWQiOiIxYzE1ODA5Zi0wNzE1LTQyN2QtOTY5ZC0zZjBmMzkzOTQxOGYiLCJzaWduRGF0ZSI6IjIwMjAtMDgtMjFUMTU6NTU6MDIuMjUyWiIsInVpZCI6IjE5ZTkyNDcyLTcyYTktNGE0NS05ZTMzLWEyODUwN2Q0OWU0YyIsInBlcm1pc3Npb25zIjoiT1dORVIiLCJkZW1vTW9kZSI6ZmFsc2UsInNpdGVPd25lcklkIjoiMTllOTI0NzItNzJhOS00YTQ1LTllMzMtYTI4NTA3ZDQ5ZTRjIiwic2l0ZU1lbWJlcklkIjoiMTllOTI0NzItNzJhOS00YTQ1LTllMzMtYTI4NTA3ZDQ5ZTRjIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDIwLTA4LTIxVDE5OjU1OjAyLjI1MloiLCJsb2dpbkFjY291bnRJZCI6IjE5ZTkyNDcyLTcyYTktNGE0NS05ZTMzLWEyODUwN2Q0OWU0YyJ9",
     instance_id: "bb-cc-dd",
     globalVars: {
       locale: "",
@@ -90,6 +91,59 @@ export default new Vuex.Store({
         },
       ],
     },
+
+    // Messages State
+
+    msgVars: {
+      abandoned_cart_2: {
+        button_text: "",
+        quick_reply_thank_you_text: "",
+        quick_reply_unsubscribe_text: "",
+        intro_message: "",
+        title: "",
+        active: false,
+        subtitle: "",
+        quick_reply_more_questions_text: "",
+        sent_after: 1,
+      },
+      abandoned_cart_1: {
+        sent_after: 1,
+        quick_reply_more_questions_text: "",
+        active: false,
+        title: "",
+        subtitle: "",
+        quick_reply_thank_you_text: "",
+        intro_message: "",
+        quick_reply_unsubscribe_text: "",
+        button_text: "",
+      },
+      sent_count: {
+        sent_count_abandoned_cart_2: 0,
+        sent_count_order_receipt: 0,
+        sent_count_abandoned_cart_1: 0,
+        sent_count_order_shipped: 0,
+      },
+      order_shipped: {
+        quick_reply_thank_you_text: "",
+        button_text: "",
+        quick_reply_unsubscribe_text: "",
+        quick_reply_more_questions_text: "",
+        title: "",
+        intro_message: "",
+        active: false,
+        subtitle: "",
+      },
+      order_receipt: {
+        active: false,
+        intro_message: "",
+        quick_reply_unsubscribe_text: "",
+        quick_reply_thank_you_text: "",
+        button_text: "",
+        quick_reply_more_questions_text: "",
+        subtitle: "",
+        title: "",
+      },
+    },
   },
   getters: {
     checkClicked: (state) => (id) => {
@@ -124,6 +178,13 @@ export default new Vuex.Store({
     },
     getCartsState: (state) => {
       return JSON.parse(JSON.stringify(state.cartsState.carts));
+    },
+
+    getOrderReceipt: (state) => {
+      return state.msgVars.order_receipt;
+    },
+    getMsgCounts: (state) => {
+      return state.msgVars.sent_count;
     },
   },
   mutations: {
@@ -390,6 +451,77 @@ export default new Vuex.Store({
         obj.facebook_short_access_token;
       state.settingsVars.setup_step_1_completed = obj.setup_step_1_completed;
     },
+
+    //Messages Commits
+    SET_MSG_VALS(state, obj) {
+      state.msgVars.abandoned_cart_1.button_text =
+        obj.abandoned_cart_1.button_text;
+      state.msgVars.abandoned_cart_1.quick_reply_thank_you_text =
+        obj.abandoned_cart_1.quick_reply_thank_you_text;
+      state.msgVars.abandoned_cart_1.quick_reply_unsubscribe_text =
+        obj.abandoned_cart_1.quick_reply_unsubscribe_text;
+      state.msgVars.abandoned_cart_1.intro_message =
+        obj.abandoned_cart_1.intro_message;
+      state.msgVars.abandoned_cart_1.title = obj.abandoned_cart_1.title;
+      state.msgVars.abandoned_cart_1.active = obj.abandoned_cart_1.active;
+      state.msgVars.abandoned_cart_1.subtitle = obj.abandoned_cart_1.subtitle;
+      state.msgVars.abandoned_cart_1.quick_reply_more_questions_text =
+        obj.abandoned_cart_1.quick_reply_more_questions_text;
+      state.msgVars.abandoned_cart_1.sent_after =
+        obj.abandoned_cart_1.sent_after;
+
+      state.msgVars.abandoned_cart_2.button_text =
+        obj.abandoned_cart_2.button_text;
+      state.msgVars.abandoned_cart_2.quick_reply_thank_you_text =
+        obj.abandoned_cart_2.button_text;
+      state.msgVars.abandoned_cart_2.quick_reply_unsubscribe_text =
+        obj.abandoned_cart_2.button_text;
+      state.msgVars.abandoned_cart_2.intro_message =
+        obj.abandoned_cart_2.button_text;
+      state.msgVars.abandoned_cart_2.title = obj.abandoned_cart_2.button_text;
+      state.msgVars.abandoned_cart_2.active = obj.abandoned_cart_2.button_text;
+      state.msgVars.abandoned_cart_2.subtitle =
+        obj.abandoned_cart_2.button_text;
+      state.msgVars.abandoned_cart_2.quick_reply_more_questions_text =
+        obj.abandoned_cart_2.button_text;
+      state.msgVars.abandoned_cart_2.sent_after =
+        obj.abandoned_cart_2.button_text;
+
+      state.msgVars.order_receipt.button_text = obj.order_receipt.button_text;
+      state.msgVars.order_receipt.quick_reply_thank_you_text =
+        obj.order_receipt.quick_reply_thank_you_text;
+      state.msgVars.order_receipt.quick_reply_unsubscribe_text =
+        obj.order_receipt.quick_reply_unsubscribe_text;
+      state.msgVars.order_receipt.intro_message =
+        obj.order_receipt.intro_message;
+      state.msgVars.order_receipt.title = obj.order_receipt.title;
+      state.msgVars.order_receipt.active = obj.order_receipt.active;
+      state.msgVars.order_receipt.subtitle = obj.order_receipt.subtitle;
+      state.msgVars.order_receipt.quick_reply_more_questions_text =
+        obj.order_receipt.quick_reply_more_questions_text;
+
+      state.msgVars.order_shipped.button_text = obj.order_shipped.button_text;
+      state.msgVars.order_shipped.quick_reply_thank_you_text =
+        obj.order_shipped.quick_reply_thank_you_text;
+      state.msgVars.order_shipped.quick_reply_unsubscribe_text =
+        obj.order_shipped.quick_reply_unsubscribe_text;
+      state.msgVars.order_shipped.intro_message =
+        obj.order_shipped.intro_message;
+      state.msgVars.order_shipped.title = obj.order_shipped.title;
+      state.msgVars.order_shipped.active = obj.order_shipped.active;
+      state.msgVars.order_shipped.subtitle = obj.order_shipped.subtitle;
+      state.msgVars.order_shipped.quick_reply_more_questions_text =
+        obj.order_shipped.quick_reply_more_questions_text;
+
+      state.msgVars.sent_count.sent_count_abandoned_cart_2 =
+        obj.sent_count.sent_count_abandoned_cart_2;
+      state.msgVars.sent_count.sent_count_order_receipt =
+        obj.sent_count.sent_count_order_receipt;
+      state.msgVars.sent_count.sent_count_abandoned_cart_1 =
+        obj.sent_count.sent_count_abandoned_cart_1;
+      state.msgVars.sent_count.sent_count_order_shipped =
+        obj.sent_count.sent_count_order_shipped;
+    },
   },
   actions: {
     updateToken({ commit }, token) {
@@ -478,7 +610,7 @@ export default new Vuex.Store({
 
     getCarts({ commit }, dateObj) {
       return new Promise((resolve, reject) => {
-        let url = `${process.env.VUE_APP_API_URL}/abandoned_carts/${this.state.instance_id}/${dateObj.startDate}/${dateObj.endDate}`;
+        let url = `${process.env.VUE_APP_API_URL_DEV}/abandoned_carts/${this.state.instance_id}/${dateObj.startDate}/${dateObj.endDate}`;
         let headers = {
           TOKEN: this.state.TOKEN,
         };
@@ -729,6 +861,30 @@ export default new Vuex.Store({
       return new Promise((resolve) => {
         commit("SET_FB_SETTINGS", obj);
         resolve("success");
+      });
+    },
+
+    // Messages actions
+
+    getMsg({ commit }) {
+      return new Promise((resolve, reject) => {
+        let url = `${process.env.VUE_APP_API_URL_DEV}/messages`;
+        let headers = {
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
+        };
+        console.log("Messages called");
+        axios
+          .get(url, headers)
+          .then((res) => {
+            commit("SET_MSG_VALS", JSON.parse(JSON.stringify(res.data)));
+            resolve("success");
+          })
+          .catch((error) => {
+            reject(error);
+          });
       });
     },
   },

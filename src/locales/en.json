@@ -35,6 +35,37 @@
       }
     }
   },
+  "campaigns": {
+    "header": "Campaign Messages",
+    "msgCount": "Messages Sent",
+    "infocons": {
+      "msg1": "Send customers that abandon a shop order Facebook messages to remind them of their lost order. The customers have to consent in order to be contacted via Facebook and you can send them a maximum of 2 messages within 24 hours. You can consider adding a discount code to the messages and increase the sale conversion rate.",
+      "msg2": "First Facebook message used to recover the abandoned cart. This message will be sent to customers that have consented to receive Facebook notifications from you.",
+      "msg3": "After completing an order, send customers a Facebook message to inform them that you've received their order. The customers have to consent in order to be contacted via Facebook. In order to drive repeated sales from the contacted customers, you can consider adding a voucher code with a discount that they can apply to a future order on your shop."
+    },
+    "tabs": {
+      "item1": "Abandoned Cart Messages",
+      "item2": "Order Receipt Message",
+      "item3": "Order Shipped Message"
+    },
+    "carts1": {
+      "headerTxt": "Abandoned Cart Message #1"
+    },
+
+    "ordrrcpt": {
+      "headerTxt": "Order Receipt Message",
+      "introMsg": "Intro Message",
+      "hint1": "You can use details from the order like {{first_name}}, {{last_name}} directly in the text. If you want to give the user an incentive to buy, create a coupon code <here> and add it here as text.",
+      "title": "Title",
+      "subTitle": "Subtitle",
+      "btnTxt": "Button Text",
+      "qckRply": "Quick Replies"
+    },
+
+    "qckRplyOvrly": {
+      "header": "Modify your quick replies:"
+    }
+  },
   "widgets": {
     "headerInfo": "In order to send Facebook messages to your customers, they must first consent to be contacted via Facebook. The purpose of this widget is to enable your customers to offer that consent. If EU privacy laws apply to your company, it's recommended to select the Checkbox Consent widget. Feel free to customize the widget so that it matches the style of your website.",
     "wdgtTypeHdr": "Facebook Widget Type",
@@ -60,16 +91,16 @@
     "msgTxt": "Modal Message",
     "cnclHdr": "Cancel Link Settings",
     "cnclInfo": "If the customer does not want to offer the consent to be contacted via Facebook, then clicking this button will close the modal without offering it.",
-    "cnclTxt":"Link Text",
-    "btnHdr":"Submit Button Settings",
+    "cnclTxt": "Link Text",
+    "btnHdr": "Submit Button Settings",
     "btnInfo": "The customer will be able to click this button if the checkbox is checked. The button will submit the consent and close the modal.",
-    "btnTxt":"Button Text",
+    "btnTxt": "Button Text",
     "btnColor": "Background Color",
     "btnCrnr": "Button Corners",
     "btnBrdrSz": "Border Size",
     "btnBrdrClr": "Border Color",
-    "resetButton":"RESET TO LAST CHANGES",
-    "liveLbl":"LIVE",
+    "resetButton": "RESET TO LAST CHANGES",
+    "liveLbl": "LIVE",
     "offLbl": "GO-LIVE"
   },
   "settingsPage": {
