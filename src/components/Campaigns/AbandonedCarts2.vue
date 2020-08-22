@@ -8,7 +8,7 @@
           align="center"
           justify="start"
         >
-          <h3>{{ $t("campaigns.carts1.headerTxt") }}</h3>
+          <h3>{{ $t("campaigns.carts2.headerTxt") }}</h3>
         </v-row>
       </v-col>
       <v-col cols="3">
@@ -67,7 +67,7 @@
         <v-row style="height:15%; width:100%" class="ml-4 pl-3 pr-3 mb-4">
           <v-col cols="3" class="pl-0 ml-0">
             <v-select
-              :label="$t('campaigns.carts1.selectLabel')"
+              :label="$t('campaigns.carts2.selectLabel')"
               :items="timeList"
               @change="activeStateChng()"
               v-model="sent_after"
@@ -82,7 +82,7 @@
                 :posRight="true"
                 :nudgeBottom="30"
                 :nudgeLeft="5"
-                :txt="$t('campaigns.carts1.sendAfter')"
+                :txt="$t('campaigns.carts2.sendAfter')"
                 class="infoicon_scale mt-0 pt-0"
                 style="top:30%; transform:scale(.85)"
               />
@@ -339,7 +339,7 @@
 import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 
 export default {
-  name: "AbandonedCarts1",
+  name: "AbandonedCarts2",
   components: { TooltipIcon },
   data() {
     return {
@@ -530,16 +530,17 @@ export default {
   beforeCreate() {
     this.$store.dispatch("getMsg").then((response) => {
       console.log(response);
+      console.log("Carts 2 sent after :: "+this.$store.getters.getCarts2.sent_after + " hour")
 
-      this.sent_after = this.$store.getters.getCarts1.sent_after + " hour";
-      this.ordrAbndCrtSwitchLive = this.$store.getters.getCarts1.active;
-      this.ordrAbndCrtIntroMsg = this.$store.getters.getCarts1.intro_message;
-      this.ordrAbndCrtTitle = this.$store.getters.getCarts1.title;
-      this.ordrAbndCrtSubTitle = this.$store.getters.getCarts1.subtitle;
-      this.ordrAbndCrtBtnText = this.$store.getters.getCarts1.button_text;
-      this.ordrAbndCrtQckRpl1 = this.$store.getters.getCarts1.quick_reply_thank_you_text;
-      this.ordrAbndCrtQckRpl2 = this.$store.getters.getCarts1.quick_reply_more_questions_text;
-      this.ordrAbndCrtQckRpl3 = this.$store.getters.getCarts1.quick_reply_unsubscribe_text;
+      this.sent_after = this.$store.getters.getCarts2.sent_after + " hour";
+      this.ordrAbndCrtSwitchLive = this.$store.getters.getCarts2.active;
+      this.ordrAbndCrtIntroMsg = this.$store.getters.getCarts2.intro_message;
+      this.ordrAbndCrtTitle = this.$store.getters.getCarts2.title;
+      this.ordrAbndCrtSubTitle = this.$store.getters.getCarts2.subtitle;
+      this.ordrAbndCrtBtnText = this.$store.getters.getCarts2.button_text;
+      this.ordrAbndCrtQckRpl1 = this.$store.getters.getCarts2.quick_reply_thank_you_text;
+      this.ordrAbndCrtQckRpl2 = this.$store.getters.getCarts2.quick_reply_more_questions_text;
+      this.ordrAbndCrtQckRpl3 = this.$store.getters.getCarts2.quick_reply_unsubscribe_text;
       this.ordrAbndCrtBtnDisabled = true;
     });
   },

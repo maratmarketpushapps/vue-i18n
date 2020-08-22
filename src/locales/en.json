@@ -51,7 +51,14 @@
       "item3": "Order Shipped Message"
     },
     "carts1": {
-      "headerTxt": "Abandoned Cart Message #1"
+      "headerTxt": "Abandoned Cart Message #1",
+      "selectLabel": "Send After",
+      "sendAfter": "How much time should pass before sending this message."
+    },
+    "carts2": {
+      "headerTxt": "Abandoned Cart Message #2",
+      "selectLabel": "Send After",
+      "sendAfter": "How much time should pass before sending this message."
     },
 
     "ordrrcpt": {

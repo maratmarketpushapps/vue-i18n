@@ -63,9 +63,15 @@
     </v-row>
     <br />
     <v-row style="height:auto; width:100%">
-      <v-tabs-items v-model="tab" style="height:100%; width:100%">
+      <v-tabs-items
+        v-model="tab"
+        style="height:100%; width:100%"
+        class="app_background"
+      >
         <v-tab-item key="1" :eager="false">
           <AbandonedCarts1 />
+          <br />
+          <AbandonedCarts2 />
         </v-tab-item>
         <v-tab-item key="2" :eager="false"> <OrderReceipt /> </v-tab-item>
         <v-tab-item key="3" :eager="false"><OrderShipped /> </v-tab-item>
@@ -79,11 +85,18 @@ import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 import OrderReceipt from "@/components/Campaigns/OrderReceipt.vue";
 import OrderShipped from "@/components/Campaigns/OrderShipped.vue";
 import AbandonedCarts1 from "@/components/Campaigns/AbandonedCarts1.vue";
+import AbandonedCarts2 from "@/components/Campaigns/AbandonedCarts2.vue";
 // import moment from "moment-timezone";
 // import { mapGetters } from "vuex";
 export default {
   name: "CampaignTabs",
-  components: { TooltipIcon, OrderReceipt, OrderShipped, AbandonedCarts1 },
+  components: {
+    TooltipIcon,
+    OrderReceipt,
+    OrderShipped,
+    AbandonedCarts1,
+    AbandonedCarts2,
+  },
   data() {
     return {
       showArr: false,

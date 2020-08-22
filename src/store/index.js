@@ -177,6 +177,12 @@ export default new Vuex.Store({
       return JSON.parse(JSON.stringify(state.cartsState.carts));
     },
 
+    getCarts1: (state) => {
+      return state.msgVars.abandoned_cart_1;
+    },
+    getCarts2: (state) => {
+      return state.msgVars.abandoned_cart_2;
+    },
     getOrderReceipt: (state) => {
       return state.msgVars.order_receipt;
     },
@@ -543,6 +549,34 @@ export default new Vuex.Store({
       state.msgVars.intro_message = obj.intro_message;
       state.msgVars.order_shipped.active = obj.active;
       state.msgVars.order_shipped.quick_reply_more_questions_text =
+        obj.quick_reply_more_questions_text;
+    },
+    SET_ORDR_ABANDONED_CART(state, obj) {
+      state.msgVars.abandoned_cart_1.sent_after = obj.sent_after;
+      state.msgVars.abandoned_cart_1.button_text = obj.button_text;
+      state.msgVars.abandoned_cart_1.quick_reply_thank_you_text =
+        obj.quick_reply_thank_you_text;
+      state.msgVars.abandoned_cart_1.quick_reply_unsubscribe_text =
+        obj.quick_reply_unsubscribe_text;
+      state.msgVars.intro_message = obj.intro_message;
+      state.msgVars.abandoned_cart_1.title = obj.title;
+      state.msgVars.abandoned_cart_1.active = obj.active;
+      state.msgVars.abandoned_cart_1.subtitle = obj.subtitle;
+      state.msgVars.abandoned_cart_1.quick_reply_more_questions_text =
+        obj.quick_reply_more_questions_text;
+    },
+    SET_ORDR_ABANDONED_CART2(state, obj) {
+      state.msgVars.abandoned_cart_2.sent_after = obj.sent_after;
+      state.msgVars.abandoned_cart_2.button_text = obj.button_text;
+      state.msgVars.abandoned_cart_2.quick_reply_thank_you_text =
+        obj.quick_reply_thank_you_text;
+      state.msgVars.abandoned_cart_2.quick_reply_unsubscribe_text =
+        obj.quick_reply_unsubscribe_text;
+      state.msgVars.intro_message = obj.intro_message;
+      state.msgVars.abandoned_cart_2.title = obj.title;
+      state.msgVars.abandoned_cart_2.active = obj.active;
+      state.msgVars.abandoned_cart_2.subtitle = obj.subtitle;
+      state.msgVars.abandoned_cart_2.quick_reply_more_questions_text =
         obj.quick_reply_more_questions_text;
     },
   },
@@ -943,6 +977,18 @@ export default new Vuex.Store({
     updOrdrShipped({ commit }, obj) {
       return new Promise((resolve) => {
         commit("SET_ORDR_SHIPPED", obj);
+        resolve("success");
+      });
+    },
+    updOrdrAbndCrt({ commit }, obj) {
+      return new Promise((resolve) => {
+        commit("SET_ORDR_ABANDONED_CART", obj);
+        resolve("success");
+      });
+    },
+    updOrdrAbndCrt2({ commit }, obj) {
+      return new Promise((resolve) => {
+        commit("SET_ORDR_ABANDONED_CART2", obj);
         resolve("success");
       });
     },
