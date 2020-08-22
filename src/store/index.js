@@ -482,19 +482,18 @@ export default new Vuex.Store({
       state.msgVars.abandoned_cart_2.button_text =
         obj.abandoned_cart_2.button_text;
       state.msgVars.abandoned_cart_2.quick_reply_thank_you_text =
-        obj.abandoned_cart_2.button_text;
+        obj.abandoned_cart_2.quick_reply_thank_you_text;
       state.msgVars.abandoned_cart_2.quick_reply_unsubscribe_text =
-        obj.abandoned_cart_2.button_text;
+        obj.abandoned_cart_2.quick_reply_unsubscribe_text;
       state.msgVars.abandoned_cart_2.intro_message =
-        obj.abandoned_cart_2.button_text;
-      state.msgVars.abandoned_cart_2.title = obj.abandoned_cart_2.button_text;
-      state.msgVars.abandoned_cart_2.active = obj.abandoned_cart_2.button_text;
-      state.msgVars.abandoned_cart_2.subtitle =
-        obj.abandoned_cart_2.button_text;
+        obj.abandoned_cart_2.intro_message;
+      state.msgVars.abandoned_cart_2.title = obj.abandoned_cart_2.title;
+      state.msgVars.abandoned_cart_2.active = obj.abandoned_cart_2.active;
+      state.msgVars.abandoned_cart_2.subtitle = obj.abandoned_cart_2.subtitle;
       state.msgVars.abandoned_cart_2.quick_reply_more_questions_text =
-        obj.abandoned_cart_2.button_text;
+        obj.abandoned_cart_2.quick_reply_more_questions_text;
       state.msgVars.abandoned_cart_2.sent_after =
-        obj.abandoned_cart_2.button_text;
+        obj.abandoned_cart_2.sent_after;
 
       state.msgVars.order_receipt.button_text = obj.order_receipt.button_text;
       state.msgVars.order_receipt.quick_reply_thank_you_text =
@@ -578,6 +577,9 @@ export default new Vuex.Store({
       state.msgVars.abandoned_cart_2.subtitle = obj.subtitle;
       state.msgVars.abandoned_cart_2.quick_reply_more_questions_text =
         obj.quick_reply_more_questions_text;
+    },
+    SET_MSG_ACTIVE_TAB(state, activeTab) {
+      state.msgVars.activeTab = activeTab;
     },
   },
   actions: {
@@ -989,6 +991,12 @@ export default new Vuex.Store({
     updOrdrAbndCrt2({ commit }, obj) {
       return new Promise((resolve) => {
         commit("SET_ORDR_ABANDONED_CART2", obj);
+        resolve("success");
+      });
+    },
+    updActiveTab({ commit }, activeTab) {
+      return new Promise((resolve) => {
+        commit("SET_MSG_ACTIVE_TAB", activeTab);
         resolve("success");
       });
     },

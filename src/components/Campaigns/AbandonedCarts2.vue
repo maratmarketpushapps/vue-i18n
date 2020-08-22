@@ -344,7 +344,6 @@ export default {
   data() {
     return {
       ordrAbndCrtSwitchLive: false,
-      cart1Edit: false,
       ordrAbndCrtBtnDisabled: true,
       ordrAbndCrtIntroMsg: "",
       sent_after: "",
@@ -398,8 +397,11 @@ export default {
     getOrdrAbndCrtMsgCnt() {
       return this.$store.getters.getMsgCounts.sent_count_abandoned_cart_1;
     },
+    cart1Edit() {
+      return this.$store.getters.getActiveTab == "abndndcrt2" ? true : false;
+    },
     swtchDisabled() {
-      return !this.cart1Edit;
+      return this.$store.getters.getActiveTab == "abndndcrt2" ? false : true;
     },
     svBtnDsbldOrdrAbndCrt() {
       return this.ordrAbndCrtBtnDisabled;
@@ -428,7 +430,7 @@ export default {
         sent_after: Number(this.sent_after.split(" ")[0]),
       };
 
-      this.$store.dispatch("updOrdrAbndCrt", obj).then((response) => {
+      this.$store.dispatch("updOrdrAbndCrt2", obj).then((response) => {
         console.log(response);
         this.$store.dispatch("setMsg").then((resp) => {
           console.log(resp);
@@ -440,7 +442,9 @@ export default {
       });
     },
     editCart1() {
-      this.cart1Edit = true;
+      this.$store.dispatch("updActiveTab", "abndndcrt2").then((response) => {
+        console.log(response);
+      });
     },
     saveCart1() {
       this.cart1Edit = false;
@@ -530,7 +534,11 @@ export default {
   beforeCreate() {
     this.$store.dispatch("getMsg").then((response) => {
       console.log(response);
-      console.log("Carts 2 sent after :: "+this.$store.getters.getCarts2.sent_after + " hour")
+      console.log(
+        "Carts 2 sent after :: " +
+          this.$store.getters.getCarts2.sent_after +
+          " hour"
+      );
 
       this.sent_after = this.$store.getters.getCarts2.sent_after + " hour";
       this.ordrAbndCrtSwitchLive = this.$store.getters.getCarts2.active;

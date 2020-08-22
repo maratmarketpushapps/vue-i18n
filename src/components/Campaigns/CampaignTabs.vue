@@ -119,14 +119,23 @@ export default {
     refreshComp1() {
       this.activeTab = "1";
       this.itemKeyDat1++;
+      this.$store.dispatch("updActiveTab", "abndndcrt1").then((response) => {
+        console.log(response);
+      });
     },
     refreshComp2() {
       this.activeTab = "2";
       this.itemKeyDat2++;
+      this.$store.dispatch("updActiveTab", "ordrrcpt").then((response) => {
+        console.log(response);
+      });
     },
     refreshComp3() {
       this.activeTab = "3";
       this.itemKeyDat3++;
+      this.$store.dispatch("updActiveTab", "ordrshpd").then((response) => {
+        console.log(response);
+      });
     },
 
     setMenuactivator() {

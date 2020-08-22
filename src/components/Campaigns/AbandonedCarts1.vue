@@ -344,7 +344,6 @@ export default {
   data() {
     return {
       ordrAbndCrtSwitchLive: false,
-      cart1Edit: false,
       ordrAbndCrtBtnDisabled: true,
       ordrAbndCrtIntroMsg: "",
       sent_after: "",
@@ -398,8 +397,11 @@ export default {
     getOrdrAbndCrtMsgCnt() {
       return this.$store.getters.getMsgCounts.sent_count_abandoned_cart_1;
     },
+    cart1Edit() {
+      return this.$store.getters.getActiveTab == "abndndcrt1" ? true : false;
+    },
     swtchDisabled() {
-      return !this.cart1Edit;
+      return this.$store.getters.getActiveTab == "abndndcrt1" ? false : true;
     },
     svBtnDsbldOrdrAbndCrt() {
       return this.ordrAbndCrtBtnDisabled;
@@ -440,7 +442,9 @@ export default {
       });
     },
     editCart1() {
-      this.cart1Edit = true;
+      this.$store.dispatch("updActiveTab","abndndcrt1").then((response) => {
+        console.log(response);
+      });
     },
     saveCart1() {
       this.cart1Edit = false;
