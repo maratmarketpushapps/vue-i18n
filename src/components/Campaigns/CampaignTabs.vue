@@ -1,12 +1,14 @@
 <template>
   <v-container fluid>
-    <v-row class="pa-0 ma-0 mt-2" justify="start">
-      <v-col class="pa-0 ma-0" cols="auto">
+    <v-row class="pa-0 ma-0 mt-2 pl-0 ml-0" justify="start" style="width:100%">
+      <v-col class="pa-0 ma-0 pl-0 ml-0" cols="auto">
         <v-tabs
           background-color="transparent"
           v-model="tab"
           class="pa-0 mt-0 tabs-color tab-size"
           active-class="tab-item-color-active"
+          :show-arrows="showArr"
+          style="width:100%"
         >
           <v-tab
             class="font_dims"
@@ -62,37 +64,8 @@
     <br />
     <v-row style="height:auto; width:100%">
       <v-tabs-items v-model="tab" style="height:100%; width:100%">
-        <v-tab-item key="1" style="height:auto; width:100%" :eager="false">
-          <v-expansion-panels>
-            <v-expansion-panel>
-              <v-expansion-panel-header
-                expand-icon="mdi-square-edit-outline"
-                style="border-color:black; align:center "
-                disable-icon-rotate
-              >
-                {{ $t("campaigns.carts1.headerTxt") }}
-                <TooltipIcon
-                  :posRight="true"
-                  :nudgeBottom="30"
-                  :nudgeLeft="5"
-                  :txt="$t('campaigns.infocons.msg1')"
-                  class="infoicon_scale "
-                />
-                <v-spacer></v-spacer>
-                {{ $t("campaigns.carts1.headerTxt") }}
-                <v-spacer></v-spacer>
-                {{ $t("campaigns.carts1.headerTxt") }}
-                <v-spacer></v-spacer>
-              </v-expansion-panel-header>
-
-              <v-expansion-panel-content>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
+        <v-tab-item key="1" :eager="false">
+          <AbandonedCarts1 />
         </v-tab-item>
         <v-tab-item key="2" :eager="false"> <OrderReceipt /> </v-tab-item>
         <v-tab-item key="3" :eager="false"><OrderShipped /> </v-tab-item>
@@ -105,13 +78,15 @@
 import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 import OrderReceipt from "@/components/Campaigns/OrderReceipt.vue";
 import OrderShipped from "@/components/Campaigns/OrderShipped.vue";
+import AbandonedCarts1 from "@/components/Campaigns/AbandonedCarts1.vue";
 // import moment from "moment-timezone";
 // import { mapGetters } from "vuex";
 export default {
   name: "CampaignTabs",
-  components: { TooltipIcon, OrderReceipt, OrderShipped },
+  components: { TooltipIcon, OrderReceipt, OrderShipped, AbandonedCarts1 },
   data() {
     return {
+      showArr: false,
       tab: null,
       menu: false,
       itemKeyDat1: 0,
@@ -192,7 +167,7 @@ export default {
   color: #ffffff !important;
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1500px) {
   .refIcondim {
     transform: scale(1.2);
   }

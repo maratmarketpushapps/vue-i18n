@@ -94,6 +94,7 @@ export default new Vuex.Store({
     // Messages State
 
     msgVars: {
+      activeTab: "abndndcrt1",
       abandoned_cart_2: {
         button_text: "",
         quick_reply_thank_you_text: "",
@@ -124,13 +125,10 @@ export default new Vuex.Store({
       },
       order_shipped: {
         quick_reply_thank_you_text: "",
-        button_text: "",
         quick_reply_unsubscribe_text: "",
         quick_reply_more_questions_text: "",
-        title: "",
         intro_message: "",
         active: false,
-        subtitle: "",
       },
       order_receipt: {
         active: false,
@@ -187,6 +185,9 @@ export default new Vuex.Store({
     },
     getMsgCounts: (state) => {
       return state.msgVars.sent_count;
+    },
+    getActiveTab: (state) => {
+      return state.msgVars.activeTab;
     },
   },
   mutations: {
@@ -502,16 +503,13 @@ export default new Vuex.Store({
       state.msgVars.order_receipt.quick_reply_more_questions_text =
         obj.order_receipt.quick_reply_more_questions_text;
 
-      state.msgVars.order_shipped.button_text = obj.order_shipped.button_text;
       state.msgVars.order_shipped.quick_reply_thank_you_text =
         obj.order_shipped.quick_reply_thank_you_text;
       state.msgVars.order_shipped.quick_reply_unsubscribe_text =
         obj.order_shipped.quick_reply_unsubscribe_text;
       state.msgVars.order_shipped.intro_message =
         obj.order_shipped.intro_message;
-      state.msgVars.order_shipped.title = obj.order_shipped.title;
       state.msgVars.order_shipped.active = obj.order_shipped.active;
-      state.msgVars.order_shipped.subtitle = obj.order_shipped.subtitle;
       state.msgVars.order_shipped.quick_reply_more_questions_text =
         obj.order_shipped.quick_reply_more_questions_text;
 
@@ -538,15 +536,12 @@ export default new Vuex.Store({
         obj.quick_reply_more_questions_text;
     },
     SET_ORDR_SHIPPED(state, obj) {
-      state.msgVars.order_shipped.button_text = obj.button_text;
       state.msgVars.order_shipped.quick_reply_thank_you_text =
         obj.quick_reply_thank_you_text;
       state.msgVars.order_shipped.quick_reply_unsubscribe_text =
         obj.quick_reply_unsubscribe_text;
       state.msgVars.intro_message = obj.intro_message;
-      state.msgVars.order_shipped.title = obj.title;
       state.msgVars.order_shipped.active = obj.active;
-      state.msgVars.order_shipped.subtitle = obj.subtitle;
       state.msgVars.order_shipped.quick_reply_more_questions_text =
         obj.quick_reply_more_questions_text;
     },

@@ -42,7 +42,7 @@
         <v-row style="width:100%" align="center" justify="center">
           <v-switch
             v-model="ordrRcptSwitchLive"
-            color="#4E5D6B"
+            color="#006AFF"
             @change="activeStateChng()"
           >
           </v-switch>
@@ -278,9 +278,6 @@ export default {
       ordrRcptSwitchLive: false,
       ordrRcptIntroMsg: "",
       ordrRcptBtnDisabled: true,
-      ordrRcptTitle: "",
-      ordrRcptSubTitle: "",
-      ordrRcptBtnText: "",
       ordrRcptQckRpl1: "",
       ordrRcptQckRpl2: "",
       ordrRcptQckRpl3: "",
@@ -379,9 +376,6 @@ export default {
       let obj = {
         active: this.ordrRcptSwitchLive,
         intro_message: this.ordrRcptIntroMsg,
-        title: this.ordrRcptTitle,
-        subtitle: this.ordrRcptSubTitle,
-        button_text: this.ordrRcptBtnText,
         quick_reply_thank_you_text: this.ordrRcptQckRpl1,
         quick_reply_more_questions_text: this.ordrRcptQckRpl2,
         quick_reply_unsubscribe_text: this.ordrRcptQckRpl3,
@@ -397,9 +391,6 @@ export default {
 
             this.ordrRcptSwitchLive = this.$store.getters.getOrderShipped.active;
             this.ordrRcptIntroMsg = this.$store.getters.getOrderShipped.intro_message;
-            this.ordrRcptTitle = this.$store.getters.getOrderShipped.title;
-            this.ordrRcptSubTitle = this.$store.getters.getOrderShipped.subtitle;
-            this.ordrRcptBtnText = this.$store.getters.getOrderShipped.button_text;
             this.ordrRcptQckRpl1 = this.$store.getters.getOrderShipped.quick_reply_thank_you_text;
             this.ordrRcptQckRpl2 = this.$store.getters.getOrderShipped.quick_reply_more_questions_text;
             this.ordrRcptQckRpl3 = this.$store.getters.getOrderShipped.quick_reply_unsubscribe_text;

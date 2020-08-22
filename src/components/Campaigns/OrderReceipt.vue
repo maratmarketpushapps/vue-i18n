@@ -42,7 +42,7 @@
         <v-row style="width:100%" align="center" justify="center">
           <v-switch
             v-model="ordrRcptSwitchLive"
-            color="#4E5D6B"
+            color="#006AFF"
             @change="activeStateChng()"
           >
           </v-switch>
