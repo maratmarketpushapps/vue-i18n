@@ -1,0 +1,188 @@
+<template>
+  <v-card
+    style="border-radius: 15px 15px 15px 15px; height:74vh;"
+    class="font_dims"
+  >
+    <v-row style=" user-select: none;" @click="toggleDialog()">
+      <v-col>
+        <v-img :src="headerImg"></v-img>
+      </v-col>
+    </v-row>
+    <v-row style="margin-left:3%; margin-top:4%;" @click="toggleDialog()">
+      <v-col cols="2">
+        <v-container
+          fluid
+          style="border-radius: 100px 100px 100px 100px; background-color:#4E5D6B; height:6.75vh; transform:scale(1.1) "
+        >
+          <v-img :src="logoImg"></v-img>
+        </v-container>
+      </v-col>
+      <v-col cols="9">
+        <v-container
+          fluid
+          style="background-color:#F0F1F2;height:20vh;border-radius: 15px 15px 15px 15px; "
+        >
+          <v-row style="height:79%; width:100%">
+            <v-col>
+              <span>{{ msgTxt }}</span></v-col
+            >
+          </v-row>
+          <!-- <v-row
+            style="height:23%; width:110%; background-color:#FFFFFF; border-radius: 0px 0px 15px 15px;border-color:black !important; border-width: 10px; "
+          >
+            BTTN
+          </v-row> -->
+
+          <v-row style="height:30%">
+            <v-btn
+              outlined
+              style="height:100%; width:100%; background-color:#FFFFFF; border-radius: 0px 0px 15px 15px; border-color: #F0F1F2; font-size:110%"
+              class="ml-0 font_dims"
+              color="#5686F6"
+            >
+              {{ btnTxt }}
+            </v-btn>
+          </v-row>
+        </v-container>
+      </v-col>
+    </v-row>
+    <v-row
+      style="margin-left:3%; margin-top:7%; margin-right:3%"
+      @click="toggleDialog()"
+      justify="center"
+    >
+      <v-btn
+        outlined
+        width="auto"
+        style="border-color: #5686F6; text-transform:none;"
+        color="#5686F6"
+        class="font_dims"
+      >
+        {{ qreply1Txt }}
+      </v-btn>
+
+      <v-btn
+        outlined
+        width="auto"
+        style="border-color: #5686F6; text-transform:none;"
+        color="#5686F6"
+        class="font_dims ml-4 mr-4"
+      >
+        {{ qreply2Txt }}
+      </v-btn>
+
+      <v-btn
+        outlined
+        width="auto"
+        style="border-color: #5686F6; text-transform:none;"
+        color="#5686F6"
+        class="font_dims"
+      >
+        {{ qreply3Txt }}
+      </v-btn>
+    </v-row>
+    <v-row style="margin-left:0%; margin-top:4%; margin-right:0%" @click="toggleDialog()">
+      <v-img :src="footerImg"></v-img>
+    </v-row>
+    <v-overlay
+      absolute
+      :value="dialog"
+      style="border-radius: 15px 15px 15px 15px;"
+      class="pa-10"
+      @click="toggleDialog()"
+    >
+      <v-card color="white" tile class="pb-4 pt-2" @click="toggleDialog()">
+        <v-card-text style="color:black ;text-align: center; font-size:12px">
+          {{ $t("widgets.modalText1") }}
+        </v-card-text>
+        <v-card-text style="color:black ; text-align: center; font-size:12px">
+          {{ $t("widgets.modalText2") }}
+        </v-card-text>
+      </v-card>
+    </v-overlay>
+  </v-card>
+</template>
+
+<script>
+export default {
+  name: "CampaignView",
+  data() {
+    return {
+      headerImg: require("@/assets/img/campaign-view-header.png"),
+      logoImg: require("@/assets/img/campaign-view-page-logo.png"),
+      footerImg: require("@/assets/img/campaign-view-footer.png"),
+      dialog: false,
+    };
+  },
+  methods: {
+    toggleDialog() {
+      this.dialog = !this.dialog;
+    },
+  },
+  computed: {
+    msgTxt() {
+      if (this.$store.getters.getActiveTab == "abndndcrt1") {
+        return this.$store.getters.getCarts1.intro_message;
+      } else if (this.$store.getters.getActiveTab == "abndndcrt2") {
+        return this.$store.getters.getCarts2.intro_message;
+      } else if (this.$store.getters.getActiveTab == "ordrrcpt") {
+        return this.$store.getters.getOrderReceipt.intro_message;
+      } else {
+        return this.$store.getters.getOrderShipped.intro_message;
+      }
+    },
+    btnTxt() {
+      if (this.$store.getters.getActiveTab == "abndndcrt1") {
+        return this.$store.getters.getCarts1.button_text;
+      } else if (this.$store.getters.getActiveTab == "abndndcrt2") {
+        return this.$store.getters.getCarts2.button_text;
+      } else if (this.$store.getters.getActiveTab == "ordrrcpt") {
+        return this.$store.getters.getOrderReceipt.button_text;
+      } else {
+        return this.$store.getters.getOrderShipped.button_text;
+      }
+    },
+    qreply1Txt() {
+      if (this.$store.getters.getActiveTab == "abndndcrt1") {
+        return this.$store.getters.getCarts1.quick_reply_thank_you_text;
+      } else if (this.$store.getters.getActiveTab == "abndndcrt2") {
+        return this.$store.getters.getCarts2.quick_reply_thank_you_text;
+      } else if (this.$store.getters.getActiveTab == "ordrrcpt") {
+        return this.$store.getters.getOrderReceipt.quick_reply_thank_you_text;
+      } else {
+        return this.$store.getters.getOrderShipped.quick_reply_thank_you_text;
+      }
+    },
+    qreply2Txt() {
+      if (this.$store.getters.getActiveTab == "abndndcrt1") {
+        return this.$store.getters.getCarts1.quick_reply_more_questions_text;
+      } else if (this.$store.getters.getActiveTab == "abndndcrt2") {
+        return this.$store.getters.getCarts2.quick_reply_more_questions_text;
+      } else if (this.$store.getters.getActiveTab == "ordrrcpt") {
+        return this.$store.getters.getOrderReceipt
+          .quick_reply_more_questions_text;
+      } else {
+        return this.$store.getters.getOrderShipped
+          .quick_reply_more_questions_text;
+      }
+    },
+    qreply3Txt() {
+      if (this.$store.getters.getActiveTab == "abndndcrt1") {
+        return this.$store.getters.getCarts1.quick_reply_unsubscribe_text;
+      } else if (this.$store.getters.getActiveTab == "abndndcrt2") {
+        return this.$store.getters.getCarts2.quick_reply_unsubscribe_text;
+      } else if (this.$store.getters.getActiveTab == "ordrrcpt") {
+        return this.$store.getters.getOrderReceipt.quick_reply_unsubscribe_text;
+      } else {
+        return this.$store.getters.getOrderShipped.quick_reply_unsubscribe_text;
+      }
+    },
+  },
+};
+</script>
+
+<style scoped>
+.card-props {
+  background-color: #ffffff;
+}
+</style>

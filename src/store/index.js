@@ -533,7 +533,7 @@ export default new Vuex.Store({
         obj.quick_reply_thank_you_text;
       state.msgVars.order_receipt.quick_reply_unsubscribe_text =
         obj.quick_reply_unsubscribe_text;
-      state.msgVars.intro_message = obj.intro_message;
+      state.msgVars.order_receipt.intro_message = obj.intro_message;
       state.msgVars.order_receipt.title = obj.title;
       state.msgVars.order_receipt.active = obj.active;
       state.msgVars.order_receipt.subtitle = obj.subtitle;
@@ -545,7 +545,7 @@ export default new Vuex.Store({
         obj.quick_reply_thank_you_text;
       state.msgVars.order_shipped.quick_reply_unsubscribe_text =
         obj.quick_reply_unsubscribe_text;
-      state.msgVars.intro_message = obj.intro_message;
+      state.msgVars.order_shipped.intro_message = obj.intro_message;
       state.msgVars.order_shipped.active = obj.active;
       state.msgVars.order_shipped.quick_reply_more_questions_text =
         obj.quick_reply_more_questions_text;
@@ -557,7 +557,7 @@ export default new Vuex.Store({
         obj.quick_reply_thank_you_text;
       state.msgVars.abandoned_cart_1.quick_reply_unsubscribe_text =
         obj.quick_reply_unsubscribe_text;
-      state.msgVars.intro_message = obj.intro_message;
+      state.msgVars.abandoned_cart_1.intro_message = obj.intro_message;
       state.msgVars.abandoned_cart_1.title = obj.title;
       state.msgVars.abandoned_cart_1.active = obj.active;
       state.msgVars.abandoned_cart_1.subtitle = obj.subtitle;
@@ -571,7 +571,7 @@ export default new Vuex.Store({
         obj.quick_reply_thank_you_text;
       state.msgVars.abandoned_cart_2.quick_reply_unsubscribe_text =
         obj.quick_reply_unsubscribe_text;
-      state.msgVars.intro_message = obj.intro_message;
+      state.msgVars.abandoned_cart_2.intro_message = obj.intro_message;
       state.msgVars.abandoned_cart_2.title = obj.title;
       state.msgVars.abandoned_cart_2.active = obj.active;
       state.msgVars.abandoned_cart_2.subtitle = obj.subtitle;
@@ -956,8 +956,8 @@ export default new Vuex.Store({
           },
         };
         let data = this.state.msgVars;
-        console.log("headers" + headers);
-        console.log("data" + data);
+        console.log("headers" + JSON.stringify(headers));
+        console.log("data" + JSON.stringify(data));
 
         axios
           .post(url, data, headers)
@@ -978,12 +978,14 @@ export default new Vuex.Store({
     },
     updOrdrShipped({ commit }, obj) {
       return new Promise((resolve) => {
+        console.log("CampaignRequest::" + JSON.stringify(obj));
         commit("SET_ORDR_SHIPPED", obj);
         resolve("success");
       });
     },
     updOrdrAbndCrt({ commit }, obj) {
       return new Promise((resolve) => {
+        console.log("updateCart :: " + JSON.stringify(obj));
         commit("SET_ORDR_ABANDONED_CART", obj);
         resolve("success");
       });

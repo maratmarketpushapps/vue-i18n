@@ -256,7 +256,7 @@
         <v-row style="height:20%; width:100%" class="ml-2">
           <v-col>
             <v-text-field
-              :label="$t('campaigns.ordrAbndCrt.qckRply')"
+              :label="$t('campaigns.ordrrcpt.qckRply')"
               v-model="ordrAbndCrtQckRplEdit2"
               @change="ordrAbndCrtQckRplEdit2Chng"
               @input="ordrAbndCrtQckRplEdit2Chng"
@@ -305,7 +305,7 @@
         <v-row style="height:20%; width:100%" class="ml-2">
           <v-col>
             <v-text-field
-              :label="$t('campaigns.ordrAbndCrt.qckRply')"
+              :label="$t('campaigns.ordrrcpt.qckRply')"
               v-model="ordrAbndCrtQckRplEdit3"
               @change="ordrAbndCrtQckRplEdit3Chng"
               @input="ordrAbndCrtQckRplEdit3Chng"
@@ -451,6 +451,23 @@ export default {
     },
     activeStateChng() {
       // this.ordrAbndCrtSwitchLive = !this.ordrAbndCrtSwitchLive;
+
+      let obj = {
+        active: this.ordrAbndCrtSwitchLive,
+        intro_message: this.ordrAbndCrtIntroMsg,
+        title: this.ordrAbndCrtTitle,
+        subtitle: this.ordrAbndCrtSubTitle,
+        button_text: this.ordrAbndCrtBtnText,
+        quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
+        quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
+        quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
+        sent_after: Number(this.sent_after.split(" ")[0]),
+      };
+
+      this.$store.dispatch("updOrdrAbndCrt2", obj).then((response) => {
+        console.log(response);
+      });
+
       this.ordrAbndCrtBtnDisabled = false;
       // console.log("new active status" + this.ordrAbndCrtSwitchLive);
     },
@@ -509,6 +526,21 @@ export default {
       if (oldVal == "") {
         this.ordrAbndCrtBtnDisabled = true;
       } else if (oldVal != newVal) {
+        let obj = {
+          active: this.ordrAbndCrtSwitchLive,
+          intro_message: this.ordrAbndCrtIntroMsg,
+          title: this.ordrAbndCrtTitle,
+          subtitle: this.ordrAbndCrtSubTitle,
+          button_text: this.ordrAbndCrtBtnText,
+          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
+          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
+          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
+          sent_after: Number(this.sent_after.split(" ")[0]),
+        };
+
+        this.$store.dispatch("updOrdrAbndCrt2", obj).then((response) => {
+          console.log(response);
+        });
         this.ordrAbndCrtBtnDisabled = false;
       }
     },
@@ -516,6 +548,21 @@ export default {
       if (oldVal == "") {
         this.ordrAbndCrtBtnDisabled = true;
       } else if (oldVal != newVal) {
+        let obj = {
+          active: this.ordrAbndCrtSwitchLive,
+          intro_message: this.ordrAbndCrtIntroMsg,
+          title: this.ordrAbndCrtTitle,
+          subtitle: this.ordrAbndCrtSubTitle,
+          button_text: this.ordrAbndCrtBtnText,
+          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
+          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
+          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
+          sent_after: Number(this.sent_after.split(" ")[0]),
+        };
+
+        this.$store.dispatch("updOrdrAbndCrt2", obj).then((response) => {
+          console.log(response);
+        });
         this.ordrAbndCrtBtnDisabled = false;
       }
     },
@@ -523,6 +570,21 @@ export default {
       if (oldVal == "") {
         this.ordrAbndCrtBtnDisabled = true;
       } else if (oldVal != newVal) {
+        let obj = {
+          active: this.ordrAbndCrtSwitchLive,
+          intro_message: this.ordrAbndCrtIntroMsg,
+          title: this.ordrAbndCrtTitle,
+          subtitle: this.ordrAbndCrtSubTitle,
+          button_text: this.ordrAbndCrtBtnText,
+          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
+          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
+          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
+          sent_after: Number(this.sent_after.split(" ")[0]),
+        };
+
+        this.$store.dispatch("updOrdrAbndCrt2", obj).then((response) => {
+          console.log(response);
+        });
         this.ordrAbndCrtBtnDisabled = false;
       }
     },

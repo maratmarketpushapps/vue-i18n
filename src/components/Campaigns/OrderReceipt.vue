@@ -335,6 +335,7 @@ export default {
     activeStateChng() {
       console.log("old active status" + this.ordrRcptSwitchLive);
       // this.ordrRcptSwitchLive = !this.ordrRcptSwitchLive;
+
       this.ordrRcptBtnDisabled = false;
       console.log("new active status" + this.ordrRcptSwitchLive);
     },
@@ -362,6 +363,20 @@ export default {
       this.menuActivator = true;
     },
     detectChange() {
+      let obj = {
+        active: this.ordrRcptSwitchLive,
+        intro_message: this.ordrRcptIntroMsg,
+        title: this.ordrRcptTitle,
+        subtitle: this.ordrRcptSubTitle,
+        button_text: this.ordrRcptBtnText,
+        quick_reply_thank_you_text: this.ordrRcptQckRpl1,
+        quick_reply_more_questions_text: this.ordrRcptQckRpl2,
+        quick_reply_unsubscribe_text: this.ordrRcptQckRpl3,
+      };
+
+      this.$store.dispatch("updOrdrRcpt", obj).then((response) => {
+        console.log(response);
+      });
       this.ordrRcptBtnDisabled = false;
     },
     ovrlyOrdrRcpt1() {
@@ -469,6 +484,20 @@ export default {
       if (oldVal == "") {
         this.ordrRcptBtnDisabled = true;
       } else if (oldVal != newVal) {
+        let obj = {
+          active: this.ordrRcptSwitchLive,
+          intro_message: this.ordrRcptIntroMsg,
+          title: this.ordrRcptTitle,
+          subtitle: this.ordrRcptSubTitle,
+          button_text: this.ordrRcptBtnText,
+          quick_reply_thank_you_text: this.ordrRcptQckRpl1,
+          quick_reply_more_questions_text: this.ordrRcptQckRpl2,
+          quick_reply_unsubscribe_text: this.ordrRcptQckRpl3,
+        };
+
+        this.$store.dispatch("updOrdrRcpt", obj).then((response) => {
+          console.log(response);
+        });
         this.ordrRcptBtnDisabled = false;
       }
     },
@@ -476,6 +505,20 @@ export default {
       if (oldVal == "") {
         this.ordrRcptBtnDisabled = true;
       } else if (oldVal != newVal) {
+        let obj = {
+          active: this.ordrRcptSwitchLive,
+          intro_message: this.ordrRcptIntroMsg,
+          title: this.ordrRcptTitle,
+          subtitle: this.ordrRcptSubTitle,
+          button_text: this.ordrRcptBtnText,
+          quick_reply_thank_you_text: this.ordrRcptQckRpl1,
+          quick_reply_more_questions_text: this.ordrRcptQckRpl2,
+          quick_reply_unsubscribe_text: this.ordrRcptQckRpl3,
+        };
+
+        this.$store.dispatch("updOrdrRcpt", obj).then((response) => {
+          console.log(response);
+        });
         this.ordrRcptBtnDisabled = false;
       }
     },
@@ -483,6 +526,20 @@ export default {
       if (oldVal == "") {
         this.ordrRcptBtnDisabled = true;
       } else if (oldVal != newVal) {
+        let obj = {
+          active: this.ordrRcptSwitchLive,
+          intro_message: this.ordrRcptIntroMsg,
+          title: this.ordrRcptTitle,
+          subtitle: this.ordrRcptSubTitle,
+          button_text: this.ordrRcptBtnText,
+          quick_reply_thank_you_text: this.ordrRcptQckRpl1,
+          quick_reply_more_questions_text: this.ordrRcptQckRpl2,
+          quick_reply_unsubscribe_text: this.ordrRcptQckRpl3,
+        };
+
+        this.$store.dispatch("updOrdrRcpt", obj).then((response) => {
+          console.log(response);
+        });
         this.ordrRcptBtnDisabled = false;
       }
     },
