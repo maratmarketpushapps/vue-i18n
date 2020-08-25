@@ -669,7 +669,7 @@ export default new Vuex.Store({
 
     getCarts({ commit }, dateObj) {
       return new Promise((resolve, reject) => {
-        let url = `${process.env.VUE_APP_API_URL_DEV}/abandoned_carts/${this.state.instance_id}/${dateObj.startDate}/${dateObj.endDate}`;
+        let url = `${process.env.VUE_APP_API_URL_DEV}/abandoned_carts/${dateObj.startDate}/${dateObj.endDate}`;
         let headers = {
           TOKEN: this.state.TOKEN,
         };
