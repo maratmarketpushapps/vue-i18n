@@ -337,10 +337,12 @@ export default {
     ovrlyOrdrRcpt1() {
       this.ordrRcptQckRplEdit1 = this.ordrRcptQckRpl1;
       this.overlayOrdrRcptQckRpl1 = true;
+      this.$store.dispatch("updQreplyEdit", true);
     },
     canclOvrlyOrdrRcpt1() {
       this.overlayOrdrRcptQckRpl1 = false;
       this.ordrRcptQckRplEdit1Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
     },
     ordrRcptQckRplEdit1Chng() {
       this.ordrRcptQckRplEdit1Btn = false;
@@ -349,14 +351,17 @@ export default {
       this.ordrRcptQckRpl1 = this.ordrRcptQckRplEdit1;
       this.overlayOrdrRcptQckRpl1 = false;
       this.ordrRcptQckRplEdit1Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
     },
     ovrlyOrdrRcpt2() {
       this.ordrRcptQckRplEdit2 = this.ordrRcptQckRpl2;
       this.overlayOrdrRcptQckRpl2 = true;
+      this.$store.dispatch("updQreplyEdit", true);
     },
     canclOvrlyOrdrRcpt2() {
       this.overlayOrdrRcptQckRpl2 = false;
       this.ordrRcptQckRplEdit2Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
     },
     ordrRcptQckRplEdit2Chng() {
       this.ordrRcptQckRplEdit2Btn = false;
@@ -365,15 +370,18 @@ export default {
       this.ordrRcptQckRpl2 = this.ordrRcptQckRplEdit2;
       this.overlayOrdrRcptQckRpl2 = false;
       this.ordrRcptQckRplEdit2Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
     },
 
     ovrlyOrdrRcpt3() {
       this.ordrRcptQckRplEdit3 = this.ordrRcptQckRpl3;
       this.overlayOrdrRcptQckRpl3 = true;
+      this.$store.dispatch("updQreplyEdit", true);
     },
     canclOvrlyOrdrRcpt3() {
       this.overlayOrdrRcptQckRpl3 = false;
       this.ordrRcptQckRplEdit3Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
     },
     ordrRcptQckRplEdit3Chng() {
       this.ordrRcptQckRplEdit3Btn = false;
@@ -382,6 +390,7 @@ export default {
       this.ordrRcptQckRpl3 = this.ordrRcptQckRplEdit3;
       this.overlayOrdrRcptQckRpl3 = false;
       this.ordrRcptQckRplEdit3Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
     },
     saveOrdrRcpt() {
       let obj = {

@@ -96,6 +96,7 @@ export default new Vuex.Store({
     msgVars: {
       activeTab: "abndndcrt1",
       cart1Active: true,
+      qreplyEdit: false,
       abandoned_cart_2: {
         button_text: "",
         quick_reply_thank_you_text: "",
@@ -198,6 +199,9 @@ export default new Vuex.Store({
     },
     getCart1Active: (state) => {
       return state.msgVars.cart1Active;
+    },
+    getQreplyEdit: (state) => {
+      return state.msgVars.qreplyEdit;
     },
   },
   mutations: {
@@ -587,6 +591,9 @@ export default new Vuex.Store({
     },
     SET_MSG_CART_1_ACTIVE(state, cart1Active) {
       state.msgVars.cart1Active = cart1Active;
+    },
+    SET_MSG_QREPLY_EDIT(state, val) {
+      state.msgVars.qreplyEdit = val;
     },
   },
   actions: {
@@ -1012,6 +1019,12 @@ export default new Vuex.Store({
     updCart1Active({ commit }, cart1Active) {
       return new Promise((resolve) => {
         commit("SET_MSG_CART_1_ACTIVE", cart1Active);
+        resolve("success");
+      });
+    },
+    updQreplyEdit({ commit }, val) {
+      return new Promise((resolve) => {
+        commit("SET_MSG_QREPLY_EDIT", val);
         resolve("success");
       });
     },

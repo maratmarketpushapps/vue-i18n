@@ -475,10 +475,12 @@ export default {
     ovrlyOrdrAbndCrt1() {
       this.ordrAbndCrtQckRplEdit1 = this.ordrAbndCrtQckRpl1;
       this.overlayOrdrAbndCrtQckRpl1 = true;
+      this.$store.dispatch("updQreplyEdit", true);
     },
     canclOvrlyOrdrAbndCrt1() {
       this.overlayOrdrAbndCrtQckRpl1 = false;
       this.ordrAbndCrtQckRplEdit1Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
     },
     ordrAbndCrtQckRplEdit1Chng() {
       this.ordrAbndCrtQckRplEdit1Btn = false;
@@ -487,14 +489,17 @@ export default {
       this.ordrAbndCrtQckRpl1 = this.ordrAbndCrtQckRplEdit1;
       this.overlayOrdrAbndCrtQckRpl1 = false;
       this.ordrAbndCrtQckRplEdit1Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
     },
     ovrlyOrdrAbndCrt2() {
       this.ordrAbndCrtQckRplEdit2 = this.ordrAbndCrtQckRpl2;
       this.overlayOrdrAbndCrtQckRpl2 = true;
+      this.$store.dispatch("updQreplyEdit", true);
     },
     canclOvrlyOrdrAbndCrt2() {
       this.overlayOrdrAbndCrtQckRpl2 = false;
       this.ordrAbndCrtQckRplEdit2Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
     },
     ordrAbndCrtQckRplEdit2Chng() {
       this.ordrAbndCrtQckRplEdit2Btn = false;
@@ -503,15 +508,18 @@ export default {
       this.ordrAbndCrtQckRpl2 = this.ordrAbndCrtQckRplEdit2;
       this.overlayOrdrAbndCrtQckRpl2 = false;
       this.ordrAbndCrtQckRplEdit2Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
     },
 
     ovrlyOrdrAbndCrt3() {
       this.ordrAbndCrtQckRplEdit3 = this.ordrAbndCrtQckRpl3;
       this.overlayOrdrAbndCrtQckRpl3 = true;
+      this.$store.dispatch("updQreplyEdit", true);
     },
     canclOvrlyOrdrAbndCrt3() {
       this.overlayOrdrAbndCrtQckRpl3 = false;
       this.ordrAbndCrtQckRplEdit3Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
     },
     ordrAbndCrtQckRplEdit3Chng() {
       this.ordrAbndCrtQckRplEdit3Btn = false;
@@ -520,6 +528,7 @@ export default {
       this.ordrAbndCrtQckRpl3 = this.ordrAbndCrtQckRplEdit3;
       this.overlayOrdrAbndCrtQckRpl3 = false;
       this.ordrAbndCrtQckRplEdit3Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
     },
   },
   watch: {

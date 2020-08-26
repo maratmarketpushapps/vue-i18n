@@ -98,11 +98,18 @@
     <v-row style="height:5vh"> </v-row>
     <v-overlay
       absolute
-      :value="dialog"
+      :value="dialogShow"
       style="border-radius: 15px 15px 15px 15px;"
       class="pa-10"
     >
-      <v-card color="white" tile class="pb-4 pt-2" @click="toggleDialog()">
+      <v-card color="white" tile class="pb-4 pt-0" @click="toggleDialog()">
+        <v-row justify="end" class="pr-4 pt-2">
+          <v-btn x-small icon @click="toggleDialog()">
+            <v-icon color="black">
+              mdi-window-close
+            </v-icon>
+          </v-btn>
+        </v-row>
         <v-card-text style="color:black ;text-align: center; font-size:12px">
           {{ $t("widgets.modalText1") }}
         </v-card-text>
@@ -131,6 +138,9 @@ export default {
     },
   },
   computed: {
+    dialogShow() {
+      return this.dialog && !this.$store.getters.getQreplyEdit;
+    },
     msgTxt() {
       if (this.$store.getters.getActiveTab == "abndndcrt1") {
         return this.$store.getters.getCarts1.intro_message;
