@@ -101,6 +101,7 @@
       :value="dialogShow"
       style="border-radius: 15px 15px 15px 15px;"
       class="pa-10"
+      z-index="0.5"
     >
       <v-card color="white" tile class="pb-4 pt-0" @click="toggleDialog()">
         <v-row justify="end" class="pr-4 pt-2">
@@ -111,10 +112,10 @@
           </v-btn>
         </v-row>
         <v-card-text style="color:black ;text-align: center; font-size:12px">
-          {{ $t("widgets.modalText1") }}
+          {{ $t("campaigns.modalText1") }}
         </v-card-text>
         <v-card-text style="color:black ; text-align: center; font-size:12px">
-          {{ $t("widgets.modalText2") }}
+          {{ $t("campaigns.modalText2") }}
         </v-card-text>
       </v-card>
     </v-overlay>
