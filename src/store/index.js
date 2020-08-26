@@ -95,6 +95,7 @@ export default new Vuex.Store({
 
     msgVars: {
       activeTab: "abndndcrt1",
+      cart1Active: true,
       abandoned_cart_2: {
         button_text: "",
         quick_reply_thank_you_text: "",
@@ -194,6 +195,9 @@ export default new Vuex.Store({
     },
     getActiveTab: (state) => {
       return state.msgVars.activeTab;
+    },
+    getCart1Active: (state) => {
+      return state.msgVars.cart1Active;
     },
   },
   mutations: {
@@ -580,6 +584,9 @@ export default new Vuex.Store({
     },
     SET_MSG_ACTIVE_TAB(state, activeTab) {
       state.msgVars.activeTab = activeTab;
+    },
+    SET_MSG_CART_1_ACTIVE(state, cart1Active) {
+      state.msgVars.cart1Active = cart1Active;
     },
   },
   actions: {
@@ -999,6 +1006,12 @@ export default new Vuex.Store({
     updActiveTab({ commit }, activeTab) {
       return new Promise((resolve) => {
         commit("SET_MSG_ACTIVE_TAB", activeTab);
+        resolve("success");
+      });
+    },
+    updCart1Active({ commit }, cart1Active) {
+      return new Promise((resolve) => {
+        commit("SET_MSG_CART_1_ACTIVE", cart1Active);
         resolve("success");
       });
     },

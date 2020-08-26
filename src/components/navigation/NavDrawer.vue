@@ -94,6 +94,12 @@ export default {
     setSelected(id) {
       console.log(event);
       this.$store.dispatch("updateClick", id);
+      if (id == "Campaigns") {
+        this.$store.dispatch("updActiveTab", "abndndcrt1").then((response) => {
+          this.$store.dispatch("updCart1Active", true);
+          console.log(response);
+        });
+      }
     },
   },
   computed: {
@@ -137,7 +143,7 @@ export default {
 
 @media (min-width: 1400px) {
   .navicon_scale {
-    transform: scale(.9);
+    transform: scale(0.9);
   }
 
   .list-dim {

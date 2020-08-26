@@ -9,29 +9,19 @@
       <v-col cols="1" class="pl-0 ml-0 pt-0"> </v-col>
     </v-row>
     <v-row class="pt-1 mt-0" align="start" style="height:auto">
-      <v-col cols="8" style="height:100%">
-        <CampaignTabs style="height:100%; width:100%" />
-      </v-col>
-      <v-col cols="4" style="height:100%; margin-top: 0%">
-        <v-row >
-          <div class="cmpgn-vw-ht"></div> </v-row>
-        <v-row>
-          <CampaignView />
-        </v-row>
-      </v-col>
+      <CampaignTabs style="height:100%; width:100%" />
     </v-row>
   </v-container>
 </template>
 
 <script>
 import CampaignTabs from "@/components/Campaigns/CampaignTabs.vue";
-import CampaignView from "@/components/Campaigns/CampaignView.vue";
+// import CampaignView from "@/components/Campaigns/CampaignView.vue";
 
 export default {
   name: "Campaigns",
   components: {
     CampaignTabs,
-    CampaignView,
   },
 };
 </script>

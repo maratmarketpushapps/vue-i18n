@@ -77,10 +77,7 @@
         {{ qreply2Txt }}
       </v-btn>
 
-      
-    </v-row>
-    <v-row justify="center">
-        <v-btn
+      <v-btn
         outlined
         width="auto"
         style="border-color: #5686F6; text-transform:none;"
@@ -91,23 +88,21 @@
         {{ qreply3Txt }}
       </v-btn>
     </v-row>
+
     <v-row
       style="margin-left:0%; margin-top:4%; margin-right:0%"
       @click="toggleDialog()"
     >
       <v-img :src="footerImg"></v-img>
     </v-row>
-    <v-row style="height:5vh">
-
-    </v-row>
+    <v-row style="height:5vh"> </v-row>
     <v-overlay
       absolute
       :value="dialog"
       style="border-radius: 15px 15px 15px 15px;"
       class="pa-10"
-      
     >
-      <v-card color="white" tile class="pb-4 pt-2" @click="toggleDialog()" >
+      <v-card color="white" tile class="pb-4 pt-2" @click="toggleDialog()">
         <v-card-text style="color:black ;text-align: center; font-size:12px">
           {{ $t("widgets.modalText1") }}
         </v-card-text>

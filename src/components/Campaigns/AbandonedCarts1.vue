@@ -150,7 +150,7 @@
                 :posRight="true"
                 :nudgeBottom="30"
                 :nudgeLeft="5"
-                :txt="$t('campaigns.infocons.msg3')"
+                :txt="$t('campaigns.infocons.msg5')"
                 class="infoicon_scale mt-0 pt-0"
                 style="top:30%; transform:scale(.85)"
               />
@@ -398,7 +398,7 @@ export default {
       return this.$store.getters.getMsgCounts.sent_count_abandoned_cart_1;
     },
     cart1Edit() {
-      return this.$store.getters.getActiveTab == "abndndcrt1" ? true : false;
+      return this.$store.getters.getActiveTab == "abndndcrt1" || this.$store.getters.getCart1Active ? true : false;
     },
     swtchDisabled() {
       return this.$store.getters.getActiveTab == "abndndcrt1" ? false : true;
@@ -443,6 +443,7 @@ export default {
     },
     editCart1() {
       this.$store.dispatch("updActiveTab", "abndndcrt1").then((response) => {
+        this.$store.dispatch("updCart1Active", true);
         console.log(response);
       });
     },

@@ -63,19 +63,24 @@
     </v-row>
     <br />
     <v-row style="height:auto; width:100%">
-      <v-tabs-items
-        v-model="tab"
-        style="height:100%; width:100%"
-        class="app_background"
-      >
-        <v-tab-item key="1" :eager="false">
-          <AbandonedCarts1 />
-          <br />
-          <AbandonedCarts2 />
-        </v-tab-item>
-        <v-tab-item key="2" :eager="false"> <OrderReceipt /> </v-tab-item>
-        <v-tab-item key="3" :eager="false"><OrderShipped /> </v-tab-item>
-      </v-tabs-items>
+      <v-col cols="7">
+        <v-tabs-items
+          v-model="tab"
+          style="height:100%; width:100%"
+          class="app_background"
+        >
+          <v-tab-item key="1" :eager="false">
+            <AbandonedCarts1 />
+            <br />
+            <AbandonedCarts2 />
+          </v-tab-item>
+          <v-tab-item key="2" :eager="false"> <OrderReceipt /> </v-tab-item>
+          <v-tab-item key="3" :eager="false"><OrderShipped /> </v-tab-item>
+        </v-tabs-items>
+      </v-col>
+      <v-col cols="5" style="padding-left: 2%">
+        <CampaignView />
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -86,6 +91,7 @@ import OrderReceipt from "@/components/Campaigns/OrderReceipt.vue";
 import OrderShipped from "@/components/Campaigns/OrderShipped.vue";
 import AbandonedCarts1 from "@/components/Campaigns/AbandonedCarts1.vue";
 import AbandonedCarts2 from "@/components/Campaigns/AbandonedCarts2.vue";
+import CampaignView from "@/components/Campaigns/CampaignView.vue";
 // import moment from "moment-timezone";
 // import { mapGetters } from "vuex";
 export default {
@@ -96,6 +102,7 @@ export default {
     OrderShipped,
     AbandonedCarts1,
     AbandonedCarts2,
+    CampaignView,
   },
   data() {
     return {
@@ -127,6 +134,7 @@ export default {
       this.activeTab = "2";
       this.itemKeyDat2++;
       this.$store.dispatch("updActiveTab", "ordrrcpt").then((response) => {
+        this.$store.dispatch("updCart1Active", true);
         console.log(response);
       });
     },
@@ -134,6 +142,7 @@ export default {
       this.activeTab = "3";
       this.itemKeyDat3++;
       this.$store.dispatch("updActiveTab", "ordrshpd").then((response) => {
+        this.$store.dispatch("updCart1Active", true);
         console.log(response);
       });
     },
@@ -171,7 +180,7 @@ export default {
   transform: scale(0.9);
 }
 .tab-size {
-  font-size: 60%
+  font-size: 80%;
 }
 
 .msgCount {
@@ -193,15 +202,13 @@ export default {
     transform: scale(1.2);
   }
   .tab-size {
-    font-size: 90%
+    font-size: 100%;
   }
 }
 
 @media (min-width: 1280px) and (max-width: 1499px) {
-  
   .tab-size {
-    font-size: 60%
+    font-size: 80%;
   }
 }
-
 </style>
