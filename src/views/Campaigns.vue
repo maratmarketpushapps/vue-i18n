@@ -12,8 +12,12 @@
       <v-col cols="8" style="height:100%">
         <CampaignTabs style="height:100%; width:100%" />
       </v-col>
-      <v-col cols="4" style="height:100%; margin-top: 5.5%">
-        <CampaignView />
+      <v-col cols="4" style="height:100%; margin-top: 0%">
+        <v-row >
+          <div class="cmpgn-vw-ht"></div> </v-row>
+        <v-row>
+          <CampaignView />
+        </v-row>
       </v-col>
     </v-row>
   </v-container>
@@ -40,5 +44,9 @@ export default {
   text-align: center;
   margin: 50px;
   border: 10px rgb(4, 51, 53);
+}
+
+.cmpgn-vw-ht {
+  height: 92px;
 }
 </style>

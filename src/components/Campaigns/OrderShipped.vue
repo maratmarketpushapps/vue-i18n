@@ -1,6 +1,6 @@
 <template>
-  <v-card tile height="70vh" class="pl-0 pt-3 pr-0 font_dims">
-    <v-row style="height:14%" class="pl-6" align="center">
+  <v-card tile height="auto" class="pl-0 pt-3 pr-0 font_dims">
+    <v-row style="height:23%" class="pl-6" align="center">
       <v-col cols="4">
         <v-row
           class="pl-6"
@@ -107,7 +107,7 @@
       <v-row style="height:15%; width:100%" class="mt-2 pl-4 pr-3"> </v-row>
       <v-row style="height:15%; width:100%" class="pl-4 pr-3"> </v-row>
 
-      <v-row style="height:20%; width:100%" class="pl-4 pr-3"> </v-row>
+      <v-row style="height:10vh; width:100%" class="pl-4 pr-3"> </v-row>
     </v-row>
 
     <v-overlay

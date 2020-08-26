@@ -59,7 +59,7 @@
     <v-divider style="width:100%" class="pa-0 ma-0"></v-divider>
     <v-expand-transition>
       <v-row
-        style="height: 59vh; width: 100%"
+        style="height: auto; width: 100%"
         v-show="cart1Edit"
         class="pl-6 pr-9 mt-9"
         align="start"
@@ -181,7 +181,7 @@
           </v-col>
         </v-row>
 
-        <v-row style="height:20%; width:100%" class="pl-4 pr-3"> </v-row>
+        <v-row style="height:10vh; width:100%" class="pl-4 pr-3"> </v-row>
       </v-row>
     </v-expand-transition>
     <v-overlay

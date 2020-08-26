@@ -1,14 +1,14 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="pl-0 ml-0">
     <v-row class="pa-0 ma-0 mt-2 pl-0 ml-0" justify="start" style="width:100%">
       <v-col class="pa-0 ma-0 pl-0 ml-0" cols="auto">
         <v-tabs
           background-color="transparent"
           v-model="tab"
-          class="pa-0 mt-0 tabs-color tab-size"
+          class="pa-0 mt-0 ml-0 tabs-color tab-size"
           active-class="tab-item-color-active"
           :show-arrows="showArr"
-          style="width:100%"
+          style="width:100%;"
         >
           <v-tab
             class="font_dims"
@@ -171,8 +171,7 @@ export default {
   transform: scale(0.9);
 }
 .tab-size {
-  transform: scale(0.9);
-  transform-origin: 0 0;
+  font-size: 60%
 }
 
 .msgCount {
@@ -194,8 +193,15 @@ export default {
     transform: scale(1.2);
   }
   .tab-size {
-    transform: scale(1);
-    transform-origin: 0 0;
+    font-size: 90%
   }
 }
+
+@media (min-width: 1280px) and (max-width: 1499px) {
+  
+  .tab-size {
+    font-size: 60%
+  }
+}
+
 </style>

@@ -88,7 +88,7 @@ export default {
 }
 
 .font_dims {
-  font-size: 60% !important;
+  font-size: 70% !important;
   overflow: hidden;
 }
 .header_dims {
