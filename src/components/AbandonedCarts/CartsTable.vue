@@ -1,7 +1,7 @@
 <template>
   <v-card height="auto" width="auto">
     <v-data-table
-      :no-data-text = "$t('abandonedCarts.noDataTxt')"
+      :no-data-text="$t('abandonedCarts.noDataTxt')"
       :headers="headers"
       :items="items"
       :footer-props="{
@@ -24,8 +24,26 @@
       <template #item.order_value="{item}">
         <h4>{{ item.order_value }}</h4>
       </template>
-      <template #item.messages_sent="{item}">
-        <h4>{{ item.messages_sent }}</h4>
+      <template #item.cart_recovered_at="{item}">
+        <span v-show="item.cart_recovered_at != false">{{
+          new Date(item.cart_recovered_at).toLocaleString()
+        }}</span>
+      </template>
+
+      <template #item.created_at="{item}">
+        <span>{{ new Date(item.created_at).toLocaleString() }}</span>
+      </template>
+
+      <template #item.first_message_sent_at="{item}">
+        <span v-show="item.first_message_sent_at != null">{{
+          new Date(item.first_message_sent_at).toLocaleString()
+        }}</span>
+      </template>
+
+      <template #item.second_message_sent_at="{item}">
+        <span v-show="item.second_message_sent_at != null">{{
+          new Date(item.second_message_sent_at).toLocaleString()
+        }}</span>
       </template>
     </v-data-table>
   </v-card>
@@ -49,7 +67,7 @@ export default {
           text: this.$t("abandonedCarts.dataTab.headers.col1"),
           align: "start",
           sortable: false,
-          value: "cart_abandoned_at",
+          value: "created_at",
         },
         {
           text: this.$t("abandonedCarts.dataTab.headers.col2"),
@@ -58,12 +76,12 @@ export default {
         },
         {
           text: this.$t("abandonedCarts.dataTab.headers.col3"),
-          value: "subscribed_on_facebook",
+          value: "first_message_sent_at",
           sortable: false,
         },
         {
           text: this.$t("abandonedCarts.dataTab.headers.col4"),
-          value: "messages_sent",
+          value: "second_message_sent_at",
           sortable: false,
         },
         {

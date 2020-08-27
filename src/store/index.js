@@ -80,14 +80,7 @@ export default new Vuex.Store({
     },
     cartsState: {
       carts: [
-        {
-          cart_abandoned_at: "",
-          order_value: "",
-          subscribed_on_facebook: "",
-          messages_sent: "",
-          cart_status: "",
-          cart_recovered_at: "",
-        },
+        
       ],
     },
 
@@ -209,7 +202,7 @@ export default new Vuex.Store({
       state.navState.currentSelected = id;
     },
     SET_CARTS_VAL(state, obj) {
-      state.cartsState.carts = obj.carts;
+      state.cartsState.carts = obj.subscribers;
     },
     SET_TOKEN(state, token) {
       state.TOKEN = token;
@@ -683,9 +676,12 @@ export default new Vuex.Store({
 
     getCarts({ commit }, dateObj) {
       return new Promise((resolve, reject) => {
-        let url = `${process.env.VUE_APP_API_URL_DEV}/abandoned_carts/${dateObj.startDate}/${dateObj.endDate}`;
+        let url = `${process.env.VUE_APP_API_URL_DEV}/getFacebookSubscribers?start_date=${dateObj.startDate}&end_date=${dateObj.endDate}`;
         let headers = {
-          TOKEN: this.state.TOKEN,
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
         };
         console.log("CART-CHECK :: " + url);
         axios
