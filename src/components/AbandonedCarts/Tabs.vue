@@ -135,10 +135,10 @@ export default {
         moment(new Date()).format("YYYY-MM-DD"),
       ],
       custStDt: moment(new Date() - 86400000 * 15)
-        .utc()
+        
         .format("MM-DD-YYYY"),
       custEnDt: moment(new Date())
-        .utc()
+        
         .format("MM-DD-YYYY"),
       custKey: 0,
       itemKeyDat1: 0,
@@ -177,18 +177,18 @@ export default {
       console.log("DateTestsNew :: " + this.custDates[1]);
       this.custDates[0] > this.custDates[1]
         ? (this.custStDt = moment(this.custDates[1])
-            .utc()
+            
             .format("MM-DD-YYYY"))
         : (this.custStDt = moment(this.custDates[0])
-            .utc()
+            
             .format("MM-DD-YYYY"));
 
       this.custDates[0] > this.custDates[1]
         ? (this.custEnDt = moment(this.custDates[0])
-            .utc()
+            
             .format("MM-DD-YYYY"))
         : (this.custEnDt = moment(this.custDates[1])
-            .utc()
+            
             .format("MM-DD-YYYY"));
 
       console.log("start date :: " + this.custStDt);
@@ -203,7 +203,7 @@ export default {
 
     getStartDate() {
       return moment(this.getCreatedAt)
-        .utc()
+        
         .format("YYYY-MM-DD");
     },
     displayStDate() {
@@ -219,34 +219,34 @@ export default {
 
     currDate() {
       return moment(new Date())
-        .utc()
+        
         .format("MM-DD-YYYY");
     },
     yestDate() {
       return moment(new Date() - 86400000)
-        .utc()
+        
         .format("MM-DD-YYYY");
     },
     lstWeekDate() {
       console.log(
         "Last-week-time :: " +
           moment(new Date() - 86400000 * 7)
-            .utc()
+            
             .format("MM-DD-YYYY")
       );
       return moment(new Date() - 86400000 * 7)
-        .utc()
+        
         .format("MM-DD-YYYY");
     },
     lstMonthDate() {
       console.log(
         "Last-week-time :: " +
           moment(new Date() - 86400000 * 30)
-            .utc()
+            
             .format("MM-DD-YYYY")
       );
       return moment(new Date() - 86400000 * 30)
-        .utc()
+        
         .format("MM-DD-YYYY");
     },
   },
