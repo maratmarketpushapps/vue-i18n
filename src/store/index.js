@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
+import moment from "moment-timezone";
 
 Vue.use(Vuex);
 
@@ -79,9 +80,7 @@ export default new Vuex.Store({
       currentSelected: "Dashboard",
     },
     cartsState: {
-      carts: [
-        
-      ],
+      carts: [],
     },
 
     // Messages State
@@ -202,7 +201,35 @@ export default new Vuex.Store({
       state.navState.currentSelected = id;
     },
     SET_CARTS_VAL(state, obj) {
-      state.cartsState.carts = obj.subscribers;
+      let cleanedObj = [];
+      for (let loopObj of obj.subscribers) {
+        loopObj.created_at = moment(new Date(loopObj.created_at))
+          .tz(state.settingsVars.timezone_id)
+          .format("MM-DD-YYYY hh:mm:ss A");
+
+        loopObj.first_message_sent_at = moment(
+          new Date(loopObj.first_message_sent_at)
+        )
+          .tz(state.settingsVars.timezone_id)
+          .format("MM-DD-YYYY hh:mm:ss A");
+
+        loopObj.second_message_sent_at = moment(
+          new Date(loopObj.second_message_sent_at)
+        )
+          .tz(state.settingsVars.timezone_id)
+          .format("MM-DD-YYYY hh:mm:ss A");
+
+        if (loopObj.cart_recovered_at != false) {
+          loopObj.cart_recovered_at = moment(
+            new Date(loopObj.cart_recovered_at)
+          )
+            .tz(state.settingsVars.timezone_id)
+            .format("MM-DD-YYYY hh:mm:ss A");
+        }
+        cleanedObj.push(loopObj);
+      }
+
+      state.cartsState.carts = cleanedObj;
     },
     SET_TOKEN(state, token) {
       state.TOKEN = token;

@@ -26,23 +26,23 @@
       </template>
       <template #item.cart_recovered_at="{item}">
         <span v-show="item.cart_recovered_at != false">{{
-          new Date(item.cart_recovered_at).toLocaleString()
+          item.cart_recovered_at
         }}</span>
       </template>
 
       <template #item.created_at="{item}">
-        <span>{{ new Date(item.created_at).toLocaleString() }}</span>
+        <span>{{ item.created_at }}</span>
       </template>
 
       <template #item.first_message_sent_at="{item}">
         <span v-show="item.first_message_sent_at != null">{{
-          new Date(item.first_message_sent_at).toLocaleString()
+          item.first_message_sent_at
         }}</span>
       </template>
 
       <template #item.second_message_sent_at="{item}">
         <span v-show="item.second_message_sent_at != null">{{
-          new Date(item.second_message_sent_at).toLocaleString()
+          item.second_message_sent_at
         }}</span>
       </template>
     </v-data-table>
