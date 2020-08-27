@@ -134,12 +134,8 @@ export default {
         moment(new Date() - 86400000 * 15).format("YYYY-MM-DD"),
         moment(new Date()).format("YYYY-MM-DD"),
       ],
-      custStDt: moment(new Date() - 86400000 * 15)
-        
-        .format("MM-DD-YYYY"),
-      custEnDt: moment(new Date())
-        
-        .format("MM-DD-YYYY"),
+      custStDt: moment(new Date() - 86400000 * 15).format("MM-DD-YYYY"),
+      custEnDt: moment(new Date()).format("MM-DD-YYYY"),
       custKey: 0,
       itemKeyDat1: 0,
       itemKeyDat2: 0,
@@ -176,20 +172,12 @@ export default {
       console.log("DateTestsNew :: " + this.custDates[0]);
       console.log("DateTestsNew :: " + this.custDates[1]);
       this.custDates[0] > this.custDates[1]
-        ? (this.custStDt = moment(this.custDates[1])
-            
-            .format("MM-DD-YYYY"))
-        : (this.custStDt = moment(this.custDates[0])
-            
-            .format("MM-DD-YYYY"));
+        ? (this.custStDt = moment(this.custDates[1]).format("MM-DD-YYYY"))
+        : (this.custStDt = moment(this.custDates[0]).format("MM-DD-YYYY"));
 
       this.custDates[0] > this.custDates[1]
-        ? (this.custEnDt = moment(this.custDates[0])
-            
-            .format("MM-DD-YYYY"))
-        : (this.custEnDt = moment(this.custDates[1])
-            
-            .format("MM-DD-YYYY"));
+        ? (this.custEnDt = moment(this.custDates[0]).format("MM-DD-YYYY"))
+        : (this.custEnDt = moment(this.custDates[1]).format("MM-DD-YYYY"));
 
       console.log("start date :: " + this.custStDt);
       console.log("end date :: " + this.custEnDt);
@@ -202,9 +190,7 @@ export default {
     ...mapGetters(["getCreatedAt"]),
 
     getStartDate() {
-      return moment(this.getCreatedAt)
-        
-        .format("YYYY-MM-DD");
+      return moment(this.getCreatedAt).format("YYYY-MM-DD");
     },
     displayStDate() {
       return this.custDates[0] > this.custDates[1]
@@ -218,36 +204,24 @@ export default {
     },
 
     currDate() {
-      return moment(new Date())
-        
-        .format("MM-DD-YYYY");
+      return moment(new Date()).format("MM-DD-YYYY");
     },
     yestDate() {
-      return moment(new Date() - 86400000)
-        
-        .format("MM-DD-YYYY");
+      return moment(new Date()).format("MM-DD-YYYY");
     },
     lstWeekDate() {
       console.log(
         "Last-week-time :: " +
-          moment(new Date() - 86400000 * 7)
-            
-            .format("MM-DD-YYYY")
+          moment(new Date() - 86400000 * 7).format("MM-DD-YYYY")
       );
-      return moment(new Date() - 86400000 * 7)
-        
-        .format("MM-DD-YYYY");
+      return moment(new Date() - 86400000 * 7).format("MM-DD-YYYY");
     },
     lstMonthDate() {
       console.log(
         "Last-week-time :: " +
-          moment(new Date() - 86400000 * 30)
-            
-            .format("MM-DD-YYYY")
+          moment(new Date() - 86400000 * 30).format("MM-DD-YYYY")
       );
-      return moment(new Date() - 86400000 * 30)
-        
-        .format("MM-DD-YYYY");
+      return moment(new Date() - 86400000 * 30).format("MM-DD-YYYY");
     },
   },
 };
@@ -275,16 +249,16 @@ export default {
 .refIcondim {
   transform: scale(0.9);
 }
-.tab-size{
-    transform: scale(.9);
-    transform-origin: 0 0;
-  }
+.tab-size {
+  transform: scale(0.9);
+  transform-origin: 0 0;
+}
 
 @media (min-width: 1400px) {
   .refIcondim {
     transform: scale(1.2);
   }
-  .tab-size{
+  .tab-size {
     transform: scale(1);
     transform-origin: 0 0;
   }
