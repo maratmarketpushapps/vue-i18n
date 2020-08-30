@@ -11,7 +11,7 @@
       <v-col cols="1"><v-spacer></v-spacer></v-col>
       <!-- Stepper component -->
       <v-col cols="9" class="pb-0">
-        <v-stepper class="stepper" :value="step">
+        <v-stepper class="stepper" :value="step" v-show="!allstepsComplete">
           <v-stepper-header class="stepperhead">
             <!-- Step 1 -->
             <v-stepper-step
@@ -117,6 +117,13 @@ export default {
     },
     step3Complete() {
       return this.$store.getters.getStep3Complete;
+    },
+    allstepsComplete() {
+      return (
+        this.$store.getters.getStep1Complete &&
+        this.$store.getters.getStep2Complete &&
+        this.$store.getters.getStep3Complete
+      );
     },
     showUpgrade() {
       return this.$store.getters.getPricingPlan == "Mogul" ? false : true;
