@@ -20,11 +20,8 @@
               class="step-item"
             >
               <router-link
-                to="/"
-                @click.native="
-                  step = 1;
-                  step1Complete = true;
-                "
+                to="/settings"
+                @click.native="step = 1"
                 class="step-item-font"
                 >{{ $t("navbar.appbar.step1") }}
               </router-link>
@@ -40,17 +37,14 @@
             >
               <router-link
                 v-if="step1Complete"
-                to="/dashboard"
-                @click.native="
-                  step = 2;
-                  step2Complete = true;
-                "
+                to="/campaigns"
+                @click.native="step = 2"
                 class="step-item-font"
                 >{{ $t("navbar.appbar.step2") }}
               </router-link>
               <router-link
                 v-else
-                to="/dashboard"
+                to="/campaigns"
                 tag="button"
                 disabled
                 class="step-item-font"
@@ -67,17 +61,14 @@
             >
               <router-link
                 v-if="step2Complete"
-                to="/about"
-                @click.native="
-                  step = 3;
-                  step3Complete = true;
-                "
+                to="/widgets"
+                @click.native="step = 3"
                 class="step-item-font"
                 >{{ $t("navbar.appbar.step3") }}
               </router-link>
               <router-link
                 v-else
-                to="/about"
+                to="/widgets"
                 tag="button"
                 disabled
                 class="step-item-font"
@@ -110,9 +101,6 @@ export default {
   data() {
     return {
       step: 1,
-      step1Complete: false,
-      step2Complete: false,
-      step3Complete: false,
     };
   },
   methods: {
@@ -121,9 +109,26 @@ export default {
     },
   },
   computed: {
+    step1Complete() {
+      return this.$store.getters.getStep1Complete;
+    },
+    step2Complete() {
+      return this.$store.getters.getStep2Complete;
+    },
+    step3Complete() {
+      return this.$store.getters.getStep3Complete;
+    },
     showUpgrade() {
       return this.$store.getters.getPricingPlan == "Mogul" ? false : true;
     },
+  },
+  beforeMount() {
+    this.$store.dispatch("getMsg").then((response) => {
+      console.log(response);
+      this.$store.dispatch("getSettings").then(() => {
+        this.$store.dispatch("getWidgets");
+      });
+    });
   },
 };
 </script>
@@ -171,10 +176,10 @@ a {
   }
 
   .button-dims {
-  height: 70% !important;
-  width: 70% !important;
-  font-size: 80% !important;
-  position: relative;
-}
+    height: 70% !important;
+    width: 70% !important;
+    font-size: 80% !important;
+    position: relative;
+  }
 }
 </style>

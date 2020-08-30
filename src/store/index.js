@@ -195,6 +195,18 @@ export default new Vuex.Store({
     getQreplyEdit: (state) => {
       return state.msgVars.qreplyEdit;
     },
+    getStep1Complete: (state) => {
+      return state.settingsVars.setup_step_1_completed;
+    },
+    getStep2Complete: (state) => {
+      return state.msgVars.abandoned_cart_1.active ||
+        state.msgVars.abandoned_cart_1.active
+        ? true
+        : false;
+    },
+    getStep3Complete: (state) => {
+      return state.widgetVars.active;
+    },
   },
   mutations: {
     SET_SELECTED(state, id) {
@@ -480,6 +492,10 @@ export default new Vuex.Store({
       state.widgetVars.button_border_color = color;
       state.widgetVars.wdgt_key_internal++;
     },
+    SET_WDGT_LIVE(state, active) {
+      state.widgetVars.active = active;
+    },
+
     SET_FB_SETTINGS(state, obj) {
       state.settingsVars.facebook_page_id = obj.facebook_page_id;
       state.settingsVars.facebook_page_name = obj.facebook_page_name;
@@ -907,6 +923,13 @@ export default new Vuex.Store({
         resolve("success");
       });
     },
+    updWdgtLive({ commit }, active) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_LIVE", active);
+        resolve("success");
+      });
+    },
+
     setSettings() {
       return new Promise((resolve, reject) => {
         let url = `${process.env.VUE_APP_API_URL_DEV}/settings`;

@@ -20,7 +20,12 @@
         <v-row align="center" justify="end" style="width:100%">
           <v-col cols="auto"> </v-col>
           <v-col cols="auto">
-            <v-switch v-model="live" :label="liveLbl" color="#4E5D6B">
+            <v-switch
+              v-model="live"
+              :label="liveLbl"
+              color="#4E5D6B"
+              @change="updWdgtLiveActive()"
+            >
             </v-switch>
           </v-col>
         </v-row>
@@ -82,7 +87,17 @@ export default {
   beforeCreate() {
     this.$store.dispatch("getWidgets").then((response) => {
       console.log(response);
+      this.live = this.$store.getters.getWidgetsState.active;
     });
+  },
+  methods: {
+    updWdgtLiveActive() {
+      this.$store.dispatch("updWdgtLive", this.live).then(() => {
+        this.$store.dispatch("setWdgts").then(() => {
+          this.$store.dispatch("getWidgets");
+        });
+      });
+    },
   },
   computed: {
     ...mapGetters(["getWidgetsState"]),
@@ -93,7 +108,7 @@ export default {
       return this.getWidgetsState.facebook_widget_type;
     },
     liveLbl() {
-      return this.live ? this.$t('widgets.liveLbl') : this.$t('widgets.offLbl');
+      return this.live ? this.$t("widgets.liveLbl") : this.$t("widgets.offLbl");
     },
   },
 };
