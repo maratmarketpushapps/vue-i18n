@@ -200,7 +200,7 @@ export default new Vuex.Store({
     },
     getStep2Complete: (state) => {
       return state.msgVars.abandoned_cart_1.active ||
-        state.msgVars.abandoned_cart_1.active
+        state.msgVars.abandoned_cart_2.active
         ? true
         : false;
     },
