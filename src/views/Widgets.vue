@@ -31,20 +31,15 @@
         </v-row>
       </v-col>
     </v-row>
-    <v-row
-      class="pt-1 mt-0"
-      align="center"
-      justify="center"
-      style="height:auto"
-    >
+    <v-row class="pt-1 mt-6" align="start" justify="center" style="height:auto;">
       <v-col cols="6" style="height:100%">
         <v-row style="height:100%" align="start" justify="center">
-          <WidgetProps style="align:center" />
+          <WidgetProps class="mt-3" />
         </v-row>
       </v-col>
       <v-col cols="6" style="">
         <v-row
-          style="height:75vh; width:auto; position: fixed; top:25%"
+          style="height:75vh; width:auto; "
           align="start"
           justify="center"
           v-show="widgetType == 'Button'"
@@ -52,7 +47,7 @@
           <WidgetView />
         </v-row>
         <v-row
-          style="height:75vh; width:auto; position: fixed; top:25%"
+          style="height:75vh; width:auto;"
           align="start"
           justify="center"
           v-show="widgetType == 'Checkbox'"

@@ -89,6 +89,7 @@ export default new Vuex.Store({
       activeTab: "abndndcrt1",
       cart1Active: true,
       qreplyEdit: false,
+      step2Com: false,
       abandoned_cart_2: {
         button_text: "",
         quick_reply_thank_you_text: "",
@@ -199,10 +200,12 @@ export default new Vuex.Store({
       return state.settingsVars.setup_step_1_completed;
     },
     getStep2Complete: (state) => {
-      return state.msgVars.abandoned_cart_1.active ||
-        state.msgVars.abandoned_cart_2.active
-        ? true
-        : false;
+      return state.msgVars.step2Com;
+
+      // state.msgVars.abandoned_cart_1.active ||
+      //   state.msgVars.abandoned_cart_2.active
+      //   ? true
+      //   : false;
     },
     getStep3Complete: (state) => {
       return state.widgetVars.active;
@@ -570,6 +573,10 @@ export default new Vuex.Store({
         obj.sent_count.sent_count_abandoned_cart_1;
       state.msgVars.sent_count.sent_count_order_shipped =
         obj.sent_count.sent_count_order_shipped;
+
+      obj.abandoned_cart_1.active || obj.abandoned_cart_2.active
+        ? (state.msgVars.step2Com = true)
+        : (state.msgVars.step2Com = false);
     },
     SET_ORDR_RCPT(state, obj) {
       state.msgVars.order_receipt.button_text = obj.button_text;
