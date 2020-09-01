@@ -19,19 +19,16 @@
       <v-col cols="8.75" class="pt-0">
         <v-row align="center" justify="end" style="width:100%">
           <v-col cols="auto"> </v-col>
-          <v-col cols="auto">
-            <v-switch
-              v-model="live"
-              :label="liveLbl"
-              color="#4E5D6B"
-              @change="updWdgtLiveActive()"
-            >
-            </v-switch>
-          </v-col>
+          <v-col cols="auto"> </v-col>
         </v-row>
       </v-col>
     </v-row>
-    <v-row class="pt-1 mt-6" align="start" justify="center" style="height:auto;">
+    <v-row
+      class="pt-1 mt-6"
+      align="start"
+      justify="center"
+      style="height:auto;"
+    >
       <v-col cols="6" style="height:100%">
         <v-row style="height:100%" align="start" justify="center">
           <WidgetProps class="mt-3" />

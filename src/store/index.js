@@ -52,6 +52,7 @@ export default new Vuex.Store({
       active: false,
       wdgt_key_internal: 0,
       changesSaved: true,
+      step3Comp: false,
     },
     settingsVars: {
       first_name: "",
@@ -208,7 +209,7 @@ export default new Vuex.Store({
       //   : false;
     },
     getStep3Complete: (state) => {
-      return state.widgetVars.active;
+      return state.widgetVars.step3Comp;
     },
   },
   mutations: {
@@ -286,6 +287,9 @@ export default new Vuex.Store({
       state.widgetVars.button_border_color = obj.button_border_color;
       state.widgetVars.active = obj.active;
       state.widgetVars.changesSaved = true;
+      state.widgetVars.active
+        ? (state.widgetVars.step3Comp = true)
+        : (state.widgetVars.step3Comp = false);
     },
 
     SET_SETTINGS_VALS(state, obj) {
@@ -331,6 +335,12 @@ export default new Vuex.Store({
       state.settingsVars.last_name = obj.last_name;
       state.settingsVars.email = obj.email;
     },
+
+    SET_WDGT_LIVE(state, live) {
+      state.widgetVars.changesSaved = false;
+      state.widgetVars.active = live;
+    },
+
     SET_WDGT_HDR_CLR(state, color) {
       state.widgetVars.header_background_color = color;
       state.widgetVars.changesSaved = false;
@@ -494,9 +504,6 @@ export default new Vuex.Store({
         : (state.widgetVars.changesSaved = false);
       state.widgetVars.button_border_color = color;
       state.widgetVars.wdgt_key_internal++;
-    },
-    SET_WDGT_LIVE(state, active) {
-      state.widgetVars.active = active;
     },
 
     SET_FB_SETTINGS(state, obj) {
@@ -768,6 +775,13 @@ export default new Vuex.Store({
       });
     },
 
+    updWdgtLive({ commit }, live) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_LIVE", live);
+        resolve("success");
+      });
+    },
+
     updWdgtHdrClr({ commit }, color) {
       return new Promise((resolve) => {
         commit("SET_WDGT_HDR_CLR", color);
@@ -927,12 +941,6 @@ export default new Vuex.Store({
     updWdgtBtnBrdrClr({ commit }, color) {
       return new Promise((resolve) => {
         commit("SET_WDGT_BTN_BRDR_CLR", color);
-        resolve("success");
-      });
-    },
-    updWdgtLive({ commit }, active) {
-      return new Promise((resolve) => {
-        commit("SET_WDGT_LIVE", active);
         resolve("success");
       });
     },

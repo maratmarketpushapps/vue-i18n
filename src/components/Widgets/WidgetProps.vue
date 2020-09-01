@@ -1,19 +1,30 @@
 <template>
   <v-card tile height="auto" width="95%" class="font_dims card-scroll">
-    <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0">
+    <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 mt-0">
       <v-row style="height:25%;width:100%" class="pa-0 ma-0 ">
-        <v-col cols="6">
+        <v-col cols="5">
           <v-row
-            class="my-2 ml-2"
+            class="my-0 ml-2"
             style="height:100%;width:100%"
             align="center"
           >
             <h3>{{ $t("widgets.wdgtTypeHdr") }}</h3>
           </v-row>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="3">
           <v-row
-            class="my-2 mr-2"
+            style="width:100%"
+            align="center"
+            justify="center"
+            class="pt-0"
+          >
+            <v-switch v-model="live" color="#006AFF" @change="wdgtLive()">
+            </v-switch>
+          </v-row>
+        </v-col>
+        <v-col cols="4">
+          <v-row
+            class="my-0 mr-2"
             style="height:100%;width:100%"
             justify="end"
             align="center"
@@ -21,9 +32,9 @@
             <!-- save button -->
             <v-btn
               tile
-              height="90%"
+              height="50%"
               class="primary mb-2 font_dims"
-              width="50%"
+              width="70%"
               :disabled="detectChange"
               style="text-transform:none; font-size:90% !important"
               @click="svChanges"
@@ -490,6 +501,7 @@ export default {
   components: { TooltipIcon, ColorSelect },
   data() {
     return {
+      live: false,
       radioSelect: "",
       headerColor: "#FFFFFF",
       bcgColor: "#FFFFFF",
@@ -538,6 +550,9 @@ export default {
     };
   },
   methods: {
+    wdgtLive() {
+      this.$store.dispatch("updWdgtLive", this.live);
+    },
     setHdrClr(selectedColor) {
       this.headerColor = selectedColor;
       this.$store.dispatch("updWdgtHdrClr", selectedColor);
@@ -600,6 +615,10 @@ export default {
     ...mapGetters(["getWidgetsState"]),
     detectChange() {
       return this.getWidgetsState.changesSaved;
+    },
+
+    liveLbl() {
+      return this.live ? this.$t("widgets.liveLbl") : this.$t("widgets.offLbl");
     },
 
     hdrColor() {
@@ -746,6 +765,7 @@ export default {
         this.btnFontSize = this.$store.getters.getWidgetsState.button_font_size;
         this.btnCrnr = this.$store.getters.getWidgetsState.button_corners;
         this.btnBrdrSz = this.$store.getters.getWidgetsState.button_border_size;
+        this.live = this.$store.getters.getWidgetsState.active;
       }
     });
   },
