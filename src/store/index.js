@@ -137,6 +137,32 @@ export default new Vuex.Store({
         title: "",
       },
     },
+
+    //Dashboard state
+
+    dashVars: {
+      campaigns: {
+        total_messages: 0,
+        recovery_messages_nr1_sent: 0,
+        recovery_messages_nr2_sent: 0,
+      },
+      carts_recovered: {
+        total_recovered: 0,
+        carts_recovered_percentage: "",
+        total_abandoned: 0,
+      },
+      revenue_recovered: {
+        total_revenue_recovered: "",
+        revenue_recovered_percentage: "",
+        total_revenue_lost: 0,
+      },
+      cart_recovery: {
+        total_recovered: 0,
+        abandoned_carts: 0,
+        facebook_subscribers: 0,
+        carts_recovered: 0,
+      },
+    },
   },
   getters: {
     checkClicked: (state) => (id) => {
@@ -210,6 +236,10 @@ export default new Vuex.Store({
     },
     getStep3Complete: (state) => {
       return state.widgetVars.step3Comp;
+    },
+
+    getDash: (state) => {
+      return state.dashVars;
     },
   },
   mutations: {
@@ -644,6 +674,37 @@ export default new Vuex.Store({
     },
     SET_MSG_QREPLY_EDIT(state, val) {
       state.msgVars.qreplyEdit = val;
+    },
+
+    SET_DASH_VALS(state, obj) {
+      state.dashVars.campaigns.total_messages = obj.campaigns.total_messages;
+      state.dashVars.campaigns.recovery_messages_nr1_sent =
+        obj.campaigns.recovery_messages_nr1_sent;
+      state.dashVars.campaigns.recovery_messages_nr2_sent =
+        obj.campaigns.recovery_messages_nr2_sent;
+
+      state.dashVars.carts_recovered.total_recovered =
+        obj.carts_recovered.total_recovered;
+      state.dashVars.carts_recovered.carts_recovered_percentage =
+        obj.carts_recovered.carts_recovered_percentage;
+      state.dashVars.carts_recovered.total_abandoned =
+        obj.carts_recovered.total_abandoned;
+
+      state.dashVars.revenue_recovered.total_revenue_recovered =
+        obj.revenue_recovered.total_revenue_recovered;
+      state.dashVars.revenue_recovered.revenue_recovered_percentage =
+        obj.revenue_recovered.revenue_recovered_percentage;
+      state.dashVars.revenue_recovered.total_revenue_lost =
+        obj.revenue_recovered.total_revenue_lost;
+
+      state.dashVars.cart_recovery.total_recovered =
+        obj.cart_recovery.total_recovered;
+      state.dashVars.cart_recovery.abandoned_carts =
+        obj.cart_recovery.abandoned_carts;
+      state.dashVars.cart_recovery.facebook_subscribers =
+        obj.cart_recovery.facebook_subscribers;
+      state.dashVars.cart_recovery.carts_recovered =
+        obj.cart_recovery.carts_recovered;
     },
   },
   actions: {
@@ -1087,6 +1148,30 @@ export default new Vuex.Store({
       return new Promise((resolve) => {
         commit("SET_MSG_QREPLY_EDIT", val);
         resolve("success");
+      });
+    },
+
+    //Dashboard Actions
+
+    getDash({ commit }, dateObj) {
+      return new Promise((resolve, reject) => {
+        let url = `${process.env.VUE_APP_API_URL_DEV}/dashboard?start_date=${dateObj.startDate}&end_date=${dateObj.endDate}`;
+        let headers = {
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
+        };
+        console.log("Dashboard data refreshed");
+        axios
+          .get(url, headers)
+          .then((res) => {
+            commit("SET_DASH_VALS", JSON.parse(JSON.stringify(res.data)));
+            resolve("success");
+          })
+          .catch((error) => {
+            reject(error);
+          });
       });
     },
   },

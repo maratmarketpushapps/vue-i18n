@@ -36,6 +36,39 @@
       }
     }
   },
+
+  "dashboard": {
+    "header": "Dashboard",
+    "infoMsg":"The Dashboard shows performance statistics of the Facebook Cart Recovery app within a selected time range.",
+    "card1": {
+      "header": "Campaigns",
+      "totalMsg": "Total Messages Sent",
+      "recov1Msg": "Recovery Message #1 Sent",
+      "recov2Msg": "Recovery Message #2 Sent",
+      "infoconMsg": "How many times each Facebook message type - Cart Recovery, Receipt or Shipped - was sent within the selected time period."
+    },
+    "card2": {
+      "header": "Carts Recovered",
+      "infoconMsg": "The metrics displayed are how many carts were recovered in total, what’s the recovery percentage and how many carts were abandoned. Please note that a cart is considered recovered when the user pays for the previously abandoned order.",
+      "recovLabel": "Recovered Carts",
+      "abndndLabel":"Total Abandoned Carts"
+    },
+    "card3": {
+      "header": "Revenue Recovered",
+      "infoconMsg": "The metrics displayed are the total number of revenue recovered, what’s the revenue recovery percentage and how much was lost.",
+      "recovLabel": "Recovered Revenue",
+      "abndndLabel":"Total Revenue Lost"
+    },
+    "card4": {
+      "header": "Cart Recovery",
+      "infoconMsg": "The daily metrics displayed on the charts represent: The number of Abandoned Carts (red), the number of Recovered Carts (green), the Revenue Recovered (blue).",
+      "totalMsg": "Carts Recovered",
+      "recovLabel": "Recovered Carts",
+      "abndndLabel":"Abandoned Carts",
+      "subLabel":"Facebook Subscribers"
+    }
+  },
+
   "campaigns": {
     "header": "Campaign Messages",
     "msgCount": "Messages Sent",
@@ -48,6 +81,7 @@
       "msg4": "After processing an order, send customers a Facebook message to inform them that you've shipped their order. The customers have to consent in order to be contacted via Facebook.",
       "msg5": "Quick Replies are possible reply variants that are offered to the user as part of your message. Feel free to customize the texts in your own language! There are 3 types of replies: \"Sounds good\" - the user can use this to let you know everything is fine. \"I have more questions\" - in this case, you should personally engage the user to clarify the questions related to the order. \"Unsubscribe\" - in this case, the user is not interested in purchasing and the app will not send any other messages."
     },
+
     "tabs": {
       "item1": "Abandoned Cart Messages",
       "item2": "Order Receipt Message",
