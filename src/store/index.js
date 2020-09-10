@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     TOKEN: "JWT_TOKEN",
     instance_id: "bb-cc-dd",
+    stepsCompOnload: true,
     globalVars: {
       locale: "",
       payment_currency: "",
@@ -174,6 +175,9 @@ export default new Vuex.Store({
     getCreatedAt: (state) => {
       return state.globalVars.created_at;
     },
+    getStepsCompOnload: (state) => {
+      return state.stepsCompOnload;
+    },
     getAccountInfo: (state) => {
       let obj = {
         first_name: state.settingsVars.first_name,
@@ -320,6 +324,7 @@ export default new Vuex.Store({
       state.widgetVars.active
         ? (state.widgetVars.step3Comp = true)
         : (state.widgetVars.step3Comp = false);
+      state.widgetVars.active ? 1 : (state.stepsCompOnload = false);
     },
 
     SET_SETTINGS_VALS(state, obj) {
@@ -543,6 +548,7 @@ export default new Vuex.Store({
       state.settingsVars.facebook_short_access_token =
         obj.facebook_short_access_token;
       state.settingsVars.setup_step_1_completed = obj.setup_step_1_completed;
+      !obj.setup_step_1_completed ? (state.stepsCompOnload = false) : 1;
     },
 
     //Messages Commits
@@ -614,6 +620,10 @@ export default new Vuex.Store({
       obj.abandoned_cart_1.active || obj.abandoned_cart_2.active
         ? (state.msgVars.step2Com = true)
         : (state.msgVars.step2Com = false);
+
+      obj.abandoned_cart_1.active || obj.abandoned_cart_2.active
+        ? 1
+        : (state.stepsCompOnload = false);
     },
     SET_ORDR_RCPT(state, obj) {
       state.msgVars.order_receipt.button_text = obj.button_text;
@@ -674,6 +684,10 @@ export default new Vuex.Store({
     },
     SET_MSG_QREPLY_EDIT(state, val) {
       state.msgVars.qreplyEdit = val;
+    },
+
+    SET_STEPS_COMP_ON_LOAD(state, val) {
+      state.stepsCompOnload = val;
     },
 
     SET_DASH_VALS(state, obj) {
@@ -1147,6 +1161,12 @@ export default new Vuex.Store({
     updQreplyEdit({ commit }, val) {
       return new Promise((resolve) => {
         commit("SET_MSG_QREPLY_EDIT", val);
+        resolve("success");
+      });
+    },
+    updStepsCompOnload({ commit }, val) {
+      return new Promise((resolve) => {
+        commit("SET_STEPS_COMP_ON_LOAD", val);
         resolve("success");
       });
     },

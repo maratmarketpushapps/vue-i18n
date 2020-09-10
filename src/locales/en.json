@@ -4,7 +4,9 @@
       "step1": "Connect Your Facebook Page",
       "step2": "Edit Cart Abandoned Message",
       "step3": "Add A Consent Widget To Your Website",
-      "buttonUpgrade": "Upgrade Now"
+      "buttonUpgrade": "Upgrade Now",
+      "allStepsCompTxt1":"Congratulations! All the steps to set up the app were successfully done!",
+      "allStepsCompTxt2":" Now, go to one of your product pages and add an item to the cart in order to see the Facebook Subscribe popup!"
     },
     "navdrawer": {
       "Settings": "Settings",

@@ -1,4 +1,5 @@
 <template>
+  
   <v-app-bar
     elevation="4"
     flat
@@ -101,6 +102,7 @@ export default {
   data() {
     return {
       step: 1,
+      showAlert: true,
     };
   },
   methods: {

@@ -106,9 +106,14 @@ export default {
   beforeCreate() {
     this.$store.dispatch("getSettings").then((res) => {
       if (res === "success") {
-        this.$store.getters.getSettingsState.timezone_id == ""
-          ? (this.timezone_id = moment.tz.guess())
-          : (this.timezone_id = this.getSettingsState.timezone_id);
+        if (this.$store.getters.getSettingsState.timezone_id == "") {
+          this.timezone_id = moment.tz.guess();
+          this.$store.dispatch("updateTimezone", moment.tz.guess()).then(() => {
+            this.$store.dispatch("setSettings");
+          });
+        } else {
+          this.timezone_id = this.getSettingsState.timezone_id;
+        }
       }
     });
   },
