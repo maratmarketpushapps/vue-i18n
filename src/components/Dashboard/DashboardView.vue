@@ -103,22 +103,23 @@
       </v-col>
       <v-col cols="3">
         <v-card height="100%" width="100%" tile class="font_dims">
-          <v-row
-            style="height:15%; width:100%"
-            justify="center"
-            align="center"
-            class="mt-0 mx-2 mb-0 pb-0 pt-0"
-          >
-            <h3 >{{ $t("dashboard.card2.header") }}</h3>
-            <TooltipIcon
-              :posRight="true"
-              :nudgeBottom="30"
-              :nudgeLeft="5"
-              :txt="$t('dashboard.card2.infoconMsg')"
-              class="infoicon_scale ml-4"
-              
-              
-            />
+          <v-row style="height:15%; width:100%" align="center">
+            <v-col cols="6">
+              <v-row justify="start" align="center" class="ml-5 mt-0">
+                <h3>{{ $t("dashboard.card2.header") }}</h3>
+              </v-row>
+            </v-col>
+            <v-col cols="6">
+              <v-row justify="end" align="center" class=" mt-0 ">
+                <TooltipIcon
+                  :posRight="true"
+                  :nudgeBottom="30"
+                  :nudgeLeft="5"
+                  :txt="$t('dashboard.card2.infoconMsg')"
+                  class="infoicon_scale pt-0"
+                />
+              </v-row>
+            </v-col>
           </v-row>
           <v-row
             style="height:15%; width:100%"
@@ -183,20 +184,23 @@
       </v-col>
       <v-col cols="3">
         <v-card height="100%" width="100%" tile class="font_dims">
-          <v-row
-            style="height:15%; width:100%"
-            justify="center"
-            class="mt-0 mx-2 mb-0 pb-0"
-            align="center"
-          >
-            <h3 >{{ $t("dashboard.card3.header") }}</h3>
-            <TooltipIcon
-              :posRight="true"
-              :nudgeBottom="30"
-              :nudgeLeft="5"
-              :txt="$t('dashboard.card3.infoconMsg')"
-              class="infoicon_scale pt-0 mt-0 ml-2"
-            />
+          <v-row style="height:15%; width:100%" align="center">
+            <v-col cols="6">
+              <v-row justify="start" align="center" class="ml-5 mt-0">
+                <h3>{{ $t("dashboard.card3.header") }}</h3>
+              </v-row>
+            </v-col>
+            <v-col cols="6">
+              <v-row justify="end" align="center" class=" mt-0 ">
+                <TooltipIcon
+                  :posLeft="true"
+                  :nudgeBottom="30"
+                  :nudgeLeft="5"
+                  :txt="$t('dashboard.card3.infoconMsg')"
+                  class="infoicon_scale pt-0"
+                />
+              </v-row>
+            </v-col>
           </v-row>
           <v-row
             style="height:15%; width:100%"
@@ -274,7 +278,7 @@
             <v-col cols="6">
               <v-row justify="end" class=" mt-0 ">
                 <TooltipIcon
-                  :posRight="true"
+                  :posLeft="true"
                   :nudgeBottom="30"
                   :nudgeLeft="5"
                   :txt="$t('dashboard.card4.infoconMsg')"
