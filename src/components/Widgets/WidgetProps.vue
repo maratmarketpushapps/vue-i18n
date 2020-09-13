@@ -1,5 +1,5 @@
 <template>
-  <v-card tile height="auto" width="95%" class="font_dims card-scroll">
+  <v-card tile height="auto" width="95%" class="wdgt_font_dims card-scroll">
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 mt-0">
       <v-row style="height:25%;width:100%" class="pa-0 ma-0 ">
         <v-col cols="5">
@@ -33,10 +33,10 @@
             <v-btn
               tile
               height="50%"
-              class="primary mb-2 font_dims"
+              class="primary mb-2 wdgt_font_dims"
               width="70%"
               :disabled="detectChange"
-              style="text-transform:none; font-size:90% !important"
+              style="text-transform:none; font-size:70% !important"
               @click="svChanges"
             >
               {{ $t("widgets.svBtn") }}
@@ -50,7 +50,7 @@
         class="px-0 mx-0 mt-2"
       >
         <v-col cols="1"></v-col>
-        <v-col cols="4 px-0 mx-0">
+        <v-col cols="5 px-0 mx-0">
           <v-row align="center" justify="start" style="width: 100%;">
             <input
               type="radio"
@@ -59,7 +59,7 @@
               id="Op1"
               class="cust-chkbx  cust-chkbx-label cursor-hand"
               v-model="radioSelect"
-            /><label class="cursor-hand lbl-props" for="Op1">{{
+            /><label class="cursor-hand lbl-props" for="Op1" style="font-size:80%">{{
               $t("widgets.btnChc")
             }}</label>
           </v-row>
@@ -74,7 +74,7 @@
               id="Op2"
               class="cust-chkbx cust-chkbx-label cursor-hand"
               v-model="radioSelect"
-            /><label class="cursor-hand lbl-props" for="Op2">{{
+            /><label class="cursor-hand lbl-props" for="Op2" style="font-size:80%">{{
               $t("widgets.chbxChc")
             }}</label>
           </v-row>
@@ -288,7 +288,7 @@
       <!-- Start of submit group  -->
       <v-row align="center" style="height:30% width:100%" class="mb-0 pb-0">
         <v-col cols="1"></v-col>
-        <v-col cols="6">
+        <v-col cols="5">
           <v-row align="center" style="height:100%" class="">
             <v-text-field
               :label="$t('widgets.btnTxt')"
@@ -299,7 +299,7 @@
             </v-text-field>
           </v-row>
         </v-col>
-        <v-col cols="auto" class="mr-0 ml-6">
+        <v-col cols="5" class="mr-0 ml-6">
           <v-row align="center" style="height:100%" class="">
             <ColorSelect
               :color="btnBcgColor"
@@ -773,6 +773,12 @@ export default {
 </script>
 
 <style>
+
+.wdgt_font_dims {
+  font-size: 95% !important;
+  overflow: hidden;
+}
+
 .card-scroll {
   overflow: auto;
   scrollbar-width: 2px;
@@ -873,6 +879,11 @@ export default {
   .lbl-props {
     font-size: 95%;
   }
+
+  .wdgt_font_dims {
+    font-size: 95% !important;
+  }
+
   .item-scale {
     transform: scale(1);
     transform-origin: 0 0;

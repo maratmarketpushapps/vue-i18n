@@ -117,6 +117,7 @@ export default {
 .v-data-table tbody td {
   font-weight: 500;
   font-size: 60%;
+  text-align: center !important;
 }
 
 .v-data-table tbody tr:nth-of-type(even) {
@@ -140,6 +141,7 @@ export default {
   .v-data-table tbody td {
     font-weight: 100;
     font-size: 70%;
+    text-justify: center !important;
   }
 }
 </style>

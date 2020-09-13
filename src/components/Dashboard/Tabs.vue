@@ -52,6 +52,7 @@
               range
               style="height:100%;width:100%"
               :min="getStartDate"
+              :max="getCurrDate"
             >
               <v-spacer /><v-spacer />
               <v-btn
@@ -191,6 +192,11 @@ export default {
     getStartDate() {
       return moment(this.getCreatedAt).format("YYYY-MM-DD");
     },
+
+    getCurrDate() {
+      return moment(new Date()).format("YYYY-MM-DD");
+    },
+
     displayStDate() {
       return this.custDates[0] > this.custDates[1]
         ? this.custDates[1]

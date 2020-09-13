@@ -53,7 +53,7 @@ export default new Vuex.Store({
       active: false,
       wdgt_key_internal: 0,
       changesSaved: true,
-      step3Comp: false,
+      step3Comp: true,
     },
     settingsVars: {
       first_name: "",
@@ -70,9 +70,9 @@ export default new Vuex.Store({
       receipt_message_id: "",
       shipped_message_id: "",
       widget_id: "",
-      setup_step_1_completed: false,
-      setup_step_2_completed: false,
-      setup_step_3_completed: false,
+      setup_step_1_completed: true,
+      setup_step_2_completed: true,
+      setup_step_3_completed: true,
       cart_recovery_attempts_done: "",
     },
     planVars: {
@@ -91,7 +91,7 @@ export default new Vuex.Store({
       activeTab: "abndndcrt1",
       cart1Active: true,
       qreplyEdit: false,
-      step2Com: false,
+      step2Com: true,
       abandoned_cart_2: {
         button_text: "",
         quick_reply_thank_you_text: "",
@@ -257,24 +257,37 @@ export default new Vuex.Store({
           .tz(state.settingsVars.timezone_id)
           .format("MM-DD-YYYY hh:mm:ss A");
 
-        loopObj.first_message_sent_at = moment(
-          new Date(loopObj.first_message_sent_at)
-        )
-          .tz(state.settingsVars.timezone_id)
-          .format("MM-DD-YYYY hh:mm:ss A");
+        if (loopObj.first_message_sent_at == "Not active") {
+          loopObj.first_message_sent_at = "Not Active";
+        } else {
+          loopObj.first_message_sent_at = moment(
+            new Date(loopObj.first_message_sent_at)
+          )
+            .tz(state.settingsVars.timezone_id)
+            .format("MM-DD-YYYY hh:mm:ss A");
+        }
 
-        loopObj.second_message_sent_at = moment(
-          new Date(loopObj.second_message_sent_at)
-        )
-          .tz(state.settingsVars.timezone_id)
-          .format("MM-DD-YYYY hh:mm:ss A");
+        if (loopObj.second_message_sent_at == "Not active") {
+          loopObj.second_message_sent_at = "Not Active";
+        } else {
+          loopObj.second_message_sent_at = moment(
+            new Date(loopObj.second_message_sent_at)
+          )
+            .tz(state.settingsVars.timezone_id)
+            .format("MM-DD-YYYY hh:mm:ss A");
+        }
 
-        if (loopObj.cart_recovered_at != false) {
+        if (
+          loopObj.cart_recovered_at != false &&
+          loopObj.cart_recovered_at != "-"
+        ) {
           loopObj.cart_recovered_at = moment(
             new Date(loopObj.cart_recovered_at)
           )
             .tz(state.settingsVars.timezone_id)
             .format("MM-DD-YYYY hh:mm:ss A");
+        } else {
+          loopObj.cart_recovered_at = "-";
         }
         cleanedObj.push(loopObj);
       }

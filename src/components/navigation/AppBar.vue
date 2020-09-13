@@ -12,7 +12,7 @@
       <v-col cols="1"><v-spacer></v-spacer></v-col>
       <!-- Stepper component -->
       <v-col cols="9" class="pb-0">
-        <v-stepper class="stepper" :value="step" v-show="!allstepsComplete">
+        <v-stepper class="stepper" :value="step" v-if="!allstepsComplete">
           <v-stepper-header class="stepperhead">
             <!-- Step 1 -->
             <v-stepper-step

@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid style="height:100%">
+  <v-container fluid style="height:750px">
     <v-row justify="center" style="height:85%">
       <v-card
         tile

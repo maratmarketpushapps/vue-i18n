@@ -395,7 +395,7 @@ export default {
   },
   computed: {
     getOrdrAbndCrtMsgCnt() {
-      return this.$store.getters.getMsgCounts.sent_count_abandoned_cart_1;
+      return this.$store.getters.getMsgCounts.sent_count_abandoned_cart_2;
     },
     cart1Edit() {
       return this.$store.getters.getActiveTab == "abndndcrt2" ? true : false;
