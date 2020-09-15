@@ -65,7 +65,7 @@
         </v-text-field>
       </v-row>
       <v-row style="height:15%; width:100%" class="mt-2 pl-4 pr-3">
-        <v-text-field
+        <!-- <v-text-field
           :label="$t('campaigns.ordrrcpt.title')"
           v-model="ordrRcptTitle"
           @change="detectChange"
@@ -74,9 +74,20 @@
           style="font-size:110%"
           class="mt-5 pb-1 ml-6 mr-9"
         >
-        </v-text-field>
+        </v-text-field> -->
+
+        <v-text-field
+            :label="$t('campaigns.ordrrcpt.btnTxt')"
+            v-model="ordrRcptBtnText"
+            @change="detectChange"
+            @input="detectChange"
+            dense
+            style="font-size:110%"
+            class="mt-5 pb-1 ml-6 mr-9"
+          >
+          </v-text-field>
       </v-row>
-      <v-row style="height:15%; width:100%" class="pl-4 pr-3">
+      <!-- <v-row style="height:15%; width:100%" class="pl-4 pr-3">
         <v-col cols="6">
           <v-text-field
             :label="$t('campaigns.ordrrcpt.subTitle')"
@@ -101,7 +112,7 @@
           >
           </v-text-field>
         </v-col>
-      </v-row>
+      </v-row> -->
       <v-row style="height:15%; width:100%" class="pl-4 pr-3">
         <v-col>
           <v-row align="center">

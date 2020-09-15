@@ -27,7 +27,9 @@
     </v-row>
     <v-row class="pt-1 mt-0" align="start" style="height:auto">
       <v-col cols="12" style="height:100%">
-        <Tabs style="height:100%; width:100%" />
+        <v-row style="height:100%; width:100%"  justify="start">
+          <Tabs style="height:100%; width:100%" />
+        </v-row>
       </v-col>
     </v-row>
   </v-container>

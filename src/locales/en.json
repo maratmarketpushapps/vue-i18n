@@ -5,8 +5,10 @@
       "step2": "Edit Cart Abandoned Message",
       "step3": "Add A Consent Widget To Your Website",
       "buttonUpgrade": "Upgrade Now",
-      "allStepsCompTxt1":"Congratulations! All the steps to set up the app were successfully done!",
-      "allStepsCompTxt2":" Now, go to one of your product pages and add an item to the cart in order to see the Facebook Subscribe popup!"
+      "allStepsCompHeader": "You're all set!",
+      "buttonText": "Close",
+      "allStepsCompTxt1": "Congratulations! All the steps to set up the app were successfully done!",
+      "allStepsCompTxt2": " Now, go to one of your product pages and add an item to the cart in order to see the Facebook Subscribe popup!"
     },
     "navdrawer": {
       "Settings": "Settings",
@@ -41,7 +43,7 @@
 
   "dashboard": {
     "header": "Dashboard",
-    "infoMsg":"The Dashboard shows performance statistics of the Facebook Cart Recovery app within a selected time range.",
+    "infoMsg": "The Dashboard shows performance statistics of the Facebook Cart Recovery app within a selected time range.",
     "card1": {
       "header": "Campaigns",
       "totalMsg": "Total Messages Sent",
@@ -53,21 +55,21 @@
       "header": "Carts Recovered",
       "infoconMsg": "The metrics displayed are how many carts were recovered in total, what’s the recovery percentage and how many carts were abandoned. Please note that a cart is considered recovered when the user pays for the previously abandoned order.",
       "recovLabel": "Recovered Carts",
-      "abndndLabel":"Total Abandoned Carts"
+      "abndndLabel": "Total Abandoned Carts"
     },
     "card3": {
       "header": "Revenue Recovered",
       "infoconMsg": "The metrics displayed are the total number of revenue recovered, what’s the revenue recovery percentage and how much was lost.",
       "recovLabel": "Recovered Revenue",
-      "abndndLabel":"Total Revenue Lost"
+      "abndndLabel": "Total Revenue Lost"
     },
     "card4": {
       "header": "Cart Recovery",
       "infoconMsg": "The daily metrics displayed on the charts represent: The number of Abandoned Carts (red), the number of Recovered Carts (green), the Revenue Recovered (blue).",
       "totalMsg": "Carts Recovered",
       "recovLabel": "Recovered Carts",
-      "abndndLabel":"Abandoned Carts",
-      "subLabel":"Facebook Subscribers"
+      "abndndLabel": "Abandoned Carts",
+      "subLabel": "Facebook Subscribers"
     }
   },
 

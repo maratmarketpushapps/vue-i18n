@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="pt-0 mt-0">
+  <v-container fluid class="pt-0 mt-4">
     <v-row class="pt-6 mt-0">
       <h3 class="header_dims page_headers">{{ $t("navbar.navdrawer.Settings") }}</h3>
     </v-row>

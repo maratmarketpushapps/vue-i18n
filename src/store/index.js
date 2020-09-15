@@ -19,6 +19,13 @@ export default new Vuex.Store({
       created_at: "",
       last_install: "",
     },
+    subVars: {
+      former_subscription_plan: null,
+      subscription_plan_changed: null,
+      consumed_recovery_attempts: 0,
+      subscription_plan: "",
+    },
+
     widgetVars: {
       id: 0,
       instance_id: "",
@@ -245,6 +252,9 @@ export default new Vuex.Store({
     getDash: (state) => {
       return state.dashVars;
     },
+    getSubs: (state) => {
+      return state.subVars;
+    },
   },
   mutations: {
     SET_SELECTED(state, id) {
@@ -256,26 +266,6 @@ export default new Vuex.Store({
         loopObj.created_at = moment(new Date(loopObj.created_at))
           .tz(state.settingsVars.timezone_id)
           .format("MM-DD-YYYY hh:mm:ss A");
-
-        if (loopObj.first_message_sent_at == "Not active") {
-          loopObj.first_message_sent_at = "Not Active";
-        } else {
-          loopObj.first_message_sent_at = moment(
-            new Date(loopObj.first_message_sent_at)
-          )
-            .tz(state.settingsVars.timezone_id)
-            .format("MM-DD-YYYY hh:mm:ss A");
-        }
-
-        if (loopObj.second_message_sent_at == "Not active") {
-          loopObj.second_message_sent_at = "Not Active";
-        } else {
-          loopObj.second_message_sent_at = moment(
-            new Date(loopObj.second_message_sent_at)
-          )
-            .tz(state.settingsVars.timezone_id)
-            .format("MM-DD-YYYY hh:mm:ss A");
-        }
 
         if (
           loopObj.cart_recovered_at != false &&
@@ -732,6 +722,12 @@ export default new Vuex.Store({
         obj.cart_recovery.facebook_subscribers;
       state.dashVars.cart_recovery.carts_recovered =
         obj.cart_recovery.carts_recovered;
+    },
+    SET_SUB_VALS(state, obj) {
+      state.subVars.former_subscription_plan = obj.former_subscription_plan;
+      state.subVars.subscription_plan_changed = obj.subscription_plan_changed;
+      state.subVars.consumed_recovery_attempts = obj.consumed_recovery_attempts;
+      state.subVars.subscription_plan = obj.subscription_plan;
     },
   },
   actions: {
@@ -1200,6 +1196,29 @@ export default new Vuex.Store({
           .get(url, headers)
           .then((res) => {
             commit("SET_DASH_VALS", JSON.parse(JSON.stringify(res.data)));
+            resolve("success");
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    },
+
+    //Subscription API
+    getSubs({ commit }) {
+      return new Promise((resolve, reject) => {
+        let url = `${process.env.VUE_APP_API_URL_DEV}/getSubscription`;
+        let headers = {
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
+        };
+        console.log("Dashboard data refreshed");
+        axios
+          .get(url, headers)
+          .then((res) => {
+            commit("SET_SUB_VALS", JSON.parse(JSON.stringify(res.data)));
             resolve("success");
           })
           .catch((error) => {

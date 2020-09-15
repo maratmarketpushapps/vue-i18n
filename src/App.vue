@@ -10,32 +10,58 @@
         :value="allStepsComp"
         :z-index="zIndex"
       >
-        <v-card tile light height="30vh" width="25vw" class="pa-1">
-          <v-row style="height:15%; width:100%" justify="end" class="mr-0 mt-2">
-            <v-btn icon>
-              <v-icon @click="canclOvrlyStepComp()">
-                mdi-window-close
-              </v-icon>
-            </v-btn>
+        <v-card tile light height="30vh" width="25vw" class="pa-1 font_dims">
+          <v-row style="height:15%; width:100%" class="mr-0 mt-2">
+            <v-col cols="6">
+              <v-row style="width:100%" justify="start" class="ml-4">
+                <h3 style="color:#4E5D6B">
+                  {{ $t("navbar.appbar.allStepsCompHeader") }}
+                </h3>
+              </v-row>
+            </v-col>
+            <v-col cols="6">
+              <v-row style="width:110%" justify="end" class="pr-0 mr-0 mt-0 pt-0">
+                <v-btn icon x-small>
+                  <v-icon @click="canclOvrlyStepComp()">
+                    mdi-window-close
+                  </v-icon>
+                </v-btn>
+              </v-row>
+            </v-col>
           </v-row>
           <v-row
             style="height:25%; width:100%"
             justify="center"
             align="center"
-            class="ma-2"
+            class="ma-2 pr-2"
           >
             <v-col>
               {{ $t("navbar.appbar.allStepsCompTxt1") }}
             </v-col>
           </v-row>
           <v-row
-            style="height:40%; width:100%"
+            style="height:20%; width:100%"
             justify="center"
             align="start"
-            class="ma-2"
+            class="ma-2 pr-2"
           >
             <v-col>
               {{ $t("navbar.appbar.allStepsCompTxt2") }}
+            </v-col>
+          </v-row>
+          <v-row style="height:20%; width:100%" class="ml-2" justify="center">
+            <v-col>
+              <v-row style="width:100%" justify="center">
+                <v-btn
+                tile
+                height="30px"
+                class="primary ml-3 mt-3"
+                width="30%"
+                @click="canclOvrlyStepComp()"
+              >
+                {{ $t("navbar.appbar.buttonText") }}
+              </v-btn>
+              </v-row>
             </v-col>
           </v-row>
         </v-card>

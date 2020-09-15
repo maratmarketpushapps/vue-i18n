@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="pt-0 mt-0">
+  <v-container fluid class="pt-0 mt-9">
     <v-row class="pt-0 mt-0 pb-0 mb-0 row-style" align="center">
       <v-col cols="auto" class="pt-0">
         <h3 class="header_dims page_headers pr-0 mr-0 pt-0 mt-0">
@@ -26,15 +26,15 @@
     <v-row
       class="pt-1 mt-6"
       align="start"
-      justify="center"
+      justify="start"
       style="height:auto;"
     >
-      <v-col cols="6" style="height:100%">
-        <v-row style="height:100%" align="start" justify="center">
+      <v-col cols="7" style="height:100%">
+        <v-row style="height:100%" align="start" justify="start">
           <WidgetProps class="mt-3" />
         </v-row>
       </v-col>
-      <v-col cols="6" style="">
+      <v-col cols="5" style="">
         <v-row
           style="height:75vh; width:auto; "
           align="start"

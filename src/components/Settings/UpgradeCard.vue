@@ -55,7 +55,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("getSettings").then((response) => {
+    this.$store.dispatch("getSubs").then((response) => {
       if (response == "success") {
         this.settingsApiCallSuccess = true;
         this.$store.dispatch("getPlan").then((response) => {
@@ -67,31 +67,31 @@ export default {
     });
   },
   computed: {
-    ...mapGetters(["getPricingPlan", "getSettingsState", "getPlanState"]),
+    ...mapGetters(["getSubs", "getPlanState"]),
     header() {
       return (
         this.$t("settingsPage.upgradeCard.header1") +
-        this.getPricingPlan +
+        this.getSubs.subscription_plan +
         this.$t("settingsPage.upgradeCard.header2")
       );
     },
     body() {
       console.log(
-        this.getPlanState.find((o) => o.planName === this.getPricingPlan)
+        this.getPlanState.find((o) => o.planName === this.getSubs.subscription_plan)
       );
       let planDetails = this.getPlanState.find(
-        (o) => o.planName === this.getPricingPlan
+        (o) => o.planName === this.getSubs.subscription_plan
       );
       let recAttempts =
         planDetails == undefined ? 0 : planDetails.cart_recovery_attempts;
       return (
         this.header +
         this.$t("settingsPage.upgradeCard.body1") +
-        this.getPricingPlan +
+        this.getSubs.subscription_plan +
         this.$t("settingsPage.upgradeCard.body2") +
         recAttempts +
         this.$t("settingsPage.upgradeCard.body3") +
-        this.getSettingsState.cart_recovery_attempts_done +
+        this.getSubs.consumed_recovery_attempts +
         "/" +
         recAttempts +
         this.$t("settingsPage.upgradeCard.body4") +
@@ -99,10 +99,10 @@ export default {
       );
     },
     showBtn() {
-      return this.getPricingPlan === "Mogul" ? false : true;
+      return this.getSubs.subscription_plan === "Mogul" ? false : true;
     },
     upgTxt() {
-      return this.getPricingPlan === "Mogul"
+      return this.getSubs.subscription_plan === "Mogul"
         ? ""
         : this.$t("settingsPage.upgradeCard.body5");
     },

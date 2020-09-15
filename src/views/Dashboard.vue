@@ -1,6 +1,6 @@
 <template>
-  <v-container fluid class="pt-0 mt-0">
-    <v-row class="pt-0 mt-0 pb-0 mb-0 row-style" align="center">
+  <v-container fluid class="pt-0 mt-6">
+    <v-row class="pt-0 mt-0 pb-0 mb-0 row-style" align="start">
       <v-col cols="auto" class="pt-0">
         <h3 class="header_dims page_headers pr-0 mr-0 pt-0 mt-0">
           {{ $t("dashboard.header") }}&nbsp;

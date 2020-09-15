@@ -5,7 +5,7 @@
         <v-row class="font_dims" justify="end"> {{ header }}</v-row>
         <v-row class="font_dims" justify="end">{{ body }}</v-row>
       </v-col>
-      <v-col cols="auto" >
+      <v-col cols="auto">
         <abIcon class="abicon-dims" />
       </v-col>
     </v-row>
@@ -26,7 +26,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("getSettings").then((response) => {
+    this.$store.dispatch("getSubs").then((response) => {
       if (response == "success") {
         this.settingsApiCallSuccess = true;
         this.$store.dispatch("getPlan").then((response) => {
@@ -38,25 +38,27 @@ export default {
     });
   },
   computed: {
-    ...mapGetters(["getPricingPlan", "getSettingsState", "getPlanState"]),
+    ...mapGetters(["getSubs", "getPlanState"]),
     header() {
       return (
         this.$t("settingsPage.upgradeCard.header1") +
-        this.getPricingPlan +
+        this.getSubs.subscription_plan +
         this.$t("settingsPage.upgradeCard.header2")
       );
     },
     body() {
       console.log(
-        this.getPlanState.find((o) => o.planName === this.getPricingPlan)
+        this.getPlanState.find(
+          (o) => o.planName === this.getSubs.subscription_plan
+        )
       );
       let planDetails = this.getPlanState.find(
-        (o) => o.planName === this.getPricingPlan
+        (o) => o.planName === this.getSubs.subscription_plan
       );
       let recAttempts =
         planDetails == undefined ? 0 : planDetails.cart_recovery_attempts;
       return (
-        this.getSettingsState.cart_recovery_attempts_done +
+        this.getSubs.consumed_recovery_attempts +
         "/" +
         recAttempts +
         this.$t("settingsPage.upgradeCard.body4")
