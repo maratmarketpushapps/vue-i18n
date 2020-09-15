@@ -1,13 +1,13 @@
 <template>
   <div class="svgdiv_dim">
     <v-container>
-      <v-row v-if="!detectClick" align-content="center" justify="center" class="pb-2 ">
+      <v-row v-if="!detectClick" align-content="center" justify="center" class="pb-2 pr-2 ">
         <svg-transition ref="transition" trigger="hover" class="svgicon_dim">
           <WidgetsInactive slot="initial" />
           <WidgetsActive />
         </svg-transition>
       </v-row>
-      <v-row v-else align-content="center" justify="center" class="pb-2">
+      <v-row v-else align-content="center" justify="center" class="pb-2 pr-2">
         <WidgetsActive class="svgicon-active_dim" />
       </v-row>
       <v-row align-content="center" justify="center" class="pr-2">

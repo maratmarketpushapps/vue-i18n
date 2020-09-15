@@ -146,7 +146,7 @@ export default {
 
 <style>
 .v-text-field label {
-  font-size: 80%;
+  font-size: 100%;
 }
 
 .v-application--is-ltr .v-messages {

@@ -1,5 +1,4 @@
 <template>
-  
   <v-app-bar
     elevation="4"
     flat
@@ -128,7 +127,9 @@ export default {
       );
     },
     showUpgrade() {
-      return this.$store.getters.getPricingPlan == "Mogul" ? false : true;
+      return this.$store.getters.getSubs.subscription_plan == "Mogul"
+        ? false
+        : true;
     },
   },
   beforeMount() {
@@ -143,6 +144,9 @@ export default {
 </script>
 
 <style>
+.v-label {
+  font-size: 150%;
+}
 .stepper {
   box-shadow: none;
   height: 7vh !important;
