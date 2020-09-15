@@ -8,7 +8,7 @@
       </v-col>
       <v-col cols="1" class="pl-0 ml-0 pt-0"> </v-col>
     </v-row>
-    <v-row class="pt-1 mt-0" align="start" style="height:auto">
+    <v-row class="pt-1 mt-0" align="start" style="height:auto; width:100%">
       <CampaignTabs style="height:100%; width:100%" />
     </v-row>
   </v-container>

@@ -3,7 +3,7 @@
     <v-row class="pt-6 mt-0">
       <h3 class="header_dims page_headers">{{ $t("navbar.navdrawer.Settings") }}</h3>
     </v-row>
-    <v-row style="height:100%">
+    <v-row style="height:100%; width:100%">
       <v-col cols="6" class="">
         <v-row style="height:59%">
           <FbConnect />

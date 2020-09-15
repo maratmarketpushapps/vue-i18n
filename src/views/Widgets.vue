@@ -27,7 +27,7 @@
       class="pt-1 mt-6"
       align="start"
       justify="start"
-      style="height:auto;"
+      style="height:auto; width:100%"
     >
       <v-col cols="7" style="height:100%">
         <v-row style="height:100%" align="start" justify="start">
