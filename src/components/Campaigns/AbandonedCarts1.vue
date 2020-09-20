@@ -37,11 +37,14 @@
           >
             {{ $t("widgets.svBtn") }}
           </v-btn>
-          <v-btn icon v-if="!cart1Edit" @click="editCart1">
-            <v-icon>
-              mdi-square-edit-outline
-            </v-icon>
+          <v-btn icon v-if="!cart1Edit" @click="editCart1" class="mr-4">
+            <iconEdit />
           </v-btn>
+        </v-row>
+        <v-row justify="end" style="width: 100%">
+          <span v-if="!cart1Edit" @click="editCart1" style="font-size:85%"
+            >{{ $t("campaigns.carts1.iconTxt") }}</span
+          >
         </v-row>
       </v-col>
       <v-col>
@@ -348,10 +351,11 @@
 
 <script>
 import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
+import iconEdit from "@/assets/icons/misc/icon-edit-message.svg";
 
 export default {
   name: "AbandonedCarts1",
-  components: { TooltipIcon },
+  components: { TooltipIcon, iconEdit },
   data() {
     return {
       ordrAbndCrtSwitchLive: false,

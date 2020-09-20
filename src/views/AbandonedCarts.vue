@@ -20,7 +20,7 @@
         <v-row align="center" justify="end" style="width:100%">
           <v-col cols="auto"> </v-col>
           <v-col cols="auto" >
-            <span><CartAttempts class="pt-5"/></span>
+            <span><CartAttempts class="pt-2 pr-4"/></span>
           </v-col>
         </v-row>
       </v-col>

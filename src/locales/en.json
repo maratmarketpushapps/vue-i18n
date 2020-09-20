@@ -6,7 +6,7 @@
       "step3": "Add A Consent Widget To Your Website",
       "buttonUpgrade": "Upgrade Now",
       "allStepsCompHeader": "You're all set!",
-      "buttonText": "Close",
+      "buttonText": "Done",
       "allStepsCompTxt1": "Congratulations! All the steps to set up the app were successfully done!",
       "allStepsCompTxt2": " Now, go to one of your product pages and add an item to the cart in order to see the Facebook Subscribe popup!"
     },
@@ -94,12 +94,14 @@
     "carts1": {
       "headerTxt": "Abandoned Cart Message #1",
       "selectLabel": "Send After",
-      "sendAfter": "How much time should pass before sending this message."
+      "sendAfter": "How much time should pass before sending this message.",
+      "iconTxt":"Edit Message"
     },
     "carts2": {
       "headerTxt": "Abandoned Cart Message #2",
       "selectLabel": "Send After",
-      "sendAfter": "How much time should pass before sending this message."
+      "sendAfter": "How much time should pass before sending this message.",
+      "iconTxt":"Edit Message"
     },
 
     "ordrrcpt": {

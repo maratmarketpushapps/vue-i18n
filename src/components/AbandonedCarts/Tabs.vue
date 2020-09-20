@@ -75,8 +75,8 @@
       </v-col>
 
       <v-col>
-        <v-row justify="end" class="pr-0 mr-1 mb-1">
-          <v-btn depressed icon class="refIcondim" @click="incrTabCount">
+        <v-row justify="end" class="pr-0 mr-0 mb-1">
+          <v-btn depressed icon class="refIcondim mr-0" @click="incrTabCount">
             <v-icon color="#4E5D6B">refresh</v-icon>
           </v-btn>
         </v-row>

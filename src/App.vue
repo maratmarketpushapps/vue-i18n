@@ -10,57 +10,80 @@
         :value="allStepsComp"
         :z-index="zIndex"
       >
-        <v-card tile light height="30vh" width="25vw" class="pa-1 font_dims">
+        <v-card tile light height="400px" width="25vw" class=" font_dims">
+          <v-row style="height:4%; width:100%" justify="end" class="mt-4">
+            <v-btn icon small>
+              <v-icon @click="canclOvrlyStepComp()">
+                mdi-window-close
+              </v-icon>
+            </v-btn>
+          </v-row>
+          <v-row
+            style="height:20%; width:100%"
+            justify="center"
+            align="center"
+            class="mt-1 ml-2"
+          >
+            <iconSuccess class="sccssSvgStyle" />
+          </v-row>
           <v-row style="height:15%; width:100%" class="mr-0 mt-2">
-            <v-col cols="6">
-              <v-row style="width:100%" justify="start" class="ml-4">
-                <h3 style="color:#4E5D6B">
+            <v-col cols="12">
+              <v-row style="width:100%" justify="center" class="ml-4">
+                <h3 style="color:#4E5D6B; font-size:150%">
                   {{ $t("navbar.appbar.allStepsCompHeader") }}
                 </h3>
               </v-row>
             </v-col>
-            <v-col cols="6">
-              <v-row style="width:110%" justify="end" class="pr-0 mr-0 mt-0 pt-0">
-                <v-btn icon x-small>
-                  <v-icon @click="canclOvrlyStepComp()">
-                    mdi-window-close
-                  </v-icon>
-                </v-btn>
-              </v-row>
-            </v-col>
           </v-row>
           <v-row
-            style="height:25%; width:100%"
+            style="height:15%; width:100%"
             justify="center"
             align="center"
             class="ma-2 pr-2"
           >
             <v-col>
-              {{ $t("navbar.appbar.allStepsCompTxt1") }}
+              <v-row
+                style="width:98%; text-align:center"
+                justify="center"
+                align="center"
+                class="ml-0"
+              >
+                {{ $t("navbar.appbar.allStepsCompTxt1") }}
+              </v-row>
             </v-col>
           </v-row>
           <v-row
-            style="height:20%; width:100%"
+            style="height:10%; width:100%"
             justify="center"
             align="start"
             class="ma-2 pr-2"
           >
             <v-col>
-              {{ $t("navbar.appbar.allStepsCompTxt2") }}
+              <v-row
+                style="width:98%; text-align:center"
+                justify="center"
+                align="center"
+                class="ml-0"
+              >
+                {{ $t("navbar.appbar.allStepsCompTxt2") }}
+              </v-row>
             </v-col>
           </v-row>
-          <v-row style="height:20%; width:100%" class="ml-2" justify="center">
+          <v-row style="height:20%; width:106%" class="ma-0 mt-6" justify="center" align="end" >
             <v-col>
-              <v-row style="width:100%" justify="center">
+              <v-row style="width:100%" justify="center" align="end">
                 <v-btn
-                tile
-                height="30px"
-                class="primary ml-3 mt-3"
-                width="30%"
-                @click="canclOvrlyStepComp()"
-              >
-                {{ $t("navbar.appbar.buttonText") }}
-              </v-btn>
+                  tile
+                  height="52px"
+                  class="ma-0 mt-3"
+                  width="100%"
+                  @click="canclOvrlyStepComp()"
+                  outlined
+                  color="#006AFF"
+                  style="border-color:#F2F2F2"
+                >
+                  {{ $t("navbar.appbar.buttonText") }}
+                </v-btn>
               </v-row>
             </v-col>
           </v-row>
@@ -89,6 +112,7 @@
 <script>
 import AppBar from "@/components/navigation/AppBar.vue";
 import NavDrawer from "@/components/navigation/NavDrawer.vue";
+import iconSuccess from "@/assets/icons/misc/icon-success.svg";
 
 export default {
   name: "App",
@@ -126,6 +150,7 @@ export default {
   components: {
     AppBar,
     NavDrawer,
+    iconSuccess,
   },
 
   data() {
@@ -200,6 +225,15 @@ export default {
   color: #323f4f;
   font-weight: bold !important;
   text-transform: uppercase;
+}
+
+.sccssSvgStyle {
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  fill: #fff;
+  stroke: #323f4f;
 }
 
 @media (min-width: 1400px) {
