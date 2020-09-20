@@ -87,6 +87,8 @@
           outlined
           class="appbar_btn_background white--text button-dims mt-0"
           v-show="showUpgrade"
+          href="https://www.wix.com/apps/upgrade/1c15809f-0715-427d-969d-3f0f3939418f"
+          target="_blank"
         >
           {{ $t("navbar.appbar.buttonUpgrade") }}
         </v-btn></v-col
@@ -144,9 +146,6 @@ export default {
 </script>
 
 <style>
-.v-label {
-  font-size: 150%;
-}
 .stepper {
   box-shadow: none;
   height: 7vh !important;

@@ -154,7 +154,9 @@
     "btnBrdrClr": "Border Color",
     "resetButton": "RESET TO LAST CHANGES",
     "liveLbl": "LIVE",
-    "offLbl": "GO-LIVE"
+    "offLbl": "GO-LIVE",
+    "chckBoxNote":"*In order to use the checkbox plugin, you need to",
+    "chckBoxNoteHref": "whitelist your site in the settings of your facebook page"
   },
   "settingsPage": {
     "fbCard1": {

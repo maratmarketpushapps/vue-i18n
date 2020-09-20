@@ -75,7 +75,7 @@
       </v-col>
 
       <v-col>
-        <v-row justify="end" class="pr-0 mr-1 mb-1">
+        <v-row justify="end" class="pr-5 mr-3 mb-1">
           <v-btn depressed icon class="refIcondim" @click="incrTabCount">
             <v-icon color="#4E5D6B">refresh</v-icon>
           </v-btn>
@@ -128,7 +128,7 @@ export default {
   components: { DashboardView, TooltipIcon },
   data() {
     return {
-      tab: null,
+      tab: 1,
       menu: false,
       custDates: [
         moment(new Date() - 86400000 * 15).format("YYYY-MM-DD"),
@@ -140,7 +140,7 @@ export default {
       itemKeyDat1: 0,
       itemKeyDat2: 0,
       itemKeyDat3: 0,
-      activeTab: "1",
+      activeTab: "2",
     };
   },
   methods: {

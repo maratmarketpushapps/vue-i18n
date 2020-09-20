@@ -6,7 +6,7 @@
       :items="items"
       :footer-props="{
         showFirstLastPage: true,
-        itemsPerPageOptions: [10, 25, 50, -1],
+        itemsPerPageOptions: [25, 50, -1],
         showCurrentPage: true,
       }"
     >

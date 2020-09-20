@@ -129,7 +129,7 @@ export default {
   components: { CartsTable, TooltipIcon },
   data() {
     return {
-      tab: null,
+      tab: 1,
       menu: false,
       custDates: [
         moment(new Date() - 86400000 * 15).format("YYYY-MM-DD"),
@@ -141,7 +141,7 @@ export default {
       itemKeyDat1: 0,
       itemKeyDat2: 0,
       itemKeyDat3: 0,
-      activeTab: "1",
+      activeTab: "2",
     };
   },
   methods: {

@@ -59,9 +59,12 @@
               id="Op1"
               class="cust-chkbx  cust-chkbx-label cursor-hand"
               v-model="radioSelect"
-            /><label class="cursor-hand lbl-props" for="Op1" style="font-size:80%">{{
-              $t("widgets.btnChc")
-            }}</label>
+            /><label
+              class="cursor-hand lbl-props"
+              for="Op1"
+              style="font-size:80%"
+              >{{ $t("widgets.btnChc") }}</label
+            >
           </v-row>
         </v-col>
 
@@ -74,9 +77,34 @@
               id="Op2"
               class="cust-chkbx cust-chkbx-label cursor-hand"
               v-model="radioSelect"
-            /><label class="cursor-hand lbl-props" for="Op2" style="font-size:80%">{{
-              $t("widgets.chbxChc")
-            }}</label>
+            /><label
+              class="cursor-hand lbl-props"
+              for="Op2"
+              style="font-size:80%"
+              >{{ $t("widgets.chbxChc") }}</label
+            >
+          </v-row>
+        </v-col>
+      </v-row>
+      <v-row
+        style="border-radius:0px; height:2%;width:100%"
+        class="px-0 mx-0 mt-2"
+        v-show="radioSelect == 'Checkbox'"
+      >
+        <v-col cols="1"></v-col>
+        <v-col cols="11 px-0 mx-0">
+          <v-row justify="start" style="width: 100%;">
+            <span class="pr-1" style="font-size:75%; font-style: italic;">{{
+              $t("widgets.chckBoxNote")
+            }}</span>
+            <span style="font-size:75%; font-style: italic;">
+              <a
+                :href="getPageSettingsLink"
+                target="_blank"
+                style="text-decoration:underline"
+                >{{ $t("widgets.chckBoxNoteHref") }}</a
+              >
+            </span>
           </v-row>
         </v-col>
       </v-row>
@@ -612,7 +640,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["getWidgetsState"]),
+    ...mapGetters(["getWidgetsState", "getSettingsState"]),
     detectChange() {
       return this.getWidgetsState.changesSaved;
     },
@@ -679,6 +707,13 @@ export default {
     },
     clrBtnBrdrKey() {
       return "btnBrdr" + this.btnBrdrClrKey;
+    },
+    getPageSettingsLink() {
+      if ((this.getSettingsState.facebook_page_name == "")) {
+        return `https://www.facebook.com/pages`;
+      } else {
+        return `https://www.facebook.com/${this.getSettingsState.facebook_page_id}/settings/?tab=messenger_platform`;
+      }
     },
   },
   watch: {
@@ -766,6 +801,7 @@ export default {
         this.btnCrnr = this.$store.getters.getWidgetsState.button_corners;
         this.btnBrdrSz = this.$store.getters.getWidgetsState.button_border_size;
         this.live = this.$store.getters.getWidgetsState.active;
+        this.$store.dispatch("getSettings");
       }
     });
   },
@@ -773,7 +809,6 @@ export default {
 </script>
 
 <style>
-
 .wdgt_font_dims {
   font-size: 95% !important;
   overflow: hidden;
