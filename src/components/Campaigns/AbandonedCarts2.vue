@@ -42,7 +42,7 @@
           </v-btn>
         </v-row>
         <v-row justify="end" style="width: 100%">
-          <span v-if="!cart1Edit" @click="editCart1" style="font-size:85%">{{ $t("campaigns.carts2.iconTxt") }}</span>
+          <span v-if="!cart1Edit" @click="editCart1" style="font-size:85%; cursor: pointer;">{{ $t("campaigns.carts2.iconTxt") }}</span>
         </v-row>
       </v-col>
       <v-col>
