@@ -38,9 +38,11 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["checkClicked"]),
+    ...mapGetters(["checkClicked","checkHover"]),
     detectClick() {
-      return this.checkClicked("Campaigns") ? true : false;
+      return this.checkClicked("Campaigns") || this.checkHover("Campaigns")
+        ? true
+        : false;
     },
   },
 };

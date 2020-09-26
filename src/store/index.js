@@ -87,6 +87,7 @@ export default new Vuex.Store({
     },
     navState: {
       currentSelected: "Dashboard",
+      currentHover:"Dashboard"
     },
     cartsState: {
       carts: [],
@@ -176,6 +177,9 @@ export default new Vuex.Store({
     checkClicked: (state) => (id) => {
       return state.navState.currentSelected === id ? true : false;
     },
+    checkHover: (state) => (id) => {
+      return state.navState.currentHover === id ? true : false;
+    },
     getLocale: (state) => {
       return state.globalVars.locale;
     },
@@ -259,6 +263,9 @@ export default new Vuex.Store({
   mutations: {
     SET_SELECTED(state, id) {
       state.navState.currentSelected = id;
+    },
+    SET_HOVER(state, id) {
+      state.navState.currentHover = id;
     },
     SET_CARTS_VAL(state, obj) {
       let cleanedObj = [];
@@ -739,6 +746,9 @@ export default new Vuex.Store({
     },
     updateClick({ commit }, id) {
       commit("SET_SELECTED", id);
+    },
+    updateHover({ commit }, id) {
+      commit("SET_HOVER", id);
     },
     updateTimezone({ commit }, timezone_id) {
       return new Promise((resolve) => {

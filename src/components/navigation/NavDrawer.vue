@@ -30,6 +30,8 @@
           <v-list-item
             class="list-dim "
             @click="setSelected('Dashboard')"
+            @mouseenter="setHover('Dashboard')"
+            @mouseleave="setHover('')"
             to="/dashboard"
             ><v-icon class="navicon_scale"
               >$vuetify.icons.dashboard</v-icon
@@ -39,6 +41,8 @@
           <v-list-item
             class="list-dim "
             @click="setSelected('Widgets')"
+            @mouseenter="setHover('Widgets')"
+            @mouseleave="setHover('')"
             to="/widgets"
             ><v-icon class="navicon_scale"
               >$vuetify.icons.widgets</v-icon
@@ -48,6 +52,8 @@
           <v-list-item
             class="list-dim"
             @click="setSelected('Campaigns')"
+            @mouseenter="setHover('Campaigns')"
+            @mouseleave="setHover('')"
             to="/campaigns"
             ><v-icon class="navicon_scale"
               >$vuetify.icons.campaigns</v-icon
@@ -57,6 +63,8 @@
           <v-list-item
             class="list-dim"
             @click="setSelected('AbandonedCarts')"
+            @mouseenter="setHover('AbandonedCarts')"
+            @mouseleave="setHover('')"
             to="/abandonedcarts"
             ><v-icon class="navicon_scale"
               >$vuetify.icons.abandonedCarts</v-icon
@@ -66,6 +74,8 @@
           <v-list-item
             class="list-dim"
             @click="setSelected('Settings')"
+            @mouseenter="setHover('Settings')"
+            @mouseleave="setHover('')"
             to="/settings"
             ><v-icon class="navicon_scale"
               >$vuetify.icons.settings</v-icon
@@ -88,6 +98,7 @@ export default {
   data() {
     return {
       model: 1,
+      preActive:''
     };
   },
   methods: {
@@ -100,6 +111,11 @@ export default {
           console.log(response);
         });
       }
+    },
+    setHover(id) {
+      console.log(event);
+
+      this.$store.dispatch("updateHover", id);
     },
   },
   computed: {

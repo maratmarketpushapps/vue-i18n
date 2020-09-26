@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import {  mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 import SettingsActive from "@/assets/icons/sidebar/icon-settings-active.svg";
 import SettingsInactive from "@/assets/icons/sidebar/icon-settings-inactive.svg";
 
@@ -42,9 +42,11 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["checkClicked"]),
+    ...mapGetters(["checkClicked", "checkHover"]),
     detectClick() {
-      return this.checkClicked("Settings") ? true : false;
+      return this.checkClicked("Settings") || this.checkHover("Settings")
+        ? true
+        : false;
     },
   },
 };
@@ -76,5 +78,4 @@ export default {
   white-space: normal;
   align-content: center;
 }
-
 </style>

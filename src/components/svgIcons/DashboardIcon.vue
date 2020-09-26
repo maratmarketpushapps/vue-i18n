@@ -1,7 +1,12 @@
 <template>
   <div class="svgdiv_dim">
     <v-container>
-      <v-row v-if="!detectClick" align-content="center" justify="center" class="pb-2 pr-2">
+      <v-row
+        v-if="!detectClick"
+        align-content="center"
+        justify="center"
+        class="pb-2 pr-2"
+      >
         <svg-transition ref="transition" trigger="hover" class="svgicon_dim">
           <DashboardInactive slot="initial" />
           <DashboardActive />
@@ -33,9 +38,11 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["checkClicked"]),
+    ...mapGetters(["checkClicked","checkHover"]),
     detectClick() {
-      return this.checkClicked("Dashboard") ? true : false;
+      return this.checkClicked("Dashboard") || this.checkHover("Dashboard")
+        ? true
+        : false;
     },
   },
 };

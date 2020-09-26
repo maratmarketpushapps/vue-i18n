@@ -38,9 +38,11 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["checkClicked"]),
+    ...mapGetters(["checkClicked","checkHover"]),
     detectClick() {
-      return this.checkClicked("AbandonedCarts") ? true : false;
+      return this.checkClicked("AbandonedCarts") || this.checkHover("AbandonedCarts")
+        ? true
+        : false;
     },
   },
 };
