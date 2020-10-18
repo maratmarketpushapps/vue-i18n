@@ -69,7 +69,12 @@
               </v-row>
             </v-col>
           </v-row>
-          <v-row style="height:20%; width:106%" class="ma-0 mt-6" justify="center" align="end" >
+          <v-row
+            style="height:20%; width:106%"
+            class="ma-0 mt-6"
+            justify="center"
+            align="end"
+          >
             <v-col>
               <v-row style="width:100%" justify="center" align="end">
                 <v-btn
@@ -114,6 +119,20 @@
 import AppBar from "@/components/navigation/AppBar.vue";
 import NavDrawer from "@/components/navigation/NavDrawer.vue";
 import iconSuccess from "@/assets/icons/misc/icon-success.svg";
+
+(function(h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function() {
+      (h.hj.q = h.hj.q || []).push(arguments);
+    };
+  h._hjSettings = { hjid: 2035266, hjsv: 6 };
+  a = o.getElementsByTagName("head")[0];
+  r = o.createElement("script");
+  r.async = 1;
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
 
 export default {
   name: "App",
