@@ -1,9 +1,11 @@
 <template>
   <v-container fluid class="pt-0 mt-4">
     <v-row class="pt-6 mt-0">
-      <h3 class="header_dims page_headers">{{ $t("navbar.navdrawer.Settings") }}</h3>
+      <h3 class="header_dims page_headers">
+        {{ $t("navbar.navdrawer.Settings") }}
+      </h3>
     </v-row>
-    <v-row style="height:100%; width:99%">
+    <v-row style="height:100%; width:99%; background-color:#E6E7E8">
       <v-col cols="6" class="">
         <v-row style="height:59%">
           <FbConnect />
@@ -23,6 +25,15 @@
         </v-row>
       </v-col>
     </v-row>
+    <v-row style="height:7%; width:99%"> </v-row>
+    <v-row style="height:40%; width:99%; background-color:#E6E7E8">
+      <v-col cols="6">
+        <v-row style="height:100%">
+          <InstructionalVids />
+        </v-row>
+      </v-col>
+      <v-col cols="6"> </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -31,10 +42,17 @@ import UpgradeCard from "@/components/Settings/UpgradeCard.vue";
 import FbConnect from "@/components/Settings/FbConnect.vue";
 import AccountInfo from "@/components/Settings/AccountInfo.vue";
 import SetTimezone from "@/components/Settings/SetTimezone.vue";
+import InstructionalVids from "@/components/Settings/InstructionalVids.vue";
 
 export default {
   name: "Settings",
-  components: { FbConnect, SetTimezone, UpgradeCard, AccountInfo },
+  components: {
+    FbConnect,
+    SetTimezone,
+    UpgradeCard,
+    AccountInfo,
+    InstructionalVids,
+  },
 };
 </script>
 

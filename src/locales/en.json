@@ -95,13 +95,13 @@
       "headerTxt": "Abandoned Cart Message #1",
       "selectLabel": "Send After",
       "sendAfter": "How much time should pass before sending this message.",
-      "iconTxt":"Edit Message"
+      "iconTxt": "Edit Message"
     },
     "carts2": {
       "headerTxt": "Abandoned Cart Message #2",
       "selectLabel": "Send After",
       "sendAfter": "How much time should pass before sending this message.",
-      "iconTxt":"Edit Message"
+      "iconTxt": "Edit Message"
     },
 
     "ordrrcpt": {
@@ -157,7 +157,7 @@
     "resetButton": "RESET TO LAST CHANGES",
     "liveLbl": "LIVE",
     "offLbl": "GO-LIVE",
-    "chckBoxNote":"*In order to use the checkbox plugin, you need to",
+    "chckBoxNote": "*In order to use the checkbox plugin, you need to",
     "chckBoxNoteHref": "whitelist your site in the settings of your facebook page"
   },
   "settingsPage": {
@@ -206,6 +206,12 @@
       "tooltipText": "Add your timezone. All the displayed dates will be relative to the chosen timezone.",
       "label": "Select Timezone",
       "buttonText": "Save"
+    },
+    "instVids": {
+      "header": "Tutorials",
+      "vid1Title": "How does Cart Recovery work?",
+      "vid2Title":"How to setup Cart Recovery?",
+      "link": "Play video on Youtube ->"
     }
   }
 }

@@ -94,7 +94,7 @@
           </v-row>
         </v-card>
       </v-overlay>
-      <v-row style="height: auto width: 100%;">
+      <v-row style="height:auto width: 100%;">
         <v-col cols="12">
           <v-row style="height:10vh">
             <v-col cols="12"> </v-col>
@@ -102,9 +102,11 @@
           <v-row align="center" justify="center">
             <v-col cols="auto" style="width: 6vw;"> </v-col>
             <v-col cols="11">
-              <transition name="rtr">
-                <router-view></router-view>
-              </transition>
+              <v-row>
+                <transition name="rtr">
+                  <router-view></router-view>
+                </transition>
+              </v-row>
             </v-col>
           </v-row>
         </v-col>
