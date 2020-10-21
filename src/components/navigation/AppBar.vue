@@ -80,8 +80,8 @@
       >
       <v-col cols="1">
         <v-row align="center" class="ml-3">
-          <router-link to="/settings" tag="v-btn" v-scroll-to="'#instrVid'">
-            <v-btn icon tile>
+          <router-link to="/settings" tag="v-btn" v-scroll-to="'#instrVid'" >
+            <v-btn icon tile v-if="!allstepsComplete">
               <v-img
                 :src="playImg"
                 height="3vw"
