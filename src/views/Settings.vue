@@ -5,7 +5,7 @@
         {{ $t("navbar.navdrawer.Settings") }}
       </h3>
     </v-row>
-    <v-row style="height:100%; width:99%; background-color:#E6E7E8">
+    <v-row style="height:60%; width:99%; background-color:#E6E7E8">
       <v-col cols="6" class="">
         <v-row style="height:59%">
           <FbConnect />
@@ -25,7 +25,7 @@
         </v-row>
       </v-col>
     </v-row>
-    <v-row style="height:8%; width:99%"> </v-row>
+    <v-row style="height:9%; width:99%"> </v-row>
     <v-row style="height:40%; width:99%; background-color:#E6E7E8">
       <v-col cols="6">
         <v-row style="height:100%">

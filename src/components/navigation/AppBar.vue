@@ -10,7 +10,7 @@
     <v-row style="height:100% !important" class="pb-0 mb-0">
       <v-col cols="1"><v-spacer></v-spacer></v-col>
       <!-- Stepper component -->
-      <v-col cols="9" class="pb-0">
+      <v-col cols="8" class="pb-0">
         <v-stepper class="stepper" :value="step" v-if="!allstepsComplete">
           <v-stepper-header class="stepperhead">
             <!-- Step 1 -->
@@ -78,6 +78,22 @@
           </v-stepper-header>
         </v-stepper></v-col
       >
+      <v-col cols="1">
+        <v-row align="center" class="ml-3">
+          <router-link to="/settings" tag="v-btn" v-scroll-to="'#instrVid'">
+            <v-btn icon tile>
+              <v-img
+                :src="playImg"
+                height="3vw"
+                width="2vw"
+                style="transform: scale(0.8)"
+                class="mt-0"
+              >
+              </v-img>
+            </v-btn>
+          </router-link>
+        </v-row>
+      </v-col>
 
       <!-- Upgrade button component -->
       <v-col cols="2" class="pl-8 mb-2"
@@ -98,12 +114,17 @@
 </template>
 
 <script>
+// import iconPlay from "@/assets/icons/misc/icon-play.svg";
 export default {
   name: "AppBar",
+  // components: {
+  //   iconPlay,
+  // },
   data() {
     return {
       step: 1,
       showAlert: true,
+      playImg: require("@/assets/img/icon-play.png"),
     };
   },
   methods: {
@@ -150,7 +171,7 @@ export default {
   box-shadow: none;
   height: 7vh !important;
   align-content: center !important;
-  width: 69vw !important;
+  width: 63vw !important;
 }
 .stepperhead {
   box-shadow: none;

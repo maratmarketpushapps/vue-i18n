@@ -20,6 +20,7 @@
     "vue": "^2.6.11",
     "vue-i18n": "^8.0.0",
     "vue-router": "^3.1.6",
+    "vue-scrollto": "^2.19.1",
     "vue-stepper-component": "^1.0.0",
     "vue-svg-transition": "^0.2.1",
     "vuetify": "^2.2.11",
