@@ -79,19 +79,23 @@
         </v-stepper></v-col
       >
       <v-col cols="1">
-        <v-row align="center" class="ml-3">
-          <router-link to="/settings" tag="v-btn" v-scroll-to="'#instrVid'" >
-            <v-btn icon tile v-if="!allstepsComplete">
-              <v-img
-                :src="playImg"
-                height="3vw"
-                width="2vw"
-                style="transform: scale(0.8)"
-                class="mt-0"
-              >
-              </v-img>
-            </v-btn>
-          </router-link>
+        <v-row align="center" class="ml-0">
+          <v-btn
+            icon
+            tile
+            v-if="!allstepsComplete"
+            href="https://www.youtube.com/channel/UCOKGEwMeTDMkQr3cMXjmkEQ"
+            target="_blank"
+          >
+            <v-img
+              :src="playImg"
+              height="3vw"
+              width="2vw"
+              style="transform: scale(0.8)"
+              class="mt-0"
+            >
+            </v-img>
+          </v-btn>
         </v-row>
       </v-col>
 
@@ -171,7 +175,7 @@ export default {
   box-shadow: none;
   height: 7vh !important;
   align-content: center !important;
-  width: 63vw !important;
+  width: 65vw !important;
 }
 .stepperhead {
   box-shadow: none;
