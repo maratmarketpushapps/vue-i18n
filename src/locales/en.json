@@ -8,7 +8,7 @@
       "allStepsCompHeader": "You're all set!",
       "buttonText": "Done",
       "allStepsCompTxt1": "Congratulations! All the steps to set up the app were successfully done!",
-      "allStepsCompTxt2": " Now, go to one of your product pages and add an item to the cart in order to see the Facebook Subscribe popup!"
+      "allStepsCompTxt2": " Go to your website and open one of your product pages. Once you add an item to the cart, the Facebook Subscribe popup will open!"
     },
     "navdrawer": {
       "Settings": "Settings",
@@ -20,7 +20,7 @@
   },
   "abandonedCarts": {
     "ttlTxt": "Facebook Subscribers",
-    "headerInfo": "The List displays all the Abandoned Carts your Wix Store had after installing Cart Reminder, regardless of whether they subscribed or not to receive notifications from Facebook.",
+    "headerInfo": "This section displays all the customers that have subscribed to receive Facebook notifications, along with the status of their order.",
     "custRangeInfo": "Select a start date and an end date to see the data for that specific period.",
     "noDataTxt": "You currently have no abandoned carts. Please note that we only track the abandoned carts from the moment you installed the app.",
     "tabs": {
@@ -49,23 +49,23 @@
       "totalMsg": "Total Messages Sent",
       "recov1Msg": "Recovery Message #1 Sent",
       "recov2Msg": "Recovery Message #2 Sent",
-      "infoconMsg": "How many times each Facebook message type - Cart Recovery, Receipt or Shipped - was sent within the selected time period."
+      "infoconMsg": "How many times each message type was sent within the selected time period."
     },
     "card2": {
       "header": "Carts Recovered",
-      "infoconMsg": "The metrics displayed are how many carts were recovered in total, what’s the recovery percentage and how many carts were abandoned. Please note that a cart is considered recovered when the user pays for the previously abandoned order.",
+      "infoconMsg": "The metrics displayed are: how many carts were recovered in total, what’s the recovery percentage and how many carts were abandoned. Please note that a cart is considered recovered when the user pays for the previously abandoned order. ",
       "recovLabel": "Recovered Carts",
       "abndndLabel": "Total Abandoned Carts"
     },
     "card3": {
       "header": "Revenue Recovered",
-      "infoconMsg": "The metrics displayed are the total number of revenue recovered, what’s the revenue recovery percentage and how much was lost.",
+      "infoconMsg": "The metrics displayed are: the total of revenue recovered, the percentage of revenue recovered and how much revenue was lost.",
       "recovLabel": "Recovered Revenue",
       "abndndLabel": "Total Revenue Lost"
     },
     "card4": {
       "header": "Cart Recovery",
-      "infoconMsg": "The daily metrics displayed on the charts represent: The number of Abandoned Carts (red), the number of Recovered Carts (green), the Revenue Recovered (blue).",
+      "infoconMsg": "The metrics displayed represent: The number of Abandoned Carts (red), the number of Facebook Subscribers (blue), the number of Recovered Carts (green).",
       "totalMsg": "Carts Recovered",
       "recovLabel": "Recovered Carts",
       "abndndLabel": "Abandoned Carts",
@@ -76,14 +76,14 @@
   "campaigns": {
     "header": "Campaign Messages",
     "msgCount": "Messages Sent",
-    "modalText1": "This is how your Facebook messages will look like when they are sent to the user",
+    "modalText1": "This is how your Facebook message will look like when they are sent to your customers",
     "modalText2": "Please note that this interface is for showcasing purposes and it's not clickable.",
     "infocons": {
-      "msg1": "Send customers that abandon a shop order Facebook messages to remind them of their lost order. The customers have to consent in order to be contacted via Facebook and you can send them a maximum of 2 messages within 24 hours. You can consider adding a discount code to the messages and increase the sale conversion rate.",
+      "msg1": "Send Facebook messages to customers that abandon a cart to remind them of their lost order. The customers have to consent in order to be contacted via Facebook and you can send them a maximum of 2 messages within 24 hours. You can consider adding a discount code within the messages in order to increase the sale conversion rate.",
       "msg2": "First Facebook message used to recover the abandoned cart. This message will be sent to customers that have consented to receive Facebook notifications from you.",
       "msg3": "After completing an order, send customers a Facebook message to inform them that you've received their order. The customers have to consent in order to be contacted via Facebook. In order to drive repeated sales from the contacted customers, you can consider adding a voucher code with a discount that they can apply to a future order on your shop.",
       "msg4": "After processing an order, send customers a Facebook message to inform them that you've shipped their order. The customers have to consent in order to be contacted via Facebook.",
-      "msg5": "Quick Replies are possible reply variants that are offered to the user as part of your message. Feel free to customize the texts in your own language! There are 3 types of replies: \"Sounds good\" - the user can use this to let you know everything is fine. \"I have more questions\" - in this case, you should personally engage the user to clarify the questions related to the order. \"Unsubscribe\" - in this case, the user is not interested in purchasing and the app will not send any other messages."
+      "msg5": "Quick Replies are possible reply variants that are offered to the user as part of your Facebook message. Feel free to customize the texts in your own language! There are 3 types of replies: \"Sounds good\" - the user can use this to let you know everything is fine. \"I have more questions\" - in this case, you should personally engage the user to clarify the questions related to the order. \"Unsubscribe\" - in this case, the user is not interested in purchasing and the app will not send any other messages to that particular user."
     },
 
     "tabs": {
@@ -122,7 +122,7 @@
     }
   },
   "widgets": {
-    "headerInfo": "In order to send Facebook messages to your customers, they must first consent to be contacted via Facebook. The purpose of this widget is to enable your customers to offer that consent. If EU privacy laws apply to your company, it's recommended to select the Checkbox Consent widget. Feel free to customize the widget so that it matches the style of your website.",
+    "headerInfo": "In order to send Facebook messages to your customers, they will first need to provide the consent. The purpose of this widget is to enable your customers to offer that consent. If EU privacy laws apply to your company, it's recommended to select the Checkbox Consent widget. Feel free to customize the widget so that it matches the style of your website.",
     "wdgtTypeHdr": "Facebook Widget Type",
     "svBtn": "Save Changes",
     "btnChc": "Facebook Button Widget",
@@ -136,7 +136,7 @@
     "chckBxTxt2": "Messenger",
     "fbUserName": "Sample User",
     "wrngUsrTxt": "Not you",
-    "modalText1": "This is how your website will look like to your website visitors.",
+    "modalText1": "This Subscribe Popup will appear to customers that click on Add to Cart.",
     "modalText2": "Please note that this interface is for showcasing purposes and it's not clickable.",
     "ttlTxt": "Modal Title",
     "fontFamily": "Font Family",
@@ -145,16 +145,16 @@
     "fontSize": "Font Size",
     "msgTxt": "Modal Message",
     "cnclHdr": "Cancel Link Settings",
-    "cnclInfo": "If the customer does not want to offer the consent to be contacted via Facebook, then clicking this button will close the modal without offering it.",
+    "cnclInfo": "If the customer does not want to be contacted, this button will close the popup.",
     "cnclTxt": "Link Text",
     "btnHdr": "Submit Button Settings",
-    "btnInfo": "The customer will be able to click this button if the checkbox is checked. The button will submit the consent and close the modal.",
+    "btnInfo": "The button will become clickable if the customer checks the Facebook checkbox. Once the button is clicked it will save the consent of the customer and close the modal.",
     "btnTxt": "Button Text",
     "btnColor": "Background Color",
     "btnCrnr": "Button Corners",
     "btnBrdrSz": "Border Size",
     "btnBrdrClr": "Border Color",
-    "resetButton": "RESET TO LAST CHANGES",
+    "resetButton": "RESET TO LAST SAVED CHANGES",
     "liveLbl": "LIVE",
     "offLbl": "GO-LIVE",
     "chckBoxNote": "*In order to use the checkbox plugin, you need to",
@@ -163,7 +163,7 @@
   "settingsPage": {
     "fbCard1": {
       "header": "Connect Your Facebook Page",
-      "tooltipText": "Connect the Facebook page that will send messages to users. All the messages that the app provides will be sent by your Facebook page.Your personal details,including name will not be visible to message recipients",
+      "tooltipText": "Connect your Facebook page to the Cart Reminder App. Once connected, your Facebook page will send the messages to customers. Your personal details, such as your name, will not be visible to the message recipient - don't worry!",
       "buttonHeader": "Connect your Facebook page",
       "buttonText": "Login with Facebook",
       "buttonFooter": "If you don't have a facebook page, you can create one ",
@@ -171,8 +171,8 @@
     },
     "fbCard2": {
       "header": "Connect Your Facebook Page",
-      "info": "Connect the Facebook page that will send messages to users. All the messages that the app provides will be sent by your Facebook page.Your personal details,including name will not be visible to message recipients",
-      "subheader": "Choose the Facebook page that will be used to send messages to your users",
+      "info": "Connect your Facebook page to the Cart Reminder App. Once connected, your Facebook page will send the messages to customers. Your personal details, such as your name, will not be visible to the message recipient - don't worry!",
+      "subheader": "Choose the Facebook page that will be used to send messages to your customers.",
       "dropdownHeader": "Select your Facebook Page",
       "dropdownDefault": "Your Business Name",
       "dropdownSubText": "The Facebook messages will be sent by the selected Page. Your name or other personal details will not be visible to users that receive your messages.",
@@ -184,7 +184,7 @@
       "buttonText": "DISCONNECT"
     },
     "upgradeCard": {
-      "header1": "You are using our ",
+      "header1": "You are using the ",
       "header2": " plan.",
       "body1": "With ",
       "body2": " you have up to ",
