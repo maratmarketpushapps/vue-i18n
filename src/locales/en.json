@@ -20,7 +20,7 @@
   },
   "abandonedCarts": {
     "ttlTxt": "Facebook Subscribers",
-    "headerInfo": "The List displays all the Abandoned Carts your Wix Store had after installing Facebook Cart Recovery, regardless of whether they subscribed or not to receive notifications from Facebook.",
+    "headerInfo": "The List displays all the Abandoned Carts your Wix Store had after installing Cart Reminder, regardless of whether they subscribed or not to receive notifications from Facebook.",
     "custRangeInfo": "Select a start date and an end date to see the data for that specific period.",
     "noDataTxt": "You currently have no abandoned carts. Please note that we only track the abandoned carts from the moment you installed the app.",
     "tabs": {
@@ -43,7 +43,7 @@
 
   "dashboard": {
     "header": "Dashboard",
-    "infoMsg": "The Dashboard shows performance statistics of the Facebook Cart Recovery app within a selected time range.",
+    "infoMsg": "The Dashboard shows performance statistics of the Cart Reminder app within a selected time range.",
     "card1": {
       "header": "Campaigns",
       "totalMsg": "Total Messages Sent",
@@ -188,7 +188,7 @@
       "header2": " plan.",
       "body1": "With ",
       "body2": " you have up to ",
-      "body3": " individual Facebook cart recovery attempts, with up to 2 messages per recovery attempt. ",
+      "body3": " individual Cart Recovery attempts, with up to 2 messages per recovery attempt. ",
       "body4": " cart recovery attempts left this month. ",
       "body5": "Upgrade to get more.",
       "buttonText": "UPGRADE NOW"
