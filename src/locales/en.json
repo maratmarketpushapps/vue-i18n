@@ -76,7 +76,7 @@
   "campaigns": {
     "header": "Campaign Messages",
     "msgCount": "Messages Sent",
-    "modalText1": "This is how your Facebook message will look like when they are sent to your customers",
+    "modalText1": "This is the message that your customers will receive on Facebook.",
     "modalText2": "Please note that this interface is for showcasing purposes and it's not clickable.",
     "infocons": {
       "msg1": "Send Facebook messages to customers that abandon a cart to remind them of their lost order. The customers have to consent in order to be contacted via Facebook and you can send them a maximum of 2 messages within 24 hours. You can consider adding a discount code within the messages in order to increase the sale conversion rate.",
