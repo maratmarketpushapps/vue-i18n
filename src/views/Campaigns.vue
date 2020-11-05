@@ -7,6 +7,14 @@
         </h3>
       </v-col>
       <v-col cols="1" class="pl-0 ml-0 pt-0"> </v-col>
+      <v-col cols="8.75" class="pt-0 pb-0 mb-0">
+        <v-row align="center" justify="end" style="width:100%">
+          <v-col cols="auto"> </v-col>
+          <v-col cols="auto">
+            <span><CartAttempts class="pt-0 pr-6"/></span>
+          </v-col>
+        </v-row>
+      </v-col>
     </v-row>
     <v-row class="pt-1 mt-0" align="start" style="height:auto; width:100%">
       <CampaignTabs style="height:100%; width:100%" />
@@ -17,12 +25,14 @@
 <script>
 import CampaignTabs from "@/components/Campaigns/CampaignTabs.vue";
 // import CampaignView from "@/components/Campaigns/CampaignView.vue";
+import CartAttempts from "@/components/AbandonedCarts/CartAttempts.vue";
 
 export default {
   name: "Campaigns",
   components: {
     CampaignTabs,
-  },
+    CartAttempts
+  }
 };
 </script>
 
