@@ -5,7 +5,7 @@ const initFbSdk = (Vue, facebookClientId) => {
         appId: facebookClientId,
         autoLogAppEvents: true,
         xfbml: true,
-        version: "v3.2",
+        version: "v9.0",
       });
       Vue.FB = window.FB;
       resolve("success");
