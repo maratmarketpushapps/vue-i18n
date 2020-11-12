@@ -86,6 +86,9 @@ export default {
       this.live = this.$store.getters.getWidgetsState.active;
     });
   },
+  mounted () {
+    window.scrollTo(0,0);
+  },
   methods: {
     updWdgtLiveActive() {
       this.$store.dispatch("updWdgtLive", this.live).then(() => {

@@ -32,7 +32,10 @@ export default {
   components: {
     CampaignTabs,
     CartAttempts
-  }
+  },
+  mounted () {
+    window.scrollTo(0,0);
+  },
 };
 </script>
 

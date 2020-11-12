@@ -17,18 +17,18 @@
       </v-col>
 
       <v-col cols="8.75" class="pt-0">
-        <v-row align="center" justify="end" style="width:100%">
+        <v-row align="center" justify="end" style="width: 100%">
           <v-col cols="auto"> </v-col>
-          <v-col cols="auto" >
-            <span><CartAttempts class="pt-2 pr-4"/></span>
+          <v-col cols="auto">
+            <span><CartAttempts class="pt-2 pr-4" /></span>
           </v-col>
         </v-row>
       </v-col>
     </v-row>
-    <v-row class="pt-1 mt-0" align="start" style="height:auto">
-      <v-col cols="12" style="height:100%">
-        <v-row style="height:100%; width:100%"  justify="start">
-          <Tabs style="height:100%; width:100%" />
+    <v-row class="pt-1 mt-0" align="start" style="height: auto">
+      <v-col cols="12" style="height: 100%">
+        <v-row style="height: 100%; width: 100%" justify="start">
+          <Tabs style="height: 100%; width: 100%" />
         </v-row>
       </v-col>
     </v-row>
@@ -46,6 +46,9 @@ export default {
     TooltipIcon,
     Tabs,
     CartAttempts,
+  },
+  mounted() {
+    window.scrollTo(0, 0);
   },
   data() {
     return {};
