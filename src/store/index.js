@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-import moment from "moment-timezone";
 
 Vue.use(Vuex);
 
@@ -270,22 +269,6 @@ export default new Vuex.Store({
     SET_CARTS_VAL(state, obj) {
       let cleanedObj = [];
       for (let loopObj of obj.subscribers) {
-        loopObj.created_at = moment(new Date(loopObj.created_at))
-          .tz(state.settingsVars.timezone_id)
-          .format("MM-DD-YYYY hh:mm:ss A");
-
-        if (
-          loopObj.cart_recovered_at != false &&
-          loopObj.cart_recovered_at != "-"
-        ) {
-          loopObj.cart_recovered_at = moment(
-            new Date(loopObj.cart_recovered_at)
-          )
-            .tz(state.settingsVars.timezone_id)
-            .format("MM-DD-YYYY hh:mm:ss A");
-        } else {
-          loopObj.cart_recovered_at = "-";
-        }
         cleanedObj.push(loopObj);
       }
 
