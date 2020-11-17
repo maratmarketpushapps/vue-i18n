@@ -26,7 +26,7 @@
               style="top:30%"
             />
           </v-tab>
-          <v-tab
+          <!-- <v-tab
             class="font_dims"
             key="2"
             @click="refreshComp2()"
@@ -57,7 +57,7 @@
               class="infoicon_scale "
               style="top:30%"
             />
-          </v-tab>
+          </v-tab> -->
         </v-tabs>
       </v-col>
     </v-row>

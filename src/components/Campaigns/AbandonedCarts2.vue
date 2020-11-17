@@ -42,7 +42,12 @@
           </v-btn>
         </v-row>
         <v-row justify="end" style="width: 100%">
-          <span v-if="!cart1Edit" @click="editCart1" style="font-size:85%; cursor: pointer;">{{ $t("campaigns.carts2.iconTxt") }}</span>
+          <span
+            v-if="!cart1Edit"
+            @click="editCart1"
+            style="font-size:85%; cursor: pointer;"
+            >{{ $t("campaigns.carts2.iconTxt") }}</span
+          >
         </v-row>
       </v-col>
       <v-col>
@@ -69,7 +74,7 @@
           <v-col cols="3" class="pl-0 ml-0">
             <v-select
               :label="$t('campaigns.carts2.selectLabel')"
-              :items="timeList"
+              :items="timeListCart2"
               @change="activeStateChng()"
               v-model="sent_after"
               dense
@@ -404,6 +409,7 @@ export default {
         "23 hour",
         "24 hour",
       ],
+      sent_after_cart1: "",
     };
   },
   computed: {
@@ -427,6 +433,13 @@ export default {
     },
     svBtnordrAbndCrtQckRplEdit3() {
       return this.ordrAbndCrtQckRplEdit3Btn;
+    },
+    timeListCart2() {
+      return this.timeList.slice(
+        this.timeList.indexOf(
+          this.$store.getters.getCarts1.sent_after + " hour"
+        )+1
+      );
     },
   },
   methods: {
@@ -635,6 +648,8 @@ export default {
       this.ordrAbndCrtQckRpl2 = this.$store.getters.getCarts2.quick_reply_more_questions_text;
       this.ordrAbndCrtQckRpl3 = this.$store.getters.getCarts2.quick_reply_unsubscribe_text;
       this.ordrAbndCrtBtnDisabled = true;
+      this.sent_after_cart1 =
+        this.$store.getters.getCarts2.sent_after + " hour";
     });
   },
 };
