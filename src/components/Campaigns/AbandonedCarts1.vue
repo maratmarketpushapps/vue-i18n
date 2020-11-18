@@ -71,7 +71,7 @@
           <v-col cols="3" class="pl-0 ml-0">
             <v-select
               :label="$t('campaigns.carts1.selectLabel')"
-              :items="timeList"
+              :items="timeListCart1"
               @change="activeStateChng()"
               v-model="sent_after"
               dense
@@ -432,6 +432,13 @@ export default {
     },
     svBtnordrAbndCrtQckRplEdit3() {
       return this.ordrAbndCrtQckRplEdit3Btn;
+    },
+    timeListCart1() {
+      return this.timeList.slice(0,
+        this.timeList.indexOf(
+          this.$store.getters.getCarts2.sent_after + " hour"
+        )
+      );
     },
   },
   methods: {
