@@ -79,7 +79,7 @@
         </v-stepper></v-col
       >
       <v-col cols="1">
-        <v-row align="center" class="ml-0">
+        <v-row align="center" class="ml-0" v-if="!allstepsComplete">
           <v-tooltip
             :bottom="true"
             open-on-click
@@ -91,7 +91,7 @@
               <v-btn
                 icon
                 tile
-                v-if="!allstepsComplete"
+                
                 href="https://www.youtube.com/channel/UCOKGEwMeTDMkQr3cMXjmkEQ"
                 target="_blank"
                 v-on="on"
