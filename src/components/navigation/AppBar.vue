@@ -80,22 +80,36 @@
       >
       <v-col cols="1">
         <v-row align="center" class="ml-0">
-          <v-btn
-            icon
-            tile
-            v-if="!allstepsComplete"
-            href="https://www.youtube.com/channel/UCOKGEwMeTDMkQr3cMXjmkEQ"
-            target="_blank"
+          <v-tooltip
+            :bottom="true"
+            open-on-click
+            nudge-top="10"
+            nudge-right="100"
+            content-class="tooltip_color"
           >
-            <v-img
-              :src="playImg"
-              height="3vw"
-              width="2vw"
-              style="transform: scale(0.8)"
-              class="mt-0"
-            >
-            </v-img>
-          </v-btn>
+            <template v-slot:activator="{ on }">
+              <v-btn
+                icon
+                tile
+                v-if="!allstepsComplete"
+                href="https://www.youtube.com/channel/UCOKGEwMeTDMkQr3cMXjmkEQ"
+                target="_blank"
+                v-on="on"
+              >
+                <v-img
+                  :src="playImg"
+                  height="3vw"
+                  width="2vw"
+                  style="transform: scale(0.8)"
+                  class="mt-0"
+                >
+                </v-img>
+              </v-btn>
+            </template>
+            <span class="tooltip_text" tile>{{
+              $t("navbar.appbar.vidIconTxt")
+            }}</span>
+          </v-tooltip>
         </v-row>
       </v-col>
 
@@ -152,6 +166,7 @@ export default {
         this.$store.getters.getStep2Complete &&
         this.$store.getters.getStep3Complete
       );
+      
     },
     showUpgrade() {
       return this.$store.getters.getSubs.subscription_plan == "Mogul"
