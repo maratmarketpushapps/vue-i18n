@@ -213,6 +213,12 @@
       "vid1Title": "How does Cart Recovery work?",
       "vid2Title":"How to setup Cart Recovery?",
       "link": "Play video on Youtube ->"
+    },
+    "footers":{
+      "link1": "TERMS OF USE",
+      "link2": "DATA PROCESSING AGREEMENT",
+      "link3": "PRIVACY POLICY",
+      "cpyrght":"© Copyright 2020 Market Push Apps SRL-D. All rights reserved."
     }
   }
 }
