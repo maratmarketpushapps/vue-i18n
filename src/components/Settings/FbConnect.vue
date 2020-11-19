@@ -7,10 +7,10 @@
     :key="cardKey"
   >
     <v-row style="height:10%">
-      <v-col cols="6">
+      <v-col cols="8">
         <h3>{{ $t("settingsPage.fbCard1.header") }}</h3>
       </v-col>
-      <v-col cols="6" class="pa-2 pt-0 pr-0">
+      <v-col cols="4" class="pa-2 pt-0 pr-0">
         <v-row align="center" justify="end"
           ><TooltipIcon
             :posRight="true"

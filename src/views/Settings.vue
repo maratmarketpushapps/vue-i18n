@@ -26,7 +26,7 @@
       </v-col>
     </v-row>
     <v-row style="height:9%; width:99%"> </v-row>
-    <v-row style="height:40%; width:99%; background-color:#E6E7E8">
+    <v-row style="height:35%; width:99%; background-color:#E6E7E8" class="mb-0 pb-0">
       <v-col cols="6">
         <v-row style="height:100%">
           <InstructionalVids />
@@ -34,22 +34,20 @@
       </v-col>
       <v-col cols="6"> </v-col>
     </v-row>
-    <v-row style="height:20%; width:99%" class="pa-0 ma-0">
+    <v-row style="height:10%; width:96%" class="pa-0 ma-0">
       <v-col cols="2">
-        <v-row>
-          <a
+        <a
             href="https://www.marketpushapps.com/terms-of-use"
             target="_blank"
-            style="text-decoration:underline ; color: #323F4F; font-weight:bolder"
+            style="text-decoration:underline ; color: #323F4F; font-weight:bolder; font-size:11px"
             >{{ $t("settingsPage.footers.link1") }}</a
           >
-        </v-row>
       </v-col>
       <v-col cols="3">
         <a
           href="https://www.marketpushapps.com/data-processing-agreement"
           target="_blank"
-          style="text-decoration:underline ; color: #323F4F; font-weight:bolder"
+          style="text-decoration:underline ; color: #323F4F; font-weight:bolder; font-size:11px"
           >{{ $t("settingsPage.footers.link2") }}</a
         >
       </v-col>
@@ -57,14 +55,14 @@
         <a
           href="https://www.marketpushapps.com/privacy-policy"
           target="_blank"
-          style="text-decoration:underline ; color: #323F4F; font-weight:bolder"
+          style="text-decoration:underline ; color: #323F4F; font-weight:bolder; font-size:11px"
           >{{ $t("settingsPage.footers.link3") }}</a
         >
       </v-col>
       <v-col cols="4">
-        <v-row align="end">
+        <v-row justify="end" align="end" class="mt-1">
           <span
-            style="text-decoration:underline ; color: #323F4F; font-weight:bolder"
+            style="text-decoration:underline ; color: #323F4F; font-weight:bolder; font-size:11px"
           >
             {{ $t("settingsPage.footers.cpyrght") }}
           </span>

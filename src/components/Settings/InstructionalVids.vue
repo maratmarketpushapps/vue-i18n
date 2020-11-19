@@ -1,5 +1,5 @@
 <template>
-  <v-card tile height="85%" width="97%" class="font_dims" id="instrVid">
+  <v-card tile height="95%" width="97%" class="font_dims" id="instrVid">
     <v-row class="pl-3  mb-0" style="height:20%">
       <v-col cols="6" class="pb-0 mb-0">
         <h3 class="pt-3 pl-3">{{ $t("settingsPage.instVids.header") }}</h3>
