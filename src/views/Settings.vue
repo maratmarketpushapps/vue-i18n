@@ -25,7 +25,7 @@
         </v-row>
       </v-col>
     </v-row>
-    <v-row style="height:9%; width:99%"> </v-row>
+    <v-row style="height:6%; width:99%"> </v-row>
     <v-row style="height:35%; width:99%; background-color:#E6E7E8" class="mb-0 pb-0">
       <v-col cols="6">
         <v-row style="height:100%">
@@ -34,7 +34,7 @@
       </v-col>
       <v-col cols="6"> </v-col>
     </v-row>
-    <v-row style="height:10%; width:96%" class="pa-0 ma-0">
+    <v-row style="height:10%; width:93%" class="pa-0 ma-0">
       <v-col cols="2">
         <a
             href="https://www.marketpushapps.com/terms-of-use"
