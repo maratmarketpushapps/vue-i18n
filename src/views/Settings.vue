@@ -34,7 +34,7 @@
       </v-col>
       <v-col cols="6"> </v-col>
     </v-row>
-    <v-row style="height:10%; width:93%" class="pa-0 ma-0">
+    <v-row style="height:5%; width:93%" class="pa-0 ma-0">
       <v-col cols="2">
         <a
             href="https://www.marketpushapps.com/terms-of-use"
@@ -51,7 +51,7 @@
           >{{ $t("settingsPage.footers.link2") }}</a
         >
       </v-col>
-      <v-col cols="3">
+      <v-col cols="2">
         <a
           href="https://www.marketpushapps.com/privacy-policy"
           target="_blank"
@@ -59,7 +59,7 @@
           >{{ $t("settingsPage.footers.link3") }}</a
         >
       </v-col>
-      <v-col cols="4">
+      <v-col cols="5">
         <v-row justify="end" align="end" class="mt-1">
           <span
             style="text-decoration:underline ; color: #323F4F; font-weight:bolder; font-size:11px"

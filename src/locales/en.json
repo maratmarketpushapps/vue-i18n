@@ -8,8 +8,8 @@
       "allStepsCompHeader": "You're all set!",
       "buttonText": "Done",
       "allStepsCompTxt1": "Congratulations! All the steps to set up the app were successfully done!",
-      "allStepsCompTxt2": " Go to your website and open one of your product pages. Once you add an item to the cart, the Facebook Subscribe popup will open!"
-    ,"vidIconTxt":"Video Tutorial: How to Set Up"
+      "allStepsCompTxt2": " Go to your website and open one of your product pages. Once you add an item to the cart, the Facebook Subscribe popup will open!",
+      "vidIconTxt": "Video Tutorial: How to Set Up"
     },
     "navdrawer": {
       "Settings": "Settings",
@@ -182,7 +182,11 @@
     "fbCard3": {
       "msg1": "Your Facebook Page",
       "msg2": "is currently connected.",
-      "buttonText": "DISCONNECT"
+      "buttonText": "DISCONNECT",
+      "whtlstTxt": "Please add your site to the Whitelisted Domains in the",
+      "whtlstLnk": "settings of your Facebook Page.",
+      "tutTxt": "Follow the steps from",
+      "tutLnk": "this tutorial"
     },
     "upgradeCard": {
       "header1": "You are using the ",
@@ -211,14 +215,14 @@
     "instVids": {
       "header": "Tutorials",
       "vid1Title": "How does Cart Recovery work?",
-      "vid2Title":"How to setup Cart Recovery?",
+      "vid2Title": "How to setup Cart Recovery?",
       "link": "Play video on Youtube ->"
     },
-    "footers":{
+    "footers": {
       "link1": "TERMS OF USE",
       "link2": "DATA PROCESSING AGREEMENT",
       "link3": "PRIVACY POLICY",
-      "cpyrght":"© Copyright 2020 Market Push Apps SRL-D. All rights reserved."
+      "cpyrght": "© Copyright 2020 Market Push Apps SRL-D. All rights reserved."
     }
   }
 }

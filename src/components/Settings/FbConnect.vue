@@ -145,6 +145,30 @@
             {{ $t("settingsPage.fbCard3.buttonText") }}
           </v-btn></v-row
         >
+        <v-row justify="center" class="mt-5 pb-1 mb-0">
+          <span class="pr-1" style="font-size:85%; font-style: italic;">{{
+            $t("settingsPage.fbCard3.whtlstTxt")
+          }}</span>
+          <span style="font-size:85%; font-style: italic;" class="pr-1">
+            <a
+              :href="getPageSettingsLink"
+              target="_blank"
+              style="text-decoration:underline"
+              >{{ $t("settingsPage.fbCard3.whtlstLnk") }}</a
+            >
+          </span>
+          <span class="pr-1" style="font-size:85%; font-style: italic;">{{
+            $t("settingsPage.fbCard3.tutTxt")
+          }}</span>
+          <span style="font-size:85%; font-style: italic;" class="pr-1">
+            <a
+              href="https://www.marketpushapps.com/how-to-whitelist-your-site-domain-in-your-facebook-settings"
+              target="_blank"
+              style="text-decoration:underline"
+              >{{ $t("settingsPage.fbCard3.tutLnk") }}</a
+            >
+          </span>
+        </v-row>
       </v-col>
     </v-row>
   </v-card>
@@ -161,7 +185,7 @@ export default {
   name: "FbConnect",
   components: {
     TooltipIcon,
-    fbIcon
+    fbIcon,
   },
   data() {
     return {
@@ -173,14 +197,14 @@ export default {
         {
           value: 1,
           text: "Your Business Name",
-          disabled: true
-        }
-      ]
+          disabled: true,
+        },
+      ],
     };
   },
   methods: {
     step1Comp() {
-      Vue.FB.getLoginStatus(response => {
+      Vue.FB.getLoginStatus((response) => {
         console.log("FBAUTH status :: " + response.status);
 
         if (response.status == "connected") {
@@ -190,11 +214,11 @@ export default {
 
           axios
             .get(url)
-            .then(res => {
+            .then((res) => {
               console.log("PageResponse ::" + JSON.stringify(res));
               let pgList = JSON.parse(JSON.stringify(res)).data.data;
               this.arrVal = 1;
-              pgList.forEach(element => {
+              pgList.forEach((element) => {
                 this.arrVal++;
                 let pgObj = {
                   value: this.arrVal,
@@ -204,7 +228,7 @@ export default {
                   facebook_page_id: element.id,
                   facebook_user_id: fbUsrId,
                   facebook_short_access_token: element.access_token,
-                  setup_step_1_completed: true
+                  setup_step_1_completed: true,
                 };
                 this.pageList.push(pgObj);
               });
@@ -212,12 +236,12 @@ export default {
                 this.fbStep = 2;
               }
             })
-            .catch(error => {
+            .catch((error) => {
               console.log(error);
             });
         } else {
           Vue.FB.login(
-            resp => {
+            (resp) => {
               console.log(resp);
 
               if (resp.status == "connected") {
@@ -226,11 +250,11 @@ export default {
 
                 axios
                   .get(url)
-                  .then(res => {
+                  .then((res) => {
                     console.log("PageResponse ::" + JSON.stringify(res));
                     let pgList = JSON.parse(JSON.stringify(res)).data.data;
                     this.arrVal = 1;
-                    pgList.forEach(element => {
+                    pgList.forEach((element) => {
                       this.arrVal++;
                       let pgObj = {
                         value: this.arrVal,
@@ -240,7 +264,7 @@ export default {
                         facebook_page_id: element.id,
                         facebook_user_id: fbUsrId,
                         facebook_short_access_token: element.access_token,
-                        setup_step_1_completed: true
+                        setup_step_1_completed: true,
                       };
                       this.pageList.push(pgObj);
                     });
@@ -248,24 +272,24 @@ export default {
                       this.fbStep = 2;
                     }
                   })
-                  .catch(error => {
+                  .catch((error) => {
                     console.log(error);
                   });
               }
             },
             {
               scope: "pages_show_list, pages_messaging, pages_manage_metadata",
-              return_scopes: true
+              return_scopes: true,
             }
           );
         }
       });
     },
     step2Comp() {
-      let pageObj = this.pageList.find(o => o.value === this.PageSelectedId);
-      this.$store.dispatch("updFbSettings", pageObj).then(res => {
+      let pageObj = this.pageList.find((o) => o.value === this.PageSelectedId);
+      this.$store.dispatch("updFbSettings", pageObj).then((res) => {
         console.log(res);
-        this.$store.dispatch("setSettings").then(response => {
+        this.$store.dispatch("setSettings").then((response) => {
           console.log(response);
           this.fbStep = 3;
         });
@@ -277,16 +301,16 @@ export default {
         facebook_page_id: "",
         facebook_user_id: "",
         facebook_short_access_token: "",
-        setup_step_1_completed: false
+        setup_step_1_completed: false,
       };
-      this.$store.dispatch("updFbSettings", fbObj).then(res => {
+      this.$store.dispatch("updFbSettings", fbObj).then((res) => {
         console.log(res);
-        this.$store.dispatch("setSettings").then(response => {
-          Vue.FB.getLoginStatus(response => {
+        this.$store.dispatch("setSettings").then((response) => {
+          Vue.FB.getLoginStatus((response) => {
             console.log("FBAUTH status :: " + response.status);
 
             if (response.status == "connected") {
-              Vue.FB.logout(resp => {
+              Vue.FB.logout((resp) => {
                 console.log("Facebook Logout");
                 console.log(resp);
               });
@@ -298,10 +322,10 @@ export default {
           this.fbStep = 1;
         });
       });
-    }
+    },
   },
   beforeCreate() {
-    this.$store.dispatch("getSettings").then(res => {
+    this.$store.dispatch("getSettings").then((res) => {
       if (res === "success") {
         console.log(res);
         console.log("Step to display" + this.fbStep);
@@ -327,8 +351,15 @@ export default {
     },
     stepShow() {
       return this.fbStep;
-    }
-  }
+    },
+    getPageSettingsLink() {
+      if (this.getSettingsState.facebook_page_name == "") {
+        return `https://www.facebook.com/pages`;
+      } else {
+        return `https://www.facebook.com/${this.getSettingsState.facebook_page_id}/settings/?tab=messenger_platform`;
+      }
+    },
+  },
 };
 </script>
 
