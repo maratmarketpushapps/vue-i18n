@@ -27,6 +27,13 @@
             class="pa-10"
           >
             <v-card color="white" tile class="pb-4 pt-2">
+              <v-row justify="end" class="pr-4 pt-2">
+                <v-btn x-small icon @click="toggleDialog()">
+                  <v-icon color="black">
+                    mdi-window-close
+                  </v-icon>
+                </v-btn>
+              </v-row>
               <v-card-text
                 style="color:black ;text-align: center; font-size:12px"
               >

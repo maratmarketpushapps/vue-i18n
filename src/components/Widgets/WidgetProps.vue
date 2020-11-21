@@ -93,7 +93,7 @@
       >
         <v-col cols="1"></v-col>
         <v-col cols="11 px-0 mx-0">
-          <v-row justify="start" style="width: 100%;">
+          <!-- <v-row justify="start" style="width: 100%;">
             <span class="pr-1" style="font-size:75%; font-style: italic;">{{
               $t("widgets.chckBoxNote")
             }}</span>
@@ -105,7 +105,7 @@
                 >{{ $t("widgets.chckBoxNoteHref") }}</a
               >
             </span>
-          </v-row>
+          </v-row> -->
         </v-col>
       </v-row>
 

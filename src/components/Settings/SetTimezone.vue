@@ -26,7 +26,7 @@
           <v-col class="pt-0 mt-0">
             <v-row justify="center" class="pl-4 pr-5 pt-0 pb-0 mb-0"
               ><v-col class="pb-0 mb-0">
-                <v-select
+                <v-autocomplete
                   :label="$t('settingsPage.tzCard.label')"
                   :items="pageList"
                   @change="enableSave"
@@ -34,7 +34,7 @@
                   dense
                   style="font-size:110%"
                 >
-                </v-select> </v-col
+                </v-autocomplete> </v-col
             ></v-row>
             <v-row justify="center" align="center" style="padding-top:5%">
               <v-btn

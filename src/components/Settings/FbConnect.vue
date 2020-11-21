@@ -130,7 +130,13 @@
       <v-col>
         <v-row justify="center" class="pb-10"
           >{{ $t("settingsPage.fbCard3.msg1") }}
-          <b class="pl-1 pr-1">{{ card3Msg }}</b>
+          <a
+            :href="getPageLink"
+            target="_blank"
+            style="font-weight:bolder; color:#323F4F"
+            class="pl-1 pr-1"
+            >{{ card3Msg }}</a
+          >
           {{ $t("settingsPage.fbCard3.msg2") }}
         </v-row>
         <v-row justify="center" class="pt-0 pb-1 mb-0">
@@ -352,6 +358,10 @@ export default {
     stepShow() {
       return this.fbStep;
     },
+    getPageLink() {
+      return `https://www.facebook.com/${this.getSettingsState.facebook_page_id}`;
+    },
+
     getPageSettingsLink() {
       if (this.getSettingsState.facebook_page_name == "") {
         return `https://www.facebook.com/pages`;
