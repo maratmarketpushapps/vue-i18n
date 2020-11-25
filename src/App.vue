@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app @click="checkaxios()">
     <v-content class="app_background app-style" style="height:auto">
       <NavDrawer />
       <AppBar style="height: 10vh" />
@@ -109,6 +109,14 @@
               </v-row>
             </v-col>
           </v-row>
+          <v-overlay
+            :absolute="absolute"
+            :opacity="opacity"
+            :value="isLoading"
+            :z-index="zIndex"
+          >
+            <loaderAnim />
+          </v-overlay>
         </v-col>
       </v-row>
     </v-content>
@@ -121,6 +129,8 @@
 import AppBar from "@/components/navigation/AppBar.vue";
 import NavDrawer from "@/components/navigation/NavDrawer.vue";
 import iconSuccess from "@/assets/icons/misc/icon-success.svg";
+import loaderAnim from "@/components/GlobalComponents/loaderAnim.vue";
+import axios from "axios";
 
 (function(h, o, t, j, a, r) {
   h.hj =
@@ -162,17 +172,42 @@ export default {
         });
       });
   },
-  beforeUpdate() {
-    this.$store.dispatch("getGlobal").then((response) => {
-      console.log(response);
-      this.$i18n.locale = this.$store.getters.getLocale;
-    });
+  // beforeUpdate() {
+  //   this.$store.dispatch("getGlobal").then((response) => {
+  //     console.log(response);
+  //     this.$i18n.locale = this.$store.getters.getLocale;
+  //   });
+  // },
+  created() {
+    axios.interceptors.request.use(
+      (config) => {
+        this.isLoading = true;
+        this.nuRequests++;
+        return config;
+      },
+      (error) => {
+        this.isLoading = true;
+        return Promise.reject(error);
+      }
+    );
+
+    axios.interceptors.response.use(
+      (response) => {
+        this.isLoading = true;
+        return response;
+      },
+      (error) => {
+        this.isLoading = true;
+        return Promise.reject(error);
+      }
+    );
   },
 
   components: {
     AppBar,
     NavDrawer,
     iconSuccess,
+    loaderAnim,
   },
 
   data() {
@@ -181,11 +216,16 @@ export default {
       absolute: false,
       opacity: 0.46,
       zIndex: 5,
+      isLoading: false,
+      nuRequests: 0,
     };
   },
   methods: {
     canclOvrlyStepComp() {
       this.$store.dispatch("updStepsCompOnload", true);
+    },
+    checkaxios() {
+      console.log("inside axios check");
     },
   },
   computed: {
@@ -197,6 +237,9 @@ export default {
         !this.$store.getters.getStepsCompOnload
       );
     },
+    // isLoading() {
+    //   return this.$store.getters.getisLoading;
+    // },
   },
 };
 </script>

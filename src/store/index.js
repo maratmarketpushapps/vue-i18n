@@ -9,6 +9,7 @@ export default new Vuex.Store({
     TOKEN: "JWT_TOKEN",
     instance_id: "bb-cc-dd",
     stepsCompOnload: true,
+    axiosLoading: false,
     globalVars: {
       locale: "",
       payment_currency: "",
@@ -86,7 +87,7 @@ export default new Vuex.Store({
     },
     navState: {
       currentSelected: "Dashboard",
-      currentHover:"Dashboard"
+      currentHover: "Dashboard",
     },
     cartsState: {
       carts: [],
@@ -187,6 +188,9 @@ export default new Vuex.Store({
     },
     getStepsCompOnload: (state) => {
       return state.stepsCompOnload;
+    },
+    getisLoading: (state) => {
+      return state.axiosLoading;
     },
     getAccountInfo: (state) => {
       let obj = {
