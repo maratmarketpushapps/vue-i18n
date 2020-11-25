@@ -186,18 +186,18 @@ export default {
         return config;
       },
       (error) => {
-        this.isLoading = true;
+        this.isLoading = false;
         return Promise.reject(error);
       }
     );
 
     axios.interceptors.response.use(
       (response) => {
-        this.isLoading = true;
+        this.isLoading = false;
         return response;
       },
       (error) => {
-        this.isLoading = true;
+        this.isLoading = false;
         return Promise.reject(error);
       }
     );
