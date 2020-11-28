@@ -1,7 +1,7 @@
 <template>
   <v-card tile height="auto" width="95%" class="wdgt_font_dims card-scroll">
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 mt-0">
-      <v-row style="height:25%;width:100%" class="pa-0 ma-0 ">
+      <v-row style="height:20%;width:100%" class="pa-0 ma-0 ">
         <v-col cols="5">
           <v-row
             class="my-0 ml-2"
@@ -48,6 +48,7 @@
       <v-row
         style="border-radius:0px; height:20%;width:100%"
         class="px-0 mx-0 mt-2"
+        v-show="false"
       >
         <v-col cols="1"></v-col>
         <v-col cols="5 px-0 mx-0">
@@ -88,7 +89,7 @@
       </v-row>
       <v-row
         style="border-radius:0px; height:2%;width:100%"
-        class="px-0 mx-0 mt-2"
+        class="px-0 mx-0 mt-0"
         v-show="radioSelect == 'Checkbox'"
       >
         <v-col cols="1"></v-col>
