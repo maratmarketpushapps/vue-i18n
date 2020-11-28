@@ -102,20 +102,28 @@
           <v-row align="center" justify="center">
             <v-col cols="auto" style="width: 6vw;"> </v-col>
             <v-col cols="11">
-              <v-row>
+              <v-row justify="center" align="center"
+              v-show="!isLoading">
                 <transition name="rtr">
                   <router-view></router-view>
                 </transition>
               </v-row>
             </v-col>
           </v-row>
+
           <v-overlay
             :absolute="absolute"
-            :opacity="opacity"
+            opacity="0"
             :value="isLoading"
             :z-index="zIndex"
           >
-            <loaderAnim />
+            <v-progress-circular
+              indeterminate
+              color="#4E5D6B"
+              size="100"
+              style="z-index:5 "
+            >
+            </v-progress-circular>
           </v-overlay>
         </v-col>
       </v-row>
@@ -129,7 +137,7 @@
 import AppBar from "@/components/navigation/AppBar.vue";
 import NavDrawer from "@/components/navigation/NavDrawer.vue";
 import iconSuccess from "@/assets/icons/misc/icon-success.svg";
-import loaderAnim from "@/components/GlobalComponents/loaderAnim.vue";
+// import loaderAnim from "@/components/GlobalComponents/loaderAnim.vue";
 import axios from "axios";
 
 (function(h, o, t, j, a, r) {
@@ -207,7 +215,7 @@ export default {
     AppBar,
     NavDrawer,
     iconSuccess,
-    loaderAnim,
+    // loaderAnim,
   },
 
   data() {
