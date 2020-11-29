@@ -54,9 +54,15 @@ import { mapGetters } from "vuex";
 export default {
   name: "CartsTable",
   mounted() {
-    this.$store.dispatch("getCarts", {
-      startDate: this.startDate,
-      endDate: this.endDate,
+    this.$store.dispatch("updIsLoading", true).then(() => {
+      this.$store
+        .dispatch("getCarts", {
+          startDate: this.startDate,
+          endDate: this.endDate,
+        })
+        .then(() => {
+          this.$store.dispatch("updIsLoading", false);
+        });
     });
   },
   props: ["startDate", "endDate"],

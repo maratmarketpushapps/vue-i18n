@@ -1,5 +1,5 @@
 <template>
-  <v-app @click="checkaxios()">
+  <v-app>
     <v-content class="app_background app-style" style="height:auto">
       <NavDrawer />
       <AppBar style="height: 10vh" />
@@ -102,8 +102,7 @@
           <v-row align="center" justify="center">
             <v-col cols="auto" style="width: 6vw;"> </v-col>
             <v-col cols="11">
-              <v-row justify="center" align="center"
-              v-show="!isLoading">
+              <v-row>
                 <transition name="rtr">
                   <router-view></router-view>
                 </transition>
@@ -138,7 +137,7 @@ import AppBar from "@/components/navigation/AppBar.vue";
 import NavDrawer from "@/components/navigation/NavDrawer.vue";
 import iconSuccess from "@/assets/icons/misc/icon-success.svg";
 // import loaderAnim from "@/components/GlobalComponents/loaderAnim.vue";
-import axios from "axios";
+// import axios from "axios";
 
 (function(h, o, t, j, a, r) {
   h.hj =
@@ -157,28 +156,38 @@ import axios from "axios";
 export default {
   name: "App",
   beforeCreate() {
-    this.$store
-      .dispatch("updateToken", this.$route.query.instance)
-      .then((resp) => {
-        console.log(resp);
-        this.$store.dispatch("getGlobal").then((response) => {
-          console.log(response);
-          this.$i18n.locale = this.$store.getters.getLocale;
-          console.log("Query Parameters :: " + this.$route.query.instance);
-          this.$store.dispatch("getMsg").then((response) => {
+    
+      this.$store
+        .dispatch("updateToken", this.$route.query.instance)
+        .then((resp) => {
+          console.log(resp);
+          this.$store.dispatch("getGlobal").then((response) => {
             console.log(response);
-            this.$store.dispatch("getSettings").then(() => {
-              this.$store.dispatch("getWidgets").then(() => {
-                this.$store.getters.getStep1Complete &&
-                this.$store.getters.getStep2Complete &&
-                this.$store.getters.getStep3Complete
-                  ? this.$store.dispatch("updStepsCompOnload", true)
-                  : this.$store.dispatch("updStepsCompOnload", false);
+            this.$i18n.locale = this.$store.getters.getLocale;
+            console.log("Query Parameters :: " + this.$route.query.instance);
+            this.$store.dispatch("getMsg").then((response) => {
+              console.log(response);
+              this.$store.dispatch("getSettings").then(() => {
+                this.$store.dispatch("getWidgets").then(() => {
+                  this.$store.getters.getStep1Complete &&
+                  this.$store.getters.getStep2Complete &&
+                  this.$store.getters.getStep3Complete
+                    ? this.$store
+                        .dispatch("updStepsCompOnload", true)
+                        .then(() => {
+                          // this.$store.dispatch("updIsLoading", false);
+                        })
+                    : this.$store
+                        .dispatch("updStepsCompOnload", false)
+                        .then(() => {
+                          // this.$store.dispatch("updIsLoading", false);
+                        });
+                });
               });
             });
           });
         });
-      });
+    
   },
   // beforeUpdate() {
   //   this.$store.dispatch("getGlobal").then((response) => {
@@ -186,30 +195,30 @@ export default {
   //     this.$i18n.locale = this.$store.getters.getLocale;
   //   });
   // },
-  created() {
-    axios.interceptors.request.use(
-      (config) => {
-        this.isLoading = true;
-        this.nuRequests++;
-        return config;
-      },
-      (error) => {
-        this.isLoading = false;
-        return Promise.reject(error);
-      }
-    );
+  // created() {
+  //   axios.interceptors.request.use(
+  //     (config) => {
+  //       this.isLoading = true;
+  //       this.nuRequests++;
+  //       return config;
+  //     },
+  //     (error) => {
+  //       this.isLoading = false;
+  //       return Promise.reject(error);
+  //     }
+  //   );
 
-    axios.interceptors.response.use(
-      (response) => {
-        this.isLoading = false;
-        return response;
-      },
-      (error) => {
-        this.isLoading = false;
-        return Promise.reject(error);
-      }
-    );
-  },
+  //   axios.interceptors.response.use(
+  //     (response) => {
+  //       this.isLoading = false;
+  //       return response;
+  //     },
+  //     (error) => {
+  //       this.isLoading = false;
+  //       return Promise.reject(error);
+  //     }
+  //   );
+  // },
 
   components: {
     AppBar,
@@ -224,7 +233,7 @@ export default {
       absolute: false,
       opacity: 0.46,
       zIndex: 5,
-      isLoading: false,
+      // isLoading: false,
       nuRequests: 0,
     };
   },
@@ -245,9 +254,9 @@ export default {
         !this.$store.getters.getStepsCompOnload
       );
     },
-    // isLoading() {
-    //   return this.$store.getters.getisLoading;
-    // },
+    isLoading() {
+      return this.$store.getters.getisLoading;
+    },
   },
 };
 </script>

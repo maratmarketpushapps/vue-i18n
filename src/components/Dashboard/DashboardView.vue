@@ -422,73 +422,78 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("getSettings").then(() => {
-      if (this.$store.getters.getSettingsState.timezone_id == "") {
-        this.$store.dispatch("updateTimezone", moment.tz.guess()).then(() => {
-          this.$store.dispatch("setSettings").then(() => {
-            this.$store
-              .dispatch("getDash", {
-                startDate: this.startDate,
-                endDate: this.endDate,
-              })
-              .then(() => {
-                this.recovMsg1Percent =
-                  (this.$store.getters.getDash.campaigns
-                    .recovery_messages_nr1_sent *
-                    100) /
-                  this.$store.getters.getDash.campaigns.total_messages;
-                this.recovMsg2Percent =
-                  (this.$store.getters.getDash.campaigns
-                    .recovery_messages_nr2_sent *
-                    100) /
-                  this.$store.getters.getDash.campaigns.total_messages;
-                this.abndndCartPcnt =
-                  (this.$store.getters.getDash.cart_recovery.abandoned_carts *
-                    100) /
-                  this.$store.getters.getDash.cart_recovery.abandoned_carts;
-                this.fbSubPcnt =
-                  (this.$store.getters.getDash.cart_recovery
-                    .facebook_subscribers *
-                    100) /
-                  this.$store.getters.getDash.cart_recovery.abandoned_carts;
-                this.cartRecovPcnt =
-                  (this.$store.getters.getDash.cart_recovery.carts_recovered *
-                    100) /
-                  this.$store.getters.getDash.cart_recovery.abandoned_carts;
-              });
+    this.$store.dispatch("updIsLoading", true).then(() => {
+      this.$store.dispatch("getSettings").then(() => {
+        if (this.$store.getters.getSettingsState.timezone_id == "") {
+          this.$store.dispatch("updateTimezone", moment.tz.guess()).then(() => {
+            this.$store.dispatch("setSettings").then(() => {
+              this.$store
+                .dispatch("getDash", {
+                  startDate: this.startDate,
+                  endDate: this.endDate,
+                })
+                .then(() => {
+                  this.recovMsg1Percent =
+                    (this.$store.getters.getDash.campaigns
+                      .recovery_messages_nr1_sent *
+                      100) /
+                    this.$store.getters.getDash.campaigns.total_messages;
+                  this.recovMsg2Percent =
+                    (this.$store.getters.getDash.campaigns
+                      .recovery_messages_nr2_sent *
+                      100) /
+                    this.$store.getters.getDash.campaigns.total_messages;
+                  this.abndndCartPcnt =
+                    (this.$store.getters.getDash.cart_recovery.abandoned_carts *
+                      100) /
+                    this.$store.getters.getDash.cart_recovery.abandoned_carts;
+                  this.fbSubPcnt =
+                    (this.$store.getters.getDash.cart_recovery
+                      .facebook_subscribers *
+                      100) /
+                    this.$store.getters.getDash.cart_recovery.abandoned_carts;
+                  this.cartRecovPcnt =
+                    (this.$store.getters.getDash.cart_recovery.carts_recovered *
+                      100) /
+                    this.$store.getters.getDash.cart_recovery.abandoned_carts;
+                  this.$store.dispatch("updIsLoading", false);
+                });
+            });
           });
-        });
-      } else {
-        this.$store
-          .dispatch("getDash", {
-            startDate: this.startDate,
-            endDate: this.endDate,
-          })
-          .then(() => {
-            this.recovMsg1Percent =
-              (this.$store.getters.getDash.campaigns
-                .recovery_messages_nr1_sent *
-                100) /
-              this.$store.getters.getDash.campaigns.total_messages;
-            this.recovMsg2Percent =
-              (this.$store.getters.getDash.campaigns
-                .recovery_messages_nr2_sent *
-                100) /
-              this.$store.getters.getDash.campaigns.total_messages;
-            this.abndndCartPcnt =
-              (this.$store.getters.getDash.cart_recovery.abandoned_carts *
-                100) /
-              this.$store.getters.getDash.cart_recovery.abandoned_carts;
-            this.fbSubPcnt =
-              (this.$store.getters.getDash.cart_recovery.facebook_subscribers *
-                100) /
-              this.$store.getters.getDash.cart_recovery.abandoned_carts;
-            this.cartRecovPcnt =
-              (this.$store.getters.getDash.cart_recovery.carts_recovered *
-                100) /
-              this.$store.getters.getDash.cart_recovery.abandoned_carts;
-          });
-      }
+        } else {
+          this.$store
+            .dispatch("getDash", {
+              startDate: this.startDate,
+              endDate: this.endDate,
+            })
+            .then(() => {
+              this.recovMsg1Percent =
+                (this.$store.getters.getDash.campaigns
+                  .recovery_messages_nr1_sent *
+                  100) /
+                this.$store.getters.getDash.campaigns.total_messages;
+              this.recovMsg2Percent =
+                (this.$store.getters.getDash.campaigns
+                  .recovery_messages_nr2_sent *
+                  100) /
+                this.$store.getters.getDash.campaigns.total_messages;
+              this.abndndCartPcnt =
+                (this.$store.getters.getDash.cart_recovery.abandoned_carts *
+                  100) /
+                this.$store.getters.getDash.cart_recovery.abandoned_carts;
+              this.fbSubPcnt =
+                (this.$store.getters.getDash.cart_recovery
+                  .facebook_subscribers *
+                  100) /
+                this.$store.getters.getDash.cart_recovery.abandoned_carts;
+              this.cartRecovPcnt =
+                (this.$store.getters.getDash.cart_recovery.carts_recovered *
+                  100) /
+                this.$store.getters.getDash.cart_recovery.abandoned_carts;
+              this.$store.dispatch("updIsLoading", false);
+            });
+        }
+      });
     });
   },
   computed: {

@@ -240,7 +240,11 @@ export default {
   },
 
   beforeCreate() {
-    this.$store.dispatch("getWidgets");
+    this.$store.dispatch("updIsLoading", true).then(() => {
+      this.$store.dispatch("getWidgets").then(() => {
+        this.$store.dispatch("updIsLoading", false);
+      });
+    });
   },
 };
 </script>

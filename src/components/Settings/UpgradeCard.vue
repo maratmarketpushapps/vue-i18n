@@ -62,15 +62,18 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("getSubs").then((response) => {
-      if (response == "success") {
-        this.settingsApiCallSuccess = true;
-        this.$store.dispatch("getPlan").then((response) => {
-          if (response == "success") {
-            this.planApiCallSuccess = true;
-          }
-        });
-      }
+    this.$store.dispatch("updIsLoading", true).then(() => {
+      this.$store.dispatch("getSubs").then((response) => {
+        if (response == "success") {
+          this.settingsApiCallSuccess = true;
+          this.$store.dispatch("getPlan").then((response) => {
+            if (response == "success") {
+              this.$store.dispatch("updIsLoading", false);
+              this.planApiCallSuccess = true;
+            }
+          });
+        }
+      });
     });
   },
   computed: {

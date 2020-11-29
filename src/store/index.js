@@ -9,7 +9,7 @@ export default new Vuex.Store({
     TOKEN: "JWT_TOKEN",
     instance_id: "bb-cc-dd",
     stepsCompOnload: true,
-    axiosLoading: false,
+    isLoading: 0,
     globalVars: {
       locale: "",
       payment_currency: "",
@@ -190,7 +190,7 @@ export default new Vuex.Store({
       return state.stepsCompOnload;
     },
     getisLoading: (state) => {
-      return state.axiosLoading;
+      return state.isLoading == 0 ? false : true;
     },
     getAccountInfo: (state) => {
       let obj = {
@@ -686,6 +686,9 @@ export default new Vuex.Store({
     SET_STEPS_COMP_ON_LOAD(state, val) {
       state.stepsCompOnload = val;
     },
+    SET_IS_LOADING(state, val) {
+      val ? state.isLoading++ : state.isLoading--;
+    },
 
     SET_DASH_VALS(state, obj) {
       state.dashVars.campaigns.total_messages = obj.campaigns.total_messages;
@@ -1173,6 +1176,12 @@ export default new Vuex.Store({
     updStepsCompOnload({ commit }, val) {
       return new Promise((resolve) => {
         commit("SET_STEPS_COMP_ON_LOAD", val);
+        resolve("success");
+      });
+    },
+    updIsLoading({ commit }, val) {
+      return new Promise((resolve) => {
+        commit("SET_IS_LOADING", val);
         resolve("success");
       });
     },

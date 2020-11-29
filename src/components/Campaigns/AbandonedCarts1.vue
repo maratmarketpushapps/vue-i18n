@@ -42,7 +42,10 @@
           </v-btn>
         </v-row>
         <v-row justify="end" style="width: 100%">
-          <span v-if="!cart1Edit" @click="editCart1" style="font-size:85%; cursor: pointer;"
+          <span
+            v-if="!cart1Edit"
+            @click="editCart1"
+            style="font-size:85%; cursor: pointer;"
             >{{ $t("campaigns.carts1.iconTxt") }}</span
           >
         </v-row>
@@ -101,7 +104,7 @@
             dense
             style="font-size:110%"
             class="mt-3 pb-0 ml-6 mr-9"
-            :hint="$t('campaigns.ordrrcpt.hint1')"
+            
           >
           </v-text-field>
         </v-row>
@@ -434,7 +437,8 @@ export default {
       return this.ordrAbndCrtQckRplEdit3Btn;
     },
     timeListCart1() {
-      return this.timeList.slice(0,
+      return this.timeList.slice(
+        0,
         this.timeList.indexOf(
           this.$store.getters.getCarts2.sent_after + " hour"
         )
@@ -443,25 +447,28 @@ export default {
   },
   methods: {
     saveOrdrAbndCrt() {
-      let obj = {
-        active: this.ordrAbndCrtSwitchLive,
-        intro_message: this.ordrAbndCrtIntroMsg,
-        title: this.ordrAbndCrtTitle,
-        subtitle: this.ordrAbndCrtSubTitle,
-        button_text: this.ordrAbndCrtBtnText,
-        quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
-        quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
-        quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
-        sent_after: Number(this.sent_after.split(" ")[0]),
-      };
+      this.$store.dispatch("updIsLoading", true).then(() => {
+        let obj = {
+          active: this.ordrAbndCrtSwitchLive,
+          intro_message: this.ordrAbndCrtIntroMsg,
+          title: this.ordrAbndCrtTitle,
+          subtitle: this.ordrAbndCrtSubTitle,
+          button_text: this.ordrAbndCrtBtnText,
+          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
+          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
+          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
+          sent_after: Number(this.sent_after.split(" ")[0]),
+        };
 
-      this.$store.dispatch("updOrdrAbndCrt", obj).then((response) => {
-        console.log(response);
-        this.$store.dispatch("setMsg").then((resp) => {
-          console.log(resp);
-          this.ordrAbndCrtBtnDisabled = true;
-          this.$store.dispatch("getMsg").then((response) => {
-            console.log(response);
+        this.$store.dispatch("updOrdrAbndCrt", obj).then((response) => {
+          console.log(response);
+          this.$store.dispatch("setMsg").then((resp) => {
+            console.log(resp);
+            this.ordrAbndCrtBtnDisabled = true;
+            this.$store.dispatch("getMsg").then((response) => {
+              console.log(response);
+              this.$store.dispatch("updIsLoading", false);
+            });
           });
         });
       });
@@ -629,19 +636,22 @@ export default {
   },
 
   beforeCreate() {
-    this.$store.dispatch("getMsg").then((response) => {
-      console.log(response);
+    this.$store.dispatch("updIsLoading", true).then(() => {
+      this.$store.dispatch("getMsg").then((response) => {
+        console.log(response);
 
-      this.sent_after = this.$store.getters.getCarts1.sent_after + " hour";
-      this.ordrAbndCrtSwitchLive = this.$store.getters.getCarts1.active;
-      this.ordrAbndCrtIntroMsg = this.$store.getters.getCarts1.intro_message;
-      this.ordrAbndCrtTitle = this.$store.getters.getCarts1.title;
-      this.ordrAbndCrtSubTitle = this.$store.getters.getCarts1.subtitle;
-      this.ordrAbndCrtBtnText = this.$store.getters.getCarts1.button_text;
-      this.ordrAbndCrtQckRpl1 = this.$store.getters.getCarts1.quick_reply_thank_you_text;
-      this.ordrAbndCrtQckRpl2 = this.$store.getters.getCarts1.quick_reply_more_questions_text;
-      this.ordrAbndCrtQckRpl3 = this.$store.getters.getCarts1.quick_reply_unsubscribe_text;
-      this.ordrAbndCrtBtnDisabled = true;
+        this.sent_after = this.$store.getters.getCarts1.sent_after + " hour";
+        this.ordrAbndCrtSwitchLive = this.$store.getters.getCarts1.active;
+        this.ordrAbndCrtIntroMsg = this.$store.getters.getCarts1.intro_message;
+        this.ordrAbndCrtTitle = this.$store.getters.getCarts1.title;
+        this.ordrAbndCrtSubTitle = this.$store.getters.getCarts1.subtitle;
+        this.ordrAbndCrtBtnText = this.$store.getters.getCarts1.button_text;
+        this.ordrAbndCrtQckRpl1 = this.$store.getters.getCarts1.quick_reply_thank_you_text;
+        this.ordrAbndCrtQckRpl2 = this.$store.getters.getCarts1.quick_reply_more_questions_text;
+        this.ordrAbndCrtQckRpl3 = this.$store.getters.getCarts1.quick_reply_unsubscribe_text;
+        this.ordrAbndCrtBtnDisabled = true;
+        this.$store.dispatch("updIsLoading", false);
+      });
     });
   },
 };

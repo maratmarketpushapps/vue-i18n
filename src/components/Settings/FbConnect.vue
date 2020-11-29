@@ -293,11 +293,14 @@ export default {
     },
     step2Comp() {
       let pageObj = this.pageList.find((o) => o.value === this.PageSelectedId);
-      this.$store.dispatch("updFbSettings", pageObj).then((res) => {
-        console.log(res);
-        this.$store.dispatch("setSettings").then((response) => {
-          console.log(response);
-          this.fbStep = 3;
+      this.$store.dispatch("updIsLoading", true).then(() => {
+        this.$store.dispatch("updFbSettings", pageObj).then((res) => {
+          console.log(res);
+          this.$store.dispatch("setSettings").then((response) => {
+            console.log(response);
+            this.$store.dispatch("updIsLoading", false);
+            this.fbStep = 3;
+          });
         });
       });
     },
@@ -309,42 +312,47 @@ export default {
         facebook_short_access_token: "",
         setup_step_1_completed: false,
       };
-      this.$store.dispatch("updFbSettings", fbObj).then((res) => {
-        console.log(res);
-        this.$store.dispatch("setSettings").then((response) => {
-          Vue.FB.getLoginStatus((response) => {
-            console.log("FBAUTH status :: " + response.status);
+      this.$store.dispatch("updIsLoading", true).then(() => {
+        this.$store.dispatch("updFbSettings", fbObj).then((res) => {
+          console.log(res);
+          this.$store.dispatch("setSettings").then((response) => {
+            Vue.FB.getLoginStatus((response) => {
+              console.log("FBAUTH status :: " + response.status);
+              this.$store.dispatch("updIsLoading", false);
+              if (response.status == "connected") {
+                Vue.FB.logout((resp) => {
+                  console.log("Facebook Logout");
+                  console.log(resp);
+                });
+              }
+            });
 
-            if (response.status == "connected") {
-              Vue.FB.logout((resp) => {
-                console.log("Facebook Logout");
-                console.log(resp);
-              });
-            }
+            console.log(response);
+            this.PageSelectedId = 1;
+            this.fbStep = 1;
           });
-
-          console.log(response);
-          this.PageSelectedId = 1;
-          this.fbStep = 1;
         });
       });
     },
   },
   beforeCreate() {
-    this.$store.dispatch("getSettings").then((res) => {
-      if (res === "success") {
-        console.log(res);
-        console.log("Step to display" + this.fbStep);
-        console.log(
-          "step1Completed" +
-            this.$store.getters.getSettingsState.setup_step_1_completed
-        );
-        this.fbStep != 2
-          ? this.$store.getters.getSettingsState.setup_step_1_completed
-            ? (this.fbStep = 3)
-            : (this.fbStep = 1)
-          : (this.fbStep = 2);
-      }
+    this.$store.dispatch("updIsLoading", true).then(() => {
+      this.$store.dispatch("getSettings").then((res) => {
+        if (res === "success") {
+          console.log(res);
+          console.log("Step to display" + this.fbStep);
+          console.log(
+            "step1Completed" +
+              this.$store.getters.getSettingsState.setup_step_1_completed
+          );
+          this.fbStep != 2
+            ? this.$store.getters.getSettingsState.setup_step_1_completed
+              ? (this.fbStep = 3)
+              : (this.fbStep = 1)
+            : (this.fbStep = 2);
+          this.$store.dispatch("updIsLoading", false);
+        }
+      });
     });
   },
   computed: {

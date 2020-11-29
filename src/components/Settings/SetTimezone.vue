@@ -77,17 +77,21 @@ export default {
       this.btnDisabled = false;
     },
     saveSettings() {
-      this.$store.dispatch("updateTimezone", this.timezone_id).then((res) => {
-        if (res === "success") {
-          this.$store.dispatch("setSettings").then((response) => {
-            if (response === "success") {
-              console.log("Settings API refreshed");
-              this.btnDisabled = true;
-            } else {
-              console.log("Settings API not refreshed");
-            }
-          });
-        }
+      this.$store.dispatch("updIsLoading", true).then(() => {
+        this.$store.dispatch("updateTimezone", this.timezone_id).then((res) => {
+          if (res === "success") {
+            this.$store.dispatch("setSettings").then((response) => {
+              if (response === "success") {
+                console.log("Settings API refreshed");
+                this.btnDisabled = true;
+                this.$store.dispatch("updIsLoading", false);
+              } else {
+                console.log("Settings API not refreshed");
+                this.$store.dispatch("updIsLoading", false);
+              }
+            });
+          }
+        });
       });
     },
   },
@@ -104,17 +108,24 @@ export default {
   },
 
   beforeCreate() {
-    this.$store.dispatch("getSettings").then((res) => {
-      if (res === "success") {
-        if (this.$store.getters.getSettingsState.timezone_id == "") {
-          this.timezone_id = moment.tz.guess();
-          this.$store.dispatch("updateTimezone", moment.tz.guess()).then(() => {
-            this.$store.dispatch("setSettings");
-          });
-        } else {
-          this.timezone_id = this.getSettingsState.timezone_id;
+    this.$store.dispatch("updIsLoading", true).then(() => {
+      this.$store.dispatch("getSettings").then((res) => {
+        if (res === "success") {
+          if (this.$store.getters.getSettingsState.timezone_id == "") {
+            this.timezone_id = moment.tz.guess();
+            this.$store
+              .dispatch("updateTimezone", moment.tz.guess())
+              .then(() => {
+                this.$store.dispatch("setSettings").then(() => {
+                  this.$store.dispatch("updIsLoading", false);
+                });
+              });
+          } else {
+            this.timezone_id = this.getSettingsState.timezone_id;
+            this.$store.dispatch("updIsLoading", false);
+          }
         }
-      }
+      });
     });
   },
   beforeMount() {
