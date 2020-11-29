@@ -118,8 +118,8 @@
           >
             <v-progress-circular
               indeterminate
-              color="#4E5D6B"
-              size="100"
+              color="#5298D4"
+              size="60"
               style="z-index:5 "
             >
             </v-progress-circular>
@@ -156,38 +156,36 @@ import iconSuccess from "@/assets/icons/misc/icon-success.svg";
 export default {
   name: "App",
   beforeCreate() {
-    
-      this.$store
-        .dispatch("updateToken", this.$route.query.instance)
-        .then((resp) => {
-          console.log(resp);
-          this.$store.dispatch("getGlobal").then((response) => {
+    this.$store
+      .dispatch("updateToken", this.$route.query.instance)
+      .then((resp) => {
+        console.log(resp);
+        this.$store.dispatch("getGlobal").then((response) => {
+          console.log(response);
+          this.$i18n.locale = this.$store.getters.getLocale;
+          console.log("Query Parameters :: " + this.$route.query.instance);
+          this.$store.dispatch("getMsg").then((response) => {
             console.log(response);
-            this.$i18n.locale = this.$store.getters.getLocale;
-            console.log("Query Parameters :: " + this.$route.query.instance);
-            this.$store.dispatch("getMsg").then((response) => {
-              console.log(response);
-              this.$store.dispatch("getSettings").then(() => {
-                this.$store.dispatch("getWidgets").then(() => {
-                  this.$store.getters.getStep1Complete &&
-                  this.$store.getters.getStep2Complete &&
-                  this.$store.getters.getStep3Complete
-                    ? this.$store
-                        .dispatch("updStepsCompOnload", true)
-                        .then(() => {
-                          // this.$store.dispatch("updIsLoading", false);
-                        })
-                    : this.$store
-                        .dispatch("updStepsCompOnload", false)
-                        .then(() => {
-                          // this.$store.dispatch("updIsLoading", false);
-                        });
-                });
+            this.$store.dispatch("getSettings").then(() => {
+              this.$store.dispatch("getWidgets").then(() => {
+                this.$store.getters.getStep1Complete &&
+                this.$store.getters.getStep2Complete &&
+                this.$store.getters.getStep3Complete
+                  ? this.$store
+                      .dispatch("updStepsCompOnload", true)
+                      .then(() => {
+                        // this.$store.dispatch("updIsLoading", false);
+                      })
+                  : this.$store
+                      .dispatch("updStepsCompOnload", false)
+                      .then(() => {
+                        // this.$store.dispatch("updIsLoading", false);
+                      });
               });
             });
           });
         });
-    
+      });
   },
   // beforeUpdate() {
   //   this.$store.dispatch("getGlobal").then((response) => {
