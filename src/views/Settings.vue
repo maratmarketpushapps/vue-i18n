@@ -5,12 +5,12 @@
         {{ $t("navbar.navdrawer.Settings") }}
       </h3>
     </v-row>
-    <v-row style="height:60%; width:99%; background-color:#E6E7E8; margin-bottom:47px">
+    <v-row style="height:60%; width:99%; background-color:#E6E7E8; margin-bottom:50px">
       <v-col cols="6" class="">
         <v-row style="height:59%">
           <FbConnect />
         </v-row>
-        <v-row style="height:3%"> </v-row>
+        <v-row style="height:20px"> </v-row>
         <v-row style="height:46%">
           <SetTimezone />
         </v-row>
@@ -19,7 +19,7 @@
         <v-row style="height:45%">
           <UpgradeCard />
         </v-row>
-        <v-row style="height:3%"> </v-row>
+        <v-row style="height:20px"> </v-row>
         <v-row style="height:60%">
           <AccountInfo />
         </v-row>
