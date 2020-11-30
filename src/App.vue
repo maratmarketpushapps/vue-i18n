@@ -102,7 +102,7 @@
           <v-row align="center" justify="center">
             <v-col cols="auto" style="width: 6vw;"> </v-col>
             <v-col cols="11">
-              <v-row>
+              <v-row v-show="!isLoading">
                 <transition name="rtr">
                   <router-view></router-view>
                 </transition>
