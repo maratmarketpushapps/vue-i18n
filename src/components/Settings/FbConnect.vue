@@ -168,7 +168,7 @@
           }}</span>
           <span style="font-size:85%; font-style: italic;" class="pr-1">
             <a
-              href="https://www.marketpushapps.com/how-to-whitelist-your-site-domain-in-your-facebook-settings"
+              href="https://www.marketpushapps.com/faq-whitelist-site-domain-facebook"
               target="_blank"
               style="text-decoration:underline"
               >{{ $t("settingsPage.fbCard3.tutLnk") }}</a
