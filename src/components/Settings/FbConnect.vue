@@ -30,8 +30,15 @@
       style="height:80%"
     >
       <v-col>
-        <v-row justify="center" class="pb-6">
+        <v-row justify="center" class="pb-1">
           {{ $t("settingsPage.fbCard1.buttonHeader") }}</v-row
+        >
+        <v-row
+          justify="center"
+          class="pb-3"
+          style="font-size:80%; font-style:italic;"
+        >
+          {{ $t("settingsPage.fbCard1.adminNote") }}</v-row
         >
         <v-row justify="center" class="pt-0 pb-1 mb-0">
           <v-btn
@@ -177,6 +184,83 @@
         </v-row>
       </v-col>
     </v-row>
+    <v-overlay
+      :absolute="absolute"
+      :opacity="opacity"
+      :value="showOverlay"
+      :z-index="zIndex"
+    >
+      <v-card
+        tile
+        light
+        height="240px"
+        width="25vw"
+        class=" font_dims pb-0 mb-0"
+      >
+        <v-row style="height:4%; width:100%" justify="end" class="mt-4">
+          <v-btn icon small>
+            <v-icon @click="canclOvrlyAdminErr()">
+              mdi-window-close
+            </v-icon>
+          </v-btn>
+        </v-row>
+
+        <v-row style="height:15%; width:100%" class="mr-0 mt-2">
+          <v-col cols="12">
+            <v-row style="width:100%" justify="center" class="ml-4">
+              <h3 style="color:#4E5D6B; font-size:150%">
+                {{ $t("settingsPage.fbCard1.adminErrHdr") }}
+              </h3>
+            </v-row>
+          </v-col>
+        </v-row>
+        <v-row
+          style="height:22%; width:100%"
+          justify="center"
+          align="center"
+          class="ma-2 pr-2"
+        >
+          <v-col>
+            <v-row
+              style="width:98%; text-align:center"
+              justify="center"
+              align="center"
+              class="ml-0"
+            >
+              {{ $t("settingsPage.fbCard1.adminErrTxt") }}
+            </v-row>
+          </v-col>
+        </v-row>
+        <v-row
+          style="height:22%; width:108%"
+          class="ma-0 mt-6 mb-0"
+          justify="center"
+          align="end"
+        >
+          <v-col>
+            <v-row
+              style="width:100%"
+              justify="center"
+              align="end"
+              class="mb-0 pb-0"
+            >
+              <v-btn
+                tile
+                height="60px"
+                class="ma-0 mt-3 mb-0"
+                width="100%"
+                @click="canclOvrlyAdminErr()"
+                outlined
+                color="#006AFF"
+                style="border-color:#F2F2F2"
+              >
+                {{ $t("settingsPage.fbCard1.adminErrBtnTxt") }}
+              </v-btn>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-overlay>
   </v-card>
 </template>
 
@@ -195,6 +279,10 @@ export default {
   },
   data() {
     return {
+      showOverlay: false,
+      absolute: false,
+      opacity: 0.46,
+      zIndex: 5,
       cardKey: 0,
       fbStep: 0,
       PageSelectedId: 1,
@@ -293,7 +381,15 @@ export default {
                       }
                     });
                     if (this.arrVal - 1 == pgList.length) {
-                      this.fbStep = 2;
+                      if (this.pageList.length > 1) {
+                        this.fbStep = 2;
+                      } else {
+                        this.showOverlay = true;
+                        Vue.FB.logout((resp) => {
+                          console.log("Facebook Logout");
+                          console.log(resp);
+                        });
+                      }
                     }
                   })
                   .catch((error) => {
@@ -351,6 +447,9 @@ export default {
           });
         });
       });
+    },
+    canclOvrlyAdminErr() {
+      this.showOverlay = false;
     },
   },
   beforeCreate() {

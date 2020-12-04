@@ -166,9 +166,13 @@
       "header": "Connect Your Facebook Page",
       "tooltipText": "Connect your Facebook page to the Cart Reminder App. Once connected, your Facebook page will send the messages to customers. Your personal details, such as your name, will not be visible to the message recipient - don't worry!",
       "buttonHeader": "Connect your Facebook page",
+      "adminNote": "Please note that you must be an admin of the page that you want to connect.",
       "buttonText": "Login with Facebook",
       "buttonFooter": "If you don't have a facebook page, you can create one ",
-      "hrefText": " here"
+      "hrefText": " here",
+      "adminErrHdr": "Error",
+      "adminErrTxt": "You do not have any Pages in which you have an Admin role. Please obtain the role or ask a Facebook Admin to add it for you.",
+      "adminErrBtnTxt": "I Understand"
     },
     "fbCard2": {
       "header": "Connect Your Facebook Page",
