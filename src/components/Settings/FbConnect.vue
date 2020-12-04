@@ -224,6 +224,13 @@ export default {
               console.log("PageResponse ::" + JSON.stringify(res));
               let pgList = JSON.parse(JSON.stringify(res)).data.data;
               this.arrVal = 1;
+              this.pageList = [
+                {
+                  value: 1,
+                  text: "Your Business Name",
+                  disabled: true,
+                },
+              ];
               pgList.forEach((element) => {
                 this.arrVal++;
                 let pgObj = {
@@ -236,7 +243,9 @@ export default {
                   facebook_short_access_token: element.access_token,
                   setup_step_1_completed: true,
                 };
-                this.pageList.push(pgObj);
+                if (element.tasks.includes("MANAGE")) {
+                  this.pageList.push(pgObj);
+                }
               });
               if (this.arrVal - 1 == pgList.length) {
                 this.fbStep = 2;
@@ -260,6 +269,13 @@ export default {
                     console.log("PageResponse ::" + JSON.stringify(res));
                     let pgList = JSON.parse(JSON.stringify(res)).data.data;
                     this.arrVal = 1;
+                    this.pageList = [
+                      {
+                        value: 1,
+                        text: "Your Business Name",
+                        disabled: true,
+                      },
+                    ];
                     pgList.forEach((element) => {
                       this.arrVal++;
                       let pgObj = {
@@ -272,7 +288,9 @@ export default {
                         facebook_short_access_token: element.access_token,
                         setup_step_1_completed: true,
                       };
-                      this.pageList.push(pgObj);
+                      if (element.tasks.includes("MANAGE")) {
+                        this.pageList.push(pgObj);
+                      }
                     });
                     if (this.arrVal - 1 == pgList.length) {
                       this.fbStep = 2;
