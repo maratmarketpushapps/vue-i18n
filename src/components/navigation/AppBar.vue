@@ -91,7 +91,6 @@
               <v-btn
                 icon
                 tile
-                
                 href="https://www.youtube.com/channel/UCOKGEwMeTDMkQr3cMXjmkEQ"
                 target="_blank"
                 v-on="on"
@@ -121,7 +120,7 @@
           outlined
           class="appbar_btn_background white--text button-dims mt-0"
           v-show="showUpgrade"
-          href="https://www.wix.com/apps/upgrade/1c15809f-0715-427d-969d-3f0f3939418f"
+          :href="upgrdUrl"
           target="_blank"
         >
           {{ $t("navbar.appbar.buttonUpgrade") }}
@@ -132,6 +131,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 // import iconPlay from "@/assets/icons/misc/icon-play.svg";
 export default {
   name: "AppBar",
@@ -151,6 +151,7 @@ export default {
     },
   },
   computed: {
+    ...mapGetters(["getInstanceId"]),
     step1Complete() {
       return this.$store.getters.getStep1Complete;
     },
@@ -166,12 +167,14 @@ export default {
         this.$store.getters.getStep2Complete &&
         this.$store.getters.getStep3Complete
       );
-      
     },
     showUpgrade() {
       return this.$store.getters.getSubs.subscription_plan == "Mogul"
         ? false
         : true;
+    },
+    upgrdUrl() {
+      return `https://www.wix.com/apps/upgrade/1c15809f-0715-427d-969d-3f0f3939418f?appInstanceId=${this.getInstanceId}`;
     },
   },
   beforeMount() {

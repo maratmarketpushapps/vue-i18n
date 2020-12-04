@@ -18,6 +18,7 @@ export default new Vuex.Store({
       billing_cycle: "",
       created_at: "",
       last_install: "",
+      instance_id: "",
     },
     subVars: {
       former_subscription_plan: null,
@@ -185,6 +186,9 @@ export default new Vuex.Store({
     },
     getCreatedAt: (state) => {
       return state.globalVars.created_at;
+    },
+    getInstanceId: (state) => {
+      return state.globalVars.instance_id;
     },
     getStepsCompOnload: (state) => {
       return state.stepsCompOnload;
@@ -354,6 +358,7 @@ export default new Vuex.Store({
       state.globalVars.billing_cycle = obj.billing_cycle;
       state.globalVars.created_at = obj.created_at;
       state.globalVars.last_install = obj.last_install;
+      state.globalVars.instance_id = obj.instance_id;
     },
 
     SET_PLAN_VARS(state, obj) {
@@ -754,7 +759,7 @@ export default new Vuex.Store({
     },
     getGlobal({ commit }) {
       return new Promise((resolve, reject) => {
-        let url = `${process.env.VUE_APP_API_URL_DEV}/websites/${this.state.instance_id}`;
+        let url = `${process.env.VUE_APP_API_URL_DEV}/websites`;
         let headers = {
           headers: {
             authorization: this.state.TOKEN,
@@ -764,6 +769,7 @@ export default new Vuex.Store({
         axios
           .get(url, headers)
           .then((res) => {
+            console.log(JSON.parse(JSON.stringify(res.data)));
             commit("SET_GLOBAL_VALS", JSON.parse(JSON.stringify(res.data)));
             resolve("success");
           })

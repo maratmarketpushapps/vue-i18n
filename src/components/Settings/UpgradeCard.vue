@@ -37,7 +37,7 @@
               width="25%"
               v-show="showBtn"
               style="font-size:100%"
-              href="https://www.wix.com/apps/upgrade/1c15809f-0715-427d-969d-3f0f3939418f"
+              :href="upgrdUrl"
               target="_blank"
             >
               {{ $t("settingsPage.upgradeCard.buttonText") }}
@@ -77,13 +77,16 @@ export default {
     });
   },
   computed: {
-    ...mapGetters(["getSubs", "getPlanState"]),
+    ...mapGetters(["getSubs", "getPlanState", "getInstanceId"]),
     header() {
       return (
         this.$t("settingsPage.upgradeCard.header1") +
         this.getSubs.subscription_plan +
         this.$t("settingsPage.upgradeCard.header2")
       );
+    },
+    upgrdUrl() {
+      return `https://www.wix.com/apps/upgrade/1c15809f-0715-427d-969d-3f0f3939418f?appInstanceId=${this.getInstanceId}`;
     },
     body() {
       console.log(
