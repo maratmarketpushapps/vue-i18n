@@ -10,7 +10,7 @@
         :value="allStepsComp"
         :z-index="zIndex"
       >
-        <v-card tile light height="400px" width="25vw" class=" font_dims">
+        <v-card tile light height="400px" width="35vw" class=" font_dims">
           <v-row style="height:4%; width:100%" justify="end" class="mt-4">
             <v-btn icon small>
               <v-icon @click="canclOvrlyStepComp()">
@@ -65,7 +65,14 @@
                 align="center"
                 class="ml-0"
               >
-                {{ $t("navbar.appbar.allStepsCompTxt2") }}
+                <span
+                  ><span target="_blank" :href="this.$store.getters.getUrl"
+                    ><a> {{ $t("navbar.appbar.urltxt") }} </a></span
+                  >
+                  <span>
+                    {{ $t("navbar.appbar.allStepsCompTxt2") }}
+                  </span></span
+                >
               </v-row>
             </v-col>
           </v-row>

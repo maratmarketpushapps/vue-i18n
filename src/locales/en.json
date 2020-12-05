@@ -8,7 +8,8 @@
       "allStepsCompHeader": "You're all set!",
       "buttonText": "Done",
       "allStepsCompTxt1": "Congratulations! All the steps to set up the app were successfully done!",
-      "allStepsCompTxt2": " Go to your website and open one of your product pages. Once you add an item to the cart, the Facebook Subscribe popup will open!",
+      "urltxt":"Go to your website",
+      "allStepsCompTxt2": " and open one of your product pages. Once you add an item to the cart, the Facebook Subscribe popup will open!",
       "vidIconTxt": "Video Tutorial: How to Set Up"
     },
     "navdrawer": {
