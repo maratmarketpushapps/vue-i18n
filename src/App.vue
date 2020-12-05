@@ -66,8 +66,10 @@
                 class="ml-0"
               >
                 <span
-                  ><span target="_blank" :href="this.$store.getters.getUrl"
-                    ><a> {{ $t("navbar.appbar.urltxt") }} </a></span
+                  ><span
+                    ><a target="_blank" :href="getUrl">
+                      {{ $t("navbar.appbar.urltxt") }}
+                    </a></span
                   >
                   <span>
                     {{ $t("navbar.appbar.allStepsCompTxt2") }}
@@ -273,6 +275,9 @@ export default {
     },
     isLoading() {
       return this.$store.getters.getisLoading;
+    },
+    getUrl() {
+      return this.$store.getters.getUrl;
     },
   },
 };

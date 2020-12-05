@@ -159,12 +159,11 @@
           </v-btn></v-row
         >
         <v-row justify="center" class="mt-5 pb-1 mb-0">
-          <span class="pr-1" style="font-size:85%; font-style: italic;">{{
-            $t("settingsPage.fbCard3.whtlstTxt")
-          }}</span>
-          <span class="pr-1" style="font-size:85%; font-style: italic;">{{
-            $t("settingsPage.fbCard3.tutTxt")
-          }}</span>
+          <span
+            class="pr-1"
+            style="font-size:85%; font-style: italic; text-align:center"
+            >{{ $t("settingsPage.fbCard3.whtlstTxt") }}</span
+          >
         </v-row>
       </v-col>
     </v-row>

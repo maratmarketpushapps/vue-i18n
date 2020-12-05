@@ -8,7 +8,7 @@
       "allStepsCompHeader": "You're all set!",
       "buttonText": "Done",
       "allStepsCompTxt1": "Congratulations! All the steps to set up the app were successfully done!",
-      "urltxt":"Go to your website",
+      "urltxt": "Go to your website",
       "allStepsCompTxt2": " and open one of your product pages. Once you add an item to the cart, the Facebook Subscribe popup will open!",
       "vidIconTxt": "Video Tutorial: How to Set Up"
     },
@@ -188,7 +188,7 @@
       "msg1": "Your Facebook Page",
       "msg2": "is currently connected.",
       "buttonText": "DISCONNECT",
-      "whtlstTxt": "The connected Facebook page will send the messages to the customers.",
+      "whtlstTxt": "The connected Facebook page will send the messages to the customers. Your personal Facebook account will NOT be visible.",
       "whtlstLnk": "settings of your Facebook Page.",
       "tutTxt": "Your personal Facebook account will NOT be visible.",
       "tutLnk": "this tutorial"
