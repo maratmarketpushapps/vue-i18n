@@ -161,6 +161,9 @@ export default {
       .then((resp) => {
         console.log(resp);
         this.$store.dispatch("getGlobal").then((response) => {
+          this.$intercom.boot({
+            instance_id: this.$store.getters.getInstanceId,
+          });
           console.log(response);
           this.$i18n.locale = this.$store.getters.getLocale;
           console.log("Query Parameters :: " + this.$route.query.instance);
@@ -187,12 +190,9 @@ export default {
         });
       });
   },
-  mounted() {
-    this.$intercom.boot({
-      instance_id: this.$store.getters.getInstanceId,
-    });
-    
-  },
+  // mounted() {
+
+  // },
   // beforeUpdate() {
   //   this.$store.dispatch("getGlobal").then((response) => {
   //     console.log(response);
