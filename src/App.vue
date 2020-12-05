@@ -187,6 +187,12 @@ export default {
         });
       });
   },
+  mounted() {
+    this.$intercom.boot({
+      instance_id: this.$store.getters.getInstanceId,
+    });
+    
+  },
   // beforeUpdate() {
   //   this.$store.dispatch("getGlobal").then((response) => {
   //     console.log(response);
