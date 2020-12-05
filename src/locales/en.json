@@ -187,9 +187,9 @@
       "msg1": "Your Facebook Page",
       "msg2": "is currently connected.",
       "buttonText": "DISCONNECT",
-      "whtlstTxt": "Please add your site to the Whitelisted Domains in the",
+      "whtlstTxt": "The connected Facebook page will send the messages to the customers.",
       "whtlstLnk": "settings of your Facebook Page.",
-      "tutTxt": "Follow the steps from",
+      "tutTxt": "Your personal Facebook account will NOT be visible.",
       "tutLnk": "this tutorial"
     },
     "upgradeCard": {

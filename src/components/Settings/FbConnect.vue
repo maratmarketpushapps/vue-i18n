@@ -30,13 +30,13 @@
       style="height:80%"
     >
       <v-col>
-        <v-row justify="center" class="pb-1">
+        <v-row justify="center" class="pb-1" style="font-size:110%;">
           {{ $t("settingsPage.fbCard1.buttonHeader") }}</v-row
         >
         <v-row
           justify="center"
           class="pb-3"
-          style="font-size:80%; font-style:italic;"
+          style="font-size:90%; font-style:italic;"
         >
           {{ $t("settingsPage.fbCard1.adminNote") }}</v-row
         >
@@ -162,25 +162,9 @@
           <span class="pr-1" style="font-size:85%; font-style: italic;">{{
             $t("settingsPage.fbCard3.whtlstTxt")
           }}</span>
-          <span style="font-size:85%; font-style: italic;" class="pr-1">
-            <a
-              :href="getPageSettingsLink"
-              target="_blank"
-              style="text-decoration:underline"
-              >{{ $t("settingsPage.fbCard3.whtlstLnk") }}</a
-            >
-          </span>
           <span class="pr-1" style="font-size:85%; font-style: italic;">{{
             $t("settingsPage.fbCard3.tutTxt")
           }}</span>
-          <span style="font-size:85%; font-style: italic;" class="pr-1">
-            <a
-              href="https://www.marketpushapps.com/faq-whitelist-site-domain-facebook"
-              target="_blank"
-              style="text-decoration:underline"
-              >{{ $t("settingsPage.fbCard3.tutLnk") }}</a
-            >
-          </span>
         </v-row>
       </v-col>
     </v-row>

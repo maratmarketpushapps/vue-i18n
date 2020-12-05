@@ -28,7 +28,7 @@
           >
             <v-card color="white" tile class="pb-4 pt-2">
               <v-row justify="end" class="pr-4 pt-2">
-                <v-btn x-small icon @click="toggleDialog()">
+                <v-btn x-small icon @click="ovrlyClose()">
                   <v-icon color="black">
                     mdi-window-close
                   </v-icon>
@@ -141,6 +141,7 @@ export default {
     resetChanges() {
       this.$store.dispatch("getWidgets");
     },
+    ovrlyClose() {},
   },
   computed: {
     ...mapGetters(["getWidgetsState"]),
