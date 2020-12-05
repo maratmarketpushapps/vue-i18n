@@ -161,9 +161,15 @@ export default {
       .then((resp) => {
         console.log(resp);
         this.$store.dispatch("getGlobal").then((response) => {
-          this.$intercom.boot({
-            instance_id: this.$store.getters.getInstanceId,
+          this.$store.dispatch("getSubs").then(() => {
+            this.$intercom.boot({
+              user_id: this.$store.getters.getInstanceId,
+              instance_id: this.$store.getters.getInstanceId,
+              subscription_plan: this.$store.getters.getSubs.subscription_plan,
+              website_url: this.$store.getters.getUrl,
+            });
           });
+
           console.log(response);
           this.$i18n.locale = this.$store.getters.getLocale;
           console.log("Query Parameters :: " + this.$route.query.instance);

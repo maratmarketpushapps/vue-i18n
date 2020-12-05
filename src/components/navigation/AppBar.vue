@@ -6,6 +6,7 @@
     class="appbar_background  text--bottom"
     align-content="center"
     fixed
+    style="z-index:1.5"
   >
     <v-row style="height:100% !important" class="pb-0 mb-0">
       <v-col cols="1"><v-spacer></v-spacer></v-col>

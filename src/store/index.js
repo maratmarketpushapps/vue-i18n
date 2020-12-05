@@ -19,6 +19,7 @@ export default new Vuex.Store({
       created_at: "",
       last_install: "",
       instance_id: "",
+      url: "",
     },
     subVars: {
       former_subscription_plan: null,
@@ -190,6 +191,9 @@ export default new Vuex.Store({
     getInstanceId: (state) => {
       return state.globalVars.instance_id;
     },
+    getUrl: (state) => {
+      return state.globalVars.url;
+    },
     getStepsCompOnload: (state) => {
       return state.stepsCompOnload;
     },
@@ -359,6 +363,7 @@ export default new Vuex.Store({
       state.globalVars.created_at = obj.created_at;
       state.globalVars.last_install = obj.last_install;
       state.globalVars.instance_id = obj.instance_id;
+      state.globalVars.url = obj.url;
     },
 
     SET_PLAN_VARS(state, obj) {

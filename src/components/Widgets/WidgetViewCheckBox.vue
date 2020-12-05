@@ -19,6 +19,7 @@
           :value="dialog"
           style="border-radius: 25px 25px 0 0;"
           class="pa-10"
+          z-index="1"
         >
           <v-card color="white" tile class="pb-4 pt-2">
             <v-row justify="end" class="pr-5 pt-2">
