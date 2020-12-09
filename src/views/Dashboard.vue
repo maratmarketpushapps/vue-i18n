@@ -38,6 +38,9 @@ import CartAttempts from "@/components/AbandonedCarts/CartAttempts.vue";
 export default {
   name: "dashboard",
   components: { Tabs, TooltipIcon, CartAttempts },
+  mounted () {
+    window.scrollTo(0,0);
+  },
 };
 </script>
 

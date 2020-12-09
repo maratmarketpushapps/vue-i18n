@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-import moment from "moment-timezone";
 
 Vue.use(Vuex);
 
@@ -10,6 +9,7 @@ export default new Vuex.Store({
     TOKEN: "JWT_TOKEN",
     instance_id: "bb-cc-dd",
     stepsCompOnload: true,
+    isLoading: 0,
     globalVars: {
       locale: "",
       payment_currency: "",
@@ -18,6 +18,8 @@ export default new Vuex.Store({
       billing_cycle: "",
       created_at: "",
       last_install: "",
+      instance_id: "",
+      url: "",
     },
     subVars: {
       former_subscription_plan: null,
@@ -87,7 +89,7 @@ export default new Vuex.Store({
     },
     navState: {
       currentSelected: "Dashboard",
-      currentHover:"Dashboard"
+      currentHover: "Dashboard",
     },
     cartsState: {
       carts: [],
@@ -186,8 +188,17 @@ export default new Vuex.Store({
     getCreatedAt: (state) => {
       return state.globalVars.created_at;
     },
+    getInstanceId: (state) => {
+      return state.globalVars.instance_id;
+    },
+    getUrl: (state) => {
+      return state.globalVars.url;
+    },
     getStepsCompOnload: (state) => {
       return state.stepsCompOnload;
+    },
+    getisLoading: (state) => {
+      return state.isLoading == 0 ? false : true;
     },
     getAccountInfo: (state) => {
       let obj = {
@@ -270,22 +281,6 @@ export default new Vuex.Store({
     SET_CARTS_VAL(state, obj) {
       let cleanedObj = [];
       for (let loopObj of obj.subscribers) {
-        loopObj.created_at = moment(new Date(loopObj.created_at))
-          .tz(state.settingsVars.timezone_id)
-          .format("MM-DD-YYYY hh:mm:ss A");
-
-        if (
-          loopObj.cart_recovered_at != false &&
-          loopObj.cart_recovered_at != "-"
-        ) {
-          loopObj.cart_recovered_at = moment(
-            new Date(loopObj.cart_recovered_at)
-          )
-            .tz(state.settingsVars.timezone_id)
-            .format("MM-DD-YYYY hh:mm:ss A");
-        } else {
-          loopObj.cart_recovered_at = "-";
-        }
         cleanedObj.push(loopObj);
       }
 
@@ -367,6 +362,8 @@ export default new Vuex.Store({
       state.globalVars.billing_cycle = obj.billing_cycle;
       state.globalVars.created_at = obj.created_at;
       state.globalVars.last_install = obj.last_install;
+      state.globalVars.instance_id = obj.instance_id;
+      state.globalVars.url = obj.url;
     },
 
     SET_PLAN_VARS(state, obj) {
@@ -699,6 +696,9 @@ export default new Vuex.Store({
     SET_STEPS_COMP_ON_LOAD(state, val) {
       state.stepsCompOnload = val;
     },
+    SET_IS_LOADING(state, val) {
+      val ? state.isLoading++ : state.isLoading--;
+    },
 
     SET_DASH_VALS(state, obj) {
       state.dashVars.campaigns.total_messages = obj.campaigns.total_messages;
@@ -764,7 +764,7 @@ export default new Vuex.Store({
     },
     getGlobal({ commit }) {
       return new Promise((resolve, reject) => {
-        let url = `${process.env.VUE_APP_API_URL_DEV}/websites/${this.state.instance_id}`;
+        let url = `${process.env.VUE_APP_API_URL_DEV}/websites`;
         let headers = {
           headers: {
             authorization: this.state.TOKEN,
@@ -774,6 +774,7 @@ export default new Vuex.Store({
         axios
           .get(url, headers)
           .then((res) => {
+            console.log(JSON.parse(JSON.stringify(res.data)));
             commit("SET_GLOBAL_VALS", JSON.parse(JSON.stringify(res.data)));
             resolve("success");
           })
@@ -1186,6 +1187,12 @@ export default new Vuex.Store({
     updStepsCompOnload({ commit }, val) {
       return new Promise((resolve) => {
         commit("SET_STEPS_COMP_ON_LOAD", val);
+        resolve("success");
+      });
+    },
+    updIsLoading({ commit }, val) {
+      return new Promise((resolve) => {
+        commit("SET_IS_LOADING", val);
         resolve("success");
       });
     },

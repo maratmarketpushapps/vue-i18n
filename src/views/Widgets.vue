@@ -19,7 +19,9 @@
       <v-col cols="8.75" class="pt-0">
         <v-row align="center" justify="end" style="width:100%">
           <v-col cols="auto"> </v-col>
-          <v-col cols="auto"> </v-col>
+          <v-col cols="auto">
+            <span><CartAttempts class="pt-0 pr-6"/></span
+          ></v-col>
         </v-row>
       </v-col>
     </v-row>
@@ -62,6 +64,7 @@ import WidgetProps from "@/components/Widgets/WidgetProps.vue";
 import WidgetView from "@/components/Widgets/WidgetView.vue";
 import WidgetViewCheckBox from "@/components/Widgets/WidgetViewCheckBox.vue";
 import { mapGetters } from "vuex";
+import CartAttempts from "@/components/AbandonedCarts/CartAttempts.vue";
 
 export default {
   name: "Widgets",
@@ -70,17 +73,21 @@ export default {
     WidgetProps,
     WidgetView,
     WidgetViewCheckBox,
+    CartAttempts
   },
   data() {
     return {
-      live: false,
+      live: false
     };
   },
   beforeCreate() {
-    this.$store.dispatch("getWidgets").then((response) => {
+    this.$store.dispatch("getWidgets").then(response => {
       console.log(response);
       this.live = this.$store.getters.getWidgetsState.active;
     });
+  },
+  mounted () {
+    window.scrollTo(0,0);
   },
   methods: {
     updWdgtLiveActive() {
@@ -89,7 +96,7 @@ export default {
           this.$store.dispatch("getWidgets");
         });
       });
-    },
+    }
   },
   computed: {
     ...mapGetters(["getWidgetsState"]),
@@ -101,8 +108,8 @@ export default {
     },
     liveLbl() {
       return this.live ? this.$t("widgets.liveLbl") : this.$t("widgets.offLbl");
-    },
-  },
+    }
+  }
 };
 </script>
 

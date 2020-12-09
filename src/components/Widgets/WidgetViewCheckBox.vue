@@ -14,31 +14,39 @@
           style="height:20%; width:100%;"
         >
         </v-container>
+        <v-overlay
+          absolute
+          :value="dialog"
+          style="border-radius: 25px 25px 0 0;"
+          class="pa-10"
+          z-index="1"
+        >
+          <v-card color="white" tile class="pb-4 pt-2">
+            <v-row justify="end" class="pr-5 pt-2">
+              <v-btn x-small icon @click="ovrlyClose()">
+                <v-icon color="black">
+                  mdi-window-close
+                </v-icon>
+              </v-btn>
+            </v-row>
+            <v-card-text
+              style="color:black ;text-align: center; font-size:12px"
+            >
+              {{ $t("widgets.modalText1") }}
+            </v-card-text>
+            <v-card-text
+              style="color:black ; text-align: center; font-size:12px"
+            >
+              {{ $t("widgets.modalText2") }}
+            </v-card-text>
+          </v-card>
+        </v-overlay>
         <v-container
           class="fluid pr-2 pl-6"
           :style="bdyColor"
           style="height:80%; width:100%;"
           id="modalContainer"
         >
-          <v-overlay
-            absolute
-            :value="dialog"
-            style="border-radius: 25px 25px 0 0;"
-            class="pa-10"
-          >
-            <v-card color="white" tile class="pb-4 pt-2">
-              <v-card-text
-                style="color:black ;text-align: center; font-size:12px"
-              >
-                {{ $t("widgets.modalText1") }}
-              </v-card-text>
-              <v-card-text
-                style="color:black ; text-align: center; font-size:12px"
-              >
-                {{ $t("widgets.modalText2") }}
-              </v-card-text>
-            </v-card>
-          </v-overlay>
           <v-row
             style="height:20%;width:102.5%"
             align="center"
@@ -143,8 +151,10 @@ export default {
       this.btnId++;
     },
     toggleDialog() {
+      console.log("Inside toggle dialog :: " + this.dialog);
       this.dialog = !this.dialog;
     },
+    ovrlyClose() {},
     resetChanges() {
       this.$store.dispatch("getWidgets");
     },
@@ -240,7 +250,11 @@ export default {
   },
 
   beforeCreate() {
-    this.$store.dispatch("getWidgets");
+    this.$store.dispatch("updIsLoading", true).then(() => {
+      this.$store.dispatch("getWidgets").then(() => {
+        this.$store.dispatch("updIsLoading", false);
+      });
+    });
   },
 };
 </script>

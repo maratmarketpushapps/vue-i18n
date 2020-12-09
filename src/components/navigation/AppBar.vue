@@ -6,11 +6,12 @@
     class="appbar_background  text--bottom"
     align-content="center"
     fixed
+    style="z-index:1.5"
   >
     <v-row style="height:100% !important" class="pb-0 mb-0">
       <v-col cols="1"><v-spacer></v-spacer></v-col>
       <!-- Stepper component -->
-      <v-col cols="9" class="pb-0">
+      <v-col cols="8" class="pb-0">
         <v-stepper class="stepper" :value="step" v-if="!allstepsComplete">
           <v-stepper-header class="stepperhead">
             <!-- Step 1 -->
@@ -78,6 +79,39 @@
           </v-stepper-header>
         </v-stepper></v-col
       >
+      <v-col cols="1">
+        <v-row align="center" class="ml-0" v-if="!allstepsComplete">
+          <v-tooltip
+            :bottom="true"
+            open-on-click
+            nudge-top="10"
+            nudge-right="100"
+            content-class="tooltip_color"
+          >
+            <template v-slot:activator="{ on }">
+              <v-btn
+                icon
+                tile
+                href="https://www.youtube.com/channel/UCOKGEwMeTDMkQr3cMXjmkEQ"
+                target="_blank"
+                v-on="on"
+              >
+                <v-img
+                  :src="playImg"
+                  height="3vw"
+                  width="2vw"
+                  style="transform: scale(0.8)"
+                  class="mt-0"
+                >
+                </v-img>
+              </v-btn>
+            </template>
+            <span class="tooltip_text" tile>{{
+              $t("navbar.appbar.vidIconTxt")
+            }}</span>
+          </v-tooltip>
+        </v-row>
+      </v-col>
 
       <!-- Upgrade button component -->
       <v-col cols="2" class="pl-8 mb-2"
@@ -87,7 +121,7 @@
           outlined
           class="appbar_btn_background white--text button-dims mt-0"
           v-show="showUpgrade"
-          href="https://www.wix.com/apps/upgrade/1c15809f-0715-427d-969d-3f0f3939418f"
+          :href="upgrdUrl"
           target="_blank"
         >
           {{ $t("navbar.appbar.buttonUpgrade") }}
@@ -98,12 +132,18 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+// import iconPlay from "@/assets/icons/misc/icon-play.svg";
 export default {
   name: "AppBar",
+  // components: {
+  //   iconPlay,
+  // },
   data() {
     return {
       step: 1,
       showAlert: true,
+      playImg: require("@/assets/img/icon-play.png"),
     };
   },
   methods: {
@@ -112,6 +152,7 @@ export default {
     },
   },
   computed: {
+    ...mapGetters(["getInstanceId"]),
     step1Complete() {
       return this.$store.getters.getStep1Complete;
     },
@@ -133,6 +174,9 @@ export default {
         ? false
         : true;
     },
+    upgrdUrl() {
+      return `https://www.wix.com/apps/upgrade/1c15809f-0715-427d-969d-3f0f3939418f?appInstanceId=${this.getInstanceId}`;
+    },
   },
   beforeMount() {
     this.$store.dispatch("getMsg").then((response) => {
@@ -150,7 +194,7 @@ export default {
   box-shadow: none;
   height: 7vh !important;
   align-content: center !important;
-  width: 69vw !important;
+  width: 65vw !important;
 }
 .stepperhead {
   box-shadow: none;

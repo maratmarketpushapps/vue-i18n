@@ -7,10 +7,10 @@
     :key="cardKey"
   >
     <v-row style="height:10%">
-      <v-col cols="6">
+      <v-col cols="8">
         <h3>{{ $t("settingsPage.fbCard1.header") }}</h3>
       </v-col>
-      <v-col cols="6" class="pa-2 pt-0 pr-0">
+      <v-col cols="4" class="pa-2 pt-0 pr-0">
         <v-row align="center" justify="end"
           ><TooltipIcon
             :posRight="true"
@@ -30,8 +30,15 @@
       style="height:80%"
     >
       <v-col>
-        <v-row justify="center" class="pb-6">
+        <v-row justify="center" class="pb-1" style="font-size:110%;">
           {{ $t("settingsPage.fbCard1.buttonHeader") }}</v-row
+        >
+        <v-row
+          justify="center"
+          class="pb-3"
+          style="font-size:90%; font-style:italic;"
+        >
+          {{ $t("settingsPage.fbCard1.adminNote") }}</v-row
         >
         <v-row justify="center" class="pt-0 pb-1 mb-0">
           <v-btn
@@ -130,7 +137,13 @@
       <v-col>
         <v-row justify="center" class="pb-10"
           >{{ $t("settingsPage.fbCard3.msg1") }}
-          <b class="pl-1 pr-1">{{ card3Msg }}</b>
+          <a
+            :href="getPageLink"
+            target="_blank"
+            style="font-weight:bolder; color:#323F4F"
+            class="pl-1 pr-1"
+            >{{ card3Msg }}</a
+          >
           {{ $t("settingsPage.fbCard3.msg2") }}
         </v-row>
         <v-row justify="center" class="pt-0 pb-1 mb-0">
@@ -145,8 +158,92 @@
             {{ $t("settingsPage.fbCard3.buttonText") }}
           </v-btn></v-row
         >
+        <v-row justify="center" class="mt-5 pb-1 mb-0">
+          <span
+            class="pr-1"
+            style="font-size:85%; font-style: italic; text-align:center"
+            >{{ $t("settingsPage.fbCard3.whtlstTxt") }}</span
+          >
+        </v-row>
       </v-col>
     </v-row>
+    <v-overlay
+      :absolute="absolute"
+      :opacity="opacity"
+      :value="showOverlay"
+      :z-index="zIndex"
+    >
+      <v-card
+        tile
+        light
+        height="240px"
+        width="25vw"
+        class=" font_dims pb-0 mb-0"
+      >
+        <v-row style="height:4%; width:100%" justify="end" class="mt-4">
+          <v-btn icon small>
+            <v-icon @click="canclOvrlyAdminErr()">
+              mdi-window-close
+            </v-icon>
+          </v-btn>
+        </v-row>
+
+        <v-row style="height:15%; width:100%" class="mr-0 mt-2">
+          <v-col cols="12">
+            <v-row style="width:100%" justify="center" class="ml-4">
+              <h3 style="color:#4E5D6B; font-size:150%">
+                {{ $t("settingsPage.fbCard1.adminErrHdr") }}
+              </h3>
+            </v-row>
+          </v-col>
+        </v-row>
+        <v-row
+          style="height:22%; width:100%"
+          justify="center"
+          align="center"
+          class="ma-2 pr-2"
+        >
+          <v-col>
+            <v-row
+              style="width:98%; text-align:center"
+              justify="center"
+              align="center"
+              class="ml-0"
+            >
+              {{ $t("settingsPage.fbCard1.adminErrTxt") }}
+            </v-row>
+          </v-col>
+        </v-row>
+        <v-row
+          style="height:22%; width:108%"
+          class="ma-0 mt-6 mb-0"
+          justify="center"
+          align="end"
+        >
+          <v-col>
+            <v-row
+              style="width:100%"
+              justify="center"
+              align="end"
+              class="mb-0 pb-0"
+            >
+              <v-btn
+                tile
+                height="60px"
+                class="ma-0 mt-3 mb-0"
+                width="100%"
+                @click="canclOvrlyAdminErr()"
+                outlined
+                color="#006AFF"
+                style="border-color:#F2F2F2"
+              >
+                {{ $t("settingsPage.fbCard1.adminErrBtnTxt") }}
+              </v-btn>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-overlay>
   </v-card>
 </template>
 
@@ -165,6 +262,10 @@ export default {
   },
   data() {
     return {
+      showOverlay: false,
+      absolute: false,
+      opacity: 0.46,
+      zIndex: 5,
       cardKey: 0,
       fbStep: 0,
       PageSelectedId: 1,
@@ -194,6 +295,13 @@ export default {
               console.log("PageResponse ::" + JSON.stringify(res));
               let pgList = JSON.parse(JSON.stringify(res)).data.data;
               this.arrVal = 1;
+              this.pageList = [
+                {
+                  value: 1,
+                  text: "Your Business Name",
+                  disabled: true,
+                },
+              ];
               pgList.forEach((element) => {
                 this.arrVal++;
                 let pgObj = {
@@ -206,7 +314,9 @@ export default {
                   facebook_short_access_token: element.access_token,
                   setup_step_1_completed: true,
                 };
-                this.pageList.push(pgObj);
+                if (element.tasks.includes("MANAGE")) {
+                  this.pageList.push(pgObj);
+                }
               });
               if (this.arrVal - 1 == pgList.length) {
                 this.fbStep = 2;
@@ -229,6 +339,14 @@ export default {
                   .then((res) => {
                     console.log("PageResponse ::" + JSON.stringify(res));
                     let pgList = JSON.parse(JSON.stringify(res)).data.data;
+                    this.arrVal = 1;
+                    this.pageList = [
+                      {
+                        value: 1,
+                        text: "Your Business Name",
+                        disabled: true,
+                      },
+                    ];
                     pgList.forEach((element) => {
                       this.arrVal++;
                       let pgObj = {
@@ -241,10 +359,20 @@ export default {
                         facebook_short_access_token: element.access_token,
                         setup_step_1_completed: true,
                       };
-                      this.pageList.push(pgObj);
+                      if (element.tasks.includes("MANAGE")) {
+                        this.pageList.push(pgObj);
+                      }
                     });
                     if (this.arrVal - 1 == pgList.length) {
-                      this.fbStep = 2;
+                      if (this.pageList.length > 1) {
+                        this.fbStep = 2;
+                      } else {
+                        this.showOverlay = true;
+                        Vue.FB.logout((resp) => {
+                          console.log("Facebook Logout");
+                          console.log(resp);
+                        });
+                      }
                     }
                   })
                   .catch((error) => {
@@ -262,11 +390,14 @@ export default {
     },
     step2Comp() {
       let pageObj = this.pageList.find((o) => o.value === this.PageSelectedId);
-      this.$store.dispatch("updFbSettings", pageObj).then((res) => {
-        console.log(res);
-        this.$store.dispatch("setSettings").then((response) => {
-          console.log(response);
-          this.fbStep = 3;
+      this.$store.dispatch("updIsLoading", true).then(() => {
+        this.$store.dispatch("updFbSettings", pageObj).then((res) => {
+          console.log(res);
+          this.$store.dispatch("setSettings").then((response) => {
+            console.log(response);
+            this.$store.dispatch("updIsLoading", false);
+            this.fbStep = 3;
+          });
         });
       });
     },
@@ -278,31 +409,50 @@ export default {
         facebook_short_access_token: "",
         setup_step_1_completed: false,
       };
-      this.$store.dispatch("updFbSettings", fbObj).then((res) => {
-        console.log(res);
-        this.$store.dispatch("setSettings").then((response) => {
-          console.log(response);
-          this.PageSelectedId = 1;
-          this.fbStep = 1;
+      this.$store.dispatch("updIsLoading", true).then(() => {
+        this.$store.dispatch("updFbSettings", fbObj).then((res) => {
+          console.log(res);
+          this.$store.dispatch("setSettings").then((response) => {
+            Vue.FB.getLoginStatus((response) => {
+              console.log("FBAUTH status :: " + response.status);
+              this.$store.dispatch("updIsLoading", false);
+              if (response.status == "connected") {
+                Vue.FB.logout((resp) => {
+                  console.log("Facebook Logout");
+                  console.log(resp);
+                });
+              }
+            });
+
+            console.log(response);
+            this.PageSelectedId = 1;
+            this.fbStep = 1;
+          });
         });
       });
     },
+    canclOvrlyAdminErr() {
+      this.showOverlay = false;
+    },
   },
   beforeCreate() {
-    this.$store.dispatch("getSettings").then((res) => {
-      if (res === "success") {
-        console.log(res);
-        console.log("Step to display" + this.fbStep);
-        console.log(
-          "step1Completed" +
-            this.$store.getters.getSettingsState.setup_step_1_completed
-        );
-        this.fbStep != 2
-          ? this.$store.getters.getSettingsState.setup_step_1_completed
-            ? (this.fbStep = 3)
-            : (this.fbStep = 1)
-          : (this.fbStep = 2);
-      }
+    this.$store.dispatch("updIsLoading", true).then(() => {
+      this.$store.dispatch("getSettings").then((res) => {
+        if (res === "success") {
+          console.log(res);
+          console.log("Step to display" + this.fbStep);
+          console.log(
+            "step1Completed" +
+              this.$store.getters.getSettingsState.setup_step_1_completed
+          );
+          this.fbStep != 2
+            ? this.$store.getters.getSettingsState.setup_step_1_completed
+              ? (this.fbStep = 3)
+              : (this.fbStep = 1)
+            : (this.fbStep = 2);
+          this.$store.dispatch("updIsLoading", false);
+        }
+      });
     });
   },
   computed: {
@@ -315,6 +465,17 @@ export default {
     },
     stepShow() {
       return this.fbStep;
+    },
+    getPageLink() {
+      return `https://www.facebook.com/${this.getSettingsState.facebook_page_id}`;
+    },
+
+    getPageSettingsLink() {
+      if (this.getSettingsState.facebook_page_name == "") {
+        return `https://www.facebook.com/pages`;
+      } else {
+        return `https://www.facebook.com/${this.getSettingsState.facebook_page_id}/settings/?tab=messenger_platform`;
+      }
     },
   },
 };

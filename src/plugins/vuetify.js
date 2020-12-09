@@ -21,6 +21,7 @@ export default new Vuetify({
         sidebar_background: "#4E5D6B",
         appbar_btn_background: "#FFB742",
         primary: "#5686F6",
+        background:"#E6E7E8"
       },
     },
   },

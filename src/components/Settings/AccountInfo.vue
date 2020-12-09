@@ -108,27 +108,33 @@ export default {
         email: this.email == "" ? this.accInfo.email : this.email,
       };
 
-      this.$store.dispatch("updAccInfo", obj).then((res) => {
-        if (res === "success") {
-          this.$store.dispatch("setSettings").then((response) => {
-            if (response === "success") {
-              console.log("Settings API refreshed");
-              this.btnDisabled = true;
-            } else {
-              console.log("Settings API not refreshed");
-            }
-          });
-        }
+      this.$store.dispatch("updIsLoading", true).then(() => {
+        this.$store.dispatch("updAccInfo", obj).then((res) => {
+          if (res === "success") {
+            this.$store.dispatch("setSettings").then((response) => {
+              this.$store.dispatch("updIsLoading", false);
+              if (response === "success") {
+                console.log("Settings API refreshed");
+                this.btnDisabled = true;
+              } else {
+                console.log("Settings API not refreshed");
+              }
+            });
+          }
+        });
       });
     },
   },
   beforeCreate() {
-    this.$store.dispatch("getSettings").then((res) => {
-      if (res === "success") {
-        this.first_name = this.$store.getters.getAccountInfo.first_name;
-        this.last_name = this.$store.getters.getAccountInfo.last_name;
-        this.email = this.$store.getters.getAccountInfo.email;
-      }
+    this.$store.dispatch("updIsLoading", true).then(() => {
+      this.$store.dispatch("getSettings").then((res) => {
+        if (res === "success") {
+          this.first_name = this.$store.getters.getAccountInfo.first_name;
+          this.last_name = this.$store.getters.getAccountInfo.last_name;
+          this.email = this.$store.getters.getAccountInfo.email;
+          this.$store.dispatch("updIsLoading", false);
+        }
+      });
     });
   },
   computed: {

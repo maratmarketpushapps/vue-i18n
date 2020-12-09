@@ -12,7 +12,7 @@
           <CampaignsActive />
         </svg-transition>
       </v-row>
-      <v-row v-else align-content="center" justify="center" class="pb-3 pr-1">
+      <v-row v-else align-content="center" justify="center" class="pb-4 pr-0">
         <CampaignsActive class="svgicon-active_dim" />
       </v-row>
       <v-row align-content="center" justify="center">

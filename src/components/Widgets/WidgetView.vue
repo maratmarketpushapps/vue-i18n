@@ -25,8 +25,16 @@
             :value="dialog"
             style="border-radius: 25px 25px 0 0;"
             class="pa-10"
+            z-index="0.8"
           >
             <v-card color="white" tile class="pb-4 pt-2">
+              <v-row justify="end" class="pr-4 pt-2">
+                <v-btn x-small icon @click="ovrlyClose()">
+                  <v-icon color="black">
+                    mdi-window-close
+                  </v-icon>
+                </v-btn>
+              </v-row>
               <v-card-text
                 style="color:black ;text-align: center; font-size:12px"
               >
@@ -134,6 +142,7 @@ export default {
     resetChanges() {
       this.$store.dispatch("getWidgets");
     },
+    ovrlyClose() {},
   },
   computed: {
     ...mapGetters(["getWidgetsState"]),

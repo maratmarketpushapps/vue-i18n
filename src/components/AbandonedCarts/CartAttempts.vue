@@ -58,6 +58,7 @@ export default {
       let recAttempts =
         planDetails == undefined ? 0 : planDetails.cart_recovery_attempts;
       return (
+        recAttempts -
         this.getSubs.consumed_recovery_attempts +
         "/" +
         recAttempts +

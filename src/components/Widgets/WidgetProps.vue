@@ -1,7 +1,7 @@
 <template>
   <v-card tile height="auto" width="95%" class="wdgt_font_dims card-scroll">
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 mt-0">
-      <v-row style="height:25%;width:100%" class="pa-0 ma-0 ">
+      <v-row style="height:20%;width:100%" class="pa-0 ma-0 ">
         <v-col cols="5">
           <v-row
             class="my-0 ml-2"
@@ -48,6 +48,7 @@
       <v-row
         style="border-radius:0px; height:20%;width:100%"
         class="px-0 mx-0 mt-2"
+        v-show="false"
       >
         <v-col cols="1"></v-col>
         <v-col cols="5 px-0 mx-0">
@@ -88,12 +89,12 @@
       </v-row>
       <v-row
         style="border-radius:0px; height:2%;width:100%"
-        class="px-0 mx-0 mt-2"
+        class="px-0 mx-0 mt-0"
         v-show="radioSelect == 'Checkbox'"
       >
         <v-col cols="1"></v-col>
         <v-col cols="11 px-0 mx-0">
-          <v-row justify="start" style="width: 100%;">
+          <!-- <v-row justify="start" style="width: 100%;">
             <span class="pr-1" style="font-size:75%; font-style: italic;">{{
               $t("widgets.chckBoxNote")
             }}</span>
@@ -105,7 +106,7 @@
                 >{{ $t("widgets.chckBoxNoteHref") }}</a
               >
             </span>
-          </v-row>
+          </v-row> -->
         </v-col>
       </v-row>
 
@@ -632,10 +633,14 @@ export default {
       this.$store.dispatch("updWdgtBtnBrdrClr", selectedColor);
     },
     svChanges() {
-      this.$store.dispatch("setWdgts").then((response) => {
-        if (response) {
-          this.$store.dispatch("getWidgets");
-        }
+      this.$store.dispatch("updIsLoading", true).then(() => {
+        this.$store.dispatch("setWdgts").then((response) => {
+          if (response) {
+            this.$store.dispatch("getWidgets").then(() => {
+              this.$store.dispatch("updIsLoading", false);
+            });
+          }
+        });
       });
     },
   },
@@ -709,7 +714,7 @@ export default {
       return "btnBrdr" + this.btnBrdrClrKey;
     },
     getPageSettingsLink() {
-      if ((this.getSettingsState.facebook_page_name == "")) {
+      if (this.getSettingsState.facebook_page_name == "") {
         return `https://www.facebook.com/pages`;
       } else {
         return `https://www.facebook.com/${this.getSettingsState.facebook_page_id}/settings/?tab=messenger_platform`;
@@ -779,30 +784,34 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch("getWidgets").then((response) => {
-      if (response) {
-        this.radioSelect = this.$store.getters.getWidgetsState.facebook_widget_type;
-        this.ttlText = this.$store.getters.getWidgetsState.pop_up_title;
-        this.ttlFont = this.$store.getters.getWidgetsState.pop_up_title_font_family;
-        this.ttlFontWght = this.$store.getters.getWidgetsState.pop_up_title_font_type;
-        this.ttlFontSize = this.$store.getters.getWidgetsState.pop_up_title_font_size;
-        this.msgTxt = this.$store.getters.getWidgetsState.pop_up_message;
-        this.msgFont = this.$store.getters.getWidgetsState.pop_up_message_font_family;
-        this.msgFontWght = this.$store.getters.getWidgetsState.pop_up_message_font_type;
-        this.msgFontSize = this.$store.getters.getWidgetsState.pop_up_message_font_size;
-        this.cnclTxt = this.$store.getters.getWidgetsState.pop_up_cancel;
-        this.cnclFont = this.$store.getters.getWidgetsState.pop_up_cancel_font_family;
-        this.cnclFontWght = this.$store.getters.getWidgetsState.pop_up_cancel_font_type;
-        this.cnclFontSize = this.$store.getters.getWidgetsState.pop_up_cancel_font_size;
-        this.btnTxt = this.$store.getters.getWidgetsState.button_text;
-        this.btnFont = this.$store.getters.getWidgetsState.button_font_family;
-        this.btnFontWght = this.$store.getters.getWidgetsState.button_font_type;
-        this.btnFontSize = this.$store.getters.getWidgetsState.button_font_size;
-        this.btnCrnr = this.$store.getters.getWidgetsState.button_corners;
-        this.btnBrdrSz = this.$store.getters.getWidgetsState.button_border_size;
-        this.live = this.$store.getters.getWidgetsState.active;
-        this.$store.dispatch("getSettings");
-      }
+    this.$store.dispatch("updIsLoading", true).then(() => {
+      this.$store.dispatch("getWidgets").then((response) => {
+        if (response) {
+          this.radioSelect = this.$store.getters.getWidgetsState.facebook_widget_type;
+          this.ttlText = this.$store.getters.getWidgetsState.pop_up_title;
+          this.ttlFont = this.$store.getters.getWidgetsState.pop_up_title_font_family;
+          this.ttlFontWght = this.$store.getters.getWidgetsState.pop_up_title_font_type;
+          this.ttlFontSize = this.$store.getters.getWidgetsState.pop_up_title_font_size;
+          this.msgTxt = this.$store.getters.getWidgetsState.pop_up_message;
+          this.msgFont = this.$store.getters.getWidgetsState.pop_up_message_font_family;
+          this.msgFontWght = this.$store.getters.getWidgetsState.pop_up_message_font_type;
+          this.msgFontSize = this.$store.getters.getWidgetsState.pop_up_message_font_size;
+          this.cnclTxt = this.$store.getters.getWidgetsState.pop_up_cancel;
+          this.cnclFont = this.$store.getters.getWidgetsState.pop_up_cancel_font_family;
+          this.cnclFontWght = this.$store.getters.getWidgetsState.pop_up_cancel_font_type;
+          this.cnclFontSize = this.$store.getters.getWidgetsState.pop_up_cancel_font_size;
+          this.btnTxt = this.$store.getters.getWidgetsState.button_text;
+          this.btnFont = this.$store.getters.getWidgetsState.button_font_family;
+          this.btnFontWght = this.$store.getters.getWidgetsState.button_font_type;
+          this.btnFontSize = this.$store.getters.getWidgetsState.button_font_size;
+          this.btnCrnr = this.$store.getters.getWidgetsState.button_corners;
+          this.btnBrdrSz = this.$store.getters.getWidgetsState.button_border_size;
+          this.live = this.$store.getters.getWidgetsState.active;
+          this.$store.dispatch("getSettings").then(() => {
+            this.$store.dispatch("updIsLoading", false);
+          });
+        }
+      });
     });
   },
 };

@@ -54,9 +54,15 @@ import { mapGetters } from "vuex";
 export default {
   name: "CartsTable",
   mounted() {
-    this.$store.dispatch("getCarts", {
-      startDate: this.startDate,
-      endDate: this.endDate,
+    this.$store.dispatch("updIsLoading", true).then(() => {
+      this.$store
+        .dispatch("getCarts", {
+          startDate: this.startDate,
+          endDate: this.endDate,
+        })
+        .then(() => {
+          this.$store.dispatch("updIsLoading", false);
+        });
     });
   },
   props: ["startDate", "endDate"],
@@ -109,14 +115,14 @@ export default {
 <style>
 .v-data-table thead th {
   font-weight: 50000;
-  font-size: 70%;
+  font-size: 85%;
   opacity: 2;
   color: black !important;
 }
 
 .v-data-table tbody td {
   font-weight: 500;
-  font-size: 60%;
+  font-size: 80%;
   text-align: center !important;
 }
 
@@ -133,14 +139,14 @@ export default {
 @media (min-width: 1400px) {
   .v-data-table thead th {
     font-weight: 5000;
-    font-size: 80%;
+    font-size: 85%;
     opacity: 2;
     color: black !important;
   }
 
   .v-data-table tbody td {
     font-weight: 100;
-    font-size: 70%;
+    font-size: 80%;
     text-justify: center !important;
   }
 }
