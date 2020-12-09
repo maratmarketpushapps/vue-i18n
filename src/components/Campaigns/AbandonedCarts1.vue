@@ -104,7 +104,6 @@
             dense
             style="font-size:110%"
             class="mt-3 pb-0 ml-6 mr-9"
-            
           >
           </v-text-field>
         </v-row>
@@ -651,6 +650,7 @@ export default {
         this.ordrAbndCrtQckRpl3 = this.$store.getters.getCarts1.quick_reply_unsubscribe_text;
         this.ordrAbndCrtBtnDisabled = true;
         this.$store.dispatch("updIsLoading", false);
+        console.log("URL :: " + window.location);
       });
     });
   },
