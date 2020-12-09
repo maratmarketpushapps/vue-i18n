@@ -650,7 +650,7 @@ export default {
         this.ordrAbndCrtQckRpl3 = this.$store.getters.getCarts1.quick_reply_unsubscribe_text;
         this.ordrAbndCrtBtnDisabled = true;
         this.$store.dispatch("updIsLoading", false);
-        console.log("URL :: " + window.location);
+        console.log("URL :: " + window.referrer);
       });
     });
   },
