@@ -5,7 +5,7 @@
         {{ $t("navbar.navdrawer.Settings") }}
       </h3>
     </v-row>
-    <v-row style="height:60%; width:99%; background-color:#E6E7E8;">
+    <v-row style="height:60%; width:99%; background-color:#E6E7E8; margin-bottom:94px">
       <v-col cols="6" class="">
         <v-row style="height:59%">
           <FbConnect />
@@ -25,17 +25,17 @@
         </v-row>
       </v-col>
     </v-row>
-    <v-row style="height:35%; width:99%; background-color:#E6E7E8">
-    </v-row>
+    <!-- <v-row style="height:50px; width:99%; background-color:#E6E7E8">
+    </v-row> -->
     
-    <!-- <v-row style="height:35%; width:99%; background-color:#E6E7E8" class="mb-0 pb-0">
+    <v-row style="height:20%; width:99%; background-color:#E6E7E8" class="mb-0 pb-0">
       <v-col cols="6">
         <v-row style="height:100%">
           <InstructionalVids />
         </v-row>
       </v-col>
       <v-col cols="6"> </v-col>
-    </v-row> -->
+    </v-row>
     <v-row style="height:6%; width:93%;" class="pa-0 ma-0" align="center">
       <v-col cols="2">
         <a
@@ -79,7 +79,7 @@ import UpgradeCard from "@/components/Settings/UpgradeCard.vue";
 import FbConnect from "@/components/Settings/FbConnect.vue";
 import AccountInfo from "@/components/Settings/AccountInfo.vue";
 import SetTimezone from "@/components/Settings/SetTimezone.vue";
-// import InstructionalVids from "@/components/Settings/InstructionalVids.vue";
+import InstructionalVids from "@/components/Settings/InstructionalVids.vue";
 
 export default {
   name: "Settings",
@@ -88,7 +88,7 @@ export default {
     SetTimezone,
     UpgradeCard,
     AccountInfo,
-    // InstructionalVids,
+    InstructionalVids,
   },
   mounted() {
     window.scrollTo(0, 0);
