@@ -5,7 +5,9 @@
         {{ $t("navbar.navdrawer.Settings") }}
       </h3>
     </v-row>
-    <v-row style="height:60%; width:99%; background-color:#E6E7E8; margin-bottom:94px">
+    <v-row
+      style="height:60%; width:99%; background-color:#E6E7E8; margin-bottom:50px"
+    >
       <v-col cols="6" class="">
         <v-row style="height:59%">
           <FbConnect />
@@ -25,10 +27,11 @@
         </v-row>
       </v-col>
     </v-row>
-    <!-- <v-row style="height:50px; width:99%; background-color:#E6E7E8">
-    </v-row> -->
-    
-    <v-row style="height:20%; width:99%; background-color:#E6E7E8" class="mb-0 pb-0">
+
+    <v-row
+      style="height:35%; width:99%; background-color:#E6E7E8"
+      class="mb-0 pb-0"
+    >
       <v-col cols="6">
         <v-row style="height:100%">
           <InstructionalVids />
@@ -36,14 +39,14 @@
       </v-col>
       <v-col cols="6"> </v-col>
     </v-row>
-    <v-row style="height:6%; width:93%;" class="pa-0 ma-0" align="center">
+    <v-row style="height:6%; width:93%" class="pa-0 ma-0" align="center">
       <v-col cols="2">
         <a
-            href="https://www.marketpushapps.com/terms-of-use"
-            target="_blank"
-            style="text-decoration:underline ; color: #323F4F; font-weight:bolder; font-size:11px"
-            >{{ $t("settingsPage.footers.link1") }}</a
-          >
+          href="https://www.marketpushapps.com/terms-of-use"
+          target="_blank"
+          style="text-decoration:underline ; color: #323F4F; font-weight:bolder; font-size:11px"
+          >{{ $t("settingsPage.footers.link1") }}</a
+        >
       </v-col>
       <v-col cols="3">
         <a
