@@ -1,12 +1,12 @@
 <template>
-  <v-card tile height="95%" width="97%" class="font_dims" id="instrVid">
+  <v-card tile height="100%" width="97%" class="font_dims" id="instrVid">
     <v-row class="pl-3  mb-0" style="height:20%">
       <v-col cols="6" class="pb-0 mb-0">
         <h3 class="pt-3 pl-3">{{ $t("settingsPage.instVids.header") }}</h3>
       </v-col>
       <v-col cols="6"> </v-col>
     </v-row>
-    <v-row class="pl-3  mb-2">
+    <!-- <v-row class="pl-3  mb-2">
       <v-col cols="3">
         <v-img class="ml-3" :src="ytImg"> </v-img>
       </v-col>
@@ -18,7 +18,7 @@
         </v-row>
         <v-row style="height:40% ;width:100%" align="center">
           <a
-            href="https://youtu.be/8zSKMZKK2Rw"
+            href="https://www.youtube.com/channel/UCOKGEwMeTDMkQr3cMXjmkEQ"
             target="_blank"
             style="text-decoration:underline; color:#323F4F"
             >{{ $t("settingsPage.instVids.link") }}</a
@@ -26,7 +26,7 @@
         </v-row>
       </v-col>
     </v-row>
-    <v-divider></v-divider>
+    <v-divider></v-divider> -->
     <v-row class="pl-3  mt-2">
       <v-col cols="3">
         <v-img class="ml-3" :src="ytImg"> </v-img>
@@ -39,7 +39,7 @@
         </v-row>
         <v-row style="height:40% ;width:100%" align="center">
           <a
-            href="https://www.youtube.com/watch?v=hqNr7UDyC40"
+            href="https://youtu.be/8zSKMZKK2Rw"
             target="_blank"
             style="text-decoration:underline; color:#323F4F"
             >{{ $t("settingsPage.instVids.link") }}</a
