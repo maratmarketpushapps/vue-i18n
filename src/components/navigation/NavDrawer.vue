@@ -103,17 +103,17 @@ export default {
   },
   methods: {
     setSelected(id) {
-      console.log(event);
+      // console.log(event);
       this.$store.dispatch("updateClick", id);
       if (id == "Campaigns") {
-        this.$store.dispatch("updActiveTab", "abndndcrt1").then((response) => {
+        this.$store.dispatch("updActiveTab", "abndndcrt1").then(() => {
           this.$store.dispatch("updCart1Active", true);
-          console.log(response);
+          // console.log(response);
         });
       }
     },
     setHover(id) {
-      console.log(event);
+      // console.log(event);
 
       this.$store.dispatch("updateHover", id);
     },

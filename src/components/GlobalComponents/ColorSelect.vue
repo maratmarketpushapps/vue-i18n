@@ -52,7 +52,7 @@ export default {
     colorSelected() {
       this.menu = false;
       this.stickerColor = this.selectedColor;
-      console.log("child color ::" + this.selectedColor);
+      // console.log("child color ::" + this.selectedColor);
       this.$emit("selectedColor", this.selectedColor);
     },
     cancelClick() {

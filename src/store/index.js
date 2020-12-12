@@ -215,7 +215,7 @@ export default new Vuex.Store({
       return state.settingsVars;
     },
     getWidgetsState: (state) => {
-      console.log(state.widgetVars);
+      // console.log(state.widgetVars);
       return state.widgetVars;
     },
     getPlanState: (state) => {
@@ -770,11 +770,11 @@ export default new Vuex.Store({
             authorization: this.state.TOKEN,
           },
         };
-        console.log("headers :: " + this.state.TOKEN);
+        // console.log("headers :: " + this.state.TOKEN);
         axios
           .get(url, headers)
           .then((res) => {
-            console.log(JSON.parse(JSON.stringify(res.data)));
+            // console.log(JSON.parse(JSON.stringify(res.data)));
             commit("SET_GLOBAL_VALS", JSON.parse(JSON.stringify(res.data)));
             resolve("success");
           })
@@ -792,7 +792,7 @@ export default new Vuex.Store({
             "Content-Type": "application/json",
           },
         };
-        console.log("Settings called");
+        // console.log("Settings called");
         axios
           .get(url, headers)
           .then((res) => {
@@ -835,11 +835,11 @@ export default new Vuex.Store({
             "Content-Type": "application/json",
           },
         };
-        console.log("CART-CHECK :: " + url);
+        // console.log("CART-CHECK :: " + url);
         axios
           .get(url, headers)
           .then((res) => {
-            console.log("CartsApi: " + JSON.parse(JSON.stringify(res.data)));
+            // console.log("CartsApi: " + JSON.parse(JSON.stringify(res.data)));
             commit("SET_CARTS_VAL", JSON.parse(JSON.stringify(res.data)));
             resolve("success");
           })
@@ -1050,11 +1050,11 @@ export default new Vuex.Store({
           },
         };
         let data = this.state.settingsVars;
-        console.log(data);
+        // console.log(data);
         axios
           .post(url, data, headers)
-          .then((res) => {
-            console.log(res);
+          .then(() => {
+            // console.log(res);
             resolve("success");
           })
           .catch((error) => {
@@ -1072,13 +1072,13 @@ export default new Vuex.Store({
           },
         };
         let data = this.state.widgetVars;
-        console.log("headers" + headers);
-        console.log("data" + data);
+        // console.log("headers" + headers);
+        // console.log("data" + data);
 
         axios
           .post(url, data, headers)
-          .then((res) => {
-            console.log(res);
+          .then(() => {
+            // console.log(res);
             resolve("success");
           })
           .catch((error) => {
@@ -1104,7 +1104,7 @@ export default new Vuex.Store({
             "Content-Type": "application/json",
           },
         };
-        console.log("Messages called");
+        // console.log("Messages called");
         axios
           .get(url, headers)
           .then((res) => {
@@ -1126,13 +1126,13 @@ export default new Vuex.Store({
           },
         };
         let data = this.state.msgVars;
-        console.log("headers" + JSON.stringify(headers));
-        console.log("data" + JSON.stringify(data));
+        // console.log("headers" + JSON.stringify(headers));
+        // console.log("data" + JSON.stringify(data));
 
         axios
           .post(url, data, headers)
-          .then((res) => {
-            console.log(res);
+          .then(() => {
+            // console.log(res);
             resolve("success");
           })
           .catch((error) => {
@@ -1148,14 +1148,14 @@ export default new Vuex.Store({
     },
     updOrdrShipped({ commit }, obj) {
       return new Promise((resolve) => {
-        console.log("CampaignRequest::" + JSON.stringify(obj));
+        // console.log("CampaignRequest::" + JSON.stringify(obj));
         commit("SET_ORDR_SHIPPED", obj);
         resolve("success");
       });
     },
     updOrdrAbndCrt({ commit }, obj) {
       return new Promise((resolve) => {
-        console.log("updateCart :: " + JSON.stringify(obj));
+        // console.log("updateCart :: " + JSON.stringify(obj));
         commit("SET_ORDR_ABANDONED_CART", obj);
         resolve("success");
       });
@@ -1208,7 +1208,7 @@ export default new Vuex.Store({
             "Content-Type": "application/json",
           },
         };
-        console.log("Dashboard data refreshed");
+        // console.log("Dashboard data refreshed");
         axios
           .get(url, headers)
           .then((res) => {
@@ -1231,7 +1231,7 @@ export default new Vuex.Store({
             "Content-Type": "application/json",
           },
         };
-        console.log("Dashboard data refreshed");
+        // console.log("Dashboard data refreshed");
         axios
           .get(url, headers)
           .then((res) => {

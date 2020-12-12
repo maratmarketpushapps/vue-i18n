@@ -470,13 +470,13 @@ export default {
           sent_after: Number(this.sent_after.split(" ")[0]),
         };
 
-        this.$store.dispatch("updOrdrAbndCrt", obj).then((response) => {
-          console.log(response);
-          this.$store.dispatch("setMsg").then((resp) => {
-            console.log(resp);
+        this.$store.dispatch("updOrdrAbndCrt", obj).then(() => {
+          // console.log(response);
+          this.$store.dispatch("setMsg").then(() => {
+            // console.log(resp);
             this.ordrAbndCrtBtnDisabled = true;
-            this.$store.dispatch("getMsg").then((response) => {
-              console.log(response);
+            this.$store.dispatch("getMsg").then(() => {
+              // console.log(response);
               this.$store.dispatch("updIsLoading", false);
             });
           });
@@ -484,9 +484,9 @@ export default {
       });
     },
     editCart1() {
-      this.$store.dispatch("updActiveTab", "abndndcrt1").then((response) => {
+      this.$store.dispatch("updActiveTab", "abndndcrt1").then(() => {
         this.$store.dispatch("updCart1Active", true);
-        console.log(response);
+        // console.log(response);
       });
     },
     saveCart1() {
@@ -505,8 +505,8 @@ export default {
         quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
         sent_after: Number(this.sent_after.split(" ")[0]),
       };
-      this.$store.dispatch("updOrdrAbndCrt", obj).then((response) => {
-        console.log(response);
+      this.$store.dispatch("updOrdrAbndCrt", obj).then(() => {
+        // console.log(response);
         this.ordrAbndCrtBtnDisabled = false;
       });
 
@@ -588,8 +588,8 @@ export default {
           sent_after: Number(this.sent_after.split(" ")[0]),
         };
 
-        this.$store.dispatch("updOrdrAbndCrt", obj).then((response) => {
-          console.log(response);
+        this.$store.dispatch("updOrdrAbndCrt", obj).then(() => {
+          // console.log(response);
         });
 
         this.ordrAbndCrtBtnDisabled = false;
@@ -611,8 +611,8 @@ export default {
           sent_after: Number(this.sent_after.split(" ")[0]),
         };
 
-        this.$store.dispatch("updOrdrAbndCrt", obj).then((response) => {
-          console.log(response);
+        this.$store.dispatch("updOrdrAbndCrt", obj).then(() => {
+          // console.log(response);
         });
         this.ordrAbndCrtBtnDisabled = false;
       }
@@ -633,8 +633,8 @@ export default {
           sent_after: Number(this.sent_after.split(" ")[0]),
         };
 
-        this.$store.dispatch("updOrdrAbndCrt", obj).then((response) => {
-          console.log(response);
+        this.$store.dispatch("updOrdrAbndCrt", obj).then(() => {
+          // console.log(response);
         });
 
         this.ordrAbndCrtBtnDisabled = false;
@@ -647,8 +647,8 @@ export default {
 
   beforeCreate() {
     this.$store.dispatch("updIsLoading", true).then(() => {
-      this.$store.dispatch("getMsg").then((response) => {
-        console.log(response);
+      this.$store.dispatch("getMsg").then(() => {
+        // console.log(response);
 
         this.sent_after = this.$store.getters.getCarts1.sent_after + " hour";
         this.ordrAbndCrtSwitchLive = this.$store.getters.getCarts1.active;

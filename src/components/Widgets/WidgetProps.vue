@@ -722,9 +722,9 @@ export default {
     },
   },
   watch: {
-    radioSelect(newValue, oldValue) {
-      console.log(oldValue);
-      console.log(newValue);
+    radioSelect(newValue) {
+      // console.log(oldValue);
+      // console.log(newValue);
       this.$store.dispatch("updWdgtType", newValue);
     },
     ttlText(newValue) {

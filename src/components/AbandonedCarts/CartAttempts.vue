@@ -47,11 +47,11 @@ export default {
       );
     },
     body() {
-      console.log(
-        this.getPlanState.find(
-          (o) => o.planName === this.getSubs.subscription_plan
-        )
-      );
+      // console.log(
+      //   this.getPlanState.find(
+      //     (o) => o.planName === this.getSubs.subscription_plan
+      //   )
+      // );
       let planDetails = this.getPlanState.find(
         (o) => o.planName === this.getSubs.subscription_plan
       );

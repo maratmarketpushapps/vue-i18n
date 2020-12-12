@@ -114,10 +114,10 @@ export default {
             this.$store.dispatch("setSettings").then((response) => {
               this.$store.dispatch("updIsLoading", false);
               if (response === "success") {
-                console.log("Settings API refreshed");
+                // console.log("Settings API refreshed");
                 this.btnDisabled = true;
               } else {
-                console.log("Settings API not refreshed");
+                // console.log("Settings API not refreshed");
               }
             });
           }

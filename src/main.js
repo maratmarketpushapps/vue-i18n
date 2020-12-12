@@ -9,8 +9,8 @@ import { initFbSdk } from "./lib/FacebookSdk";
 import VueScrollTo from "vue-scrollto";
 import VueIntercom from "vue-intercom";
 
-initFbSdk(Vue, process.env.VUE_APP_FACEBOOK_CLIENT_ID).then((resp) => {
-  console.log(resp);
+initFbSdk(Vue, process.env.VUE_APP_FACEBOOK_CLIENT_ID).then(() => {
+  // console.log(resp);
   Vue.use(SvgTransition);
   Vue.config.productionTip = false;
   Vue.use(VueScrollTo);

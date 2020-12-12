@@ -151,7 +151,7 @@ export default {
       this.btnId++;
     },
     toggleDialog() {
-      console.log("Inside toggle dialog :: " + this.dialog);
+      // console.log("Inside toggle dialog :: " + this.dialog);
       this.dialog = !this.dialog;
     },
     ovrlyClose() {},
@@ -217,7 +217,7 @@ export default {
     },
     buttonText() {
       this.incrBtnId();
-      console.log("button Text" + this.getWidgetsState.button_text);
+      // console.log("button Text" + this.getWidgetsState.button_text);
       return this.getWidgetsState.button_text;
     },
     buttonProps() {

@@ -169,8 +169,8 @@ export default {
     },
 
     setCustDt() {
-      console.log("DateTestsNew :: " + this.custDates[0]);
-      console.log("DateTestsNew :: " + this.custDates[1]);
+      // console.log("DateTestsNew :: " + this.custDates[0]);
+      // console.log("DateTestsNew :: " + this.custDates[1]);
       this.custDates[0] > this.custDates[1]
         ? (this.custStDt = moment(this.custDates[1]).format("MM-DD-YYYY"))
         : (this.custStDt = moment(this.custDates[0]).format("MM-DD-YYYY"));
@@ -179,8 +179,8 @@ export default {
         ? (this.custEnDt = moment(this.custDates[0]).format("MM-DD-YYYY"))
         : (this.custEnDt = moment(this.custDates[1]).format("MM-DD-YYYY"));
 
-      console.log("start date :: " + this.custStDt);
-      console.log("end date :: " + this.custEnDt);
+      // console.log("start date :: " + this.custStDt);
+      // console.log("end date :: " + this.custEnDt);
       this.activeTab = "4";
       this.custKey++;
       this.menu = false;
@@ -215,17 +215,17 @@ export default {
       return moment(new Date()).format("MM-DD-YYYY");
     },
     lstWeekDate() {
-      console.log(
-        "Last-week-time :: " +
-          moment(new Date() - 86400000 * 7).format("MM-DD-YYYY")
-      );
+      // console.log(
+      //   "Last-week-time :: " +
+      //     moment(new Date() - 86400000 * 7).format("MM-DD-YYYY")
+      // );
       return moment(new Date() - 86400000 * 7).format("MM-DD-YYYY");
     },
     lstMonthDate() {
-      console.log(
-        "Last-week-time :: " +
-          moment(new Date() - 86400000 * 30).format("MM-DD-YYYY")
-      );
+      // console.log(
+      //   "Last-week-time :: " +
+      //     moment(new Date() - 86400000 * 30).format("MM-DD-YYYY")
+      // );
       return moment(new Date() - 86400000 * 30).format("MM-DD-YYYY");
     },
   },

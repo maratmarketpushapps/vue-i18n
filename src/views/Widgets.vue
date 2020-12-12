@@ -81,8 +81,8 @@ export default {
     };
   },
   beforeCreate() {
-    this.$store.dispatch("getWidgets").then(response => {
-      console.log(response);
+    this.$store.dispatch("getWidgets").then(() => {
+      // console.log(response);
       this.live = this.$store.getters.getWidgetsState.active;
     });
   },
@@ -101,9 +101,9 @@ export default {
   computed: {
     ...mapGetters(["getWidgetsState"]),
     widgetType() {
-      console.log(
-        "widget type :: " + this.getWidgetsState.facebook_widget_type
-      );
+      // console.log(
+      //   "widget type :: " + this.getWidgetsState.facebook_widget_type
+      // );
       return this.getWidgetsState.facebook_widget_type;
     },
     liveLbl() {

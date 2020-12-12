@@ -167,9 +167,9 @@ export default {
   beforeCreate() {
     this.$store
       .dispatch("updateToken", this.$route.query.instance)
-      .then((resp) => {
-        console.log(resp);
-        this.$store.dispatch("getGlobal").then((response) => {
+      .then(() => {
+        // console.log(resp);
+        this.$store.dispatch("getGlobal").then(() => {
           this.$store.dispatch("getSubs").then(() => {
             this.$intercom.boot({
               user_id: this.$store.getters.getInstanceId,
@@ -179,11 +179,11 @@ export default {
             });
           });
 
-          console.log(response);
+          // console.log(response);
           this.$i18n.locale = this.$store.getters.getLocale;
-          console.log("Query Parameters :: " + this.$route.query.instance);
-          this.$store.dispatch("getMsg").then((response) => {
-            console.log(response);
+          // console.log("Query Parameters :: " + this.$route.query.instance);
+          this.$store.dispatch("getMsg").then(() => {
+            // console.log(response);
             this.$store.dispatch("getSettings").then(() => {
               this.$store.dispatch("getWidgets").then(() => {
                 this.$store.getters.getStep1Complete &&
@@ -261,7 +261,7 @@ export default {
       this.$store.dispatch("updStepsCompOnload", true);
     },
     checkaxios() {
-      console.log("inside axios check");
+      // console.log("inside axios check");
     },
   },
   computed: {

@@ -179,8 +179,8 @@ export default {
     },
   },
   beforeMount() {
-    this.$store.dispatch("getMsg").then((response) => {
-      console.log(response);
+    this.$store.dispatch("getMsg").then(() => {
+      // console.log(response);
       this.$store.dispatch("getSettings").then(() => {
         this.$store.dispatch("getWidgets");
       });

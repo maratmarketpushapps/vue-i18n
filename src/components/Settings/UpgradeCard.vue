@@ -89,11 +89,11 @@ export default {
       return `https://www.wix.com/apps/upgrade/1c15809f-0715-427d-969d-3f0f3939418f?appInstanceId=${this.getInstanceId}`;
     },
     body() {
-      console.log(
-        this.getPlanState.find(
-          (o) => o.planName === this.getSubs.subscription_plan
-        )
-      );
+      // console.log(
+      //   this.getPlanState.find(
+      //     (o) => o.planName === this.getSubs.subscription_plan
+      //   )
+      // );
       let planDetails = this.getPlanState.find(
         (o) => o.planName === this.getSubs.subscription_plan
       );

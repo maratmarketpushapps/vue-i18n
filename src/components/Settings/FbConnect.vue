@@ -292,7 +292,7 @@ export default {
   methods: {
     step1Comp() {
       Vue.FB.getLoginStatus((response) => {
-        console.log("FBAUTH status :: " + response.status);
+        // console.log("FBAUTH status :: " + response.status);
 
         if (response.status == "connected") {
           let fbUsrId = response.authResponse.userID;
@@ -302,7 +302,7 @@ export default {
           axios
             .get(url)
             .then((res) => {
-              console.log("PageResponse ::" + JSON.stringify(res));
+              // console.log("PageResponse ::" + JSON.stringify(res));
               let pgList = JSON.parse(JSON.stringify(res)).data.data;
               this.arrVal = 1;
               this.pageList = [
@@ -338,7 +338,7 @@ export default {
         } else {
           Vue.FB.login(
             (resp) => {
-              console.log(resp);
+              // console.log(resp);
 
               if (resp.status == "connected") {
                 let url = `https://graph.facebook.com/${resp.authResponse.userID}/accounts?access_token=${resp.authResponse.accessToken}`;
@@ -347,7 +347,7 @@ export default {
                 axios
                   .get(url)
                   .then((res) => {
-                    console.log("PageResponse ::" + JSON.stringify(res));
+                    // console.log("PageResponse ::" + JSON.stringify(res));
                     let pgList = JSON.parse(JSON.stringify(res)).data.data;
                     this.arrVal = 1;
                     this.pageList = [
@@ -378,9 +378,9 @@ export default {
                         this.fbStep = 2;
                       } else {
                         this.showOverlay = true;
-                        Vue.FB.logout((resp) => {
-                          console.log("Facebook Logout");
-                          console.log(resp);
+                        Vue.FB.logout(() => {
+                          // console.log("Facebook Logout");
+                          // console.log(resp);
                         });
                       }
                     }
@@ -401,10 +401,10 @@ export default {
     step2Comp() {
       let pageObj = this.pageList.find((o) => o.value === this.PageSelectedId);
       this.$store.dispatch("updIsLoading", true).then(() => {
-        this.$store.dispatch("updFbSettings", pageObj).then((res) => {
-          console.log(res);
-          this.$store.dispatch("setSettings").then((response) => {
-            console.log(response);
+        this.$store.dispatch("updFbSettings", pageObj).then(() => {
+          // console.log(res);
+          this.$store.dispatch("setSettings").then(() => {
+            // console.log(response);
             this.$store.dispatch("updIsLoading", false);
             this.fbStep = 3;
           });
@@ -420,21 +420,21 @@ export default {
         setup_step_1_completed: false,
       };
       this.$store.dispatch("updIsLoading", true).then(() => {
-        this.$store.dispatch("updFbSettings", fbObj).then((res) => {
-          console.log(res);
-          this.$store.dispatch("setSettings").then((response) => {
+        this.$store.dispatch("updFbSettings", fbObj).then(() => {
+          // console.log(res);
+          this.$store.dispatch("setSettings").then(() => {
             Vue.FB.getLoginStatus((response) => {
-              console.log("FBAUTH status :: " + response.status);
+              // console.log("FBAUTH status :: " + response.status);
               this.$store.dispatch("updIsLoading", false);
               if (response.status == "connected") {
-                Vue.FB.logout((resp) => {
-                  console.log("Facebook Logout");
-                  console.log(resp);
+                Vue.FB.logout(() => {
+                  // console.log("Facebook Logout");
+                  // console.log(resp);
                 });
               }
             });
 
-            console.log(response);
+            // console.log(response);
             this.PageSelectedId = 1;
             this.fbStep = 1;
           });
@@ -449,12 +449,12 @@ export default {
     this.$store.dispatch("updIsLoading", true).then(() => {
       this.$store.dispatch("getSettings").then((res) => {
         if (res === "success") {
-          console.log(res);
-          console.log("Step to display" + this.fbStep);
-          console.log(
-            "step1Completed" +
-              this.$store.getters.getSettingsState.setup_step_1_completed
-          );
+          // console.log(res);
+          // console.log("Step to display" + this.fbStep);
+          // console.log(
+          //   "step1Completed" +
+          //     this.$store.getters.getSettingsState.setup_step_1_completed
+          // );
           this.fbStep != 2
             ? this.$store.getters.getSettingsState.setup_step_1_completed
               ? (this.fbStep = 3)
