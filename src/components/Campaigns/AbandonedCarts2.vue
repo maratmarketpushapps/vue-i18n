@@ -120,14 +120,25 @@
           </v-text-field> -->
 
           <v-text-field
-            :label="$t('campaigns.ordrrcpt.btnTxt')"
-            v-model="ordrAbndCrtBtnText"
+            :label="$t('campaigns.ordrrcpt.introMsg')"
+            v-model="ordrAbndCrtIntroMsg"
             @change="activeStateChng()"
             @input="activeStateChng()"
             dense
             style="font-size:110%"
-            class="mt-5 pb-1 ml-6 mr-9"
+            class="mt-3 pb-0 ml-6 mr-9"
+            hint="test"
+            :persistent-hint="true"
           >
+            <template slot="message"
+              ><span>
+                <span>{{ $t("campaigns.carts1.discountTxt1") }}</span>
+                <b>
+                  {{ $t("campaigns.carts1.discountTxt2") }}
+                </b>
+                <span>{{ $t("campaigns.carts1.discountTxt3") }}</span>
+              </span></template
+            >
           </v-text-field>
         </v-row>
         <!-- <v-row style="height:15%; width:100%" class="pl-4 pr-3">
@@ -709,5 +720,13 @@ export default {
     transform: scale(1);
     transform-origin: 0 0;
   }
+}
+</style>
+
+<style>
+.v-messages__message {
+  line-height: 25px;
+  font-style: normal;
+  color: black;
 }
 </style>
