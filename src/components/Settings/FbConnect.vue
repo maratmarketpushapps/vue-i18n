@@ -210,7 +210,17 @@
               align="center"
               class="ml-0"
             >
-              {{ $t("settingsPage.fbCard1.adminErrTxt") }}
+              <span>
+                <span>
+                  {{ $t("settingsPage.fbCard1.adminErrTxt") }}
+                </span>
+                <a
+                  href="https://www.facebook.com/pages/create/?ref_type=universal_creation_hub"
+                  target="_blank"
+                  style="text-decoration:underline"
+                  >{{ $t("settingsPage.fbCard1.hrefText") }}</a
+                >
+              </span>
             </v-row>
           </v-col>
         </v-row>

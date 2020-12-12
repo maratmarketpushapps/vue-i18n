@@ -92,7 +92,7 @@
               <v-btn
                 icon
                 tile
-                href="https://www.youtube.com/watch?v=hqNr7UDyC40"
+                href="https://youtu.be/8zSKMZKK2Rw"
                 target="_blank"
                 v-on="on"
               >

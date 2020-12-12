@@ -98,9 +98,9 @@
       "selectLabel": "Send After",
       "sendAfter": "How much time should pass before sending this message.",
       "iconTxt": "Edit Message",
-      "discountTxt1": "Include a discount coupon in your message. To generate it, go to ",
+      "discountTxt1": "To increase the chances of recovering sales, you can include a discount coupon in your message. To generate a coupon, go to ",
       "discountTxt2": "Marketing & SEO / Coupons ",
-      "discountTxt3": "from the left menu"
+      "discountTxt3": ""
     },
     "carts2": {
       "headerTxt": "Abandoned Cart Message #2",
@@ -174,8 +174,8 @@
       "buttonText": "Login with Facebook",
       "buttonFooter": "If you don't have a facebook page, you can create one ",
       "hrefText": " here",
-      "adminErrHdr": "Error",
-      "adminErrTxt": "You do not have any Pages in which you have an Admin role. Please obtain the role or ask a Facebook Admin to add it for you.",
+      "adminErrHdr": "Error: You are not an Admin",
+      "adminErrTxt": "You do not have any Pages in which you have an Admin role. Please obtain the role or ask a Facebook Admin to add it for you. Alternatively, you can create a new Facebook Page ",
       "adminErrBtnTxt": "I Understand"
     },
     "fbCard2": {

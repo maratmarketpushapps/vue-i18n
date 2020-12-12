@@ -725,8 +725,8 @@ export default {
 
 <style>
 .v-messages__message {
-  line-height: 25px;
-  font-style: normal;
+  line-height: 20px;
   color: black;
+  font-size: 90%;
 }
 </style>
