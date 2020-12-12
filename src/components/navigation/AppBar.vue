@@ -22,7 +22,7 @@
             >
               <router-link
                 to="/settings"
-                @click.native="step = 1"
+                @click.native="step1Click"
                 class="step-item-font"
                 >{{ $t("navbar.appbar.step1") }}
               </router-link>
@@ -39,7 +39,7 @@
               <router-link
                 v-if="step1Complete"
                 to="/campaigns"
-                @click.native="step = 2"
+                @click.native="step2Click"
                 class="step-item-font"
                 >{{ $t("navbar.appbar.step2") }}
               </router-link>
@@ -63,7 +63,7 @@
               <router-link
                 v-if="step2Complete"
                 to="/widgets"
-                @click.native="step = 3"
+                @click.native="step3Click"
                 class="step-item-font"
                 >{{ $t("navbar.appbar.step3") }}
               </router-link>
@@ -149,6 +149,30 @@ export default {
   methods: {
     setStep(step) {
       this.step = step;
+    },
+
+    step1Click() {
+      this.step = 1;
+      this.$store.dispatch("updateHover", "").then(() => {
+        this.$store.dispatch("updateClick", "Settings");
+      });
+    },
+    step2Click() {
+      this.step = 2;
+      this.$store.dispatch("updateHover", "").then(() => {
+        this.$store.dispatch("updateClick", "Campaigns").then(() => {
+          this.$store.dispatch("updActiveTab", "abndndcrt1").then(() => {
+            this.$store.dispatch("updCart1Active", true);
+            // console.log(response);
+          });
+        });
+      });
+    },
+    step3Click() {
+      this.step = 3;
+      this.$store.dispatch("updateHover", "").then(() => {
+        this.$store.dispatch("updateClick", "Widgets");
+      });
     },
   },
   computed: {

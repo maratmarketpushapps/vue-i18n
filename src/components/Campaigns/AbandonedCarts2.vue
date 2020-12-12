@@ -104,7 +104,18 @@
             dense
             style="font-size:110%"
             class="mt-3 pb-0 ml-6 mr-9"
+            hint="test"
+            :persistent-hint="true"
           >
+            <template slot="message"
+              ><span>
+                <span>{{ $t("campaigns.carts1.discountTxt1") }}</span>
+                <b>
+                  {{ $t("campaigns.carts1.discountTxt2") }}
+                </b>
+                <span>{{ $t("campaigns.carts1.discountTxt3") }}</span>
+              </span></template
+            >
           </v-text-field>
         </v-row>
         <v-row style="height:15%; width:100%" class="mt-2 pl-4 pr-3">
@@ -120,25 +131,14 @@
           </v-text-field> -->
 
           <v-text-field
-            :label="$t('campaigns.ordrrcpt.introMsg')"
-            v-model="ordrAbndCrtIntroMsg"
+            :label="$t('campaigns.ordrrcpt.btnTxt')"
+            v-model="ordrAbndCrtBtnText"
             @change="activeStateChng()"
             @input="activeStateChng()"
             dense
             style="font-size:110%"
-            class="mt-3 pb-0 ml-6 mr-9"
-            hint="test"
-            :persistent-hint="true"
+            class="mt-5 pb-1 ml-6 mr-9"
           >
-            <template slot="message"
-              ><span>
-                <span>{{ $t("campaigns.carts1.discountTxt1") }}</span>
-                <b>
-                  {{ $t("campaigns.carts1.discountTxt2") }}
-                </b>
-                <span>{{ $t("campaigns.carts1.discountTxt3") }}</span>
-              </span></template
-            >
           </v-text-field>
         </v-row>
         <!-- <v-row style="height:15%; width:100%" class="pl-4 pr-3">
