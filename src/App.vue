@@ -165,45 +165,40 @@ import iconSuccess from "@/assets/icons/misc/icon-success.svg";
 export default {
   name: "App",
   beforeCreate() {
-    this.$store
-      .dispatch("updateToken", this.$route.query.instance)
-      .then(() => {
-        // console.log(resp);
-        this.$store.dispatch("getGlobal").then(() => {
-          this.$store.dispatch("getSubs").then(() => {
-            this.$intercom.boot({
-              user_id: this.$store.getters.getInstanceId,
-              instance_id: this.$store.getters.getInstanceId,
-              subscription_plan: this.$store.getters.getSubs.subscription_plan,
-              website_url: this.$store.getters.getUrl,
-            });
+    console.log(window.top.location);
+    this.$store.dispatch("updateToken", this.$route.query.instance).then(() => {
+      // console.log(resp);
+      this.$store.dispatch("getGlobal").then(() => {
+        this.$store.dispatch("getSubs").then(() => {
+          this.$intercom.boot({
+            user_id: this.$store.getters.getInstanceId,
+            instance_id: this.$store.getters.getInstanceId,
+            subscription_plan: this.$store.getters.getSubs.subscription_plan,
+            website_url: this.$store.getters.getUrl,
           });
+        });
 
+        // console.log(response);
+        this.$i18n.locale = this.$store.getters.getLocale;
+        // console.log("Query Parameters :: " + this.$route.query.instance);
+        this.$store.dispatch("getMsg").then(() => {
           // console.log(response);
-          this.$i18n.locale = this.$store.getters.getLocale;
-          // console.log("Query Parameters :: " + this.$route.query.instance);
-          this.$store.dispatch("getMsg").then(() => {
-            // console.log(response);
-            this.$store.dispatch("getSettings").then(() => {
-              this.$store.dispatch("getWidgets").then(() => {
-                this.$store.getters.getStep1Complete &&
-                this.$store.getters.getStep2Complete &&
-                this.$store.getters.getStep3Complete
-                  ? this.$store
-                      .dispatch("updStepsCompOnload", true)
-                      .then(() => {
-                        // this.$store.dispatch("updIsLoading", false);
-                      })
-                  : this.$store
-                      .dispatch("updStepsCompOnload", false)
-                      .then(() => {
-                        // this.$store.dispatch("updIsLoading", false);
-                      });
-              });
+          this.$store.dispatch("getSettings").then(() => {
+            this.$store.dispatch("getWidgets").then(() => {
+              this.$store.getters.getStep1Complete &&
+              this.$store.getters.getStep2Complete &&
+              this.$store.getters.getStep3Complete
+                ? this.$store.dispatch("updStepsCompOnload", true).then(() => {
+                    // this.$store.dispatch("updIsLoading", false);
+                  })
+                : this.$store.dispatch("updStepsCompOnload", false).then(() => {
+                    // this.$store.dispatch("updIsLoading", false);
+                  });
             });
           });
         });
       });
+    });
   },
   // mounted() {
 
