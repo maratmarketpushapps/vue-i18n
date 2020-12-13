@@ -165,7 +165,7 @@ import iconSuccess from "@/assets/icons/misc/icon-success.svg";
 export default {
   name: "App",
   beforeCreate() {
-    console.log(window.top.location);
+    // console.log(window.top.location);
     this.$store.dispatch("updateToken", this.$route.query.instance).then(() => {
       // console.log(resp);
       this.$store.dispatch("getGlobal").then(() => {
