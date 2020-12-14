@@ -176,7 +176,10 @@
       "hrefText": " here",
       "adminErrHdr": "Error: You are not an Admin",
       "adminErrTxt": "You do not have any Pages in which you have an Admin role. Please obtain the role or ask a Facebook Admin to add it for you. Alternatively, you can create a new Facebook Page ",
-      "adminErrBtnTxt": "I Understand"
+      "adminErrBtnTxt": "I Understand",
+      "wbstUnpubErrHdr": "Your website is not published",
+      "wbstUnpubErrTxt": "Please connect a domain and publish your website in order to pair it with your Facebook Page, then refresh the page and connect the Facebook Page again.",
+      "wbstUnpubErrBtnTxt": "ok"
     },
     "fbCard2": {
       "header": "Connect Your Facebook Page",
