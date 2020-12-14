@@ -254,6 +254,87 @@
         </v-row>
       </v-card>
     </v-overlay>
+    <v-overlay
+      :absolute="absolute"
+      :opacity="opacity"
+      :value="showUnpubOverlay"
+      :z-index="zIndex"
+    >
+      <v-card
+        tile
+        light
+        height="240px"
+        width="22vw"
+        class=" font_dims pb-0 mb-0"
+      >
+        <v-row style="height:4%; width:100%" justify="end" class="mt-4">
+          <v-btn icon small>
+            <v-icon @click="canclOvrlyUnpubErr()">
+              mdi-window-close
+            </v-icon>
+          </v-btn>
+        </v-row>
+
+        <v-row style="height:15%; width:100%" class="mr-0 mt-2">
+          <v-col cols="12">
+            <v-row style="width:100%" justify="center" class="ml-4">
+              <h3 style="color:#4E5D6B; font-size:150%">
+                {{ $t("settingsPage.fbCard1.wbstUnpubErrHdr") }}
+              </h3>
+            </v-row>
+          </v-col>
+        </v-row>
+        <v-row
+          style="height:22%; width:100%"
+          justify="center"
+          align="center"
+          class="ma-2 pr-2"
+        >
+          <v-col>
+            <v-row
+              style="width:98%; text-align:center"
+              justify="center"
+              align="center"
+              class="ml-0"
+            >
+              <span>
+                <span>
+                  {{ $t("settingsPage.fbCard1.wbstUnpubErrTxt") }}
+                </span>
+              </span>
+            </v-row>
+          </v-col>
+        </v-row>
+        <v-row
+          style="height:22%; width:108%"
+          class="ma-0 mt-6 mb-0"
+          justify="center"
+          align="end"
+        >
+          <v-col>
+            <v-row
+              style="width:100%"
+              justify="center"
+              align="end"
+              class="mb-0 pb-0"
+            >
+              <v-btn
+                tile
+                height="60px"
+                class="ma-0 mt-3 mb-0"
+                width="100%"
+                @click="canclOvrlyUnpubErr()"
+                outlined
+                color="#006AFF"
+                style="border-color:#F2F2F2"
+              >
+                {{ $t("settingsPage.fbCard1.wbstUnpubErrBtnTxt") }}
+              </v-btn>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-overlay>
   </v-card>
 </template>
 
@@ -273,6 +354,7 @@ export default {
   data() {
     return {
       showOverlay: false,
+      showUnpubOverlay: false,
       absolute: false,
       opacity: 0.46,
       zIndex: 5,
@@ -375,7 +457,27 @@ export default {
                     });
                     if (this.arrVal - 1 == pgList.length) {
                       if (this.pageList.length > 1) {
-                        this.fbStep = 2;
+                        if (
+                          this.$store.getters.getUrl != undefined &&
+                          this.$store.getters.getUrl != null
+                        ) {
+                          this.fbStep = 2;
+                        } else {
+                          this.$store.dispatch("refreshUrl").then(() => {
+                            if (
+                              this.$store.getters.getUrl != undefined &&
+                              this.$store.getters.getUrl != null
+                            ) {
+                              this.fbStep = 2;
+                            } else {
+                              this.showUnpubOverlay = true;
+                              Vue.FB.logout(() => {
+                                // console.log("Facebook Logout");
+                                // console.log(resp);
+                              });
+                            }
+                          });
+                        }
                       } else {
                         this.showOverlay = true;
                         Vue.FB.logout(() => {
@@ -443,6 +545,9 @@ export default {
     },
     canclOvrlyAdminErr() {
       this.showOverlay = false;
+    },
+    canclOvrlyUnpubErr() {
+      this.showUnpubOverlay = false;
     },
   },
   beforeCreate() {

@@ -290,6 +290,10 @@ export default new Vuex.Store({
       state.TOKEN = token;
     },
 
+    REFRESH_URL(state, obj) {
+      state.globalVars.url = obj.website;
+    },
+
     SET_WIDGETS_VAL(state, obj) {
       state.widgetVars.id = obj.id;
       state.widgetVars.instance_id = obj.instance_id;
@@ -818,6 +822,27 @@ export default new Vuex.Store({
           .get(url, headers)
           .then((res) => {
             commit("SET_WIDGETS_VAL", JSON.parse(JSON.stringify(res.data)));
+            resolve("success");
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    },
+
+    refreshUrl({ commit }) {
+      return new Promise((resolve, reject) => {
+        let url = `${process.env.VUE_APP_API_URL_DEV}/getUnpublishedWebsiteUrl`;
+        let headers = {
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
+        };
+        axios
+          .get(url, headers)
+          .then((res) => {
+            commit("REFRESH_URL", JSON.parse(JSON.stringify(res.data)));
             resolve("success");
           })
           .catch((error) => {
