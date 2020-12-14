@@ -842,7 +842,7 @@ export default new Vuex.Store({
         axios
           .get(url, headers)
           .then((res) => {
-            console.log(JSON.parse(JSON.stringify(res.data)));
+            // console.log(JSON.parse(JSON.stringify(res.data)));
             commit("REFRESH_URL", JSON.parse(JSON.stringify(res.data)));
             resolve("success");
           })
