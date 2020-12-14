@@ -377,46 +377,91 @@ export default {
         // console.log("FBAUTH status :: " + response.status);
 
         if (response.status == "connected") {
-          let fbUsrId = response.authResponse.userID;
-          let accessTokenFB = response.authResponse.accessToken;
-          let url = `https://graph.facebook.com/${fbUsrId}/accounts?access_token=${accessTokenFB}`;
+          Vue.FB.logout(() => {
+            // console.log("Facebook Logout");
+            // console.log(resp);
 
-          axios
-            .get(url)
-            .then((res) => {
-              // console.log("PageResponse ::" + JSON.stringify(res));
-              let pgList = JSON.parse(JSON.stringify(res)).data.data;
-              this.arrVal = 1;
-              this.pageList = [
-                {
-                  value: 1,
-                  text: "Your Business Name",
-                  disabled: true,
-                },
-              ];
-              pgList.forEach((element) => {
-                this.arrVal++;
-                let pgObj = {
-                  value: this.arrVal,
-                  text: element.name,
-                  disabled: false,
-                  facebook_page_name: element.name,
-                  facebook_page_id: element.id,
-                  facebook_user_id: fbUsrId,
-                  facebook_short_access_token: element.access_token,
-                  setup_step_1_completed: true,
-                };
-                if (element.tasks.includes("MANAGE")) {
-                  this.pageList.push(pgObj);
+            Vue.FB.login(
+              (resp) => {
+                // console.log(resp);
+
+                if (resp.status == "connected") {
+                  let url = `https://graph.facebook.com/${resp.authResponse.userID}/accounts?access_token=${resp.authResponse.accessToken}`;
+                  let fbUsrId = resp.authResponse.userID;
+
+                  axios
+                    .get(url)
+                    .then((res) => {
+                      // console.log("PageResponse ::" + JSON.stringify(res));
+                      let pgList = JSON.parse(JSON.stringify(res)).data.data;
+                      this.arrVal = 1;
+                      this.pageList = [
+                        {
+                          value: 1,
+                          text: "Your Business Name",
+                          disabled: true,
+                        },
+                      ];
+                      pgList.forEach((element) => {
+                        this.arrVal++;
+                        let pgObj = {
+                          value: this.arrVal,
+                          text: element.name,
+                          disabled: false,
+                          facebook_page_name: element.name,
+                          facebook_page_id: element.id,
+                          facebook_user_id: fbUsrId,
+                          facebook_short_access_token: element.access_token,
+                          setup_step_1_completed: true,
+                        };
+                        if (element.tasks.includes("MANAGE")) {
+                          this.pageList.push(pgObj);
+                        }
+                      });
+                      if (this.arrVal - 1 == pgList.length) {
+                        if (this.pageList.length > 1) {
+                          if (
+                            this.$store.getters.getUrl != undefined &&
+                            this.$store.getters.getUrl != null
+                          ) {
+                            this.fbStep = 2;
+                          } else {
+                            this.$store.dispatch("refreshUrl").then(() => {
+                              if (
+                                this.$store.getters.getUrl != undefined &&
+                                this.$store.getters.getUrl != null
+                              ) {
+                                this.fbStep = 2;
+                              } else {
+                                this.showUnpubOverlay = true;
+                                Vue.FB.logout(() => {
+                                  // console.log("Facebook Logout");
+                                  // console.log(resp);
+                                });
+                              }
+                            });
+                          }
+                        } else {
+                          this.showOverlay = true;
+                          Vue.FB.logout(() => {
+                            // console.log("Facebook Logout");
+                            // console.log(resp);
+                          });
+                        }
+                      }
+                    })
+                    .catch((error) => {
+                      console.log(error);
+                    });
                 }
-              });
-              if (this.arrVal - 1 == pgList.length) {
-                this.fbStep = 2;
+              },
+              {
+                scope:
+                  "pages_show_list, pages_messaging, pages_manage_metadata",
+                return_scopes: true,
               }
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+            );
+          });
         } else {
           Vue.FB.login(
             (resp) => {
