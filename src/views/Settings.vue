@@ -7,13 +7,15 @@
     </v-row>
     <v-row style="height:60%; width:99%; background-color:#E6E7E8; margin-bottom:94px">
       <v-col cols="6" class="">
-        <v-row style="height:59%">
+        <v-row style="height:100%">
           <FbConnect />
         </v-row>
-        <v-row style="height:20px"> </v-row>
-        <v-row style="height:46%">
+      </v-col>
+      <v-col cols="6" class="" >
+        <AddYourPhoneNumber />
+      </v-col>
+      <v-col cols="6" style="height:46%">
           <SetTimezone />
-        </v-row>
       </v-col>
       <v-col cols="6" class="">
         <v-row style="height:45%">
@@ -80,6 +82,7 @@ import FbConnect from "@/components/Settings/FbConnect.vue";
 import AccountInfo from "@/components/Settings/AccountInfo.vue";
 import SetTimezone from "@/components/Settings/SetTimezone.vue";
 import InstructionalVids from "@/components/Settings/InstructionalVids.vue";
+import AddYourPhoneNumber from "@/components/Settings/AddYourPhoneNumber.vue";
 
 export default {
   name: "Settings",
@@ -89,6 +92,7 @@ export default {
     UpgradeCard,
     AccountInfo,
     InstructionalVids,
+    AddYourPhoneNumber,
   },
   mounted() {
     window.scrollTo(0, 0);

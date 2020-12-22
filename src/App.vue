@@ -135,7 +135,10 @@
           </v-overlay>
         </v-col>
       </v-row>
-      <ModalJoin v-if="modal" :status="modal"></ModalJoin>
+      <v-col v-if="modal">
+        <ModalJoin  :status="modal"></ModalJoin>
+      </v-col>
+
     </v-content>
   </v-app>
 </template>
@@ -263,6 +266,10 @@ export default {
     checkaxios() {
       // console.log("inside axios check");
     },
+    getTimeZone(){
+      this.$store.getters.getSettingsState.timezone_id === ""
+        ? this.modal = true : this.modal = false
+    }
   },
   computed: {
     allStepsComp() {
@@ -280,6 +287,9 @@ export default {
       return this.$store.getters.getUrl;
     },
   },
+  created() {
+    this.getTimeZone()
+  }
 };
 </script>
 

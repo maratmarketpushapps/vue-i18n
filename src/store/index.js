@@ -67,6 +67,7 @@ export default new Vuex.Store({
     settingsVars: {
       first_name: "",
       last_name: "",
+      bussiness_name:"",
       email: "",
       facebook_page_name: "",
       facebook_page_id: "",
@@ -200,6 +201,9 @@ export default new Vuex.Store({
     getisLoading: (state) => {
       return state.isLoading == 0 ? false : true;
     },
+    // getPhoneNumber:(state) => {
+    //   return phone_number:state.
+    // },
     getAccountInfo: (state) => {
       let obj = {
         first_name: state.settingsVars.first_name,
@@ -339,6 +343,7 @@ export default new Vuex.Store({
     SET_SETTINGS_VALS(state, obj) {
       state.settingsVars.first_name = obj.first_name;
       state.settingsVars.last_name = obj.last_name;
+      state.settingsVars.bussiness_name = obj.bussiness_name;
       state.settingsVars.email = obj.email;
       state.settingsVars.facebook_page_name = obj.facebook_page_name;
       state.settingsVars.facebook_page_id = obj.facebook_page_id;
@@ -379,6 +384,7 @@ export default new Vuex.Store({
     SET_ACC_INFO(state, obj) {
       state.settingsVars.first_name = obj.first_name;
       state.settingsVars.last_name = obj.last_name;
+      state.settingsVars.bussiness_name = obj.bussiness_name;
       state.settingsVars.email = obj.email;
     },
 

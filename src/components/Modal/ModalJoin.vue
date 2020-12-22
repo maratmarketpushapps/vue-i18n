@@ -36,7 +36,7 @@
                 >Join us and start recovering those lost cart!</span>
               </v-card-title>
               <v-card-text class="px-0 pb-0">
-
+                <v-form v-model="formValid">
                 <v-row>
                   <v-col
                     cols="12"
@@ -45,9 +45,13 @@
                     class="py-0"
                   >
                     <v-text-field
+                      @change="detectChange"
+                      @input="detectChange"
+                      v-model="first_name"
                       label="First Name"
                       placeholder="Simon"
                       class="image_modal_text_color"
+                      :rules="minLenght"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -57,31 +61,41 @@
                     class="py-0"
                   >
                     <v-text-field
+                      @change="detectChange"
+                      @input="detectChange"
+                      v-model="last_name"
                       label="Last Name"
                       placeholder="Simon"
                       class="image_modal_text_color"
+                      :rules="minLenght"
                     ></v-text-field>
                   </v-col>
 
                   <v-col cols="12" class="py-0">
                     <v-text-field
+                      @change="detectChange"
+                      @input="detectChange"
+                      v-model="bussiness_name"
                       label="Business Name"
                       placeholder="BusinessShop"
                       class="image_modal_text_color"
-                      required
+                      :rules="minLenght"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" class="py-0">
                     <v-text-field
+                      @change="detectChange"
+                      @input="detectChange"
+                      v-model="email"
                       label="Email"
                       placeholder="simon@gmail.com"
                       class="image_modal_text_color"
-                      required
+                      :rules="emailRules "
                     ></v-text-field>
                   </v-col>
                   <small class="image_modal_text_color pl-3">*By joining in, you agree to our <b class="link_term_privace">Terms of Use</b> and to receive MarketPushApps emails & updates and acknowledge that you read our  <b class="link_term_privace">Privacy Policy.</b></small>
                 </v-row>
-
+                </v-form>
 
               </v-card-text>
               <v-card-actions class="pa-0 card_action">
@@ -90,6 +104,8 @@
                     color="#006aff"
                     dark
                     class="image_modal_color modal_btn"
+                    :disabled="btnStatus"
+                    @click="updAccInfo"
                   >
                     SIGN UP
                   </v-btn>
@@ -113,14 +129,73 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "ModalJoin",
   props: ['status',],
   data:() =>({
     popupWindow:true,
+    first_name:null,
+    last_name:null,
+    bussiness_name:null,
+    email:null,
+    emailRules: [
+      (v) =>
+        v !== null && v !== '' &&
+        !v ||
+        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+        "E-mail must be valid",
+    ],
+    minLenght:[(v) => v !== null && v !== ''],
+    formValid: false,
+    btnDisabled:false,
   }),
+  methods: {
+    detectChange() {
+      this.btnDisabled = false;
+    },
+    updAccInfo() {
+      let obj = {
+        first_name:this.first_name,
+        bussiness_name:this.bussiness_name,
+        last_name: this.last_name,
+        email:this.email,
+      };
+
+      this.$store.dispatch("updIsLoading", true).then(() => {
+        this.$store.dispatch("updAccInfo", obj).then((res) => {
+          if (res === "success") {
+            this.$store.dispatch("setSettings").then((response) => {
+              this.$store.dispatch("updIsLoading", false);
+              if (response === "success") {
+                this.popupWindow = false;
+                this.btnDisabled = true;
+              } else {
+                // console.log("Settings API not refreshed");
+              }
+            });
+          }
+        });
+      });
+    },
+  },
+  beforeCreate() {
+
+  },
+  computed: {
+    ...mapGetters(["getAccountInfo"]),
+    btnStatus() {
+      return this.btnDisabled || !this.formValid ? true : false;
+    },
+    accInfo() {
+      let obj = this.getAccountInfo;
+      return obj;
+    },
+  },
   created() {
     this.status = this.popupWindow
+
   }
 };
 </script>
@@ -145,7 +220,7 @@ export default {
 .modal_btn{
   background: #006AFF 0% 0% no-repeat padding-box;
   padding: 9px 58px !important;
-  border: 1px solid #006AFF;
+  border: none;
   border-radius: 2px;
   opacity: 1;
   text-align: center;
