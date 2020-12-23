@@ -136,7 +136,6 @@
         </v-col>
       </v-row>
 
-
     </v-content>
   </v-app>
 </template>
@@ -147,6 +146,7 @@
 import AppBar from "@/components/navigation/AppBar.vue";
 import NavDrawer from "@/components/navigation/NavDrawer.vue";
 import iconSuccess from "@/assets/icons/misc/icon-success.svg";
+
 // import loaderAnim from "@/components/GlobalComponents/loaderAnim.vue";
 // import axios from "axios";
 
