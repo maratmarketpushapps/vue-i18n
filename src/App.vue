@@ -135,9 +135,7 @@
           </v-overlay>
         </v-col>
       </v-row>
-      <v-col v-if="modal">
-        <ModalJoin  :status="modal"></ModalJoin>
-      </v-col>
+
 
     </v-content>
   </v-app>
@@ -149,7 +147,6 @@
 import AppBar from "@/components/navigation/AppBar.vue";
 import NavDrawer from "@/components/navigation/NavDrawer.vue";
 import iconSuccess from "@/assets/icons/misc/icon-success.svg";
-import ModalJoin from "@/components/Modal/ModalJoin";
 // import loaderAnim from "@/components/GlobalComponents/loaderAnim.vue";
 // import axios from "axios";
 
@@ -205,6 +202,9 @@ export default {
       });
     });
   },
+  mounted(){
+    this.$router.push('/dashboard');
+  },
   // mounted() {
 
   // },
@@ -243,9 +243,6 @@ export default {
     AppBar,
     NavDrawer,
     iconSuccess,
-    ModalJoin,
-
-    // loaderAnim,
   },
 
   data() {
@@ -256,7 +253,6 @@ export default {
       zIndex: 5,
       // isLoading: false,
       nuRequests: 0,
-      modal:true,
     };
   },
   methods: {
@@ -266,10 +262,6 @@ export default {
     checkaxios() {
       // console.log("inside axios check");
     },
-    getTimeZone(){
-      this.$store.getters.getSettingsState.timezone_id === ""
-        ? this.modal = true : this.modal = false
-    }
   },
   computed: {
     allStepsComp() {
@@ -287,9 +279,7 @@ export default {
       return this.$store.getters.getUrl;
     },
   },
-  created() {
-    this.getTimeZone()
-  }
+
 };
 </script>
 

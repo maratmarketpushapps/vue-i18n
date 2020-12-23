@@ -15,6 +15,9 @@
           class="infoicon_scale pt-0"
         />
       </v-col>
+      <v-col v-if="modal">
+        <ModalJoin  :status="modal"></ModalJoin>
+      </v-col>
       <v-col cols="8.75" class="pt-0 pb-0 mb-0">
         <v-row align="center" justify="end" style="width:100%">
           <v-col cols="auto"> </v-col>
@@ -34,10 +37,23 @@
 import Tabs from "@/components/Dashboard/Tabs.vue";
 import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 import CartAttempts from "@/components/AbandonedCarts/CartAttempts.vue";
+import ModalJoin from "@/components/Modal/ModalJoin.vue";
 
 export default {
   name: "dashboard",
-  components: { Tabs, TooltipIcon, CartAttempts },
+  data:()=>({
+    modal:true,
+  }),
+  methods:{
+    getTimeZone(){
+      this.$store.getters.getSettingsState.timezone_id === ""
+        ? this.modal = true : this.modal = false
+    }
+  },
+  components: { Tabs, TooltipIcon, CartAttempts,ModalJoin },
+  created() {
+    this.getTimeZone()
+  },
   mounted () {
     window.scrollTo(0,0);
   },

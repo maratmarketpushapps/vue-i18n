@@ -2,7 +2,7 @@
   <v-card tile height="auto" width="95%" class="wdgt_font_dims card-scroll">
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 mt-0">
       <v-row style="height:20%;width:100%" class="pa-0 ma-0 ">
-        <v-col cols="5">
+        <v-col cols="7">
           <v-row
             class="my-0 ml-2"
             style="height:100%;width:100%"
@@ -11,7 +11,28 @@
             <h3>{{ $t("widgets.wdgtTypeHdr") }}</h3>
           </v-row>
         </v-col>
-        <v-col cols="3">
+        <v-col cols="4">
+          <v-row
+              class="my-0 mr-2"
+              style="height:100%;width:100%"
+              justify="end"
+              align="center"
+          >
+            <!-- save button -->
+            <v-btn
+                tile
+                height="50%"
+                class="primary mb-2 wdgt_font_dims"
+                width="70%"
+                :disabled="detectChange"
+                style="text-transform:none; font-size:70% !important"
+                @click="svChanges"
+            >
+              {{ $t("widgets.svBtn") }}
+            </v-btn>
+          </v-row>
+        </v-col>
+        <v-col cols="1">
           <v-row
             style="width:100%"
             align="center"
@@ -22,27 +43,7 @@
             </v-switch>
           </v-row>
         </v-col>
-        <v-col cols="4">
-          <v-row
-            class="my-0 mr-2"
-            style="height:100%;width:100%"
-            justify="end"
-            align="center"
-          >
-            <!-- save button -->
-            <v-btn
-              tile
-              height="50%"
-              class="primary mb-2 wdgt_font_dims"
-              width="70%"
-              :disabled="detectChange"
-              style="text-transform:none; font-size:70% !important"
-              @click="svChanges"
-            >
-              {{ $t("widgets.svBtn") }}
-            </v-btn>
-          </v-row>
-        </v-col>
+
       </v-row>
 
       <v-row
@@ -822,6 +823,8 @@ export default {
   font-size: 95% !important;
   overflow: hidden;
 }
+
+.wdgt_btn
 
 .card-scroll {
   overflow: auto;
