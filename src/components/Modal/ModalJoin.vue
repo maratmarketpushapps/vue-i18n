@@ -31,7 +31,7 @@
                     <v-img src="@/assets/img/icon-close.png" class="close_img"></v-img>
                   </v-btn>
                 </v-fab-transition>
-                <span class="headline_title"
+                <span class="headline headline_title"
                 >Join us and start recovering those lost cart!</span>
               </v-card-title>
               <v-card-text class="px-0 pb-0">
