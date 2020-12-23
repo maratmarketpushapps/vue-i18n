@@ -26,8 +26,7 @@
                     absolute
                     top
                     right
-                    @click="popupWindow = false
-"
+                    @click="popupWindow = false"
                   >
                     <v-img src="@/assets/img/icon-close.png" class="close_img"></v-img>
                   </v-btn>
