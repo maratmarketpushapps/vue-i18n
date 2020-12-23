@@ -1,5 +1,5 @@
 <template>
-  <v-card tile height="59%" width="97%" class=" pt-3 px-7 font_dims">
+  <v-card tile height="100%" width="97%" class=" pt-3 px-7 font_dims">
     <v-row>
       <v-col cols="6">
         <h3>{{ $t("Add Your Phone Number") }}</h3>
@@ -30,10 +30,9 @@
             item-value="phoneNumber"
             :label="$t('Add Your Phone Number')"
             :prepend-inner-icon="selectedFlag"
-
             @input="detectChange"
             style="font-size:110%"
-            class="pt-0 pb-1"
+            class="pt-0 pb-1 px-16"
             dense
             return-object
           >
@@ -47,7 +46,7 @@
           <v-btn
             tile
             height="40px"
-            class="primary mb-2"
+            class=" btn_save"
             width="20%"
           >
             {{ $t("settingsPage.accInfoCard.buttonText") }}
@@ -108,11 +107,10 @@ export default {
   },
   methods: {
     detectChange() {
-      console.log(this.phoneNumber)
-      if(typeof this.phoneNumber !== "undefined"){
+      if(typeof this.phoneNumber == "object"){
         this.selectedFlag = this.phoneNumber.flag
+        this.phoneNumber = this.phoneNumber.phoneNumber
       }
-      this.phoneNumber = this.phoneNumber.phoneNumber
       this.btnDisabled = false;
     },
 
@@ -126,5 +124,15 @@ export default {
 </script>
 
 <style scoped>
-
+.btn_save{
+  padding: 9px 68px !important;
+  text-align: center;
+  font: normal normal medium 14px/13px Poppins !important;
+  letter-spacing: 0px !important;
+  color: #C9CACB !important;
+  opacity: 1 !important;
+  background: #F2F2F2 0% 0% no-repeat padding-box !important;
+  border: 1px solid #C9CACB !important;
+  border-radius: 2px;
+}
 </style>

@@ -5,39 +5,36 @@
         {{ $t("navbar.navdrawer.Settings") }}
       </h3>
     </v-row>
-    <v-row style="height:60%; width:99%; background-color:#E6E7E8; margin-bottom:94px">
-      <v-col cols="6" class="">
-        <v-row style="height:100%">
+
+    <v-row>
+      <v-col cols="6">
+        <v-row  class="height_365 space">
           <FbConnect />
         </v-row>
-      </v-col>
-      <v-col cols="6" class="" >
-        <AddYourPhoneNumber />
-      </v-col>
-      <v-col cols="6" style="height:46%">
+        <v-row class="height_247 space">
           <SetTimezone />
+        </v-row>
+        <v-row class="height_247">
+          <InstructionalVids />
+        </v-row>
       </v-col>
-      <v-col cols="6" class="">
-        <v-row style="height:45%">
+      <v-col cols="6 pt-0">
+        <v-col cols="12" class="height_247 space">
+          <AddYourPhoneNumber />
+        </v-col>
+        <v-col class="space height_247">
           <UpgradeCard />
-        </v-row>
-        <v-row style="height:20px"> </v-row>
-        <v-row style="height:60%">
+        </v-col>
+
+        <v-col class="height_365 space">
           <AccountInfo />
-        </v-row>
+        </v-col>
       </v-col>
     </v-row>
     <!-- <v-row style="height:50px; width:99%; background-color:#E6E7E8">
     </v-row> -->
     
-    <v-row style="height:20%; width:99%; background-color:#E6E7E8" class="mb-0 pb-0">
-      <v-col cols="6">
-        <v-row style="height:100%">
-          <InstructionalVids />
-        </v-row>
-      </v-col>
-      <v-col cols="6"> </v-col>
-    </v-row>
+
     <v-row style="height:6%; width:93%;" class="pa-0 ma-0" align="center">
       <v-col cols="2">
         <a
@@ -100,7 +97,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .div-style {
   padding: 2px;
   margin: 2px;
@@ -109,6 +106,18 @@ export default {
 
 .infoicon_scale {
   transform: scale(0.8);
+}
+
+.space{
+  margin-bottom: 28px;
+}
+
+.height_247{
+  height: 247px !important;
+}
+
+.height_365{
+  height:365px !important;;
 }
 
 @media (min-width: 1400px) {
