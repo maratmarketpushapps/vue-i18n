@@ -135,9 +135,9 @@
           </v-overlay>
         </v-col>
       </v-row>
-      <v-col v-if="modal">
+      <!-- <v-col v-if="modal">
         <ModalJoin  :status="modal"></ModalJoin>
-      </v-col>
+      </v-col> -->
 
     </v-content>
   </v-app>
@@ -149,7 +149,7 @@
 import AppBar from "@/components/navigation/AppBar.vue";
 import NavDrawer from "@/components/navigation/NavDrawer.vue";
 import iconSuccess from "@/assets/icons/misc/icon-success.svg";
-import ModalJoin from "@/components/Modal/ModalJoin";
+// import ModalJoin from "@/components/Modal/ModalJoin";
 // import loaderAnim from "@/components/GlobalComponents/loaderAnim.vue";
 // import axios from "axios";
 
@@ -243,7 +243,7 @@ export default {
     AppBar,
     NavDrawer,
     iconSuccess,
-    ModalJoin,
+    // ModalJoin,
 
     // loaderAnim,
   },
