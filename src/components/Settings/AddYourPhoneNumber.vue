@@ -22,28 +22,13 @@
       class="pt-0 mt-0 pr-0"
     >
       <v-col>
-        <v-form v-model="formValid">
-          <v-combobox
-            v-model="phoneNumber"
-            :items="countries"
-            item-text="phoneNumber"
-            item-value="phoneNumber"
-            :label="$t('Add Your Phone Number')"
-            :prepend-inner-icon="selectedFlag"
-            @input="detectChange"
-            style="font-size:110%"
-            class="pt-0 pb-1 px-16"
-            dense
-            return-object
-          >
-            <template v-slot:item="slotProps">
-              <i :class="['mr-2', 'em', slotProps.item.flag]"></i>
-              {{slotProps.item.phoneNumber}}
-            </template>
-          </v-combobox>
-        </v-form>
+        <vue-tel-input-vuetify
+          v-model="phone"
+          placeholder="Add Your Phone Number" label="Add Your Phone Number"
+        ></vue-tel-input-vuetify>
         <v-row justify="center" style="padding-top:3%">
           <v-btn
+            :disabled="!phone"
             tile
             height="40px"
             class=" btn_save"
@@ -68,56 +53,9 @@ export default {
   },
   data() {
     return {
-      phoneNumber:{
-        phoneNumber: "+40",
-        flag: "em-flag-ad"
-      },
-      selectedFlag:null,
-      countries: [
-        {
-          phoneNumber: "+40",
-          flag: "em-flag-ad"
-        },
-        {
-          phoneNumber: "+1 202",
-          flag: "em-flag-ae"
-        },
-        {
-          phoneNumber: "+2 333 ",
-          flag: "em-flag-af"
-        },
-        {
-          phoneNumber: "+1 202 ",
-          flag: "em-flag-ag"
-        },
-        {
-          phoneNumber: "+9 292 ",
-          flag: "em-flag-al"
-        },
-        {
-          phoneNumber: "+1 ",
-          flag: "em-flag-ai"
-        }
-      ],
+      phone: null,
       btnDisabled: true,
-      first_name: "",
-      formValid: false,
-
     };
-  },
-  methods: {
-    detectChange() {
-      if(typeof this.phoneNumber == "object"){
-        this.selectedFlag = this.phoneNumber.flag
-        this.phoneNumber = this.phoneNumber.phoneNumber
-      }
-      this.btnDisabled = false;
-    },
-
-  },
-
-  created(){
-    this.selectedFlag = this.phoneNumber.flag
   },
 
 };
@@ -129,10 +67,10 @@ export default {
   text-align: center;
   font: normal normal medium 14px/13px Poppins !important;
   letter-spacing: 0px !important;
-  color: #C9CACB !important;
+  color: white !important;
   opacity: 1 !important;
-  background: #F2F2F2 0% 0% no-repeat padding-box !important;
-  border: 1px solid #C9CACB !important;
+  background-color: #5686f6 !important;
+  border-color: #5686f6 !important;
   border-radius: 2px;
 }
 </style>

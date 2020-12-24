@@ -19,14 +19,14 @@
         </v-row>
       </v-col>
       <v-col cols="6 pt-0">
-        <v-col cols="12" class="height_247 space">
+        <v-col cols="12" class="height_247 space ">
           <AddYourPhoneNumber />
         </v-col>
-        <v-col class="space height_247">
+        <v-col class="space height_247 pad_no_space">
           <UpgradeCard />
         </v-col>
 
-        <v-col class="height_365 space">
+        <v-col class="height_365 space pad_no_space">
           <AccountInfo />
         </v-col>
       </v-col>
@@ -110,6 +110,7 @@ export default {
 
 .space{
   margin-bottom: 28px;
+  padding-bottom: 0px !important;
 }
 
 .height_247{
@@ -118,6 +119,10 @@ export default {
 
 .height_365{
   height:365px !important;;
+}
+.pad_no_space{
+  padding-top:0px !important;
+  padding-bottom: 0px !important;
 }
 
 @media (min-width: 1400px) {
