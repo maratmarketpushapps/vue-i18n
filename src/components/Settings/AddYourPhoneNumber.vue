@@ -2,7 +2,7 @@
   <v-card tile height="100%" width="97%" class=" pt-3 px-7 font_dims">
     <v-row>
       <v-col cols="6">
-        <h3>{{ $t("Add Your Phone Number") }}</h3>
+        <h3>{{ $t('settingsPage.addYourPhoneNumber') }}</h3>
       </v-col>
       <v-col cols="6" class="pa-2 pt-0">
         <v-row align="center" justify="end" class="pr-1 pt-1"
@@ -24,7 +24,7 @@
       <v-col>
         <vue-tel-input-vuetify
           v-model="phone"
-          placeholder="Add Your Phone Number" label="Add Your Phone Number"
+          :placeholder="$t('settingsPage.addYourPhoneNumber')" :label="$t('settingsPage.addYourPhoneNumber')"
         ></vue-tel-input-vuetify>
         <v-row justify="center" style="padding-top:3%">
           <v-btn

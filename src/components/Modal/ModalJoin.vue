@@ -6,7 +6,6 @@
         persistent
         max-width="832px"
       >
-
         <v-row class="pa-0 ml-0">
           <v-col
             cols="5"
@@ -32,7 +31,7 @@
                   </v-btn>
                 </v-fab-transition>
                 <span class="headline headline_title"
-                >Join us and start recovering those lost cart!</span>
+                >{{ $t("ModalJoin.joinUsTitle") }}</span>
               </v-card-title>
               <v-card-text class="px-0 pb-0">
                 <v-form v-model="formValid">
@@ -47,8 +46,8 @@
                       @change="detectChange"
                       @input="detectChange"
                       v-model="first_name"
-                      label="First Name"
-                      placeholder="Simon"
+                      :label="$t('ModalJoin.firstName')"
+                      :placeholder="$t('ModalJoin.Name')"
                       class="image_modal_text_color"
                       :rules="minLenght"
                     ></v-text-field>
@@ -63,8 +62,8 @@
                       @change="detectChange"
                       @input="detectChange"
                       v-model="last_name"
-                      label="Last Name"
-                      placeholder="Simon"
+                      :label="$t('ModalJoin.lasttName')"
+                      :placeholder="$t('ModalJoin.Name')"
                       class="image_modal_text_color"
                       :rules="minLenght"
                     ></v-text-field>
@@ -75,8 +74,8 @@
                       @change="detectChange"
                       @input="detectChange"
                       v-model="bussiness_name"
-                      label="Business Name"
-                      placeholder="BusinessShop"
+                      :label="$t('ModalJoin.BussinesName')"
+                      :placeholder="$t('ModalJoin.BusinessShop')"
                       class="image_modal_text_color"
                       :rules="minLenght"
                     ></v-text-field>
@@ -86,42 +85,36 @@
                       @change="detectChange"
                       @input="detectChange"
                       v-model="email"
-                      label="Email"
-                      placeholder="simon@gmail.com"
+                      :label="$t('ModalJoin.Email')"
+                      :placeholder="$t('ModalJoin.example')"
                       class="image_modal_text_color"
                       :rules="emailRules "
                     ></v-text-field>
                   </v-col>
-                  <small class="image_modal_text_color pl-3">*By joining in, you agree to our <b class="link_term_privace">Terms of Use</b> and to receive MarketPushApps emails & updates and acknowledge that you read our  <b class="link_term_privace">Privacy Policy.</b></small>
+                  <small class="image_modal_text_color pl-3">{{$t('ModalJoin.byJoining')}}<b class="link_term_privace">{{$t('ModalJoin.termOfUse')}}</b>{{$t('ModalJoin.recMarketPushTx')}}<b class="link_term_privace">{{$t('ModalJoin.priPolice')}}</b></small>
                 </v-row>
                 </v-form>
-
               </v-card-text>
               <v-card-actions class="pa-0 card_action">
                 <v-col  justify="left" class="pa-0">
                   <v-btn
                     color="#006aff"
                     dark
-                    class="image_modal_color modal_btn"
-                    :disabled="btnStatus"
+                    :class="btnStatus ? 'btn wdgt_font_dims':'btn image_modal_color modal_btn' "
                     @click="updAccInfo"
                   >
-                    SIGN UP
+                    {{$t('ModalJoin.signUpBtn')}}
                   </v-btn>
                 </v-col>
               </v-card-actions>
               <v-col class="px-0">
                 <small class="image_modal_text_color">
-                  Please note that due to recent Facebook updates the app is temporarily not available in the EU. We are adding SMS and WhatsApp cart recovery in next 3-4 weeks and will give you an email when these features are available.
+                  {{$t('ModalJoin.PlsNoteTx')}}
                 </small>
               </v-col>
             </v-card>
-
-
           </v-col>
         </v-row>
-
-
       </v-dialog>
     </v-row>
   </div>
@@ -263,5 +256,21 @@ export default {
   width: 10px !important;
   height: 9px !important;
   background-size: cover;
+}
+.wdgt_font_dims{
+  font-size: 95% !important;
+  overflow: hidden;
+  text-transform:none; font-size:70% !important;
+  background-color:rgba(0, 0, 0, 0.12) !important;
+  color: rgba(0, 0, 0, 0.26) !important;
+  cursor: default !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+  padding: 9px 58px !important;
+  border: none;
+  border-radius: 2px;
+  opacity: 1;
+  text-align: center;
+  font: normal normal medium 14px/13px Poppins;
 }
 </style>

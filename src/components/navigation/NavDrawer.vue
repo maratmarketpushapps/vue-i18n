@@ -49,16 +49,41 @@
             ></v-list-item
           >
 
-          <v-list-item
-            class="list-dim"
-            @click="setSelected('Campaigns')"
-            @mouseenter="setHover('Campaigns')"
-            @mouseleave="setHover('')"
-            to="/campaigns"
-            ><v-icon class="navicon_scale"
-              >$vuetify.icons.campaigns</v-icon
-            ></v-list-item
+
+          <v-menu
+            right
+            offset-x
+            full-width
+
           >
+            <template v-slot:activator="{ on, attrs }">
+              <v-list-item
+                class="list-dim"
+                @click="setSelected('Campaigns')"
+                @mouseenter="setHover('Campaigns')"
+                to="/campaigns"
+                @mouseleave="setHover('')"
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon class="navicon_scale"
+                >$vuetify.icons.campaigns
+                </v-icon>
+               </v-list-item
+              >
+            </template>
+
+              <v-col cols="12" class="par_tool_tip pr-0 pl-5 py-0">
+                <v-col cols="12" class="tool_tip pr-0 py-0">
+                  <span class="tool_tip_span">{{$t('campaigns.tooltip.sms')}}</span>
+
+                  <span class="tool_tip_span">{{$t('campaigns.tooltip.facebook')}}</span>
+                </v-col>
+              </v-col>
+
+
+          </v-menu>
+
 
           <v-list-item
             class="list-dim"
@@ -98,7 +123,7 @@ export default {
   data() {
     return {
       model: 1,
-      preActive:''
+      preActive:'',
     };
   },
   methods: {
@@ -156,6 +181,27 @@ export default {
 .navicon_scale {
   transform: scale(0.75);
 }
+.tool_tip{
+  background-color:#4f5d6a;
+  width: 250px !important;
+}
+.par_tool_tip{
+  background-color: #e6e7e8 !important;
+  width: 250px !important;
+}
+.tool_tip_span{
+  font-size: 10px;
+  padding: 14px 11px;
+  white-space: nowrap;
+  align-content: center;
+  color: #FFFFFF !important;
+  caret-color: #FFFFFF !important;
+  display: block;
+}
+.tool_tip_span:hover{
+  background-color: #323f4e;
+}
+
 
 @media (min-width: 1400px) {
   .navicon_scale {

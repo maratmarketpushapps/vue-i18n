@@ -121,12 +121,24 @@
     "ordeshpd": {
       "headerTxt": "Order Shipped Message"
     },
-
     "qckRplyOvrly": {
       "header": "Modify your quick replies:"
+    },
+    "tooltip": {
+      "sms": "SMS Campaigns",
+      "facebook": "Facebook Campaigns"
     }
   },
   "widgets": {
+    "discSmallText":"To increase the chances of recovering sales, you can include a discount coupon in your message. To generate a coupon, go to ",
+    "getTen":"GET10",
+    "addYourDiscCode":"Add your discount code",
+    "discState":"Discount statement",
+    "getTenDisc":"Get 10% discount!",
+    "popConWidg": "Popup Consent Widget",
+    "subsType": "Subscribe Type",
+    "discText": "With Discount you can capture more leads by offering customers that subscribe a discount coupon.",
+    "GathMess": "Gather Message Consent For",
     "headerInfo": "In order to send Facebook messages to your customers, they will first need to provide the consent. The purpose of this widget is to enable your customers to offer that consent. If EU privacy laws apply to your company, it's recommended to select the Checkbox Consent widget. Feel free to customize the widget so that it matches the style of your website.",
     "wdgtTypeHdr": "Facebook Widget Type",
     "svBtn": "Save Changes",
@@ -166,6 +178,7 @@
     "chckBoxNoteHref": "whitelist your site in the settings of your facebook page"
   },
   "settingsPage": {
+    "addYourPhoneNumber":"Add Your Phone Number",
     "fbCard1": {
       "header": "Connect Your Facebook Page",
       "tooltipText": "Connect your Facebook page to the Cart Reminder App. Once connected, your Facebook page will send the messages to customers. Your personal details, such as your name, will not be visible to the message recipient - don't worry!",
@@ -200,10 +213,10 @@
       "tutLnk": "this tutorial"
     },
     "upgradeCard": {
-      "header1": "You are using the ",
-      "header2": " plan.",
-      "body1": " With ",
-      "body2": " you have up to ",
+      "header1":"You are using the ",
+      "header2":"plan.",
+      "body1": "With",
+      "body2": "you have up to ",
       "body3": " individual Cart Recovery attempts, with up to 2 messages per recovery attempt. ",
       "body4": " cart recovery attempts left this month. ",
       "body5": "Upgrade to get more.",
@@ -235,5 +248,21 @@
       "link3": "PRIVACY POLICY",
       "cpyrght": "© Copyright 2020 Market Push Apps SRL-D. All rights reserved."
     }
+  },
+  "ModalJoin": {
+    "joinUsTitle":"Join us and start recovering those lost cart!",
+    "firstName":"First Name",
+    "name": "Simon",
+    "lastName": "Last Name",
+    "BussinesName": "Business Name",
+    "BusinessShop": "BusinessShop",
+    "Email": "Email",
+    "example": "simon@gmail.com",
+    "byJoining":"*By joining in, you agree to our",
+    "termOfUse":"Terms of Use",
+    "recMarketPushTx":"and to receive MarketPushApps emails & updates and acknowledge that you read our",
+    "priPolice":"Privacy Policy.",
+    "signUpBtn":"SIGN UP",
+    "PlsNoteTx":"Please note that due to recent Facebook updates the app is temporarily not available in the EU. We are adding SMS and WhatsApp cart recovery in next 3-4 weeks and will give you an email when these features are available."
   }
 }

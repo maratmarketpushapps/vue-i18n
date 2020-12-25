@@ -1,17 +1,17 @@
 <template>
   <v-card tile height="auto" width="95%" class="wdgt_font_dims card-scroll">
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 mt-0">
-      <v-row style="height:20%;width:100%" class="pa-0 ma-0 ">
-        <v-col cols="7">
+      <v-row style="height:20%;width:100%" class="">
+        <v-col cols="7 offset-1 py-0">
           <v-row
-            class="my-0 ml-2"
+            class="my-0 "
             style="height:100%;width:100%"
             align="center"
           >
-            <h3>{{ $t("widgets.wdgtTypeHdr") }}</h3>
+            <h3>{{ $t('widgets.popConWidg') }}</h3>
           </v-row>
         </v-col>
-        <v-col cols="4">
+        <v-col cols="3">
           <v-row
               class="my-0 mr-2"
               style="height:100%;width:100%"
@@ -22,139 +22,123 @@
             <v-btn
                 tile
                 height="50%"
-                class="primary mb-2 wdgt_font_dims"
+                :class="live ? 'mb-2 sv_changes wdgt_font_dims' : 'mb-2 wdgt_font_dims'"
                 width="70%"
-                :disabled="detectChange"
+                :disabled="!live"
                 style="text-transform:none; font-size:70% !important"
                 @click="svChanges"
+                outlined
             >
               {{ $t("widgets.svBtn") }}
             </v-btn>
           </v-row>
         </v-col>
-        <v-col cols="1">
-          <v-row
-            style="width:100%"
-            align="center"
-            justify="center"
-            class="pt-0"
-          >
-            <v-switch v-model="live" color="#006AFF" @change="wdgtLive()">
+        <v-col cols="1" class="">
+
+            <v-switch v-model="live" inset
+                      color="#006AFF"
+                      @change="wdgtLive()">
             </v-switch>
-          </v-row>
-        </v-col>
 
-      </v-row>
-
-      <v-row
-        style="border-radius:0px; height:20%;width:100%"
-        class="px-0 mx-0 mt-2"
-        v-show="false"
-      >
-        <v-col cols="1"></v-col>
-        <v-col cols="5 px-0 mx-0">
-          <v-row align="center" justify="start" style="width: 100%;">
-            <input
-              type="radio"
-              name="group"
-              value="Button"
-              id="Op1"
-              class="cust-chkbx  cust-chkbx-label cursor-hand"
-              v-model="radioSelect"
-            /><label
-              class="cursor-hand lbl-props"
-              for="Op1"
-              style="font-size:80%"
-              >{{ $t("widgets.btnChc") }}</label
-            >
-          </v-row>
-        </v-col>
-
-        <v-col cols="6">
-          <v-row align="center" style="width: 100%;">
-            <input
-              type="radio"
-              name="group"
-              value="Checkbox"
-              id="Op2"
-              class="cust-chkbx cust-chkbx-label cursor-hand"
-              v-model="radioSelect"
-            /><label
-              class="cursor-hand lbl-props"
-              for="Op2"
-              style="font-size:80%"
-              >{{ $t("widgets.chbxChc") }}</label
-            >
-          </v-row>
-        </v-col>
-      </v-row>
-      <v-row
-        style="border-radius:0px; height:2%;width:100%"
-        class="px-0 mx-0 mt-0"
-        v-show="radioSelect == 'Checkbox'"
-      >
-        <v-col cols="1"></v-col>
-        <v-col cols="11 px-0 mx-0">
-          <!-- <v-row justify="start" style="width: 100%;">
-            <span class="pr-1" style="font-size:75%; font-style: italic;">{{
-              $t("widgets.chckBoxNote")
-            }}</span>
-            <span style="font-size:75%; font-style: italic;">
-              <a
-                :href="getPageSettingsLink"
-                target="_blank"
-                style="text-decoration:underline"
-                >{{ $t("widgets.chckBoxNoteHref") }}</a
-              >
-            </span>
-          </v-row> -->
         </v-col>
       </v-row>
 
-      <v-row style="height:20%;width:100%" class="pa-0 ma-0" align="start">
-        <v-col cols="6">
-          <v-row class="my-2 ml-2" style="width:100%" align="center">
-            <h3>{{ $t("widgets.modalHdr") }}</h3>
-          </v-row>
+      <v-row >
+        <v-col cols="6 offset-1 py-0 px-0" class="py-0 align-end">
+          <h3 class="subs_title">{{ $t("widgets.subsType") }}</h3>
         </v-col>
-        <v-col cols="6">
-          <v-row class="my-0 mr-2" style="width:100%" justify="end">
+        <v-col cols="5" class="justify-end row pr-6 py-0 mr-0">
             <TooltipIcon
-              :posRight="true"
-              :nudgeBottom="30"
-              :nudgeLeft="5"
-              :txt="$t('widgets.modalInfo')"
-              class="infoicon_scale pt-0 mt-0"
+            :posRight="true"
+            :nudgeBottom="30"
+            :nudgeLeft="5"
+            :txt="$t('widgets.modalInfo')"
+            class="infoicon_scale pt-0 mt-0"
             />
+        </v-col>
+        <v-col cols="12 offset-1 py-0 px-0">
+          <p class="subs_text">{{$t("widgets.discText")}}</p>
+        </v-col>
+        <v-row>
+          <v-col cols="2 offset-1" class="py-0 mb-0 px-0">
+            <v-checkbox
+              @change="def_selected == false ? discount_selected = true :discount_selected = false"
+              v-model="def_selected"
+              label="Default"
+              class="mt-0 ml-2"
+            ></v-checkbox>
+          </v-col >
+          <v-col class="py-0">
+            <v-checkbox
+              @change="discount_selected == false ? discount_selected = true : def_selected = false"
+              v-model="discount_selected"
+              class="checkbox_widget mt-0 mb-0"
+              label="Discount (recommended)"
+            ></v-checkbox>
+          </v-col>
+        </v-row>
+      </v-row>
+    </v-container>
+    <v-container>
+      <v-row>
+        <v-col cols="11 offset-1" v-if="discount_selected" class="px-0">
+          <v-row >
+            <v-col cols="6" class="py-0 mb-0 ">
+              <v-text-field
+                :label="$t('widgets.discState')"
+                :placeholder="$t('widgets.getTenDisc')"
+                class="mb-0"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="5" class="py-0 mb-0 ">
+              <v-text-field
+                :label="$t('widgets.addYourDiscCode')"
+                :placeholder="$t('widgets.getTen')"
+                class="mb-0"
+              ></v-text-field>
+            </v-col>
+            <small class="smaller_text pl-3 space_bottom">{{$t('widgets.discSmallText')}}<b>Marketing & SEO / Coupons.</b>></small>
           </v-row>
         </v-col>
       </v-row>
-      <v-row style="height:20%;width:100%" align="center">
-        <v-col cols="1"></v-col>
-        <v-col cols="4">
-          <v-row align="center">
-            <ColorSelect
-              :color="hdrColor"
-              :label="$t('widgets.hdrColor')"
-              v-on:selectedColor="setHdrClr($event)"
-              :key="hdrKey"
-              class="item-scale"
-              style="width:auto"
-            />
-          </v-row>
+      <v-divider v-if="discount_selected"></v-divider>
+    </v-container>
+
+
+    <v-container>
+      <v-row class=" pt-4">
+        <v-col cols="6 offset-1" class="py-0 align-end px-0">
+          <h3 class="subs_title">{{ $t("widgets.GathMess") }}</h3>
         </v-col>
-        <v-col cols="4">
-          <v-row align="center">
-            <ColorSelect
-              :color="bdyColor"
-              :label="$t('widgets.bdyColor')"
-              v-on:selectedColor="setBdyClr($event)"
-              :key="bdyKey"
-              class="item-scale"
-            />
-          </v-row>
+        <v-col cols="5" class="row justify-end pr-9 ma-0  py-0 px-0">
+          <TooltipIcon
+            :posRight="true"
+            :nudgeBottom="30"
+            :nudgeLeft="5"
+            :txt="$t('widgets.modalInfo')"
+            class="infoicon_scale pt-0 mt-0"
+          />
         </v-col>
       </v-row>
+
+      <draggable v-model="coneData" class="row pl-4 pr-5 mb-6">
+        <v-col  v-for="(ite,ke) in coneData" :key="ke+'item.id'" cols="11 offset-1" class="pl-0 mt-0 height_row"  align-self="end">
+          <v-col cols="12" class="connection_row height_row row py-0 my-0 pl-2 pr-0" row  >
+            <v-col cols="6" class="py-0 my-0 " >
+              <v-checkbox
+                @change="rev()"
+                v-model="ite.connection"
+                :label="ite.title"
+                class="mt-0 mb-0"
+              ></v-checkbox>
+            </v-col>
+            <v-col cols="1 offset-5" class="pb-0 pt-3" justify="end" >
+                <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px"></v-img>
+            </v-col>
+          </v-col>
+        </v-col>
+      </draggable>
+
     </v-container>
     <v-divider></v-divider>
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0">
@@ -297,8 +281,8 @@
       v-show="radioSelect == 'Checkbox'"
     >
       <v-row style="height:20%;width:100%" class="pa-0 ma-0" align="start">
-        <v-col cols="6">
-          <v-row class="my-2 ml-2" style="width:100%" align="center">
+        <v-col cols="5 offset-1" class="px-0">
+          <v-row class="my-2 px-0" style="width:100%" align="center">
             <h3>{{ $t("widgets.btnHdr") }}</h3>
           </v-row>
         </v-col>
@@ -436,8 +420,8 @@
     <v-divider></v-divider>
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0">
       <v-row style="height:20%;width:100%" class="pa-0 ma-0" align="start">
-        <v-col cols="6">
-          <v-row class="my-2 ml-2" style="width:100%" align="center">
+        <v-col cols="5 offset-1" class="px-0">
+          <v-row class="my-2 " style="width:100%" align="center">
             <h3>{{ $t("widgets.cnclHdr") }}</h3>
           </v-row>
         </v-col>
@@ -525,10 +509,11 @@
 import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 import ColorSelect from "@/components/GlobalComponents/ColorSelect.vue";
 import { mapGetters } from "vuex";
+import draggable from "vuedraggable"
 
 export default {
   name: "WidgetProps",
-  components: { TooltipIcon, ColorSelect },
+  components: { TooltipIcon, ColorSelect, draggable },
   data() {
     return {
       live: false,
@@ -577,6 +562,12 @@ export default {
       btnBrdrSzArr: [1, 2, 3, 4, 5, 6],
       btnBrdrSz: 0,
       btnBrdrClrKey: 0,
+      def_selected:true,
+      discount_selected:false,
+      coneData: [
+        { id:1,connection: true, title: "Facebook" },
+        { id:2,connection: false, title: "SMS" },
+      ],
     };
   },
   methods: {
@@ -644,6 +635,9 @@ export default {
         });
       });
     },
+    rev(){
+      setTimeout(() => this.coneData.reverse(), 200);
+    }
   },
   computed: {
     ...mapGetters(["getWidgetsState", "getSettingsState"]),
@@ -879,7 +873,65 @@ export default {
 .text-fonts {
   font-size: 92%;
 }
+.sv_changes{
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 2px solid #5686F6;
+  border-radius: 2px;
+  opacity: 1;
+  text-align: center;
+  font: normal normal 600 12px/29px Poppins;
+  letter-spacing: 0px;
+  color: #5686F6 !important;
+}
+.subs_title{
 
+  text-align: left !important;
+  letter-spacing: 0px !important;
+  color: #323F4F !important;
+  opacity: 1 !important;
+}
+
+.subs_text{
+  text-align: left !important;
+  font: normal normal 300 10px/14px Poppins !important;
+  letter-spacing: 0px !important;
+  color: #4E5D6B !important;
+  opacity: 1 !important;
+  margin-bottom: 7px!important;
+}
+.checkbox_widget{
+  text-align: left;
+  font: normal normal normal 12px/19px Poppins;
+  letter-spacing: 0px;
+  color: #323F4F;
+  opacity: 1;
+}
+.smaller_text{
+  text-align: left;
+  font: italic normal normal 10px/11px Arial;
+  letter-spacing: 0px;
+  color: #323F4F;
+}
+.space_bottom{
+  margin-bottom: 26px !important;
+}
+.text_checkbox{
+  font: normal normal normal 12px/19px Poppins;
+  letter-spacing: 0px;
+  color: #323F4F;
+  opacity: 1;
+}
+.connection_row{
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #C9CACB;
+  border-radius: 4px;
+  opacity: 1;
+  padding: 8px 23px !important;
+}
+.height_row{
+  height: 36px !important;
+  margin-bottom: 10px !important;
+}
 @media only screen and (max-width: 1399px) {
   .lbl-props {
     font-size: 100%;
