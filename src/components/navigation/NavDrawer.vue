@@ -54,13 +54,15 @@
             right
             offset-x
             full-width
-
+            class="ml-9 py-0 menuChange"
+            :open-on-hover="campingsMenu"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-list-item
                 class="list-dim"
                 @click="setSelected('Campaigns')"
                 @mouseenter="setHover('Campaigns')"
+                @mouseover="campingsMenu = true"
                 to="/campaigns"
                 @mouseleave="setHover('')"
                 v-bind="attrs"
@@ -73,12 +75,12 @@
               >
             </template>
 
-              <v-col cols="12" class="par_tool_tip pr-0 pl-5 py-0">
-                <v-col cols="12" class="tool_tip pr-0 py-0">
-                  <span class="tool_tip_span">{{$t('campaigns.tooltip.sms')}}</span>
-
-                  <span class="tool_tip_span">{{$t('campaigns.tooltip.facebook')}}</span>
-                </v-col>
+              <v-col cols="12" class="par_tool_tip px-0 pl-5 my-0 py-0" v-if="campingsMenu">
+                  <v-col cols="12" class="tool_tip px-0 py-0 text-center">
+                    <span class="tool_tip_span">{{$t('campaigns.tooltip.sms')}}</span>
+                    <span class="tool_tip_span">{{$t('campaigns.tooltip.facebook')}}</span>
+                    <v-col cols="12" class="arrow-right py-0"></v-col>
+                  </v-col>
               </v-col>
 
 
@@ -124,6 +126,7 @@ export default {
     return {
       model: 1,
       preActive:'',
+      campingsMenu:false,
     };
   },
   methods: {
@@ -188,10 +191,11 @@ export default {
 .par_tool_tip{
   background-color: #e6e7e8 !important;
   width: 250px !important;
+  height: 100% !important;
 }
 .tool_tip_span{
   font-size: 10px;
-  padding: 14px 11px;
+  padding: 12px 11px;
   white-space: nowrap;
   align-content: center;
   color: #FFFFFF !important;
@@ -202,6 +206,22 @@ export default {
   background-color: #323f4e;
 }
 
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 10px solid #4f5d6a;
+  position: absolute;
+  top: 8px;
+  left: -14px;
+}
+
+.v-menu__content{
+  box-shadow:none !important;
+  border-radius: 0px !important;
+  margin-top: 12px !important;
+}
 
 @media (min-width: 1400px) {
   .navicon_scale {

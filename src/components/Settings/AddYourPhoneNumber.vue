@@ -24,11 +24,13 @@
       <v-col>
         <vue-tel-input-vuetify
           v-model="phone"
+          @onValidate="btnDisabled = $event.valid"
+          required
           :placeholder="$t('settingsPage.addYourPhoneNumber')" :label="$t('settingsPage.addYourPhoneNumber')"
         ></vue-tel-input-vuetify>
         <v-row justify="center" style="padding-top:3%">
           <v-btn
-            :disabled="!phone"
+            :disabled="!btnDisabled"
             tile
             height="40px"
             class=" btn_save"
@@ -46,15 +48,17 @@
 import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 
 
+
 export default {
   name: "AddYourPhoneNumber",
   components: {
     TooltipIcon,
+
   },
   data() {
     return {
       phone: null,
-      btnDisabled: true,
+      btnDisabled: false,
     };
   },
 

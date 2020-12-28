@@ -84,6 +84,7 @@ export default new Vuex.Store({
       setup_step_2_completed: true,
       setup_step_3_completed: true,
       cart_recovery_attempts_done: "",
+      install_popop_show:null,
     },
     planVars: {
       plans: [{ planName: "Dummy", cart_recovery_attempts: 0 }],
@@ -209,6 +210,7 @@ export default new Vuex.Store({
         first_name: state.settingsVars.first_name,
         last_name: state.settingsVars.last_name,
         email: state.settingsVars.email,
+        install_popop_show:state.settingsVars.install_popop_show
       };
       return obj;
     },
@@ -746,6 +748,9 @@ export default new Vuex.Store({
       state.subVars.consumed_recovery_attempts = obj.consumed_recovery_attempts;
       state.subVars.subscription_plan = obj.subscription_plan;
     },
+    UPDATE_SET_VARS_POP(state,str){
+      state.settingsVars.install_popop_show = str
+    }
   },
   actions: {
     updateToken({ commit }, token) {

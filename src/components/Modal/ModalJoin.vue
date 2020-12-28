@@ -80,6 +80,9 @@
                       :rules="minLenght"
                     ></v-text-field>
                   </v-col>
+                </v-row>
+                </v-form>
+                <v-row>
                   <v-col cols="12" class="py-0">
                     <v-text-field
                       @change="detectChange"
@@ -91,9 +94,11 @@
                       :rules="emailRules "
                     ></v-text-field>
                   </v-col>
-                  <small class="image_modal_text_color pl-3">{{$t('ModalJoin.byJoining')}}<b class="link_term_privace">{{$t('ModalJoin.termOfUse')}}</b>{{$t('ModalJoin.recMarketPushTx')}}<b class="link_term_privace">{{$t('ModalJoin.priPolice')}}</b></small>
+                  <small class="image_modal_text_color pl-3">{{$t('ModalJoin.byJoining')}}<b class="link_term_privace px-1">{{$t('ModalJoin.termOfUse')}}</b>{{$t('ModalJoin.recMarketPushTx')}}<b class="link_term_privace px-1">{{$t('ModalJoin.priPolice')}}</b></small>
+
                 </v-row>
-                </v-form>
+
+
               </v-card-text>
               <v-card-actions class="pa-0 card_action">
                 <v-col  justify="left" class="pa-0">
@@ -101,7 +106,7 @@
                     color="#006aff"
                     dark
                     :class="btnStatus ? 'btn wdgt_font_dims':'btn image_modal_color modal_btn' "
-                    @click="updAccInfo"
+                    @click="updAccInfo()"
                   >
                     {{$t('ModalJoin.signUpBtn')}}
                   </v-btn>
@@ -142,8 +147,16 @@ export default {
     minLenght:[(v) => v !== null && v !== ''],
     formValid: false,
     btnDisabled:false,
+    withEmail:false,
+    valEmail:null,
   }),
   methods: {
+    checkEm(){
+      if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(this.email))
+      {
+        return (true)
+      }else return (false)
+    },
     detectChange() {
       this.btnDisabled = false;
     },
@@ -152,12 +165,16 @@ export default {
         first_name:this.first_name,
         bussiness_name:this.bussiness_name,
         last_name: this.last_name,
-        email:this.email,
       };
-
+      this.valEmail = this.checkEm()
+      if(this.valEmail == true ){
+        obj.email  = this.email
+      }
+      this.$store.commit('UPDATE_SET_VARS_POP',this.withEmail)
       this.$store.dispatch("updIsLoading", true).then(() => {
         this.$store.dispatch("updAccInfo", obj).then((res) => {
           if (res === "success") {
+
             this.$store.dispatch("setSettings").then((response) => {
               this.$store.dispatch("updIsLoading", false);
               if (response === "success") {
@@ -172,22 +189,22 @@ export default {
       });
     },
   },
-  beforeCreate() {
 
-  },
   computed: {
     ...mapGetters(["getAccountInfo"]),
     btnStatus() {
       return this.btnDisabled || !this.formValid ? true : false;
     },
+
     accInfo() {
-      let obj = this.getAccountInfo;
-      return obj;
+      let aa = this.getAccountInfo;
+      return aa;
     },
   },
+
   created() {
     this.status = this.popupWindow
-
+    // this.popupWindow = this.getAccountInfo.install_popop_show
   }
 };
 </script>
@@ -237,6 +254,7 @@ export default {
   letter-spacing: 0px;
   color: #4E5D6B;
   cursor: pointer;
+
 }
 
 .card_action{

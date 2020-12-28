@@ -101,9 +101,8 @@
           </v-row>
         </v-col>
       </v-row>
-      <v-divider v-if="discount_selected"></v-divider>
     </v-container>
-
+    <v-divider ></v-divider>
 
     <v-container>
       <v-row class=" pt-4">
@@ -121,26 +120,26 @@
         </v-col>
       </v-row>
 
-      <draggable v-model="coneData" class="row pl-4 pr-5 mb-6">
+<!--      <draggable v-model="coneData" class="row pl-4 pr-5 mb-6">-->
         <v-col  v-for="(ite,ke) in coneData" :key="ke+'item.id'" cols="11 offset-1" class="pl-0 mt-0 height_row"  align-self="end">
           <v-col cols="12" class="connection_row height_row row py-0 my-0 pl-2 pr-0" row  >
             <v-col cols="6" class="py-0 my-0 " >
               <v-checkbox
-                @change="rev()"
                 v-model="ite.connection"
+                @change="checkDataConection()"
                 :label="ite.title"
                 class="mt-0 mb-0"
               ></v-checkbox>
             </v-col>
             <v-col cols="1 offset-5" class="pb-0 pt-3" justify="end" >
-                <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px"></v-img>
+                <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px" @click="rev()"></v-img>
             </v-col>
           </v-col>
         </v-col>
-      </draggable>
+<!--      </draggable>-->
 
     </v-container>
-    <v-divider></v-divider>
+    <v-divider class="mt-4"></v-divider>
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0">
       <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0">
         <v-col cols="1"></v-col>
@@ -509,11 +508,11 @@
 import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 import ColorSelect from "@/components/GlobalComponents/ColorSelect.vue";
 import { mapGetters } from "vuex";
-import draggable from "vuedraggable"
+
 
 export default {
   name: "WidgetProps",
-  components: { TooltipIcon, ColorSelect, draggable },
+  components: { TooltipIcon, ColorSelect },
   data() {
     return {
       live: false,
@@ -637,7 +636,8 @@ export default {
     },
     rev(){
       setTimeout(() => this.coneData.reverse(), 200);
-    }
+    },
+
   },
   computed: {
     ...mapGetters(["getWidgetsState", "getSettingsState"]),
@@ -931,6 +931,13 @@ export default {
 .height_row{
   height: 36px !important;
   margin-bottom: 10px !important;
+}
+.tri_for_hover{
+  width: 0;
+  height: 0;
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  border-left: 60px solid green;
 }
 @media only screen and (max-width: 1399px) {
   .lbl-props {
