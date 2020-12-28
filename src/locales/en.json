@@ -250,19 +250,18 @@
     }
   },
   "ModalJoin": {
-    "joinUsTitle":"Join us and start recovering those lost cart!",
+    "joinUsTitle": "Start recovering abandoned carts!",
     "firstName":"First Name",
-    "name": "Simon",
+    "name": "",
     "lastName": "Last Name",
     "BussinesName": "Business Name",
-    "BusinessShop": "BusinessShop",
+    "BusinessShop": "",
     "Email": "Email",
-    "example": "simon@gmail.com",
-    "byJoining":"*By joining in, you agree to our",
+    "example": "",
+    "byJoining":"*By signing up, you agree to our",
     "termOfUse":"Terms of Use",
-    "recMarketPushTx":"and to receive MarketPushApps emails & updates and acknowledge that you read our",
-    "priPolice":"Privacy Policy.",
+    "recMarketPushTx":"and to receive email updates from MarketPushApps.",
     "signUpBtn":"SIGN UP",
-    "PlsNoteTx":"Please note that due to recent Facebook updates the app is temporarily not available in the EU. We are adding SMS and WhatsApp cart recovery in next 3-4 weeks and will give you an email when these features are available."
+    "PlsNoteTx":"Please note that due to recent Facebook updates the Facebook cart recovery is temporarily not available in the EU. If you reside in the EU, please only use SMS cart recovery until Facebook re-enables this feature for EU users."
   }
 }
