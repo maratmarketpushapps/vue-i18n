@@ -208,7 +208,7 @@ export default {
 
   created() {
     this.status = this.popupWindow
-    // this.popupWindow = this.getAccountInfo.install_popop_show
+    this.popupWindow = this.getAccountInfo.install_popop_show
   }
 };
 </script>
