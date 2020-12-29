@@ -47,7 +47,6 @@
                       @input="detectChange"
                       v-model="first_name"
                       :label="$t('ModalJoin.firstName')"
-                      :placeholder="$t('ModalJoin.Name')"
                       class="image_modal_text_color"
 
                     ></v-text-field>
@@ -62,8 +61,7 @@
                       @change="detectChange"
                       @input="detectChange"
                       v-model="last_name"
-                      :label="$t('ModalJoin.lasttName')"
-                      :placeholder="$t('ModalJoin.Name')"
+                      :label="$t('ModalJoin.lastName')"
                       class="image_modal_text_color"
 
                     ></v-text-field>
@@ -75,7 +73,6 @@
                       @input="detectChange"
                       v-model="bussiness_name"
                       :label="$t('ModalJoin.BussinesName')"
-                      :placeholder="$t('ModalJoin.BusinessShop')"
                       class="image_modal_text_color"
 
                     ></v-text-field>
@@ -89,13 +86,19 @@
                       @input="detectChange"
                       v-model="email"
                       :label="$t('ModalJoin.Email')"
-                      :placeholder="$t('ModalJoin.example')"
                       class="image_modal_text_color"
                       :rules="emailRules "
                     ></v-text-field>
-                  </v-col>
-                  <small class="image_modal_text_color pl-3">{{$t('ModalJoin.byJoining')}}<b class="link_term_privace"> {{$t('ModalJoin.termOfUse')}} </b>{{$t('ModalJoin.recMarketPushTx')}}<b class="link_term_privace"> {{$t('ModalJoin.priPolice')}} </b></small>
 
+                  <small class="image_modal_text_color pl-3">
+                    {{$t('ModalJoin.byJoining')}}
+
+                    <a href="https://www.marketpushapps.com/terms-of-use" target="_blank">
+                      <b class="link_term_privace px-1">{{$t('ModalJoin.termOfUse')}}</b>
+                    </a>
+
+                    {{$t('ModalJoin.recMarketPushTx')}}
+                  </small>
                 </v-row>
 
 
@@ -142,7 +145,7 @@ export default {
         v !== null && v !== '' &&
         !v ||
         /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-        "E-mail must be valid",
+        "Invalid E-mail",
     ],
     minLenght:[(v) => v !== null && v !== ''],
     formValid: false,
