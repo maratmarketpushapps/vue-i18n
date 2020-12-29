@@ -99,6 +99,7 @@
 
                     {{$t('ModalJoin.recMarketPushTx')}}
                   </small>
+                  </v-col>
                 </v-row>
 
 
