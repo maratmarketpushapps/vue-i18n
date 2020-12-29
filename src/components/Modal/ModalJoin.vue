@@ -135,12 +135,12 @@ import { mapGetters } from "vuex";
 export default {
   name: "ModalJoin",
   props: ['status',],
-  data:() =>({
-    popupWindow:false,
-    first_name:null,
-    last_name:null,
-    bussiness_name:null,
-    email:null,
+  data: () => ({
+    popupWindow: false,
+    first_name: null,
+    last_name: null,
+    bussiness_name: null,
+    email: null,
     emailRules: [
       (v) =>
         v !== null && v !== '' &&
@@ -148,33 +148,32 @@ export default {
         /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
         "Invalid E-mail",
     ],
-    minLenght:[(v) => v !== null && v !== ''],
+    minLenght: [(v) => v !== null && v !== ''],
     formValid: false,
-    btnDisabled:false,
-    withEmail:false,
-    valEmail:null,
+    btnDisabled: false,
+    withEmail: false,
+    valEmail: null,
   }),
   methods: {
-    checkEm(){
-      if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(this.email))
-      {
+    checkEm() {
+      if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(this.email)) {
         return (true)
-      }else return (false)
+      } else return (false)
     },
     detectChange() {
       this.btnDisabled = false;
     },
     updAccInfo() {
       let obj = {
-        first_name:this.first_name,
-        bussiness_name:this.bussiness_name,
+        first_name: this.first_name,
+        bussiness_name: this.bussiness_name,
         last_name: this.last_name,
       };
       this.valEmail = this.checkEm()
-      if(this.valEmail == true ){
-        obj.email  = this.email
+      if (this.valEmail == true) {
+        obj.email = this.email
       }
-      this.$store.commit('UPDATE_SET_VARS_POP',this.withEmail)
+      this.$store.commit('UPDATE_SET_VARS_POP', this.withEmail)
       this.$store.dispatch("updIsLoading", true).then(() => {
         this.$store.dispatch("updAccInfo", obj).then((res) => {
           if (res === "success") {
@@ -206,10 +205,10 @@ export default {
     },
   },
   mounted() {
-    setTimeout(() =>  this.popupWindow = this.$store.state.settingsVars.install_popop_show,1000)
-  },
+    setTimeout(() => this.popupWindow = this.$store.state.settingsVars.install_popop_show, 1000)
+  }
+}
 
-};
 </script>
 
 <style scoped>
