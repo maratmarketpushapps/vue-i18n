@@ -79,10 +79,10 @@
         </v-row>
       </v-row>
     </v-container>
-    <v-container>
-      <v-row>
-        <v-col cols="11 offset-1" v-if="discount_selected" class="px-0">
-          <v-row >
+    <v-container class="py-0">
+      <v-row class="py-0">
+        <v-col cols="11 offset-1" v-if="discount_selected" class="px-0 py-0">
+          <v-row  class="py-0">
             <v-col cols="6" class="py-0 mb-0 ">
               <v-text-field
                 :label="$t('widgets.discState')"
@@ -95,15 +95,15 @@
                 class="mb-0"
               ></v-text-field>
             </v-col>
-            <v-container class="pr-12">
-              <v-col cols="12" class="pl-0 pr-2">
-                <small class="smaller_text space_bottom">{{$t('widgets.discSmallText')}}<b>Marketing & SEO / Coupons.</b></small>
+            <v-container class="pr-12 py-0">
+              <v-col cols="12" class="pl-0 pr-2 py-0">
+                <small class="smaller_text space_bottom pos_smaller">{{$t('widgets.discSmallText')}}<b>Marketing & SEO / Coupons.</b></small>
               </v-col>
             </v-container>
-            <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 px-6">
-              <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0">
-                <v-col cols="11">
-                  <v-row align="start" style="height:70%" class="mb-0 pb-0">
+            <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 px-6 py-0 pos_smaller">
+              <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0 py-0">
+                <v-col cols="11" class="py-0">
+                  <v-row align="start" style="height:70%" class="mb-0 pb-0 py-0">
                     <v-text-field
                       :label="$t('widgets.discountLabelinstruction')"
                       v-model="disCodeInst"
@@ -797,7 +797,7 @@ export default {
   },
 
   mounted() {
-    console.log( this.getWidgetsState)
+    console.log( this.$store.state.widgetVars.discount_statement)
     this.$store.dispatch("updIsLoading", true).then(() => {
       this.$store.dispatch("getWidgets").then((response) => {
         if (response) {
@@ -958,6 +958,12 @@ export default {
   border-bottom: 60px solid transparent;
   border-left: 60px solid green;
 }
+.pos_smaller{
+  position: relative;
+  bottom: 22px;
+}
+
+
 @media only screen and (max-width: 1399px) {
   .lbl-props {
     font-size: 100%;

@@ -136,7 +136,7 @@ export default {
   name: "ModalJoin",
   props: ['status',],
   data:() =>({
-    popupWindow:true,
+    popupWindow:false,
     first_name:null,
     last_name:null,
     bussiness_name:null,
@@ -205,11 +205,10 @@ export default {
       return aa;
     },
   },
+  mounted() {
+    setTimeout(() =>  this.popupWindow = this.$store.state.settingsVars.install_popop_show,1000)
+  },
 
-  created() {
-    this.status = this.popupWindow
-    // this.popupWindow = this.getAccountInfo.install_popop_show
-  }
 };
 </script>
 
