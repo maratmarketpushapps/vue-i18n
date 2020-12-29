@@ -130,7 +130,7 @@
     }
   },
   "widgets": {
-    "discountLabelinstruction": "Apply this discount code at checkout and you will get 10% OFF!",
+    "discountLabelinstruction": "Apply discount code instructions",
     "discSmallText":"To increase the chances of recovering sales, you can include a discount coupon in your message. To generate a coupon, go to ",
     "getTen":"GET10",
     "addYourDiscCode":"Add your discount code",

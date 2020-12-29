@@ -29,6 +29,7 @@ export default new Vuex.Store({
     },
 
     widgetVars: {
+      apply_discount_instruction:"",
       widgetVars:"",
       discount_statement:"",
       id: 0,
@@ -70,6 +71,7 @@ export default new Vuex.Store({
       first_name: "",
       last_name: "",
       bussiness_name:"",
+      phone_number:"",
       email: "",
       facebook_page_name: "",
       facebook_page_id: "",
@@ -212,6 +214,7 @@ export default new Vuex.Store({
         first_name: state.settingsVars.first_name,
         last_name: state.settingsVars.last_name,
         email: state.settingsVars.email,
+        phone_number:state.settingsVars.phone_number,
         install_popop_show:state.settingsVars.install_popop_show
       };
       return obj;
@@ -349,6 +352,7 @@ export default new Vuex.Store({
       state.settingsVars.last_name = obj.last_name;
       state.settingsVars.bussiness_name = obj.bussiness_name;
       state.settingsVars.email = obj.email;
+      state.settingsVars.phone_number = obj.phone_number;
       state.settingsVars.facebook_page_name = obj.facebook_page_name;
       state.settingsVars.facebook_page_id = obj.facebook_page_id;
       state.settingsVars.website_id = obj.website_id;
@@ -389,6 +393,7 @@ export default new Vuex.Store({
       state.settingsVars.first_name = obj.first_name;
       state.settingsVars.last_name = obj.last_name;
       state.settingsVars.bussiness_name = obj.bussiness_name;
+      state.settingsVars.phone_number = obj.phone_number;
       state.settingsVars.email = obj.email;
     },
 
@@ -754,6 +759,7 @@ export default new Vuex.Store({
       state.settingsVars.install_popop_show = itemval
     },
     SET_WIDGET_info(state,itemVidg){
+      state.widgetVars.apply_discount_instruction = itemVidg.apply_discount_instruction
       state.widgetVars.discount_code = itemVidg.discount_code
       state.widgetVars.discount_statement = itemVidg.discount_statement
     }

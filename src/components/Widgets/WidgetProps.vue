@@ -108,8 +108,8 @@
                   <v-row align="start" style="height:70%" class="mb-0 pb-0 py-0">
                     <v-text-field
                       :label="$t('widgets.discountLabelinstruction')"
-                      v-model="disCodeInst"
                       class="text-fonts"
+                      :value="apply_discount_instruction"
                     >
                     </v-text-field>
                   </v-row>
@@ -589,6 +589,7 @@ export default {
       disCodeInst:null,
       discount_statement:"",
       discount_code:"",
+      apply_discount_instruction:"aaaaaa",
     };
   },
   methods: {
@@ -801,7 +802,6 @@ export default {
   },
 
   mounted() {
-
     this.$store.dispatch("updIsLoading", true).then(() => {
       this.$store.dispatch("getWidgets").then((response) => {
         if (response) {
@@ -831,8 +831,11 @@ export default {
         }
       });
     });
-    setTimeout(() => (this.discount_statement = this.$store.state.widgetVars.discount_statement,this.discount_code = this.$store.state.widgetVars.discount_code),500)
+    setTimeout(() => (this.discount_statement = this.$store.state.widgetVars.discount_statement,
+      this.discount_code = this.$store.state.widgetVars.discount_code,
+      this.apply_discount_instruction = this.$store.state.widgetVars.apply_discount_instruction), 500)
   },
+
 };
 </script>
 

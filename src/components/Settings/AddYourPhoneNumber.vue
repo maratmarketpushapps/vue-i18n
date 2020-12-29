@@ -37,6 +37,7 @@
             height="40px"
             class=" btn_save"
             width="20%"
+            @click="savePhoneNumber()"
           >
             {{ $t("settingsPage.accInfoCard.buttonText") }}
           </v-btn></v-row
@@ -55,7 +56,6 @@ export default {
   name: "AddYourPhoneNumber",
   components: {
     TooltipIcon,
-
   },
   data() {
     return {
@@ -63,6 +63,31 @@ export default {
       btnDisabled: false,
     };
   },
+  methods:{
+    savePhoneNumber(){
+      let obj = {
+        phone_number:this.phone
+      }
+      this.$store.dispatch("updIsLoading", true).then(() => {
+        this.$store.dispatch("updAccInfo", obj).then((res) => {
+          if (res === "success") {
+            this.$store.dispatch("setSettings").then((response) => {
+              this.$store.dispatch("updIsLoading", false);
+              if (response === "success") {
+                // console.log("Settings API refreshed");
+                this.btnDisabled = false;
+              } else {
+                // console.log("Settings API not refreshed");
+              }
+            });
+          }
+        });
+      });
+    }
+  },
+  mounted() {
+    setTimeout(() => (this.phone = this.$store.state.settingsVars.phone_number,this.btnDisabled = false),500)
+  }
 
 };
 </script>
