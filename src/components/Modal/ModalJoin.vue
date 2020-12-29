@@ -49,7 +49,7 @@
                       :label="$t('ModalJoin.firstName')"
                       :placeholder="$t('ModalJoin.Name')"
                       class="image_modal_text_color"
-                      :rules="minLenght"
+
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -65,7 +65,7 @@
                       :label="$t('ModalJoin.lasttName')"
                       :placeholder="$t('ModalJoin.Name')"
                       class="image_modal_text_color"
-                      :rules="minLenght"
+
                     ></v-text-field>
                   </v-col>
 
@@ -77,7 +77,7 @@
                       :label="$t('ModalJoin.BussinesName')"
                       :placeholder="$t('ModalJoin.BusinessShop')"
                       class="image_modal_text_color"
-                      :rules="minLenght"
+
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -94,7 +94,7 @@
                       :rules="emailRules "
                     ></v-text-field>
                   </v-col>
-                  <small class="image_modal_text_color pl-3">{{$t('ModalJoin.byJoining')}}<b class="link_term_privace px-1">{{$t('ModalJoin.termOfUse')}}</b>{{$t('ModalJoin.recMarketPushTx')}}<b class="link_term_privace px-1">{{$t('ModalJoin.priPolice')}}</b></small>
+                  <small class="image_modal_text_color pl-3">{{$t('ModalJoin.byJoining')}}<b class="link_term_privace"> {{$t('ModalJoin.termOfUse')}} </b>{{$t('ModalJoin.recMarketPushTx')}}<b class="link_term_privace"> {{$t('ModalJoin.priPolice')}} </b></small>
 
                 </v-row>
 
@@ -204,7 +204,7 @@ export default {
 
   created() {
     this.status = this.popupWindow
-    // this.popupWindow = this.getAccountInfo.install_popop_show
+    this.popupWindow = this.getAccountInfo.install_popop_show
   }
 };
 </script>

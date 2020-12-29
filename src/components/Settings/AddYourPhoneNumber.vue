@@ -2,7 +2,7 @@
   <v-card tile height="100%" width="97%" class=" pt-3 px-7 font_dims">
     <v-row>
       <v-col cols="6">
-        <h3>{{ $t('settingsPage.addYourPhoneNumber') }}</h3>
+        <h3>{{ $t('settingsPage.titleCard') }}</h3>
       </v-col>
       <v-col cols="6" class="pa-2 pt-0">
         <v-row align="center" justify="end" class="pr-1 pt-1"
@@ -27,7 +27,9 @@
           @onValidate="btnDisabled = $event.valid"
           required
           :placeholder="$t('settingsPage.addYourPhoneNumber')" :label="$t('settingsPage.addYourPhoneNumber')"
+
         ></vue-tel-input-vuetify>
+        <small class="hintTelNumber">{{$t('settingsPage.hintTelNumber')}}</small>
         <v-row justify="center" style="padding-top:3%">
           <v-btn
             :disabled="!btnDisabled"
@@ -76,5 +78,9 @@ export default {
   background-color: #5686f6 !important;
   border-color: #5686f6 !important;
   border-radius: 2px;
+}
+.hintTelNumber{
+  position: relative !important;
+  bottom: 21px !important;
 }
 </style>

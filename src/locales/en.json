@@ -130,6 +130,7 @@
     }
   },
   "widgets": {
+    "discountLabelinstruction": "Apply this discount code at checkout and you will get 10% OFF!",
     "discSmallText":"To increase the chances of recovering sales, you can include a discount coupon in your message. To generate a coupon, go to ",
     "getTen":"GET10",
     "addYourDiscCode":"Add your discount code",
@@ -178,7 +179,9 @@
     "chckBoxNoteHref": "whitelist your site in the settings of your facebook page"
   },
   "settingsPage": {
+    "titleCard": "SMS Cart Recovery",
     "addYourPhoneNumber":"Add Your Phone Number",
+    "hintTelNumber": "You can add your phone number in the SMS Cart Recovery messages.",
     "fbCard1": {
       "header": "Connect Your Facebook Page",
       "tooltipText": "Connect your Facebook page to the Cart Reminder App. Once connected, your Facebook page will send the messages to customers. Your personal details, such as your name, will not be visible to the message recipient - don't worry!",
@@ -193,6 +196,7 @@
       "wbstUnpubErrHdr": "Your website is not published",
       "wbstUnpubErrTxt": "Please connect a domain and publish your website in order to pair it with your Facebook Page, then refresh the page and connect the Facebook Page again.",
       "wbstUnpubErrBtnTxt": "ok"
+
     },
     "fbCard2": {
       "header": "Connect Your Facebook Page",

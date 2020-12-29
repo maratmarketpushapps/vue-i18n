@@ -165,6 +165,7 @@ export default {
       return this.getWidgetsState.pop_up_title;
     },
     titleProps() {
+
       let ttlObj = {
         color: this.getWidgetsState.pop_up_title_font_color,
         "font-weight": this.getWidgetsState.pop_up_title_font_type,

@@ -86,18 +86,35 @@
             <v-col cols="6" class="py-0 mb-0 ">
               <v-text-field
                 :label="$t('widgets.discState')"
-                :placeholder="$t('widgets.getTenDisc')"
                 class="mb-0"
               ></v-text-field>
             </v-col>
             <v-col cols="5" class="py-0 mb-0 ">
               <v-text-field
                 :label="$t('widgets.addYourDiscCode')"
-                :placeholder="$t('widgets.getTen')"
                 class="mb-0"
               ></v-text-field>
             </v-col>
-            <small class="smaller_text pl-3 space_bottom">{{$t('widgets.discSmallText')}}<b>Marketing & SEO / Coupons.</b>></small>
+            <v-container class="pr-12">
+              <v-col cols="12" class="pl-0 pr-2">
+                <small class="smaller_text space_bottom">{{$t('widgets.discSmallText')}}<b>Marketing & SEO / Coupons.</b></small>
+              </v-col>
+            </v-container>
+            <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 px-6">
+              <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0">
+                <v-col cols="11">
+                  <v-row align="start" style="height:70%" class="mb-0 pb-0">
+                    <v-text-field
+                      :label="$t('widgets.discountLabelinstruction')"
+                      v-model="disCodeInst"
+                      class="text-fonts"
+                    >
+                    </v-text-field>
+                  </v-row>
+                </v-col>
+                <v-col cols="1"></v-col>
+              </v-row>
+            </v-container>
           </v-row>
         </v-col>
       </v-row>
@@ -567,6 +584,7 @@ export default {
         { id:1,connection: true, title: "Facebook" },
         { id:2,connection: false, title: "SMS" },
       ],
+      disCodeInst:null,
     };
   },
   methods: {
@@ -779,6 +797,7 @@ export default {
   },
 
   mounted() {
+    console.log( this.getWidgetsState)
     this.$store.dispatch("updIsLoading", true).then(() => {
       this.$store.dispatch("getWidgets").then((response) => {
         if (response) {

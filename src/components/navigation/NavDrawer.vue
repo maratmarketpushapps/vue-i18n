@@ -54,7 +54,6 @@
             right
             offset-x
             full-width
-            class="ml-9 py-0 menuChange"
             :open-on-hover="campingsMenu"
           >
             <template v-slot:activator="{ on, attrs }">
@@ -189,7 +188,7 @@ export default {
   width: 250px !important;
 }
 .par_tool_tip{
-  background-color: #e6e7e8 !important;
+  background-color: #e6e7e800 !important !important;
   width: 250px !important;
   height: 100% !important;
 }
