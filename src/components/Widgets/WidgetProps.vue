@@ -94,6 +94,7 @@
               <v-text-field
                 :label="$t('widgets.addYourDiscCode')"
                 class="mb-0"
+                :value="discount_code"
               ></v-text-field>
             </v-col>
             <v-container class="pr-12 py-0">
@@ -587,6 +588,7 @@ export default {
       ],
       disCodeInst:null,
       discount_statement:"",
+      discount_code:"",
     };
   },
   methods: {
@@ -829,7 +831,7 @@ export default {
         }
       });
     });
-    setTimeout(() => this.discount_statement = this.$store.state.widgetVars.discount_statement,500)
+    setTimeout(() => (this.discount_statement = this.$store.state.widgetVars.discount_statement,this.discount_code = this.$store.state.widgetVars.discount_code),500)
   },
 };
 </script>
