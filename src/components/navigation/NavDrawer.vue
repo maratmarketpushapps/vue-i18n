@@ -59,10 +59,8 @@
             <template v-slot:activator="{ on, attrs }">
               <v-list-item
                 class="list-dim"
-                @click="setSelected('Campaigns')"
                 @mouseenter="setHover('Campaigns')"
                 @mouseover="campingsMenu = true"
-                to="/campaigns"
                 @mouseleave="setHover('')"
                 v-bind="attrs"
                 v-on="on"
@@ -76,8 +74,8 @@
 
               <v-col cols="12" class="par_tool_tip px-0 pl-5 my-0 py-0" v-if="campingsMenu">
                   <v-col cols="12" class="tool_tip px-0 py-0 text-center">
-                    <span class="tool_tip_span">{{$t('campaigns.tooltip.sms')}}</span>
-                    <span class="tool_tip_span">{{$t('campaigns.tooltip.facebook')}}</span>
+                    <router-link class="tool_tip_span" to="/campaigns-sms">{{$t('campaigns.tooltip.sms')}}</router-link>
+                    <router-link class="tool_tip_span" to="/campaigns-facebook">{{$t('campaigns.tooltip.facebook')}}</router-link>
                     <v-col cols="12" class="arrow-right py-0"></v-col>
                   </v-col>
               </v-col>
@@ -220,6 +218,7 @@ export default {
   box-shadow:none !important;
   border-radius: 0px !important;
   margin-top: 12px !important;
+  cursor: pointer;
 }
 
 @media (min-width: 1400px) {

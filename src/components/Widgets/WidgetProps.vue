@@ -97,9 +97,9 @@
                 :value="discount_code"
               ></v-text-field>
             </v-col>
-            <v-container class="pr-12 py-0">
+            <v-container class="pr-12 py-0 pos_sm_cont">
               <v-col cols="12" class="pl-0 pr-2 py-0">
-                <small class="smaller_text space_bottom pos_smaller">{{$t('widgets.discSmallText')}}<b>Marketing & SEO / Coupons.</b></small>
+                <small class="smaller_text space_bottom ">{{$t('widgets.discSmallText')}}<b>Marketing & SEO / Coupons.</b></small>
               </v-col>
             </v-container>
             <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 px-6 py-0 pos_smaller">
@@ -968,7 +968,11 @@ export default {
 }
 .pos_smaller{
   position: relative;
-  bottom: 22px;
+  bottom: 12px;
+}
+.pos_sm_cont{
+  position: relative;
+  bottom: 20px;
 }
 
 

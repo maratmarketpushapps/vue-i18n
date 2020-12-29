@@ -90,7 +90,7 @@
                       :rules="emailRules "
                     ></v-text-field>
 
-                  <small class="image_modal_text_color pl-3">
+                  <small class="image_modal_text_color">
                     {{$t('ModalJoin.byJoining')}}
 
                     <a href="https://www.marketpushapps.com/terms-of-use" target="_blank">
