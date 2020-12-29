@@ -94,7 +94,7 @@
                     {{$t('ModalJoin.byJoining')}}
 
                     <a href="https://www.marketpushapps.com/terms-of-use" target="_blank">
-                      <b class="link_term_privace px-1">{{$t('ModalJoin.termOfUse')}}</b>
+                      <b class="link_term_privace">{{$t('ModalJoin.termOfUse')}}</b>
                     </a>
 
                     {{$t('ModalJoin.recMarketPushTx')}}
@@ -208,7 +208,7 @@ export default {
 
   created() {
     this.status = this.popupWindow
-    this.popupWindow = this.getAccountInfo.install_popop_show
+    // this.popupWindow = this.getAccountInfo.install_popop_show
   }
 };
 </script>
