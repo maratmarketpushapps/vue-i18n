@@ -29,6 +29,7 @@ export default new Vuex.Store({
     },
 
     widgetVars: {
+      discount_statement:"",
       id: 0,
       instance_id: "",
       website_id: 0,
@@ -751,6 +752,10 @@ export default new Vuex.Store({
     UPDATE_SET_VARS_POP(state,itemval){
       state.settingsVars.install_popop_show = itemval
     },
+    SET_WIDGET_info(state,itemVidg){
+
+      state.widgetVars.discount_statement = itemVidg.discount_statement
+    }
 
   },
   actions: {
@@ -834,6 +839,8 @@ export default new Vuex.Store({
         axios
           .get(url, headers)
           .then((res) => {
+            console.log(res.data)
+            commit("SET_WIDGET_info",res.data)
             commit("SET_WIDGETS_VAL", JSON.parse(JSON.stringify(res.data)));
             resolve("success");
           })

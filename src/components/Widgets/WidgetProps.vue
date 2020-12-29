@@ -87,6 +87,7 @@
               <v-text-field
                 :label="$t('widgets.discState')"
                 class="mb-0"
+                :value="discount_statement"
               ></v-text-field>
             </v-col>
             <v-col cols="5" class="py-0 mb-0 ">
@@ -585,6 +586,7 @@ export default {
         { id:2,connection: false, title: "SMS" },
       ],
       disCodeInst:null,
+      discount_statement:"",
     };
   },
   methods: {
@@ -797,7 +799,7 @@ export default {
   },
 
   mounted() {
-    console.log( this.$store.state.widgetVars.discount_statement)
+
     this.$store.dispatch("updIsLoading", true).then(() => {
       this.$store.dispatch("getWidgets").then((response) => {
         if (response) {
@@ -827,6 +829,7 @@ export default {
         }
       });
     });
+    setTimeout(() => this.discount_statement = this.$store.state.widgetVars.discount_statement,500)
   },
 };
 </script>
