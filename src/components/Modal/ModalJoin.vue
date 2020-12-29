@@ -77,9 +77,6 @@
 
                     ></v-text-field>
                   </v-col>
-                </v-row>
-                </v-form>
-                <v-row>
                   <v-col cols="12" class="py-0">
                     <v-text-field
                       @change="detectChange"
@@ -90,17 +87,18 @@
                       :rules="emailRules "
                     ></v-text-field>
 
-                  <small class="image_modal_text_color">
-                    {{$t('ModalJoin.byJoining')}}
+                    <small class="image_modal_text_color">
+                      {{$t('ModalJoin.byJoining')}}
 
-                    <a href="https://www.marketpushapps.com/terms-of-use" target="_blank">
-                      <b class="link_term_privace">{{$t('ModalJoin.termOfUse')}}</b>
-                    </a>
+                      <a href="https://www.marketpushapps.com/terms-of-use" target="_blank">
+                        <b class="link_term_privace">{{$t('ModalJoin.termOfUse')}}</b>
+                      </a>
 
-                    {{$t('ModalJoin.recMarketPushTx')}}
-                  </small>
+                      {{$t('ModalJoin.recMarketPushTx')}}
+                    </small>
                   </v-col>
                 </v-row>
+                </v-form>
 
 
               </v-card-text>
@@ -140,10 +138,9 @@ export default {
     first_name: null,
     last_name: null,
     bussiness_name: null,
-    email: null,
+    email: "",
     emailRules: [
       (v) =>
-        v !== null && v !== '' &&
         !v ||
         /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
         "Invalid E-mail",
