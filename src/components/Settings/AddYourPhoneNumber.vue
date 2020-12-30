@@ -24,10 +24,12 @@
       <v-col>
         <vue-tel-input-vuetify
           v-model="phone"
+          v-bind="bindProps"
+          v-on:country-changed="countryChanged"
           @onValidate="btnDisabled = $event.valid"
           required
-          :placeholder="$t('settingsPage.addYourPhoneNumber')" :label="$t('settingsPage.addYourPhoneNumber')"
-
+          :placeholder="$t('settingsPage.addYourPhoneNumber')"
+          :label="$t('settingsPage.addYourPhoneNumber')"
         ></vue-tel-input-vuetify>
         <small class="hintTelNumber">{{$t('settingsPage.hintTelNumber')}}</small>
         <v-row justify="center" style="padding-top:3%">
@@ -60,10 +62,29 @@ export default {
   data() {
     return {
       phone: null,
+      country:null,
       btnDisabled: false,
+      bindProps: {
+        mode: "international",
+        placeholder: "Enter a phone number",
+        required: false,
+        enabledCountryCode: true,
+        enabledFlags: true,
+        autocomplete: "off",
+        name: "telephone",
+        maxLen: 25,
+        inputOptions: {
+          showDialCode: true
+        },
+        reg:null,
+      }
     };
   },
   methods:{
+    countryChanged(country) {
+      // country.dialCode = "994"
+      this.country = '+' + country.dialCode
+    },
     savePhoneNumber(){
       let obj = {
         phone_number:this.phone
@@ -86,7 +107,13 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => (this.phone = this.$store.state.settingsVars.phone_number,this.btnDisabled = false),500)
+
+    setTimeout(() => (this.phone = this.$store.state.settingsVars.phone_number,this.btnDisabled = false),500),
+    // setTimeout(() => (var a = this.phone;this.a.match(/^(\S+)\s(.*)/).slice(1));this.country.dialCode = a[0]) ,600)
+    setTimeout(()=> {
+      if(this.phone !== "" || this.phone !== null || this.phone !== false)
+      {  this.reg = this.phone,this.reg.match(/^(\S+)\s(.*)/).slice(1),this.country.dialCode = this.reg[0]}
+    },700)
   }
 
 };
