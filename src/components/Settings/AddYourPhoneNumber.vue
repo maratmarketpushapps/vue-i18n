@@ -82,8 +82,9 @@ export default {
   },
   methods:{
     countryChanged(country) {
-      // country.dialCode = "994"
-      this.country = '+' + country.dialCode
+      if(country.dialCode !== null){
+        this.country = '+' + country.dialCode
+      }
     },
     savePhoneNumber(){
       let obj = {
@@ -107,9 +108,7 @@ export default {
     }
   },
   mounted() {
-
     setTimeout(() => (this.phone = this.$store.state.settingsVars.phone_number,this.btnDisabled = false),500),
-    // setTimeout(() => (var a = this.phone;this.a.match(/^(\S+)\s(.*)/).slice(1));this.country.dialCode = a[0]) ,600)
     setTimeout(()=> {
       if(this.phone !== "" || this.phone !== null || this.phone !== false)
       {  this.reg = this.phone,this.reg.match(/^(\S+)\s(.*)/).slice(1),this.country.dialCode = this.reg[0]}

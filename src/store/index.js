@@ -29,8 +29,10 @@ export default new Vuex.Store({
     },
 
     widgetVars: {
+      enabled_widgets:null,
+      subscribe_type:"",
       apply_discount_instruction:"",
-      widgetVars:"",
+      discount_code:"",
       discount_statement:"",
       id: 0,
       instance_id: "",
@@ -307,6 +309,10 @@ export default new Vuex.Store({
 
     SET_WIDGETS_VAL(state, obj) {
       state.widgetVars.id = obj.id;
+      state.widgetVars.enabled_widgets = obj.enabled_widgets;
+      state.widgetVars.discount_code = obj.discount_;
+      state.widgetVars.discount_statement = obj.discount_statement
+      state.widgetVars.subscribe_type = obj.subscribe_type
       state.widgetVars.instance_id = obj.instance_id;
       state.widgetVars.website_id = obj.website_id;
       state.widgetVars.facebook_widget_type = obj.facebook_widget_type;
@@ -757,6 +763,24 @@ export default new Vuex.Store({
     },
     UPDATE_SET_VARS_POP(state,itemval){
       state.settingsVars.install_popop_show = itemval
+    },
+    SAVE_WIDGET_FORM(state,formVidgData){
+      state.widgetVars.apply_discount_instruction = formVidgData.apply_discount_instruction
+      state.widgetVars.discount_code = formVidgData.discount_code
+      state.widgetVars.discount_statement = formVidgData.discount_statement
+      if(formVidgData.coneData[0].title == "Facebook"){
+        state.widgetVars.enabled_widgets.facebook.enabled = formVidgData.coneData[0].connection
+        state.widgetVars.enabled_widgets.facebook.position= formVidgData.coneData[0].id
+        state.widgetVars.enabled_widgets.sms.enabled = formVidgData.coneData[1].connection
+        state.widgetVars.enabled_widgets.sms.position= formVidgData.coneData[1].id
+      }else {
+        state.widgetVars.enabled_widgets.facebook.enabled = formVidgData.coneData[1].connection
+        state.widgetVars.enabled_widgets.facebook.position= formVidgData.coneData[1].id
+        state.widgetVars.enabled_widgets.sms.enabled = formVidgData.coneData[0].connection
+        state.widgetVars.enabled_widgets.sms.position= formVidgData.coneData[0].id
+      }
+
+      state.widgetVars.subscribe_type = formVidgData.subscribe_type
     },
     SET_WIDGET_info(state,itemVidg){
       state.widgetVars.apply_discount_instruction = itemVidg.apply_discount_instruction

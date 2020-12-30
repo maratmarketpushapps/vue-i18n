@@ -85,6 +85,7 @@
           <v-row  class="py-0">
             <v-col cols="6" class="py-0 mb-0 ">
               <v-text-field
+                v-model="discount_statement"
                 :label="$t('widgets.discState')"
                 class="mb-0"
                 :value="discount_statement"
@@ -92,6 +93,7 @@
             </v-col>
             <v-col cols="5" class="py-0 mb-0 ">
               <v-text-field
+                v-model="discount_code"
                 :label="$t('widgets.addYourDiscCode')"
                 class="mb-0"
                 :value="discount_code"
@@ -107,6 +109,7 @@
                 <v-col cols="11" class="py-0">
                   <v-row align="start" style="height:70%" class="mb-0 pb-0 py-0">
                     <v-text-field
+                      v-model="apply_discount_instruction"
                       :label="$t('widgets.discountLabelinstruction')"
                       class="text-fonts"
                       :value="apply_discount_instruction"
@@ -140,12 +143,14 @@
       </v-row>
 
 <!--      <draggable v-model="coneData" class="row pl-4 pr-5 mb-6">-->
-        <v-col  v-for="(ite,ke) in coneData" :key="ke+'item.id'" cols="11 offset-1" class="pl-0 mt-0 height_row"  align-self="end">
-          <v-col cols="12" class="connection_row height_row row py-0 my-0 pl-2 pr-0" row  >
+        <v-col  v-for="(ite,ke) in coneData" :key="ke+'item.id'" cols="11 offset-1"
+           :class="notSel?'notSelSpc pl-0 mt-6 height_row':'pl-0 mt-0 height_row'" align-self="end">
+          <small :class="notSel?'notSelTxt mt-10':''" v-if="notSel">You need choose one</small>
+          <v-col cols="12" class="connection_row height_row row py-0 my-0 pl-2 pr-0" row
+                 :class="notSel?'notSel connection_row height_row row py-0 my-0 pl-2 pr-0':'connection_row height_row row py-0 my-0 pl-2 pr-0'">
             <v-col cols="6" class="py-0 my-0 " >
               <v-checkbox
                 v-model="ite.connection"
-                @change="checkDataConection()"
                 :label="ite.title"
                 class="mt-0 mb-0"
               ></v-checkbox>
@@ -589,7 +594,11 @@ export default {
       disCodeInst:null,
       discount_statement:"",
       discount_code:"",
-      apply_discount_instruction:"aaaaaa",
+      apply_discount_instruction:"",
+      statusWidgets:null,
+      subType:null,
+      subscribe_type:null,
+      notSel:false,
     };
   },
   methods: {
@@ -647,31 +656,52 @@ export default {
       this.$store.dispatch("updWdgtBtnBrdrClr", selectedColor);
     },
     svChanges() {
-      this.$store.dispatch("updIsLoading", true).then(() => {
-        this.$store.dispatch("setWdgts").then((response) => {
-          if (response) {
-            this.$store.dispatch("getWidgets").then(() => {
-              this.$store.dispatch("updIsLoading", false);
-            });
-          }
+      if(this.coneData[0].connection == true || this.coneData[1].connection == true){
+        this.def_selected == null || this.def_selected == false || this.def_selected == ""
+          ? this.subscribe_type = "subscribe" : this.subscribe_type = "default"
+        let objWidg = {
+          coneData:this.coneData,
+          subscribe_type:this.subscribe_type,
+          discount_statement:this.discount_statement,
+          discount_code:this.discount_code,
+          apply_discount_instruction:this.apply_discount_instruction,
+        };
+        this.$store.commit('SAVE_WIDGET_FORM',objWidg)
+        this.$store.dispatch("updIsLoading", true).then(() => {
+          this.$store.dispatch("setWdgts").then((response) => {
+            if (response) {
+              this.$store.dispatch("getWidgets").then(() => {
+                this.$store.dispatch("updIsLoading", false);
+              });
+            }
+          });
         });
-      });
+      } else this.notSel = true
+
     },
     rev(){
       setTimeout(() => this.coneData.reverse(), 200);
     },
-
+    changesWidg(){
+      this.coneData[0].connection = this.statusWidgets.facebook.enabled
+      this.coneData[0].id = this.statusWidgets.facebook.position
+      this.coneData[1].connection = this.statusWidgets.sms.enabled
+      this.coneData[1].id = this.statusWidgets.sms.position
+      console.log(this.subType)
+      if(this.subType == "subscribe"){
+          this.discount_selected = true
+          this.def_selected = false
+      }else this.def_selected = true , this.discount_selected = false
+    }
   },
   computed: {
     ...mapGetters(["getWidgetsState", "getSettingsState"]),
     detectChange() {
       return this.getWidgetsState.changesSaved;
     },
-
     liveLbl() {
       return this.live ? this.$t("widgets.liveLbl") : this.$t("widgets.offLbl");
     },
-
     hdrColor() {
       this.hdrIncr();
       return this.getWidgetsState.header_background_color;
@@ -697,17 +727,14 @@ export default {
       this.msgIncr();
       return this.getWidgetsState.pop_up_message_font_color;
     },
-
     cnclColor() {
       this.cnclIncr();
       return this.getWidgetsState.pop_up_cancel_font_color;
     },
-
     btnBcgColor() {
       this.btnBcgIncr();
       return this.getWidgetsState.button_background;
     },
-
     msgKey() {
       return "msg" + this.msgClrKey;
     },
@@ -740,6 +767,12 @@ export default {
     },
   },
   watch: {
+    coneData: {
+      deep: true,
+      handler() {
+        this.notSel = false
+      }
+    },
     radioSelect(newValue) {
       // console.log(oldValue);
       // console.log(newValue);
@@ -831,9 +864,11 @@ export default {
         }
       });
     });
-    setTimeout(() => (this.discount_statement = this.$store.state.widgetVars.discount_statement,
+    setTimeout(() => ( this.subType = this.$store.state.widgetVars.subscribe_type,this.statusWidgets = this.$store.state.widgetVars.enabled_widgets,
+      this.discount_statement = this.$store.state.widgetVars.discount_statement,
       this.discount_code = this.$store.state.widgetVars.discount_code,
-      this.apply_discount_instruction = this.$store.state.widgetVars.apply_discount_instruction), 500)
+      this.apply_discount_instruction = this.$store.state.widgetVars.apply_discount_instruction,this.changesWidg()), 500)
+
   },
 
 };
@@ -974,7 +1009,16 @@ export default {
   position: relative;
   bottom: 20px;
 }
-
+.notSel{
+  border: 2px solid red !important;
+}
+.notSelTxt{
+  color: red;
+}
+.notSelSpc{
+  position: relative !important;
+  bottom: 28px !important;
+}
 
 @media only screen and (max-width: 1399px) {
   .lbl-props {
