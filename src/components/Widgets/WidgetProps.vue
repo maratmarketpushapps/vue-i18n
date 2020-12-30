@@ -687,7 +687,6 @@ export default {
       this.coneData[0].id = this.statusWidgets.facebook.position
       this.coneData[1].connection = this.statusWidgets.sms.enabled
       this.coneData[1].id = this.statusWidgets.sms.position
-      console.log(this.subType)
       if(this.subType == "subscribe"){
           this.discount_selected = true
           this.def_selected = false
