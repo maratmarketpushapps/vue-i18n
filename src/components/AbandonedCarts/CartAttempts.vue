@@ -2,8 +2,8 @@
   <div>
     <v-row justify="end">
       <v-col cols="auto">
-        <v-row class="font_dims" justify="end"> {{ header }}</v-row>
-        <v-row class="font_dims" justify="end">{{ body }}</v-row>
+<!--        <v-row class="font_dims" justify="end"> {{ header }}</v-row>-->
+<!--        <v-row class="font_dims" justify="end">{{ body }}</v-row>-->
       </v-col>
       <v-col cols="auto">
         <abIcon class="abicon-dims" />

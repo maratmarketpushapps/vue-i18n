@@ -102,6 +102,15 @@
       "discountTxt2": "Marketing & SEO / Coupons ",
       "discountTxt3": ""
     },
+    "smscarts1": {
+      "headerTxt": "SMS Abandoned Cart Message #1",
+      "selectLabel": "Send After",
+      "sendAfter": "How much time should pass before sending this message.",
+      "iconTxt": "Edit Message",
+      "discountTxt1": "In order to SAVE your campaign you need to make sure you set all the variables that you add in the SMS Message.",
+      "discountTxt2": "Marketing & SEO / Coupons ",
+      "discountTxt3": ""
+    },
     "carts2": {
       "headerTxt": "Abandoned Cart Message #2",
       "selectLabel": "Send After",
@@ -118,6 +127,16 @@
       "btnTxt": "Button Text",
       "qckRply": "Quick Replies"
     },
+    "smsordrrcpt": {
+      "headerTxt": "Order Receipt Message",
+      "introMsg": "SMS Message",
+      "hint1": "You can use details from the order like {{first_name}}, {{last_name}} directly in the text. If you want to give the user an incentive to buy, create a coupon code <here> and add it here as text.",
+      "title": "Title",
+      "subTitle": "Subtitle",
+      "btnTxt": "Button Text",
+      "svashortcod": "Available ShortCodes"
+    },
+
     "ordeshpd": {
       "headerTxt": "Order Shipped Message"
     },
