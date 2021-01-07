@@ -250,6 +250,7 @@
       "tooltipText": "Add your contact information information. We will use your email to send you reports about app performance such as recovered sales.",
       "label1": "First Name",
       "label2": "Last Name",
+      "label4": "Business Name",
       "label3": "E-mail",
       "buttonText": "Save"
     },

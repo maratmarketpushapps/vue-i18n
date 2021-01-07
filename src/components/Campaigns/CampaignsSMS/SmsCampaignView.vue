@@ -55,6 +55,7 @@
       align="center"
       class="pa-2"
     >
+
       <v-btn
         outlined
         width="auto"
@@ -144,7 +145,18 @@ export default {
     },
     msgTxt() {
       if (this.$store.getters.getActiveTab == "abndndcrt1") {
-        return this.$store.getters.getCarts1.intro_message;
+        let messageText = this.$store.getters.getCarts1.intro_message
+        String.prototype.allReplace = function(obj) {
+          var retStr = this;
+          for (var x in obj) {
+            retStr = retStr.replace(new RegExp(x, 'g'), obj[x]);
+          }
+          return retStr;
+        };
+        messageText = messageText.allReplace({'{{StorePhoneNumber}}': this.$store.getters.getAccountInfo.phone_number,
+          '{{BusinessName}}':this.$store.state.settingsVars.bussiness_name,'{{CheckOutTotal}}':'CheckOutTotal',
+          '{{CheckOutLink}}':'CheckOutLink','{{write STOP to unsubscribe}}':'STOP to unsubscribe'})
+        return messageText;
       } else if (this.$store.getters.getActiveTab == "abndndcrt2") {
         return this.$store.getters.getCarts2.intro_message;
       } else if (this.$store.getters.getActiveTab == "ordrrcpt") {

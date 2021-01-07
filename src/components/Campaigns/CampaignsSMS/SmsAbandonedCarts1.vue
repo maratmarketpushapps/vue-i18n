@@ -120,11 +120,11 @@
             </v-row>
             <v-row class="mx-0 px-0  py-0 my-0">
               <v-btn
-                class="mr-3 qckRplBtn font_dims"
+                class="mr-3 qckRplBtn font_dims txt-up"
                 color="#7DA2F7"
                 @click="putbussName()"
               >
-                {{ bussName }}
+                BusinessName
               </v-btn>
               <router-link  to="/settings">
                 <iconEdit
@@ -133,25 +133,27 @@
                 />
               </router-link>
               <v-btn
-                class="mr-3 qckRplBtn font_dims"
+                class="mr-3 qckRplBtn font_dims txt-up"
                 color="#7DA2F7"
                 @click="putCheckOutTotal"
               >
                 CheckOutTotal
               </v-btn>
+
               <v-btn
-                class="mr-3 qckRplBtn font_dims"
+                class="mr-3 qckRplBtn font_dims txt-up"
                 color="#7DA2F7"
                 @click="putCheckOutLink"
               >
                 CheckOutLink
               </v-btn>
+
               <v-btn
-                class="mr-3 qckRplBtn font_dims"
+                class="mr-3 qckRplBtn font_dims txt-up"
                 color="#7DA2F7"
                 @click="putNumberPhone()"
               >
-                {{ phoneNumber }}
+                StorePhoneNumber
               </v-btn>
               <router-link  to="/settings">
                   <iconEdit
@@ -182,7 +184,7 @@
             dense
             style="font-size:110%"
             class="mt-3 pb-0 ml-6 mr-9"
-            rows="2"
+            rows="3"
             hint="test"
             :persistent-hint="true"
           >
@@ -514,27 +516,27 @@ export default {
   },
   methods: {
     putNumberPhone(){
-      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ this.phoneNumber
+      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{StorePhoneNumber}}'
       this.activeStateChng()
     },
     putbussName(){
-      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ this.bussName
+      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{BusinessName}}'
       this.activeStateChng()
     },
     putCheckOutTotal(){
-      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ 'CheckOutTotal'
+      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{CheckOutTotal}}'
       this.activeStateChng()
     },
     putCheckOutLink(){
-      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ 'CheckOutLink'
+      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{CheckOutLink}}'
       this.activeStateChng()
     },
     putOPtOut(){
-      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ 'write STOP to unsubscribe'
+      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{write STOP to unsubscribe}}'
       this.activeStateChng()
     },
     saveOrdrAbndCrt() {
-      if(this.ordrAbndCrtIntroMsg.includes(this.bussName) && this.ordrAbndCrtIntroMsg.includes('CheckOutLink')){
+      if(this.ordrAbndCrtIntroMsg.includes('BusinessName') && this.ordrAbndCrtIntroMsg.includes('CheckOutLink')){
         this.$store.dispatch("updIsLoading", true).then(() => {
           let obj = {
             active: this.ordrAbndCrtSwitchLive,
@@ -760,13 +762,11 @@ export default {
   font-weight: bold;
   font-size: 90% !important;
 }
-
 .theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) {
   color: #323f4f !important;
   font-weight: bold;
   font-size: 90% !important;
 }
-
 .v-date-picker-table .v-btn.v-btn--active {
   border-radius: 0px;
 }
@@ -777,19 +777,24 @@ export default {
   transform: scale(0.9);
   transform-origin: 0 0;
 }
-
 .msgCount {
   font-size: 120%;
   color: #5686f6;
   font-weight: bolder;
 }
-
 .qckRpl {
   font-size: 85%;
 }
-
 .qckRplBtn {
   color: #ffffff !important;
+}
+.txt-up{
+  text-transform: none !important;
+}
+.v-messages__message {
+  line-height: 20px;
+  color: black;
+  font-size: 90%;
 }
 
 @media (min-width: 1400px) {
@@ -802,10 +807,4 @@ export default {
   }
 }
 </style>
-<style>
-.v-messages__message {
-  line-height: 20px;
-  color: black;
-  font-size: 90%;
-}
-</style>
+

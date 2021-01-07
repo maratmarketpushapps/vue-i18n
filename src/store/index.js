@@ -215,6 +215,7 @@ export default new Vuex.Store({
       let obj = {
         first_name: state.settingsVars.first_name,
         last_name: state.settingsVars.last_name,
+        bussiness_name:state.settingsVars.bussiness_name,
         email: state.settingsVars.email,
         phone_number:state.settingsVars.phone_number,
         install_popop_show:state.settingsVars.install_popop_show
