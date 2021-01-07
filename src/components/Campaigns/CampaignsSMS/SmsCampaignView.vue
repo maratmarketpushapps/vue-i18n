@@ -155,7 +155,7 @@ export default {
         };
         messageText = messageText.allReplace({'{{StorePhoneNumber}}': this.$store.getters.getAccountInfo.phone_number,
           '{{BusinessName}}':this.$store.state.settingsVars.bussiness_name,'{{CheckOutTotal}}':'CheckOutTotal',
-          '{{CheckOutLink}}':'CheckOutLink','{{write STOP to unsubscribe}}':'STOP to unsubscribe'})
+          '{{CheckOutLink}}':'CheckOutLink','{{write STOP to unsubscribe}}':'write STOP to unsubscribe'})
         return messageText;
       } else if (this.$store.getters.getActiveTab == "abndndcrt2") {
         return this.$store.getters.getCarts2.intro_message;
