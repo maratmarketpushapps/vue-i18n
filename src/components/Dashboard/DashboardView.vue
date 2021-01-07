@@ -3,7 +3,7 @@
     <v-row style="height:50%; width:100%; margin-bottom:1%">
       <v-col cols="6">
         <v-card height="100%" width="100%" tile class="font_dims px-4">
-          <v-row style="height:15%; width:100%" align="center">
+          <v-row style="height:10%; width:100%" align="center">
             <v-col cols="6">
               <v-row justify="start" align="center" class="ml-5 mt-2">
                 <h3>{{ $t("dashboard.card1.header") }}</h3>
@@ -21,7 +21,7 @@
               </v-row>
             </v-col>
           </v-row>
-          <v-row style="height:25%; width:100%">
+          <v-row style="height:20%; width:100%">
             <v-col cols="auto">
               <v-row justify="start" align="end" class="ml-5 mt-2">
                 <span class="msgCount">
@@ -33,18 +33,18 @@
               </v-row>
             </v-col>
           </v-row>
-          <v-row style="height:20%; width:100%">
+          <v-row style="height:15%; width:100%">
             <v-col cols="12">
               <v-row style="width:100%" class="ml-5 mt-0 pr-0">
                 <v-col cols="6">
                   <v-row style="width:100%">
-                    <span>{{ $t("dashboard.card1.recov1Msg") }}</span>
+                    <span>{{ $t("dashboard.card1.smsRecov1Msg") }}</span>
                   </v-row>
                 </v-col>
                 <v-col cols="6">
                   <v-row style="width:100%" justify="end">
                     <span style="color:#5686F6; font-weight:900">{{
-                      dashVars.campaigns.recovery_messages_nr1_sent
+                      dashVars.campaigns.sms_recovery_messages_nr1_sent
                     }}</span>
                   </v-row>
                 </v-col>
@@ -57,7 +57,7 @@
               >
                 <v-progress-linear
                   color="#5686F6"
-                  :value="recovMsg1Percent"
+                  :value="smsRecovMsg1Percent"
                   height="5px"
                   background-color="#E6E7E8"
                   style="width:100%"
@@ -66,18 +66,18 @@
               </v-row>
             </v-col>
           </v-row>
-          <v-row style="height:20%; width:100%">
+          <v-row style="height:15%; width:100%">
             <v-col cols="12">
               <v-row style="width:100%" class="ml-5 mt-0 pr-0">
                 <v-col cols="6">
                   <v-row style="width:100%">
-                    <span> {{ $t("dashboard.card1.recov2Msg") }}</span>
+                    <span> {{ $t("dashboard.card1.smsRecov2Msg") }}</span>
                   </v-row>
                 </v-col>
                 <v-col cols="6">
                   <v-row style="width:100%" justify="end">
                     <span style="color:#5686F6; font-weight:900">{{
-                      dashVars.campaigns.recovery_messages_nr2_sent
+                      dashVars.campaigns.sms_recovery_messages_nr2_sent
                     }}</span>
                   </v-row>
                 </v-col>
@@ -90,7 +90,73 @@
               >
                 <v-progress-linear
                   color="#5686F6"
-                  :value="recovMsg2Percent"
+                  :value="smsRecovMsg2Percent"
+                  height="5px"
+                  background-color="#E6E7E8"
+                  style="width:100%"
+                >
+                </v-progress-linear>
+              </v-row>
+            </v-col>
+          </v-row>
+          <v-row style="height:15%; width:100%">
+            <v-col cols="12">
+              <v-row style="width:100%" class="ml-5 mt-0 pr-0">
+                <v-col cols="6">
+                  <v-row style="width:100%">
+                    <span>{{ $t("dashboard.card1.fbRecov1Msg") }}</span>
+                  </v-row>
+                </v-col>
+                <v-col cols="6">
+                  <v-row style="width:100%" justify="end">
+                    <span style="color:#5686F6; font-weight:900">{{
+                      dashVars.campaigns.fb_recovery_messages_nr1_sent
+                    }}</span>
+                  </v-row>
+                </v-col>
+              </v-row>
+              <v-row
+                justify="start"
+                align="center"
+                class="ml-5 mt-0 pr-6"
+                style="width:100%"
+              >
+                <v-progress-linear
+                  color="#5686F6"
+                  :value="fbRecovMsg1Percent"
+                  height="5px"
+                  background-color="#E6E7E8"
+                  style="width:100%"
+                >
+                </v-progress-linear>
+              </v-row>
+            </v-col>
+          </v-row>
+          <v-row style="height:15%; width:100%">
+            <v-col cols="12">
+              <v-row style="width:100%" class="ml-5 mt-0 pr-0">
+                <v-col cols="6">
+                  <v-row style="width:100%">
+                    <span> {{ $t("dashboard.card1.fbRecov2Msg") }}</span>
+                  </v-row>
+                </v-col>
+                <v-col cols="6">
+                  <v-row style="width:100%" justify="end">
+                    <span style="color:#5686F6; font-weight:900">{{
+                      dashVars.campaigns.fb_recovery_messages_nr2_sent
+                    }}</span>
+                  </v-row>
+                </v-col>
+              </v-row>
+              <v-row
+                justify="start"
+                align="center"
+                class="ml-5 mt-0 pr-6"
+                style="width:100%"
+              >
+                <v-progress-linear
+                  color="#5686F6"
+                  :value="fbRecovMsg2Percent"
                   height="5px"
                   background-color="#E6E7E8"
                   style="width:100%"
@@ -337,7 +403,40 @@
               <v-row style="width:100%" class="ml-5 mt-0 pr-0">
                 <v-col cols="6">
                   <v-row style="width:100%">
-                    <span>{{ $t("dashboard.card4.subLabel") }}</span>
+                    <span>{{ $t("dashboard.card4.smsLabel") }}</span>
+                  </v-row>
+                </v-col>
+                <v-col cols="6">
+                  <v-row style="width:100%" justify="end">
+                    <span style="color:#F5A623; font-weight:900">{{
+                      dashVars.cart_recovery.sms_subscribers
+                    }}</span>
+                  </v-row>
+                </v-col>
+              </v-row>
+              <v-row
+                justify="start"
+                align="center"
+                class="ml-5 mt-0 pr-6"
+                style="width:100%"
+              >
+                <v-progress-linear
+                  color="#F5A623"
+                  :value="smsSubPcnt"
+                  height="5px"
+                  background-color="#E6E7E8"
+                  style="width:100%"
+                >
+                </v-progress-linear>
+              </v-row>
+            </v-col>
+          </v-row>
+          <v-row style="height:15%; width:100%">
+            <v-col cols="12">
+              <v-row style="width:100%" class="ml-5 mt-0 pr-0">
+                <v-col cols="6">
+                  <v-row style="width:100%">
+                    <span>{{ $t("dashboard.card4.fbLabel") }}</span>
                   </v-row>
                 </v-col>
                 <v-col cols="6">
@@ -414,9 +513,12 @@ export default {
   components: { TooltipIcon },
   data() {
     return {
-      recovMsg1Percent: 0,
-      recovMsg2Percent: 0,
+      fbRecovMsg1Percent: 0,
+      fbRecovMsg2Percent: 0,
+      smsRecovMsg1Percent: 0,
+      smsRecovMsg2Percent: 0,
       abndndCartPcnt: 0,
+      smsSubPcnt: 0,
       fbSubPcnt: 0,
       cartRecovPcnt: 0,
     };
@@ -433,23 +535,38 @@ export default {
                   endDate: this.endDate,
                 })
                 .then(() => {
-                  this.recovMsg1Percent =
-                    (this.$store.getters.getDash.campaigns
-                      .recovery_messages_nr1_sent *
+                  this.fbRecovMsg1Percent =
+                    (this.$store.getters.getDash.campaigns.fb_recovery_messages_nr1_sent *
                       100) /
                     this.$store.getters.getDash.campaigns.total_messages;
-                  this.recovMsg2Percent =
-                    (this.$store.getters.getDash.campaigns
-                      .recovery_messages_nr2_sent *
+
+                  this.fbRecovMsg2Percent =
+                    (this.$store.getters.getDash.campaigns.fb_recovery_messages_nr2_sent *
                       100) /
                     this.$store.getters.getDash.campaigns.total_messages;
+
+                  this.smsRecovMsg1Percent =
+                    (this.$store.getters.getDash.campaigns.sms_recovery_messages_nr1_sent *
+                      100) /
+                    this.$store.getters.getDash.campaigns.total_messages;
+
+                  this.smsRecovMsg2Percent =
+                    (this.$store.getters.getDash.campaigns.sms_recovery_messages_nr2_sent *
+                      100) /
+                    this.$store.getters.getDash.campaigns.total_messages;
+
                   this.abndndCartPcnt =
                     (this.$store.getters.getDash.cart_recovery.abandoned_carts *
                       100) /
                     this.$store.getters.getDash.cart_recovery.abandoned_carts;
+
+                  this.smsSubPcnt =
+                    (this.$store.getters.getDash.cart_recovery.sms_subscribers *
+                      100) /
+                    this.$store.getters.getDash.cart_recovery.abandoned_carts;
+
                   this.fbSubPcnt =
-                    (this.$store.getters.getDash.cart_recovery
-                      .facebook_subscribers *
+                    (this.$store.getters.getDash.cart_recovery.facebook_subscribers *
                       100) /
                     this.$store.getters.getDash.cart_recovery.abandoned_carts;
                   this.cartRecovPcnt =
@@ -467,25 +584,40 @@ export default {
               endDate: this.endDate,
             })
             .then(() => {
-              this.recovMsg1Percent =
-                (this.$store.getters.getDash.campaigns
-                  .recovery_messages_nr1_sent *
+              this.fbRecovMsg1Percent =
+                (this.$store.getters.getDash.campaigns.fb_recovery_messages_nr1_sent *
                   100) /
                 this.$store.getters.getDash.campaigns.total_messages;
-              this.recovMsg2Percent =
-                (this.$store.getters.getDash.campaigns
-                  .recovery_messages_nr2_sent *
+
+              this.fbRecovMsg2Percent =
+                (this.$store.getters.getDash.campaigns.fb_recovery_messages_nr2_sent *
                   100) /
                 this.$store.getters.getDash.campaigns.total_messages;
+
+              this.smsRecovMsg1Percent =
+                (this.$store.getters.getDash.campaigns.sms_recovery_messages_nr1_sent * 100) /
+                this.$store.getters.getDash.campaigns.total_messages;
+
+              this.smsRecovMsg2Percent =
+                (this.$store.getters.getDash.campaigns.sms_recovery_messages_nr2_sent * 100) /
+                this.$store.getters.getDash.campaigns.total_messages;
+
               this.abndndCartPcnt =
-                (this.$store.getters.getDash.cart_recovery.abandoned_carts *
-                  100) /
+                (this.$store.getters.getDash.cart_recovery.abandoned_carts * 100) /
                 this.$store.getters.getDash.cart_recovery.abandoned_carts;
+
+              this.smsSubPcnt =
+                (this.$store.getters.getDash.cart_recovery.sms_subscribers * 100) /
+                this.$store.getters.getDash.cart_recovery.abandoned_carts;
+
+
               this.fbSubPcnt =
                 (this.$store.getters.getDash.cart_recovery
                   .facebook_subscribers *
                   100) /
                 this.$store.getters.getDash.cart_recovery.abandoned_carts;
+
+
               this.cartRecovPcnt =
                 (this.$store.getters.getDash.cart_recovery.carts_recovered *
                   100) /

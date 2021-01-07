@@ -174,8 +174,10 @@ export default new Vuex.Store({
     dashVars: {
       campaigns: {
         total_messages: 0,
-        recovery_messages_nr1_sent: 0,
-        recovery_messages_nr2_sent: 0,
+        sms_recovery_messages_nr1_sent: 0,
+        sms_recovery_messages_nr2_sent: 0,
+        fb_recovery_messages_nr1_sent: 0,
+        fb_recovery_messages_nr2_sent: 0,
       },
       carts_recovered: {
         total_recovered: 0,
@@ -190,6 +192,7 @@ export default new Vuex.Store({
       cart_recovery: {
         total_recovered: 0,
         abandoned_carts: 0,
+        sms_subscribers: 0,
         facebook_subscribers: 0,
         carts_recovered: 0,
       },
@@ -770,10 +773,15 @@ export default new Vuex.Store({
 
     SET_DASH_VALS(state, obj) {
       state.dashVars.campaigns.total_messages = obj.campaigns.total_messages;
-      state.dashVars.campaigns.recovery_messages_nr1_sent =
+      state.dashVars.campaigns.fb_recovery_messages_nr1_sent =
         obj.campaigns.recovery_messages_nr1_sent;
-      state.dashVars.campaigns.recovery_messages_nr2_sent =
+      state.dashVars.campaigns.fb_recovery_messages_nr2_sent =
         obj.campaigns.recovery_messages_nr2_sent;
+
+      state.dashVars.campaigns.sms_recovery_messages_nr1_sent =
+        obj.campaigns.sms_recovery_messages_nr1_sent;
+      state.dashVars.campaigns.sms_recovery_messages_nr2_sent =
+        obj.campaigns.sms_recovery_messages_nr2_sent;
 
       state.dashVars.carts_recovered.total_recovered =
         obj.carts_recovered.total_recovered;
@@ -793,6 +801,8 @@ export default new Vuex.Store({
         obj.cart_recovery.total_recovered;
       state.dashVars.cart_recovery.abandoned_carts =
         obj.cart_recovery.abandoned_carts;
+        state.dashVars.cart_recovery.sms_subscribers =
+          obj.cart_recovery.sms_subscribers;
       state.dashVars.cart_recovery.facebook_subscribers =
         obj.cart_recovery.facebook_subscribers;
       state.dashVars.cart_recovery.carts_recovered =

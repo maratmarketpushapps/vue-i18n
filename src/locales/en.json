@@ -49,8 +49,10 @@
     "card1": {
       "header": "Campaigns",
       "totalMsg": "Total Messages Sent",
-      "recov1Msg": "Recovery Message #1 Sent",
-      "recov2Msg": "Recovery Message #2 Sent",
+      "smsRecov1Msg": "SMS Recovery Message #1 Sent",
+      "smsRecov2Msg": "SMS Recovery Message #2 Sent",
+      "fbRecov1Msg": "Facebook Recovery Message #1 Sent",
+      "fbRecov2Msg": "Facebook Recovery Message #2 Sent",
       "infoconMsg": "How many times each message type was sent within the selected time period."
     },
     "card2": {
@@ -71,7 +73,8 @@
       "totalMsg": "Carts Recovered",
       "recovLabel": "Recovered Carts",
       "abndndLabel": "Abandoned Carts",
-      "subLabel": "Facebook Subscribers"
+      "smsLabel": "SMS Subscribers",
+      "fbLabel": "Facebook Subscribers"
     }
   },
 
