@@ -207,6 +207,7 @@ export default {
       // console.log(response);
       this.$store.dispatch("getSettings").then(() => {
         this.$store.dispatch("getWidgets");
+        this.$store.dispatch("getStepsCompleted");
       });
     });
   },

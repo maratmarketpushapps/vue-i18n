@@ -197,6 +197,28 @@ export default new Vuex.Store({
         carts_recovered: 0,
       },
     },
+
+    // Steps completed vars.
+    setupCompletedVars: {
+      smsCartRecovery: false,
+      smsCartRecoverySteps: {
+          step1: false,
+          step2: false,
+          step3: false
+      },
+      fbCartRecovery: false,
+      fbCartRecoverySteps: {
+          step1: false,
+          step2: false,
+          step3: false
+      },
+      waCartRecovery: false,
+      waCartRecoverySteps: {
+          step1: false,
+          step2: false,
+          step3: false
+      }
+    }
   },
   getters: {
     checkClicked: (state) => (id) => {
@@ -304,6 +326,9 @@ export default new Vuex.Store({
 
     getDash: (state) => {
       return state.dashVars;
+    },
+    getStepsCompleted: (state) => {
+      return state.setupCompletedVars;
     },
     getSubs: (state) => {
       return state.subVars;
@@ -807,6 +832,13 @@ export default new Vuex.Store({
         obj.cart_recovery.facebook_subscribers;
       state.dashVars.cart_recovery.carts_recovered =
         obj.cart_recovery.carts_recovered;
+    },
+    SET_STEPS_COMPLETED_VALS(state, obj) {
+      console.log(obj);
+      /*
+      state.setupCompletedVars.smsCartRecovery =
+        obj.cart_recovery.carts_recovered;
+      */
     },
     SET_SUB_VALS(state, obj) {
       state.subVars.former_subscription_plan = obj.former_subscription_plan;
@@ -1387,6 +1419,30 @@ export default new Vuex.Store({
           .get(url, headers)
           .then((res) => {
             commit("SET_DASH_VALS", JSON.parse(JSON.stringify(res.data)));
+            resolve("success");
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    },
+
+    //Subscription API
+    getStepsCompleted({ commit }) {
+      return new Promise((resolve, reject) => {
+        let url = `${process.env.VUE_APP_API_URL_DEV}/getStepsCompleted`;
+        let headers = {
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
+        };
+
+        axios
+          .get(url, headers)
+          .then((res) => {
+            console.log(res.data);
+            commit("SET_STEPS_COMPLETED_VALS", JSON.parse(JSON.stringify(res.data)));
             resolve("success");
           })
           .catch((error) => {
