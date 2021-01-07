@@ -76,7 +76,8 @@
   },
 
   "campaigns": {
-    "header": "Campaign Messages",
+    "smsheader": "SMS Campaigns",
+    "header": "Facebook Campaigns",
     "msgCount": "Messages Sent",
     "modalText1": "This is the message that your customers will receive on Facebook.",
     "modalText2": "Please note that this interface is for showcasing purposes and it's not clickable.",
@@ -94,7 +95,7 @@
       "item3": "Order Shipped Message"
     },
     "carts1": {
-      "headerTxt": "Abandoned Cart Message #1",
+      "headerTxt": "Facebook Abandoned Cart Message #1",
       "selectLabel": "Send After",
       "sendAfter": "How much time should pass before sending this message.",
       "iconTxt": "Edit Message",

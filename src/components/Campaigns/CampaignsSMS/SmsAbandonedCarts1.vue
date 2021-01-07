@@ -267,154 +267,7 @@
         <v-row style="height:10vh; width:100%" class="pl-4 pr-3"> </v-row>
       </v-row>
     </v-expand-transition>
-    <v-overlay
-      :absolute="absolute"
-      :opacity="opacity"
-      :value="overlayOrdrAbndCrtQckRpl1"
-      :z-index="zIndex"
-    >
-      <v-card tile light height="40vh" width="30vw" class="pa-1">
-        <v-row style="height:10%; width:100%" justify="end" class="mr-4 mt-2">
-          <v-icon @click="canclOvrlyOrdrAbndCrt1()">
-            mdi-window-close
-          </v-icon>
-        </v-row>
-        <v-row style="height:20%; width:100%" justify="start" class="ml-5 mt-0">
-          <v-col>
-            <h3 style="color:#4E5D6B">
-              {{ $t("campaigns.qckRplyOvrly.header") }}
-            </h3>
-          </v-col>
-        </v-row>
-        <v-row style="height:20%; width:100%" class="ml-2">
-          <v-col>
-            <v-text-field
-              :label="$t('campaigns.ordrrcpt.qckRply')"
-              v-model="ordrAbndCrtQckRplEdit1"
-              @change="ordrAbndCrtQckRplEdit1Chng"
-              @input="ordrAbndCrtQckRplEdit1Chng"
-              dense
-              style="font-size:110%"
-              class="mt-2 pb-1 ml-3 mr-7"
-            >
-            </v-text-field>
-          </v-col>
-        </v-row>
-        <v-row style="height:20%; width:100%" class="ml-2">
-          <v-col>
-            <v-btn
-              tile
-              height="40px"
-              class="primary ml-3 mt-3"
-              width="30%"
-              :disabled="svBtnordrAbndCrtQckRplEdit1"
-              @click="svOrdrAbndCrtQckRplEdit1()"
-            >
-              {{ $t("settingsPage.accInfoCard.buttonText") }}
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-card>
-    </v-overlay>
 
-    <v-overlay
-      :absolute="absolute"
-      :opacity="opacity"
-      :value="overlayOrdrAbndCrtQckRpl2"
-      :z-index="zIndex"
-    >
-      <v-card tile light height="40vh" width="30vw" class="pa-1">
-        <v-row style="height:10%; width:100%" justify="end" class="mr-4 mt-2">
-          <v-icon @click="canclOvrlyOrdrAbndCrt2()">
-            mdi-window-close
-          </v-icon>
-        </v-row>
-        <v-row style="height:20%; width:100%" justify="start" class="ml-5 mt-0">
-          <v-col>
-            <h3 style="color:#4E5D6B">
-              {{ $t("campaigns.qckRplyOvrly.header") }}
-            </h3>
-          </v-col>
-        </v-row>
-        <v-row style="height:20%; width:100%" class="ml-2">
-          <v-col>
-            <v-text-field
-              :label="$t('campaigns.ordrrcpt.qckRply')"
-              v-model="ordrAbndCrtQckRplEdit2"
-              @change="ordrAbndCrtQckRplEdit2Chng"
-              @input="ordrAbndCrtQckRplEdit2Chng"
-              dense
-              style="font-size:110%"
-              class="mt-2 pb-1 ml-3 mr-7"
-            >
-            </v-text-field>
-          </v-col>
-        </v-row>
-        <v-row style="height:20%; width:100%" class="ml-2">
-          <v-col>
-            <v-btn
-              tile
-              height="40px"
-              class="primary ml-3 mt-3"
-              width="30%"
-              :disabled="svBtnordrAbndCrtQckRplEdit2"
-              @click="svOrdrAbndCrtQckRplEdit2()"
-            >
-              {{ $t("settingsPage.accInfoCard.buttonText") }}
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-card>
-    </v-overlay>
-    <v-overlay
-      :absolute="absolute"
-      :opacity="opacity"
-      :value="overlayOrdrAbndCrtQckRpl3"
-      :z-index="zIndex"
-    >
-      <v-card tile light height="40vh" width="30vw" class="pa-1">
-        <v-row style="height:10%; width:100%" justify="end" class="mr-4 mt-2">
-          <v-icon @click="canclOvrlyOrdrAbndCrt3()">
-            mdi-window-close
-          </v-icon>
-        </v-row>
-        <v-row style="height:20%; width:100%" justify="start" class="ml-5 mt-0">
-          <v-col>
-            <h3 style="color:#4E5D6B">
-              {{ $t("campaigns.qckRplyOvrly.header") }}
-            </h3>
-          </v-col>
-        </v-row>
-        <v-row style="height:20%; width:100%" class="ml-2">
-          <v-col>
-            <v-text-field
-              :label="$t('campaigns.ordrrcpt.qckRply')"
-              v-model="ordrAbndCrtQckRplEdit3"
-              @change="ordrAbndCrtQckRplEdit3Chng"
-              @input="ordrAbndCrtQckRplEdit3Chng"
-              dense
-              style="font-size:110%"
-              class="mt-2 pb-1 ml-3 mr-7"
-            >
-            </v-text-field>
-          </v-col>
-        </v-row>
-        <v-row style="height:20%; width:100%" class="ml-2">
-          <v-col>
-            <v-btn
-              tile
-              height="40px"
-              class="primary ml-3 mt-3"
-              width="30%"
-              :disabled="svBtnordrAbndCrtQckRplEdit3"
-              @click="svOrdrAbndCrtQckRplEdit3()"
-            >
-              {{ $t("settingsPage.accInfoCard.buttonText") }}
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-card>
-    </v-overlay>
   </v-card>
 </template>
 
@@ -482,7 +335,7 @@ export default {
   },
   computed: {
     getOrdrAbndCrtMsgCnt() {
-      return this.$store.getters.getMsgCounts.sent_count_abandoned_cart_1;
+      return this.$store.getters.getMsgSmsCount.sent_count_abandoned_cart_1;
     },
     cart1Edit() {
       return this.$store.getters.getActiveTab == "abndndcrt1" ||
@@ -537,7 +390,7 @@ export default {
     },
     saveOrdrAbndCrt() {
       if(this.ordrAbndCrtIntroMsg.includes('BusinessName') && this.ordrAbndCrtIntroMsg.includes('CheckOutLink')){
-        this.$store.dispatch("updIsLoading", true).then(() => {
+        this.$store.dispatch("smsupdIsLoading", true).then(() => {
           let obj = {
             active: this.ordrAbndCrtSwitchLive,
             intro_message: this.ordrAbndCrtIntroMsg,
@@ -550,12 +403,12 @@ export default {
             sent_after: Number(this.sent_after.split(" ")[0]),
           };
 
-          this.$store.dispatch("updOrdrAbndCrt", obj).then(() => {
+          this.$store.dispatch("smsUpdOrdrAbndCrt", obj).then(() => {
             // console.log(response);
             this.$store.dispatch("setMsg").then(() => {
               // console.log(resp);
               this.ordrAbndCrtBtnDisabled = true;
-              this.$store.dispatch("getMsg").then(() => {
+              this.$store.dispatch("smsgetMsg").then(() => {
                 // console.log(response);
                 this.$store.dispatch("updIsLoading", false);
               });
@@ -587,144 +440,14 @@ export default {
         quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
         sent_after: Number(this.sent_after.split(" ")[0]),
       };
-      this.$store.dispatch("updOrdrAbndCrt", obj).then(() => {
+      this.$store.dispatch("smsUpdOrdrAbndCrt", obj).then(() => {
         // console.log(response);
         this.ordrAbndCrtBtnDisabled = false;
       });
 
       // console.log("new active status" + this.ordrAbndCrtSwitchLive);
     },
-    ovrlyOrdrAbndCrt1() {
-      this.ordrAbndCrtQckRplEdit1 = this.ordrAbndCrtQckRpl1;
-      this.overlayOrdrAbndCrtQckRpl1 = true;
-      this.$store.dispatch("updQreplyEdit", true);
-    },
-    canclOvrlyOrdrAbndCrt1() {
-      this.overlayOrdrAbndCrtQckRpl1 = false;
-      this.ordrAbndCrtQckRplEdit1Btn = true;
-      this.$store.dispatch("updQreplyEdit", false);
-    },
-    ordrAbndCrtQckRplEdit1Chng() {
-      this.ordrAbndCrtQckRplEdit1Btn = false;
-    },
-    svOrdrAbndCrtQckRplEdit1() {
-      this.ordrAbndCrtQckRpl1 = this.ordrAbndCrtQckRplEdit1;
-      this.overlayOrdrAbndCrtQckRpl1 = false;
-      this.ordrAbndCrtQckRplEdit1Btn = true;
-      this.$store.dispatch("updQreplyEdit", false);
-    },
-    ovrlyOrdrAbndCrt2() {
-      this.ordrAbndCrtQckRplEdit2 = this.ordrAbndCrtQckRpl2;
-      this.overlayOrdrAbndCrtQckRpl2 = true;
-      this.$store.dispatch("updQreplyEdit", true);
-    },
-    canclOvrlyOrdrAbndCrt2() {
-      this.overlayOrdrAbndCrtQckRpl2 = false;
-      this.ordrAbndCrtQckRplEdit2Btn = true;
-      this.$store.dispatch("updQreplyEdit", false);
-    },
-    ordrAbndCrtQckRplEdit2Chng() {
-      this.ordrAbndCrtQckRplEdit2Btn = false;
-    },
-    svOrdrAbndCrtQckRplEdit2() {
-      this.ordrAbndCrtQckRpl2 = this.ordrAbndCrtQckRplEdit2;
-      this.overlayOrdrAbndCrtQckRpl2 = false;
-      this.ordrAbndCrtQckRplEdit2Btn = true;
-      this.$store.dispatch("updQreplyEdit", false);
-    },
 
-    ovrlyOrdrAbndCrt3() {
-      this.ordrAbndCrtQckRplEdit3 = this.ordrAbndCrtQckRpl3;
-      this.overlayOrdrAbndCrtQckRpl3 = true;
-      this.$store.dispatch("updQreplyEdit", true);
-    },
-    canclOvrlyOrdrAbndCrt3() {
-      this.overlayOrdrAbndCrtQckRpl3 = false;
-      this.ordrAbndCrtQckRplEdit3Btn = true;
-      this.$store.dispatch("updQreplyEdit", false);
-    },
-    ordrAbndCrtQckRplEdit3Chng() {
-      this.ordrAbndCrtQckRplEdit3Btn = false;
-    },
-    svOrdrAbndCrtQckRplEdit3() {
-      this.ordrAbndCrtQckRpl3 = this.ordrAbndCrtQckRplEdit3;
-      this.overlayOrdrAbndCrtQckRpl3 = false;
-      this.ordrAbndCrtQckRplEdit3Btn = true;
-      this.$store.dispatch("updQreplyEdit", false);
-    },
-  },
-  watch: {
-    ordrAbndCrtQckRpl1(newVal, oldVal) {
-      if (oldVal == "") {
-        this.ordrAbndCrtBtnDisabled = true;
-      } else if (oldVal != newVal) {
-        let obj = {
-          active: this.ordrAbndCrtSwitchLive,
-          intro_message: this.ordrAbndCrtIntroMsg,
-          title: this.ordrAbndCrtTitle,
-          subtitle: this.ordrAbndCrtSubTitle,
-          button_text: this.ordrAbndCrtBtnText,
-          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
-          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
-          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
-          sent_after: Number(this.sent_after.split(" ")[0]),
-        };
-
-        this.$store.dispatch("updOrdrAbndCrt", obj).then(() => {
-          // console.log(response);
-        });
-
-        this.ordrAbndCrtBtnDisabled = false;
-      }
-    },
-    ordrAbndCrtQckRpl2(newVal, oldVal) {
-      if (oldVal == "") {
-        this.ordrAbndCrtBtnDisabled = true;
-      } else if (oldVal != newVal) {
-        let obj = {
-          active: this.ordrAbndCrtSwitchLive,
-          intro_message: this.ordrAbndCrtIntroMsg,
-          title: this.ordrAbndCrtTitle,
-          subtitle: this.ordrAbndCrtSubTitle,
-          button_text: this.ordrAbndCrtBtnText,
-          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
-          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
-          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
-          sent_after: Number(this.sent_after.split(" ")[0]),
-        };
-
-        this.$store.dispatch("updOrdrAbndCrt", obj).then(() => {
-          // console.log(response);
-        });
-        this.ordrAbndCrtBtnDisabled = false;
-      }
-    },
-    ordrAbndCrtQckRpl3(newVal, oldVal) {
-      if (oldVal == "") {
-        this.ordrAbndCrtBtnDisabled = true;
-      } else if (oldVal != newVal) {
-        let obj = {
-          active: this.ordrAbndCrtSwitchLive,
-          intro_message: this.ordrAbndCrtIntroMsg,
-          title: this.ordrAbndCrtTitle,
-          subtitle: this.ordrAbndCrtSubTitle,
-          button_text: this.ordrAbndCrtBtnText,
-          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
-          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
-          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
-          sent_after: Number(this.sent_after.split(" ")[0]),
-        };
-
-        this.$store.dispatch("updOrdrAbndCrt", obj).then(() => {
-          // console.log(response);
-        });
-
-        this.ordrAbndCrtBtnDisabled = false;
-      }
-    },
-    // ordrAbndCrtSwitchLive() {
-    //   this.ordrAbndCrtBtnDisabled = false;
-    // },
   },
   created() {
     // console.log(this.$store.state.settingsVars.bussiness_name)
@@ -732,23 +455,22 @@ export default {
     this.phoneNumber = this.$store.getters.getAccountInfo.phone_number;
   },
   beforeCreate() {
-    this.$store.dispatch("updIsLoading", true).then(() => {
-      this.$store.dispatch("getMsg").then(() => {
-        // console.log(response);
-
-        this.sent_after = this.$store.getters.getCarts1.sent_after + " hour";
-        this.ordrAbndCrtSwitchLive = this.$store.getters.getCarts1.active;
-        this.ordrAbndCrtIntroMsg = this.$store.getters.getCarts1.intro_message;
-        this.ordrAbndCrtTitle = this.$store.getters.getCarts1.title;
-        this.ordrAbndCrtSubTitle = this.$store.getters.getCarts1.subtitle;
-        this.ordrAbndCrtBtnText = this.$store.getters.getCarts1.button_text;
-
-        // this.ordrAbndCrtQckRpl2 = this.$store.getters.getCarts1.quick_reply_more_questions_text;
-        this.ordrAbndCrtQckRpl3 = this.$store.getters.getCarts1.quick_reply_unsubscribe_text;
-        this.ordrAbndCrtBtnDisabled = true;
-        this.$store.dispatch("updIsLoading", false);
-      });
-    });
+    // this.$store.dispatch("updIsLoading", true).then(() => {
+    //   this.$store.dispatch("getMsg").then(() => {
+    //     // console.log(response);
+    //     this.sent_after = this.$store.state.msgVars.smsbandoned_cart_1.sent_after + " hour";
+    //     this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts1.active;
+    //     this.ordrAbndCrtIntroMsg = this.$store.getters.smsgetCarts1.intro_message;
+    //     this.ordrAbndCrtTitle = this.$store.getters.smsgetCarts1.title;
+    //     this.ordrAbndCrtSubTitle = this.$store.getters.smsgetCarts1.subtitle;
+    //     this.ordrAbndCrtBtnText = this.$store.getters.smsgetCarts1.button_text;
+    //
+    //     // this.ordrAbndCrtQckRpl2 = this.$store.getters.getCarts1.quick_reply_more_questions_text;
+    //     this.ordrAbndCrtQckRpl3 = this.$store.getters.SmsgetCarts1.quick_reply_unsubscribe_text;
+    //     this.ordrAbndCrtBtnDisabled = true;
+    //     this.$store.dispatch("updIsLoading", false);
+    //   });
+    // });
   },
 };
 </script>

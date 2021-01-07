@@ -41,7 +41,7 @@
             </v-switch>
 
         </v-col>
-      </v-row>8
+      </v-row>
 
       <v-row >
         <v-col cols="6 offset-1 py-0 px-0" class="py-0 align-end">
@@ -867,7 +867,6 @@ export default {
       this.discount_statement = this.$store.state.widgetVars.discount_statement,
       this.discount_code = this.$store.state.widgetVars.discount_code,
       this.apply_discount_instruction = this.$store.state.widgetVars.apply_discount_instruction,this.changesWidg()), 500)
-
   },
 
 };

@@ -106,6 +106,7 @@ export default new Vuex.Store({
     // Messages State
 
     msgVars: {
+      dfrf: "Frefe",
       activeTab: "abndndcrt1",
       cart1Active: true,
       qreplyEdit: false,
@@ -254,6 +255,7 @@ export default new Vuex.Store({
     getMsgCounts: (state) => {
       return state.msgVars.sent_count;
     },
+
     getActiveTab: (state) => {
       return state.msgVars.activeTab;
     },
@@ -311,7 +313,7 @@ export default new Vuex.Store({
     SET_WIDGETS_VAL(state, obj) {
       state.widgetVars.id = obj.id;
       state.widgetVars.enabled_widgets = obj.enabled_widgets;
-      state.widgetVars.discount_code = obj.discount_;
+      state.widgetVars.discount_code = obj.discount_code;
       state.widgetVars.discount_statement = obj.discount_statement
       state.widgetVars.subscribe_type = obj.subscribe_type
       state.widgetVars.instance_id = obj.instance_id;
@@ -775,10 +777,27 @@ export default new Vuex.Store({
         state.widgetVars.enabled_widgets.sms.enabled = formVidgData.coneData[1].connection
         state.widgetVars.enabled_widgets.sms.position= formVidgData.coneData[1].id
       }else {
-        state.widgetVars.enabled_widgets.facebook.enabled = formVidgData.coneData[1].connection
-        state.widgetVars.enabled_widgets.facebook.position= formVidgData.coneData[1].id
         state.widgetVars.enabled_widgets.sms.enabled = formVidgData.coneData[0].connection
         state.widgetVars.enabled_widgets.sms.position= formVidgData.coneData[0].id
+        state.widgetVars.enabled_widgets.facebook.enabled = formVidgData.coneData[1].connection
+        state.widgetVars.enabled_widgets.facebook.position= formVidgData.coneData[1].id
+        // state.widgetVars.enabled_widgets.reverse()
+
+        // state.widgetVars.enabled_widgets = function reverseObject(){
+        //   let object = this.state.widgetVars.enabled_widgets
+        //   var newObject = {};
+        //   var keys = [];
+        //   for (var key in object) {
+        //     keys.push(key);
+        //   }
+        //   for (var i = keys.length - 1; i >= 0; i--) {
+        //     var value = object[keys[i]];
+        //     newObject[keys[i]]= value;
+        //   }
+        //   return newObject;
+        // }
+
+        // console.log(state.widgetVars.enabled_widgets)
       }
 
       state.widgetVars.subscribe_type = formVidgData.subscribe_type

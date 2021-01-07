@@ -26,8 +26,8 @@
         >
           <v-row style="height:79%; width:100%">
             <v-col>
-              <span>{{ msgTxt }}</span></v-col
-            >
+              <span>{{ msgTxt }}</span>
+            </v-col>
           </v-row>
           <!-- <v-row
             style="height:23%; width:110%; background-color:#FFFFFF; border-radius: 0px 0px 15px 15px;border-color:black !important; border-width: 10px; "

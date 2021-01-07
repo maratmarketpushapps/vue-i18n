@@ -3,7 +3,7 @@
     <v-row class="pt-0 mt-0 pb-0 mb-0 row-style" align="center">
       <v-col cols="auto" class="pt-0">
         <h3 class="header_dims page_headers pr-0 mr-0 pt-0 mt-0">
-          {{ $t("campaigns.header") }}&nbsp;
+          {{ $t("campaigns.smsheader") }}&nbsp;
         </h3>
       </v-col>
       <v-col cols="1" class="pl-0 ml-0 pt-0"> </v-col>
