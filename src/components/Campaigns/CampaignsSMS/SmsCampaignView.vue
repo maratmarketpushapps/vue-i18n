@@ -136,7 +136,7 @@ export default {
   },
   methods: {
     toggleDialog() {
-      this.dialog = !this.dialog;
+      // this.dialog = !this.dialog;
     },
   },
   computed: {
