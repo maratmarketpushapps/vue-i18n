@@ -203,11 +203,10 @@
         </v-row>
         <v-row class="pl-4 pr-3 mb-0 ml-1" style="margin-top: 33px">
           <v-btn
-            class="ma-2"
+            class="ma-2 btnAbon"
             outlined
             color="indigo"
             @click="putOPtOut()"
-            style="color: #5686F6 !important;"
           >
             ADD OPT-OUT(recommended)
           </v-btn>
@@ -335,7 +334,7 @@ export default {
   },
   computed: {
     getOrdrAbndCrtMsgCnt() {
-      return this.$store.getters.getMsgSmsCount.sent_count_abandoned_cart_1;
+      return this.$store.getters.getMsgCountsSms.sms_sent_count_abandoned_cart_1;
     },
     cart1Edit() {
       return this.$store.getters.getActiveTab == "abndndcrt1" ||
@@ -390,16 +389,10 @@ export default {
     },
     saveOrdrAbndCrt() {
       if(this.ordrAbndCrtIntroMsg.includes('BusinessName') && this.ordrAbndCrtIntroMsg.includes('CheckOutLink')){
-        this.$store.dispatch("smsupdIsLoading", true).then(() => {
+        this.$store.dispatch("updIsLoading", true).then(() => {
           let obj = {
             active: this.ordrAbndCrtSwitchLive,
             intro_message: this.ordrAbndCrtIntroMsg,
-            title: this.ordrAbndCrtTitle,
-            subtitle: this.ordrAbndCrtSubTitle,
-            button_text: this.ordrAbndCrtBtnText,
-            quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
-            quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
-            quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
             sent_after: Number(this.sent_after.split(" ")[0]),
           };
 
@@ -408,7 +401,7 @@ export default {
             this.$store.dispatch("setMsg").then(() => {
               // console.log(resp);
               this.ordrAbndCrtBtnDisabled = true;
-              this.$store.dispatch("smsgetMsg").then(() => {
+              this.$store.dispatch("getMsg").then(() => {
                 // console.log(response);
                 this.$store.dispatch("updIsLoading", false);
               });
@@ -435,9 +428,6 @@ export default {
         title: this.ordrAbndCrtTitle,
         subtitle: this.ordrAbndCrtSubTitle,
         button_text: this.ordrAbndCrtBtnText,
-        quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
-        quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
-        quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
         sent_after: Number(this.sent_after.split(" ")[0]),
       };
       this.$store.dispatch("smsUpdOrdrAbndCrt", obj).then(() => {
@@ -447,7 +437,137 @@ export default {
 
       // console.log("new active status" + this.ordrAbndCrtSwitchLive);
     },
+    ovrlyOrdrAbndCrt1() {
+      this.ordrAbndCrtQckRplEdit1 = this.ordrAbndCrtQckRpl1;
+      this.overlayOrdrAbndCrtQckRpl1 = true;
+      this.$store.dispatch("updQreplyEdit", true);
+    },
+    canclOvrlyOrdrAbndCrt1() {
+      this.overlayOrdrAbndCrtQckRpl1 = false;
+      this.ordrAbndCrtQckRplEdit1Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
+    },
+    ordrAbndCrtQckRplEdit1Chng() {
+      this.ordrAbndCrtQckRplEdit1Btn = false;
+    },
+    svOrdrAbndCrtQckRplEdit1() {
+      this.ordrAbndCrtQckRpl1 = this.ordrAbndCrtQckRplEdit1;
+      this.overlayOrdrAbndCrtQckRpl1 = false;
+      this.ordrAbndCrtQckRplEdit1Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
+    },
+    ovrlyOrdrAbndCrt2() {
+      this.ordrAbndCrtQckRplEdit2 = this.ordrAbndCrtQckRpl2;
+      this.overlayOrdrAbndCrtQckRpl2 = true;
+      this.$store.dispatch("updQreplyEdit", true);
+    },
+    canclOvrlyOrdrAbndCrt2() {
+      this.overlayOrdrAbndCrtQckRpl2 = false;
+      this.ordrAbndCrtQckRplEdit2Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
+    },
+    ordrAbndCrtQckRplEdit2Chng() {
+      this.ordrAbndCrtQckRplEdit2Btn = false;
+    },
+    svOrdrAbndCrtQckRplEdit2() {
+      this.ordrAbndCrtQckRpl2 = this.ordrAbndCrtQckRplEdit2;
+      this.overlayOrdrAbndCrtQckRpl2 = false;
+      this.ordrAbndCrtQckRplEdit2Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
+    },
 
+    ovrlyOrdrAbndCrt3() {
+      this.ordrAbndCrtQckRplEdit3 = this.ordrAbndCrtQckRpl3;
+      this.overlayOrdrAbndCrtQckRpl3 = true;
+      this.$store.dispatch("updQreplyEdit", true);
+    },
+    canclOvrlyOrdrAbndCrt3() {
+      this.overlayOrdrAbndCrtQckRpl3 = false;
+      this.ordrAbndCrtQckRplEdit3Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
+    },
+    ordrAbndCrtQckRplEdit3Chng() {
+      this.ordrAbndCrtQckRplEdit3Btn = false;
+    },
+    svOrdrAbndCrtQckRplEdit3() {
+      this.ordrAbndCrtQckRpl3 = this.ordrAbndCrtQckRplEdit3;
+      this.overlayOrdrAbndCrtQckRpl3 = false;
+      this.ordrAbndCrtQckRplEdit3Btn = true;
+      this.$store.dispatch("updQreplyEdit", false);
+    },
+  },
+  watch: {
+    ordrAbndCrtQckRpl1(newVal, oldVal) {
+      if (oldVal == "") {
+        this.ordrAbndCrtBtnDisabled = true;
+      } else if (oldVal != newVal) {
+        let obj = {
+          active: this.ordrAbndCrtSwitchLive,
+          intro_message: this.ordrAbndCrtIntroMsg,
+          title: this.ordrAbndCrtTitle,
+          subtitle: this.ordrAbndCrtSubTitle,
+          button_text: this.ordrAbndCrtBtnText,
+          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
+          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
+          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
+          sent_after: Number(this.sent_after.split(" ")[0]),
+        };
+
+        this.$store.dispatch("updOrdrAbndCrt", obj).then(() => {
+          // console.log(response);
+        });
+
+        this.ordrAbndCrtBtnDisabled = false;
+      }
+    },
+    ordrAbndCrtQckRpl2(newVal, oldVal) {
+      if (oldVal == "") {
+        this.ordrAbndCrtBtnDisabled = true;
+      } else if (oldVal != newVal) {
+        let obj = {
+          active: this.ordrAbndCrtSwitchLive,
+          intro_message: this.ordrAbndCrtIntroMsg,
+          title: this.ordrAbndCrtTitle,
+          subtitle: this.ordrAbndCrtSubTitle,
+          button_text: this.ordrAbndCrtBtnText,
+          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
+          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
+          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
+          sent_after: Number(this.sent_after.split(" ")[0]),
+        };
+
+        this.$store.dispatch("updOrdrAbndCrt", obj).then(() => {
+          // console.log(response);
+        });
+        this.ordrAbndCrtBtnDisabled = false;
+      }
+    },
+    ordrAbndCrtQckRpl3(newVal, oldVal) {
+      if (oldVal == "") {
+        this.ordrAbndCrtBtnDisabled = true;
+      } else if (oldVal != newVal) {
+        let obj = {
+          active: this.ordrAbndCrtSwitchLive,
+          intro_message: this.ordrAbndCrtIntroMsg,
+          title: this.ordrAbndCrtTitle,
+          subtitle: this.ordrAbndCrtSubTitle,
+          button_text: this.ordrAbndCrtBtnText,
+          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
+          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
+          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
+          sent_after: Number(this.sent_after.split(" ")[0]),
+        };
+
+        this.$store.dispatch("updOrdrAbndCrt", obj).then(() => {
+          // console.log(response);
+        });
+
+        this.ordrAbndCrtBtnDisabled = false;
+      }
+    },
+    // ordrAbndCrtSwitchLive() {
+    //   this.ordrAbndCrtBtnDisabled = false;
+    // },
   },
   created() {
     // console.log(this.$store.state.settingsVars.bussiness_name)
@@ -455,22 +575,22 @@ export default {
     this.phoneNumber = this.$store.getters.getAccountInfo.phone_number;
   },
   beforeCreate() {
-    // this.$store.dispatch("updIsLoading", true).then(() => {
-    //   this.$store.dispatch("getMsg").then(() => {
-    //     // console.log(response);
-    //     this.sent_after = this.$store.state.msgVars.smsbandoned_cart_1.sent_after + " hour";
-    //     this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts1.active;
-    //     this.ordrAbndCrtIntroMsg = this.$store.getters.smsgetCarts1.intro_message;
-    //     this.ordrAbndCrtTitle = this.$store.getters.smsgetCarts1.title;
-    //     this.ordrAbndCrtSubTitle = this.$store.getters.smsgetCarts1.subtitle;
-    //     this.ordrAbndCrtBtnText = this.$store.getters.smsgetCarts1.button_text;
-    //
-    //     // this.ordrAbndCrtQckRpl2 = this.$store.getters.getCarts1.quick_reply_more_questions_text;
-    //     this.ordrAbndCrtQckRpl3 = this.$store.getters.SmsgetCarts1.quick_reply_unsubscribe_text;
-    //     this.ordrAbndCrtBtnDisabled = true;
-    //     this.$store.dispatch("updIsLoading", false);
-    //   });
-    // });
+    this.$store.dispatch("updIsLoading", true).then(() => {
+      this.$store.dispatch("getMsg").then(() => {
+        // console.log(response);
+        this.sent_after = this.$store.state.msgVars.sms_abandoned_cart_1.sent_after + " hour";
+        // this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts1.active;
+        this.ordrAbndCrtIntroMsg = this.$store.getters.smsgetCarts1.intro_message;
+        // this.ordrAbndCrtTitle = this.$store.getters.smsgetCarts1.title;
+        // this.ordrAbndCrtSubTitle = this.$store.getters.smsgetCarts1.subtitle;
+        // this.ordrAbndCrtBtnText = this.$store.getters.smsgetCarts1.button_text;
+
+        // this.ordrAbndCrtQckRpl2 = this.$store.getters.getCarts1.quick_reply_more_questions_text;
+        // this.ordrAbndCrtQckRpl3 = this.$store.getters.SmsgetCarts1.quick_reply_unsubscribe_text;
+        // this.ordrAbndCrtBtnDisabled = true;
+        this.$store.dispatch("updIsLoading", false);
+      });
+    });
   },
 };
 </script>
@@ -517,6 +637,17 @@ export default {
   line-height: 20px;
   color: black;
   font-size: 90%;
+}
+.btnAbon{
+  text-align: center;
+  font: normal normal 600 12px/29px Poppins;
+  letter-spacing: 0px;
+  color: #5686F6 !important;
+  opacity: 1;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 2px solid #5686F6;
+  border-radius: 2px;
+  opacity: 1;
 }
 
 @media (min-width: 1400px) {

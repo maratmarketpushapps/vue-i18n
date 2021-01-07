@@ -106,11 +106,20 @@ export default new Vuex.Store({
     // Messages State
 
     msgVars: {
-      dfrf: "Frefe",
       activeTab: "abndndcrt1",
       cart1Active: true,
       qreplyEdit: false,
       step2Com: true,
+      sms_abandoned_cart_1 :{
+       active:"",
+       intro_message:"",
+       sent_after:""
+      },
+      sms_abandoned_cart_2:{
+      active:"",
+      intro_message:"",
+      sent_after:""
+      },
       abandoned_cart_2: {
         button_text: "",
         quick_reply_thank_you_text: "",
@@ -138,6 +147,8 @@ export default new Vuex.Store({
         sent_count_order_receipt: 0,
         sent_count_abandoned_cart_1: 0,
         sent_count_order_shipped: 0,
+        sms_sent_count_abandoned_cart_1: 0,
+        sms_sent_count_abandoned_cart_2: 0,
       },
       order_shipped: {
         quick_reply_thank_you_text: "",
@@ -243,8 +254,14 @@ export default new Vuex.Store({
     getCarts1: (state) => {
       return state.msgVars.abandoned_cart_1;
     },
+    smsgetCarts1: (state) => {
+      return state.msgVars.sms_abandoned_cart_1;
+    },
     getCarts2: (state) => {
       return state.msgVars.abandoned_cart_2;
+    },
+    smsgetCarts2: (state) => {
+      return state.msgVars.sms_abandoned_cart_2;
     },
     getOrderReceipt: (state) => {
       return state.msgVars.order_receipt;
@@ -255,7 +272,9 @@ export default new Vuex.Store({
     getMsgCounts: (state) => {
       return state.msgVars.sent_count;
     },
-
+    getMsgCountsSms: (state) => {
+      return state.msgVars.sent_count;
+    },
     getActiveTab: (state) => {
       return state.msgVars.activeTab;
     },
@@ -588,6 +607,22 @@ export default new Vuex.Store({
 
     //Messages Commits
     SET_MSG_VALS(state, obj) {
+
+      state.msgVars.sms_abandoned_cart_1.active = obj.sms_abandoned_cart_1.active
+      state.msgVars.sms_abandoned_cart_1.intro_message = obj.sms_abandoned_cart_1.intro_message
+      state.msgVars.sms_abandoned_cart_1.sent_after = obj.sms_abandoned_cart_1.sent_after
+      state.msgVars.sent_count.sms_sent_count_abandoned_cart_1 = obj.sent_count.sms_sent_count_abandoned_cart_1
+
+      state.msgVars.sms_abandoned_cart_2.active = obj.sms_abandoned_cart_2.active
+      state.msgVars.sms_abandoned_cart_2.intro_message = obj.sms_abandoned_cart_2.intro_message
+      state.msgVars.sms_abandoned_cart_2.sent_after = obj.sms_abandoned_cart_2.sent_after
+      state.msgVars.sent_count.sms_sent_count_abandoned_cart_2 = obj.sent_count.sms_sent_count_abandoned_cart_2
+      // sms_abandoned_cart_1 :{
+      //   active:"",
+      //     intro_message:"",
+      //     sent_after:""
+      // },
+
       state.msgVars.abandoned_cart_1.button_text =
         obj.abandoned_cart_1.button_text;
       state.msgVars.abandoned_cart_1.quick_reply_thank_you_text =
@@ -696,6 +731,11 @@ export default new Vuex.Store({
       state.msgVars.abandoned_cart_1.subtitle = obj.subtitle;
       state.msgVars.abandoned_cart_1.quick_reply_more_questions_text =
         obj.quick_reply_more_questions_text;
+    },
+    smsSET_ORDR_ABANDONED_CART(state, obj) {
+      state.msgVars.sms_abandoned_cart_1.intro_message = obj.intro_message
+      state.msgVars.sms_abandoned_cart_1.active = obj.active
+      state.msgVars.sms_abandoned_cart_1.sent_after = obj.sent_after
     },
     SET_ORDR_ABANDONED_CART2(state, obj) {
       state.msgVars.abandoned_cart_2.sent_after = obj.sent_after;
@@ -1212,6 +1252,27 @@ export default new Vuex.Store({
           });
       });
     },
+    smsgetMsg({ commit }) {
+      return new Promise((resolve, reject) => {
+        let url = `${process.env.VUE_APP_API_URL_DEV}/messages`;
+        let headers = {
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
+        };
+        // console.log("Messages called");
+        axios
+          .get(url, headers)
+          .then((res) => {
+            commit("smsSET_MSG_VALS", JSON.parse(JSON.stringify(res.data)));
+            resolve("success");
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    },
     setMsg() {
       return new Promise((resolve, reject) => {
         let url = `${process.env.VUE_APP_API_URL_DEV}/messages`;
@@ -1246,6 +1307,13 @@ export default new Vuex.Store({
       return new Promise((resolve) => {
         // console.log("CampaignRequest::" + JSON.stringify(obj));
         commit("SET_ORDR_SHIPPED", obj);
+        resolve("success");
+      });
+    },
+    smsUpdOrdrAbndCrt({ commit }, obj) {
+      return new Promise((resolve) => {
+        // console.log("updateCart :: " + JSON.stringify(obj));
+        commit("smsSET_ORDR_ABANDONED_CART", obj);
         resolve("success");
       });
     },
