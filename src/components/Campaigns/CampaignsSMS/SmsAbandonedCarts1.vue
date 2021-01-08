@@ -33,7 +33,7 @@
           <v-btn
             tile
             height="35px"
-            class="primary font_dims"
+            class="primary font_dims pad_resp"
             width="70%"
             :disabled="svBtnDsbldOrdrAbndCrt"
             style="font-size:100%; text-transform:none;"
@@ -42,7 +42,7 @@
           >
             {{ $t("widgets.svBtn") }}
           </v-btn>
-          <v-btn icon v-if="!cart1Edit" @click="editCart1" class="mr-4">
+          <v-btn icon v-if="!cart1Edit" @click="editCart1" class="mr-4 ">
             <iconEdit  />
           </v-btn>
         </v-row>
@@ -606,6 +606,10 @@ export default {
 @media (max-width: 1349px) {
   .btnsps{
     margin-top: 10px !important;
+  }
+  .pad_resp{
+    padding-right:50px !important;
+    padding-left: 50px  !important;
   }
 }
 @media (min-width: 1400px) {
