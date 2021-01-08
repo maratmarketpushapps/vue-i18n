@@ -1,55 +1,42 @@
 <template>
-  <v-card
-    style="border-radius: 15px 15px 15px 15px; height:auto;"
-    class="cv_font_dims"
-  >
-<!--    <v-row style=" user-select: none;" @click="toggleDialog()">-->
-<!--      <v-col>-->
-<!--&lt;!&ndash;        <v-img :src="headerImg"></v-img>&ndash;&gt;-->
-<!--      </v-col>-->
-<!--    </v-row>-->
-    <v-col cols="12" class="px-0 mx-0 mb-4">
+  <v-col cols="12" class="my-0 py-0 ">
 
-    </v-col>
-    <v-col cols="12 mb-0 pb-0 mt-12 pt-12" class="d-flex justify-center">Thursday 20:13</v-col>
-    <v-row
-      class=""
-      @click="toggleDialog()"
+    <v-card
+      class="cv_font_dims br_rad"
     >
-<!--      <v-col cols="2">-->
-<!--        <v-container-->
-<!--          style="border-radius: 100px 100px 100px 100px; background-color:#4E5D6B; height:6.75vh;width: 6.75vh; transform:scale(1.1) "-->
-<!--        >-->
-<!--          <v-img :src="logoImg"></v-img>-->
-<!--        </v-container>-->
-<!--      </v-col>-->
-      <v-col cols="12" class="mx-8">
-        <v-container
-          fluid
-          style="background-color:#F0F1F2;height:auto;border-radius: 15px 15px 15px 15px; "
-        >
+      <v-row class="px-0 mx-0 py-0 my-0 ">
+        <v-img src="@/assets/img/Campaigns/image-header-phone.png"></v-img>
+      </v-row>
 
-          <v-row style="height:79%; width:100%">
-            <v-col>
-              <span>{{ msgTxt }}</span>
-            </v-col>
-          </v-row>
-          <!-- <v-row
-            style="height:23%; width:110%; background-color:#FFFFFF; border-radius: 0px 0px 15px 15px;border-color:black !important; border-width: 10px; "
-          >
-            BTTN
-          </v-row> -->
+      <v-col cols="12" class="px-0 mx-0 mb-1">
 
-
-
-        </v-container>
       </v-col>
-    </v-row>
-    <v-row class="px-0 mx-0 py-0 my-0">
-      <v-img src="@/assets/img/Campaigns/input-image.png"></v-img>
-    </v-row>
+      <v-col cols="12 mb-0 pb-0 mt-10 pt-12" class="d-flex justify-center">Thursday 20:13</v-col>
+      <v-row
+        class=""
+        @click="toggleDialog()"
+      >
+        <v-col cols="10" class="mx-8">
+          <v-container
+            fluid
+            style="background-color:#F0F1F2;height:auto;border-radius: 15px 15px 15px 15px; "
+          >
 
-  </v-card>
+            <v-row style="height:79%; width:100%">
+              <v-col>
+                <span>{{ msgTxt }}</span>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-col>
+      </v-row>
+      <v-row class="px-0 mx-0 py-0 my-0 bg_trans" >
+        <v-img src="@/assets/img/Campaigns/input-image.png" ></v-img>
+      </v-row>
+
+    </v-card>
+  </v-col>
+
 </template>
 
 <script>
@@ -71,6 +58,7 @@ export default {
       // this.dialog = !this.dialog;
     },
   },
+
   computed: {
     dialogShow() {
       return this.dialog && !this.$store.getters.getQreplyEdit;
@@ -90,7 +78,18 @@ export default {
           '{{CheckOutLink}}':'CheckOutLink','{{write STOP to unsubscribe}}':'write STOP to unsubscribe'})
         return messageText;
       } else if (this.$store.getters.getActiveTab == "abndndcrt2") {
-        return this.$store.getters.getCarts2.intro_message;
+        let messageText = this.$store.getters.smsgetCarts2.intro_message
+        String.prototype.allReplace = function(obj) {
+          var retStr = this;
+          for (var x in obj) {
+            retStr = retStr.replace(new RegExp(x, 'g'), obj[x]);
+          }
+          return retStr;
+        };
+        messageText = messageText.allReplace({'{{StorePhoneNumber}}': this.$store.getters.getAccountInfo.phone_number,
+          '{{BusinessName}}':this.$store.state.settingsVars.bussiness_name,'{{CheckOutTotal}}':'CheckOutTotal',
+          '{{CheckOutLink}}':'CheckOutLink','{{write STOP to unsubscribe}}':'write STOP to unsubscribe'})
+        return messageText;
       } else if (this.$store.getters.getActiveTab == "ordrrcpt") {
         return this.$store.getters.getOrderReceipt.intro_message;
       } else {
@@ -151,6 +150,16 @@ export default {
 .cv_font_dims {
   font-size: 72% !important;
   overflow: hidden;
+}
+.bg_trans{
+  background-color: rgb(230 231 232) !important;
+}
+.br_rad{
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
+  border-bottom-left-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+
 }
 @media (min-width: 1500px) {
   .cv_font_dims {

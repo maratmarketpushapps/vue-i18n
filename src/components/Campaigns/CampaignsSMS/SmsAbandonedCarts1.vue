@@ -4,11 +4,16 @@
       <v-col cols="4">
         <v-row
           class="pl-6"
-          style="height: 100%; width:100%"
+          style="height: 50%; width:100%"
           align="center"
           justify="start"
         >
           <h3>{{ $t("campaigns.smscarts1.headerTxt") }}</h3>
+        </v-row>
+        <v-row style="height: 40%; width: 100%" justify="start" align="end" class="pl-6 mt-2">
+          <span>
+            {{ $t("campaigns.sentAfther")}} {{sent_after}} {{ $t("campaigns.ago")}}
+          </span>
         </v-row>
       </v-col>
       <v-col cols="3">
@@ -17,14 +22,14 @@
             {{ getOrdrAbndCrtMsgCnt }}
           </span>
         </v-row>
-        <v-row style="height: 40%; width: 100%" justify="center" align="end">
+        <v-row style="height: 40%; width: 100%" justify="center" align="end"  class="mt-2">
           <span>
             {{ $t("campaigns.msgCount") }}
           </span>
         </v-row>
       </v-col>
       <v-col cols="3">
-        <v-row style="width: 100%" justify="end" align="center">
+        <v-row style="width: 100%" justify="end" align="center" >
           <v-btn
             tile
             height="35px"
@@ -38,10 +43,10 @@
             {{ $t("widgets.svBtn") }}
           </v-btn>
           <v-btn icon v-if="!cart1Edit" @click="editCart1" class="mr-4">
-            <iconEdit />
+            <iconEdit  />
           </v-btn>
         </v-row>
-        <v-row justify="end" style="width: 100%">
+        <v-row justify="end" style="width: 100%" >
           <span
             v-if="!cart1Edit"
             @click="editCart1"
@@ -101,7 +106,7 @@
           <v-col class=" py-0 my-0 px-0">
             <v-row style=" width:100%" align="center" class="py-0 my-0">
               <v-col cols="3" class="pl-0 ml-3  py-0 my-0">
-                <span class="mt-1 pb-1  mr-0 qckRpl">
+                <span class="mt-1 pb-1  mr-0 qckRpl av_short_code">
                   {{ $t("campaigns.smsordrrcpt.svashortcod") }}
                 </span>
               </v-col>
@@ -120,20 +125,20 @@
             </v-row>
             <v-row class="mx-0 px-0  py-0 my-0">
               <v-btn
-                class="mr-3 qckRplBtn font_dims txt-up"
+                class="mr-3 qckRplBtn font_dims txt-up btn_sup btnsps"
                 color="#7DA2F7"
                 @click="putbussName()"
               >
                 BusinessName
               </v-btn>
-              <router-link  to="/settings">
+              <router-link  to="/settings" class="dbd btnsps">
                 <iconEdit
-                  class="mt-1 pt-0 mr-3 ml-0 px-0"
+                  class="mt-1 pt-0 mr-3 ml-0 px-0 "
                   to="/settings"
                 />
               </router-link>
               <v-btn
-                class="mr-3 qckRplBtn font_dims txt-up"
+                class="mr-3 qckRplBtn font_dims txt-up btnsps"
                 color="#7DA2F7"
                 @click="putCheckOutTotal"
               >
@@ -141,7 +146,7 @@
               </v-btn>
 
               <v-btn
-                class="mr-3 qckRplBtn font_dims txt-up"
+                class="mr-3 qckRplBtn font_dims txt-up btnsps"
                 color="#7DA2F7"
                 @click="putCheckOutLink"
               >
@@ -149,13 +154,13 @@
               </v-btn>
 
               <v-btn
-                class="mr-3 qckRplBtn font_dims txt-up"
+                class="mr-3 qckRplBtn font_dims txt-up btnsps"
                 color="#7DA2F7"
                 @click="putNumberPhone()"
               >
                 StorePhoneNumber
               </v-btn>
-              <router-link  to="/settings">
+              <router-link  to="/settings" class="dbd btnsps">
                   <iconEdit
                     class="mt-1 pt-0 mr-3 ml-0 px-0"
                   />
@@ -201,7 +206,7 @@
             </template>
           </v-textarea>
         </v-row>
-        <v-row class="pl-4 pr-3 mb-0 ml-1" style="margin-top: 33px">
+        <v-row class="pl-4 pr-3 mb-0 ml-1 mt-1" >
           <v-btn
             class="ma-2 btnAbon"
             outlined
@@ -263,7 +268,7 @@
 
 
 
-        <v-row style="height:10vh; width:100%" class="pl-4 pr-3"> </v-row>
+        <v-row style="height:19vh; width:100%" class="pl-4 pr-3"> </v-row>
       </v-row>
     </v-expand-transition>
 
@@ -496,79 +501,7 @@ export default {
       this.$store.dispatch("updQreplyEdit", false);
     },
   },
-  watch: {
-    ordrAbndCrtQckRpl1(newVal, oldVal) {
-      if (oldVal == "") {
-        this.ordrAbndCrtBtnDisabled = true;
-      } else if (oldVal != newVal) {
-        let obj = {
-          active: this.ordrAbndCrtSwitchLive,
-          intro_message: this.ordrAbndCrtIntroMsg,
-          title: this.ordrAbndCrtTitle,
-          subtitle: this.ordrAbndCrtSubTitle,
-          button_text: this.ordrAbndCrtBtnText,
-          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
-          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
-          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
-          sent_after: Number(this.sent_after.split(" ")[0]),
-        };
 
-        this.$store.dispatch("updOrdrAbndCrt", obj).then(() => {
-          // console.log(response);
-        });
-
-        this.ordrAbndCrtBtnDisabled = false;
-      }
-    },
-    ordrAbndCrtQckRpl2(newVal, oldVal) {
-      if (oldVal == "") {
-        this.ordrAbndCrtBtnDisabled = true;
-      } else if (oldVal != newVal) {
-        let obj = {
-          active: this.ordrAbndCrtSwitchLive,
-          intro_message: this.ordrAbndCrtIntroMsg,
-          title: this.ordrAbndCrtTitle,
-          subtitle: this.ordrAbndCrtSubTitle,
-          button_text: this.ordrAbndCrtBtnText,
-          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
-          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
-          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
-          sent_after: Number(this.sent_after.split(" ")[0]),
-        };
-
-        this.$store.dispatch("updOrdrAbndCrt", obj).then(() => {
-          // console.log(response);
-        });
-        this.ordrAbndCrtBtnDisabled = false;
-      }
-    },
-    ordrAbndCrtQckRpl3(newVal, oldVal) {
-      if (oldVal == "") {
-        this.ordrAbndCrtBtnDisabled = true;
-      } else if (oldVal != newVal) {
-        let obj = {
-          active: this.ordrAbndCrtSwitchLive,
-          intro_message: this.ordrAbndCrtIntroMsg,
-          title: this.ordrAbndCrtTitle,
-          subtitle: this.ordrAbndCrtSubTitle,
-          button_text: this.ordrAbndCrtBtnText,
-          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
-          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
-          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
-          sent_after: Number(this.sent_after.split(" ")[0]),
-        };
-
-        this.$store.dispatch("updOrdrAbndCrt", obj).then(() => {
-          // console.log(response);
-        });
-
-        this.ordrAbndCrtBtnDisabled = false;
-      }
-    },
-    // ordrAbndCrtSwitchLive() {
-    //   this.ordrAbndCrtBtnDisabled = false;
-    // },
-  },
   created() {
     // console.log(this.$store.state.settingsVars.bussiness_name)
     this.bussName = this.$store.state.settingsVars.bussiness_name;
@@ -650,6 +583,31 @@ export default {
   opacity: 1;
 }
 
+.av_short_code{
+  text-align: left;
+  font: normal normal normal 12px/19px Poppins;
+  letter-spacing: 0px;
+  color: #4E5D6B;
+  opacity: 1;
+}
+.btn_sup{
+  text-align: center;
+  font: normal normal 300 10px/16px Poppins !Important;
+  letter-spacing: 0px !Important;
+  color: #FFFFFF !Important;
+  opacity: 1;
+}
+/*.dbd svg path{*/
+/*  fill: black !important;*/
+/*}*/
+.dbd svg{
+  margin-top: 10px !important;
+}
+@media (max-width: 1349px) {
+  .btnsps{
+    margin-top: 10px !important;
+  }
+}
 @media (min-width: 1400px) {
   .refIcondim {
     transform: scale(1.2);

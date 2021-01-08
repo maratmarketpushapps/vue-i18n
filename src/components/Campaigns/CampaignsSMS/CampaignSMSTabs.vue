@@ -149,6 +149,12 @@ export default {
       this.menuActivator = true;
     },
   },
+  created() {
+    this.$store.dispatch("updActiveTab", "abndndcrt1").then(() => {
+      this.$store.dispatch("updCart1Active", true);
+      // console.log(response);
+    });
+  },
   computed: {
     // ...mapGetters(["getCreatedAt"]),
   },

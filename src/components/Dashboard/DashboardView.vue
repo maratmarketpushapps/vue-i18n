@@ -1,6 +1,6 @@
 <template>
   <v-container fluid style=" height:1000px" class="app_background">
-    <v-row style="height:50%; width:100%; margin-bottom:10px">
+    <v-row style="height:50%; width:100%; margin-bottom:10px" :class="$vuetify.breakpoint.sm || $vuetify.breakpoint.md ? 'mb-12' :''" >
       <v-col cols="6">
         <v-card height="100%" width="100%" tile class="font_dims px-4">
           <v-row style="height:10%; width:100%" align="center">
@@ -332,7 +332,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row style="height:50%; width:100%">
+    <v-row style="height:50%; width:100%" :class="$vuetify.breakpoint.md ? 'mt-6' :'respspace'">
       <v-col cols="12">
         <v-card height="100%" width="100%" tile class="font_dims px-4">
           <v-row style="height:15%; width:100%">
@@ -652,4 +652,10 @@ export default {
 .circularProgress {
   font-size: 200%;
 }
+@media only screen and (max-width: 924px) {
+  .respspace {
+    margin-top: 85px !important;
+  }
+}
+
 </style>
