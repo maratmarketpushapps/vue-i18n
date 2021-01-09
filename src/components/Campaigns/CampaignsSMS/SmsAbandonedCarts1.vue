@@ -389,11 +389,12 @@ export default {
       this.activeStateChng()
     },
     putOPtOut(){
-      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{write STOP to unsubscribe}}'
+      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ 'write STOP to unsubscribe'
       this.activeStateChng()
     },
     saveOrdrAbndCrt() {
-      if(this.ordrAbndCrtIntroMsg.includes('BusinessName') && this.ordrAbndCrtIntroMsg.includes('CheckOutLink')){
+      if(this.ordrAbndCrtIntroMsg.includes('{{BusinessName}}') && this.ordrAbndCrtIntroMsg.includes('{{StorePhoneNumber}}')
+        && this.ordrAbndCrtIntroMsg.includes('STOP')) {
         this.$store.dispatch("updIsLoading", true).then(() => {
           let obj = {
             active: this.ordrAbndCrtSwitchLive,
@@ -622,4 +623,3 @@ export default {
   }
 }
 </style>
-

@@ -74,8 +74,8 @@ export default {
           return retStr;
         };
         messageText = messageText.allReplace({'{{StorePhoneNumber}}': this.$store.getters.getAccountInfo.phone_number,
-          '{{BusinessName}}':this.$store.state.settingsVars.bussiness_name,'{{CheckOutTotal}}':'CheckOutTotal',
-          '{{CheckOutLink}}':'CheckOutLink','{{write STOP to unsubscribe}}':'write STOP to unsubscribe'})
+          '{{BusinessName}}':this.$store.state.settingsVars.bussiness_name,'{{CheckOutTotal}}':'{{CheckOutTotal}}',
+          '{{CheckOutLink}}':'{{CheckOutLink}}'})
         return messageText;
       } else if (this.$store.getters.getActiveTab == "abndndcrt2") {
         let messageText = this.$store.getters.smsgetCarts2.intro_message
@@ -87,8 +87,8 @@ export default {
           return retStr;
         };
         messageText = messageText.allReplace({'{{StorePhoneNumber}}': this.$store.getters.getAccountInfo.phone_number,
-          '{{BusinessName}}':this.$store.state.settingsVars.bussiness_name,'{{CheckOutTotal}}':'CheckOutTotal',
-          '{{CheckOutLink}}':'CheckOutLink','{{write STOP to unsubscribe}}':'write STOP to unsubscribe'})
+          '{{BusinessName}}':this.$store.state.settingsVars.bussiness_name,'{{CheckOutTotal}}':'{{CheckOutTotal}}',
+          '{{CheckOutLink}}':'{{CheckOutLink}}'})
         return messageText;
       } else if (this.$store.getters.getActiveTab == "ordrrcpt") {
         return this.$store.getters.getOrderReceipt.intro_message;
