@@ -2,23 +2,23 @@
   <v-app-bar
     elevation="4"
     flat
-    height="100vh"
+
     class="appbar_background  text--bottom"
     align-content="center"
     fixed
-    style="z-index:1.5"
+    style="z-index:1.5;height: 100%"
   >
     <v-row style="height:100% !important" class="pb-0 mb-0">
       <v-col cols="1"><v-spacer></v-spacer></v-col>
       <!-- Stepper component -->
-      <v-col cols="8" class="pb-0">
+      <v-col cols="8" class="pb-0" style="height: 50px !important;">
         <v-stepper class="stepper" :value="step" v-if="!allstepsComplete">
           <v-stepper-header class="stepperhead">
             <!-- Step 1 -->
             <v-stepper-step
               step="1"
               :complete="step1Complete"
-              class="step-item"
+              class="step-item pad_fix"
             >
               <router-link
                 to="/settings"
@@ -207,7 +207,7 @@ export default {
       // console.log(response);
       this.$store.dispatch("getSettings").then(() => {
         this.$store.dispatch("getWidgets");
-        this.$store.dispatch("getStepsCompleted");
+        // this.$store.dispatch("getStepsCompleted");
       });
     });
   },
@@ -251,6 +251,10 @@ a {
   position: relative;
 }
 
+.pad_fix{
+  padding: 0px 24px !important;
+}
+
 @media (min-width: 1400px) {
   .step-item-font {
     font-size: 90%;
@@ -262,5 +266,11 @@ a {
     font-size: 80% !important;
     position: relative;
   }
+}
+</style>
+
+<style lang="css" scoped>
+.v-stepper__step{
+  padding: 0px 24px !important;
 }
 </style>

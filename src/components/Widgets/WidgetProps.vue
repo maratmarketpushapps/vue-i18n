@@ -13,21 +13,21 @@
         </v-col>
         <v-col cols="3">
           <v-row
-              class="my-0 mr-2"
-              style="height:100%;width:100%"
-              justify="end"
-              align="center"
+            class="my-0 mr-2"
+            style="height:100%;width:100%"
+            justify="end"
+            align="center"
           >
             <!-- save button -->
             <v-btn
-                tile
-                height="50%"
-                :class="live ? 'mb-2 sv_changes wdgt_font_dims' : 'mb-2 wdgt_font_dims'"
-                width="70%"
-                :disabled="!live"
-                style="text-transform:none; font-size:70% !important"
-                @click="svChanges"
-                outlined
+              tile
+              height="50%"
+              :class="live ? 'mb-2 sv_changes wdgt_font_dims resp_sp' : 'mb-2 wdgt_font_dims resp_sp'"
+              width="70%"
+              :disabled="!live"
+              style="text-transform:none; font-size:70% !important"
+              @click="svChanges"
+              outlined
             >
               {{ $t("widgets.svBtn") }}
             </v-btn>
@@ -35,10 +35,10 @@
         </v-col>
         <v-col cols="1" class="">
 
-            <v-switch v-model="live" inset
-                      color="#006AFF"
-                      @change="wdgtLive()">
-            </v-switch>
+          <v-switch v-model="live" inset
+                    color="#006AFF"
+                    @change="wdgtLive()">
+          </v-switch>
 
         </v-col>
       </v-row>
@@ -48,13 +48,13 @@
           <h3 class="subs_title">{{ $t("widgets.subsType") }}</h3>
         </v-col>
         <v-col cols="5" class="justify-end row pr-6 py-0 mr-0">
-            <TooltipIcon
+          <TooltipIcon
             :posRight="true"
             :nudgeBottom="30"
             :nudgeLeft="5"
             :txt="$t('widgets.modalInfo')"
             class="infoicon_scale pt-0 mt-0"
-            />
+          />
         </v-col>
         <v-col cols="12 offset-1 py-0 px-0">
           <p class="subs_text">{{$t("widgets.discText")}}</p>
@@ -142,25 +142,25 @@
         </v-col>
       </v-row>
 
-<!--      <draggable v-model="coneData" class="row pl-4 pr-5 mb-6">-->
-        <v-col  v-for="(ite,ke) in coneData" :key="ke+'item.id'" cols="11 offset-1"
-           :class="notSel?'notSelSpc pl-0 mt-6 height_row':'pl-0 mt-0 height_row'" align-self="end">
-          <small :class="notSel?'notSelTxt mt-10':''" v-if="notSel">You need choose one</small>
-          <v-col cols="12" class="connection_row height_row row py-0 my-0 pl-2 pr-0" row
-                 :class="notSel?'notSel connection_row height_row row py-0 my-0 pl-2 pr-0':'connection_row height_row row py-0 my-0 pl-2 pr-0'">
-            <v-col cols="6" class="py-0 my-0 " >
-              <v-checkbox
-                v-model="ite.connection"
-                :label="ite.title"
-                class="mt-0 mb-0"
-              ></v-checkbox>
-            </v-col>
-            <v-col cols="1 offset-5" class="pb-0 pt-3" justify="end" >
-                <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px" @click="rev()"></v-img>
-            </v-col>
+      <!--      <draggable v-model="coneData" class="row pl-4 pr-5 mb-6">-->
+      <v-col  v-for="(ite,ke) in coneData" :key="ke+'item.id'" cols="11 offset-1"
+              :class="notSel?'notSelSpc pl-0 mt-6 height_row':'pl-0 mt-0 height_row'" align-self="end">
+        <small :class="notSel?'notSelTxt mt-10':''" v-if="notSel">You need choose one</small>
+        <v-col cols="12" class="connection_row height_row row py-0 my-0 pl-2 pr-0" row
+               :class="notSel?'notSel connection_row height_row row py-0 my-0 pl-2 pr-0':'connection_row height_row row py-0 my-0 pl-2 pr-0'">
+          <v-col cols="6" class="py-0 my-0 " >
+            <v-checkbox
+              v-model="ite.connection"
+              :label="ite.title"
+              class="mt-0 mb-0"
+            ></v-checkbox>
+          </v-col>
+          <v-col cols="1 offset-5" class="pb-0 pt-3" justify="end" >
+            <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px" @click="rev()"></v-img>
           </v-col>
         </v-col>
-<!--      </draggable>-->
+      </v-col>
+      <!--      </draggable>-->
 
     </v-container>
     <v-divider class="mt-4"></v-divider>
@@ -680,16 +680,41 @@ export default {
 
     },
     rev(){
+      if(this.coneData[0].id == 1 ){
+        this.coneData[0].id = 2
+        this.coneData[1].id = 1
+      }else {
+        this.coneData[0].id = 1
+        this.coneData[1].id = 2
+      }
       setTimeout(() => this.coneData.reverse(), 200);
+
+      // let a =
     },
     changesWidg(){
-      this.coneData[0].connection = this.statusWidgets.facebook.enabled
-      this.coneData[0].id = this.statusWidgets.facebook.position
-      this.coneData[1].connection = this.statusWidgets.sms.enabled
-      this.coneData[1].id = this.statusWidgets.sms.position
+      if(this.statusWidgets.facebook.position == 1){
+        this.coneData[0].connection = this.statusWidgets.facebook.enabled
+        this.coneData[0].id = this.statusWidgets.facebook.position
+        this.coneData[0].title = "facebook"
+        this.coneData[1].connection = this.statusWidgets.sms.enabled
+        this.coneData[1].id = this.statusWidgets.sms.position
+        this.coneData[1].title = "sms"
+      }else {
+        this.coneData[1].connection = this.statusWidgets.facebook.enabled
+        this.coneData[1].id = this.statusWidgets.facebook.position
+        this.coneData[1].title = "facebook"
+        this.coneData[0].connection = this.statusWidgets.sms.enabled
+        this.coneData[0].id = this.statusWidgets.sms.position
+        this.coneData[0].title = "sms"
+      }
+
+      // this.coneData[0].connection = this.statusWidgets.facebook.enabled
+      // this.coneData[0].id = this.statusWidgets.facebook.position
+      // this.coneData[1].connection = this.statusWidgets.sms.enabled
+      // this.coneData[1].id = this.statusWidgets.sms.position
       if(this.subType == "subscribe"){
-          this.discount_selected = true
-          this.def_selected = false
+        this.discount_selected = true
+        this.def_selected = false
       }else this.def_selected = true , this.discount_selected = false
     }
   },
@@ -867,6 +892,7 @@ export default {
       this.discount_statement = this.$store.state.widgetVars.discount_statement,
       this.discount_code = this.$store.state.widgetVars.discount_code,
       this.apply_discount_instruction = this.$store.state.widgetVars.apply_discount_instruction,this.changesWidg()), 500)
+
   },
 
 };
@@ -1018,6 +1044,7 @@ export default {
   bottom: 28px !important;
 }
 
+
 @media only screen and (max-width: 1399px) {
   .lbl-props {
     font-size: 100%;
@@ -1030,6 +1057,10 @@ export default {
   .label-scale {
     transform: scale(0.9);
     transform-origin: 0 0;
+  }
+  .resp_sp{
+    font-size: 60% !important;
+    width:100% !important; ;
   }
 }
 @media only screen and (max-width: 1230px) {

@@ -4,11 +4,16 @@
       <v-col cols="4">
         <v-row
           class="pl-6"
-          style="height: 100%; width:100%"
+          style="height: 50%; width:100%"
           align="center"
           justify="start"
         >
-          <h3>{{ $t("campaigns.carts2.headerTxt") }}</h3>
+          <h3>{{ $t("campaigns.smscarts2.headerTxt") }}</h3>
+        </v-row>
+        <v-row style="height: 40%; width: 100%" justify="start" align="end" class="pl-6 mt-2">
+          <span>
+            {{ $t("campaigns.sentAfther")}} {{sent_after}} {{ $t("campaigns.ago")}}
+          </span>
         </v-row>
       </v-col>
       <v-col cols="3">
@@ -17,14 +22,14 @@
             {{ getOrdrAbndCrtMsgCnt }}
           </span>
         </v-row>
-        <v-row style="height: 40%; width: 100%" justify="center" align="end">
+        <v-row style="height: 40%; width: 100%" justify="center" align="end"  class="mt-0">
           <span>
             {{ $t("campaigns.msgCount") }}
           </span>
         </v-row>
       </v-col>
       <v-col cols="3">
-        <v-row style="width: 100%" justify="end" align="center">
+        <v-row style="width: 100%" justify="end" align="center" >
           <v-btn
             tile
             height="35px"
@@ -38,15 +43,15 @@
             {{ $t("widgets.svBtn") }}
           </v-btn>
           <v-btn icon v-if="!cart1Edit" @click="editCart1" class="mr-4">
-            <iconEdit />
+            <iconEdit  />
           </v-btn>
         </v-row>
-        <v-row justify="end" style="width: 100%">
+        <v-row justify="end" style="width: 100%" >
           <span
             v-if="!cart1Edit"
             @click="editCart1"
             style="font-size:85%; cursor: pointer;"
-            >{{ $t("campaigns.carts2.iconTxt") }}</span
+          >{{ $t("campaigns.carts1.iconTxt") }}</span
           >
         </v-row>
       </v-col>
@@ -55,14 +60,13 @@
           <v-switch
             v-model="ordrAbndCrtSwitchLive"
             color="#006AFF"
-            :disabled="swtchDisabled"
             @change="activeStateChng()"
           >
           </v-switch>
         </v-row>
       </v-col>
     </v-row>
-    <v-divider style="width:100%" class="pa-0 ma-0"></v-divider>
+
     <v-expand-transition>
       <v-row
         style="height: auto; width: 100%"
@@ -70,11 +74,11 @@
         class="pl-6 pr-9 mt-9"
         align="start"
       >
-        <v-row style="height:15%; width:100%" class="ml-4 pl-3 pr-3 mb-4">
-          <v-col cols="3" class="pl-0 ml-0">
+        <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
+          <v-col cols="3" class="pl-0 ml-0  py-0 my-0">
             <v-select
-              :label="$t('campaigns.carts2.selectLabel')"
-              :items="timeListCart2"
+              :label="$t('campaigns.carts1.selectLabel')"
+              :items="timeList"
               @change="activeStateChng()"
               v-model="sent_after"
               dense
@@ -82,283 +86,130 @@
             >
             </v-select>
           </v-col>
-          <v-col>
-            <v-row class="mt-0">
+          <v-col class=" py-0 my-0">
+            <v-row class="mt-0  py-0 my-0">
               <TooltipIcon
                 :posRight="true"
                 :nudgeBottom="30"
                 :nudgeLeft="5"
-                :txt="$t('campaigns.carts2.sendAfter')"
+                :txt="$t('campaigns.carts1.sendAfter')"
                 class="infoicon_scale mt-0 pt-0"
                 style="top:30%; transform:scale(.85)"
               />
             </v-row>
           </v-col>
         </v-row>
-        <v-row style="height:15%; width:100%" class="mt-1 pl-4 pr-3 mb-0">
-          <v-text-field
-            :label="$t('campaigns.ordrrcpt.introMsg')"
+
+
+        <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
+          <v-col class=" py-0 my-0 px-0">
+            <v-row style=" width:100%" align="center" class="py-0 my-0">
+              <v-col cols="3" class="pl-0 ml-3  py-0 my-0">
+                <span class="mt-1 pb-1  mr-0 qckRpl av_short_code">
+                  {{ $t("campaigns.smsordrrcpt.svashortcod") }}
+                </span>
+              </v-col>
+              <v-col class=" py-0 my-0 ml-0">
+                <v-row class="mt-0  py-0 my-0">
+                  <TooltipIcon
+                    :posRight="true"
+                    :nudgeBottom="30"
+                    :nudgeLeft="5"
+                    :txt="$t('campaigns.infocons.msg5')"
+                    class="infoicon_scale mt-0 pt-0"
+                    style="top:30%; transform:scale(.85)"
+                  />
+                </v-row>
+              </v-col>
+            </v-row>
+            <v-row class="mx-0 px-0  py-0 my-0">
+              <v-btn
+                class="mr-3 qckRplBtn font_dims txt-up btn_sup btnsps"
+                color="#7DA2F7"
+                @click="putbussName()"
+              >
+                BusinessName
+              </v-btn>
+              <router-link  to="/settings" class="dbd btnsps">
+                <iconEdit
+                  class="mt-1 pt-0 mr-3 ml-0 px-0 "
+                  to="/settings"
+                />
+              </router-link>
+              <v-btn
+                class="mr-3 qckRplBtn font_dims txt-up btnsps"
+                color="#7DA2F7"
+                @click="putCheckOutTotal"
+              >
+                CheckOutTotal
+              </v-btn>
+
+              <v-btn
+                class="mr-3 qckRplBtn font_dims txt-up btnsps"
+                color="#7DA2F7"
+                @click="putCheckOutLink"
+              >
+                CheckOutLink
+              </v-btn>
+
+              <v-btn
+                class="mr-3 qckRplBtn font_dims txt-up btnsps"
+                color="#7DA2F7"
+                @click="putNumberPhone()"
+              >
+                StorePhoneNumber
+              </v-btn>
+              <router-link  to="/settings" class="dbd btnsps">
+                <iconEdit
+                  class="mt-1 pt-0 mr-3 ml-0 px-0"
+                />
+              </router-link>
+
+            </v-row>
+          </v-col>
+        </v-row>
+
+        <v-row class="pl-4 pr-3 mb-0" style="margin-top: 33px">
+          <span v-if="reqMandFields" style="color: red" class="ml-6">Mandatory fields to be present in the SMS Message </span>
+          <v-textarea
+            :label="$t('campaigns.smsordrrcpt.introMsg')"
             v-model="ordrAbndCrtIntroMsg"
             @change="activeStateChng()"
             @input="activeStateChng()"
             dense
             style="font-size:110%"
             class="mt-3 pb-0 ml-6 mr-9"
+            rows="3"
             hint="test"
             :persistent-hint="true"
           >
             <template slot="message"
-              ><span>
-                <span>{{ $t("campaigns.carts1.discountTxt1") }}</span>
-                <b>
-                  {{ $t("campaigns.carts1.discountTxt2") }}
-                </b>
-                <span>{{ $t("campaigns.carts1.discountTxt3") }}</span>
-              </span></template
             >
-          </v-text-field>
-        </v-row>
-        <v-row style="height:15%; width:100%" class="mt-2 pl-4 pr-3">
-          <!-- <v-text-field
-            :label="$t('campaigns.ordrrcpt.title')"
-            v-model="ordrAbndCrtTitle"
-            @change="activeStateChng()"
-            @input="activeStateChng()"
-            dense
-            style="font-size:110%"
-            class="mt-5 pb-1 ml-6 mr-9"
-          >
-          </v-text-field> -->
+              <span>
+                <span>{{ $t("campaigns.smscarts1.discountTxt1") }}</span>
+                <!--                <b>-->
+                <!--                  {{ $t("campaigns.carts1.discountTxt2") }}-->
+                <!--                </b>-->
 
-          <v-text-field
-            :label="$t('campaigns.ordrrcpt.btnTxt')"
-            v-model="ordrAbndCrtBtnText"
-            @change="activeStateChng()"
-            @input="activeStateChng()"
-            dense
-            style="font-size:110%"
-            class="mt-5 pb-1 ml-6 mr-9"
-          >
-          </v-text-field>
-        </v-row>
-        <!-- <v-row style="height:15%; width:100%" class="pl-4 pr-3">
-          <v-col cols="6">
-            <v-text-field
-              :label="$t('campaigns.ordrrcpt.subTitle')"
-              v-model="ordrAbndCrtSubTitle"
-              @change="activeStateChng()"
-              @input="activeStateChng()"
-              dense
-              style="font-size:110%"
-              class="mt-2 pb-1 ml-3 mr-3"
-            >
-            </v-text-field>
-          </v-col>
-          <v-col cols="6">
-            <v-text-field
-              :label="$t('campaigns.ordrrcpt.btnTxt')"
-              v-model="ordrAbndCrtBtnText"
-              @change="activeStateChng()"
-              @input="activeStateChng()"
-              dense
-              style="font-size:110%"
-              class="mt-2 pb-1 ml-3 mr-7"
-            >
-            </v-text-field>
-          </v-col>
-        </v-row> -->
-        <v-row style="height:15%; width:100%" class="pl-4 pr-3">
-          <v-col>
-            <v-row align="center">
-              <span class="mt-1 pb-1 ml-6 mr-0 qckRpl">
-                {{ $t("campaigns.ordrrcpt.avashortcod") }}
+                <!--                <span >{{ $t("campaigns.carts1.discountTxt3") }}</span>-->
               </span>
-              <TooltipIcon
-                :posRight="true"
-                :nudgeBottom="30"
-                :nudgeLeft="5"
-                :txt="$t('campaigns.infocons.msg5')"
-                class="infoicon_scale mt-0 pt-0"
-                style="top:30%; transform:scale(.85)"
-              />
-            </v-row>
-            <v-row class="ml-3 mt-4">
-              <v-btn
-                class="mr-3 qckRplBtn font_dims"
-                color="#7DA2F7"
-                @click="ovrlyOrdrAbndCrt1()"
-              >
-                {{ ordrAbndCrtQckRpl1 }}
-              </v-btn>
-              <v-btn
-                class="mr-3 qckRplBtn font_dims"
-                color="#7DA2F7"
-                @click="ovrlyOrdrAbndCrt2()"
-              >
-                {{ ordrAbndCrtQckRpl2 }}
-              </v-btn>
-              <v-btn
-                class="mr-3 qckRplBtn font_dims"
-                color="#7DA2F7"
-                @click="ovrlyOrdrAbndCrt3()"
-              >
-                {{ ordrAbndCrtQckRpl3 }}
-              </v-btn>
-            </v-row>
-          </v-col>
+            </template>
+          </v-textarea>
         </v-row>
-
-        <v-row style="height:10vh; width:100%" class="pl-4 pr-3"> </v-row>
+        <v-row class="pl-4 pr-3 mb-0 ml-1 mt-1" >
+          <v-btn
+            class="ma-2 btnAbon"
+            outlined
+            color="indigo"
+            @click="putOPtOut()"
+          >
+            ADD OPT-OUT(recommended)
+          </v-btn>
+        </v-row>
+        <v-row style="height:19vh; width:100%" class="pl-4 pr-3"> </v-row>
       </v-row>
     </v-expand-transition>
-    <v-overlay
-      :absolute="absolute"
-      :opacity="opacity"
-      :value="overlayOrdrAbndCrtQckRpl1"
-      :z-index="zIndex"
-    >
-      <v-card tile light height="40vh" width="30vw" class="pa-1">
-        <v-row style="height:10%; width:100%" justify="end" class="mr-4 mt-2">
-          <v-icon @click="canclOvrlyOrdrAbndCrt1()">
-            mdi-window-close
-          </v-icon>
-        </v-row>
-        <v-row style="height:20%; width:100%" justify="start" class="ml-5 mt-0">
-          <v-col>
-            <h3 style="color:#4E5D6B">
-              {{ $t("campaigns.qckRplyOvrly.header") }}
-            </h3>
-          </v-col>
-        </v-row>
-        <v-row style="height:20%; width:100%" class="ml-2">
-          <v-col>
-            <v-text-field
-              :label="$t('campaigns.ordrrcpt.qckRply')"
-              v-model="ordrAbndCrtQckRplEdit1"
-              @change="ordrAbndCrtQckRplEdit1Chng"
-              @input="ordrAbndCrtQckRplEdit1Chng"
-              dense
-              style="font-size:110%"
-              class="mt-2 pb-1 ml-3 mr-7"
-            >
-            </v-text-field>
-          </v-col>
-        </v-row>
-        <v-row style="height:20%; width:100%" class="ml-2">
-          <v-col>
-            <v-btn
-              tile
-              height="40px"
-              class="primary ml-3 mt-3"
-              width="30%"
-              :disabled="svBtnordrAbndCrtQckRplEdit1"
-              @click="svOrdrAbndCrtQckRplEdit1()"
-            >
-              {{ $t("settingsPage.accInfoCard.buttonText") }}
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-card>
-    </v-overlay>
 
-    <v-overlay
-      :absolute="absolute"
-      :opacity="opacity"
-      :value="overlayOrdrAbndCrtQckRpl2"
-      :z-index="zIndex"
-    >
-      <v-card tile light height="40vh" width="30vw" class="pa-1">
-        <v-row style="height:10%; width:100%" justify="end" class="mr-4 mt-2">
-          <v-icon @click="canclOvrlyOrdrAbndCrt2()">
-            mdi-window-close
-          </v-icon>
-        </v-row>
-        <v-row style="height:20%; width:100%" justify="start" class="ml-5 mt-0">
-          <v-col>
-            <h3 style="color:#4E5D6B">
-              {{ $t("campaigns.qckRplyOvrly.header") }}
-            </h3>
-          </v-col>
-        </v-row>
-        <v-row style="height:20%; width:100%" class="ml-2">
-          <v-col>
-            <v-text-field
-              :label="$t('campaigns.ordrrcpt.qckRply')"
-              v-model="ordrAbndCrtQckRplEdit2"
-              @change="ordrAbndCrtQckRplEdit2Chng"
-              @input="ordrAbndCrtQckRplEdit2Chng"
-              dense
-              style="font-size:110%"
-              class="mt-2 pb-1 ml-3 mr-7"
-            >
-            </v-text-field>
-          </v-col>
-        </v-row>
-        <v-row style="height:20%; width:100%" class="ml-2">
-          <v-col>
-            <v-btn
-              tile
-              height="40px"
-              class="primary ml-3 mt-3"
-              width="30%"
-              :disabled="svBtnordrAbndCrtQckRplEdit2"
-              @click="svOrdrAbndCrtQckRplEdit2()"
-            >
-              {{ $t("settingsPage.accInfoCard.buttonText") }}
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-card>
-    </v-overlay>
-    <v-overlay
-      :absolute="absolute"
-      :opacity="opacity"
-      :value="overlayOrdrAbndCrtQckRpl3"
-      :z-index="zIndex"
-    >
-      <v-card tile light height="40vh" width="30vw" class="pa-1">
-        <v-row style="height:10%; width:100%" justify="end" class="mr-4 mt-2">
-          <v-icon @click="canclOvrlyOrdrAbndCrt3()">
-            mdi-window-close
-          </v-icon>
-        </v-row>
-        <v-row style="height:20%; width:100%" justify="start" class="ml-5 mt-0">
-          <v-col>
-            <h3 style="color:#4E5D6B">
-              {{ $t("campaigns.qckRplyOvrly.header") }}
-            </h3>
-          </v-col>
-        </v-row>
-        <v-row style="height:20%; width:100%" class="ml-2">
-          <v-col>
-            <v-text-field
-              :label="$t('campaigns.ordrrcpt.qckRply')"
-              v-model="ordrAbndCrtQckRplEdit3"
-              @change="ordrAbndCrtQckRplEdit3Chng"
-              @input="ordrAbndCrtQckRplEdit3Chng"
-              dense
-              style="font-size:110%"
-              class="mt-2 pb-1 ml-3 mr-7"
-            >
-            </v-text-field>
-          </v-col>
-        </v-row>
-        <v-row style="height:20%; width:100%" class="ml-2">
-          <v-col>
-            <v-btn
-              tile
-              height="40px"
-              class="primary ml-3 mt-3"
-              width="30%"
-              :disabled="svBtnordrAbndCrtQckRplEdit3"
-              @click="svOrdrAbndCrtQckRplEdit3()"
-            >
-              {{ $t("settingsPage.accInfoCard.buttonText") }}
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-card>
-    </v-overlay>
   </v-card>
 </template>
 
@@ -371,6 +222,9 @@ export default {
   components: { TooltipIcon, iconEdit },
   data() {
     return {
+      reqMandFields:false,
+      phoneNumber:"",
+      bussName:"",
       ordrAbndCrtSwitchLive: false,
       ordrAbndCrtBtnDisabled: true,
       ordrAbndCrtIntroMsg: "",
@@ -419,15 +273,14 @@ export default {
         "23 hour",
         "24 hour",
       ],
-      sent_after_cart1: "",
     };
   },
   computed: {
     getOrdrAbndCrtMsgCnt() {
-      return this.$store.getters.getMsgCounts.sent_count_abandoned_cart_2;
+      return this.$store.getters.getMsgCountsSms.sms_sent_count_abandoned_cart_2;
     },
     cart1Edit() {
-      return this.$store.getters.getActiveTab == "abndndcrt2" ? true : false;
+      return this.$store.getters.smsgetCarts2.active == true ? true : false;
     },
     swtchDisabled() {
       return this.$store.getters.getActiveTab == "abndndcrt2" ? false : true;
@@ -453,62 +306,74 @@ export default {
     },
   },
   methods: {
+    putNumberPhone(){
+      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{StorePhoneNumber}}'
+      this.activeStateChng()
+    },
+    putbussName(){
+      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{BusinessName}}'
+      this.activeStateChng()
+    },
+    putCheckOutTotal(){
+      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{CheckOutTotal}}'
+      this.activeStateChng()
+    },
+    putCheckOutLink(){
+      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{CheckOutLink}}'
+      this.activeStateChng()
+    },
+    putOPtOut(){
+      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{write STOP to unsubscribe}}'
+      this.activeStateChng()
+    },
     saveOrdrAbndCrt() {
-      this.$store.dispatch("updIsLoading", true).then(() => {
-        let obj = {
-          active: this.ordrAbndCrtSwitchLive,
-          intro_message: this.ordrAbndCrtIntroMsg,
-          title: this.ordrAbndCrtTitle,
-          subtitle: this.ordrAbndCrtSubTitle,
-          button_text: this.ordrAbndCrtBtnText,
-          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
-          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
-          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
-          sent_after: Number(this.sent_after.split(" ")[0]),
-        };
-
-        this.$store.dispatch("updOrdrAbndCrt2", obj).then(() => {
-          // console.log(response);
-          this.$store.dispatch("setMsg").then(() => {
-            // console.log(resp);
-            this.ordrAbndCrtBtnDisabled = true;
-            this.$store.dispatch("getMsg").then(() => {
-              this.$store.dispatch("updIsLoading", false);
-              // console.log(response);
+      if(this.ordrAbndCrtIntroMsg.includes('BusinessName') && this.ordrAbndCrtIntroMsg.includes('CheckOutLink')){
+        this.$store.dispatch("updIsLoading", true).then(() => {
+          let obj = {
+            active: this.ordrAbndCrtSwitchLive,
+            intro_message: this.ordrAbndCrtIntroMsg,
+            sent_after: Number(this.sent_after.split(" ")[0]),
+          };
+          this.$store.dispatch("smssecondUpdOrdrAbndCrt", obj).then(() => {
+            // console.log(response);
+            this.$store.dispatch("setMsg").then(() => {
+              // console.log(resp);
+              this.ordrAbndCrtBtnDisabled = true;
+              this.$store.dispatch("smsgetMsg").then(() => {
+                // console.log(response);
+                this.$store.dispatch("updIsLoading", false);
+              });
             });
           });
         });
-      });
+      }else this.reqMandFields = true
     },
     editCart1() {
-      this.$store.dispatch("updActiveTab", "abndndcrt2").then(() => {
-        this.$store.dispatch("updCart1Active", false);
-        // console.log(response);
+      var boolval = null
+      this.getOrdrAbndCrtMsgCnt == '0' || this.getOrdrAbndCrtMsgCnt == false ? boolval = true : boolval = false
+      this.$store.commit("UPDATE_MSG_sms_cartTwo",boolval)
+      this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts2.active
+      this.$store.dispatch("setMsg").then(() => {
       });
     },
     saveCart1() {
       this.cart1Edit = false;
     },
     activeStateChng() {
+      this.reqMandFields = false
       // this.ordrAbndCrtSwitchLive = !this.ordrAbndCrtSwitchLive;
-
       let obj = {
         active: this.ordrAbndCrtSwitchLive,
         intro_message: this.ordrAbndCrtIntroMsg,
         title: this.ordrAbndCrtTitle,
         subtitle: this.ordrAbndCrtSubTitle,
         button_text: this.ordrAbndCrtBtnText,
-        quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
-        quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
-        quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
         sent_after: Number(this.sent_after.split(" ")[0]),
       };
-
-      this.$store.dispatch("updOrdrAbndCrt2", obj).then(() => {
+      this.$store.dispatch("smssecondUpdOrdrAbndCrt", obj).then(() => {
         // console.log(response);
+        this.ordrAbndCrtBtnDisabled = false;
       });
-
-      this.ordrAbndCrtBtnDisabled = false;
       // console.log("new active status" + this.ordrAbndCrtSwitchLive);
     },
     ovrlyOrdrAbndCrt1() {
@@ -570,100 +435,17 @@ export default {
       this.$store.dispatch("updQreplyEdit", false);
     },
   },
-  watch: {
-    ordrAbndCrtQckRpl1(newVal, oldVal) {
-      if (oldVal == "") {
-        this.ordrAbndCrtBtnDisabled = true;
-      } else if (oldVal != newVal) {
-        let obj = {
-          active: this.ordrAbndCrtSwitchLive,
-          intro_message: this.ordrAbndCrtIntroMsg,
-          title: this.ordrAbndCrtTitle,
-          subtitle: this.ordrAbndCrtSubTitle,
-          button_text: this.ordrAbndCrtBtnText,
-          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
-          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
-          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
-          sent_after: Number(this.sent_after.split(" ")[0]),
-        };
-
-        this.$store.dispatch("updOrdrAbndCrt2", obj).then(() => {
-          // console.log(response);
-        });
-        this.ordrAbndCrtBtnDisabled = false;
-      }
-    },
-    ordrAbndCrtQckRpl2(newVal, oldVal) {
-      if (oldVal == "") {
-        this.ordrAbndCrtBtnDisabled = true;
-      } else if (oldVal != newVal) {
-        let obj = {
-          active: this.ordrAbndCrtSwitchLive,
-          intro_message: this.ordrAbndCrtIntroMsg,
-          title: this.ordrAbndCrtTitle,
-          subtitle: this.ordrAbndCrtSubTitle,
-          button_text: this.ordrAbndCrtBtnText,
-          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
-          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
-          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
-          sent_after: Number(this.sent_after.split(" ")[0]),
-        };
-
-        this.$store.dispatch("updOrdrAbndCrt2", obj).then(() => {
-          // console.log(response);
-        });
-        this.ordrAbndCrtBtnDisabled = false;
-      }
-    },
-    ordrAbndCrtQckRpl3(newVal, oldVal) {
-      if (oldVal == "") {
-        this.ordrAbndCrtBtnDisabled = true;
-      } else if (oldVal != newVal) {
-        let obj = {
-          active: this.ordrAbndCrtSwitchLive,
-          intro_message: this.ordrAbndCrtIntroMsg,
-          title: this.ordrAbndCrtTitle,
-          subtitle: this.ordrAbndCrtSubTitle,
-          button_text: this.ordrAbndCrtBtnText,
-          quick_reply_thank_you_text: this.ordrAbndCrtQckRpl1,
-          quick_reply_more_questions_text: this.ordrAbndCrtQckRpl2,
-          quick_reply_unsubscribe_text: this.ordrAbndCrtQckRpl3,
-          sent_after: Number(this.sent_after.split(" ")[0]),
-        };
-
-        this.$store.dispatch("updOrdrAbndCrt2", obj).then(() => {
-          // console.log(response);
-        });
-        this.ordrAbndCrtBtnDisabled = false;
-      }
-    },
-    // ordrAbndCrtSwitchLive() {
-    //   this.ordrAbndCrtBtnDisabled = false;
-    // },
+  created() {
+    // console.log(this.$store.state.settingsVars.bussiness_name)
+    this.bussName = this.$store.state.settingsVars.bussiness_name;
+    this.phoneNumber = this.$store.getters.getAccountInfo.phone_number;
   },
-
   beforeCreate() {
     this.$store.dispatch("updIsLoading", true).then(() => {
       this.$store.dispatch("getMsg").then(() => {
-        // console.log(response);
-        // console.log(
-        //   "Carts 2 sent after :: " +
-        //     this.$store.getters.getCarts2.sent_after +
-        //     " hour"
-        // );
-
-        this.sent_after = this.$store.getters.getCarts2.sent_after + " hour";
-        this.ordrAbndCrtSwitchLive = this.$store.getters.getCarts2.active;
-        this.ordrAbndCrtIntroMsg = this.$store.getters.getCarts2.intro_message;
-        this.ordrAbndCrtTitle = this.$store.getters.getCarts2.title;
-        this.ordrAbndCrtSubTitle = this.$store.getters.getCarts2.subtitle;
-        this.ordrAbndCrtBtnText = this.$store.getters.getCarts2.button_text;
-        this.ordrAbndCrtQckRpl1 = this.$store.getters.getCarts2.quick_reply_thank_you_text;
-        this.ordrAbndCrtQckRpl2 = this.$store.getters.getCarts2.quick_reply_more_questions_text;
-        this.ordrAbndCrtQckRpl3 = this.$store.getters.getCarts2.quick_reply_unsubscribe_text;
-        this.ordrAbndCrtBtnDisabled = true;
-        this.sent_after_cart1 =
-          this.$store.getters.getCarts2.sent_after + " hour";
+        this.sent_after = this.$store.state.msgVars.sms_abandoned_cart_2.sent_after + " hour";
+        this.ordrAbndCrtIntroMsg = this.$store.getters.smsgetCarts2.intro_message;
+        this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts2.active
         this.$store.dispatch("updIsLoading", false);
       });
     });
@@ -680,13 +462,11 @@ export default {
   font-weight: bold;
   font-size: 90% !important;
 }
-
 .theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) {
   color: #323f4f !important;
   font-weight: bold;
   font-size: 90% !important;
 }
-
 .v-date-picker-table .v-btn.v-btn--active {
   border-radius: 0px;
 }
@@ -697,21 +477,62 @@ export default {
   transform: scale(0.9);
   transform-origin: 0 0;
 }
-
 .msgCount {
   font-size: 120%;
   color: #5686f6;
   font-weight: bolder;
 }
-
 .qckRpl {
   font-size: 85%;
 }
-
 .qckRplBtn {
   color: #ffffff !important;
 }
+.txt-up{
+  text-transform: none !important;
+}
+.v-messages__message {
+  line-height: 20px;
+  color: black;
+  font-size: 90%;
+}
+.btnAbon{
+  text-align: center;
+  font: normal normal 600 12px/29px Poppins;
+  letter-spacing: 0px;
+  color: #5686F6 !important;
+  opacity: 1;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 2px solid #5686F6;
+  border-radius: 2px;
+  opacity: 1;
+}
 
+.av_short_code{
+  text-align: left;
+  font: normal normal normal 12px/19px Poppins;
+  letter-spacing: 0px;
+  color: #4E5D6B;
+  opacity: 1;
+}
+.btn_sup{
+  text-align: center;
+  font: normal normal 300 10px/16px Poppins !Important;
+  letter-spacing: 0px !Important;
+  color: #FFFFFF !Important;
+  opacity: 1;
+}
+/*.dbd svg path{*/
+/*  fill: black !important;*/
+/*}*/
+.dbd svg{
+  margin-top: 10px !important;
+}
+@media (max-width: 1349px) {
+  .btnsps{
+    margin-top: 10px !important;
+  }
+}
 @media (min-width: 1400px) {
   .refIcondim {
     transform: scale(1.2);
@@ -720,13 +541,5 @@ export default {
     transform: scale(1);
     transform-origin: 0 0;
   }
-}
-</style>
-
-<style>
-.v-messages__message {
-  line-height: 20px;
-  color: black;
-  font-size: 90%;
 }
 </style>

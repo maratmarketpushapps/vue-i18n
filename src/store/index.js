@@ -37,6 +37,8 @@ export default new Vuex.Store({
       id: 0,
       instance_id: "",
       website_id: 0,
+      fbfirst:true,
+      smsfirst:false,
       facebook_widget_type: "",
       header_background_color: "",
       popup_background_color: "",
@@ -221,6 +223,9 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    fbfirststatus: (state) => {
+      return state.widgetVars.fbfirst
+    },
     checkClicked: (state) => (id) => {
       return state.navState.currentSelected === id ? true : false;
     },
@@ -327,14 +332,22 @@ export default new Vuex.Store({
     getDash: (state) => {
       return state.dashVars;
     },
-    getStepsCompleted: (state) => {
-      return state.setupCompletedVars;
-    },
+    // getStepsCompleted: (state) => {
+    //   return state.setupCompletedVars;
+    // },
     getSubs: (state) => {
       return state.subVars;
     },
   },
   mutations: {
+    // smscart 1
+    UPDATE_MSG_sms_cartOne(state,val) {
+      state.msgVars.sms_abandoned_cart_1.active = val
+    },
+    // smscart2
+    UPDATE_MSG_sms_cartTwo(state,val) {
+      state.msgVars.sms_abandoned_cart_2.active =  val
+    },
     SET_SELECTED(state, id) {
       state.navState.currentSelected = id;
     },
@@ -633,6 +646,7 @@ export default new Vuex.Store({
       !obj.setup_step_1_completed ? (state.stepsCompOnload = false) : 1;
     },
 
+
     //Messages Commits
     SET_MSG_VALS(state, obj) {
 
@@ -765,6 +779,11 @@ export default new Vuex.Store({
       state.msgVars.sms_abandoned_cart_1.active = obj.active
       state.msgVars.sms_abandoned_cart_1.sent_after = obj.sent_after
     },
+    sms_second_SET_ORDR_ABANDONED_CART(state, obj) {
+      state.msgVars.sms_abandoned_cart_2.intro_message = obj.intro_message
+      state.msgVars.sms_abandoned_cart_2.active = obj.active
+      state.msgVars.sms_abandoned_cart_2.sent_after = obj.sent_after
+    },
     SET_ORDR_ABANDONED_CART2(state, obj) {
       state.msgVars.abandoned_cart_2.sent_after = obj.sent_after;
       state.msgVars.abandoned_cart_2.button_text = obj.button_text;
@@ -854,32 +873,23 @@ export default new Vuex.Store({
       state.widgetVars.discount_code = formVidgData.discount_code
       state.widgetVars.discount_statement = formVidgData.discount_statement
       if(formVidgData.coneData[0].title == "Facebook"){
+        state.widgetVars.fbfirst = true
+        state.widgetVars.smsfirst = false
+        state.widgetVars.enabled_widgets.facebook.title = formVidgData.coneData[0].title
         state.widgetVars.enabled_widgets.facebook.enabled = formVidgData.coneData[0].connection
         state.widgetVars.enabled_widgets.facebook.position= formVidgData.coneData[0].id
+        state.widgetVars.enabled_widgets.sms.title = formVidgData.coneData[1].title
         state.widgetVars.enabled_widgets.sms.enabled = formVidgData.coneData[1].connection
         state.widgetVars.enabled_widgets.sms.position= formVidgData.coneData[1].id
       }else {
+        state.widgetVars.fbfirst = false
+        state.widgetVars.smsfirst = true
+        state.widgetVars.enabled_widgets.sms.title = formVidgData.coneData[0].title
         state.widgetVars.enabled_widgets.sms.enabled = formVidgData.coneData[0].connection
         state.widgetVars.enabled_widgets.sms.position= formVidgData.coneData[0].id
-        state.widgetVars.enabled_widgets.facebook.enabled = formVidgData.coneData[1].connection
-        state.widgetVars.enabled_widgets.facebook.position= formVidgData.coneData[1].id
-        // state.widgetVars.enabled_widgets.reverse()
+        state.widgetVars.enabled_widgets.facebook.title = formVidgData.coneData[1].title
+        state.widgetVars.enabled_widgets.facebook.enablefvion= formVidgData.coneData[1].id
 
-        // state.widgetVars.enabled_widgets = function reverseObject(){
-        //   let object = this.state.widgetVars.enabled_widgets
-        //   var newObject = {};
-        //   var keys = [];
-        //   for (var key in object) {
-        //     keys.push(key);
-        //   }
-        //   for (var i = keys.length - 1; i >= 0; i--) {
-        //     var value = object[keys[i]];
-        //     newObject[keys[i]]= value;
-        //   }
-        //   return newObject;
-        // }
-
-        // console.log(state.widgetVars.enabled_widgets)
       }
 
       state.widgetVars.subscribe_type = formVidgData.subscribe_type
@@ -1307,7 +1317,7 @@ export default new Vuex.Store({
         axios
           .get(url, headers)
           .then((res) => {
-            commit("smsSET_MSG_VALS", JSON.parse(JSON.stringify(res.data)));
+            commit("SET_MSG_VALS", JSON.parse(JSON.stringify(res.data)));
             resolve("success");
           })
           .catch((error) => {
@@ -1356,6 +1366,13 @@ export default new Vuex.Store({
       return new Promise((resolve) => {
         // console.log("updateCart :: " + JSON.stringify(obj));
         commit("smsSET_ORDR_ABANDONED_CART", obj);
+        resolve("success");
+      });
+    },
+    smssecondUpdOrdrAbndCrt({ commit }, obj) {
+      return new Promise((resolve) => {
+        // console.log("updateCart :: " + JSON.stringify(obj));
+        commit("sms_second_SET_ORDR_ABANDONED_CART", obj);
         resolve("success");
       });
     },
@@ -1428,28 +1445,28 @@ export default new Vuex.Store({
     },
 
     //Subscription API
-    getStepsCompleted({ commit }) {
-      return new Promise((resolve, reject) => {
-        let url = `${process.env.VUE_APP_API_URL_DEV}/getStepsCompleted`;
-        let headers = {
-          headers: {
-            authorization: this.state.TOKEN,
-            "Content-Type": "application/json",
-          },
-        };
-
-        axios
-          .get(url, headers)
-          .then((res) => {
-            console.log(res.data);
-            commit("SET_STEPS_COMPLETED_VALS", JSON.parse(JSON.stringify(res.data)));
-            resolve("success");
-          })
-          .catch((error) => {
-            reject(error);
-          });
-      });
-    },
+    // getStepsCompleted({ commit }) {
+    //   return new Promise((resolve, reject) => {
+    //     let url = `${process.env.VUE_APP_API_URL_DEV}/getStepsCompleted`;
+    //     let headers = {
+    //       headers: {
+    //         authorization: this.state.TOKEN,
+    //         "Content-Type": "application/json",
+    //       },
+    //     };
+    //
+    //     axios
+    //       .get(url, headers)
+    //       .then((res) => {
+    //         console.log(res.data);
+    //         commit("SET_STEPS_COMPLETED_VALS", JSON.parse(JSON.stringify(res.data)));
+    //         resolve("success");
+    //       })
+    //       .catch((error) => {
+    //         reject(error);
+    //       });
+    //   });
+    // },
 
     //Subscription API
     getSubs({ commit }) {

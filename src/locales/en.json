@@ -82,6 +82,8 @@
     "smsheader": "SMS Campaigns",
     "header": "Facebook Campaigns",
     "msgCount": "Messages Sent",
+    "sentAfther": "Sent after",
+    "ago": "ago",
     "modalText1": "This is the message that your customers will receive on Facebook.",
     "modalText2": "Please note that this interface is for showcasing purposes and it's not clickable.",
     "infocons": {
@@ -121,7 +123,15 @@
       "sendAfter": "How much time should pass before sending this message.",
       "iconTxt": "Edit Message"
     },
-
+    "smscarts2": {
+      "headerTxt": "SMS Abandoned Cart Message #2",
+      "selectLabel": "Send After",
+      "sendAfter": "How much time should pass before sending this message.",
+      "iconTxt": "Edit Message",
+      "discountTxt1": "In order to SAVE your campaign you need to make sure you set all the variables that you add in the SMS Message.",
+      "discountTxt2": "Marketing & SEO / Coupons ",
+      "discountTxt3": ""
+    },
     "ordrrcpt": {
       "headerTxt": "Order Receipt Message",
       "introMsg": "Intro Message",
