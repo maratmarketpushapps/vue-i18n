@@ -16,7 +16,7 @@
         </v-container>
         <v-overlay
           absolute
-          :value="dialog"
+          :value="dialog && !checkOptin && !wdgtTabcheck"
           style="border-radius: 25px 25px 0 0;"
           class="pa-10"
           z-index="1"
@@ -55,9 +55,10 @@
             <span :style="titleProps">{{ titleText }}</span>
           </v-row>
           <v-row
-            style="height:25%;width:102.5%"
+            style="height:15%;width:102.5%"
             align="center"
             justify="center"
+            v-if="wdgtTabcheck"
           >
             <v-col>
               <p :style="msgProps">{{ msgText }}</p>
@@ -65,9 +66,195 @@
           </v-row>
 
           <v-row
+            style="height:25%;width:102.5%"
+            align="center"
+            justify="center"
+            v-if="!wdgtTabcheck"
+          >
+            <v-col>
+              <p :style="msgProps">{{ msgText }}</p>
+            </v-col>
+          </v-row>
+
+          <v-row
+            style="height:40%;width:95%; border: 1px solid #C9CACB; margin-left:1%"
+            align="center"
+            justify="center"
+            class="pa-0 my-0"
+            v-if="wdgtFBcheck && wdgtIsDsc"
+          >
+            <v-col cols="3" class="ma-0 pa-0" style="height:100%;width:100%">
+              <v-img
+                src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
+                class="ma-0 pa-0"
+                height="100%"
+                width="100%"
+                style="background:#4E5D6B"
+              >
+              </v-img>
+            </v-col>
+            <v-col cols="9" class="" style="height:100%" v-if="checkOptin">
+              <v-row style="width:100%;height:15%" class="px-8">
+                <span style="font-weight:bold;font-size:120%; color:#5686F6">
+                  {{ dscntCd }}
+                </span>
+              </v-row>
+
+              <v-row style="width:100%;height:58%" class="px-8" align="center">
+                <span>
+                  {{ dscntInstr }}
+                </span>
+              </v-row>
+              <v-row style="width:100%" class="pl-8" align="start">
+                <v-btn :style="buttonProps" outlined @click="resetOptin">
+                  <span :style="btnTextProps">
+                    COPY DISCOUNT CODE
+                  </span>
+                </v-btn>
+              </v-row>
+            </v-col>
+            <v-col cols="9" class="" style="height:100%" v-if="!checkOptin">
+              <v-row style="width:100%;height:5%" class="px-8">
+                <span style="font-weight:bold; font-size:90%">
+                  {{ dscntStmt }}
+                </span>
+              </v-row>
+              <v-row style="width:100%;height:70% " class="mt-2">
+                <v-row style="width:125%; height:100%">
+                  <v-col cols="1"> </v-col>
+                  <v-col cols="10" style="height:100%">
+                    <v-row
+                      style="width:100%;height:60%"
+                      align="center"
+                      class="pl-1"
+                    >
+                      <v-checkbox input-value="true" disabled> </v-checkbox>
+                      <span class="pr-1">
+                        {{ $t("widgets.chckBxTxt1") }}
+                      </span>
+                      <v-icon color="#0084FF">
+                        mdi-facebook-messenger
+                      </v-icon>
+                      <span class="pl-2">
+                        {{ $t("widgets.chckBxTxt2") }}
+                      </span>
+                    </v-row>
+
+                    <v-row style="width:100%;height:40%" align="center">
+                      <v-container
+                        style="height: 26px; width: 26px; border-radius:100%; background-color: #E6E7E8"
+                        class="mx-2"
+                      ></v-container>
+
+                      <span
+                        style="font-size: 14px; height:100%; color: #B3B7BA"
+                        class="pt-1 mr-2"
+                        >{{ $t("widgets.fbUserName") }}</span
+                      >
+
+                      <a
+                        style="font-size: 13px; height:100%; color: #B3B7BA; text-decoration:underline"
+                        class="pt-1"
+                        >{{ $t("widgets.wrngUsrTxt") }}</a
+                      >
+                    </v-row>
+                  </v-col>
+                </v-row>
+              </v-row>
+              <v-row style="width:100%" class="px-7" align="start">
+                <v-btn
+                  :style="buttonProps"
+                  outlined
+                  :key="widgetKey"
+                  @click="submitClickDisc"
+                >
+                  <span :style="btnTextProps">
+                    {{ buttonText }}
+                  </span>
+                </v-btn>
+              </v-row>
+            </v-col>
+          </v-row>
+
+          <v-row
+            style="height:40%;width:95%; border: 1px solid #C9CACB; margin-left:1%"
+            align="center"
+            justify="center"
+            class="pa-0 my-0"
+            v-if="wdgtSMScheck && wdgtIsDsc"
+          >
+            <v-col cols="3" class="ma-0 pa-0" style="height:100%;width:100%">
+              <v-img
+                src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
+                class="ma-0 pa-0"
+                height="100%"
+                width="100%"
+                style="background:#4E5D6B"
+              >
+              </v-img>
+            </v-col>
+            <v-col cols="9" class="" style="height:100%" v-if="checkOptin">
+              <v-row style="width:100%;height:15%" class="px-8">
+                <span style="font-weight:bold;font-size:120%; color:#5686F6">
+                  {{ dscntCd }}
+                </span>
+              </v-row>
+
+              <v-row style="width:100%;height:58%" class="px-8" align="center">
+                <span>
+                  {{ dscntInstr }}
+                </span>
+              </v-row>
+              <v-row style="width:100%" class="pl-8" align="start">
+                <v-btn :style="buttonProps" outlined @click="resetOptin">
+                  <span :style="btnTextProps">
+                    COPY DISCOUNT CODE
+                  </span>
+                </v-btn>
+              </v-row>
+            </v-col>
+            <v-col cols="9" class="" style="height:100%" v-if="!checkOptin">
+              <v-row style="width:100%;height:5%" class="px-8">
+                <span style="font-weight:bold; font-size:90%">
+                  {{ dscntStmt }}
+                </span>
+              </v-row>
+              <v-row style="width:100%;height:70% " class="mt-2">
+                <v-row style="width:125%; height:80%" align="center">
+                  <v-col cols="1"> </v-col>
+                  <v-col cols="10">
+                    <vue-tel-input
+                      v-model="optinNum"
+                      dark
+                      style="width:90%;"
+                      placeholder=""
+                      :showDialCode="true"
+                      mode="international"
+                    >
+                    </vue-tel-input>
+                  </v-col>
+                </v-row>
+              </v-row>
+              <v-row style="width:100%; height:20%" class="px-9" align="start">
+                <v-btn
+                  :style="buttonProps"
+                  outlined
+                  :key="widgetKey"
+                  @click="submitClickDisc"
+                >
+                  <span :style="btnTextProps">
+                    {{ buttonText }}
+                  </span>
+                </v-btn>
+              </v-row>
+            </v-col>
+          </v-row>
+
+          <v-row
             style="height:15%;width:102.5%"
             align="center"
             justify="center"
+            v-if="wdgtFBcheck && !wdgtIsDsc"
           >
             <v-checkbox input-value="true" disabled> </v-checkbox>
             <span class="pr-2">
@@ -81,7 +268,12 @@
             </span>
           </v-row>
 
-          <v-row style="height:7%;width:102.5%" align="start" justify="center">
+          <v-row
+            style="height:7%;width:102.5%"
+            align="start"
+            justify="center"
+            v-if="wdgtFBcheck && !wdgtIsDsc"
+          >
             <v-container
               style="height: 26px; width: 26px; border-radius:100%; background-color: #E6E7E8"
               class="mx-2"
@@ -99,7 +291,267 @@
               >{{ $t("widgets.wrngUsrTxt") }}</a
             >
           </v-row>
-          <v-row style="height:15%;width:102.5%" align="end" justify="center">
+          <v-row
+            style="height:15%;width:102.5%"
+            align="end"
+            justify="center"
+            v-if="wdgtFBcheck && !wdgtIsDsc"
+          >
+            <v-btn :style="buttonProps" outlined :key="widgetKey">
+              <span :style="btnTextProps">
+                {{ buttonText }}
+              </span>
+            </v-btn>
+          </v-row>
+
+          <v-row
+            style="height:20%;width:102.5%"
+            align="end"
+            justify="center"
+            v-if="wdgtSMScheck && !wdgtIsDsc"
+          >
+            <vue-tel-input
+              v-model="optinNum"
+              dark
+              style="width:70%;"
+              placeholder=""
+              :showDialCode="true"
+              mode="international"
+              disabled
+            >
+            </vue-tel-input>
+          </v-row>
+
+          <v-row
+            style="height:20%;width:102.5%"
+            align="center"
+            justify="center"
+            v-if="wdgtSMScheck && !wdgtIsDsc"
+          >
+            <v-btn :style="buttonProps" outlined :key="widgetKey">
+              <span :style="btnTextProps">
+                {{ buttonText }}
+              </span>
+            </v-btn>
+          </v-row>
+
+          <v-row
+            style="height:15%;width:102.5%"
+            align="center"
+            justify="center"
+            v-if="wdgtTabcheck"
+          >
+            <v-col cols="3"> </v-col>
+            <v-col cols="7">
+              <v-tabs
+                v-model="tab"
+                light
+                style="width:100%"
+                color="transparent"
+              >
+                <v-tab light>
+                  <component v-bind:is="getTabHeader1"></component>
+                </v-tab>
+                <v-divider vertical></v-divider>
+                <v-tab light>
+                  <component v-bind:is="getTabHeader2"></component>
+                </v-tab>
+              </v-tabs>
+            </v-col>
+          </v-row>
+
+          <v-row
+            style="height:29%;width:102.5%"
+            align="center"
+            justify="center"
+            v-if="wdgtTabcheck && !wdgtIsDsc"
+          >
+            <v-tabs-items v-model="tab" style="width:90%">
+              <v-tab-item :value="getTabKeySMS" style="width:100%">
+                <v-row justify="center" style="width:100%">
+                  <vue-tel-input
+                    v-model="optinNum"
+                    dark
+                    style="width:80%;"
+                    placeholder=""
+                    :showDialCode="true"
+                    mode="international"
+                  >
+                  </vue-tel-input>
+                </v-row>
+              </v-tab-item>
+
+              <v-tab-item :value="getTabKeyFb">
+                <v-row
+                  style="width:100%;height:60%"
+                  align="center"
+                  class="pl-1"
+                  justify="center"
+                >
+                  <v-checkbox input-value="true" disabled> </v-checkbox>
+                  <span class="pr-1">
+                    {{ $t("widgets.chckBxTxt1") }}
+                  </span>
+                  <v-icon color="#0084FF">
+                    mdi-facebook-messenger
+                  </v-icon>
+                  <span class="pl-2">
+                    {{ $t("widgets.chckBxTxt2") }}
+                  </span>
+                </v-row>
+
+                <v-row
+                  style="width:100%;height:40%"
+                  align="center"
+                  justify="center"
+                >
+                  <v-container
+                    style="height: 26px; width: 26px; border-radius:100%; background-color: #E6E7E8"
+                    class="mx-2"
+                  ></v-container>
+
+                  <span
+                    style="font-size: 14px; height:100%; color: #B3B7BA"
+                    class="pt-1 mr-2"
+                    >{{ $t("widgets.fbUserName") }}</span
+                  >
+
+                  <a
+                    style="font-size: 13px; height:100%; color: #B3B7BA; text-decoration:underline"
+                    class="pt-1"
+                    >{{ $t("widgets.wrngUsrTxt") }}</a
+                  >
+                </v-row>
+              </v-tab-item>
+            </v-tabs-items>
+          </v-row>
+
+          <v-row
+            style="height:40%;width:95%;  border: 1px solid #C9CACB; margin-left:1%"
+            align="center"
+            justify="center"
+            v-if="wdgtTabcheck && wdgtIsDsc"
+          >
+            <v-col cols="3" class="ma-0 pa-0" style="height:100%;width:100%">
+              <v-img
+                src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
+                class="ma-0 pa-0"
+                height="100%"
+                width="100%"
+                style="background:#4E5D6B"
+              >
+              </v-img>
+            </v-col>
+            <v-col cols="9" class="" style="height:100%" v-if="checkOptin">
+              <v-row style="width:100%;height:15%" class="px-8">
+                <span style="font-weight:bold;font-size:120%; color:#5686F6">
+                  {{ dscntCd }}
+                </span>
+              </v-row>
+
+              <v-row style="width:100%;height:58%" class="px-8" align="center">
+                <span>
+                  {{ dscntInstr }}
+                </span>
+              </v-row>
+              <v-row style="width:100%" class="pl-8" align="start">
+                <v-btn :style="buttonProps" outlined @click="resetOptin">
+                  <span :style="btnTextProps">
+                    COPY DISCOUNT CODE
+                  </span>
+                </v-btn>
+              </v-row>
+            </v-col>
+            <v-col cols="9" class="" style="height:100%" v-if="!checkOptin">
+              <v-row style="width:100%;height:5%" class="px-8">
+                <span style="font-weight:bold; font-size:90%">
+                  {{ dscntStmt }}
+                </span>
+              </v-row>
+              <v-row style="width:100%;height:70% " class="mt-2">
+                <v-row style="width:125%; height:80%" align="center">
+                  <v-col cols="1"> </v-col>
+                  <v-col cols="10">
+                    <v-tabs-items v-model="tab" style="width:90%">
+                      <v-tab-item :value="getTabKeySMS" style="width:100%">
+                        <v-row align="center" style="width:100%" class="ml-0">
+                          <vue-tel-input
+                            v-model="optinNum"
+                            dark
+                            style="width:80%;"
+                            placeholder=""
+                            :showDialCode="true"
+                            mode="international"
+                          >
+                          </vue-tel-input>
+                        </v-row>
+                      </v-tab-item>
+
+                      <v-tab-item :value="getTabKeyFb">
+                        <v-row
+                          style="width:100%;height:40%"
+                          align="center"
+                          class="pl-2"
+                        >
+                          <v-checkbox input-value="true" disabled> </v-checkbox>
+                          <span class="pr-1">
+                            {{ $t("widgets.chckBxTxt1") }}
+                          </span>
+                          <v-icon color="#0084FF">
+                            mdi-facebook-messenger
+                          </v-icon>
+                          <span class="pl-2">
+                            {{ $t("widgets.chckBxTxt2") }}
+                          </span>
+                        </v-row>
+
+                        <v-row
+                          style="width:100%;height:30%"
+                          align="center"
+                        >
+                          <v-container
+                            style="height: 26px; width: 26px; border-radius:100%; background-color: #E6E7E8"
+                            class="mx-2"
+                          ></v-container>
+
+                          <span
+                            style="font-size: 14px; height:100%; color: #B3B7BA"
+                            class="pt-1 mr-2"
+                            >{{ $t("widgets.fbUserName") }}</span
+                          >
+
+                          <a
+                            style="font-size: 13px; height:100%; color: #B3B7BA; text-decoration:underline"
+                            class="pt-1"
+                            >{{ $t("widgets.wrngUsrTxt") }}</a
+                          >
+                        </v-row>
+                      </v-tab-item>
+                    </v-tabs-items>
+                  </v-col>
+                </v-row>
+              </v-row>
+              <v-row style="width:100%; height:20%" class="px-9" align="start">
+                <v-btn
+                  :style="buttonProps"
+                  outlined
+                  :key="widgetKey"
+                  @click="submitClickDisc"
+                >
+                  <span :style="btnTextProps">
+                    {{ buttonText }}
+                  </span>
+                </v-btn>
+              </v-row>
+            </v-col>
+          </v-row>
+
+          <v-row
+            style="height:10%;width:102.5%"
+            align="center"
+            justify="center"
+            v-if="wdgtTabcheck && !wdgtIsDsc"
+          >
             <v-btn :style="buttonProps" outlined :key="widgetKey">
               <span :style="btnTextProps">
                 {{ buttonText }}
@@ -137,13 +589,20 @@
 
 <script>
 import { mapGetters } from "vuex";
+import SmsIcon from "@/assets/icons/sms-icon.svg";
+import FbIcon from "@/assets/icons/facebook-icon.svg";
 
 export default {
   name: "WidgetViewCheckBox",
+  components: { SmsIcon, FbIcon },
   data() {
     return {
       dialog: false,
       btnId: 0,
+      didOptIn: false,
+      optinNum: "",
+
+      tab: null,
     };
   },
   methods: {
@@ -157,6 +616,12 @@ export default {
     ovrlyClose() {},
     resetChanges() {
       this.$store.dispatch("getWidgets");
+    },
+    submitClickDisc() {
+      this.didOptIn = true;
+    },
+    resetOptin() {
+      this.didOptIn = false;
     },
   },
   computed: {
@@ -246,6 +711,65 @@ export default {
     },
     widgetKey() {
       return "key" + this.getWidgetsState.wdgt_key_internal + "b" + this.btnId;
+    },
+    wdgtFBcheck() {
+      return (
+        this.getWidgetsState.enabled_widgets.facebook.enabled &&
+        !this.getWidgetsState.enabled_widgets.sms.enabled
+      );
+    },
+    wdgtSMScheck() {
+      return (
+        !this.getWidgetsState.enabled_widgets.facebook.enabled &&
+        this.getWidgetsState.enabled_widgets.sms.enabled
+      );
+    },
+
+    wdgtTabcheck() {
+      return (
+        this.getWidgetsState.enabled_widgets.facebook.enabled &&
+        this.getWidgetsState.enabled_widgets.sms.enabled
+      );
+    },
+
+    getTabHeader1() {
+      if (this.getWidgetsState.enabled_widgets.facebook.position == 1) {
+        return "FbIcon";
+      } else {
+        return "SmsIcon";
+      }
+    },
+
+    getTabHeader2() {
+      if (this.getWidgetsState.enabled_widgets.facebook.position == 2) {
+        return "FbIcon";
+      } else {
+        return "SmsIcon";
+      }
+    },
+
+    getTabKeySMS() {
+      return this.getWidgetsState.enabled_widgets.sms.position - 1;
+    },
+
+    getTabKeyFb() {
+      return this.getWidgetsState.enabled_widgets.facebook.position - 1;
+    },
+
+    wdgtIsDsc() {
+      return this.getWidgetsState.subscribe_type != "default";
+    },
+    dscntStmt() {
+      return this.getWidgetsState.discount_statement;
+    },
+    checkOptin() {
+      return this.didOptIn;
+    },
+    dscntCd() {
+      return this.getWidgetsState.discount_code;
+    },
+    dscntInstr() {
+      return this.getWidgetsState.apply_discount_instruction;
     },
   },
 

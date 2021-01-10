@@ -8,11 +8,14 @@ import SvgTransition from "vue-svg-transition";
 import { initFbSdk } from "./lib/FacebookSdk";
 import VueScrollTo from "vue-scrollto";
 import VueIntercom from "vue-intercom";
-import VueTelInputVuetify from 'vue-tel-input-vuetify/lib';
+import VueTelInputVuetify from "vue-tel-input-vuetify/lib";
+import VueTelInput from "vue-tel-input";
 
 Vue.use(VueTelInputVuetify, {
   vuetify,
 });
+
+Vue.use(VueTelInput);
 
 initFbSdk(Vue, process.env.VUE_APP_FACEBOOK_CLIENT_ID).then(() => {
   // console.log(resp);
