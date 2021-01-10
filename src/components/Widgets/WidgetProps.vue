@@ -668,7 +668,8 @@ export default {
         };
         this.$store.commit('SAVE_WIDGET_FORM',objWidg)
         this.$store.dispatch("updIsLoading", true).then(() => {
-          this.$store.dispatch("setWdgts").then((response) => {
+          this.$store.dispatch
+          ("setWdgts").then((response) => {
             if (response) {
               this.$store.dispatch("getWidgets").then(() => {
                 this.$store.dispatch("updIsLoading", false);
@@ -707,11 +708,6 @@ export default {
         this.coneData[0].id = this.statusWidgets.sms.position
         this.coneData[0].title = "sms"
       }
-
-      // this.coneData[0].connection = this.statusWidgets.facebook.enabled
-      // this.coneData[0].id = this.statusWidgets.facebook.position
-      // this.coneData[1].connection = this.statusWidgets.sms.enabled
-      // this.coneData[1].id = this.statusWidgets.sms.position
       if(this.subType == "subscribe"){
         this.discount_selected = true
         this.def_selected = false
@@ -798,8 +794,6 @@ export default {
       }
     },
     radioSelect(newValue) {
-      // console.log(oldValue);
-      // console.log(newValue);
       this.$store.dispatch("updWdgtType", newValue);
     },
     ttlText(newValue) {

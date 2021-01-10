@@ -37,8 +37,6 @@ export default new Vuex.Store({
       id: 0,
       instance_id: "",
       website_id: 0,
-      fbfirst:true,
-      smsfirst:false,
       facebook_widget_type: "",
       header_background_color: "",
       popup_background_color: "",
@@ -223,9 +221,6 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    fbfirststatus: (state) => {
-      return state.widgetVars.fbfirst
-    },
     checkClicked: (state) => (id) => {
       return state.navState.currentSelected === id ? true : false;
     },
@@ -872,26 +867,21 @@ export default new Vuex.Store({
       state.widgetVars.apply_discount_instruction = formVidgData.apply_discount_instruction
       state.widgetVars.discount_code = formVidgData.discount_code
       state.widgetVars.discount_statement = formVidgData.discount_statement
-      if(formVidgData.coneData[0].title == "Facebook"){
-        state.widgetVars.fbfirst = true
-        state.widgetVars.smsfirst = false
+      if(formVidgData.coneData[0].title == "sms"){
+        state.widgetVars.enabled_widgets.sms.title = formVidgData.coneData[0].title
+        state.widgetVars.enabled_widgets.sms.enabled = formVidgData.coneData[0].connection
+        state.widgetVars.enabled_widgets.sms.position = formVidgData.coneData[0].id
+        state.widgetVars.enabled_widgets.facebook.title = formVidgData.coneData[1].title
+        state.widgetVars.enabled_widgets.facebook.position = formVidgData.coneData[1].id
+        state.widgetVars.enabled_widgets.facebook.enabled = formVidgData.coneData[1].connection
+      }else {
         state.widgetVars.enabled_widgets.facebook.title = formVidgData.coneData[0].title
         state.widgetVars.enabled_widgets.facebook.enabled = formVidgData.coneData[0].connection
-        state.widgetVars.enabled_widgets.facebook.position= formVidgData.coneData[0].id
+        state.widgetVars.enabled_widgets.facebook.position = formVidgData.coneData[0].id
         state.widgetVars.enabled_widgets.sms.title = formVidgData.coneData[1].title
         state.widgetVars.enabled_widgets.sms.enabled = formVidgData.coneData[1].connection
         state.widgetVars.enabled_widgets.sms.position= formVidgData.coneData[1].id
-      }else {
-        state.widgetVars.fbfirst = false
-        state.widgetVars.smsfirst = true
-        state.widgetVars.enabled_widgets.sms.title = formVidgData.coneData[0].title
-        state.widgetVars.enabled_widgets.sms.enabled = formVidgData.coneData[0].connection
-        state.widgetVars.enabled_widgets.sms.position= formVidgData.coneData[0].id
-        state.widgetVars.enabled_widgets.facebook.title = formVidgData.coneData[1].title
-        state.widgetVars.enabled_widgets.facebook.enablefvion= formVidgData.coneData[1].id
-
       }
-
       state.widgetVars.subscribe_type = formVidgData.subscribe_type
     },
     SET_WIDGET_info(state,itemVidg){
