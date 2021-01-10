@@ -165,7 +165,6 @@ export default {
       return this.getWidgetsState.pop_up_title;
     },
     titleProps() {
-
       let ttlObj = {
         color: this.getWidgetsState.pop_up_title_font_color,
         "font-weight": this.getWidgetsState.pop_up_title_font_type,
@@ -202,8 +201,14 @@ export default {
       return ttlObj;
     },
     widgetType() {
+      console.log(this.getWidgetsState);
       return this.getWidgetsState.facebook_widget_type;
     },
+    
+  },
+
+  mounted() {
+    console.log(this.$store.getters.getWidgetsState);
   },
 };
 </script>
