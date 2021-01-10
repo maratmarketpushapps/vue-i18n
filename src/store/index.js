@@ -340,6 +340,14 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    // smscart 1
+    UPDATE_MSG_sms_cartOne(state,val) {
+      state.msgVars.sms_abandoned_cart_1.active = val
+    },
+    // smscart2
+    UPDATE_MSG_sms_cartTwo(state,val) {
+      state.msgVars.sms_abandoned_cart_2.active =  val
+    },
     SET_SELECTED(state, id) {
       state.navState.currentSelected = id;
     },
@@ -638,6 +646,7 @@ export default new Vuex.Store({
       !obj.setup_step_1_completed ? (state.stepsCompOnload = false) : 1;
     },
 
+
     //Messages Commits
     SET_MSG_VALS(state, obj) {
 
@@ -866,17 +875,20 @@ export default new Vuex.Store({
       if(formVidgData.coneData[0].title == "Facebook"){
         state.widgetVars.fbfirst = true
         state.widgetVars.smsfirst = false
+        state.widgetVars.enabled_widgets.facebook.title = formVidgData.coneData[0].title
         state.widgetVars.enabled_widgets.facebook.enabled = formVidgData.coneData[0].connection
         state.widgetVars.enabled_widgets.facebook.position= formVidgData.coneData[0].id
+        state.widgetVars.enabled_widgets.sms.title = formVidgData.coneData[1].title
         state.widgetVars.enabled_widgets.sms.enabled = formVidgData.coneData[1].connection
         state.widgetVars.enabled_widgets.sms.position= formVidgData.coneData[1].id
       }else {
         state.widgetVars.fbfirst = false
         state.widgetVars.smsfirst = true
+        state.widgetVars.enabled_widgets.sms.title = formVidgData.coneData[0].title
         state.widgetVars.enabled_widgets.sms.enabled = formVidgData.coneData[0].connection
         state.widgetVars.enabled_widgets.sms.position= formVidgData.coneData[0].id
-        state.widgetVars.enabled_widgets.facebook.enabled = formVidgData.coneData[1].connection
-        state.widgetVars.enabled_widgets.facebook.position= formVidgData.coneData[1].id
+        state.widgetVars.enabled_widgets.facebook.title = formVidgData.coneData[1].title
+        state.widgetVars.enabled_widgets.facebook.enablefvion= formVidgData.coneData[1].id
 
       }
 

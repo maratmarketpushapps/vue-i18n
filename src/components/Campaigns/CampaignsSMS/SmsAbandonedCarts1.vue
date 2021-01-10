@@ -12,7 +12,7 @@
         </v-row>
         <v-row style="height: 40%; width: 100%" justify="start" align="end" class="pl-6 mt-2">
           <span>
-            {{ $t("campaigns.sentAfther")}} {{sent_after}} {{ $t("campaigns.ago")}}
+            {{ $t("campaigns.sentAfther")}} {{sent_after}}
           </span>
         </v-row>
       </v-col>
@@ -342,8 +342,7 @@ export default {
       return this.$store.getters.getMsgCountsSms.sms_sent_count_abandoned_cart_1;
     },
     cart1Edit() {
-      return this.$store.getters.getActiveTab == "abndndcrt1" ||
-        this.$store.getters.getCart1Active
+      return this.$store.getters.smsgetCarts1.active == true
         ? true
         : false;
     },
@@ -417,9 +416,16 @@ export default {
       }else this.reqMandFields = true
     },
     editCart1() {
-      this.$store.dispatch("updActiveTab", "abndndcrt1").then(() => {
-        this.$store.dispatch("updCart1Active", true);
-        // console.log(response);
+      var boolval = null
+      this.getOrdrAbndCrtMsgCnt == '0' || this.getOrdrAbndCrtMsgCnt == false ? boolval = true : boolval = false
+      this.$store.commit("UPDATE_MSG_sms_cartOne",boolval)
+      this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts1.active
+      this.$store.dispatch("setMsg").then(() => {
+
+        // this.$store.dispatch("getMsg").then(() => {
+        //
+        //   this.$store.dispatch("updIsLoading", false);
+        // });
       });
     },
     saveCart1() {
@@ -440,7 +446,6 @@ export default {
         // console.log(response);
         this.ordrAbndCrtBtnDisabled = false;
       });
-
       // console.log("new active status" + this.ordrAbndCrtSwitchLive);
     },
     ovrlyOrdrAbndCrt1() {
@@ -515,6 +520,7 @@ export default {
         this.sent_after = this.$store.state.msgVars.sms_abandoned_cart_1.sent_after + " hour";
         // this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts1.active;
         this.ordrAbndCrtIntroMsg = this.$store.getters.smsgetCarts1.intro_message;
+        this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts1.active
         // this.ordrAbndCrtTitle = this.$store.getters.smsgetCarts1.title;
         // this.ordrAbndCrtSubTitle = this.$store.getters.smsgetCarts1.subtitle;
         // this.ordrAbndCrtBtnText = this.$store.getters.smsgetCarts1.button_text;

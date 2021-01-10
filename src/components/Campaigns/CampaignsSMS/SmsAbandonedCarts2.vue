@@ -22,7 +22,7 @@
             {{ getOrdrAbndCrtMsgCnt }}
           </span>
         </v-row>
-        <v-row style="height: 40%; width: 100%" justify="center" align="end"  class="mt-6">
+        <v-row style="height: 40%; width: 100%" justify="center" align="end"  class="mt-0">
           <span>
             {{ $t("campaigns.msgCount") }}
           </span>
@@ -60,7 +60,6 @@
           <v-switch
             v-model="ordrAbndCrtSwitchLive"
             color="#006AFF"
-            :disabled="swtchDisabled"
             @change="activeStateChng()"
           >
           </v-switch>
@@ -281,7 +280,7 @@ export default {
       return this.$store.getters.getMsgCountsSms.sms_sent_count_abandoned_cart_2;
     },
     cart1Edit() {
-      return this.$store.getters.getActiveTab == "abndndcrt2" ? true : false;
+      return this.$store.getters.smsgetCarts2.active == true ? true : false;
     },
     swtchDisabled() {
       return this.$store.getters.getActiveTab == "abndndcrt2" ? false : true;
@@ -350,9 +349,11 @@ export default {
       }else this.reqMandFields = true
     },
     editCart1() {
-      this.$store.dispatch("updActiveTab", "abndndcrt2").then(() => {
-        this.$store.dispatch("updCart1Active", false);
-        // console.log(response);
+      var boolval = null
+      this.getOrdrAbndCrtMsgCnt == '0' || this.getOrdrAbndCrtMsgCnt == false ? boolval = true : boolval = false
+      this.$store.commit("UPDATE_MSG_sms_cartTwo",boolval)
+      this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts2.active
+      this.$store.dispatch("setMsg").then(() => {
       });
     },
     saveCart1() {
@@ -373,7 +374,6 @@ export default {
         // console.log(response);
         this.ordrAbndCrtBtnDisabled = false;
       });
-
       // console.log("new active status" + this.ordrAbndCrtSwitchLive);
     },
     ovrlyOrdrAbndCrt1() {
@@ -445,6 +445,7 @@ export default {
       this.$store.dispatch("getMsg").then(() => {
         this.sent_after = this.$store.state.msgVars.sms_abandoned_cart_2.sent_after + " hour";
         this.ordrAbndCrtIntroMsg = this.$store.getters.smsgetCarts2.intro_message;
+        this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts2.active
         this.$store.dispatch("updIsLoading", false);
       });
     });

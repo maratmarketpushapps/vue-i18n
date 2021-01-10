@@ -22,7 +22,7 @@
             <v-btn
               tile
               height="50%"
-              :class="live ? 'mb-2 sv_changes wdgt_font_dims' : 'mb-2 wdgt_font_dims'"
+              :class="live ? 'mb-2 sv_changes wdgt_font_dims resp_sp' : 'mb-2 wdgt_font_dims resp_sp'"
               width="70%"
               :disabled="!live"
               style="text-transform:none; font-size:70% !important"
@@ -41,7 +41,7 @@
           </v-switch>
 
         </v-col>
-      </v-row>8
+      </v-row>
 
       <v-row >
         <v-col cols="6 offset-1 py-0 px-0" class="py-0 align-end">
@@ -680,13 +680,38 @@ export default {
 
     },
     rev(){
+      if(this.coneData[0].id == 1 ){
+        this.coneData[0].id = 2
+        this.coneData[1].id = 1
+      }else {
+        this.coneData[0].id = 1
+        this.coneData[1].id = 2
+      }
       setTimeout(() => this.coneData.reverse(), 200);
+
+      // let a =
     },
     changesWidg(){
-      this.coneData[0].connection = this.statusWidgets.facebook.enabled
-      this.coneData[0].id = this.statusWidgets.facebook.position
-      this.coneData[1].connection = this.statusWidgets.sms.enabled
-      this.coneData[1].id = this.statusWidgets.sms.position
+      if(this.statusWidgets.facebook.position == 1){
+        this.coneData[0].connection = this.statusWidgets.facebook.enabled
+        this.coneData[0].id = this.statusWidgets.facebook.position
+        this.coneData[0].title = "facebook"
+        this.coneData[1].connection = this.statusWidgets.sms.enabled
+        this.coneData[1].id = this.statusWidgets.sms.position
+        this.coneData[1].title = "sms"
+      }else {
+        this.coneData[1].connection = this.statusWidgets.facebook.enabled
+        this.coneData[1].id = this.statusWidgets.facebook.position
+        this.coneData[1].title = "facebook"
+        this.coneData[0].connection = this.statusWidgets.sms.enabled
+        this.coneData[0].id = this.statusWidgets.sms.position
+        this.coneData[0].title = "sms"
+      }
+
+      // this.coneData[0].connection = this.statusWidgets.facebook.enabled
+      // this.coneData[0].id = this.statusWidgets.facebook.position
+      // this.coneData[1].connection = this.statusWidgets.sms.enabled
+      // this.coneData[1].id = this.statusWidgets.sms.position
       if(this.subType == "subscribe"){
         this.discount_selected = true
         this.def_selected = false
@@ -1019,6 +1044,7 @@ export default {
   bottom: 28px !important;
 }
 
+
 @media only screen and (max-width: 1399px) {
   .lbl-props {
     font-size: 100%;
@@ -1031,6 +1057,10 @@ export default {
   .label-scale {
     transform: scale(0.9);
     transform-origin: 0 0;
+  }
+  .resp_sp{
+    font-size: 60% !important;
+    width:100% !important; ;
   }
 }
 @media only screen and (max-width: 1230px) {
