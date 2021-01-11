@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid style="height:750px">
+  <v-container fluid style="height:790px">
     <v-row justify="center" style="height:90%">
       <v-card
         tile
@@ -48,14 +48,14 @@
           id="modalContainer"
         >
           <v-row
-            style="height:20%;width:102.5%"
+            style="height:17%;width:102.5%"
             align="center"
             justify="center"
           >
             <span :style="titleProps">{{ titleText }}</span>
           </v-row>
           <v-row
-            style="height:15%;width:102.5%"
+            style="height:19%;width:102.5%"
             align="center"
             justify="center"
             v-if="wdgtTabcheck"
@@ -474,7 +474,7 @@
                   <v-col cols="10">
                     <v-tabs-items v-model="tab" style="width:90%">
                       <v-tab-item :value="getTabKeySMS" style="width:100%">
-                        <v-row align="center" style="width:100%" class="ml-0">
+                        <v-row align="center" style="width:100%" class="ml-0 pt-5">
                           <vue-tel-input
                             v-model="optinNum"
                             dark
@@ -489,39 +489,39 @@
 
                       <v-tab-item :value="getTabKeyFb">
                         <v-row
-                          style="width:100%;height:40%"
+                          style="width:100%;height:auto"
                           align="center"
                           class="pl-2"
                         >
-                          <v-checkbox input-value="true" disabled> </v-checkbox>
-                          <span class="pr-1">
+                          <v-checkbox input-value="true" disabled style="transform: scale(0.8)"> </v-checkbox>
+                          <span class="pr-1" style="font-size:80%">
                             {{ $t("widgets.chckBxTxt1") }}
                           </span>
                           <v-icon color="#0084FF">
                             mdi-facebook-messenger
                           </v-icon>
-                          <span class="pl-2">
+                          <span class="pl-2" style="font-size:80%">
                             {{ $t("widgets.chckBxTxt2") }}
                           </span>
                         </v-row>
 
                         <v-row
                           style="width:100%;height:30%"
-                          align="center"
+                          align="start"
                         >
                           <v-container
-                            style="height: 26px; width: 26px; border-radius:100%; background-color: #E6E7E8"
+                            style="height: 15px; width: 15px; border-radius:100%; background-color: #E6E7E8; transform: scale(0.8)"
                             class="mx-2"
                           ></v-container>
 
                           <span
-                            style="font-size: 14px; height:100%; color: #B3B7BA"
+                            style="font-size: 70%; height:100%; color: #B3B7BA"
                             class="pt-1 mr-2"
                             >{{ $t("widgets.fbUserName") }}</span
                           >
 
                           <a
-                            style="font-size: 13px; height:100%; color: #B3B7BA; text-decoration:underline"
+                            style="font-size: 70%; height:100%; color: #B3B7BA; text-decoration:underline"
                             class="pt-1"
                             >{{ $t("widgets.wrngUsrTxt") }}</a
                           >
