@@ -88,7 +88,7 @@ export default {
     },
     savePhoneNumber(){
       let obj = {
-        phone_number:this.phone
+        bussiness_phone_number:this.phone
       }
       this.$store.dispatch("updIsLoading", true).then(() => {
         this.$store.dispatch("updAccInfo", obj).then((res) => {
@@ -108,7 +108,7 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => (this.phone = this.$store.state.settingsVars.phone_number,this.btnDisabled = false),500),
+    setTimeout(() => (this.phone = this.$store.state.settingsVars.bussiness_phone_number,this.btnDisabled = false),500),
     setTimeout(()=> {
       if(this.phone !== "" || this.phone !== null || this.phone !== false)
       {  this.reg = this.phone,this.reg.match(/^(\S+)\s(.*)/).slice(1),this.country.dialCode = this.reg[0]}

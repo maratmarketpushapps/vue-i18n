@@ -4,11 +4,16 @@
       <v-col cols="4">
         <v-row
           class="pl-6"
-          style="height: 100%; width:100%"
+          style="height: 50%; width:100%"
           align="center"
           justify="start"
         >
           <h3>{{ $t("campaigns.carts1.headerTxt") }}</h3>
+        </v-row>
+        <v-row style="height: 40%; width: 100%" justify="start" align="end" class="pl-6 mt-2">
+          <span>
+            {{ $t("campaigns.sentAfther")}} {{sent_after}}
+          </span>
         </v-row>
       </v-col>
       <v-col cols="3">
@@ -28,7 +33,7 @@
           <v-btn
             tile
             height="35px"
-            class="primary font_dims"
+            class="primary font_dims pad_resp"
             width="70%"
             :disabled="svBtnDsbldOrdrAbndCrt"
             style="font-size:100%; text-transform:none;"
@@ -141,6 +146,7 @@
           >
           </v-text-field>
         </v-row>
+
         <!-- <v-row style="height:15%; width:100%" class="pl-4 pr-3">
           <v-col cols="6">
             <v-text-field
@@ -715,6 +721,13 @@ export default {
   .tab-size {
     transform: scale(1);
     transform-origin: 0 0;
+  }
+}
+@media (max-width: 1349px) {
+
+  .pad_resp{
+    padding-right:50px !important;
+    padding-left: 50px  !important;
   }
 }
 </style>

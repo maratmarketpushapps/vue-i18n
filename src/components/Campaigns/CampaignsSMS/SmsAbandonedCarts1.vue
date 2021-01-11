@@ -72,7 +72,7 @@
       <v-row
         style="height: auto; width: 100%"
         v-show="cart1Edit"
-        class="pl-6 pr-9 mt-9"
+        class="pl-6 pr-9 mt-9 med_no_spc"
         align="start"
       >
         <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
@@ -105,8 +105,8 @@
         <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
           <v-col class=" py-0 my-0 px-0">
             <v-row style=" width:100%" align="center" class="py-0 my-0">
-              <v-col cols="3" class="pl-0 ml-3  py-0 my-0">
-                <span class="mt-1 pb-1  mr-0 qckRpl av_short_code">
+              <v-col cols="3" class="pl-0 ml-3  py-0 my-0 ">
+                <span class="mt-1 pb-1  mr-0 qckRpl av_short_code resp_short_code">
                   {{ $t("campaigns.smsordrrcpt.svashortcod") }}
                 </span>
               </v-col>
@@ -117,7 +117,7 @@
                     :nudgeBottom="30"
                     :nudgeLeft="5"
                     :txt="$t('campaigns.infocons.msg5')"
-                    class="infoicon_scale mt-0 pt-0"
+                    class="infoicon_scale mt-0 pt-0 short_code_ic_toolt"
                     style="top:30%; transform:scale(.85)"
                   />
                 </v-row>
@@ -131,14 +131,14 @@
               >
                 BusinessName
               </v-btn>
-              <router-link  to="/settings" class="dbd btnsps">
+              <router-link  to="/settings" class="dbd  btnsps">
                 <iconEdit
                   class="mt-1 pt-0 mr-3 ml-0 px-0 "
                   to="/settings"
                 />
               </router-link>
               <v-btn
-                class="mr-3 qckRplBtn font_dims txt-up btnsps"
+                class="mr-3 qckRplBtn font_dims txt-up btn_sup btnsps"
                 color="#7DA2F7"
                 @click="putCheckOutTotal"
               >
@@ -146,7 +146,7 @@
               </v-btn>
 
               <v-btn
-                class="mr-3 qckRplBtn font_dims txt-up btnsps"
+                class="mr-3 qckRplBtn font_dims txt-up btn_sup btnsps"
                 color="#7DA2F7"
                 @click="putCheckOutLink"
               >
@@ -154,7 +154,7 @@
               </v-btn>
 
               <v-btn
-                class="mr-3 qckRplBtn font_dims txt-up btnsps"
+                class="mr-3 qckRplBtn font_dims txt-up btn_sup btnsps"
                 color="#7DA2F7"
                 @click="putNumberPhone()"
               >
@@ -342,7 +342,8 @@ export default {
       return this.$store.getters.getMsgCountsSms.sms_sent_count_abandoned_cart_1;
     },
     cart1Edit() {
-      return this.$store.getters.smsgetCarts1.active == true
+      return this.$store.getters.getActiveTab == "abndndcrt1" ||
+      this.$store.getters.getCart1Active
         ? true
         : false;
     },
@@ -416,17 +417,10 @@ export default {
       }else this.reqMandFields = true
     },
     editCart1() {
-      var boolval = null
-      this.getOrdrAbndCrtMsgCnt == '0' || this.getOrdrAbndCrtMsgCnt == false ? boolval = true : boolval = false
-      this.$store.commit("UPDATE_MSG_sms_cartOne",boolval)
-      this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts1.active
-      this.$store.dispatch("setMsg").then(() => {
-
-        // this.$store.dispatch("getMsg").then(() => {
-        //
-        //   this.$store.dispatch("updIsLoading", false);
-        // });
-      });
+        this.$store.dispatch("updActiveTab", "abndndcrt1").then(() => {
+          this.$store.dispatch("updCart1Active", true);
+          // console.log(response);
+        });
     },
     saveCart1() {
       this.cart1Edit = false;
@@ -518,9 +512,9 @@ export default {
       this.$store.dispatch("getMsg").then(() => {
         // console.log(response);
         this.sent_after = this.$store.state.msgVars.sms_abandoned_cart_1.sent_after + " hour";
-        // this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts1.active;
+        this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts1.active;
         this.ordrAbndCrtIntroMsg = this.$store.getters.smsgetCarts1.intro_message;
-        this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts1.active
+        // this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts1.active
         // this.ordrAbndCrtTitle = this.$store.getters.smsgetCarts1.title;
         // this.ordrAbndCrtSubTitle = this.$store.getters.smsgetCarts1.subtitle;
         // this.ordrAbndCrtBtnText = this.$store.getters.smsgetCarts1.button_text;
@@ -610,7 +604,21 @@ export default {
 .dbd svg{
   margin-top: 10px !important;
 }
+@media (max-width: 1479px) {
+  .btn_sup{
+    padding: 0px 7px !important;
+  }
+}
+
 @media (max-width: 1349px) {
+  .btn_sup{
+    padding: 0px 7px !important;
+    text-align: center;
+    font: normal normal 200 8px/12px Poppins !Important;
+    letter-spacing: 0px !Important;
+    color: #FFFFFF !Important;
+    opacity: 1;
+  }
   .btnsps{
     margin-top: 10px !important;
   }
@@ -618,7 +626,28 @@ export default {
     padding-right:50px !important;
     padding-left: 50px  !important;
   }
+  .resp_short_code{
+   line-height: 200%;
+  }
+  .short_code_ic_toolt{
+    padding-bottom: 19px !important;
+  }
 }
+@media (max-width: 1151px) {
+  .btn_sup{
+    padding: 0px 2px !important;
+    margin-right: 4px !important;
+    text-align: center;
+    font: normal normal 100 8px/12px Poppins !Important;
+    letter-spacing: 0px !Important;
+    color: #FFFFFF !Important;
+    opacity: 1;
+  }
+  .med_no_spc{
+    padding-right: 0px !important;
+  }
+}
+
 @media (min-width: 1400px) {
   .refIcondim {
     transform: scale(1.2);

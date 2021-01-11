@@ -7,14 +7,14 @@
         </h3>
       </v-col>
       <v-col cols="1" class="pl-0 ml-0 pt-0"> </v-col>
-<!--      <v-col cols="8.75" class="pt-0 pb-0 mb-0">-->
-<!--        <v-row align="center" justify="end" style="width:100%">-->
-<!--          <v-col cols="auto"> </v-col>-->
-<!--          <v-col cols="auto">-->
-<!--            <span><CartAttemptsSmS class="pt-0 pr-6"/></span>-->
-<!--          </v-col>-->
-<!--        </v-row>-->
-<!--      </v-col>-->
+      <v-col cols="8.75" class="pt-0 pb-0 mb-0">
+        <v-row align="center" justify="end" style="width:100%">
+          <v-col cols="auto"> </v-col>
+          <v-col cols="auto">
+            <span><CartAttemptsSmS class="pt-0 pr-6"/></span>
+          </v-col>
+        </v-row>
+      </v-col>
     </v-row>
     <v-row class="pt-1 mt-0" align="start" style="height:auto; width:100%">
       <CampaignSMSTabs style="height:100%; width:100%" />
@@ -25,13 +25,13 @@
 <script>
 import CampaignSMSTabs from "@/components/Campaigns/CampaignsSMS/CampaignSMSTabs.vue";
 // import CampaignView from "@/components/Campaigns/CampaignView.vue";
-// import CartAttemptsSmS from "../AbandonedCarts/CartAttemptsSms.vue";
+import CartAttemptsSmS from "../AbandonedCarts/CartAttempts.vue";
 
 export default {
   name: "CampaignsSms",
   components: {
     CampaignSMSTabs,
-    // CartAttemptsSmS
+    CartAttemptsSmS
   },
 };
 </script>

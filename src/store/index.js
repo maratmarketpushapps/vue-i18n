@@ -29,7 +29,23 @@ export default new Vuex.Store({
     },
 
     widgetVars: {
-      enabled_widgets:null,
+      enabled_widgets:{
+        sms: {
+          title:"sms",
+          enabled: false,
+          position: 1
+        },
+        facebook: {
+          title:"facebook",
+          enabled: false,
+          position: 2
+        },
+        whatsapp: {
+          title:"whatsApp",
+          enabled: false,
+          position: 3
+        }
+      },
       subscribe_type:"",
       apply_discount_instruction:"",
       discount_code:"",
@@ -73,7 +89,7 @@ export default new Vuex.Store({
       first_name: "",
       last_name: "",
       bussiness_name:"",
-      phone_number:"",
+      bussiness_phone_number:"",
       email: "",
       facebook_page_name: "",
       facebook_page_id: "",
@@ -254,7 +270,7 @@ export default new Vuex.Store({
         last_name: state.settingsVars.last_name,
         bussiness_name:state.settingsVars.bussiness_name,
         email: state.settingsVars.email,
-        phone_number:state.settingsVars.phone_number,
+        bussiness_phone_number:state.settingsVars.bussiness_phone_number,
         install_popop_show:state.settingsVars.install_popop_show
       };
       return obj;
@@ -416,7 +432,7 @@ export default new Vuex.Store({
       state.settingsVars.last_name = obj.last_name;
       state.settingsVars.bussiness_name = obj.bussiness_name;
       state.settingsVars.email = obj.email;
-      state.settingsVars.phone_number = obj.phone_number;
+      state.settingsVars.bussiness_phone_number = obj.bussiness_phone_number;
       state.settingsVars.facebook_page_name = obj.facebook_page_name;
       state.settingsVars.facebook_page_id = obj.facebook_page_id;
       state.settingsVars.website_id = obj.website_id;
@@ -457,7 +473,7 @@ export default new Vuex.Store({
       state.settingsVars.first_name = obj.first_name;
       state.settingsVars.last_name = obj.last_name;
       state.settingsVars.bussiness_name = obj.bussiness_name;
-      state.settingsVars.phone_number = obj.phone_number;
+      state.settingsVars.bussiness_phone_number = obj.bussiness_phone_number;
       state.settingsVars.email = obj.email;
     },
 
@@ -1227,6 +1243,7 @@ export default new Vuex.Store({
             "Content-Type": "application/json",
           },
         };
+        console.log(this.state.settingsVars)
         let data = this.state.settingsVars;
         // console.log(data);
         axios

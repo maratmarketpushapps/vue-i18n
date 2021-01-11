@@ -280,7 +280,10 @@ export default {
       return this.$store.getters.getMsgCountsSms.sms_sent_count_abandoned_cart_2;
     },
     cart1Edit() {
-      return this.$store.getters.smsgetCarts2.active == true ? true : false;
+      return this.$store.getters.getActiveTab == "abndndcrt1" ||
+      this.$store.getters.getCart1Active
+        ? true
+        : false;
     },
     swtchDisabled() {
       return this.$store.getters.getActiveTab == "abndndcrt2" ? false : true;
@@ -349,12 +352,10 @@ export default {
       }else this.reqMandFields = true
     },
     editCart1() {
-      var boolval = null
-      this.getOrdrAbndCrtMsgCnt == '0' || this.getOrdrAbndCrtMsgCnt == false ? boolval = true : boolval = false
-      this.$store.commit("UPDATE_MSG_sms_cartTwo",boolval)
-      this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts2.active
-      this.$store.dispatch("setMsg").then(() => {
-      });
+      this.$store.dispatch("updActiveTab", "abndndcrt2").then(() => {
+      this.$store.dispatch("updCart1Active", false);
+      // console.log(response);
+    });
     },
     saveCart1() {
       this.cart1Edit = false;
