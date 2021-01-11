@@ -5,7 +5,7 @@
         tile
         height="95%"
         style="border-radius: 25px 25px 0 0; pr-0"
-        width="90%"
+        width="95%"
         @click="toggleDialog()"
       >
         <v-container
@@ -341,23 +341,15 @@
             justify="center"
             v-if="wdgtTabcheck"
           >
-            <v-col cols="3"> </v-col>
-            <v-col cols="7">
-              <v-tabs
-                v-model="tab"
-                light
-                style="width:100%"
-                color="transparent"
-              >
-                <v-tab light>
-                  <component v-bind:is="getTabHeader1"></component>
-                </v-tab>
-                <v-divider vertical></v-divider>
-                <v-tab light>
-                  <component v-bind:is="getTabHeader2"></component>
-                </v-tab>
-              </v-tabs>
-            </v-col>
+            <v-tabs v-model="tab" light centered color="transparent">
+              <v-tab light>
+                <component v-bind:is="getTabHeader1"></component>
+              </v-tab>
+              <v-divider vertical></v-divider>
+              <v-tab light>
+                <component v-bind:is="getTabHeader2"></component>
+              </v-tab>
+            </v-tabs>
           </v-row>
 
           <v-row
@@ -474,7 +466,11 @@
                   <v-col cols="10">
                     <v-tabs-items v-model="tab" style="width:90%">
                       <v-tab-item :value="getTabKeySMS" style="width:100%">
-                        <v-row align="center" style="width:100%" class="ml-0 pt-5">
+                        <v-row
+                          align="center"
+                          style="width:100%"
+                          class="ml-0 pt-5"
+                        >
                           <vue-tel-input
                             v-model="optinNum"
                             dark
@@ -482,6 +478,7 @@
                             placeholder=""
                             :showDialCode="true"
                             mode="international"
+                            disabled
                           >
                           </vue-tel-input>
                         </v-row>
@@ -491,24 +488,32 @@
                         <v-row
                           style="width:100%;height:auto"
                           align="center"
-                          class="pl-2"
+                          class="pl-1"
                         >
-                          <v-checkbox input-value="true" disabled style="transform: scale(0.8)"> </v-checkbox>
-                          <span class="pr-1" style="font-size:80%">
-                            {{ $t("widgets.chckBxTxt1") }}
-                          </span>
-                          <v-icon color="#0084FF">
-                            mdi-facebook-messenger
-                          </v-icon>
-                          <span class="pl-2" style="font-size:80%">
-                            {{ $t("widgets.chckBxTxt2") }}
+                          <v-checkbox
+                            input-value="true"
+                            disabled
+                            style="transform: scale(0.8)"
+                            class="pr-0 mr-0"
+                          >
+                          </v-checkbox>
+                          <span>
+                            <span class="pr-0" style="font-size:80%">
+                              {{ $t("widgets.chckBxTxt1") }}
+                            </span>
+                            <v-icon
+                              color="#0084FF"
+                              style="transform: scale(0.8)"
+                            >
+                              mdi-facebook-messenger
+                            </v-icon>
+                            <span class="pl-0" style="font-size:80%">
+                              {{ $t("widgets.chckBxTxt2") }}
+                            </span>
                           </span>
                         </v-row>
 
-                        <v-row
-                          style="width:100%;height:30%"
-                          align="start"
-                        >
+                        <v-row style="width:100%;height:30%" align="start">
                           <v-container
                             style="height: 15px; width: 15px; border-radius:100%; background-color: #E6E7E8; transform: scale(0.8)"
                             class="mx-2"
@@ -526,6 +531,7 @@
                             >{{ $t("widgets.wrngUsrTxt") }}</a
                           >
                         </v-row>
+                        <v-row style="height:40%; width:100%"> </v-row>
                       </v-tab-item>
                     </v-tabs-items>
                   </v-col>
