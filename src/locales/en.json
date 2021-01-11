@@ -93,7 +93,12 @@
       "msg4": "After processing an order, send customers a Facebook message to inform them that you've shipped their order. The customers have to consent in order to be contacted via Facebook.",
       "msg5": "Quick Replies are possible reply variants that are offered to the user as part of your Facebook message. Feel free to customize the texts in your own language! There are 3 types of replies: \"Sounds good\" - the user can use this to let you know everything is fine. \"I have more questions\" - in this case, you should personally engage the user to clarify the questions related to the order. \"Unsubscribe\" - in this case, the user is not interested in purchasing and the app will not send any other messages to that particular user."
     },
-
+    "btn": {
+      "BusName": "BusinessName",
+      "CheckOutTotal": "CheckOutTotal",
+      "CheckOutLink": "CheckOutLink",
+      "StorePhoneNumber": "StorePhoneNumber"
+    },
     "tabs": {
       "item1": "Abandoned Cart Messages",
       "item2": "Order Receipt Message",
@@ -166,6 +171,8 @@
     "discountLabelinstruction": "Apply discount code instructions",
     "discSmallText":"To increase the chances of recovering sales, you can include a discount coupon in your message. To generate a coupon, go to ",
     "getTen":"GET10",
+    "discMarkHint":"Marketing & SEO / Coupons.",
+    "notSelTxt": "You need choose one",
     "addYourDiscCode":"Add your discount code",
     "discState":"Discount statement",
     "getTenDisc":"Get 10% discount!",

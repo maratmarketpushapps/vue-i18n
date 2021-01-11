@@ -128,7 +128,7 @@
                 color="#7DA2F7"
                 @click="putbussName()"
               >
-                BusinessName
+                {{$t("campaigns.btn.BusinessName")}}
               </v-btn>
               <router-link  to="/settings" class="dbd btnsps">
                 <iconEdit
@@ -141,7 +141,7 @@
                 color="#7DA2F7"
                 @click="putCheckOutTotal"
               >
-                CheckOutTotal
+                {{$t("campaigns.btn.CheckOutTotal")}}
               </v-btn>
 
               <v-btn
@@ -149,7 +149,7 @@
                 color="#7DA2F7"
                 @click="putCheckOutLink"
               >
-                CheckOutLink
+                {{$t("campaigns.btn.CheckOutLink")}}
               </v-btn>
 
               <v-btn
@@ -157,7 +157,7 @@
                 color="#7DA2F7"
                 @click="putNumberPhone()"
               >
-                StorePhoneNumber
+                {{$t("campaigns.btn.StorePhoneNumber")}}
               </v-btn>
               <router-link  to="/settings" class="dbd btnsps">
                 <iconEdit

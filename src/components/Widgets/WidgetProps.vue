@@ -101,7 +101,7 @@
             </v-col>
             <v-container class="pr-12 py-0 pos_sm_cont">
               <v-col cols="12" class="pl-0 pr-2 py-0">
-                <small class="smaller_text space_bottom ">{{$t('widgets.discSmallText')}}<b>Marketing & SEO / Coupons.</b></small>
+                <small class="smaller_text space_bottom ">{{$t('widgets.discSmallText')}}<b>{{ $t('widgets.discMarkHint')}}</b></small>
               </v-col>
             </v-container>
             <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 px-6 py-0 pos_smaller">
@@ -145,7 +145,7 @@
       <!--      <draggable v-model="coneData" class="row pl-4 pr-5 mb-6">-->
       <v-col  v-for="(ite,ke) in coneData" :key="ke+'item.id'" cols="11 offset-1"
               :class="notSel?'notSelSpc pl-0 mt-6 height_row':'pl-0 mt-0 height_row'" align-self="end">
-        <small :class="notSel?'notSelTxt mt-10':''" v-if="notSel">You need choose one</small>
+        <small :class="notSel?'notSelTxt mt-10':''" v-if="notSel">{{ $t("widgets.notSelTxt") }}</small>
         <v-col cols="12" class="connection_row height_row row py-0 my-0 pl-2 pr-0" row
                :class="notSel?'notSel connection_row height_row row py-0 my-0 pl-2 pr-0':'connection_row height_row row py-0 my-0 pl-2 pr-0'">
           <v-col cols="6" class="py-0 my-0 " >
@@ -666,7 +666,8 @@ export default {
           discount_code:this.discount_code,
           apply_discount_instruction:this.apply_discount_instruction,
         };
-        this.$store.commit('SAVE_WIDGET_FORM',objWidg)
+        this.$store.dispatch("updWdgtDiscForm",objWidg)
+        // this.$store.commit('SAVE_WIDGET_FORM',objWidg)
         this.$store.dispatch("updIsLoading", true).then(() => {
           this.$store.dispatch
           ("setWdgts").then((response) => {
@@ -689,7 +690,6 @@ export default {
         this.coneData[1].id = 2
       }
       setTimeout(() => this.coneData.reverse(), 200);
-
       // let a =
     },
     changesWidg(){
@@ -795,6 +795,9 @@ export default {
     },
     radioSelect(newValue) {
       this.$store.dispatch("updWdgtType", newValue);
+    },
+    discount_statement(newValue) {
+      this.$store.dispatch("updWdgtDiscStatment", newValue);
     },
     ttlText(newValue) {
       this.$store.dispatch("updWdgtTtl", newValue);

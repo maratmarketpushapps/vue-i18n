@@ -496,6 +496,12 @@ export default new Vuex.Store({
         : (state.widgetVars.changesSaved = false);
       state.widgetVars.facebook_widget_type = type;
     },
+    SET_WDGT_DISC_STATMENT(state, txt) {
+      txt == state.widgetVars.discount_statement
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.discount_statement = txt;
+    },
     SET_WDGT_HDR_TXT(state, txt) {
       txt == state.widgetVars.pop_up_title
         ? (state.widgetVars.changesSaved = true)
@@ -1086,6 +1092,18 @@ export default new Vuex.Store({
     updWdgtType({ commit }, type) {
       return new Promise((resolve) => {
         commit("SET_WDGT_TYPE", type);
+        resolve("success");
+      });
+    },
+    updWdgtDiscForm({ commit }, obj) {
+      return new Promise((resolve) => {
+        commit("SAVE_WIDGET_FORM", obj);
+        resolve("success");
+      });
+    },
+    updWdgtDiscStatment({ commit }, txt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_DISC_STATMENT", txt);
         resolve("success");
       });
     },
