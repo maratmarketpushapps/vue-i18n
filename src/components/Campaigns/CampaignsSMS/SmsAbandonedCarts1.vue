@@ -104,20 +104,20 @@
 
         <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
           <v-col class=" py-0 my-0 px-0">
-            <v-row style=" width:100%" align="center" class="py-0 my-0">
-              <v-col cols="3" class="pl-0 ml-3  py-0 my-0 ">
-                <span class="mt-1 pb-1  mr-0 qckRpl av_short_code resp_short_code">
+            <v-row style=" width:100%" align="center" class="py-0 my-0 pr-0">
+              <v-col :cols="$vuetify.breakpoint.md ? 5 : $vuetify.breakpoint.sm ? 6 : 4" class="pl-0 ml-3 pr-0 py-0 my-0 ">
+                <span class="mt-1 pb-1  mr-0 qckRpl av_short_code ">
                   {{ $t("campaigns.smsordrrcpt.svashortcod") }}
                 </span>
               </v-col>
-              <v-col class=" py-0 my-0 ml-0">
-                <v-row class="mt-0  py-0 my-0">
+              <v-col class=" py-0 my-0 pl-0">
+                <v-row class="mt-0  py-0 my-0 pl-0">
                   <TooltipIcon
                     :posRight="true"
                     :nudgeBottom="30"
                     :nudgeLeft="5"
                     :txt="$t('campaigns.infocons.msg5')"
-                    class="infoicon_scale mt-0 pt-0 short_code_ic_toolt"
+                    class="infoicon_scale mt-0 pt-0 "
                     style="top:30%; transform:scale(.85)"
                   />
                 </v-row>

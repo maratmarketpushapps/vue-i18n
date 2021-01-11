@@ -104,7 +104,7 @@
         <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
           <v-col class=" py-0 my-0 px-0">
             <v-row style=" width:100%" align="center" class="py-0 my-0">
-              <v-col cols="3" class="pl-0 ml-3  py-0 my-0">
+              <v-col  :cols="$vuetify.breakpoint.md ? 5 : $vuetify.breakpoint.sm ? 6 : 4" class="pl-0 ml-3  py-0 my-0">
                 <span class="mt-1 pb-1  mr-0 qckRpl av_short_code">
                   {{ $t("campaigns.smsordrrcpt.svashortcod") }}
                 </span>
@@ -280,10 +280,7 @@ export default {
       return this.$store.getters.getMsgCountsSms.sms_sent_count_abandoned_cart_2;
     },
     cart1Edit() {
-      return this.$store.getters.getActiveTab == "abndndcrt1" ||
-      this.$store.getters.getCart1Active
-        ? true
-        : false;
+      return this.$store.getters.getActiveTab == "abndndcrt2" ? true : false;
     },
     swtchDisabled() {
       return this.$store.getters.getActiveTab == "abndndcrt2" ? false : true;
