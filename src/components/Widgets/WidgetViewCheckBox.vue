@@ -13,6 +13,11 @@
           :style="bcgColor"
           style="height:20%; width:100%;"
         >
+          <v-row style="width:100%; height:30%" justify="end" align="center"> 
+            <v-icon>
+              mdi-close
+            </v-icon>
+          </v-row>
         </v-container>
         <v-overlay
           absolute
@@ -208,7 +213,7 @@
               <v-row style="width:100%" class="pl-8" align="start">
                 <v-btn :style="buttonProps" outlined @click="resetOptin">
                   <span :style="btnTextProps">
-                   {{ $t("widgets.cpDiscCode") }}
+                    {{ $t("widgets.cpDiscCode") }}
                   </span>
                 </v-btn>
               </v-row>
@@ -226,7 +231,7 @@
                     <vue-tel-input
                       v-model="optinNum"
                       dark
-                      style="width:90%;"
+                      style="width:100%;"
                       placeholder=""
                       :showDialCode="true"
                       mode="international"
@@ -291,6 +296,7 @@
               >{{ $t("widgets.wrngUsrTxt") }}</a
             >
           </v-row>
+
           <v-row
             style="height:15%;width:102.5%"
             align="end"
@@ -357,10 +363,11 @@
             align="center"
             justify="center"
             v-if="wdgtTabcheck && !wdgtIsDsc"
+            class="pl-2"
           >
             <v-tabs-items v-model="tab" style="width:90%">
               <v-tab-item :value="getTabKeySMS" style="width:100%">
-                <v-row justify="center" style="width:100%">
+                <v-row justify="center" style="width:100%" class="pl-4">
                   <vue-tel-input
                     v-model="optinNum"
                     dark
@@ -474,7 +481,7 @@
                           <vue-tel-input
                             v-model="optinNum"
                             dark
-                            style="width:80%;"
+                            style="width:100%;"
                             placeholder=""
                             :showDialCode="true"
                             mode="international"
