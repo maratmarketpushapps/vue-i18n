@@ -202,7 +202,7 @@ export default {
     },
   },
   mounted() {
-    setTimeout(() => this.popupWindow = this.$store.state.settingsVars.install_popop_show, 1000)
+    setTimeout(() => this.popupWindow = this.$store.getters.getAccountInfo.install_popop_show, 1000)
   }
 }
 

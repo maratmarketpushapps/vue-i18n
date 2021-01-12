@@ -61,6 +61,7 @@
             v-model="ordrAbndCrtSwitchLive"
             color="#006AFF"
             @change="activeStateChng()"
+            :disabled="swtchDisabled"
           >
           </v-switch>
         </v-row>

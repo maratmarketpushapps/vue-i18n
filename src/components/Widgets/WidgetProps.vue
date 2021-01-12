@@ -791,13 +791,26 @@ export default {
       deep: true,
       handler() {
         this.notSel = false
+        this.$store.dispatch("updWdgtConcType", this.coneData);
       }
+    },
+    def_selected(newValue) {
+      this.$store.dispatch("updWdgtDefSel", newValue);
+    },
+    discount_selected(newValue) {
+      this.$store.dispatch("updWdgtDisSel", newValue);
     },
     radioSelect(newValue) {
       this.$store.dispatch("updWdgtType", newValue);
     },
     discount_statement(newValue) {
       this.$store.dispatch("updWdgtDiscStatment", newValue);
+    },
+    discount_code(newValue) {
+      this.$store.dispatch("updWdgtDiscCode", newValue);
+    },
+    apply_discount_instruction(newValue) {
+      this.$store.dispatch("updWdgtDiscInst", newValue);
     },
     ttlText(newValue) {
       this.$store.dispatch("updWdgtTtl", newValue);

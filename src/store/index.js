@@ -46,6 +46,8 @@ export default new Vuex.Store({
           position: 3
         }
       },
+      def_selected:"",
+      discount_selected:"",
       subscribe_type:"",
       apply_discount_instruction:"",
       discount_code:"",
@@ -490,6 +492,18 @@ export default new Vuex.Store({
       state.widgetVars.popup_background_color = color;
       state.widgetVars.changesSaved = false;
     },
+    SET_WDGT_DEF_SEL(state, type) {
+      type == state.widgetVars.def_selected
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.def_selected = type;
+    },
+    SET_WDGT_DIS_SEL(state, type) {
+      type == state.widgetVars.discount_selected
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.discount_selected = type;
+    },
     SET_WDGT_TYPE(state, type) {
       type == state.widgetVars.facebook_widget_type
         ? (state.widgetVars.changesSaved = true)
@@ -501,6 +515,35 @@ export default new Vuex.Store({
         ? (state.widgetVars.changesSaved = true)
         : (state.widgetVars.changesSaved = false);
       state.widgetVars.discount_statement = txt;
+    },
+    SET_WDGT_DISC_CODE(state, txt) {
+      txt == state.widgetVars.discount_code
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.discount_code = txt;
+    },
+    SET_WDGT_DISC_INST(state, txt) {
+      txt == state.widgetVars.apply_discount_instruction
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.apply_discount_instruction = txt;
+    },
+    SAVE_WIDGET_CHECKBOX(state,coneData){
+      if(coneData[0].title == "sms"){
+        state.widgetVars.enabled_widgets.sms.title = coneData[0].title
+        state.widgetVars.enabled_widgets.sms.enabled = coneData[0].connection
+        state.widgetVars.enabled_widgets.sms.position = coneData[0].id
+        state.widgetVars.enabled_widgets.facebook.title = coneData[1].title
+        state.widgetVars.enabled_widgets.facebook.position = coneData[1].id
+        state.widgetVars.enabled_widgets.facebook.enabled = coneData[1].connection
+      }else {
+        state.widgetVars.enabled_widgets.facebook.title = coneData[0].title
+        state.widgetVars.enabled_widgets.facebook.enabled = coneData[0].connection
+        state.widgetVars.enabled_widgets.facebook.position = coneData[0].id
+        state.widgetVars.enabled_widgets.sms.title = coneData[1].title
+        state.widgetVars.enabled_widgets.sms.enabled = coneData[1].connection
+        state.widgetVars.enabled_widgets.sms.position= coneData[1].id
+      }
     },
     SET_WDGT_HDR_TXT(state, txt) {
       txt == state.widgetVars.pop_up_title
@@ -1089,6 +1132,18 @@ export default new Vuex.Store({
         resolve("success");
       });
     },
+    updWdgtDefSel({ commit }, type) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_DEF_SEL", type);
+        resolve("success");
+      });
+    },
+    updWdgtDisSel({ commit }, type) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_DIS_SEL", type);
+        resolve("success");
+      });
+    },
     updWdgtType({ commit }, type) {
       return new Promise((resolve) => {
         commit("SET_WDGT_TYPE", type);
@@ -1101,9 +1156,27 @@ export default new Vuex.Store({
         resolve("success");
       });
     },
+    updWdgtConcType({ commit }, arr) {
+      return new Promise((resolve) => {
+        commit("SAVE_WIDGET_CHECKBOX", arr);
+        resolve("success");
+      });
+    },
     updWdgtDiscStatment({ commit }, txt) {
       return new Promise((resolve) => {
         commit("SET_WDGT_DISC_STATMENT", txt);
+        resolve("success");
+      });
+    },
+    updWdgtDiscCode({ commit }, txt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_DISC_CODE", txt);
+        resolve("success");
+      });
+    },
+    updWdgtDiscInst({ commit }, txt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_DISC_INST", txt);
         resolve("success");
       });
     },
