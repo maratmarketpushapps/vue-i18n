@@ -1261,7 +1261,6 @@ export default new Vuex.Store({
             "Content-Type": "application/json",
           },
         };
-        console.log(this.state.settingsVars)
         let data = this.state.settingsVars;
         // console.log(data);
         axios

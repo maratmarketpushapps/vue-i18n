@@ -33,7 +33,7 @@
           <v-btn
             tile
             height="35px"
-            class="primary font_dims"
+            class="primary font_dims pad_resp"
             width="70%"
             :disabled="svBtnDsbldOrdrAbndCrt"
             style="font-size:100%; text-transform:none;"
@@ -71,7 +71,7 @@
       <v-row
         style="height: auto; width: 100%"
         v-show="cart1Edit"
-        class="pl-6 pr-9 mt-9"
+        class="pl-6 pr-9 mt-9 med_no_spc"
         align="start"
       >
         <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
@@ -100,25 +100,24 @@
           </v-col>
         </v-row>
 
-
         <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
           <v-col class=" py-0 my-0 px-0">
             <v-row style=" width:100%" align="center" class="py-0 my-0">
-              <v-col  :cols="$vuetify.breakpoint.md ? 5 : $vuetify.breakpoint.sm ? 6 : 4" class="pl-0 ml-3  py-0 my-0">
+              <v-col  :cols="$vuetify.breakpoint.md ? 6 : $vuetify.breakpoint.sm ? 7 : 5" class="pl-0 ml-3  py-0 my-0 d-flex justify-content-between">
                 <span class="mt-1 pb-1  mr-0 qckRpl av_short_code">
                   {{ $t("campaigns.smsordrrcpt.svashortcod") }}
                 </span>
+                <TooltipIcon
+                  :posRight="true"
+                  :nudgeBottom="30"
+                  :nudgeLeft="5"
+                  :txt="$t('campaigns.infocons.msg5')"
+                  class="infoicon_scale mt-0 pt-0 ml-3"
+                  style="top:30%; transform:scale(.85)"
+                />
               </v-col>
               <v-col class=" py-0 my-0 ml-0">
                 <v-row class="mt-0  py-0 my-0">
-                  <TooltipIcon
-                    :posRight="true"
-                    :nudgeBottom="30"
-                    :nudgeLeft="5"
-                    :txt="$t('campaigns.infocons.msg5')"
-                    class="infoicon_scale mt-0 pt-0"
-                    style="top:30%; transform:scale(.85)"
-                  />
                 </v-row>
               </v-col>
             </v-row>
@@ -128,7 +127,7 @@
                 color="#7DA2F7"
                 @click="putbussName()"
               >
-                {{$t("campaigns.btn.BusinessName")}}
+                {{$t("campaigns.btn.BusName")}}
               </v-btn>
               <router-link  to="/settings" class="dbd btnsps">
                 <iconEdit
@@ -137,7 +136,7 @@
                 />
               </router-link>
               <v-btn
-                class="mr-3 qckRplBtn font_dims txt-up btnsps"
+                class="mr-3 qckRplBtn font_dims txt-up btnsps btn_sup"
                 color="#7DA2F7"
                 @click="putCheckOutTotal"
               >
@@ -145,7 +144,7 @@
               </v-btn>
 
               <v-btn
-                class="mr-3 qckRplBtn font_dims txt-up btnsps"
+                class="mr-3 qckRplBtn font_dims txt-up btnsps btn_sup"
                 color="#7DA2F7"
                 @click="putCheckOutLink"
               >
@@ -153,7 +152,7 @@
               </v-btn>
 
               <v-btn
-                class="mr-3 qckRplBtn font_dims txt-up btnsps"
+                class="mr-3 qckRplBtn font_dims txt-up btnsps btn_sup"
                 color="#7DA2F7"
                 @click="putNumberPhone()"
               >
@@ -203,7 +202,7 @@
             color="indigo"
             @click="putOPtOut()"
           >
-            ADD OPT-OUT(recommended)
+            {{$t("campaigns.btn.AddOptOut")}}
           </v-btn>
         </v-row>
         <v-row style="height:19vh; width:100%" class="pl-4 pr-3"> </v-row>
@@ -436,7 +435,7 @@ export default {
   created() {
     // console.log(this.$store.state.settingsVars.bussiness_name)
     this.bussName = this.$store.state.settingsVars.bussiness_name;
-    this.phoneNumber = this.$store.getters.getAccountInfo.phone_number;
+    this.phoneNumber = this.$store.getters.getAccountInfo.bussiness_phone_number;
   },
   beforeCreate() {
     this.$store.dispatch("updIsLoading", true).then(() => {
@@ -526,9 +525,47 @@ export default {
 .dbd svg{
   margin-top: 10px !important;
 }
+@media (max-width: 1479px) {
+  .btn_sup{
+    padding: 0px 7px !important;
+  }
+}
+
 @media (max-width: 1349px) {
+  .btn_sup{
+    padding: 0px 7px !important;
+    text-align: center;
+    font: normal normal 200 8px/12px Poppins !Important;
+    letter-spacing: 0px !Important;
+    color: #FFFFFF !Important;
+    opacity: 1;
+  }
   .btnsps{
     margin-top: 10px !important;
+  }
+  .pad_resp{
+    padding-right:50px !important;
+    padding-left: 50px  !important;
+  }
+  .resp_short_code{
+    line-height: 200%;
+  }
+  .short_code_ic_toolt{
+    padding-bottom: 19px !important;
+  }
+}
+@media (max-width: 1151px) {
+  .btn_sup{
+    padding: 0px 2px !important;
+    margin-right: 4px !important;
+    text-align: center;
+    font: normal normal 100 8px/12px Poppins !Important;
+    letter-spacing: 0px !Important;
+    color: #FFFFFF !Important;
+    opacity: 1;
+  }
+  .med_no_spc{
+    padding-right: 0px !important;
   }
 }
 @media (min-width: 1400px) {

@@ -105,21 +105,22 @@
         <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
           <v-col class=" py-0 my-0 px-0">
             <v-row style=" width:100%" align="center" class="py-0 my-0 pr-0">
-              <v-col :cols="$vuetify.breakpoint.md ? 5 : $vuetify.breakpoint.sm ? 6 : 4" class="pl-0 ml-3 pr-0 py-0 my-0 ">
+              <v-col :cols="$vuetify.breakpoint.md ? 6 : $vuetify.breakpoint.sm ? 7 : 5" class="pl-0 ml-3 pr-0 py-0 my-0 d-flex justify-content-between">
                 <span class="mt-1 pb-1  mr-0 qckRpl av_short_code ">
                   {{ $t("campaigns.smsordrrcpt.svashortcod") }}
                 </span>
+                <TooltipIcon
+                  :posRight="true"
+                  :nudgeBottom="30"
+                  :nudgeLeft="5"
+                  :txt="$t('campaigns.infocons.msg5')"
+                  class="infoicon_scale mt-0 pt-0  ml-3"
+                  style="top:30%; transform:scale(.85)"
+                />
               </v-col>
               <v-col class=" py-0 my-0 pl-0">
                 <v-row class="mt-0  py-0 my-0 pl-0">
-                  <TooltipIcon
-                    :posRight="true"
-                    :nudgeBottom="30"
-                    :nudgeLeft="5"
-                    :txt="$t('campaigns.infocons.msg5')"
-                    class="infoicon_scale mt-0 pt-0 "
-                    style="top:30%; transform:scale(.85)"
-                  />
+
                 </v-row>
               </v-col>
             </v-row>
@@ -129,7 +130,7 @@
                 color="#7DA2F7"
                 @click="putbussName()"
               >
-                BusinessName
+                {{$t("campaigns.btn.BusName")}}
               </v-btn>
               <router-link  to="/settings" class="dbd  btnsps">
                 <iconEdit
@@ -142,7 +143,7 @@
                 color="#7DA2F7"
                 @click="putCheckOutTotal"
               >
-                CheckOutTotal
+                {{$t("campaigns.btn.CheckOutTotal")}}
               </v-btn>
 
               <v-btn
@@ -150,7 +151,7 @@
                 color="#7DA2F7"
                 @click="putCheckOutLink"
               >
-                CheckOutLink
+                {{$t("campaigns.btn.CheckOutLink")}}
               </v-btn>
 
               <v-btn
@@ -158,23 +159,13 @@
                 color="#7DA2F7"
                 @click="putNumberPhone()"
               >
-                StorePhoneNumber
+                {{$t("campaigns.btn.StorePhoneNumber")}}
               </v-btn>
               <router-link  to="/settings" class="dbd btnsps">
                   <iconEdit
                     class="mt-1 pt-0 mr-3 ml-0 px-0"
                   />
               </router-link>
-
-
-
-<!--              <v-btn-->
-<!--                class="mr-3 qckRplBtn font_dims"-->
-<!--                color="#7DA2F7"-->
-<!--                @click="ovrlyOrdrAbndCrt3()"-->
-<!--              >-->
-<!--                {{ ordrAbndCrtQckRpl3 }}-->
-<!--              </v-btn>-->
             </v-row>
           </v-col>
         </v-row>
@@ -213,61 +204,9 @@
             color="indigo"
             @click="putOPtOut()"
           >
-            ADD OPT-OUT(recommended)
+            {{$t("campaigns.btn.AddOptOut")}}
           </v-btn>
         </v-row>
-<!--        <v-row style="height:15%; width:100%" class="mt-2 pl-4 pr-3">-->
-<!--          &lt;!&ndash; <v-text-field-->
-<!--            :label="$t('campaigns.ordrrcpt.title')"-->
-<!--            v-model="ordrAbndCrtTitle"-->
-<!--            @change="activeStateChng()"-->
-<!--            @input="activeStateChng()"-->
-<!--            dense-->
-<!--            style="font-size:110%"-->
-<!--            class="mt-5 pb-1 ml-6 mr-9"-->
-<!--          >-->
-<!--          </v-text-field> &ndash;&gt;-->
-
-<!--          <v-text-field-->
-<!--            :label="$t('campaigns.ordrrcpt.btnTxt')"-->
-<!--            v-model="ordrAbndCrtBtnText"-->
-<!--            @change="activeStateChng()"-->
-<!--            @input="activeStateChng()"-->
-<!--            dense-->
-<!--            style="font-size:110%"-->
-<!--            class="mt-5 pb-1 ml-6 mr-9"-->
-<!--          >-->
-<!--          </v-text-field>-->
-<!--        </v-row>-->
-        <!-- <v-row style="height:15%; width:100%" class="pl-4 pr-3">
-          <v-col cols="6">
-            <v-text-field
-              :label="$t('campaigns.ordrrcpt.subTitle')"
-              v-model="ordrAbndCrtSubTitle"
-              @change="activeStateChng()"
-              @input="activeStateChng()"
-              dense
-              style="font-size:110%"
-              class="mt-2 pb-1 ml-3 mr-3"
-            >
-            </v-text-field>
-          </v-col>
-          <v-col cols="6">
-            <v-text-field
-              :label="$t('campaigns.ordrrcpt.btnTxt')"
-              v-model="ordrAbndCrtBtnText"
-              @change="activeStateChng()"
-              @input="activeStateChng()"
-              dense
-              style="font-size:110%"
-              class="mt-2 pb-1 ml-3 mr-7"
-            >
-            </v-text-field>
-          </v-col>
-        </v-row> -->
-
-
-
         <v-row style="height:19vh; width:100%" class="pl-4 pr-3"> </v-row>
       </v-row>
     </v-expand-transition>
@@ -505,7 +444,7 @@ export default {
   created() {
     // console.log(this.$store.state.settingsVars.bussiness_name)
     this.bussName = this.$store.state.settingsVars.bussiness_name;
-    this.phoneNumber = this.$store.getters.getAccountInfo.phone_number;
+    this.phoneNumber = this.$store.getters.getAccountInfo.bussiness_phone_number;
   },
   beforeCreate() {
     this.$store.dispatch("updIsLoading", true).then(() => {

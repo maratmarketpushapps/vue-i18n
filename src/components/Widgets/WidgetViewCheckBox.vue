@@ -208,7 +208,7 @@
               <v-row style="width:100%" class="pl-8" align="start">
                 <v-btn :style="buttonProps" outlined @click="resetOptin">
                   <span :style="btnTextProps">
-                    COPY DISCOUNT CODE
+                   {{ $t("widgets.cpDiscCode") }}
                   </span>
                 </v-btn>
               </v-row>
