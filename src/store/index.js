@@ -497,12 +497,14 @@ export default new Vuex.Store({
         ? (state.widgetVars.changesSaved = true)
         : (state.widgetVars.changesSaved = false);
       state.widgetVars.def_selected = type;
+      type == true ? state.widgetVars.discount_selected = false : state.widgetVars.discount_selected = true
     },
     SET_WDGT_DIS_SEL(state, type) {
       type == state.widgetVars.discount_selected
         ? (state.widgetVars.changesSaved = true)
         : (state.widgetVars.changesSaved = false);
       state.widgetVars.discount_selected = type;
+      type == true ? state.widgetVars.def_selected = false : state.widgetVars.def_selected = true
     },
     SET_WDGT_TYPE(state, type) {
       type == state.widgetVars.facebook_widget_type
