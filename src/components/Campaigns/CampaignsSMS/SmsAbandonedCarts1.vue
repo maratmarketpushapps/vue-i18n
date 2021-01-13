@@ -106,7 +106,7 @@
           <v-col class=" py-0 my-0 px-0">
             <v-row style=" width:100%" align="center" class="py-0 my-0 pr-0">
               <v-col :cols="$vuetify.breakpoint.md ? 6 : $vuetify.breakpoint.sm ? 7 : 5" class="pl-0 ml-3 pr-0 py-0 my-0 d-flex justify-content-between">
-                <span class="mt-1 pb-1  mr-0 qckRpl av_short_code ">
+                <span class=" pb-1  mr-0 qckRpl av_short_code ">
                   {{ $t("campaigns.smsordrrcpt.svashortcod") }}
                 </span>
                 <TooltipIcon
@@ -115,7 +115,7 @@
                   :nudgeLeft="5"
                   :txt="$t('campaigns.infocons.msg5')"
                   class="infoicon_scale mt-0 pt-0  ml-3"
-                  style="top:30%; transform:scale(.85)"
+                  style="top:80%; transform:scale(.85)"
                 />
               </v-col>
               <v-col class=" py-0 my-0 pl-0">
@@ -529,6 +529,7 @@ export default {
   letter-spacing: 0px;
   color: #4E5D6B;
   opacity: 1;
+  margin-top: 5px !important;
 }
 .btn_sup{
   text-align: center;

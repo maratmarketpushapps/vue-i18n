@@ -71,6 +71,20 @@
               ></v-date-picker
             >
           </v-menu>
+          <v-row>
+            <v-col>
+              <v-img src="@/assets/img/Subscribers/icon-channel.png" ></v-img>
+            </v-col>
+          </v-row>
+          <v-tab>
+            <v-col>
+              <v-select
+                flat
+                :items="selectedType"
+                label="Standard"
+              ></v-select>
+            </v-col>
+          </v-tab>
         </v-tabs>
       </v-col>
 
@@ -142,6 +156,7 @@ export default {
       itemKeyDat2: 0,
       itemKeyDat3: 0,
       activeTab: "2",
+      selectedType:['All Channels','SMS','Facebook'],
     };
   },
   methods: {
