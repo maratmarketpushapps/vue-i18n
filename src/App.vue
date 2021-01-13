@@ -7,7 +7,7 @@
       <v-overlay
         :absolute="absolute"
         :opacity="opacity"
-        :value="allStepsComp"
+        :value="false"
         :z-index="zIndex"
       >
         <v-card tile light height="400px" width="35vw" class=" font_dims">
@@ -188,15 +188,7 @@ export default {
           // console.log(response);
           this.$store.dispatch("getSettings").then(() => {
             this.$store.dispatch("getWidgets").then(() => {
-              this.$store.getters.getStep1Complete &&
-              this.$store.getters.getStep2Complete &&
-              this.$store.getters.getStep3Complete
-                ? this.$store.dispatch("updStepsCompOnload", true).then(() => {
-                    // this.$store.dispatch("updIsLoading", false);
-                  })
-                : this.$store.dispatch("updStepsCompOnload", false).then(() => {
-                    // this.$store.dispatch("updIsLoading", false);
-                  });
+
             });
           });
         });
@@ -265,14 +257,6 @@ export default {
     },
   },
   computed: {
-    allStepsComp() {
-      return (
-        this.$store.getters.getStep1Complete &&
-        this.$store.getters.getStep2Complete &&
-        this.$store.getters.getStep3Complete &&
-        !this.$store.getters.getStepsCompOnload
-      );
-    },
     isLoading() {
       return this.$store.getters.getisLoading;
     },

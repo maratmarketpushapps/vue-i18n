@@ -97,9 +97,6 @@ export default {
   },
   computed: {
     ...mapGetters(["getInstanceId"]),
-    step1Complete() {
-      return this.$store.getters.getStep1Complete;
-    },
     step2Complete() {
       return this.$store.getters.getStep2Complete;
     },

@@ -8,7 +8,6 @@ export default new Vuex.Store({
   state: {
     TOKEN: "JWT_TOKEN",
     instance_id: "bb-cc-dd",
-    stepsCompOnload: true,
     isLoading: 0,
     globalVars: {
       locale: "",
@@ -102,7 +101,6 @@ export default new Vuex.Store({
       receipt_message_id: "",
       shipped_message_id: "",
       widget_id: "",
-      setup_step_1_completed: true,
       setup_step_2_completed: true,
       setup_step_3_completed: true,
       cart_recovery_attempts_done: "",
@@ -257,9 +255,6 @@ export default new Vuex.Store({
     getUrl: (state) => {
       return state.globalVars.url;
     },
-    getStepsCompOnload: (state) => {
-      return state.stepsCompOnload;
-    },
     getisLoading: (state) => {
       return state.isLoading == 0 ? false : true;
     },
@@ -327,21 +322,6 @@ export default new Vuex.Store({
     getQreplyEdit: (state) => {
       return state.msgVars.qreplyEdit;
     },
-    getStep1Complete: (state) => {
-      return state.settingsVars.setup_step_1_completed;
-    },
-    getStep2Complete: (state) => {
-      return state.msgVars.step2Com;
-
-      // state.msgVars.abandoned_cart_1.active ||
-      //   state.msgVars.abandoned_cart_2.active
-      //   ? true
-      //   : false;
-    },
-    getStep3Complete: (state) => {
-      return state.widgetVars.step3Comp;
-    },
-
     getDash: (state) => {
       return state.dashVars;
     },
@@ -350,7 +330,7 @@ export default new Vuex.Store({
     },
     getSubs: (state) => {
       return state.subVars;
-    },
+    }
   },
   mutations: {
     // Displays the modal with the cart recovery steps.
@@ -431,7 +411,6 @@ export default new Vuex.Store({
       state.widgetVars.active
         ? (state.widgetVars.step3Comp = true)
         : (state.widgetVars.step3Comp = false);
-      state.widgetVars.active ? 1 : (state.stepsCompOnload = false);
     },
 
     SET_SETTINGS_VALS(state, obj) {
@@ -450,7 +429,6 @@ export default new Vuex.Store({
       state.settingsVars.receipt_message_id = obj.receipt_message_id;
       state.settingsVars.shipped_message_id = obj.shipped_message_id;
       state.settingsVars.widget_id = obj.widget_id;
-      state.settingsVars.setup_step_1_completed = obj.setup_step_1_completed;
       state.settingsVars.setup_step_2_completed = obj.setup_step_2_completed;
       state.settingsVars.setup_step_3_completed = obj.setup_step_3_completed;
       state.settingsVars.cart_recovery_attempts_done =
@@ -702,8 +680,6 @@ export default new Vuex.Store({
       state.settingsVars.facebook_user_id = obj.facebook_user_id;
       state.settingsVars.facebook_short_access_token =
         obj.facebook_short_access_token;
-      state.settingsVars.setup_step_1_completed = obj.setup_step_1_completed;
-      !obj.setup_step_1_completed ? (state.stepsCompOnload = false) : 1;
     },
 
 
@@ -789,13 +765,6 @@ export default new Vuex.Store({
       state.msgVars.sent_count.sent_count_order_shipped =
         obj.sent_count.sent_count_order_shipped;
 
-      obj.abandoned_cart_1.active || obj.abandoned_cart_2.active
-        ? (state.msgVars.step2Com = true)
-        : (state.msgVars.step2Com = false);
-
-      obj.abandoned_cart_1.active || obj.abandoned_cart_2.active
-        ? 1
-        : (state.stepsCompOnload = false);
     },
     SET_ORDR_RCPT(state, obj) {
       state.msgVars.order_receipt.button_text = obj.button_text;
@@ -866,10 +835,6 @@ export default new Vuex.Store({
     },
     SET_MSG_QREPLY_EDIT(state, val) {
       state.msgVars.qreplyEdit = val;
-    },
-
-    SET_STEPS_COMP_ON_LOAD(state, val) {
-      state.stepsCompOnload = val;
     },
     SET_IS_LOADING(state, val) {
       val ? state.isLoading++ : state.isLoading--;
@@ -1513,12 +1478,6 @@ export default new Vuex.Store({
     updQreplyEdit({ commit }, val) {
       return new Promise((resolve) => {
         commit("SET_MSG_QREPLY_EDIT", val);
-        resolve("success");
-      });
-    },
-    updStepsCompOnload({ commit }, val) {
-      return new Promise((resolve) => {
-        commit("SET_STEPS_COMP_ON_LOAD", val);
         resolve("success");
       });
     },

@@ -81,7 +81,7 @@
                     {{ $t("ModalStepsCompleted.stepIndex3") }}
                     {{ $t("ModalStepsCompleted." + recoveryType + "Instruction3") }}
                   </v-col>
-                  <v-col v-if="getStep2Done">
+                  <v-col v-if="getStep3Done">
                     {{ $t("ModalStepsCompleted.done") }}
                   </v-col>
                   <v-col v-else>
