@@ -26,38 +26,7 @@
               style="top:30%"
             />
           </v-tab>
-          <!-- <v-tab
-            class="font_dims"
-            key="2"
-            @click="refreshComp2()"
-            style="text-transform:none;"
-          >
-            {{ $t("campaigns.tabs.item2") }}
-            <TooltipIcon
-              :posRight="true"
-              :nudgeBottom="30"
-              :nudgeLeft="5"
-              :txt="$t('campaigns.infocons.msg3')"
-              class="infoicon_scale "
-              style="top:30%"
-            />
-          </v-tab>
-          <v-tab
-            class="font_dims"
-            key="3"
-            @click="refreshComp3()"
-            style="text-transform:none;"
-          >
-            {{ $t("campaigns.tabs.item3") }}
-            <TooltipIcon
-              :posRight="true"
-              :nudgeBottom="30"
-              :nudgeLeft="5"
-              :txt="$t('campaigns.infocons.msg4')"
-              class="infoicon_scale "
-              style="top:30%"
-            />
-          </v-tab> -->
+
         </v-tabs>
       </v-col>
     </v-row>
@@ -74,8 +43,6 @@
             <br />
             <AbandonedCarts2 />
           </v-tab-item>
-<!--          <v-tab-item key="2" :eager="false"> <OrderReceipt /> </v-tab-item>-->
-<!--          <v-tab-item key="3" :eager="false"><OrderShipped /> </v-tab-item>-->
         </v-tabs-items>
       </v-col>
       <v-col cols="5" style="padding-left: 2%">
@@ -90,8 +57,7 @@ import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 import AbandonedCarts1 from "@/components/Campaigns/CampaignsSMS/SmsAbandonedCarts1.vue";
 import AbandonedCarts2 from "@/components/Campaigns/CampaignsSMS/SmsAbandonedCarts2.vue";
 import CampaignView from "@/components/Campaigns/CampaignsSMS/SmsCampaignView.vue";
-// import moment from "moment-timezone";
-// import { mapGetters } from "vuex";
+
 export default {
   name: "CampaignTabs",
   components: {
@@ -99,8 +65,6 @@ export default {
     AbandonedCarts1,
     AbandonedCarts2,
     CampaignView,
-    // OrderReceipt,
-    // OrderShipped,
   },
   data() {
     return {
@@ -154,9 +118,6 @@ export default {
       this.$store.dispatch("updCart1Active", true);
       // console.log(response);
     });
-  },
-  computed: {
-    // ...mapGetters(["getCreatedAt"]),
   },
 };
 </script>

@@ -53,7 +53,7 @@ export default new Vuex.Store({
       id: 0,
       instance_id: "",
       website_id: 0,
-      facebook_widget_type: "",
+      facebook_widget_type: "Checkbox",
       header_background_color: "",
       popup_background_color: "",
       pop_up_title: "",
@@ -396,7 +396,7 @@ export default new Vuex.Store({
       state.widgetVars.subscribe_type = obj.subscribe_type
       state.widgetVars.instance_id = obj.instance_id;
       state.widgetVars.website_id = obj.website_id;
-      state.widgetVars.facebook_widget_type = obj.facebook_widget_type;
+      // state.widgetVars.facebook_widget_type = obj.facebook_widget_type;
       state.widgetVars.header_background_color = obj.header_background_color;
       state.widgetVars.popup_background_color = obj.popup_background_color;
       state.widgetVars.pop_up_title = obj.pop_up_title;
@@ -497,6 +497,13 @@ export default new Vuex.Store({
       state.widgetVars.popup_background_color = color;
       state.widgetVars.changesSaved = false;
     },
+    SET_WDGT_DEF_SEL(state, type) {
+      type == state.widgetVars.subscribe_type
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.subscribe_type = type;
+      type == 'subscribe' ? state.widgetVars.subscribe_type = 'subscribe' : state.widgetVars.subscribe_type = 'deafult'
+    },
     SET_WDGT_TYPE(state, type) {
       type == state.widgetVars.facebook_widget_type
         ? (state.widgetVars.changesSaved = true)
@@ -508,6 +515,35 @@ export default new Vuex.Store({
         ? (state.widgetVars.changesSaved = true)
         : (state.widgetVars.changesSaved = false);
       state.widgetVars.discount_statement = txt;
+    },
+    SET_WDGT_DISC_CODE(state, txt) {
+      txt == state.widgetVars.discount_code
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.discount_code = txt;
+    },
+    SET_WDGT_DISC_INST(state, txt) {
+      txt == state.widgetVars.apply_discount_instruction
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.apply_discount_instruction = txt;
+    },
+    SAVE_WIDGET_CHECKBOX(state,coneData){
+      if(coneData[0].title == "sms"){
+        state.widgetVars.enabled_widgets.sms.title = coneData[0].title
+        state.widgetVars.enabled_widgets.sms.enabled = coneData[0].connection
+        state.widgetVars.enabled_widgets.sms.position = coneData[0].id
+        state.widgetVars.enabled_widgets.facebook.title = coneData[1].title
+        state.widgetVars.enabled_widgets.facebook.position = coneData[1].id
+        state.widgetVars.enabled_widgets.facebook.enabled = coneData[1].connection
+      }else {
+        state.widgetVars.enabled_widgets.facebook.title = coneData[0].title
+        state.widgetVars.enabled_widgets.facebook.enabled = coneData[0].connection
+        state.widgetVars.enabled_widgets.facebook.position = coneData[0].id
+        state.widgetVars.enabled_widgets.sms.title = coneData[1].title
+        state.widgetVars.enabled_widgets.sms.enabled = coneData[1].connection
+        state.widgetVars.enabled_widgets.sms.position= coneData[1].id
+      }
     },
     SET_WDGT_HDR_TXT(state, txt) {
       txt == state.widgetVars.pop_up_title
@@ -1108,6 +1144,18 @@ export default new Vuex.Store({
         resolve("success");
       });
     },
+    updWdgtDefSel({ commit }, type) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_DEF_SEL", type);
+        resolve("success");
+      });
+    },
+    updWdgtDisSel({ commit }, type) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_DIS_SEL", type);
+        resolve("success");
+      });
+    },
     updWdgtType({ commit }, type) {
       return new Promise((resolve) => {
         commit("SET_WDGT_TYPE", type);
@@ -1120,9 +1168,27 @@ export default new Vuex.Store({
         resolve("success");
       });
     },
+    updWdgtConcType({ commit }, arr) {
+      return new Promise((resolve) => {
+        commit("SAVE_WIDGET_CHECKBOX", arr);
+        resolve("success");
+      });
+    },
     updWdgtDiscStatment({ commit }, txt) {
       return new Promise((resolve) => {
         commit("SET_WDGT_DISC_STATMENT", txt);
+        resolve("success");
+      });
+    },
+    updWdgtDiscCode({ commit }, txt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_DISC_CODE", txt);
+        resolve("success");
+      });
+    },
+    updWdgtDiscInst({ commit }, txt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_DISC_INST", txt);
         resolve("success");
       });
     },
@@ -1280,7 +1346,6 @@ export default new Vuex.Store({
             "Content-Type": "application/json",
           },
         };
-        console.log(this.state.settingsVars)
         let data = this.state.settingsVars;
         // console.log(data);
         axios

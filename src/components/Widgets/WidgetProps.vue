@@ -62,16 +62,18 @@
         <v-row>
           <v-col cols="2 offset-1" class="py-0 mb-0 px-0">
             <v-checkbox
-              @change="def_selected == false ? discount_selected = true :discount_selected = false"
+              @change="def_selected == false ? discount_selected = 'subscribe' : discount_selected = ''"
               v-model="def_selected"
+              value="deafult"
               label="Default"
               class="mt-0 ml-2"
             ></v-checkbox>
           </v-col >
           <v-col class="py-0">
             <v-checkbox
-              @change="discount_selected == false ? discount_selected = true : def_selected = false"
+              @change="discount_selected == false ? discount_selected = 'deafult' : def_selected = ''"
               v-model="discount_selected"
+              value="subscribe"
               class="checkbox_widget mt-0 mb-0"
               label="Discount (recommended)"
             ></v-checkbox>
@@ -710,9 +712,9 @@ export default {
         this.coneData[0].title = "sms"
       }
       if(this.subType == "subscribe"){
-        this.discount_selected = true
-        this.def_selected = false
-      }else this.def_selected = true , this.discount_selected = false
+        this.discount_selected = 'subscribe'
+        this.def_selected = ''
+      }else this.def_selected = 'deafult' , this.discount_selected = ''
     }
   },
   computed: {
@@ -792,13 +794,26 @@ export default {
       deep: true,
       handler() {
         this.notSel = false
+        this.$store.dispatch("updWdgtConcType", this.coneData);
       }
+    },
+    def_selected(newValue) {
+      this.$store.dispatch("updWdgtDefSel", newValue);
+    },
+    discount_selected(newValue) {
+      this.$store.dispatch("updWdgtDefSel", newValue);
     },
     radioSelect(newValue) {
       this.$store.dispatch("updWdgtType", newValue);
     },
     discount_statement(newValue) {
       this.$store.dispatch("updWdgtDiscStatment", newValue);
+    },
+    discount_code(newValue) {
+      this.$store.dispatch("updWdgtDiscCode", newValue);
+    },
+    apply_discount_instruction(newValue) {
+      this.$store.dispatch("updWdgtDiscInst", newValue);
     },
     ttlText(newValue) {
       this.$store.dispatch("updWdgtTtl", newValue);

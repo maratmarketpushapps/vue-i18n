@@ -97,7 +97,8 @@
       "BusName": "BusinessName",
       "CheckOutTotal": "CheckOutTotal",
       "CheckOutLink": "CheckOutLink",
-      "StorePhoneNumber": "StorePhoneNumber"
+      "StorePhoneNumber": "StorePhoneNumber",
+      "AddOptOut":"ADD OPT-OUT(recommended)"
     },
     "tabs": {
       "item1": "Abandoned Cart Messages",
@@ -153,7 +154,8 @@
       "title": "Title",
       "subTitle": "Subtitle",
       "btnTxt": "Button Text",
-      "svashortcod": "Available ShortCodes"
+      "svashortcod": "Available ShortCodes",
+      "dateTime":"Thursday 20:13"
     },
 
     "ordeshpd": {
@@ -173,6 +175,7 @@
     "getTen":"GET10",
     "discMarkHint":"Marketing & SEO / Coupons.",
     "notSelTxt": "You need choose one",
+    "cpDiscCode": "COPY DISCOUNT CODE",
     "addYourDiscCode":"Add your discount code",
     "discState":"Discount statement",
     "getTenDisc":"Get 10% discount!",

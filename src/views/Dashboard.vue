@@ -42,17 +42,19 @@ import ModalJoin from "@/components/Modal/ModalJoin.vue";
 export default {
   name: "dashboard",
   data:()=>({
-    modal:true,
+    modal:false,
   }),
   methods:{
     getTimeZone(){
-      this.$store.getters.getSettingsState.timezone_id === ""
+      // this.$store.getters.getSettingsState.timezone_id === "" &&
+      // alert(this.$store.getters.getAccountInfo.install_popop_show)
+       this.$store.getters.getAccountInfo.install_popop_show == true
         ? this.modal = true : this.modal = false
     }
   },
   components: { Tabs, TooltipIcon, CartAttempts,ModalJoin },
   created() {
-    this.getTimeZone()
+    setTimeout(() =>  this.getTimeZone(), 1800)
   },
   mounted () {
     window.scrollTo(0,0);

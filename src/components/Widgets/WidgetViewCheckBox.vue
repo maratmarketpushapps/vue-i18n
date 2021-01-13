@@ -1,11 +1,11 @@
 <template>
-  <v-container fluid style="height:750px">
+  <v-container fluid style="height:790px">
     <v-row justify="center" style="height:90%">
       <v-card
         tile
         height="95%"
         style="border-radius: 25px 25px 0 0; pr-0"
-        width="90%"
+        width="95%"
         @click="toggleDialog()"
       >
         <v-container
@@ -13,6 +13,11 @@
           :style="bcgColor"
           style="height:20%; width:100%;"
         >
+          <v-row style="width:100%; height:30%" justify="end" align="center"> 
+            <v-icon>
+              mdi-close
+            </v-icon>
+          </v-row>
         </v-container>
         <v-overlay
           absolute
@@ -48,14 +53,14 @@
           id="modalContainer"
         >
           <v-row
-            style="height:20%;width:102.5%"
+            style="height:17%;width:102.5%"
             align="center"
             justify="center"
           >
             <span :style="titleProps">{{ titleText }}</span>
           </v-row>
           <v-row
-            style="height:15%;width:102.5%"
+            style="height:19%;width:102.5%"
             align="center"
             justify="center"
             v-if="wdgtTabcheck"
@@ -208,7 +213,7 @@
               <v-row style="width:100%" class="pl-8" align="start">
                 <v-btn :style="buttonProps" outlined @click="resetOptin">
                   <span :style="btnTextProps">
-                    COPY DISCOUNT CODE
+                    {{ $t("widgets.cpDiscCode") }}
                   </span>
                 </v-btn>
               </v-row>
@@ -226,7 +231,7 @@
                     <vue-tel-input
                       v-model="optinNum"
                       dark
-                      style="width:90%;"
+                      style="width:100%;"
                       placeholder=""
                       :showDialCode="true"
                       mode="international"
@@ -291,6 +296,7 @@
               >{{ $t("widgets.wrngUsrTxt") }}</a
             >
           </v-row>
+
           <v-row
             style="height:15%;width:102.5%"
             align="end"
@@ -341,23 +347,15 @@
             justify="center"
             v-if="wdgtTabcheck"
           >
-            <v-col cols="3"> </v-col>
-            <v-col cols="7">
-              <v-tabs
-                v-model="tab"
-                light
-                style="width:100%"
-                color="transparent"
-              >
-                <v-tab light>
-                  <component v-bind:is="getTabHeader1"></component>
-                </v-tab>
-                <v-divider vertical></v-divider>
-                <v-tab light>
-                  <component v-bind:is="getTabHeader2"></component>
-                </v-tab>
-              </v-tabs>
-            </v-col>
+            <v-tabs v-model="tab" light centered color="transparent">
+              <v-tab light>
+                <component v-bind:is="getTabHeader1"></component>
+              </v-tab>
+              <v-divider vertical></v-divider>
+              <v-tab light>
+                <component v-bind:is="getTabHeader2"></component>
+              </v-tab>
+            </v-tabs>
           </v-row>
 
           <v-row
@@ -365,10 +363,11 @@
             align="center"
             justify="center"
             v-if="wdgtTabcheck && !wdgtIsDsc"
+            class="pl-2"
           >
             <v-tabs-items v-model="tab" style="width:90%">
               <v-tab-item :value="getTabKeySMS" style="width:100%">
-                <v-row justify="center" style="width:100%">
+                <v-row justify="center" style="width:100%" class="pl-4">
                   <vue-tel-input
                     v-model="optinNum"
                     dark
@@ -474,14 +473,19 @@
                   <v-col cols="10">
                     <v-tabs-items v-model="tab" style="width:90%">
                       <v-tab-item :value="getTabKeySMS" style="width:100%">
-                        <v-row align="center" style="width:100%" class="ml-0">
+                        <v-row
+                          align="center"
+                          style="width:100%"
+                          class="ml-0 pt-5"
+                        >
                           <vue-tel-input
                             v-model="optinNum"
                             dark
-                            style="width:80%;"
+                            style="width:100%;"
                             placeholder=""
                             :showDialCode="true"
                             mode="international"
+                            disabled
                           >
                           </vue-tel-input>
                         </v-row>
@@ -489,43 +493,52 @@
 
                       <v-tab-item :value="getTabKeyFb">
                         <v-row
-                          style="width:100%;height:40%"
+                          style="width:100%;height:auto"
                           align="center"
-                          class="pl-2"
+                          class="pl-1"
                         >
-                          <v-checkbox input-value="true" disabled> </v-checkbox>
-                          <span class="pr-1">
-                            {{ $t("widgets.chckBxTxt1") }}
-                          </span>
-                          <v-icon color="#0084FF">
-                            mdi-facebook-messenger
-                          </v-icon>
-                          <span class="pl-2">
-                            {{ $t("widgets.chckBxTxt2") }}
+                          <v-checkbox
+                            input-value="true"
+                            disabled
+                            style="transform: scale(0.8)"
+                            class="pr-0 mr-0"
+                          >
+                          </v-checkbox>
+                          <span>
+                            <span class="pr-0" style="font-size:80%">
+                              {{ $t("widgets.chckBxTxt1") }}
+                            </span>
+                            <v-icon
+                              color="#0084FF"
+                              style="transform: scale(0.8)"
+                            >
+                              mdi-facebook-messenger
+                            </v-icon>
+                            <span class="pl-0" style="font-size:80%">
+                              {{ $t("widgets.chckBxTxt2") }}
+                            </span>
                           </span>
                         </v-row>
 
-                        <v-row
-                          style="width:100%;height:30%"
-                          align="center"
-                        >
+                        <v-row style="width:100%;height:30%" align="start">
                           <v-container
-                            style="height: 26px; width: 26px; border-radius:100%; background-color: #E6E7E8"
+                            style="height: 15px; width: 15px; border-radius:100%; background-color: #E6E7E8; transform: scale(0.8)"
                             class="mx-2"
                           ></v-container>
 
                           <span
-                            style="font-size: 14px; height:100%; color: #B3B7BA"
+                            style="font-size: 70%; height:100%; color: #B3B7BA"
                             class="pt-1 mr-2"
                             >{{ $t("widgets.fbUserName") }}</span
                           >
 
                           <a
-                            style="font-size: 13px; height:100%; color: #B3B7BA; text-decoration:underline"
+                            style="font-size: 70%; height:100%; color: #B3B7BA; text-decoration:underline"
                             class="pt-1"
                             >{{ $t("widgets.wrngUsrTxt") }}</a
                           >
                         </v-row>
+                        <v-row style="height:40%; width:100%"> </v-row>
                       </v-tab-item>
                     </v-tabs-items>
                   </v-col>

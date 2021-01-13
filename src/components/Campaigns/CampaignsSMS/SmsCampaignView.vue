@@ -11,7 +11,7 @@
       <v-col cols="12" class="px-0 mx-0 mb-1">
 
       </v-col>
-      <v-col cols="12 mb-0 pb-0 mt-10 pt-12" class="d-flex justify-center">Thursday 20:13</v-col>
+      <v-col cols="12 mb-0 pb-0 mt-10 pt-12" class="d-flex justify-center"> {{ $t("campaigns.smsordrrcpt.dateTime")}}</v-col>
       <v-row
         class=""
         @click="toggleDialog()"
@@ -40,11 +40,9 @@
 </template>
 
 <script>
-// import inputCapit from "@/assets/icons/AbandonedCarts/input-image-sms.svg";
 
 export default {
   name: "CampaignView",
-  // components: { inputCapit },
   data() {
     return {
       headerImg: require("@/assets/img/campaign-view-header.png"),
@@ -58,7 +56,6 @@ export default {
       // this.dialog = !this.dialog;
     },
   },
-
   computed: {
     dialogShow() {
       return this.dialog && !this.$store.getters.getQreplyEdit;
@@ -73,8 +70,8 @@ export default {
           }
           return retStr;
         };
-        messageText = messageText.allReplace({'{{StorePhoneNumber}}': this.$store.getters.getAccountInfo.phone_number,
-          '{{BusinessName}}':this.$store.state.settingsVars.bussiness_name,'{{CheckOutTotal}}':'{{CheckOutTotal}}',
+        messageText = messageText.allReplace({'{{StorePhoneNumber}}': this.$store.getters.getAccountInfo.bussiness_phone_number,
+          '{{BusinessName}}':this.$store.getters.getAccountInfo.bussiness_name,'{{CheckOutTotal}}':'{{CheckOutTotal}}',
           '{{CheckOutLink}}':'{{CheckOutLink}}'})
         return messageText;
       } else if (this.$store.getters.getActiveTab == "abndndcrt2") {
@@ -86,8 +83,8 @@ export default {
           }
           return retStr;
         };
-        messageText = messageText.allReplace({'{{StorePhoneNumber}}': this.$store.getters.getAccountInfo.phone_number,
-          '{{BusinessName}}':this.$store.state.settingsVars.bussiness_name,'{{CheckOutTotal}}':'{{CheckOutTotal}}',
+        messageText = messageText.allReplace({'{{StorePhoneNumber}}': this.$store.getters.getAccountInfo.bussiness_phone_number,
+          '{{BusinessName}}':this.$store.getters.getAccountInfo.bussiness_name,'{{CheckOutTotal}}':'{{CheckOutTotal}}',
           '{{CheckOutLink}}':'{{CheckOutLink}}'})
         return messageText;
       } else if (this.$store.getters.getActiveTab == "ordrrcpt") {
