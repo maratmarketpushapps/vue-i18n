@@ -233,7 +233,9 @@ export default new Vuex.Store({
           step1: false,
           step2: false,
           step3: false
-      }
+      },
+      smsShowCartRecoveryStepsModal: false,
+      fbShowCartRecoveryStepsModal: false,
     }
   },
   getters: {
@@ -343,14 +345,19 @@ export default new Vuex.Store({
     getDash: (state) => {
       return state.dashVars;
     },
-    // getStepsCompleted: (state) => {
-    //   return state.setupCompletedVars;
-    // },
+    getStepsCompleted: (state) => {
+       return state.setupCompletedVars;
+    },
     getSubs: (state) => {
       return state.subVars;
     },
   },
   mutations: {
+    // Displays the modal with the cart recovery steps.
+    UPDATE_CART_RECOVERY_MODAL_SHOW(state, obj) {
+      console.log("called " + obj.type + " " + obj.status);
+      state.setupCompletedVars[obj.type + 'ShowCartRecoveryStepsModal'] = obj.status;
+    },
     // smscart 1
     UPDATE_MSG_sms_cartOne(state,val) {
       state.msgVars.sms_abandoned_cart_1.active = val
@@ -870,11 +877,16 @@ export default new Vuex.Store({
         obj.cart_recovery.carts_recovered;
     },
     SET_STEPS_COMPLETED_VALS(state, obj) {
-      console.log(obj);
-      /*
-      state.setupCompletedVars.smsCartRecovery =
-        obj.cart_recovery.carts_recovered;
-      */
+      state.setupCompletedVars.smsCartRecovery = obj.smsCartRecovery;
+      state.setupCompletedVars.smsCartRecoverySteps.step1 = obj.smsCartRecoverySteps.step1;
+      state.setupCompletedVars.smsCartRecoverySteps.step2 = obj.smsCartRecoverySteps.step2;
+      state.setupCompletedVars.smsCartRecoverySteps.step3 = obj.smsCartRecoverySteps.step3;
+
+      state.setupCompletedVars.fbCartRecovery = obj.fbCartRecovery;
+      state.setupCompletedVars.fbCartRecoverySteps.step1 = obj.fbCartRecoverySteps.step1;
+      state.setupCompletedVars.fbCartRecoverySteps.step2 = obj.fbCartRecoverySteps.step2;
+      state.setupCompletedVars.fbCartRecoverySteps.step3 = obj.fbCartRecoverySteps.step3;
+
     },
     SET_SUB_VALS(state, obj) {
       state.subVars.former_subscription_plan = obj.former_subscription_plan;
@@ -914,6 +926,13 @@ export default new Vuex.Store({
 
   },
   actions: {
+    updateCartRecoveryModalShow({ commit }, obj) {
+      return new Promise((resolve) => {
+        // console.log("updateCart :: " + JSON.stringify(obj));
+        commit("UPDATE_CART_RECOVERY_MODAL_SHOW", obj);
+        resolve("success");
+      });
+    },
     updateToken({ commit }, token) {
       return new Promise((resolve) => {
         commit("SET_TOKEN", token);
@@ -1468,31 +1487,29 @@ export default new Vuex.Store({
           });
       });
     },
+    // Steps Completed API
+    getStepsCompleted({ commit }) {
+      return new Promise((resolve, reject) => {
+        let url = `${process.env.VUE_APP_API_URL_DEV}/getStepsCompleted`;
+        let headers = {
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
+        };
 
-    //Subscription API
-    // getStepsCompleted({ commit }) {
-    //   return new Promise((resolve, reject) => {
-    //     let url = `${process.env.VUE_APP_API_URL_DEV}/getStepsCompleted`;
-    //     let headers = {
-    //       headers: {
-    //         authorization: this.state.TOKEN,
-    //         "Content-Type": "application/json",
-    //       },
-    //     };
-    //
-    //     axios
-    //       .get(url, headers)
-    //       .then((res) => {
-    //         console.log(res.data);
-    //         commit("SET_STEPS_COMPLETED_VALS", JSON.parse(JSON.stringify(res.data)));
-    //         resolve("success");
-    //       })
-    //       .catch((error) => {
-    //         reject(error);
-    //       });
-    //   });
-    // },
-
+        axios
+          .get(url, headers)
+          .then((res) => {
+            console.log(JSON.stringify(res.data));
+            commit("SET_STEPS_COMPLETED_VALS", JSON.parse(JSON.stringify(res.data)));
+            resolve("success");
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    },
     //Subscription API
     getSubs({ commit }) {
       return new Promise((resolve, reject) => {

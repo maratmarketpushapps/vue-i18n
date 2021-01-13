@@ -9,108 +9,12 @@
     style="z-index:1.5;height: 100%"
   >
     <v-row style="height:100% !important" class="pb-0 mb-0">
-      <v-col cols="1"><v-spacer></v-spacer></v-col>
-      <!-- Stepper component -->
-      <v-col cols="8" class="pb-0" style="height: 50px !important;">
-        <v-stepper class="stepper" :value="step" v-if="!allstepsComplete">
-          <v-stepper-header class="stepperhead">
-            <!-- Step 1 -->
-            <v-stepper-step
-              step="1"
-              :complete="step1Complete"
-              class="step-item pad_fix"
-            >
-              <router-link
-                to="/settings"
-                @click.native="step1Click"
-                class="step-item-font"
-                >{{ $t("navbar.appbar.step1") }}
-              </router-link>
-            </v-stepper-step>
 
-            <v-divider class="divider"> </v-divider>
-
-            <!-- Step 2 -->
-            <v-stepper-step
-              step="2"
-              :complete="step2Complete"
-              class="step-item"
-            >
-              <router-link
-                v-if="step1Complete"
-                to="/campaigns"
-                @click.native="step2Click"
-                class="step-item-font"
-                >{{ $t("navbar.appbar.step2") }}
-              </router-link>
-              <router-link
-                v-else
-                to="/campaigns"
-                tag="button"
-                disabled
-                class="step-item-font"
-                >{{ $t("navbar.appbar.step2") }}
-              </router-link>
-            </v-stepper-step>
-
-            <v-divider class="divider"></v-divider>
-            <!-- Step 3 -->
-            <v-stepper-step
-              step="3"
-              :complete="step3Complete"
-              class="step-item"
-            >
-              <router-link
-                v-if="step2Complete"
-                to="/widgets"
-                @click.native="step3Click"
-                class="step-item-font"
-                >{{ $t("navbar.appbar.step3") }}
-              </router-link>
-              <router-link
-                v-else
-                to="/widgets"
-                tag="button"
-                disabled
-                class="step-item-font"
-                >{{ $t("navbar.appbar.step3") }}
-              </router-link>
-            </v-stepper-step>
-          </v-stepper-header>
-        </v-stepper></v-col
-      >
-      <v-col cols="1">
-        <v-row align="center" class="ml-0" v-if="!allstepsComplete">
-          <v-tooltip
-            :bottom="true"
-            open-on-click
-            nudge-top="10"
-            nudge-right="100"
-            content-class="tooltip_color"
-          >
-            <template v-slot:activator="{ on }">
-              <v-btn
-                icon
-                tile
-                href="https://youtu.be/8zSKMZKK2Rw"
-                target="_blank"
-                v-on="on"
-              >
-                <v-img
-                  :src="playImg"
-                  height="3vw"
-                  width="2vw"
-                  style="transform: scale(0.8)"
-                  class="mt-0"
-                >
-                </v-img>
-              </v-btn>
-            </template>
-            <span class="tooltip_text" tile>{{
-              $t("navbar.appbar.vidIconTxt")
-            }}</span>
-          </v-tooltip>
-        </v-row>
+      <v-col>
+        <CartRecoveryStatus recoveryType="sms" />
+      </v-col>
+      <v-col>
+        <CartRecoveryStatus recoveryType="fb" />
       </v-col>
 
       <!-- Upgrade button component -->
@@ -133,12 +37,13 @@
 
 <script>
 import { mapGetters } from "vuex";
-// import iconPlay from "@/assets/icons/misc/icon-play.svg";
+import CartRecoveryStatus from "@/components/navigation/CartRecoveryStatus.vue";
+
 export default {
   name: "AppBar",
-  // components: {
-  //   iconPlay,
-  // },
+  components: {
+    CartRecoveryStatus,
+  },
   data() {
     return {
       step: 1,

@@ -308,5 +308,29 @@
     "recMarketPushTx":"and to receive email updates from MarketPushApps.",
     "signUpBtn":"SIGN UP",
     "PlsNoteTx":"Please note that due to recent Facebook updates the Facebook cart recovery is temporarily not available in the EU. If you reside in the EU, please only use SMS cart recovery until Facebook re-enables this feature for EU users."
+  },
+  "cartRecoveryStatus": {
+    "ON": "ON",
+    "OFF": "OFF",
+    "smsCartRecovery": "SMS Cart Recovery:",
+    "fbCartRecovery": "Facebook Cart Recovery:",
+    "howToTurnOn": "How to turn ON?"
+  },
+  "ModalStepsCompleted": {
+    "smsTitle": "How to turn on SMS Cart Recovery?",
+    "smsInstruction1": "Add a phone number in Settings.",
+    "smsInstruction2": "Edit your SMS Campaign.",
+    "smsInstruction3": "Enable SMS in the Widget.",
+    "fbTitle": "How to turn on Facebook Cart Recovery?",
+    "fbInstruction1": "Connect your Facebook Page.",
+    "fbInstruction2": "Edit your Cart Abandoned Messages.",
+    "fbInstruction3": "Add a Consent Widget to your website.",
+    "stepIndex1": "1. ",
+    "stepIndex2": "2. ",
+    "stepIndex3": "3. ",
+    "notDone": "NOT DONE >>",
+    "done": "DONE",
+    "stillHaveQuestions": "If you still have questions, please see our detailed tutorial video below.",
+    "watchVideoButton": "WATCH VIDEO"
   }
 }

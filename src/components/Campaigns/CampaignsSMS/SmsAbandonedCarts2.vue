@@ -343,6 +343,7 @@ export default {
               // console.log(resp);
               this.ordrAbndCrtBtnDisabled = true;
               this.$store.dispatch("smsgetMsg").then(() => {
+                this.$store.dispatch("getStepsCompleted");
                 // console.log(response);
                 this.$store.dispatch("updIsLoading", false);
               });
