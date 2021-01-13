@@ -71,18 +71,20 @@
               ></v-date-picker
             >
           </v-menu>
-          <v-row>
-            <v-col>
-              <v-img src="@/assets/img/Subscribers/icon-channel.png" ></v-img>
-            </v-col>
-          </v-row>
           <v-tab>
             <v-col>
               <v-select
                 flat
                 :items="selectedType"
-                label="Standard"
-              ></v-select>
+                label="Select"
+                hide-details
+                single-line
+
+              >
+                <template slot="append">
+                  <v-img src="@/assets/img/Subscribers/icon-channel.png" ></v-img>
+                </template>
+              </v-select>
             </v-col>
           </v-tab>
         </v-tabs>
@@ -136,6 +138,7 @@
 <script>
 import CartsTable from "@/components/AbandonedCarts/CartsTable.vue";
 import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
+
 import moment from "moment-timezone";
 import { mapGetters } from "vuex";
 export default {
