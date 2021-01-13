@@ -46,8 +46,6 @@ export default new Vuex.Store({
           position: 3
         }
       },
-      def_selected:"",
-      discount_selected:"",
       subscribe_type:"",
       apply_discount_instruction:"",
       discount_code:"",
@@ -55,7 +53,7 @@ export default new Vuex.Store({
       id: 0,
       instance_id: "",
       website_id: 0,
-      facebook_widget_type: "",
+      facebook_widget_type: "Checkbox",
       header_background_color: "",
       popup_background_color: "",
       pop_up_title: "",
@@ -391,7 +389,7 @@ export default new Vuex.Store({
       state.widgetVars.subscribe_type = obj.subscribe_type
       state.widgetVars.instance_id = obj.instance_id;
       state.widgetVars.website_id = obj.website_id;
-      state.widgetVars.facebook_widget_type = obj.facebook_widget_type;
+      // state.widgetVars.facebook_widget_type = obj.facebook_widget_type;
       state.widgetVars.header_background_color = obj.header_background_color;
       state.widgetVars.popup_background_color = obj.popup_background_color;
       state.widgetVars.pop_up_title = obj.pop_up_title;
@@ -493,18 +491,11 @@ export default new Vuex.Store({
       state.widgetVars.changesSaved = false;
     },
     SET_WDGT_DEF_SEL(state, type) {
-      type == state.widgetVars.def_selected
+      type == state.widgetVars.subscribe_type
         ? (state.widgetVars.changesSaved = true)
         : (state.widgetVars.changesSaved = false);
-      state.widgetVars.def_selected = type;
-      type == true ? state.widgetVars.discount_selected = false : state.widgetVars.discount_selected = true
-    },
-    SET_WDGT_DIS_SEL(state, type) {
-      type == state.widgetVars.discount_selected
-        ? (state.widgetVars.changesSaved = true)
-        : (state.widgetVars.changesSaved = false);
-      state.widgetVars.discount_selected = type;
-      type == true ? state.widgetVars.def_selected = false : state.widgetVars.def_selected = true
+      state.widgetVars.subscribe_type = type;
+      type == 'subscribe' ? state.widgetVars.subscribe_type = 'subscribe' : state.widgetVars.subscribe_type = 'deafult'
     },
     SET_WDGT_TYPE(state, type) {
       type == state.widgetVars.facebook_widget_type
