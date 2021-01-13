@@ -43,7 +43,7 @@ export default {
     }
   },
   beforeMount() {
-    this.$store.dispatch("getStepsCompleted");
+    setTimeout(() => this.$store.dispatch("getStepsCompleted"), 700)
   }
 }
 </script>

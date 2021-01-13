@@ -87,8 +87,8 @@ export default new Vuex.Store({
     settingsVars: {
       first_name: "",
       last_name: "",
-      bussiness_name:"",
-      bussiness_phone_number:"",
+      business_name:"",
+      business_phone_number:"",
       email: "",
       facebook_page_name: "",
       facebook_page_id: "",
@@ -265,9 +265,9 @@ export default new Vuex.Store({
       let obj = {
         first_name: state.settingsVars.first_name,
         last_name: state.settingsVars.last_name,
-        bussiness_name:state.settingsVars.bussiness_name,
+        business_name:state.settingsVars.business_name,
         email: state.settingsVars.email,
-        bussiness_phone_number:state.settingsVars.bussiness_phone_number,
+        business_phone_number:state.settingsVars.business_phone_number,
         install_popop_show:state.settingsVars.install_popop_show
       };
       return obj;
@@ -416,9 +416,9 @@ export default new Vuex.Store({
     SET_SETTINGS_VALS(state, obj) {
       state.settingsVars.first_name = obj.first_name;
       state.settingsVars.last_name = obj.last_name;
-      state.settingsVars.bussiness_name = obj.bussiness_name;
+      state.settingsVars.business_name = obj.business_name;
       state.settingsVars.email = obj.email;
-      state.settingsVars.bussiness_phone_number = obj.bussiness_phone_number;
+      state.settingsVars.business_phone_number = obj.business_phone_number;
       state.settingsVars.facebook_page_name = obj.facebook_page_name;
       state.settingsVars.facebook_page_id = obj.facebook_page_id;
       state.settingsVars.website_id = obj.website_id;
@@ -457,8 +457,8 @@ export default new Vuex.Store({
     SET_ACC_INFO(state, obj) {
       state.settingsVars.first_name = obj.first_name;
       state.settingsVars.last_name = obj.last_name;
-      state.settingsVars.bussiness_name = obj.bussiness_name;
-      state.settingsVars.bussiness_phone_number = obj.bussiness_phone_number;
+      state.settingsVars.business_name = obj.business_name;
+      state.settingsVars.business_phone_number = obj.business_phone_number;
       state.settingsVars.email = obj.email;
     },
 
