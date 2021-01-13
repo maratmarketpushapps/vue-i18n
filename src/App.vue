@@ -138,19 +138,6 @@
 
     </v-content>
 
-    <ModalStepsCompleted
-      recoveryType="sms"
-      stepARoute="/settings"
-      stepBRoute="/campaigns-sms"
-      stepCRoute="/widgets"
-    />
-    <ModalStepsCompleted
-      recoveryType="fb"
-      stepARoute="/settings"
-      stepBRoute="/campaigns-facebook"
-      stepCRoute="/widgets"
-    />
-
   </v-app>
 </template>
 
@@ -160,7 +147,6 @@
 import AppBar from "@/components/navigation/AppBar.vue";
 import NavDrawer from "@/components/navigation/NavDrawer.vue";
 import iconSuccess from "@/assets/icons/misc/icon-success.svg";
-import ModalStepsCompleted from "@/components/Modal/ModalStepsCompleted.vue";
 
 // import loaderAnim from "@/components/GlobalComponents/loaderAnim.vue";
 // import axios from "axios";
@@ -257,8 +243,7 @@ export default {
   components: {
     AppBar,
     NavDrawer,
-    iconSuccess,
-    ModalStepsCompleted
+    iconSuccess
   },
 
   data() {

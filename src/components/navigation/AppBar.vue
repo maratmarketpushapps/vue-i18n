@@ -17,6 +17,19 @@
         <CartRecoveryStatus recoveryType="fb" />
       </v-col>
 
+      <ModalStepsCompleted
+        recoveryType="sms"
+        stepARoute="/settings"
+        stepBRoute="/campaigns-sms"
+        stepCRoute="/widgets"
+      />
+      <ModalStepsCompleted
+        recoveryType="fb"
+        stepARoute="/settings"
+        stepBRoute="/campaigns-facebook"
+        stepCRoute="/widgets"
+      />
+
       <!-- Upgrade button component -->
       <v-col cols="2" class="pl-8 mb-2"
         ><v-btn
@@ -38,11 +51,13 @@
 <script>
 import { mapGetters } from "vuex";
 import CartRecoveryStatus from "@/components/navigation/CartRecoveryStatus.vue";
+import ModalStepsCompleted from "@/components/Modal/ModalStepsCompleted.vue";
 
 export default {
   name: "AppBar",
   components: {
     CartRecoveryStatus,
+    ModalStepsCompleted
   },
   data() {
     return {
