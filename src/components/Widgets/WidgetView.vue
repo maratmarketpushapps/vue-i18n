@@ -201,7 +201,6 @@ export default {
       return ttlObj;
     },
     widgetType() {
-      console.log(this.getWidgetsState);
       return this.getWidgetsState.facebook_widget_type;
     },
     

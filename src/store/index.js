@@ -488,7 +488,7 @@ export default new Vuex.Store({
         ? (state.widgetVars.changesSaved = true)
         : (state.widgetVars.changesSaved = false);
       state.widgetVars.subscribe_type = type;
-      type == 'subscribe' ? state.widgetVars.subscribe_type = 'subscribe' : state.widgetVars.subscribe_type = 'deafult'
+      type == 'subscribe' ? state.widgetVars.subscribe_type = 'subscribe' : state.widgetVars.subscribe_type = 'default'
     },
     SET_SUBS_TYPE(state,type){
       state.subscribers.subType = type

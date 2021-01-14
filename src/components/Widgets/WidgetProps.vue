@@ -62,7 +62,7 @@
         <v-row>
           <v-col cols="2 offset-1" class="py-0 mb-0 px-0">
             <v-checkbox
-              @change="def_selected == false ? discount_selected = 'subscribe' : discount_selected = ''"
+              @change="def_selected == '' ? discount_selected = 'subscribe' : discount_selected = ''"
               v-model="def_selected"
               value="deafult"
               label="Default"
@@ -71,7 +71,7 @@
           </v-col >
           <v-col class="py-0">
             <v-checkbox
-              @change="discount_selected == false ? discount_selected = 'deafult' : def_selected = ''"
+              @change="discount_selected == '' ? discount_selected = 'deafult' : def_selected = ''"
               v-model="discount_selected"
               value="subscribe"
               class="checkbox_widget mt-0 mb-0"

@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
-    <v-row class="pa-0 ma-0 mt-4" justify="start">
-      <v-col class="pa-0 ma-0" cols="auto">
+    <v-row class="pa-0 ma-0 mt-4" justify="start" >
+      <v-col class="pa-0 ma-0" cols="auto"  >
         <v-tabs
           background-color="transparent"
           v-model="tab"
@@ -75,8 +75,7 @@
 
         </v-tabs>
       </v-col>
-      <v-col class="selTypecol pt-0" :cols="$vuetify.breakpoint.lg ? 2 : $vuetify.breakpoint.md ? 3 : 2">
-<!--        // remember set active color and change icon when it active-->
+      <div :class="!activeImage ? 'selTypecol line_active wid_space pt-0' : 'selTypecol wid_space pt-0'" >
         <v-select
           flat
           v-model="selectedType"
@@ -85,14 +84,15 @@
           hide-details
           single-line
           @click="minusModel(selectedType)"
-          :class="activeImage ? 'change_active' : ''"
+
+          :class="activeImage ? 'change_active' : 'line_active'"
         >
-          <template slot="prepend" >
+          <template slot="prepend-inner" >
             <v-img src="@/assets/img/Subscribers/icon-channel.png" v-if="!activeImage"></v-img>
             <v-img src="@/assets/img/Subscribers/icon_channel_active.png" v-if="activeImage"></v-img>
           </template>
         </v-select>
-      </v-col>
+      </div>
       <v-col class="pt-0" >
         <v-row justify="end" class="pr-0 mr-0 mb-1">
           <v-btn depressed icon class="refIcondim mr-0" @click="incrTabCount">
@@ -317,6 +317,10 @@ export default {
 .theme--light.v-select .v-select__selection--comma{
   color: #5686F6 !important;
 }
+.wid_space{
+  width: 175px !important;
+}
+
 @media (min-width: 1400px) {
   .refIcondim {
     transform: scale(1.2);
@@ -330,15 +334,17 @@ export default {
 
 <style>
 .change_active .theme--light.v-label{
-  color: #5686F6 !important;
+  color: #5686F6 ;
 }
-.v-text-field > .v-input__control > .v-input__slot:before{
+.line_active>.v-text-field > .v-input__control > .v-input__slot:before{
   border-style: hidden;
 }
+
+.wid_space>.theme--light.v-select .v-select__selection--comma{
+  font-size: 85% !important;
+}
 @media (max-width: 1400px) {
-  .theme--light.v-select .v-select__selection--comma{
-    font-size: 85% !important;
-  }
+
 }
 
 </style>
