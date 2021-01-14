@@ -80,6 +80,7 @@ export default new Vuex.Store({
       button_border_size: 0,
       button_border_color: "",
       active: false,
+      is_gdpr_affected: false,
       wdgt_key_internal: 0,
       changesSaved: true,
       step3Comp: true,
@@ -343,7 +344,7 @@ export default new Vuex.Store({
   mutations: {
     // Displays the modal with the cart recovery steps.
     UPDATE_CART_RECOVERY_MODAL_SHOW(state, obj) {
-      console.log("called " + obj.type + " " + obj.status);
+      // console.log("called " + obj.type + " " + obj.status);
       state.setupCompletedVars[obj.type + 'ShowCartRecoveryStepsModal'] = obj.status;
     },
     // smscart 1
@@ -415,6 +416,7 @@ export default new Vuex.Store({
       state.widgetVars.button_border_size = obj.button_border_size;
       state.widgetVars.button_border_color = obj.button_border_color;
       state.widgetVars.active = obj.active;
+      state.widgetVars.is_gdpr_affected = obj.is_gdpr_affected;
       state.widgetVars.changesSaved = true;
       state.widgetVars.active
         ? (state.widgetVars.step3Comp = true)
@@ -1541,7 +1543,7 @@ export default new Vuex.Store({
         axios
           .get(url, headers)
           .then((res) => {
-            console.log(JSON.stringify(res.data));
+            // console.log(JSON.stringify(res.data));
             commit("SET_STEPS_COMPLETED_VALS", JSON.parse(JSON.stringify(res.data)));
             resolve("success");
           })

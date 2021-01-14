@@ -153,9 +153,11 @@
           <v-col cols="6" class="py-0 my-0 " >
             <v-checkbox
               v-model="ite.connection"
-              :label="ite.title"
+              :label="$t(getDisplayAvailabilityNotice(ite))"
               class="mt-0 mb-0"
-            ></v-checkbox>
+            >
+            </v-checkbox>
+
           </v-col>
           <v-col cols="1 offset-5" class="pb-0 pt-3" justify="end" >
             <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px" @click="rev()"></v-img>
@@ -601,6 +603,7 @@ export default {
       subType:null,
       subscribe_type:null,
       notSel:false,
+      isGdprAffected: false
     };
   },
   methods: {
@@ -715,6 +718,12 @@ export default {
         this.discount_selected = 'subscribe'
         this.def_selected = ''
       }else this.def_selected = 'deafult' , this.discount_selected = ''
+    },
+    getDisplayAvailabilityNotice(ite) {
+      if (ite.title == 'facebook' && this.isGdprAffected) {
+        return ite.title + ' (Not available in your country)';
+      }
+      return ite.title;
     }
   },
   computed: {
@@ -898,6 +907,9 @@ export default {
           this.$store.dispatch("getSettings").then(() => {
             this.$store.dispatch("updIsLoading", false);
           });
+
+          this.isGdprAffected =
+            this.$store.getters.getWidgetsState.is_gdpr_affected;
         }
       });
     });

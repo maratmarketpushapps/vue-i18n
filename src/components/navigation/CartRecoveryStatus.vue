@@ -28,8 +28,6 @@ export default {
   computed: {
     getCartRecoveryStatus: function() {
       let fullResponseStepsCompleted = this.$store.getters.getStepsCompleted;
-      // this.stepsCompleted = fullResponseStepsCompleted[this.recoveryType+"CartRecoverySteps"];
-      // console.log(this.recoveryType + " " + fullResponseStepsCompleted[this.recoveryType+"CartRecovery"]);
       return fullResponseStepsCompleted[this.recoveryType+"CartRecovery"];
     }
   },
@@ -43,7 +41,7 @@ export default {
     }
   },
   beforeMount() {
-    setTimeout(() => this.$store.dispatch("getStepsCompleted"), 700)
+    setTimeout(() => this.$store.dispatch("getStepsCompleted"), 1000)
   }
 }
 </script>

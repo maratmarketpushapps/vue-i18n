@@ -242,7 +242,8 @@
       "adminErrBtnTxt": "I Understand",
       "wbstUnpubErrHdr": "Your website is not published",
       "wbstUnpubErrTxt": "Please connect a domain and publish your website in order to pair it with your Facebook Page, then refresh the page and connect the Facebook Page again.",
-      "wbstUnpubErrBtnTxt": "ok"
+      "wbstUnpubErrBtnTxt": "ok",
+      "isGdprAffected": "For the moment Facebook recovery method is not available in your country. Facebook is working to make it available again. Please enable SMS Cart Recovery for your website instead."
 
     },
     "fbCard2": {
