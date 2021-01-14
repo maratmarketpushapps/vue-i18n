@@ -75,7 +75,7 @@
 
         </v-tabs>
       </v-col>
-      <div :class="!activeImage ? 'selTypecol line_active wid_space pt-0' : 'selTypecol wid_space pt-0'" >
+      <div :class="!activeImage ? 'selTypecol line_active wid_space pt-1' : 'selTypecol wid_space pt-0'" >
         <v-select
           flat
           v-model="selectedType"
