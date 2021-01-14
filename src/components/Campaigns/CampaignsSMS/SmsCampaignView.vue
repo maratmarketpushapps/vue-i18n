@@ -70,8 +70,8 @@ export default {
           }
           return retStr;
         };
-        messageText = messageText.allReplace({'{{StorePhoneNumber}}': this.$store.getters.getAccountInfo.bussiness_phone_number,
-          '{{BusinessName}}':this.$store.getters.getAccountInfo.bussiness_name,'{{CheckOutTotal}}':'{{CheckOutTotal}}',
+        messageText = messageText.allReplace({'{{StorePhoneNumber}}': this.$store.getters.getAccountInfo.business_phone_number,
+          '{{BusinessName}}':this.$store.getters.getAccountInfo.business_name,'{{CheckOutTotal}}':'{{CheckOutTotal}}',
           '{{CheckOutLink}}':'{{CheckOutLink}}'})
         return messageText;
       } else if (this.$store.getters.getActiveTab == "abndndcrt2") {
@@ -83,8 +83,8 @@ export default {
           }
           return retStr;
         };
-        messageText = messageText.allReplace({'{{StorePhoneNumber}}': this.$store.getters.getAccountInfo.bussiness_phone_number,
-          '{{BusinessName}}':this.$store.getters.getAccountInfo.bussiness_name,'{{CheckOutTotal}}':'{{CheckOutTotal}}',
+        messageText = messageText.allReplace({'{{StorePhoneNumber}}': this.$store.getters.getAccountInfo.business_phone_number,
+          '{{BusinessName}}':this.$store.getters.getAccountInfo.business_name,'{{CheckOutTotal}}':'{{CheckOutTotal}}',
           '{{CheckOutLink}}':'{{CheckOutLink}}'})
         return messageText;
       } else if (this.$store.getters.getActiveTab == "ordrrcpt") {

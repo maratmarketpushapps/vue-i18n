@@ -551,6 +551,8 @@ export default {
         this.$store.dispatch("updFbSettings", pageObj).then(() => {
           // console.log(res);
           this.$store.dispatch("setSettings").then(() => {
+            this.$store.dispatch("getStepsCompleted");
+
             // console.log(response);
             this.$store.dispatch("updIsLoading", false);
             this.fbStep = 3;
@@ -570,6 +572,7 @@ export default {
         this.$store.dispatch("updFbSettings", fbObj).then(() => {
           // console.log(res);
           this.$store.dispatch("setSettings").then(() => {
+            this.$store.dispatch("getStepsCompleted");
             Vue.FB.getLoginStatus((response) => {
               // console.log("FBAUTH status :: " + response.status);
               this.$store.dispatch("updIsLoading", false);

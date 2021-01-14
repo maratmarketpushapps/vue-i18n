@@ -347,6 +347,7 @@ export default {
               // console.log(resp);
               this.ordrAbndCrtBtnDisabled = true;
               this.$store.dispatch("getMsg").then(() => {
+                this.$store.dispatch("getStepsCompleted");
                 // console.log(response);
                 this.$store.dispatch("updIsLoading", false);
               });
@@ -442,9 +443,8 @@ export default {
   },
 
   created() {
-    // console.log(this.$store.state.settingsVars.bussiness_name)
-    this.bussName = this.$store.state.settingsVars.bussiness_name;
-    this.phoneNumber = this.$store.getters.getAccountInfo.bussiness_phone_number;
+    this.bussName = this.$store.state.settingsVars.business_name;
+    this.phoneNumber = this.$store.getters.getAccountInfo.business_phone_number;
   },
   beforeCreate() {
     this.$store.dispatch("updIsLoading", true).then(() => {

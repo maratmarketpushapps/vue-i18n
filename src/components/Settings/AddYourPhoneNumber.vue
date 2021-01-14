@@ -88,7 +88,7 @@ export default {
     },
     savePhoneNumber(){
       let obj = {
-        bussiness_phone_number:this.phone
+        business_phone_number:this.phone
       }
       this.$store.dispatch("updIsLoading", true).then(() => {
         this.$store.dispatch("updAccInfo", obj).then((res) => {
@@ -96,6 +96,7 @@ export default {
             this.$store.dispatch("setSettings").then((response) => {
               this.$store.dispatch("updIsLoading", false);
               if (response === "success") {
+                this.$store.dispatch("getStepsCompleted");
                 // console.log("Settings API refreshed");
                 this.btnDisabled = false;
               } else {
@@ -108,7 +109,7 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => (this.phone = this.$store.state.settingsVars.bussiness_phone_number,this.btnDisabled = false),500),
+    setTimeout(() => (this.phone = this.$store.state.settingsVars.business_phone_number,this.btnDisabled = false),500),
     setTimeout(()=> {
       if(this.phone !== "" || this.phone !== null || this.phone !== false)
       {  this.reg = this.phone,this.reg.match(/^(\S+)\s(.*)/).slice(1),this.country.dialCode = this.reg[0]}

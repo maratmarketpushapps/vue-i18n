@@ -674,6 +674,7 @@ export default {
           this.$store.dispatch
           ("setWdgts").then((response) => {
             if (response) {
+              this.$store.dispatch("getStepsCompleted");
               this.$store.dispatch("getWidgets").then(() => {
                 this.$store.dispatch("updIsLoading", false);
               });

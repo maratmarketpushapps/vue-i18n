@@ -8,7 +8,6 @@ export default new Vuex.Store({
   state: {
     TOKEN: "JWT_TOKEN",
     instance_id: "bb-cc-dd",
-    stepsCompOnload: true,
     isLoading: 0,
     globalVars: {
       locale: "",
@@ -88,8 +87,8 @@ export default new Vuex.Store({
     settingsVars: {
       first_name: "",
       last_name: "",
-      bussiness_name:"",
-      bussiness_phone_number:"",
+      business_name:"",
+      business_phone_number:"",
       email: "",
       facebook_page_name: "",
       facebook_page_id: "",
@@ -102,7 +101,6 @@ export default new Vuex.Store({
       receipt_message_id: "",
       shipped_message_id: "",
       widget_id: "",
-      setup_step_1_completed: true,
       setup_step_2_completed: true,
       setup_step_3_completed: true,
       cart_recovery_attempts_done: "",
@@ -238,7 +236,9 @@ export default new Vuex.Store({
           step1: false,
           step2: false,
           step3: false
-      }
+      },
+      smsShowCartRecoveryStepsModal: false,
+      fbShowCartRecoveryStepsModal: false,
     }
   },
   getters: {
@@ -260,9 +260,6 @@ export default new Vuex.Store({
     getUrl: (state) => {
       return state.globalVars.url;
     },
-    getStepsCompOnload: (state) => {
-      return state.stepsCompOnload;
-    },
     getisLoading: (state) => {
       return state.isLoading == 0 ? false : true;
     },
@@ -273,9 +270,9 @@ export default new Vuex.Store({
       let obj = {
         first_name: state.settingsVars.first_name,
         last_name: state.settingsVars.last_name,
-        bussiness_name:state.settingsVars.bussiness_name,
+        business_name:state.settingsVars.business_name,
         email: state.settingsVars.email,
-        bussiness_phone_number:state.settingsVars.bussiness_phone_number,
+        business_phone_number:state.settingsVars.business_phone_number,
         install_popop_show:state.settingsVars.install_popop_show
       };
       return obj;
@@ -333,32 +330,22 @@ export default new Vuex.Store({
     getQreplyEdit: (state) => {
       return state.msgVars.qreplyEdit;
     },
-    getStep1Complete: (state) => {
-      return state.settingsVars.setup_step_1_completed;
-    },
-    getStep2Complete: (state) => {
-      return state.msgVars.step2Com;
-
-      // state.msgVars.abandoned_cart_1.active ||
-      //   state.msgVars.abandoned_cart_2.active
-      //   ? true
-      //   : false;
-    },
-    getStep3Complete: (state) => {
-      return state.widgetVars.step3Comp;
-    },
-
     getDash: (state) => {
       return state.dashVars;
     },
-    // getStepsCompleted: (state) => {
-    //   return state.setupCompletedVars;
-    // },
+    getStepsCompleted: (state) => {
+       return state.setupCompletedVars;
+    },
     getSubs: (state) => {
       return state.subVars;
-    },
+    }
   },
   mutations: {
+    // Displays the modal with the cart recovery steps.
+    UPDATE_CART_RECOVERY_MODAL_SHOW(state, obj) {
+      console.log("called " + obj.type + " " + obj.status);
+      state.setupCompletedVars[obj.type + 'ShowCartRecoveryStepsModal'] = obj.status;
+    },
     // smscart 1
     UPDATE_MSG_sms_cartOne(state,val) {
       state.msgVars.sms_abandoned_cart_1.active = val
@@ -432,15 +419,14 @@ export default new Vuex.Store({
       state.widgetVars.active
         ? (state.widgetVars.step3Comp = true)
         : (state.widgetVars.step3Comp = false);
-      state.widgetVars.active ? 1 : (state.stepsCompOnload = false);
     },
 
     SET_SETTINGS_VALS(state, obj) {
       state.settingsVars.first_name = obj.first_name;
       state.settingsVars.last_name = obj.last_name;
-      state.settingsVars.bussiness_name = obj.bussiness_name;
+      state.settingsVars.business_name = obj.business_name;
       state.settingsVars.email = obj.email;
-      state.settingsVars.bussiness_phone_number = obj.bussiness_phone_number;
+      state.settingsVars.business_phone_number = obj.business_phone_number;
       state.settingsVars.facebook_page_name = obj.facebook_page_name;
       state.settingsVars.facebook_page_id = obj.facebook_page_id;
       state.settingsVars.website_id = obj.website_id;
@@ -451,7 +437,6 @@ export default new Vuex.Store({
       state.settingsVars.receipt_message_id = obj.receipt_message_id;
       state.settingsVars.shipped_message_id = obj.shipped_message_id;
       state.settingsVars.widget_id = obj.widget_id;
-      state.settingsVars.setup_step_1_completed = obj.setup_step_1_completed;
       state.settingsVars.setup_step_2_completed = obj.setup_step_2_completed;
       state.settingsVars.setup_step_3_completed = obj.setup_step_3_completed;
       state.settingsVars.cart_recovery_attempts_done =
@@ -480,8 +465,8 @@ export default new Vuex.Store({
     SET_ACC_INFO(state, obj) {
       state.settingsVars.first_name = obj.first_name;
       state.settingsVars.last_name = obj.last_name;
-      state.settingsVars.bussiness_name = obj.bussiness_name;
-      state.settingsVars.bussiness_phone_number = obj.bussiness_phone_number;
+      state.settingsVars.business_name = obj.business_name;
+      state.settingsVars.business_phone_number = obj.business_phone_number;
       state.settingsVars.email = obj.email;
     },
 
@@ -706,8 +691,6 @@ export default new Vuex.Store({
       state.settingsVars.facebook_user_id = obj.facebook_user_id;
       state.settingsVars.facebook_short_access_token =
         obj.facebook_short_access_token;
-      state.settingsVars.setup_step_1_completed = obj.setup_step_1_completed;
-      !obj.setup_step_1_completed ? (state.stepsCompOnload = false) : 1;
     },
 
 
@@ -793,13 +776,6 @@ export default new Vuex.Store({
       state.msgVars.sent_count.sent_count_order_shipped =
         obj.sent_count.sent_count_order_shipped;
 
-      obj.abandoned_cart_1.active || obj.abandoned_cart_2.active
-        ? (state.msgVars.step2Com = true)
-        : (state.msgVars.step2Com = false);
-
-      obj.abandoned_cart_1.active || obj.abandoned_cart_2.active
-        ? 1
-        : (state.stepsCompOnload = false);
     },
     SET_ORDR_RCPT(state, obj) {
       state.msgVars.order_receipt.button_text = obj.button_text;
@@ -871,10 +847,6 @@ export default new Vuex.Store({
     SET_MSG_QREPLY_EDIT(state, val) {
       state.msgVars.qreplyEdit = val;
     },
-
-    SET_STEPS_COMP_ON_LOAD(state, val) {
-      state.stepsCompOnload = val;
-    },
     SET_IS_LOADING(state, val) {
       val ? state.isLoading++ : state.isLoading--;
     },
@@ -917,11 +889,16 @@ export default new Vuex.Store({
         obj.cart_recovery.carts_recovered;
     },
     SET_STEPS_COMPLETED_VALS(state, obj) {
-      console.log(obj);
-      /*
-      state.setupCompletedVars.smsCartRecovery =
-        obj.cart_recovery.carts_recovered;
-      */
+      state.setupCompletedVars.smsCartRecovery = obj.smsCartRecovery;
+      state.setupCompletedVars.smsCartRecoverySteps.step1 = obj.smsCartRecoverySteps.step1;
+      state.setupCompletedVars.smsCartRecoverySteps.step2 = obj.smsCartRecoverySteps.step2;
+      state.setupCompletedVars.smsCartRecoverySteps.step3 = obj.smsCartRecoverySteps.step3;
+
+      state.setupCompletedVars.fbCartRecovery = obj.fbCartRecovery;
+      state.setupCompletedVars.fbCartRecoverySteps.step1 = obj.fbCartRecoverySteps.step1;
+      state.setupCompletedVars.fbCartRecoverySteps.step2 = obj.fbCartRecoverySteps.step2;
+      state.setupCompletedVars.fbCartRecoverySteps.step3 = obj.fbCartRecoverySteps.step3;
+
     },
     SET_SUB_VALS(state, obj) {
       state.subVars.former_subscription_plan = obj.former_subscription_plan;
@@ -961,6 +938,13 @@ export default new Vuex.Store({
 
   },
   actions: {
+    updateCartRecoveryModalShow({ commit }, obj) {
+      return new Promise((resolve) => {
+        // console.log("updateCart :: " + JSON.stringify(obj));
+        commit("UPDATE_CART_RECOVERY_MODAL_SHOW", obj);
+        resolve("success");
+      });
+    },
     updateToken({ commit }, token) {
       return new Promise((resolve) => {
         commit("SET_TOKEN", token);
@@ -1513,12 +1497,6 @@ export default new Vuex.Store({
         resolve("success");
       });
     },
-    updStepsCompOnload({ commit }, val) {
-      return new Promise((resolve) => {
-        commit("SET_STEPS_COMP_ON_LOAD", val);
-        resolve("success");
-      });
-    },
     updIsLoading({ commit }, val) {
       return new Promise((resolve) => {
         commit("SET_IS_LOADING", val);
@@ -1549,31 +1527,29 @@ export default new Vuex.Store({
           });
       });
     },
+    // Steps Completed API
+    getStepsCompleted({ commit }) {
+      return new Promise((resolve, reject) => {
+        let url = `${process.env.VUE_APP_API_URL_DEV}/getStepsCompleted`;
+        let headers = {
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
+        };
 
-    //Subscription API
-    // getStepsCompleted({ commit }) {
-    //   return new Promise((resolve, reject) => {
-    //     let url = `${process.env.VUE_APP_API_URL_DEV}/getStepsCompleted`;
-    //     let headers = {
-    //       headers: {
-    //         authorization: this.state.TOKEN,
-    //         "Content-Type": "application/json",
-    //       },
-    //     };
-    //
-    //     axios
-    //       .get(url, headers)
-    //       .then((res) => {
-    //         console.log(res.data);
-    //         commit("SET_STEPS_COMPLETED_VALS", JSON.parse(JSON.stringify(res.data)));
-    //         resolve("success");
-    //       })
-    //       .catch((error) => {
-    //         reject(error);
-    //       });
-    //   });
-    // },
-
+        axios
+          .get(url, headers)
+          .then((res) => {
+            console.log(JSON.stringify(res.data));
+            commit("SET_STEPS_COMPLETED_VALS", JSON.parse(JSON.stringify(res.data)));
+            resolve("success");
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    },
     //Subscription API
     getSubs({ commit }) {
       return new Promise((resolve, reject) => {

@@ -71,7 +71,7 @@
                     <v-text-field
                       @change="detectChange"
                       @input="detectChange"
-                      v-model="bussiness_name"
+                      v-model="business_name"
                       :label="$t('ModalJoin.BussinesName')"
                       class="image_modal_text_color"
 
@@ -137,7 +137,7 @@ export default {
     popupWindow: false,
     first_name: null,
     last_name: null,
-    bussiness_name: null,
+    business_name: null,
     email: "",
     emailRules: [
       (v) =>
@@ -163,7 +163,7 @@ export default {
     updAccInfo() {
       let obj = {
         first_name: this.first_name,
-        bussiness_name: this.bussiness_name,
+        business_name: this.business_name,
         last_name: this.last_name,
       };
       this.valEmail = this.checkEm()
