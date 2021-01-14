@@ -75,7 +75,7 @@
 
         </v-tabs>
       </v-col>
-      <v-col class="selTypecol pt-0" cols="2">
+      <v-col class="selTypecol pt-0" :cols="$vuetify.breakpoint.lg ? 2 : $vuetify.breakpoint.md ? 3 : 2">
 <!--        // remember set active color and change icon when it active-->
         <v-select
           flat
@@ -85,13 +85,15 @@
           hide-details
           single-line
           @click="minusModel(selectedType)"
+          :class="activeImage ? 'change_active' : ''"
         >
-          <template slot="append" >
-            <v-img src="@/assets/img/Subscribers/icon-channel.png"  ></v-img>
+          <template slot="prepend" >
+            <v-img src="@/assets/img/Subscribers/icon-channel.png" v-if="!activeImage"></v-img>
+            <v-img src="@/assets/img/Subscribers/icon_channel_active.png" v-if="activeImage"></v-img>
           </template>
         </v-select>
       </v-col>
-      <v-col>
+      <v-col class="pt-0" >
         <v-row justify="end" class="pr-0 mr-0 mb-1">
           <v-btn depressed icon class="refIcondim mr-0" @click="incrTabCount">
             <v-icon color="#4E5D6B">refresh</v-icon>
@@ -163,6 +165,7 @@ export default {
       TypeForSel:this.$t("abandonedCarts.TypeForSel"),
       selectedType:"",
       currData:this.$t("abandonedCarts.TypeForSel"),
+      activeImage:false,
     };
   },
   mounted() {
@@ -209,6 +212,7 @@ export default {
       this.menu = false;
     },
     minusModel(item){
+      this.activeImage = true
       this.selectedType = item
       this.TypeForSel = this.currData
       this.TypeForSel = this.TypeForSel.filter(  t => t !== item)
@@ -217,8 +221,9 @@ export default {
   },
   watch:{
     selectedType(newVal){
+        this.activeImage = false
         this.$store.dispatch("updSubsType",newVal)
-    }
+    },
   },
   computed: {
     ...mapGetters(["getCreatedAt"]),
@@ -321,4 +326,19 @@ export default {
     transform-origin: 0 0;
   }
 }
+</style>
+
+<style>
+.change_active .theme--light.v-label{
+  color: #5686F6 !important;
+}
+.v-text-field > .v-input__control > .v-input__slot:before{
+  border-style: hidden;
+}
+@media (max-width: 1400px) {
+  .theme--light.v-select .v-select__selection--comma{
+    font-size: 85% !important;
+  }
+}
+
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-card height="auto" width="auto">
+  <v-card height="auto" width="auto" v-if="renderComponent">
     <v-data-table
       :no-data-text="$t('abandonedCarts.noDataTxt')"
       :headers="headers"
@@ -9,6 +9,7 @@
         itemsPerPageOptions: [25, 50, -1],
         showCurrentPage: true,
       }"
+      :key="tableKey"
     >
       <template #item.cart_status="{item}">
         <span
@@ -54,6 +55,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "CartsTable",
   mounted() {
+    this.currentHeader = this.headers
     this.$store.dispatch("updIsLoading", true).then(() => {
       this.$store
         .dispatch("getCarts", {
@@ -64,25 +66,46 @@ export default {
           this.$store.dispatch("updIsLoading", false);
         });
     });
-
+  },
+  methods:{
+    forceRerender() {
+      this.renderComponent = false;
+      this.$nextTick(() => {
+        this.renderComponent = true;
+      });
+    },
   },
   watch:{
-    subSelType(oldVal,newVal){
-      console.log(oldVal)
-      console.log(newVal)
-      // set react and find if headers hasnt phone or chanel push headers
-      // do computed or watch deep data object
-      newVal == "Facebook" ?
-       this.headers = this.headers.filter(  header => header.value !== 'phone')
-      : newVal == "SMS" ? this.headers = this.headers.filter(  header => header.value !== 'channel') : this.headers.push()
+    subSelType(newVal){
+      this.forceRerender()
+      this.headers = this.currentHeader
+      switch (newVal) {
+        case "Facebook":
+          this.headers = this.headers.filter(header => header.value !== 'phone')
+          break;
+        case "SMS":
+          this.headers = this.headers.filter(header => header.value !== 'channel')
+          break;
+        default:
+          this.headers = this.currentHeader
+          break;
+      }
+      this.$nextTick(() => {
+        this.tableKey++
+      })
     },
-    // '$store.state.subscribers.subType': function() {
-    //   console.log(this.$store.state.subscribers.subType)
-    // }
+    headers:{
+      deep: true,
+      handler(){
+        console.log(this);
+      }
+    }
   },
   props: ["startDate", "endDate"],
   data() {
     return {
+      renderComponent: true,
+      tableKey: 1,
       headers: [
         {
           text: this.$t("abandonedCarts.dataTab.headers.col1"),
@@ -127,6 +150,8 @@ export default {
           sortable: false,
         },
       ],
+      currentHeader:"",
+
     };
   },
   computed: {
@@ -136,7 +161,8 @@ export default {
     },
     subSelType(){
       return this.getSubType
-    }
+    },
+
   },
 };
 </script>
