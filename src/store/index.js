@@ -185,6 +185,11 @@ export default new Vuex.Store({
       },
     },
 
+    // Subscribers
+    subscribers:{
+      subType:""
+    },
+
     //Dashboard state
 
     dashVars: {
@@ -274,6 +279,9 @@ export default new Vuex.Store({
         install_popop_show:state.settingsVars.install_popop_show
       };
       return obj;
+    },
+    getSubType:(state) =>{
+      return  state.subscribers.subType
     },
     getPricingPlan: (state) => {
       return state.globalVars.pricing_plan;
@@ -496,6 +504,9 @@ export default new Vuex.Store({
         : (state.widgetVars.changesSaved = false);
       state.widgetVars.subscribe_type = type;
       type == 'subscribe' ? state.widgetVars.subscribe_type = 'subscribe' : state.widgetVars.subscribe_type = 'deafult'
+    },
+    SET_SUBS_TYPE(state,type){
+      state.subscribers.subType = type
     },
     SET_WDGT_TYPE(state, type) {
       type == state.widgetVars.facebook_widget_type
@@ -1105,7 +1116,12 @@ export default new Vuex.Store({
           });
       });
     },
-
+    updSubsType({commit},txt){
+      return new Promise((resolve) => {
+        commit("SET_SUBS_TYPE",txt);
+        resolve("success");
+      });
+    },
     updWdgtLive({ commit }, live) {
       return new Promise((resolve) => {
         commit("SET_WDGT_LIVE", live);

@@ -64,6 +64,21 @@ export default {
           this.$store.dispatch("updIsLoading", false);
         });
     });
+
+  },
+  watch:{
+    subSelType(oldVal,newVal){
+      console.log(oldVal)
+      console.log(newVal)
+      // set react and find if headers hasnt phone or chanel push headers
+      // do computed or watch deep data object
+      newVal == "Facebook" ?
+       this.headers = this.headers.filter(  header => header.value !== 'phone')
+      : newVal == "SMS" ? this.headers = this.headers.filter(  header => header.value !== 'channel') : this.headers.push()
+    },
+    // '$store.state.subscribers.subType': function() {
+    //   console.log(this.$store.state.subscribers.subType)
+    // }
   },
   props: ["startDate", "endDate"],
   data() {
@@ -74,6 +89,12 @@ export default {
           align: "start",
           sortable: false,
           value: "created_at",
+        },
+        {
+          text: this.$t("abandonedCarts.dataTab.headers.col7"),
+          align: "start",
+          sortable: false,
+          value: "channel",
         },
         {
           text: this.$t("abandonedCarts.dataTab.headers.col2"),
@@ -100,14 +121,22 @@ export default {
           value: "cart_recovered_at",
           sortable: false,
         },
+        {
+          text: this.$t("abandonedCarts.dataTab.headers.col8"),
+          value: "phone",
+          sortable: false,
+        },
       ],
     };
   },
   computed: {
-    ...mapGetters(["getCartsState"]),
+    ...mapGetters(["getCartsState","getSubType"]),
     items() {
       return this.getCartsState;
     },
+    subSelType(){
+      return this.getSubType
+    }
   },
 };
 </script>

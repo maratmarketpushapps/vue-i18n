@@ -71,25 +71,26 @@
               ></v-date-picker
             >
           </v-menu>
-          <v-tab>
-            <v-col>
-              <v-select
-                flat
-                :items="selectedType"
-                label="Select"
-                hide-details
-                single-line
 
-              >
-                <template slot="append">
-                  <v-img src="@/assets/img/Subscribers/icon-channel.png" ></v-img>
-                </template>
-              </v-select>
-            </v-col>
-          </v-tab>
+
         </v-tabs>
       </v-col>
-
+      <v-col class="selTypecol pt-0" cols="2">
+<!--        // remember set active color and change icon when it active-->
+        <v-select
+          flat
+          v-model="selectedType"
+          :items="TypeForSel"
+          :label="selectedType"
+          hide-details
+          single-line
+          @click="minusModel(selectedType)"
+        >
+          <template slot="append" >
+            <v-img src="@/assets/img/Subscribers/icon-channel.png"  ></v-img>
+          </template>
+        </v-select>
+      </v-col>
       <v-col>
         <v-row justify="end" class="pr-0 mr-0 mb-1">
           <v-btn depressed icon class="refIcondim mr-0" @click="incrTabCount">
@@ -159,8 +160,13 @@ export default {
       itemKeyDat2: 0,
       itemKeyDat3: 0,
       activeTab: "2",
-      selectedType:['All Channels','SMS','Facebook'],
+      TypeForSel:this.$t("abandonedCarts.TypeForSel"),
+      selectedType:"",
+      currData:this.$t("abandonedCarts.TypeForSel"),
     };
+  },
+  mounted() {
+    this.selectedType = this.$t("abandonedCarts.selectedType")
   },
   methods: {
     incrTabCount() {
@@ -182,11 +188,9 @@ export default {
       this.activeTab = "3";
       this.itemKeyDat3++;
     },
-
     setMenuactivator() {
       this.menuActivator = true;
     },
-
     setCustDt() {
       // console.log("DateTestsNew :: " + this.custDates[0]);
       // console.log("DateTestsNew :: " + this.custDates[1]);
@@ -204,6 +208,17 @@ export default {
       this.custKey++;
       this.menu = false;
     },
+    minusModel(item){
+      this.selectedType = item
+      this.TypeForSel = this.currData
+      this.TypeForSel = this.TypeForSel.filter(  t => t !== item)
+      this.selectedType = item
+    }
+  },
+  watch:{
+    selectedType(newVal){
+        this.$store.dispatch("updSubsType",newVal)
+    }
   },
   computed: {
     ...mapGetters(["getCreatedAt"]),
@@ -277,7 +292,26 @@ export default {
   transform: scale(0.9);
   transform-origin: 0 0;
 }
-
+.selTypecol{
+  font: normal normal 600 12px/29px Poppins;
+  width: 157px !important;
+  text-align: left;
+  letter-spacing: 0px;
+  color: #5686F6;
+  opacity: 1;
+}
+.v-text-field{
+  padding-top: 0px !important;
+}
+.v-select__selection v-select__selection--comma{
+  color: #5686F6 !important;
+}
+.theme--light.v-select{
+  color: #5686F6 !important;
+}
+.theme--light.v-select .v-select__selection--comma{
+  color: #5686F6 !important;
+}
 @media (min-width: 1400px) {
   .refIcondim {
     transform: scale(1.2);

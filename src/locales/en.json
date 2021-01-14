@@ -31,6 +31,8 @@
       "item3": "LAST 30 DAYS",
       "item4": "CUSTOM RANGE"
     },
+    "TypeForSel": ["All Channels","SMS","Facebook"],
+    "selectedType": "All Channels",
     "dataTab": {
       "headers": {
         "col1": "Subscribed At",
@@ -38,7 +40,9 @@
         "col3": "First Message Sent At",
         "col4": "Second Message Sent At",
         "col5": "Cart Status",
-        "col6": "Cart Recovered At"
+        "col6": "Cart Recovered At",
+        "col7": "Channels",
+        "col8": "Phone Number"
       }
     }
   },
