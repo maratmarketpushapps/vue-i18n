@@ -28,27 +28,27 @@ export default new Vuex.Store({
     },
 
     widgetVars: {
-      enabled_widgets:{
+      enabled_widgets: {
         sms: {
-          title:"sms",
+          title: "sms",
           enabled: false,
-          position: 1
+          position: 1,
         },
         facebook: {
-          title:"facebook",
+          title: "facebook",
           enabled: false,
-          position: 2
+          position: 2,
         },
         whatsapp: {
-          title:"whatsApp",
+          title: "whatsApp",
           enabled: false,
-          position: 3
-        }
+          position: 3,
+        },
       },
-      subscribe_type:"",
-      apply_discount_instruction:"",
-      discount_code:"",
-      discount_statement:"",
+      subscribe_type: "",
+      apply_discount_instruction: "",
+      discount_code: "",
+      discount_statement: "",
       id: 0,
       instance_id: "",
       website_id: 0,
@@ -88,8 +88,8 @@ export default new Vuex.Store({
     settingsVars: {
       first_name: "",
       last_name: "",
-      business_name:"",
-      business_phone_number:"",
+      business_name: "",
+      business_phone_number: "",
       email: "",
       facebook_page_name: "",
       facebook_page_id: "",
@@ -102,10 +102,11 @@ export default new Vuex.Store({
       receipt_message_id: "",
       shipped_message_id: "",
       widget_id: "",
+      setup_step_1_completed: true,
       setup_step_2_completed: true,
       setup_step_3_completed: true,
       cart_recovery_attempts_done: "",
-      install_popop_show:true,
+      install_popop_show: true,
     },
     planVars: {
       plans: [{ planName: "Dummy", cart_recovery_attempts: 0 }],
@@ -125,15 +126,15 @@ export default new Vuex.Store({
       cart1Active: true,
       qreplyEdit: false,
       step2Com: true,
-      sms_abandoned_cart_1 :{
-       active:"",
-       intro_message:"",
-       sent_after:""
+      sms_abandoned_cart_1: {
+        active: "",
+        intro_message: "",
+        sent_after: "",
       },
-      sms_abandoned_cart_2:{
-      active:"",
-      intro_message:"",
-      sent_after:""
+      sms_abandoned_cart_2: {
+        active: "",
+        intro_message: "",
+        sent_after: "",
       },
       abandoned_cart_2: {
         button_text: "",
@@ -185,8 +186,8 @@ export default new Vuex.Store({
     },
 
     // Subscribers
-    subscribers:{
-      subType:""
+    subscribers: {
+      subType: "",
     },
 
     //Dashboard state
@@ -222,25 +223,25 @@ export default new Vuex.Store({
     setupCompletedVars: {
       smsCartRecovery: false,
       smsCartRecoverySteps: {
-          step1: false,
-          step2: false,
-          step3: false
+        step1: false,
+        step2: false,
+        step3: false,
       },
       fbCartRecovery: false,
       fbCartRecoverySteps: {
-          step1: false,
-          step2: false,
-          step3: false
+        step1: false,
+        step2: false,
+        step3: false,
       },
       waCartRecovery: false,
       waCartRecoverySteps: {
-          step1: false,
-          step2: false,
-          step3: false
+        step1: false,
+        step2: false,
+        step3: false,
       },
       smsShowCartRecoveryStepsModal: false,
       fbShowCartRecoveryStepsModal: false,
-    }
+    },
   },
   getters: {
     checkClicked: (state) => (id) => {
@@ -271,15 +272,15 @@ export default new Vuex.Store({
       let obj = {
         first_name: state.settingsVars.first_name,
         last_name: state.settingsVars.last_name,
-        business_name:state.settingsVars.business_name,
+        business_name: state.settingsVars.business_name,
         email: state.settingsVars.email,
-        business_phone_number:state.settingsVars.business_phone_number,
-        install_popop_show:state.settingsVars.install_popop_show
+        business_phone_number: state.settingsVars.business_phone_number,
+        install_popop_show: state.settingsVars.install_popop_show,
       };
       return obj;
     },
-    getSubType:(state) =>{
-      return  state.subscribers.subType
+    getSubType: (state) => {
+      return state.subscribers.subType;
     },
     getPricingPlan: (state) => {
       return state.globalVars.pricing_plan;
@@ -335,25 +336,26 @@ export default new Vuex.Store({
       return state.dashVars;
     },
     getStepsCompleted: (state) => {
-       return state.setupCompletedVars;
+      return state.setupCompletedVars;
     },
     getSubs: (state) => {
       return state.subVars;
-    }
+    },
   },
   mutations: {
     // Displays the modal with the cart recovery steps.
     UPDATE_CART_RECOVERY_MODAL_SHOW(state, obj) {
       // console.log("called " + obj.type + " " + obj.status);
-      state.setupCompletedVars[obj.type + 'ShowCartRecoveryStepsModal'] = obj.status;
+      state.setupCompletedVars[obj.type + "ShowCartRecoveryStepsModal"] =
+        obj.status;
     },
     // smscart 1
-    UPDATE_MSG_sms_cartOne(state,val) {
-      state.msgVars.sms_abandoned_cart_1.active = val
+    UPDATE_MSG_sms_cartOne(state, val) {
+      state.msgVars.sms_abandoned_cart_1.active = val;
     },
     // smscart2
-    UPDATE_MSG_sms_cartTwo(state,val) {
-      state.msgVars.sms_abandoned_cart_2.active =  val
+    UPDATE_MSG_sms_cartTwo(state, val) {
+      state.msgVars.sms_abandoned_cart_2.active = val;
     },
     SET_SELECTED(state, id) {
       state.navState.currentSelected = id;
@@ -381,8 +383,8 @@ export default new Vuex.Store({
       state.widgetVars.id = obj.id;
       state.widgetVars.enabled_widgets = obj.enabled_widgets;
       state.widgetVars.discount_code = obj.discount_code;
-      state.widgetVars.discount_statement = obj.discount_statement
-      state.widgetVars.subscribe_type = obj.subscribe_type
+      state.widgetVars.discount_statement = obj.discount_statement;
+      state.widgetVars.subscribe_type = obj.subscribe_type;
       state.widgetVars.instance_id = obj.instance_id;
       state.widgetVars.website_id = obj.website_id;
       // state.widgetVars.facebook_widget_type = obj.facebook_widget_type;
@@ -439,6 +441,7 @@ export default new Vuex.Store({
       state.settingsVars.receipt_message_id = obj.receipt_message_id;
       state.settingsVars.shipped_message_id = obj.shipped_message_id;
       state.settingsVars.widget_id = obj.widget_id;
+      state.settingsVars.setup_step_1_completed = obj.setup_step_1_completed;
       state.settingsVars.setup_step_2_completed = obj.setup_step_2_completed;
       state.settingsVars.setup_step_3_completed = obj.setup_step_3_completed;
       state.settingsVars.cart_recovery_attempts_done =
@@ -490,10 +493,12 @@ export default new Vuex.Store({
         ? (state.widgetVars.changesSaved = true)
         : (state.widgetVars.changesSaved = false);
       state.widgetVars.subscribe_type = type;
-      type == 'subscribe' ? state.widgetVars.subscribe_type = 'subscribe' : state.widgetVars.subscribe_type = 'default'
+      type == "subscribe"
+        ? (state.widgetVars.subscribe_type = "subscribe")
+        : (state.widgetVars.subscribe_type = "default");
     },
-    SET_SUBS_TYPE(state,type){
-      state.subscribers.subType = type
+    SET_SUBS_TYPE(state, type) {
+      state.subscribers.subType = type;
     },
     SET_WDGT_TYPE(state, type) {
       type == state.widgetVars.facebook_widget_type
@@ -519,21 +524,23 @@ export default new Vuex.Store({
         : (state.widgetVars.changesSaved = false);
       state.widgetVars.apply_discount_instruction = txt;
     },
-    SAVE_WIDGET_CHECKBOX(state,coneData){
-      if(coneData[0].title == "sms"){
-        state.widgetVars.enabled_widgets.sms.title = coneData[0].title
-        state.widgetVars.enabled_widgets.sms.enabled = coneData[0].connection
-        state.widgetVars.enabled_widgets.sms.position = coneData[0].id
-        state.widgetVars.enabled_widgets.facebook.title = coneData[1].title
-        state.widgetVars.enabled_widgets.facebook.position = coneData[1].id
-        state.widgetVars.enabled_widgets.facebook.enabled = coneData[1].connection
-      }else {
-        state.widgetVars.enabled_widgets.facebook.title = coneData[0].title
-        state.widgetVars.enabled_widgets.facebook.enabled = coneData[0].connection
-        state.widgetVars.enabled_widgets.facebook.position = coneData[0].id
-        state.widgetVars.enabled_widgets.sms.title = coneData[1].title
-        state.widgetVars.enabled_widgets.sms.enabled = coneData[1].connection
-        state.widgetVars.enabled_widgets.sms.position= coneData[1].id
+    SAVE_WIDGET_CHECKBOX(state, coneData) {
+      if (coneData[0].title == "sms") {
+        state.widgetVars.enabled_widgets.sms.title = coneData[0].title;
+        state.widgetVars.enabled_widgets.sms.enabled = coneData[0].connection;
+        state.widgetVars.enabled_widgets.sms.position = coneData[0].id;
+        state.widgetVars.enabled_widgets.facebook.title = coneData[1].title;
+        state.widgetVars.enabled_widgets.facebook.position = coneData[1].id;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          coneData[1].connection;
+      } else {
+        state.widgetVars.enabled_widgets.facebook.title = coneData[0].title;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          coneData[0].connection;
+        state.widgetVars.enabled_widgets.facebook.position = coneData[0].id;
+        state.widgetVars.enabled_widgets.sms.title = coneData[1].title;
+        state.widgetVars.enabled_widgets.sms.enabled = coneData[1].connection;
+        state.widgetVars.enabled_widgets.sms.position = coneData[1].id;
       }
     },
     SET_WDGT_HDR_TXT(state, txt) {
@@ -693,21 +700,29 @@ export default new Vuex.Store({
       state.settingsVars.facebook_user_id = obj.facebook_user_id;
       state.settingsVars.facebook_short_access_token =
         obj.facebook_short_access_token;
-    },
 
+      state.settingsVars.setup_step_1_completed = obj.setup_step_1_completed;
+    },
 
     //Messages Commits
     SET_MSG_VALS(state, obj) {
+      state.msgVars.sms_abandoned_cart_1.active =
+        obj.sms_abandoned_cart_1.active;
+      state.msgVars.sms_abandoned_cart_1.intro_message =
+        obj.sms_abandoned_cart_1.intro_message;
+      state.msgVars.sms_abandoned_cart_1.sent_after =
+        obj.sms_abandoned_cart_1.sent_after;
+      state.msgVars.sent_count.sms_sent_count_abandoned_cart_1 =
+        obj.sent_count.sms_sent_count_abandoned_cart_1;
 
-      state.msgVars.sms_abandoned_cart_1.active = obj.sms_abandoned_cart_1.active
-      state.msgVars.sms_abandoned_cart_1.intro_message = obj.sms_abandoned_cart_1.intro_message
-      state.msgVars.sms_abandoned_cart_1.sent_after = obj.sms_abandoned_cart_1.sent_after
-      state.msgVars.sent_count.sms_sent_count_abandoned_cart_1 = obj.sent_count.sms_sent_count_abandoned_cart_1
-
-      state.msgVars.sms_abandoned_cart_2.active = obj.sms_abandoned_cart_2.active
-      state.msgVars.sms_abandoned_cart_2.intro_message = obj.sms_abandoned_cart_2.intro_message
-      state.msgVars.sms_abandoned_cart_2.sent_after = obj.sms_abandoned_cart_2.sent_after
-      state.msgVars.sent_count.sms_sent_count_abandoned_cart_2 = obj.sent_count.sms_sent_count_abandoned_cart_2
+      state.msgVars.sms_abandoned_cart_2.active =
+        obj.sms_abandoned_cart_2.active;
+      state.msgVars.sms_abandoned_cart_2.intro_message =
+        obj.sms_abandoned_cart_2.intro_message;
+      state.msgVars.sms_abandoned_cart_2.sent_after =
+        obj.sms_abandoned_cart_2.sent_after;
+      state.msgVars.sent_count.sms_sent_count_abandoned_cart_2 =
+        obj.sent_count.sms_sent_count_abandoned_cart_2;
       // sms_abandoned_cart_1 :{
       //   active:"",
       //     intro_message:"",
@@ -777,7 +792,6 @@ export default new Vuex.Store({
         obj.sent_count.sent_count_abandoned_cart_1;
       state.msgVars.sent_count.sent_count_order_shipped =
         obj.sent_count.sent_count_order_shipped;
-
     },
     SET_ORDR_RCPT(state, obj) {
       state.msgVars.order_receipt.button_text = obj.button_text;
@@ -817,14 +831,14 @@ export default new Vuex.Store({
         obj.quick_reply_more_questions_text;
     },
     smsSET_ORDR_ABANDONED_CART(state, obj) {
-      state.msgVars.sms_abandoned_cart_1.intro_message = obj.intro_message
-      state.msgVars.sms_abandoned_cart_1.active = obj.active
-      state.msgVars.sms_abandoned_cart_1.sent_after = obj.sent_after
+      state.msgVars.sms_abandoned_cart_1.intro_message = obj.intro_message;
+      state.msgVars.sms_abandoned_cart_1.active = obj.active;
+      state.msgVars.sms_abandoned_cart_1.sent_after = obj.sent_after;
     },
     sms_second_SET_ORDR_ABANDONED_CART(state, obj) {
-      state.msgVars.sms_abandoned_cart_2.intro_message = obj.intro_message
-      state.msgVars.sms_abandoned_cart_2.active = obj.active
-      state.msgVars.sms_abandoned_cart_2.sent_after = obj.sent_after
+      state.msgVars.sms_abandoned_cart_2.intro_message = obj.intro_message;
+      state.msgVars.sms_abandoned_cart_2.active = obj.active;
+      state.msgVars.sms_abandoned_cart_2.sent_after = obj.sent_after;
     },
     SET_ORDR_ABANDONED_CART2(state, obj) {
       state.msgVars.abandoned_cart_2.sent_after = obj.sent_after;
@@ -883,8 +897,8 @@ export default new Vuex.Store({
         obj.cart_recovery.total_recovered;
       state.dashVars.cart_recovery.abandoned_carts =
         obj.cart_recovery.abandoned_carts;
-        state.dashVars.cart_recovery.sms_subscribers =
-          obj.cart_recovery.sms_subscribers;
+      state.dashVars.cart_recovery.sms_subscribers =
+        obj.cart_recovery.sms_subscribers;
       state.dashVars.cart_recovery.facebook_subscribers =
         obj.cart_recovery.facebook_subscribers;
       state.dashVars.cart_recovery.carts_recovered =
@@ -892,15 +906,20 @@ export default new Vuex.Store({
     },
     SET_STEPS_COMPLETED_VALS(state, obj) {
       state.setupCompletedVars.smsCartRecovery = obj.smsCartRecovery;
-      state.setupCompletedVars.smsCartRecoverySteps.step1 = obj.smsCartRecoverySteps.step1;
-      state.setupCompletedVars.smsCartRecoverySteps.step2 = obj.smsCartRecoverySteps.step2;
-      state.setupCompletedVars.smsCartRecoverySteps.step3 = obj.smsCartRecoverySteps.step3;
+      state.setupCompletedVars.smsCartRecoverySteps.step1 =
+        obj.smsCartRecoverySteps.step1;
+      state.setupCompletedVars.smsCartRecoverySteps.step2 =
+        obj.smsCartRecoverySteps.step2;
+      state.setupCompletedVars.smsCartRecoverySteps.step3 =
+        obj.smsCartRecoverySteps.step3;
 
       state.setupCompletedVars.fbCartRecovery = obj.fbCartRecovery;
-      state.setupCompletedVars.fbCartRecoverySteps.step1 = obj.fbCartRecoverySteps.step1;
-      state.setupCompletedVars.fbCartRecoverySteps.step2 = obj.fbCartRecoverySteps.step2;
-      state.setupCompletedVars.fbCartRecoverySteps.step3 = obj.fbCartRecoverySteps.step3;
-
+      state.setupCompletedVars.fbCartRecoverySteps.step1 =
+        obj.fbCartRecoverySteps.step1;
+      state.setupCompletedVars.fbCartRecoverySteps.step2 =
+        obj.fbCartRecoverySteps.step2;
+      state.setupCompletedVars.fbCartRecoverySteps.step3 =
+        obj.fbCartRecoverySteps.step3;
     },
     SET_SUB_VALS(state, obj) {
       state.subVars.former_subscription_plan = obj.former_subscription_plan;
@@ -908,36 +927,49 @@ export default new Vuex.Store({
       state.subVars.consumed_recovery_attempts = obj.consumed_recovery_attempts;
       state.subVars.subscription_plan = obj.subscription_plan;
     },
-    UPDATE_SET_VARS_POP(state,itemval){
-      state.settingsVars.install_popop_show = itemval
+    UPDATE_SET_VARS_POP(state, itemval) {
+      state.settingsVars.install_popop_show = itemval;
     },
-    SAVE_WIDGET_FORM(state,formVidgData){
-      state.widgetVars.apply_discount_instruction = formVidgData.apply_discount_instruction
-      state.widgetVars.discount_code = formVidgData.discount_code
-      state.widgetVars.discount_statement = formVidgData.discount_statement
-      if(formVidgData.coneData[0].title == "sms"){
-        state.widgetVars.enabled_widgets.sms.title = formVidgData.coneData[0].title
-        state.widgetVars.enabled_widgets.sms.enabled = formVidgData.coneData[0].connection
-        state.widgetVars.enabled_widgets.sms.position = formVidgData.coneData[0].id
-        state.widgetVars.enabled_widgets.facebook.title = formVidgData.coneData[1].title
-        state.widgetVars.enabled_widgets.facebook.position = formVidgData.coneData[1].id
-        state.widgetVars.enabled_widgets.facebook.enabled = formVidgData.coneData[1].connection
-      }else {
-        state.widgetVars.enabled_widgets.facebook.title = formVidgData.coneData[0].title
-        state.widgetVars.enabled_widgets.facebook.enabled = formVidgData.coneData[0].connection
-        state.widgetVars.enabled_widgets.facebook.position = formVidgData.coneData[0].id
-        state.widgetVars.enabled_widgets.sms.title = formVidgData.coneData[1].title
-        state.widgetVars.enabled_widgets.sms.enabled = formVidgData.coneData[1].connection
-        state.widgetVars.enabled_widgets.sms.position= formVidgData.coneData[1].id
+    SAVE_WIDGET_FORM(state, formVidgData) {
+      state.widgetVars.apply_discount_instruction =
+        formVidgData.apply_discount_instruction;
+      state.widgetVars.discount_code = formVidgData.discount_code;
+      state.widgetVars.discount_statement = formVidgData.discount_statement;
+      if (formVidgData.coneData[0].title == "sms") {
+        state.widgetVars.enabled_widgets.sms.title =
+          formVidgData.coneData[0].title;
+        state.widgetVars.enabled_widgets.sms.enabled =
+          formVidgData.coneData[0].connection;
+        state.widgetVars.enabled_widgets.sms.position =
+          formVidgData.coneData[0].id;
+        state.widgetVars.enabled_widgets.facebook.title =
+          formVidgData.coneData[1].title;
+        state.widgetVars.enabled_widgets.facebook.position =
+          formVidgData.coneData[1].id;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          formVidgData.coneData[1].connection;
+      } else {
+        state.widgetVars.enabled_widgets.facebook.title =
+          formVidgData.coneData[0].title;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          formVidgData.coneData[0].connection;
+        state.widgetVars.enabled_widgets.facebook.position =
+          formVidgData.coneData[0].id;
+        state.widgetVars.enabled_widgets.sms.title =
+          formVidgData.coneData[1].title;
+        state.widgetVars.enabled_widgets.sms.enabled =
+          formVidgData.coneData[1].connection;
+        state.widgetVars.enabled_widgets.sms.position =
+          formVidgData.coneData[1].id;
       }
-      state.widgetVars.subscribe_type = formVidgData.subscribe_type
+      state.widgetVars.subscribe_type = formVidgData.subscribe_type;
     },
-    SET_WIDGET_info(state,itemVidg){
-      state.widgetVars.apply_discount_instruction = itemVidg.apply_discount_instruction
-      state.widgetVars.discount_code = itemVidg.discount_code
-      state.widgetVars.discount_statement = itemVidg.discount_statement
-    }
-
+    SET_WIDGET_info(state, itemVidg) {
+      state.widgetVars.apply_discount_instruction =
+        itemVidg.apply_discount_instruction;
+      state.widgetVars.discount_code = itemVidg.discount_code;
+      state.widgetVars.discount_statement = itemVidg.discount_statement;
+    },
   },
   actions: {
     updateCartRecoveryModalShow({ commit }, obj) {
@@ -1005,7 +1037,7 @@ export default new Vuex.Store({
         axios
           .get(url, headers)
           .then((res) => {
-            commit("UPDATE_SET_VARS_POP",res.data.install_popop_show)
+            commit("UPDATE_SET_VARS_POP", res.data.install_popop_show);
             commit("SET_SETTINGS_VALS", JSON.parse(JSON.stringify(res.data)));
             resolve("success");
           })
@@ -1027,7 +1059,7 @@ export default new Vuex.Store({
         axios
           .get(url, headers)
           .then((res) => {
-            commit("SET_WIDGET_info",res.data)
+            commit("SET_WIDGET_info", res.data);
             commit("SET_WIDGETS_VAL", JSON.parse(JSON.stringify(res.data)));
             resolve("success");
           })
@@ -1102,9 +1134,9 @@ export default new Vuex.Store({
           });
       });
     },
-    updSubsType({commit},txt){
+    updSubsType({ commit }, txt) {
       return new Promise((resolve) => {
-        commit("SET_SUBS_TYPE",txt);
+        commit("SET_SUBS_TYPE", txt);
         resolve("success");
       });
     },
@@ -1544,7 +1576,10 @@ export default new Vuex.Store({
           .get(url, headers)
           .then((res) => {
             // console.log(JSON.stringify(res.data));
-            commit("SET_STEPS_COMPLETED_VALS", JSON.parse(JSON.stringify(res.data)));
+            commit(
+              "SET_STEPS_COMPLETED_VALS",
+              JSON.parse(JSON.stringify(res.data))
+            );
             resolve("success");
           })
           .catch((error) => {
