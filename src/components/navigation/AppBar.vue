@@ -6,14 +6,12 @@
     class="appbar_background  text--bottom"
     align-content="center"
     fixed
-    style="z-index:1.5;height: 100%"
+    style="z-index:1.5;height: 80px !important;"
   >
-    <v-row style="height:100% !important" class="pb-0 mb-0">
-
-      <v-col>
-        <CartRecoveryStatus recoveryType="sms" />
-      </v-col>
-      <v-col>
+    <v-row style="height:100% !important" class="pb-0 mb-0 py-0">
+      <v-col :cols="$vuetify.breakpoint.lg ? '4' : $vuetify.breakpoint.sm ? '2' : '3'"></v-col>
+      <v-col class="py-0 d-flex hgt_fix justify-end align-center" >
+        <CartRecoveryStatus recoveryType="sms"  />
         <CartRecoveryStatus recoveryType="fb" />
       </v-col>
 
@@ -30,9 +28,10 @@
         stepCRoute="/widgets"
       />
 
+      <v-col cols="1" v-if="this.$vuetify.breakpoint.width > 1366"></v-col>
       <!-- Upgrade button component -->
-      <v-col cols="2" class="pl-8 mb-2"
-        ><v-btn
+      <v-col cols="2" class=" py-0 d-flex justify-end">
+        <v-btn
           tile
           elevation="1"
           outlined
@@ -40,10 +39,11 @@
           v-show="showUpgrade"
           :href="upgrdUrl"
           target="_blank"
+
         >
           {{ $t("navbar.appbar.buttonUpgrade") }}
-        </v-btn></v-col
-      >
+        </v-btn>
+      </v-col>
     </v-row>
   </v-app-bar>
 </template>
@@ -65,6 +65,9 @@ export default {
       showAlert: true,
       playImg: require("@/assets/img/icon-play.png"),
     };
+  },
+  mounted() {
+    console.log(this.$vuetify.breakpoint.width)
   },
   methods: {
     setStep(step) {
@@ -162,7 +165,7 @@ a {
 }
 
 .button-dims {
-  height: 60% !important;
+  height: 100% !important;
   width: 80% !important;
   font-size: 60% !important;
   position: relative;
@@ -178,7 +181,7 @@ a {
   }
 
   .button-dims {
-    height: 70% !important;
+    height: 100% !important;
     width: 70% !important;
     font-size: 80% !important;
     position: relative;
@@ -189,5 +192,8 @@ a {
 <style lang="css" scoped>
 .v-stepper__step{
   padding: 0px 24px !important;
+}
+.hgt_fix{
+  height: 72px !important;
 }
 </style>

@@ -23,7 +23,6 @@
               tile
               height="50%"
               :class="!detectChange ? 'mb-2 sv_changes wdgt_font_dims resp_sp' : 'mb-2 wdgt_font_dims resp_sp'"
-
               width="70%"
               :disabled="detectChange"
               style="text-transform:none; font-size:70% !important"

@@ -11,7 +11,7 @@
         <v-list-item-content class="pa-0 ma-0">
           <router-link to="/dashboard">
             <div
-              class="logo_background navbar-div right-shadow"
+              class="logo_background navbar-div hgfix right-shadow"
               id="logo-container"
             >
               <NavIcon class="navicon" />
@@ -220,7 +220,9 @@ export default {
   margin-top: 12px !important;
   cursor: pointer;
 }
-
+.hgfix{
+  height: 80px !important;
+}
 @media (min-width: 1400px) {
   .navicon_scale {
     transform: scale(0.9);
