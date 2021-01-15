@@ -524,8 +524,8 @@ export default new Vuex.Store({
         : (state.widgetVars.changesSaved = false);
       state.widgetVars.apply_discount_instruction = txt;
     },
-<<<<<<< HEAD
     SAVE_WIDGET_CHECKBOX(state, coneData) {
+      state.widgetVars.changesSaved = false;
       if (coneData[0].title == "sms") {
         state.widgetVars.enabled_widgets.sms.title = coneData[0].title;
         state.widgetVars.enabled_widgets.sms.enabled = coneData[0].connection;
@@ -542,24 +542,6 @@ export default new Vuex.Store({
         state.widgetVars.enabled_widgets.sms.title = coneData[1].title;
         state.widgetVars.enabled_widgets.sms.enabled = coneData[1].connection;
         state.widgetVars.enabled_widgets.sms.position = coneData[1].id;
-=======
-    SAVE_WIDGET_CHECKBOX(state,coneData){
-     state.widgetVars.changesSaved = false
-      if(coneData[0].title == "sms"){
-        state.widgetVars.enabled_widgets.sms.title = coneData[0].title
-        state.widgetVars.enabled_widgets.sms.enabled = coneData[0].connection
-        state.widgetVars.enabled_widgets.sms.position = coneData[0].id
-        state.widgetVars.enabled_widgets.facebook.title = coneData[1].title
-        state.widgetVars.enabled_widgets.facebook.position = coneData[1].id
-        state.widgetVars.enabled_widgets.facebook.enabled = coneData[1].connection
-      }else {
-        state.widgetVars.enabled_widgets.facebook.title = coneData[0].title
-        state.widgetVars.enabled_widgets.facebook.enabled = coneData[0].connection
-        state.widgetVars.enabled_widgets.facebook.position = coneData[0].id
-        state.widgetVars.enabled_widgets.sms.title = coneData[1].title
-        state.widgetVars.enabled_widgets.sms.enabled = coneData[1].connection
-        state.widgetVars.enabled_widgets.sms.position= coneData[1].id
->>>>>>> cfc980686168ea19918f72a60379812136af43d3
       }
     },
     SET_WDGT_HDR_TXT(state, txt) {
