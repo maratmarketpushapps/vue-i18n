@@ -129,40 +129,48 @@
                   <v-col cols="1"> </v-col>
                   <v-col cols="10" style="height:100%">
                     <v-row
-                      style="width:100%;height:60%"
+                      style="width:100%;height:auto"
                       align="center"
                       class="pl-1"
                     >
-                      <v-checkbox input-value="true" disabled> </v-checkbox>
-                      <span class="pr-1">
+                      <v-checkbox
+                        input-value="true"
+                        disabled
+                        style="transform: scale(0.8)"
+                        class="pr-0 mr-0"
+                      >
+                      </v-checkbox>
+                      <span class="pr-0" style="font-size:80%">
                         {{ $t("widgets.chckBxTxt1") }}
                       </span>
-                      <v-icon color="#0084FF">
+                      <v-icon color="#0084FF" style="transform: scale(0.8)">
                         mdi-facebook-messenger
                       </v-icon>
-                      <span class="pl-2">
+                      <span class="pl-0" style="font-size:80%">
                         {{ $t("widgets.chckBxTxt2") }}
                       </span>
+                      <span> </span>
                     </v-row>
 
-                    <v-row style="width:100%;height:40%" align="center">
+                    <v-row style="width:100%;height:30%" align="start">
                       <v-container
-                        style="height: 26px; width: 26px; border-radius:100%; background-color: #E6E7E8"
+                        style="height: 15px; width: 15px; border-radius:100%; background-color: #E6E7E8; transform: scale(0.8)"
                         class="mx-2"
                       ></v-container>
 
                       <span
-                        style="font-size: 14px; height:100%; color: #B3B7BA"
+                        style="font-size: 70%; height:100%; color: #B3B7BA"
                         class="pt-1 mr-2"
                         >{{ $t("widgets.fbUserName") }}</span
                       >
 
                       <a
-                        style="font-size: 13px; height:100%; color: #B3B7BA; text-decoration:underline"
+                        style="font-size: 70%; height:100%; color: #B3B7BA; text-decoration:underline"
                         class="pt-1"
                         >{{ $t("widgets.wrngUsrTxt") }}</a
                       >
                     </v-row>
+                    <v-row style="height:40%; width:100%"> </v-row>
                   </v-col>
                 </v-row>
               </v-row>
@@ -364,7 +372,7 @@
             justify="center"
             v-if="wdgtTabcheck && !wdgtIsDsc"
             class="pl-2"
-            :key="'key1'+wdgtTabKey"
+            :key="'key1' + wdgtTabKey"
           >
             <v-tabs-items v-model="tab" style="width:90%">
               <v-tab-item :value="getTabKeySMS" style="width:100%">
@@ -431,7 +439,7 @@
             align="center"
             justify="center"
             v-if="wdgtTabcheck && wdgtIsDsc"
-            :key="'key2'+wdgtTabKey"
+            :key="'key2' + wdgtTabKey"
           >
             <v-col cols="3" class="ma-0 pa-0" style="height:100%;width:100%">
               <v-img
@@ -506,20 +514,16 @@
                             class="pr-0 mr-0"
                           >
                           </v-checkbox>
-                          <span>
-                            <span class="pr-0" style="font-size:80%">
-                              {{ $t("widgets.chckBxTxt1") }}
-                            </span>
-                            <v-icon
-                              color="#0084FF"
-                              style="transform: scale(0.8)"
-                            >
-                              mdi-facebook-messenger
-                            </v-icon>
-                            <span class="pl-0" style="font-size:80%">
-                              {{ $t("widgets.chckBxTxt2") }}
-                            </span>
+                          <span class="pr-0" style="font-size:80%">
+                            {{ $t("widgets.chckBxTxt1") }}
                           </span>
+                          <v-icon color="#0084FF" style="transform: scale(0.8)">
+                            mdi-facebook-messenger
+                          </v-icon>
+                          <span class="pl-0" style="font-size:80%">
+                            {{ $t("widgets.chckBxTxt2") }}
+                          </span>
+                          <span> </span>
                         </v-row>
 
                         <v-row style="width:100%;height:30%" align="start">
@@ -566,7 +570,7 @@
             align="center"
             justify="center"
             v-if="wdgtTabcheck && !wdgtIsDsc"
-            :key="'key3'+wdgtTabKey"
+            :key="'key3' + wdgtTabKey"
           >
             <v-btn :style="buttonProps" outlined :key="widgetKey">
               <span :style="btnTextProps">
