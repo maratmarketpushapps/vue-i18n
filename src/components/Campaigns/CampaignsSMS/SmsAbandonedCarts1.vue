@@ -529,7 +529,7 @@ export default {
   letter-spacing: 0px;
   color: #4E5D6B;
   opacity: 1;
-  margin-top: 5px !important;
+  margin-top: 7px !important;
 }
 .btn_sup{
   text-align: center;

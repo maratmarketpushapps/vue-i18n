@@ -2,7 +2,7 @@
   <v-app>
     <v-content class="app_background app-style" style="height:auto">
       <NavDrawer />
-      <AppBar style="height: 10vh" />
+      <AppBar  class="app_bar_height" />
 
       <v-overlay
         :absolute="absolute"
@@ -325,7 +325,16 @@ export default {
   stroke: #323f4f;
 }
 
+.app_bar_height{
+  height: 80px !important;
+}
 
+.app_bar_height .v-toolbar__content, .v-toolbar__extension{
+  height: 80px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  padding-right: 0px !important;
+}
 
 @media (min-width: 1400px) {
   .font_dims {

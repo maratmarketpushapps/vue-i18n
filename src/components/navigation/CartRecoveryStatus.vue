@@ -1,35 +1,60 @@
 <template>
-  <div>
-    <div>
-      <!-- Add image for cart recovery type depending on recoveryType prop -->
+  <v-col class="py-0 " style="heigh:72px !important;">
+    <v-list three-line class="py-0 " >
+      <template >
+        <v-list-item >
+          <v-list-item-avatar class="item_title_spc">
+            <v-img v-if="typeRecovery == 'fb'" src="@/assets/img/appBar/fb_icon.png" width="35px" class="pt-4"></v-img>
+            <v-img v-if="typeRecovery == 'sms'" src="@/assets/img/appBar/sms_icon.png" width="35px"></v-img>
+          </v-list-item-avatar>
 
-      {{ $t("cartRecoveryStatus." + recoveryType + "CartRecovery") }}
-      <span v-if="getCartRecoveryStatus" class="cartRecoveryStatusON">
-        {{ $t("cartRecoveryStatus.ON") }}
-      </span>
-      <span v-else class="cartRecoveryStatusOFF">
-        {{ $t("cartRecoveryStatus.OFF") }}
-      </span>
-    </div>
-    <span class="cartRecoveryHowToTurnOn" @click="showStepsCompletedModal">
-      {{ $t("cartRecoveryStatus.howToTurnOn") }}
-    </span>
-  </div>
+          <v-list-item-content :style="{
+    'align-items':'end'
+  }">
+            <v-list-item-title >  <span class="cart_rec_txt">{{ $t("cartRecoveryStatus." + recoveryType + "CartRecovery") }}</span>  <span class="red_off">{{ $t("cartRecoveryStatus.OFF") }}</span></v-list-item-title>
+            <v-list-item-subtitle > <span class="trn_on_txt">{{ $t("cartRecoveryStatus.howToTurnOn") }}</span> </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </template>
+    </v-list>
+
+<!--    <v-row>-->
+<!--      <v-col>-->
+<!--        <v-img src="@/assets/img/appBar/fb_icon.png" width="35px"></v-img>-->
+<!--      </v-col>-->
+<!--      <v-col>-->
+<!--        {{ $t("cartRecoveryStatus." + recoveryType + "CartRecovery") }}-->
+<!--        <span v-if="getCartRecoveryStatus" class="cartRecoveryStatusON">-->
+<!--        {{ $t("cartRecoveryStatus.ON") }}-->
+<!--      </span>-->
+<!--        <span v-else class="cartRecoveryStatusOFF">-->
+<!--        {{ $t("cartRecoveryStatus.OFF") }}-->
+<!--      </span>-->
+<!--      </v-col>-->
+<!--    </v-row>-->
+
+
+<!--    <span class="cartRecoveryHowToTurnOn" @click="showStepsCompletedModal">-->
+<!--      {{ $t("cartRecoveryStatus.howToTurnOn") }}-->
+<!--    </span>-->
+  </v-col>
 </template>
 <script>
 //      this.$store.commit('UPDATE_SET_VARS_POP', this.withEmail)
 export default {
   name: "CartRecoveryStatus",
   props: ["recoveryType"],
-  data() {
-    return {
-    };
-  },
+  data:() => ({
+    typeRecovery:''
+  }),
   computed: {
     getCartRecoveryStatus: function() {
       let fullResponseStepsCompleted = this.$store.getters.getStepsCompleted;
       return fullResponseStepsCompleted[this.recoveryType+"CartRecovery"];
     }
+  },
+  mounted() {
+      this.typeRecovery =  this.recoveryType
   },
   methods: {
     showStepsCompletedModal: function() {
@@ -54,10 +79,34 @@ export default {
   font: normal normal bold 12px Poppins;
   letter-spacing: 0px;
 }
-
 .cartRecoveryStatusOFF {
   font: normal normal bold 12px Poppins;
   letter-spacing: 0px;
   color: #F25A5A;
+}
+.red_off{
+  color: #F25A5A;
+  text-align: center;
+  font: normal normal bold 12px/19px Poppins;
+  letter-spacing: 0px;
+  color: #F25A5A;
+}
+.cart_rec_txt{
+  text-align: center;
+  font: normal normal bold 12px/19px Poppins;
+  letter-spacing: 0px;
+  color:#323F4F
+}
+.trn_on_txt{
+  text-align: center;
+  text-decoration: underline;
+  font: normal normal medium 12px/19px Poppins;
+  letter-spacing: 0px;
+  color: #323F4F;
+  opacity: 1;
+  cursor: pointer;
+}
+.item_title_spc{
+
 }
 </style>

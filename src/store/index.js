@@ -520,6 +520,7 @@ export default new Vuex.Store({
       state.widgetVars.apply_discount_instruction = txt;
     },
     SAVE_WIDGET_CHECKBOX(state,coneData){
+     state.widgetVars.changesSaved = false
       if(coneData[0].title == "sms"){
         state.widgetVars.enabled_widgets.sms.title = coneData[0].title
         state.widgetVars.enabled_widgets.sms.enabled = coneData[0].connection
