@@ -52,8 +52,6 @@
 <script>
 import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 
-
-
 export default {
   name: "AddYourPhoneNumber",
   components: {
@@ -77,11 +75,15 @@ export default {
           showDialCode: true
         },
         reg:null,
-      }
+      },
+      first:false,
     };
   },
   methods:{
     countryChanged(country) {
+      setTimeout(()=> {this.phone == '' ? this.phone = '+' + country.dialCode : this.phone.length > 4 && this.first == true ? this.phone = '+' + country.dialCode: this.phone,
+        this.btnDisabled = false},300)
+
       if(country.dialCode !== null){
         this.country = '+' + country.dialCode
       }
@@ -109,11 +111,8 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => (this.phone = this.$store.state.settingsVars.business_phone_number,this.btnDisabled = false),500),
-    setTimeout(()=> {
-      if(this.phone !== "" || this.phone !== null || this.phone !== false)
-      {  this.reg = this.phone,this.reg.match(/^(\S+)\s(.*)/).slice(1),this.country.dialCode = this.reg[0]}
-    },700)
+    setTimeout(() => (this.phone = this.$store.state.settingsVars.business_phone_number),200)
+    setTimeout(() => (this.first = true),800)
   }
 
 };

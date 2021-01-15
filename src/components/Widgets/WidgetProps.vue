@@ -22,9 +22,10 @@
             <v-btn
               tile
               height="50%"
-              :class="live ? 'mb-2 sv_changes wdgt_font_dims resp_sp' : 'mb-2 wdgt_font_dims resp_sp'"
+              :class="!detectChange ? 'mb-2 sv_changes wdgt_font_dims resp_sp' : 'mb-2 wdgt_font_dims resp_sp'"
+
               width="70%"
-              :disabled="!live"
+              :disabled="detectChange"
               style="text-transform:none; font-size:70% !important"
               @click="svChanges"
               outlined
