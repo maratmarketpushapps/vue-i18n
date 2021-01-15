@@ -13,7 +13,7 @@
           :style="bcgColor"
           style="height:20%; width:100%;"
         >
-          <v-row style="width:100%; height:30%" justify="end" align="center"> 
+          <v-row style="width:100%; height:30%" justify="end" align="center">
             <v-icon>
               mdi-close
             </v-icon>
@@ -364,6 +364,7 @@
             justify="center"
             v-if="wdgtTabcheck && !wdgtIsDsc"
             class="pl-2"
+            :key="wdgtTabKey"
           >
             <v-tabs-items v-model="tab" style="width:90%">
               <v-tab-item :value="getTabKeySMS" style="width:100%">
@@ -430,6 +431,7 @@
             align="center"
             justify="center"
             v-if="wdgtTabcheck && wdgtIsDsc"
+            :key="wdgtTabKey"
           >
             <v-col cols="3" class="ma-0 pa-0" style="height:100%;width:100%">
               <v-img
@@ -564,6 +566,7 @@
             align="center"
             justify="center"
             v-if="wdgtTabcheck && !wdgtIsDsc"
+            :key="wdgtTabKey"
           >
             <v-btn :style="buttonProps" outlined :key="widgetKey">
               <span :style="btnTextProps">
@@ -616,6 +619,7 @@ export default {
       optinNum: "",
 
       tab: null,
+      wdgtTabKey: 0,
     };
   },
   methods: {
@@ -783,6 +787,12 @@ export default {
     },
     dscntInstr() {
       return this.getWidgetsState.apply_discount_instruction;
+    },
+  },
+  watch: {
+    getTabHeader1(newValue) {
+      console.log("new value of header 1 ::" + newValue);
+      this.wdgtTabKey++;
     },
   },
 
