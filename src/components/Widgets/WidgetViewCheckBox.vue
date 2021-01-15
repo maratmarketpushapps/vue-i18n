@@ -364,7 +364,7 @@
             justify="center"
             v-if="wdgtTabcheck && !wdgtIsDsc"
             class="pl-2"
-            :key="wdgtTabKey"
+            :key="'key1'+wdgtTabKey"
           >
             <v-tabs-items v-model="tab" style="width:90%">
               <v-tab-item :value="getTabKeySMS" style="width:100%">
@@ -431,7 +431,7 @@
             align="center"
             justify="center"
             v-if="wdgtTabcheck && wdgtIsDsc"
-            :key="wdgtTabKey"
+            :key="'key2'+wdgtTabKey"
           >
             <v-col cols="3" class="ma-0 pa-0" style="height:100%;width:100%">
               <v-img
@@ -566,7 +566,7 @@
             align="center"
             justify="center"
             v-if="wdgtTabcheck && !wdgtIsDsc"
-            :key="wdgtTabKey"
+            :key="'key3'+wdgtTabKey"
           >
             <v-btn :style="buttonProps" outlined :key="widgetKey">
               <span :style="btnTextProps">
