@@ -6,14 +6,13 @@
         height="95%"
         style="border-radius: 25px 25px 0 0; pr-0"
         width="95%"
-        @click="toggleDialog()"
       >
         <v-container
           class="fluid"
           :style="bcgColor"
           style="height:20%; width:100%;"
         >
-          <v-row style="width:100%; height:30%" justify="end" align="center">
+          <v-row style="width:100%; height:30%" justify="end" align="center" @click="toggleDialog()">
             <v-icon>
               mdi-close
             </v-icon>
@@ -21,7 +20,7 @@
         </v-container>
         <v-overlay
           absolute
-          :value="dialog && !checkOptin && !wdgtTabcheck"
+          :value="dialog"
           style="border-radius: 25px 25px 0 0;"
           class="pa-10"
           z-index="1"
@@ -56,6 +55,7 @@
             style="height:17%;width:102.5%"
             align="center"
             justify="center"
+            @click="toggleDialog()"
           >
             <span :style="titleProps">{{ titleText }}</span>
           </v-row>
@@ -64,6 +64,7 @@
             align="center"
             justify="center"
             v-if="wdgtTabcheck"
+            @click="toggleDialog()"
           >
             <v-col>
               <p :style="msgProps">{{ msgText }}</p>
@@ -75,6 +76,7 @@
             align="center"
             justify="center"
             v-if="!wdgtTabcheck"
+            @click="toggleDialog()"
           >
             <v-col>
               <p :style="msgProps">{{ msgText }}</p>
@@ -268,6 +270,7 @@
             align="center"
             justify="center"
             v-if="wdgtFBcheck && !wdgtIsDsc"
+            @click="toggleDialog()"
           >
             <v-checkbox input-value="true" disabled> </v-checkbox>
             <span class="pr-2">
@@ -286,6 +289,7 @@
             align="start"
             justify="center"
             v-if="wdgtFBcheck && !wdgtIsDsc"
+            @click="toggleDialog()"
           >
             <v-container
               style="height: 26px; width: 26px; border-radius:100%; background-color: #E6E7E8"
@@ -310,6 +314,7 @@
             align="end"
             justify="center"
             v-if="wdgtFBcheck && !wdgtIsDsc"
+            @click="toggleDialog()"
           >
             <v-btn :style="buttonProps" outlined :key="widgetKey">
               <span :style="btnTextProps">
@@ -323,6 +328,7 @@
             align="end"
             justify="center"
             v-if="wdgtSMScheck && !wdgtIsDsc"
+            @click="toggleDialog()"
           >
             <vue-tel-input
               v-model="optinNum"
@@ -341,6 +347,7 @@
             align="center"
             justify="center"
             v-if="wdgtSMScheck && !wdgtIsDsc"
+            @click="toggleDialog()"
           >
             <v-btn :style="buttonProps" outlined :key="widgetKey">
               <span :style="btnTextProps">
@@ -367,8 +374,8 @@
           </v-row>
 
           <v-row
-            style="height:29%;width:102.5%"
-            align="center"
+            style="height:25%;width:102.5%"
+            align="start"
             justify="center"
             v-if="wdgtTabcheck && !wdgtIsDsc"
             class="pl-2"
@@ -376,7 +383,10 @@
           >
             <v-tabs-items v-model="tab" style="width:90%">
               <v-tab-item :value="getTabKeySMS" style="width:100%">
-                <v-row justify="center" style="width:100%" class="pl-4">
+                <v-row style="width:100%;height:5vh">
+
+                </v-row>
+                <v-row justify="center" style="width:100%" class="pl-4" @click="toggleDialog()">
                   <vue-tel-input
                     v-model="optinNum"
                     dark
@@ -384,6 +394,7 @@
                     placeholder=""
                     :showDialCode="true"
                     mode="international"
+                    disabled
                   >
                   </vue-tel-input>
                 </v-row>
@@ -395,6 +406,7 @@
                   align="center"
                   class="pl-1"
                   justify="center"
+                  @click="toggleDialog()"
                 >
                   <v-checkbox input-value="true" disabled> </v-checkbox>
                   <span class="pr-1">
@@ -412,6 +424,7 @@
                   style="width:100%;height:40%"
                   align="center"
                   justify="center"
+                  @click="toggleDialog()"
                 >
                   <v-container
                     style="height: 26px; width: 26px; border-radius:100%; background-color: #E6E7E8"
@@ -571,6 +584,7 @@
             justify="center"
             v-if="wdgtTabcheck && !wdgtIsDsc"
             :key="'key3' + wdgtTabKey"
+            @click="toggleDialog()"
           >
             <v-btn :style="buttonProps" outlined :key="widgetKey">
               <span :style="btnTextProps">
@@ -583,6 +597,7 @@
             style="height:10%;width:102.5%"
             align="center"
             justify="center"
+            @click="toggleDialog()"
           >
             <a :style="cancelProps">{{ cancelText }}</a>
           </v-row>
@@ -634,7 +649,9 @@ export default {
       // console.log("Inside toggle dialog :: " + this.dialog);
       this.dialog = !this.dialog;
     },
-    ovrlyClose() {},
+    ovrlyClose() {
+      this.dialog = !this.dialog;
+    },
     resetChanges() {
       this.$store.dispatch("getWidgets");
     },
