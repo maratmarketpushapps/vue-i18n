@@ -43,7 +43,7 @@
                 </v-col>
                 <v-col cols="6">
                   <v-row style="width:100%" justify="end">
-                    <span style="color:#FFB742; font-weight:900">{{
+                    <span style="color:#5686F6; font-weight:900">{{
                       dashVars.campaigns.sms_recovery_messages_nr1_sent
                     }}</span>
                   </v-row>
@@ -56,7 +56,7 @@
                 style="width:100%"
               >
                 <v-progress-linear
-                  color="#FFB742"
+                  color="#5686F6"
                   :value="smsRecovMsg1Percent"
                   height="5px"
                   background-color="#E6E7E8"
@@ -76,7 +76,7 @@
                 </v-col>
                 <v-col cols="6">
                   <v-row style="width:100%" justify="end">
-                    <span style="color:#FFB742; font-weight:900">{{
+                    <span style="color:#5686F6; font-weight:900">{{
                       dashVars.campaigns.sms_recovery_messages_nr2_sent
                     }}</span>
                   </v-row>
@@ -89,7 +89,7 @@
                 style="width:100%"
               >
                 <v-progress-linear
-                  color="#FFB742"
+                  color="#5686F6"
                   :value="smsRecovMsg2Percent"
                   height="5px"
                   background-color="#E6E7E8"
