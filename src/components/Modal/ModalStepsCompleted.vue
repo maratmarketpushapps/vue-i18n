@@ -138,7 +138,7 @@
                   </v-col>
                   <v-col v-else class="px-0 py-0">
                     <v-btn
-                      tile
+                      tile 
                       height="40px"
                       class="primary font_not_done pad_resp_nt btn_save ml-0"
                       style="font-size:100%; text-transform:none;"
