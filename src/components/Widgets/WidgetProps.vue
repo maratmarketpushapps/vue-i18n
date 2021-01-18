@@ -807,10 +807,14 @@ export default {
       }
     },
     def_selected(newValue) {
-      this.$store.dispatch("updWdgtDefSel", newValue);
+      if((newValue == '' || newValue == null) && this.discount_selected != 'subscribe'){
+        setTimeout(() => {this.def_selected = 'deafult'} , 10)
+      }else this.$store.dispatch("updWdgtDefSel", newValue);
     },
     discount_selected(newValue) {
-      this.$store.dispatch("updWdgtDefSel", newValue);
+      if((newValue == '' || newValue == null) && this.def_selected != 'deafult'){
+        setTimeout(() => {this.discount_selected = 'subscribe'} , 10)
+      }else this.$store.dispatch("updWdgtDefSel", newValue);
     },
     radioSelect(newValue) {
       this.$store.dispatch("updWdgtType", newValue);

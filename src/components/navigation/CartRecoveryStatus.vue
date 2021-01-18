@@ -1,3 +1,4 @@
+
 <template>
   <v-col class="py-0 " style="heigh:72px !important;">
     <v-list three-line class="py-0 " >
@@ -11,32 +12,20 @@
           <v-list-item-content :style="{
     'align-items':'end'
   }">
-            <v-list-item-title >  <span class="cart_rec_txt">{{ $t("cartRecoveryStatus." + recoveryType + "CartRecovery") }}</span>  <span class="red_off">{{ $t("cartRecoveryStatus.OFF") }}</span></v-list-item-title>
-            <v-list-item-subtitle > <span class="trn_on_txt">{{ $t("cartRecoveryStatus.howToTurnOn") }}</span> </v-list-item-subtitle>
+            <v-list-item-title >  <span class="cart_rec_txt">{{ $t("cartRecoveryStatus." + recoveryType + "CartRecovery") }}</span>
+              <span v-if="getCartRecoveryStatus" class="cartRecoveryStatusON">
+                        {{ $t("cartRecoveryStatus.ON") }}
+              </span>
+              <span class="red_off cartRecoveryStatusOFF" v-else >{{ $t("cartRecoveryStatus.OFF") }}</span></v-list-item-title>
+            <v-list-item-subtitle >
+              <span class="trn_on_txt cartRecoveryHowToTurnOn" @click="showStepsCompletedModal">
+              {{ $t("cartRecoveryStatus.howToTurnOn") }}
+              </span>
+            </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </template>
     </v-list>
-
-<!--    <v-row>-->
-<!--      <v-col>-->
-<!--        <v-img src="@/assets/img/appBar/fb_icon.png" width="35px"></v-img>-->
-<!--      </v-col>-->
-<!--      <v-col>-->
-<!--        {{ $t("cartRecoveryStatus." + recoveryType + "CartRecovery") }}-->
-<!--        <span v-if="getCartRecoveryStatus" class="cartRecoveryStatusON">-->
-<!--        {{ $t("cartRecoveryStatus.ON") }}-->
-<!--      </span>-->
-<!--        <span v-else class="cartRecoveryStatusOFF">-->
-<!--        {{ $t("cartRecoveryStatus.OFF") }}-->
-<!--      </span>-->
-<!--      </v-col>-->
-<!--    </v-row>-->
-
-
-<!--    <span class="cartRecoveryHowToTurnOn" @click="showStepsCompletedModal">-->
-<!--      {{ $t("cartRecoveryStatus.howToTurnOn") }}-->
-<!--    </span>-->
   </v-col>
 </template>
 <script>
@@ -54,7 +43,7 @@ export default {
     }
   },
   mounted() {
-      this.typeRecovery =  this.recoveryType
+    this.typeRecovery =  this.recoveryType
   },
   methods: {
     showStepsCompletedModal: function() {
@@ -76,8 +65,10 @@ export default {
   cursor: pointer;
 }
 .cartRecoveryStatusON {
-  font: normal normal bold 12px Poppins;
+  text-align: center;
+  font: normal normal bold 12px/19px Poppins;
   letter-spacing: 0px;
+  color: #39D989;
 }
 .cartRecoveryStatusOFF {
   font: normal normal bold 12px Poppins;
@@ -110,3 +101,4 @@ export default {
 
 }
 </style>
+

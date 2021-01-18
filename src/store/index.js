@@ -480,6 +480,10 @@ export default new Vuex.Store({
       state.widgetVars.active = live;
     },
 
+    SET_WDGT_LIVE_TRUE(state) {
+      state.widgetVars.changesSaved = true;
+      },
+
     SET_WDGT_HDR_CLR(state, color) {
       state.widgetVars.header_background_color = color;
       state.widgetVars.changesSaved = false;
@@ -1144,6 +1148,12 @@ export default new Vuex.Store({
     updWdgtLive({ commit }, live) {
       return new Promise((resolve) => {
         commit("SET_WDGT_LIVE", live);
+        resolve("success");
+      });
+    },
+    updWdgtLiveTrue({ commit }) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_LIVE_TRUE");
         resolve("success");
       });
     },

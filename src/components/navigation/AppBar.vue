@@ -28,7 +28,8 @@
         stepCRoute="/widgets"
       />
 
-      <v-col cols="1" v-if="this.$vuetify.breakpoint.width > 1366"></v-col>
+      <v-col :cols="this.$vuetify.breakpoint.width > 1366 && showUpgrade ? 1 : 3" ></v-col>
+
       <!-- Upgrade button component -->
       <v-col cols="2" class=" py-0 d-flex justify-end">
         <v-btn

@@ -28,17 +28,17 @@
           </span>
         </v-row>
       </v-col>
-      <v-col cols="3">
+      <v-col cols="4" class="pr-0">
         <v-row style="width: 100%" justify="end" align="center" >
           <v-btn
             tile
             height="35px"
-            class="primary font_dims pad_resp"
-            width="70%"
+            class="font_dims pad_resp btn_save px-10"
             :disabled="svBtnDsbldOrdrAbndCrt"
             style="font-size:100%; text-transform:none;"
             v-if="cart1Edit"
             @click="saveOrdrAbndCrt()"
+            outlined
           >
             {{ $t("widgets.svBtn") }}
           </v-btn>
@@ -55,16 +55,20 @@
           >
         </v-row>
       </v-col>
-      <v-col>
-        <v-row style="width:100%" align="center" justify="center">
+      <v-col class="px-0" cols="1">
+
           <v-switch
             v-model="ordrAbndCrtSwitchLive"
             color="#006AFF"
             :disabled="swtchDisabled"
             @change="activeStateChng()"
+            inset
           >
+<!--            <template slot="prepend-inner" >-->
+<!--              <span>On</span>-->
+<!--            </template>-->
           </v-switch>
-        </v-row>
+
       </v-col>
     </v-row>
 
@@ -522,7 +526,13 @@ export default {
   border-radius: 2px;
   opacity: 1;
 }
-
+.btn_save{
+  text-align: center;
+  font: normal normal 600 12px/29px Poppins;
+  letter-spacing: 0px;
+  color: #5686F6;
+  opacity: 1;
+}
 .av_short_code{
   text-align: left;
   font: normal normal normal 12px/19px Poppins;
