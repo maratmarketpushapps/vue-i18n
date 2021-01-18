@@ -12,98 +12,168 @@
             class="pa-0 image_modal_color"
           >
             <v-col class="image_modal_join">
-              <v-img src="@/assets/img/image_modal_join.png"></v-img>
+              <v-img src="@/assets/img/ModalStep/image-install-steps.png" ></v-img>
             </v-col>
           </v-col>
           <v-col cols="7" class="pa-0">
             <v-card class="modal_right_section">
-              <v-card-title class="pa-0">
-                <v-fab-transition >
-                  <v-btn
-                    class="btn_transparent"
-                    dark
-                    absolute
-                    top
-                    right
-                    @click="closeStepsCompletedModal"
-                  >
-                    <v-img src="@/assets/img/icon-close.png" class="close_img">
-                    </v-img>
-                  </v-btn>
-                </v-fab-transition>
-                <span class="headline headline_title"
-                >{{ $t("ModalStepsCompleted." + recoveryType + "Title") }}</span>
-              </v-card-title>
-              <v-card-text class="px-0 pb-0">
-
+              <v-col cols="11" class="pl-0 py-0">
+                <v-card-title class="pa-0">
+                  <v-fab-transition >
+                    <v-btn
+                      class="btn_transparent"
+                      dark
+                      absolute
+                      top
+                      right
+                      @click="closeStepsCompletedModal"
+                    >
+                      <v-img src="@/assets/img/icon-close.png" class="close_img">
+                      </v-img>
+                    </v-btn>
+                  </v-fab-transition>
+                  <span class="headline headline_title"
+                  >{{ $t("ModalStepsCompleted." + recoveryType + "Title") }}</span>
+                </v-card-title>
+              </v-col>
+              <v-card-text class="px-0 pt-0 pb-0 spc_text">
+                <span class="step_fl">Steps to follow:</span>
                 <v-row>
-                  <v-col>
+                  <v-col class="step_part_txt" cols="9">
                     {{ $t("ModalStepsCompleted.stepIndex1") }}
                     {{ $t("ModalStepsCompleted." + recoveryType + "Instruction1") }}
                   </v-col>
-                  <v-col>
-                    <v-col v-if="getStep1Done">
+                  <v-col v-if="getStep1Done" class="px-0" >
+                    <v-btn
+                      tile
+                      height="24px"
+                      class="font_dims pad_resp btn_save "
+                      style="font-size:100%; text-transform:none;"
+                      outlined
+                    >
+                      <template left>
+                          <v-img src="@/assets/img/ModalStep/icon-check.png" class="mr-1"></v-img>
+                      </template>
                       {{ $t("ModalStepsCompleted.done") }}
-                    </v-col>
-                    <v-col v-else>
-                      <router-link
-                        :to="stepARoute"
-                        @click.native="closeStepsCompletedModal"
-                        class="step-item-font"
-                        >
+                    </v-btn>
+                  </v-col>
+                  <v-col v-else class="px-0 ">
+                    <v-btn
+                      tile
+                      height="24px"
+                      class="primary font_not_done pad_resp_nt btn_save ml-0"
+                      style="font-size:100%; text-transform:none;"
+                      :to="stepBRoute"
+                      @click.native="closeStepsCompletedModal"
+                    >
+                      <template left>
+                        <v-img src="@/assets/img/ModalStep/icon-check.png" class="mr-1"></v-img>
+                      </template>
                       {{ $t("ModalStepsCompleted.notDone") }}
-                      </router-link>
-                    </v-col>
+                    </v-btn>
                   </v-col>
                 </v-row>
 
                 <v-row>
-                  <v-col>
+                  <v-col class="step_part_txt" cols="9">
                     {{ $t("ModalStepsCompleted.stepIndex2") }}
                     {{ $t("ModalStepsCompleted." + recoveryType + "Instruction2") }}
                   </v-col>
-                  <v-col v-if="getStep2Done">
-                    {{ $t("ModalStepsCompleted.done") }}
+                  <v-col v-if="getStep2Done" class="px-0">
+                    <v-btn
+                      tile
+                      height="24px"
+                      class="font_dims pad_resp btn_save "
+                      style="font-size:100%; text-transform:none;"
+                      outlined
+                    >
+                      <template left>
+                        <v-img src="@/assets/img/ModalStep/icon-check.png" class="mr-1"></v-img>
+                      </template>
+                      {{ $t("ModalStepsCompleted.done") }}
+                    </v-btn>
                   </v-col>
-                  <v-col v-else>
-                    <router-link
+                  <v-col v-else class="px-0 ">
+                    <v-btn
+                      tile
+                      height="24px"
+                      class="primary font_not_done pad_resp_nt btn_save ml-0"
+                      style="font-size:100%; text-transform:none;"
                       :to="stepBRoute"
                       @click.native="closeStepsCompletedModal"
-                      class="step-item-font"
-                      >
-                    {{ $t("ModalStepsCompleted.notDone") }}
-                    </router-link>
+                    >
+                      <template left>
+                        <v-img src="@/assets/img/ModalStep/icon-check.png" class="mr-1"></v-img>
+                      </template>
+                      {{ $t("ModalStepsCompleted.notDone") }}
+                    </v-btn>
                   </v-col>
                 </v-row>
 
                 <v-row>
-                  <v-col>
+                  <v-col class="step_part_txt" cols="9">
                     {{ $t("ModalStepsCompleted.stepIndex3") }}
                     {{ $t("ModalStepsCompleted." + recoveryType + "Instruction3") }}
                   </v-col>
-                  <v-col v-if="getStep3Done">
-                    {{ $t("ModalStepsCompleted.done") }}
+                  <v-col v-if="getStep3Done" class="px-0">
+                    <v-btn
+                      tile
+                      height="24px"
+                      class="font_dims pad_resp btn_save "
+                      style="font-size:100%; text-transform:none;"
+                      outlined
+                    >
+                      <template left>
+                        <v-img src="@/assets/img/ModalStep/icon-check.png" class="mr-1"></v-img>
+                      </template>
+                      {{ $t("ModalStepsCompleted.done") }}
+                    </v-btn>
                   </v-col>
-                  <v-col v-else>
-                    <router-link
-                      :to="stepCRoute"
+                  <v-col v-else class="px-0 py-0">
+                    <v-btn
+                      tile
+                      height="24px"
+                      class="primary font_not_done pad_resp_nt btn_save ml-0"
+                      style="font-size:100%; text-transform:none;"
+                      :to="stepBRoute"
                       @click.native="closeStepsCompletedModal"
-                      class="step-item-font"
-                      >
-                    {{ $t("ModalStepsCompleted.notDone") }}
-                    </router-link>
+                    >
+                      <template left>
+                        <v-img src="@/assets/img/ModalStep/icon-check.png" class="mr-1"></v-img>
+                      </template>
+                      {{ $t("ModalStepsCompleted.notDone") }}
+                    </v-btn>
                   </v-col>
                 </v-row>
 
-                <v-row>{{ $t("ModalStepsCompleted.stillHaveQuestions") }}</v-row>
+
 
                 <v-row>
-                  <a
-                    :href="getYoutubeLink"
-                    target="_blank"
-                    style="text-decoration:underline; color:#323F4F"
-                    >{{ $t("ModalStepsCompleted.watchVideoButton") }}</a
-                  >
+<!--                  <a-->
+<!--                    :href="getYoutubeLink"-->
+<!--                    target="_blank"-->
+<!--                    style="text-decoration:underline; color:#323F4F"-->
+<!--                    >{{ $t("ModalStepsCompleted.watchVideoButton") }}</a-->
+<!--                  >-->
+                  <v-col class="py-0">
+                    <span  class="step_hint_txt">
+                      {{ $t("ModalStepsCompleted.stillHaveQuestions") }}
+                    </span>
+                    <br>
+                    <v-btn
+                      tile
+                      height="24px"
+                      class=" btn_see_video py-5"
+                      style="font-size:100%; text-transform:none;"
+                      :to="getYoutubeLink"
+                    >
+                      <template left class="mr-4 pr-4">
+                        <v-img src="@/assets/img/ModalStep/icon-play-tutorial.png" class="mr-3"></v-img>
+                      </template>
+                      {{ $t("ModalStepsCompleted.seeVideo") }}
+                    </v-btn>
+                  </v-col>
+
                 </v-row>
 
               </v-card-text>
@@ -165,7 +235,7 @@ export default {
 
 <style scoped>
 .modal_right_section{
-  padding: 52px 33.41px 38px 33.41px;
+  padding: 52px 25px 38px 51.41px;
 }
 .headline_title{
   text-align: left;
@@ -234,5 +304,66 @@ export default {
   opacity: 1;
   text-align: center;
   font: normal normal medium 14px/13px Poppins;
+}
+.spc_text{
+  margin-top: 26px !important;
+}
+.step_fl{
+  text-align: left;
+  font: normal normal normal 12px/19px Poppins;
+  letter-spacing: 0px;
+  color: #4E5D6B;
+  opacity: 1;
+  margin-top: 26px;
+}
+.step_part_txt{
+  text-align: left;
+  letter-spacing: 0px;
+  color: #4E5D6B;
+  opacity: 1;
+  text-decoration: underline;
+  font: normal normal 600 12px/19px Poppins;
+}
+.step_hint_txt{
+  text-align: left;
+  font: normal normal normal 12px/19px Poppins;
+  letter-spacing: 0px;
+  color: #4E5D6B;
+}
+.font_dims{
+  text-align: center !important;
+  font: normal normal 600 8px/29px Poppins !important;
+  letter-spacing: 0px !important;
+  color: #5686F6 !important;
+  opacity: 1 !important;
+}
+.font_not_done{
+  text-align: center !important;
+  font: normal normal 600 8px/29px Poppins !important;
+  letter-spacing: 0px !important;
+  color: #FFFFFF !important;
+  opacity: 1 !important;
+}
+.pad_resp{
+  padding-right: 20px !important;
+  padding-left: 20px !important;
+}
+.pad_resp_nt{
+  padding-right: 6px !important;
+  padding-left: 6px !important;
+  margin-left: 12px;
+}
+.btn_see_video{
+  margin-top: 26px !important;
+  text-align: center;
+  font: normal normal medium 14px/13px Poppins !important;
+  letter-spacing: 0px;
+  color: #FFFFFF !important;
+  background-color: #006AFF !important;
+  opacity: 1;
+  padding-right: 41px !important;
+  padding-left: 31px !important;
+  padding-top: 9px !important;
+  padding-bottom: 9px !important;
 }
 </style>
