@@ -40,8 +40,11 @@
                 <span class="step_fl">Steps to follow:</span>
                 <v-row>
                   <v-col class="step_part_txt" cols="9">
-                    {{ $t("ModalStepsCompleted.stepIndex1") }}
-                    {{ $t("ModalStepsCompleted." + recoveryType + "Instruction1") }}
+                    <router-link :to="stepARoute" class="step_part_txt"  @click.native="closeStepsCompletedModal">
+                      {{ $t("ModalStepsCompleted.stepIndex1") }}
+                      {{ $t("ModalStepsCompleted." + recoveryType + "Instruction1") }}
+                    </router-link>
+
                   </v-col>
                   <v-col v-if="getStep1Done" class="px-0" >
                     <v-btn
@@ -76,8 +79,10 @@
 
                 <v-row>
                   <v-col class="step_part_txt" cols="9">
+                    <router-link :to="stepBRoute" class="step_part_txt"  @click.native="closeStepsCompletedModal">
                     {{ $t("ModalStepsCompleted.stepIndex2") }}
                     {{ $t("ModalStepsCompleted." + recoveryType + "Instruction2") }}
+                    </router-link>
                   </v-col>
                   <v-col v-if="getStep2Done" class="px-0">
                     <v-btn
@@ -112,8 +117,10 @@
 
                 <v-row>
                   <v-col class="step_part_txt" cols="9">
+                    <router-link :to="stepCRoute" class="step_part_txt"  @click.native="closeStepsCompletedModal">
                     {{ $t("ModalStepsCompleted.stepIndex3") }}
                     {{ $t("ModalStepsCompleted." + recoveryType + "Instruction3") }}
+                    </router-link>
                   </v-col>
                   <v-col v-if="getStep3Done" class="px-0">
                     <v-btn
@@ -165,7 +172,7 @@
                       height="24px"
                       class=" btn_see_video py-5"
                       style="font-size:100%; text-transform:none;"
-                      :to="getYoutubeLink"
+                      @click.native="toYoutube()"
                     >
                       <template left class="mr-4 pr-4">
                         <v-img src="@/assets/img/ModalStep/icon-play-tutorial.png" class="mr-3"></v-img>
@@ -226,6 +233,15 @@ export default {
         status: false
       };
       this.$store.dispatch("updateCartRecoveryModalShow", obj);
+    },
+    toYoutube(){
+
+      let obj = {
+        type: this.recoveryType,
+        status: false
+      };
+      this.$store.dispatch("updateCartRecoveryModalShow", obj);
+      window.open(this.getYoutubeLink)
     }
   },
   mounted() {
@@ -319,7 +335,7 @@ export default {
 .step_part_txt{
   text-align: left;
   letter-spacing: 0px;
-  color: #4E5D6B;
+  color: #4E5D6B !important;
   opacity: 1;
   text-decoration: underline;
   font: normal normal 600 12px/19px Poppins;
@@ -331,6 +347,7 @@ export default {
   color: #4E5D6B;
 }
 .font_dims{
+  cursor: default !important;
   text-align: center !important;
   font: normal normal 600 8px/29px Poppins !important;
   letter-spacing: 0px !important;

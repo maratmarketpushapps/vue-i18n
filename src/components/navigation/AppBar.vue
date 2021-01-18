@@ -38,7 +38,7 @@
           elevation="1"
           outlined
           class="btn_upgr appbar_btn_background white--text button-dims mt-0"
-
+          id="none_shadow"
           :href="upgrdUrl"
           target="_blank"
 
@@ -186,7 +186,9 @@ a {
 .pad_fix{
   padding: 0px 24px !important;
 }
-
+#none_shadow {
+  box-shadow: none !important;
+}
 @media (min-width: 1400px) {
   .step-item-font {
     font-size: 90%;
