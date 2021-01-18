@@ -9,35 +9,36 @@
     style="z-index:1.5;height: 80px !important;"
   >
     <v-row style="height:100% !important" class="pb-0 mb-0 py-0">
-      <v-col :cols="$vuetify.breakpoint.lg ? '4' : $vuetify.breakpoint.sm ? '2' : '3'"></v-col>
-      <v-col class="py-0 d-flex hgt_fix justify-end align-center" >
+      <v-col :cols="this.$vuetify.breakpoint.width > 1366 ? '3' : this.$vuetify.breakpoint.width < 1120  ? '2' : '3'"></v-col>
+      <v-col class="py-0 d-flex hgt_fix justify-end align-center" :cols=" this.$vuetify.breakpoint.width < 950 ? '7' : ''">
         <CartRecoveryStatus recoveryType="sms"  />
         <CartRecoveryStatus recoveryType="fb" />
       </v-col>
+      <v-col :cols="showUpgrade ? 1 : this.$vuetify.breakpoint.width < 1120 && showUpgrade ? '2' : 3">
+        <ModalStepsCompleted
+          recoveryType="sms"
+          stepARoute="/settings"
+          stepBRoute="/campaigns-sms"
+          stepCRoute="/widgets"
+        />
+        <ModalStepsCompleted
+          recoveryType="fb"
+          stepARoute="/settings"
+          stepBRoute="/campaigns-facebook"
+          stepCRoute="/widgets"
+        />
+      </v-col>
 
-      <ModalStepsCompleted
-        recoveryType="sms"
-        stepARoute="/settings"
-        stepBRoute="/campaigns-sms"
-        stepCRoute="/widgets"
-      />
-      <ModalStepsCompleted
-        recoveryType="fb"
-        stepARoute="/settings"
-        stepBRoute="/campaigns-facebook"
-        stepCRoute="/widgets"
-      />
-
-      <v-col :cols="this.$vuetify.breakpoint.width > 1366 && showUpgrade ? 1 : 3" ></v-col>
-
+<!--      <v-col v-if="this.$vuetify.breakpoint.width > 1366 && showUpgrade" :cols="this.$vuetify.breakpoint.width > 1366 && showUpgrade ? 1 : 3" ></v-col>-->
+<!--      <v-col v-if="showUpgrade" :cols="showUpgrade ? 1 : 3" ></v-col>-->
       <!-- Upgrade button component -->
-      <v-col cols="2" class=" py-0 d-flex justify-end">
+      <v-col cols="2" class=" py-0 d-flex justify-end"  v-if="showUpgrade">
         <v-btn
           tile
           elevation="1"
           outlined
-          class="appbar_btn_background white--text button-dims mt-0"
-          v-show="showUpgrade"
+          class="btn_upgr appbar_btn_background white--text button-dims mt-0"
+
           :href="upgrdUrl"
           target="_blank"
 
@@ -170,6 +171,16 @@ a {
   width: 80% !important;
   font-size: 60% !important;
   position: relative;
+}
+.btn_upgr{
+  font-size: 14px !important;
+  line-height: 13px !important;
+  font-family: 'Poppins' !important;
+  font-weight: normal !important;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+  text-align: center;
 }
 
 .pad_fix{

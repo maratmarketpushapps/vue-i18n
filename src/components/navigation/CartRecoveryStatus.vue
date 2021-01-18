@@ -9,15 +9,13 @@
             <v-img v-if="typeRecovery == 'sms'" src="@/assets/img/appBar/sms_icon.png" width="35px"></v-img>
           </v-list-item-avatar>
 
-          <v-list-item-content :style="{
-    'align-items':'end'
-  }">
+          <v-list-item-content class="txt_posit">
             <v-list-item-title >  <span class="cart_rec_txt">{{ $t("cartRecoveryStatus." + recoveryType + "CartRecovery") }}</span>
               <span v-if="getCartRecoveryStatus" class="cartRecoveryStatusON">
                         {{ $t("cartRecoveryStatus.ON") }}
               </span>
-              <span class="red_off cartRecoveryStatusOFF" v-else >{{ $t("cartRecoveryStatus.OFF") }}</span></v-list-item-title>
-            <v-list-item-subtitle >
+              <span class="red_off cartRecoveryStatusOFF" v-else >{{ " " +  $t("cartRecoveryStatus.OFF") }}</span></v-list-item-title>
+            <v-list-item-subtitle :class="typeRecovery == 'fb' ? 'txt_sub_fb' : 'txt_sub'">
               <span class="trn_on_txt cartRecoveryHowToTurnOn" @click="showStepsCompletedModal">
               {{ $t("cartRecoveryStatus.howToTurnOn") }}
               </span>
@@ -63,6 +61,15 @@ export default {
 <style lang="scss" scoped>
 .cartRecoveryHowToTurnOn {
   cursor: pointer;
+  text-align: center;
+  text-decoration: underline;
+  font-size: 12px !important;
+  line-height: 19px !Important;
+  font-weight: normal;
+  font-family: Poppins;
+  letter-spacing: 0px;
+  color: #323F4F;
+  opacity: 1;
 }
 .cartRecoveryStatusON {
   text-align: center;
@@ -98,7 +105,18 @@ export default {
   cursor: pointer;
 }
 .item_title_spc{
-
+  margin-top: 30px !important;
+  margin-right: 10px !important;
+}
+.txt_posit{
+align-items:end;
+padding: 20px 0 10px 0;
+}
+.txt_sub{
+  margin-left: 19px ;
+}
+.txt_sub_fb{
+  margin-left: 40px;
 }
 </style>
 
