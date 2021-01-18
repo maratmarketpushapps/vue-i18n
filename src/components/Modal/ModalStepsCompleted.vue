@@ -138,8 +138,8 @@
                   </v-col>
                   <v-col v-else class="px-0 py-0">
                     <v-btn
-                      tile 
-                      height="40px"
+                      tile
+                      height="24px"
                       class="primary font_not_done pad_resp_nt btn_save ml-0"
                       style="font-size:100%; text-transform:none;"
                       :to="stepBRoute"
@@ -169,7 +169,7 @@
                     <br>
                     <v-btn
                       tile
-                      height="24px"
+                      height="40px"
                       class=" btn_see_video py-5"
                       style="font-size:100%; text-transform:none;"
                       @click.native="toYoutube()"
