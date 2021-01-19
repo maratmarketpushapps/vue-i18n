@@ -19,5 +19,5 @@ module.exports = {
       enableInSFC: true,
     },
   },
-  transpileDependencies: ["vuetify"],
+  transpileDependencies: ["vuetify", "vue-tel-input-vuetify"],
 };
