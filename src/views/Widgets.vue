@@ -25,8 +25,25 @@
         </v-row>
       </v-col>
     </v-row>
+    <v-row class="pt-0 mt-0 pb-0 mb-0 row-style" align="center">
+      <v-col cols="auto" class="pt-0 par_title_popup_consent d-flex align-center" >
+        <h3 class="title_popup_consent  pr-0 mr-0 pt-0 mt-0">
+          {{ $t("widgets.PopupConsentWidget") }}&nbsp;
+        </h3>
+
+        <TooltipIcon
+          :posRight="true"
+          :nudgeBottom="30"
+          :nudgeLeft="5"
+          :txt="$t('widgets.headerInfo')"
+          class="infoicon_scale pt-0 ml-3"
+        />
+      </v-col>
+
+
+    </v-row>
     <v-row
-      class="pt-1 mt-6"
+      class="pt-1  bg_wdg_cards"
       align="start"
       justify="start"
       style="height:auto; width:100%"
@@ -116,6 +133,22 @@ export default {
 <style scoped>
 .row-style {
   height: 6vh;
+}
+.bg_wdg_cards{
+  background: #F2F2F2 0% 0% no-repeat padding-box;
+}
+.par_title_popup_consent{
+  width: 400px;
+  height: 77px;
+  background: #F2F2F2 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+.title_popup_consent{
+  text-align: left;
+  font: normal normal bold 15px/25px Poppins;
+  letter-spacing: 0px;
+  color: #006AFF;
+  opacity: 1;
 }
 
 @media (min-width: 1400px) {

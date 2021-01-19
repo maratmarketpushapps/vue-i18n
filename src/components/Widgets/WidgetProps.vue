@@ -43,7 +43,45 @@
         </v-col>
       </v-row>
 
-      <v-row >
+      <v-row class=" pt-4">
+        <v-col cols="6 offset-1" class="py-0 align-end px-0">
+          <h3 class="subs_title">{{ $t("widgets.GathMess") }}</h3>
+        </v-col>
+        <v-col cols="5" class="row justify-end pr-9 ma-0  py-0 px-0">
+          <TooltipIcon
+            :posRight="true"
+            :nudgeBottom="30"
+            :nudgeLeft="5"
+            :txt="$t('widgets.modalInfo')"
+            class="infoicon_scale pt-0 mt-0"
+          />
+        </v-col>
+      </v-row>
+
+      <v-col class="pa-0 parent_gat_message">
+        <!--      <draggable v-model="coneData" class="row pl-4 pr-5 mb-6">-->
+        <v-col  v-for="(ite,ke) in coneData" :key="ke+'item.id'" cols="11 offset-1"
+                :class="notSel?'notSelSpc pl-0 mt-6 height_row':'pl-0 mt-0 height_row'" align-self="end">
+          <small :class="notSel?'notSelTxt mt-10':''" v-if="notSel">{{ $t("widgets.notSelTxt") }}</small>
+          <v-col cols="12" class="connection_row height_row row py-0 my-0 pl-2 pr-0" row
+                 :class="notSel?'notSel connection_row height_row row py-0 my-0 pl-2 pr-0':'connection_row height_row row py-0 my-0 pl-2 pr-0'">
+            <v-col cols="6" class="py-0 my-0 " >
+              <v-checkbox
+                v-model="ite.connection"
+                :label="$t(getDisplayAvailabilityNotice(ite))"
+                class="mt-0 mb-0"
+              >
+              </v-checkbox>
+
+            </v-col>
+            <v-col cols="1 offset-5" class="pb-0 pt-3" justify="end" >
+              <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px" @click="rev()"></v-img>
+            </v-col>
+          </v-col>
+        </v-col>
+      </v-col>
+
+      <v-row>
         <v-col cols="6 offset-1 py-0 px-0" class="py-0 align-end">
           <h3 class="subs_title">{{ $t("widgets.subsType") }}</h3>
         </v-col>
@@ -126,47 +164,14 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-divider ></v-divider>
+<!--    <v-divider ></v-divider>-->
 
-    <v-container>
-      <v-row class=" pt-4">
-        <v-col cols="6 offset-1" class="py-0 align-end px-0">
-          <h3 class="subs_title">{{ $t("widgets.GathMess") }}</h3>
-        </v-col>
-        <v-col cols="5" class="row justify-end pr-9 ma-0  py-0 px-0">
-          <TooltipIcon
-            :posRight="true"
-            :nudgeBottom="30"
-            :nudgeLeft="5"
-            :txt="$t('widgets.modalInfo')"
-            class="infoicon_scale pt-0 mt-0"
-          />
-        </v-col>
-      </v-row>
+<!--    <v-container>-->
 
-      <!--      <draggable v-model="coneData" class="row pl-4 pr-5 mb-6">-->
-      <v-col  v-for="(ite,ke) in coneData" :key="ke+'item.id'" cols="11 offset-1"
-              :class="notSel?'notSelSpc pl-0 mt-6 height_row':'pl-0 mt-0 height_row'" align-self="end">
-        <small :class="notSel?'notSelTxt mt-10':''" v-if="notSel">{{ $t("widgets.notSelTxt") }}</small>
-        <v-col cols="12" class="connection_row height_row row py-0 my-0 pl-2 pr-0" row
-               :class="notSel?'notSel connection_row height_row row py-0 my-0 pl-2 pr-0':'connection_row height_row row py-0 my-0 pl-2 pr-0'">
-          <v-col cols="6" class="py-0 my-0 " >
-            <v-checkbox
-              v-model="ite.connection"
-              :label="$t(getDisplayAvailabilityNotice(ite))"
-              class="mt-0 mb-0"
-            >
-            </v-checkbox>
-
-          </v-col>
-          <v-col cols="1 offset-5" class="pb-0 pt-3" justify="end" >
-            <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px" @click="rev()"></v-img>
-          </v-col>
-        </v-col>
-      </v-col>
       <!--      </draggable>-->
 
-    </v-container>
+<!--    </v-container>-->
+
     <v-divider class="mt-4"></v-divider>
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0">
       <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0">
@@ -926,6 +931,12 @@ export default {
 
 };
 </script>
+
+<style scoped>
+.parent_gat_message{
+  margin-bottom: 28px !important;
+}
+</style>
 
 <style>
 .wdgt_font_dims {
