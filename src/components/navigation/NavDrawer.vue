@@ -49,13 +49,7 @@
             ></v-list-item
           >
 
-
-          <v-menu
-            right
-            offset-x
-            full-width
-            :open-on-hover="campingsMenu"
-          >
+          <v-menu right offset-x :open-on-hover="campingsMenu">
             <template v-slot:activator="{ on, attrs }">
               <v-list-item
                 class="list-dim"
@@ -65,24 +59,26 @@
                 v-bind="attrs"
                 v-on="on"
               >
-                <v-icon class="navicon_scale"
-                >$vuetify.icons.campaigns
-                </v-icon>
-               </v-list-item
-              >
+                <v-icon class="navicon_scale">$vuetify.icons.campaigns </v-icon>
+              </v-list-item>
             </template>
 
-              <v-col cols="12" class="par_tool_tip px-0 pl-5 my-0 py-0" v-if="campingsMenu">
-                  <v-col cols="12" class="tool_tip px-0 py-0 text-center">
-                    <router-link class="tool_tip_span" to="/campaigns-sms">{{$t('campaigns.tooltip.sms')}}</router-link>
-                    <router-link class="tool_tip_span" to="/campaigns-facebook">{{$t('campaigns.tooltip.facebook')}}</router-link>
-                    <v-col cols="12" class="arrow-right py-0"></v-col>
-                  </v-col>
+            <v-col
+              cols="12"
+              class="par_tool_tip px-0 pl-5 my-0 py-0"
+              v-if="campingsMenu"
+            >
+              <v-col cols="12" class="tool_tip px-0 py-0 text-center">
+                <router-link class="tool_tip_span" to="/campaigns-sms">{{
+                  $t("campaigns.tooltip.sms")
+                }}</router-link>
+                <router-link class="tool_tip_span" to="/campaigns-facebook">{{
+                  $t("campaigns.tooltip.facebook")
+                }}</router-link>
+                <v-col cols="12" class="arrow-right py-0"></v-col>
               </v-col>
-
-
+            </v-col>
           </v-menu>
-
 
           <v-list-item
             class="list-dim"
@@ -122,8 +118,8 @@ export default {
   data() {
     return {
       model: 1,
-      preActive:'',
-      campingsMenu:false,
+      preActive: "",
+      campingsMenu: false,
     };
   },
   methods: {
@@ -181,25 +177,25 @@ export default {
 .navicon_scale {
   transform: scale(0.75);
 }
-.tool_tip{
-  background-color:#4f5d6a;
+.tool_tip {
+  background-color: #4f5d6a;
   width: 250px !important;
 }
-.par_tool_tip{
-  background-color: #e6e7e800 !important !important;
+.par_tool_tip {
+  background-color: #e6e7e800 !important;
   width: 250px !important;
   height: 100% !important;
 }
-.tool_tip_span{
+.tool_tip_span {
   font-size: 10px;
   padding: 12px 11px;
   white-space: nowrap;
   align-content: center;
-  color: #FFFFFF !important;
-  caret-color: #FFFFFF !important;
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
   display: block;
 }
-.tool_tip_span:hover{
+.tool_tip_span:hover {
   background-color: #323f4e;
 }
 
@@ -214,13 +210,13 @@ export default {
   left: -14px;
 }
 
-.v-menu__content{
-  box-shadow:none !important;
+.v-menu__content {
+  box-shadow: none !important;
   border-radius: 0px !important;
   margin-top: 12px !important;
   cursor: pointer;
 }
-.hgfix{
+.hgfix {
   height: 80px !important;
 }
 @media (min-width: 1400px) {

@@ -17,10 +17,6 @@ module.exports = {
       fallbackLocale: "en",
       localeDir: "locales",
       enableInSFC: true,
-      "transpileDependencies": [
-        "vuetify",
-        "vue-tel-input-vuetify"
-      ]
     },
   },
   transpileDependencies: ["vuetify"],
