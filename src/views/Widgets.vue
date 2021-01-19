@@ -1,78 +1,84 @@
 <template>
-  <v-container fluid class="pt-0 mt-9">
-    <v-row class="pt-0 mt-0 pb-0 mb-0 row-style" align="center">
-      <v-col cols="auto" class="pt-0">
-        <h3 class="header_dims page_headers pr-0 mr-0 pt-0 mt-0">
-          {{ $t("navbar.navdrawer.Widgets") }}&nbsp;
-        </h3>
-      </v-col>
-      <v-col cols="1" class="pl-0 ml-0 pt-0">
-        <TooltipIcon
-          :posRight="true"
-          :nudgeBottom="30"
-          :nudgeLeft="5"
-          :txt="$t('widgets.headerInfo')"
-          class="infoicon_scale pt-0"
-        />
-      </v-col>
+  <v-col class="pa-0 ma-0 row d-flex justify-end ">
+    <v-col class="py-0 px-0 " cols="11">
+      <v-container fluid class="pt-0 mt-9">
+        <v-row class="pt-0 mt-0 pb-0 mb-0 row-style" align="center">
+          <v-col cols="auto" class="pt-0">
+            <h3 class="header_dims page_headers pr-0 mr-0 pt-0 mt-0">
+              {{ $t("navbar.navdrawer.Widgets") }}&nbsp;
+            </h3>
+          </v-col>
+          <v-col cols="1" class="pl-0 ml-0 pt-0">
+            <TooltipIcon
+              :posRight="true"
+              :nudgeBottom="30"
+              :nudgeLeft="5"
+              :txt="$t('widgets.headerInfo')"
+              class="infoicon_scale pt-0"
+            />
+          </v-col>
 
-      <v-col cols="8.75" class="pt-0">
-        <v-row align="center" justify="end" style="width:100%">
-          <v-col cols="auto"> </v-col>
-          <v-col cols="auto">
+          <v-col cols="8.75" class="pt-0">
+            <v-row align="center" justify="end" style="width:100%">
+              <v-col cols="auto"> </v-col>
+              <v-col cols="auto">
             <span><CartAttempts class="pt-0 pr-6"/></span
-          ></v-col>
+            ></v-col>
+            </v-row>
+          </v-col>
         </v-row>
-      </v-col>
-    </v-row>
-    <v-row class="pt-0 mt-0 pb-0 mb-0 row-style" align="center">
-      <v-col cols="auto" class="pt-0 par_title_popup_consent d-flex align-center" >
-        <h3 class="title_popup_consent  pr-0 mr-0 pt-0 mt-0">
-          {{ $t("widgets.PopupConsentWidget") }}&nbsp;
-        </h3>
+        <v-row class="pt-0 mt-0 pb-0 mb-0 row-style" align="center">
+          <v-col cols="auto" class="pt-0 par_title_popup_consent d-flex align-center" >
+            <h3 class="title_popup_consent  pr-0 mr-0 pt-0 mt-0">
+              {{ $t("widgets.PopupConsentWidget") }}&nbsp;
+            </h3>
 
-        <TooltipIcon
-          :posRight="true"
-          :nudgeBottom="30"
-          :nudgeLeft="5"
-          :txt="$t('widgets.headerInfo')"
-          class="infoicon_scale pt-0 ml-3"
-        />
-      </v-col>
+            <TooltipIcon
+              :posRight="true"
+              :nudgeBottom="30"
+              :nudgeLeft="5"
+              :txt="$t('widgets.headerInfo')"
+              class="infoicon_scale pt-0 ml-3"
+            />
+          </v-col>
 
 
-    </v-row>
-    <v-row
-      class="pt-1  bg_wdg_cards"
-      align="start"
-      justify="start"
-      style="height:auto; width:100%"
-    >
-      <v-col cols="7" style="height:100%">
-        <v-row style="height:100%" align="start" justify="start">
-          <WidgetProps class="mt-3" />
-        </v-row>
-      </v-col>
-      <v-col cols="5" style="">
-        <v-row
-          style="height:75vh; width:auto; "
-          align="start"
-          justify="center"
-          v-show="widgetType == 'Button'"
-        >
-          <WidgetView />
         </v-row>
         <v-row
-          style="height:75vh; width:auto;"
+          class="pt-1  bg_wdg_cards"
           align="start"
-          justify="center"
-          v-show="widgetType == 'Checkbox'"
+          justify="start"
+          style="height:auto; width:100%"
         >
-          <WidgetViewCheckBox />
+          <v-col cols="7" style="height:100%" class="par_widgt">
+            <v-row style="height:100%" align="start" justify="start">
+              <WidgetProps class="mt-3" />
+            </v-row>
+          </v-col>
+          <v-col cols="5" style="">
+            <v-row
+              style="height:75vh; width:auto; "
+              align="start"
+              justify="center"
+              v-show="widgetType == 'Button'"
+            >
+              <WidgetView />
+            </v-row>
+            <v-row
+              style="height:75vh; width:auto;"
+              align="start"
+              justify="center"
+              v-show="widgetType == 'Checkbox'"
+            >
+              <WidgetViewCheckBox />
+            </v-row>
+          </v-col>
         </v-row>
-      </v-col>
-    </v-row>
-  </v-container>
+      </v-container>
+    </v-col>
+  </v-col>
+
+
 </template>
 
 <script>
@@ -131,6 +137,11 @@ export default {
 </script>
 
 <style scoped>
+.par_widgt{
+  padding-left: 30px !important;
+  padding-right: 37px !important;
+  background: #F2F2F2 0% 0% no-repeat padding-box !important;
+}
 .row-style {
   height: 6vh;
 }

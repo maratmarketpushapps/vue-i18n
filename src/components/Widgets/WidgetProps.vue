@@ -1,5 +1,5 @@
 <template>
-  <v-card tile height="auto" width="95%" class="wdgt_font_dims card-scroll">
+  <v-card tile height="auto" width="100%" class="wdgt_font_dims card-scroll par_">
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 mt-0">
       <v-row style="height:20%;width:100%" class="">
         <v-col cols="7 offset-1 py-0">
@@ -933,6 +933,7 @@ export default {
 </script>
 
 <style scoped>
+
 .parent_gat_message{
   margin-bottom: 28px !important;
 }
