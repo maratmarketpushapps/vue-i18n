@@ -141,8 +141,6 @@ export default {
   components: {
     AppBar,
     NavDrawer
-    //,
-    //ModalTestCartRecoveryMethod
   },
 
   data() {
