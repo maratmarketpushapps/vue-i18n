@@ -37,7 +37,7 @@
                 </v-card-title>
               </v-col>
               <v-card-text class="px-0 pt-0 pb-0 spc_text">
-                <span class="step_fl">Steps to follow:</span>
+                <span class="step_fl">{{ $t("ModalStepsCompleted.stepsToComplete") }}</span>
                 <v-row>
                   <v-col class="step_part_txt" cols="9">
                     <router-link :to="stepARoute" class="step_part_txt"  @click.native="closeStepsCompletedModal">
@@ -177,7 +177,7 @@
                       <template left class="mr-4 pr-4">
                         <v-img src="@/assets/img/ModalStep/icon-play-tutorial.png" class="mr-3"></v-img>
                       </template>
-                      {{ $t("ModalStepsCompleted.seeVideo") }}
+                      {{ $t("ModalStepsCompleted.watchVideoButton") }}
                     </v-btn>
                   </v-col>
 

@@ -326,21 +326,21 @@
     "howToTurnOn": "How to turn ON?"
   },
   "ModalStepsCompleted": {
-    "seeVideo": "SEE VIDEO",
-    "smsTitle": "How to turn on SMS Cart Recovery?",
-    "smsInstruction1": "Add a phone number in Settings.",
-    "smsInstruction2": "Edit your SMS Campaign.",
-    "smsInstruction3": "Enable SMS in the Widget.",
-    "fbTitle": "How to turn on Facebook Cart Recovery?",
+    "stepsToComplete": "Steps to complete:",
+    "smsTitle": "How to turn ON SMS Cart Recovery?",
+    "smsInstruction1": "Add your phone number in Settings.",
+    "smsInstruction2": "Activate at least one SMS Campaign.",
+    "smsInstruction3": "Activate site Popup Widget and enable SMS.",
+    "fbTitle": "How to turn ON Facebook Cart Recovery?",
     "fbInstruction1": "Connect your Facebook Page.",
-    "fbInstruction2": "Edit your Cart Abandoned Messages.",
-    "fbInstruction3": "Add a Consent Widget to your website.",
+    "fbInstruction2": "Activate at least one FB Campaign.",
+    "fbInstruction3": "Activate site Popup Widget and enable FB.",
     "stepIndex1": "1. ",
     "stepIndex2": "2. ",
     "stepIndex3": "3. ",
     "notDone": "NOT DONE >>",
     "done": "DONE",
-    "stillHaveQuestions": "If you still have questions, please see our detailed tutorial video below.",
+    "stillHaveQuestions": "Follow the video tutorial bellow for a step-by-step guide.",
     "watchVideoButton": "WATCH VIDEO"
   }
 }
