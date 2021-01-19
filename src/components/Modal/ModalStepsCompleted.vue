@@ -66,7 +66,7 @@
                       height="24px"
                       class="primary font_not_done pad_resp_nt btn_save ml-0"
                       style="font-size:100%; text-transform:none;"
-                      :to="stepBRoute"
+                      :to="stepARoute"
                       @click.native="closeStepsCompletedModal"
                     >
                       <template left>
@@ -142,7 +142,7 @@
                       height="24px"
                       class="primary font_not_done pad_resp_nt btn_save ml-0"
                       style="font-size:100%; text-transform:none;"
-                      :to="stepBRoute"
+                      :to="stepCRoute"
                       @click.native="closeStepsCompletedModal"
                     >
                       <template left>
