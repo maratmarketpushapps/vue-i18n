@@ -341,6 +341,9 @@ export default new Vuex.Store({
     getSubs: (state) => {
       return state.subVars;
     },
+    getWidgEU:(state) => {
+      return state.widgetVars.is_gdpr_affected
+    }
   },
   mutations: {
     // Displays the modal with the cart recovery steps.
@@ -1548,7 +1551,6 @@ export default new Vuex.Store({
         resolve("success");
       });
     },
-
     //Dashboard Actions
 
     getDash({ commit }, dateObj) {

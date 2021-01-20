@@ -8,7 +8,7 @@
             style="height:100%;width:100%"
             align="center"
           >
-            <h3>{{ $t('widgets.popConWidg') }}</h3>
+            <h3 class="pop_con_wdg">{{ $t('widgets.popConWidg') }}</h3>
           </v-row>
         </v-col>
         <v-col cols="3">
@@ -42,7 +42,7 @@
 
       <v-row class=" pt-4">
         <v-col cols="6 offset-1" class="py-0 align-end px-0">
-          <h3 class="subs_title">{{ $t("widgets.GathMess") }}</h3>
+          <h3 class="subs_title gath_msg">{{ $t("widgets.GathMess") }}</h3>
         </v-col>
         <v-col cols="5" class="row justify-end pr-9 ma-0  py-0 px-0">
           <TooltipIcon
@@ -67,12 +67,26 @@
                 v-model="ite.connection"
                 :label="$t(getDisplayAvailabilityNotice(ite))"
                 class="mt-0 mb-0"
+                :disabled="detectEuRegion && ite.title == 'facebook'"
               >
               </v-checkbox>
 
             </v-col>
-            <v-col cols="1 offset-5" class="pb-0 pt-3" justify="end" >
-              <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px" @click="rev()"></v-img>
+            <v-col class="pt-0 d-flex justify-end Eu_hint_NotAv">
+              <span v-if="detectEuRegion && ite.title == 'facebook'">Not available in your country.</span>
+            </v-col>
+            <v-col cols="1 " class="pb-0 " justify="end" :class="detectEuRegion ? 'disabled_display pt-0' : 'pt-3'">
+              <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px" @click="rev()" :class="detectEuRegion ? 'fix_image_pos' : ''"
+                     v-if="(ite.title !== 'facebook' && detectEuRegion == true) ||detectEuRegion == false"
+              ></v-img>
+              <TooltipIcon
+                :posRight="true"
+                :nudgeBottom="30"
+                :nudgeLeft="5"
+                :txt="$t('widgets.modalInfo')"
+                class="infoicon_scale pt-0 mt-0"
+                v-else
+              />
             </v-col>
           </v-col>
         </v-col>
@@ -535,7 +549,6 @@ import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 import ColorSelect from "@/components/GlobalComponents/ColorSelect.vue";
 import { mapGetters } from "vuex";
 
-
 export default {
   name: "WidgetProps",
   components: { TooltipIcon, ColorSelect },
@@ -698,13 +711,14 @@ export default {
     },
     changesWidg(){
       if(this.statusWidgets.facebook.position == 1){
-        this.coneData[0].connection = this.statusWidgets.facebook.enabled
+        this.detectEuRegion == true ? this.coneData[0].connection = false : this.coneData[0].connection = this.statusWidgets.facebook.enabled
         this.coneData[0].id = this.statusWidgets.facebook.position
         this.coneData[0].title = "facebook"
         this.coneData[1].connection = this.statusWidgets.sms.enabled
         this.coneData[1].id = this.statusWidgets.sms.position
         this.coneData[1].title = "sms"
       }else {
+        this.detectEuRegion == true ? this.coneData[1].connection = false : this.coneData[1].connection = this.statusWidgets.facebook.enabled
         this.coneData[1].connection = this.statusWidgets.facebook.enabled
         this.coneData[1].id = this.statusWidgets.facebook.position
         this.coneData[1].title = "facebook"
@@ -725,7 +739,11 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["getWidgetsState", "getSettingsState"]),
+    ...mapGetters(["getWidgetsState", "getSettingsState","getWidgEU"]),
+    detectEuRegion(){
+      // this.getWidgEU
+      return true
+    },
     detectChange() {
       return this.getWidgetsState.changesSaved;
     },
@@ -936,7 +954,7 @@ export default {
   text-align: center !important;
   font: normal normal 600 12px/29px Poppins !important;
   letter-spacing: 0px !important;
-  color: #5686F6 !important;
+
   opacity: 1 !important;
   overflow: hidden !important;
 }
@@ -1083,12 +1101,36 @@ export default {
 .Sub_Par{
   margin-top: 15px !important;
 }
-
+.gath_msg{
+  font-family: Poppins;
+  font-size: 14px !important;
+}
+.pop_con_wdg{
+  font-family: Poppins;
+  font-size: 16px !important;
+}
+.disabled_display{
+  pointer-events: none !important;
+}
+.fix_image_pos{
+  margin-top: 10px;
+  margin-left: 18px;
+}
+@media only screen and (max-width: 1799px) {
+  .fix_image_pos{
+    margin-left: 11px;
+  }
+}
 @media only screen and (max-width: 1399px) {
   .lbl-props {
     font-size: 100%;
   }
-
+  .fix_image_pos{
+    margin-left: 17px;
+  }
+  .disabled_display{
+    padding: 0px !important;
+  }
   .item-scale {
     transform: scale(0.9);
     transform-origin: 0 0;
@@ -1115,10 +1157,16 @@ export default {
     transform: scale(0.8);
     transform-origin: 0 0;
   }
+  .Eu_hint_NotAv{
+    font: normal normal 600 10px/37px Poppins !important;
+  }
 }
 @media only screen and (max-width: 1050px) {
   .lbl-props {
     font-size: 75%;
+  }
+  .fix_image_pos{
+    margin-left: 12px;
   }
   .resp_sp{
     font-size: 80% !important;
