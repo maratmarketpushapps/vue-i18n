@@ -83,7 +83,6 @@ export default {
     countryChanged(country) {
       setTimeout(()=> {this.phone == '' ? this.phone = '+' + country.dialCode : this.phone.length > 4 && this.first == true ? this.phone = '+' + country.dialCode: this.phone,
         this.btnDisabled = false},300)
-
       if(country.dialCode !== null){
         this.country = '+' + country.dialCode
       }
@@ -108,6 +107,11 @@ export default {
           }
         });
       });
+    }
+  },
+  watch:{
+    phone(newVal){
+      newVal == '' ? setTimeout(() => this.btnDisabled = true ,400): this.btnDisabled
     }
   },
   mounted() {

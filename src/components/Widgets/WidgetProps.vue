@@ -21,11 +21,8 @@
             <!-- save button -->
             <v-btn
               tile
-              height="50%"
               :class="!detectChange ? 'mb-2 sv_changes wdgt_font_dims resp_sp' : 'mb-2 wdgt_font_dims resp_sp'"
-              width="70%"
               :disabled="detectChange"
-              style="text-transform:none; font-size:70% !important"
               @click="svChanges"
               outlined
             >
@@ -80,8 +77,10 @@
           </v-col>
         </v-col>
       </v-col>
-
-      <v-row>
+     </v-container>
+    <v-divider ></v-divider>
+    <v-container>
+    <v-row class="Sub_Par">
         <v-col cols="6 offset-1 py-0 px-0" class="py-0 align-end">
           <h3 class="subs_title">{{ $t("widgets.subsType") }}</h3>
         </v-col>
@@ -164,13 +163,7 @@
         </v-col>
       </v-row>
     </v-container>
-<!--    <v-divider ></v-divider>-->
 
-<!--    <v-container>-->
-
-      <!--      </draggable>-->
-
-<!--    </v-container>-->
 
     <v-divider class="mt-4"></v-divider>
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0">
@@ -916,7 +909,6 @@ export default {
           this.$store.dispatch("getSettings").then(() => {
             this.$store.dispatch("updIsLoading", false);
           });
-
           this.isGdprAffected =
             this.$store.getters.getWidgetsState.is_gdpr_affected;
         }
@@ -935,14 +927,18 @@ export default {
 <style scoped>
 
 .parent_gat_message{
-  margin-bottom: 28px !important;
+  margin-bottom: 36px !important;
 }
 </style>
 
 <style>
 .wdgt_font_dims {
-  font-size: 95% !important;
-  overflow: hidden;
+  text-align: center !important;
+  font: normal normal 600 12px/29px Poppins !important;
+  letter-spacing: 0px !important;
+  color: #5686F6 !important;
+  opacity: 1 !important;
+  overflow: hidden !important;
 }
 
 .wdgt_btn
@@ -1011,7 +1007,6 @@ export default {
   color: #5686F6 !important;
 }
 .subs_title{
-
   text-align: left !important;
   letter-spacing: 0px !important;
   color: #323F4F !important;
@@ -1084,7 +1079,9 @@ export default {
   position: relative !important;
   bottom: 28px !important;
 }
-
+.Sub_Par{
+  margin-top: 15px !important;
+}
 
 @media only screen and (max-width: 1399px) {
   .lbl-props {
