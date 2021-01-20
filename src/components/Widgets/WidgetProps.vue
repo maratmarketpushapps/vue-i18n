@@ -1098,7 +1098,7 @@ export default {
     transform-origin: 0 0;
   }
   .resp_sp{
-    font-size: 60% !important;
+    font-size: 90% !important;
     width:100% !important; ;
   }
 }
@@ -1120,7 +1120,10 @@ export default {
   .lbl-props {
     font-size: 75%;
   }
-
+  .resp_sp{
+    font-size: 80% !important;
+    width:100% !important; ;
+  }
   .item-scale {
     transform: scale(0.8);
     transform-origin: 0 0;
