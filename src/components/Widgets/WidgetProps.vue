@@ -111,7 +111,7 @@
           <p class="subs_text">{{$t("widgets.discText")}}</p>
         </v-col>
         <v-row>
-          <v-col cols="2 offset-1" class="py-0 mb-0 px-0">
+          <v-col cols="2 offset-1" class="par_spc py-0 mb-0 px-0">
             <v-checkbox
               @change="def_selected == '' ? discount_selected = 'subscribe' : discount_selected = ''"
               v-model="def_selected"
@@ -134,8 +134,8 @@
     </v-container>
     <v-container class="py-0">
       <v-row class="py-0">
-        <v-col cols="11 offset-1" v-if="discount_selected" class="px-0 py-0">
-          <v-row  class="py-0">
+        <v-col cols="11 offset-1" v-if="def_selected == ''" class="px-0 py-0">
+          <v-row  class="py-0 par_disc_fields">
             <v-col cols="6" class="py-0 mb-0 ">
               <v-text-field
                 v-model="discount_statement"
@@ -153,7 +153,7 @@
               ></v-text-field>
             </v-col>
             <v-container class="pr-12 py-0 pos_sm_cont">
-              <v-col cols="12" class="pl-0 pr-2 py-0">
+              <v-col cols="12" class="pl-0 pr-2 py-0 d-flex justify-start">
                 <small class="smaller_text space_bottom ">{{$t('widgets.discSmallText')}}<b>{{ $t('widgets.discMarkHint')}}</b></small>
               </v-col>
             </v-container>
@@ -177,9 +177,7 @@
         </v-col>
       </v-row>
     </v-container>
-
-
-    <v-divider class="mt-4"></v-divider>
+    <v-divider class="mt-0"></v-divider>
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0">
       <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0">
         <v-col cols="1"></v-col>
@@ -711,15 +709,16 @@ export default {
     },
     changesWidg(){
       if(this.statusWidgets.facebook.position == 1){
-        this.detectEuRegion == true ? this.coneData[0].connection = false : this.coneData[0].connection = this.statusWidgets.facebook.enabled
+        this.detectEuRegion == true ? this.coneData[0].connection = false
+        : this.coneData[0].connection = this.statusWidgets.facebook.enabled
         this.coneData[0].id = this.statusWidgets.facebook.position
         this.coneData[0].title = "facebook"
         this.coneData[1].connection = this.statusWidgets.sms.enabled
         this.coneData[1].id = this.statusWidgets.sms.position
         this.coneData[1].title = "sms"
       }else {
-        this.detectEuRegion == true ? this.coneData[1].connection = false : this.coneData[1].connection = this.statusWidgets.facebook.enabled
-        this.coneData[1].connection = this.statusWidgets.facebook.enabled
+        this.detectEuRegion == true ? this.coneData[1].connection = false
+        : this.coneData[1].connection = this.statusWidgets.facebook.enabled
         this.coneData[1].id = this.statusWidgets.facebook.position
         this.coneData[1].title = "facebook"
         this.coneData[0].connection = this.statusWidgets.sms.enabled
@@ -741,8 +740,7 @@ export default {
   computed: {
     ...mapGetters(["getWidgetsState", "getSettingsState","getWidgEU"]),
     detectEuRegion(){
-      // this.getWidgEU
-      return true
+      return this.getWidgEU
     },
     detectChange() {
       return this.getWidgetsState.changesSaved;
@@ -824,12 +822,12 @@ export default {
     },
     def_selected(newValue) {
       if((newValue == '' || newValue == null) && this.discount_selected != 'subscribe'){
-        setTimeout(() => {this.def_selected = 'deafult'} , 10)
+        setTimeout(() => {this.def_selected = 'deafult'} , 1)
       }else this.$store.dispatch("updWdgtDefSel", newValue);
     },
     discount_selected(newValue) {
       if((newValue == '' || newValue == null) && this.def_selected != 'deafult'){
-        setTimeout(() => {this.discount_selected = 'subscribe'} , 10)
+        setTimeout(() => {this.discount_selected = 'subscribe'} , 1)
       }else this.$store.dispatch("updWdgtDefSel", newValue);
     },
     radioSelect(newValue) {
@@ -950,6 +948,16 @@ export default {
 </style>
 
 <style>
+.par_spc .v-input__slot{
+  margin-bottom: 0px !important;
+}
+
+.par_disc_fields .v-text-field{
+  padding-top: 0px !important;
+}
+.checkbox_widget .v-messages{
+  height: 1px !important;
+}
 .wdgt_font_dims {
   text-align: center !important;
   font: normal normal 600 12px/29px Poppins !important;
