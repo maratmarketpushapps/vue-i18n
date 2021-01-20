@@ -1005,6 +1005,7 @@ export default {
   font: normal normal 600 12px/29px Poppins;
   letter-spacing: 0px;
   color: #5686F6 !important;
+  padding: 0px 30px !important;
 }
 .subs_title{
   text-align: left !important;
