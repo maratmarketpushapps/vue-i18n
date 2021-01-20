@@ -26,7 +26,7 @@
       </v-col>
     </v-row>
     <v-row class="pt-0 mt-0 pb-0 mb-0 row-style" align="center">
-      <v-col cols="auto" class="pt-0 par_title_popup_consent d-flex align-center" >
+      <v-col cols="auto" class="pt-0 pb-0 par_title_popup_consent d-flex align-center" >
         <h3 class="title_popup_consent  pr-0 mr-0 pt-0 mt-0">
           {{ $t("widgets.PopupConsentWidget") }}&nbsp;
         </h3>
@@ -48,12 +48,12 @@
       justify="start"
       style="height:auto; width:100%"
     >
-      <v-col cols="7" style="height:100%">
+      <v-col cols="7" style="height:100%" class="pt-1">
         <v-row style="height:100%" align="start" justify="start">
           <WidgetProps class="mt-3" />
         </v-row>
       </v-col>
-      <v-col cols="5" style="">
+      <v-col cols="5" style="" class="pt-1">
         <v-row
           style="height:75vh; width:auto; "
           align="start"
@@ -132,7 +132,7 @@ export default {
 
 <style scoped>
 .row-style {
-  height: 6vh;
+
 }
 .bg_wdg_cards{
   background: #F2F2F2 0% 0% no-repeat padding-box;
@@ -142,6 +142,7 @@ export default {
   height: 77px;
   background: #F2F2F2 0% 0% no-repeat padding-box;
   opacity: 1;
+  border-bottom: 2px solid #006AFF;
 }
 .title_popup_consent{
   text-align: left;
@@ -151,9 +152,4 @@ export default {
   opacity: 1;
 }
 
-@media (min-width: 1400px) {
-  .row-style {
-    height: 8vh;
-  }
-}
 </style>
