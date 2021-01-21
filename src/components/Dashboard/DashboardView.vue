@@ -36,12 +36,12 @@
           <v-row style="height:15%; width:100%">
             <v-col cols="12">
               <v-row style="width:100%" class="ml-5 mt-0 pr-0">
-                <v-col cols="6">
+                <v-col cols="11">
                   <v-row style="width:100%">
                     <span>{{ $t("dashboard.card1.smsRecov1Msg") }}</span>
                   </v-row>
                 </v-col>
-                <v-col cols="6">
+                <v-col cols="1">
                   <v-row style="width:100%" justify="end">
                     <span style="color:#5686F6; font-weight:900">{{
                       dashVars.campaigns.sms_recovery_messages_nr1_sent
@@ -69,12 +69,12 @@
           <v-row style="height:15%; width:100%">
             <v-col cols="12">
               <v-row style="width:100%" class="ml-5 mt-0 pr-0">
-                <v-col cols="6">
+                <v-col cols="11">
                   <v-row style="width:100%">
                     <span> {{ $t("dashboard.card1.smsRecov2Msg") }}</span>
                   </v-row>
                 </v-col>
-                <v-col cols="6">
+                <v-col cols="1">
                   <v-row style="width:100%" justify="end">
                     <span style="color:#5686F6; font-weight:900">{{
                       dashVars.campaigns.sms_recovery_messages_nr2_sent
@@ -102,12 +102,12 @@
           <v-row style="height:15%; width:100%">
             <v-col cols="12">
               <v-row style="width:100%" class="ml-5 mt-0 pr-0">
-                <v-col cols="6">
+                <v-col cols="11">
                   <v-row style="width:100%">
                     <span>{{ $t("dashboard.card1.fbRecov1Msg") }}</span>
                   </v-row>
                 </v-col>
-                <v-col cols="6">
+                <v-col cols="1">
                   <v-row style="width:100%" justify="end">
                     <span style="color:#5686F6; font-weight:900">{{
                       dashVars.campaigns.fb_recovery_messages_nr1_sent
@@ -135,12 +135,12 @@
           <v-row style="height:15%; width:100%">
             <v-col cols="12">
               <v-row style="width:100%" class="ml-5 mt-0 pr-0">
-                <v-col cols="6">
+                <v-col cols="11">
                   <v-row style="width:100%">
                     <span> {{ $t("dashboard.card1.fbRecov2Msg") }}</span>
                   </v-row>
                 </v-col>
-                <v-col cols="6">
+                <v-col cols="1">
                   <v-row style="width:100%" justify="end">
                     <span style="color:#5686F6; font-weight:900">{{
                       dashVars.campaigns.fb_recovery_messages_nr2_sent
@@ -353,18 +353,18 @@
               </v-row>
             </v-col>
           </v-row>
-          <v-row style="height:20%; width:100%">
-            <v-col cols="auto">
-              <v-row justify="start" align="end" class="ml-5 mt-2">
-                <span class="msgCount">
-                  {{ dashVars.cart_recovery.total_recovered }}
-                </span>
-                <span class="mb-2 ml-2 countLabel">
-                  {{ $t("dashboard.card4.totalMsg") }}
-                </span>
-              </v-row>
-            </v-col>
-          </v-row>
+<!--          <v-row style="height:20%; width:100%">-->
+<!--            <v-col cols="auto">-->
+<!--              <v-row justify="start" align="end" class="ml-5 mt-2">-->
+<!--                <span class="msgCount">-->
+<!--                  {{ dashVars.cart_recovery.total_recovered }}-->
+<!--                </span>-->
+<!--                <span class="mb-2 ml-2 countLabel">-->
+<!--                  {{ $t("dashboard.card4.totalMsg") }}-->
+<!--                </span>-->
+<!--              </v-row>-->
+<!--            </v-col>-->
+<!--          </v-row>-->
           <v-row style="height:15%; width:100%" class="pt-0 mt-0">
             <v-col cols="12">
               <v-row style="width:100%" class="ml-5 mt-0 pr-0">

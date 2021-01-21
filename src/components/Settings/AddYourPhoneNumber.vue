@@ -111,6 +111,12 @@ export default {
   },
   watch:{
     phone(newVal){
+      function isLetter(c) {
+        return c.toLowerCase() != c.toUpperCase();
+      }
+      var str = newVal
+      isLetter(str) == true ? this.btnDisabled = false : this.btnDisabled
+      newVal == '' ? setTimeout(() => this.btnDisabled = true ,400): this.btnDisabled
       newVal == '' ? setTimeout(() => this.btnDisabled = true ,400): this.btnDisabled
     }
   },
