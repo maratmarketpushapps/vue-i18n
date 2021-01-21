@@ -731,17 +731,13 @@ export default {
       }else this.def_selected = 'deafult' , this.discount_selected = ''
     },
     getDisplayAvailabilityNotice(ite) {
-      if (ite.title == 'facebook' && this.isGdprAffected) {
-        return ite.title + ' (Not available in your country)';
-      }
       return ite.title;
     }
   },
   computed: {
     ...mapGetters(["getWidgetsState", "getSettingsState","getWidgEU"]),
     detectEuRegion(){
-      // return this.getWidgEU
-      return true
+      return this.getWidgEU
     },
     detectChange() {
       return this.getWidgetsState.changesSaved;
@@ -1124,6 +1120,12 @@ export default {
 .fix_image_pos{
   margin-top: 10px;
   margin-left: 18px;
+}
+.wdgt_font_dims .v-label{
+  font-size: 12px !important;
+}
+.wdgt_font_dims .v-input input{
+  font-size: 14px !important;
 }
 @media only screen and (max-width: 1799px) {
   .fix_image_pos{

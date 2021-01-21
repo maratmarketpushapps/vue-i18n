@@ -16,7 +16,7 @@
 
       <v-row style="height:auto width: 100%;">
         <v-col cols="12">
-          <v-row style="height:10vh">
+          <v-row style="height:4vh">
             <v-col cols="12"> </v-col>
           </v-row>
           <v-row align="center" justify="center">
