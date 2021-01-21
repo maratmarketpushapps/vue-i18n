@@ -1130,9 +1130,6 @@ export default {
   font-size: 16px !important;
   font-weight: normal;
 }
-.v-icon{
-  color:#0247A7 !important;
-}
 
 @media only screen and (max-width: 1799px) {
   .fix_image_pos{
