@@ -1122,11 +1122,18 @@ export default {
   margin-left: 18px;
 }
 .wdgt_font_dims .v-label{
-  font-size: 12px !important;
+  font-size: 15px !important;
+  font-weight:lighter;
+  color: #4E5D6B !important;
 }
 .wdgt_font_dims .v-input input{
-  font-size: 14px !important;
+  font-size: 16px !important;
+  font-weight: normal;
 }
+.v-icon{
+  color:#0247A7 !important;
+}
+
 @media only screen and (max-width: 1799px) {
   .fix_image_pos{
     margin-left: 11px;
