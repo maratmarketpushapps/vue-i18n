@@ -73,7 +73,7 @@
 
             </v-col>
             <v-col class="pt-0 d-flex justify-end Eu_hint_NotAv">
-              <span v-if="detectEuRegion && ite.title == 'facebook'">Not available in your country.</span>
+              <span v-if="detectEuRegion && ite.title == 'facebook'">{{ $t("widgets.notAvEU") }}</span>
             </v-col>
             <v-col cols="1 " class="pb-0 " justify="end" :class="detectEuRegion ? 'disabled_display pt-0' : 'pt-3'">
               <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px" @click="rev()" :class="detectEuRegion ? 'fix_image_pos' : ''"
@@ -740,7 +740,8 @@ export default {
   computed: {
     ...mapGetters(["getWidgetsState", "getSettingsState","getWidgEU"]),
     detectEuRegion(){
-      return this.getWidgEU
+      // return this.getWidgEU
+      return true
     },
     detectChange() {
       return this.getWidgetsState.changesSaved;

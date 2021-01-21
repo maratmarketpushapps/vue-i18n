@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-content class="app_background app-style" style="height:auto">
+    <v-content class="app_background app-style pl-0" style="height:auto">
       <NavDrawer />
       <AppBar class="app_bar_height" />
 
@@ -21,7 +21,7 @@
           </v-row>
           <v-row align="center" justify="center">
             <v-col cols="auto" style="width: 6vw;"> </v-col>
-            <v-col cols="11">
+            <v-col cols="12" class="px-0">
               <v-row v-show="!isLoading">
                 <transition name="rtr">
                   <router-view></router-view>
