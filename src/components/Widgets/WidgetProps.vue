@@ -49,7 +49,7 @@
             :posRight="true"
             :nudgeBottom="30"
             :nudgeLeft="5"
-            :txt="$t('widgets.modalInfo')"
+            :txt="$t('widgets.channelsInfo')"
             class="infoicon_scale pt-0 mt-0"
           />
         </v-col>
@@ -79,14 +79,16 @@
               <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px" @click="rev()" :class="detectEuRegion ? 'fix_image_pos' : ''"
                      v-if="(ite.title !== 'Facebook' && detectEuRegion == true) ||detectEuRegion == false"
               ></v-img>
+              <!--
               <TooltipIcon
                 :posRight="true"
                 :nudgeBottom="30"
                 :nudgeLeft="5"
-                :txt="$t('widgets.modalInfo')"
+                :txt="$t('widgets.notAvailableInYourCountry')"
                 class="infoicon_scale pt-0 mt-0"
                 v-else
               />
+            -->
             </v-col>
           </v-col>
         </v-col>

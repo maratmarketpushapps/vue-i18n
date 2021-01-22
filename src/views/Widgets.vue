@@ -42,7 +42,7 @@
             :posRight="true"
             :nudgeBottom="30"
             :nudgeLeft="5"
-            :txt="$t('widgets.headerInfo')"
+            :txt="$t('widgets.headerInfo2')"
             class="infoicon_scale pt-0 ml-3"
           />
         </v-col>
