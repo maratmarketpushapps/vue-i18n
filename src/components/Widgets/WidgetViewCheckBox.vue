@@ -13,7 +13,7 @@
           style="height:20%; width:100%;"
         >
           <v-row style="width:100%; height:30%" justify="end" align="center" @click="toggleDialog()">
-            <v-icon style="color: #0247A7">
+            <v-icon>
               mdi-close
             </v-icon>
           </v-row>

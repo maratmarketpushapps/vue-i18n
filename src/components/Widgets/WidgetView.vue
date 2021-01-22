@@ -203,7 +203,7 @@ export default {
     widgetType() {
       return this.getWidgetsState.facebook_widget_type;
     },
-
+    
   },
 
 };

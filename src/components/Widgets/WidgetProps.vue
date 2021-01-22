@@ -67,17 +67,17 @@
                 v-model="ite.connection"
                 :label="$t(getDisplayAvailabilityNotice(ite))"
                 class="mt-0 mb-0"
-                :disabled="detectEuRegion && ite.title == 'facebook'"
+                :disabled="detectEuRegion && ite.title == 'Facebook'"
               >
               </v-checkbox>
 
             </v-col>
             <v-col class="pt-0 d-flex justify-end Eu_hint_NotAv">
-              <span v-if="detectEuRegion && ite.title == 'facebook'">{{ $t("widgets.notAvEU") }}</span>
+              <span v-if="detectEuRegion && ite.title == 'Facebook'">{{ $t("widgets.notAvEU") }}</span>
             </v-col>
             <v-col cols="1 " class="pb-0 " justify="end" :class="detectEuRegion ? 'disabled_display pt-0' : 'pt-3'">
               <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px" @click="rev()" :class="detectEuRegion ? 'fix_image_pos' : ''"
-                     v-if="(ite.title !== 'facebook' && detectEuRegion == true) ||detectEuRegion == false"
+                     v-if="(ite.title !== 'Facebook' && detectEuRegion == true) ||detectEuRegion == false"
               ></v-img>
               <TooltipIcon
                 :posRight="true"
@@ -178,6 +178,53 @@
       </v-row>
     </v-container>
     <v-divider class="mt-0"></v-divider>
+    <v-container>
+      <v-row style="height:20%;width:100%" class="pa-0 ma-0" align="start">
+        <v-col cols="6 offset-1" class="align-center pl-0">
+          <v-row class="my-2 " style="width:100%" align="center">
+            <h3>{{ $t("widgets.modalHdr") }}</h3>
+          </v-row>
+        </v-col>
+        <v-col cols="5">
+          <v-row class="my-0 mr-2" style="width:100%" justify="end">
+            <TooltipIcon
+              :posRight="true"
+              :nudgeBottom="30"
+              :nudgeLeft="5"
+              :txt="$t('widgets.modalInfo')"
+              class="infoicon_scale pt-0 mt-0"
+            />
+          </v-row>
+        </v-col>
+      </v-row>
+      <v-row style="height:20%;width:100%" align="center">
+        <v-col cols="1"></v-col>
+        <v-col cols="4">
+          <v-row align="center">
+            <ColorSelect
+              :color="hdrColor"
+              :label="$t('widgets.hdrColor')"
+              v-on:selectedColor="setHdrClr($event)"
+              :key="hdrKey"
+              class="item-scale"
+              style="width:auto"
+            />
+          </v-row>
+        </v-col>
+        <v-col cols="4">
+          <v-row align="center">
+            <ColorSelect
+              :color="bdyColor"
+              :label="$t('widgets.bdyColor')"
+              v-on:selectedColor="setBdyClr($event)"
+              :key="bdyKey"
+              class="item-scale"
+            />
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-divider></v-divider>
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0">
       <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0">
         <v-col cols="1"></v-col>
@@ -712,18 +759,18 @@ export default {
         this.detectEuRegion == true ? this.coneData[0].connection = false
         : this.coneData[0].connection = this.statusWidgets.facebook.enabled
         this.coneData[0].id = this.statusWidgets.facebook.position
-        this.coneData[0].title = "facebook"
+        this.coneData[0].title = "Facebook"
         this.coneData[1].connection = this.statusWidgets.sms.enabled
         this.coneData[1].id = this.statusWidgets.sms.position
-        this.coneData[1].title = "sms"
+        this.coneData[1].title = "SMS"
       }else {
         this.detectEuRegion == true ? this.coneData[1].connection = false
         : this.coneData[1].connection = this.statusWidgets.facebook.enabled
         this.coneData[1].id = this.statusWidgets.facebook.position
-        this.coneData[1].title = "facebook"
+        this.coneData[1].title = "Facebook"
         this.coneData[0].connection = this.statusWidgets.sms.enabled
         this.coneData[0].id = this.statusWidgets.sms.position
-        this.coneData[0].title = "sms"
+        this.coneData[0].title = "SMS"
       }
       if(this.subType == "subscribe"){
         this.discount_selected = 'subscribe'
@@ -825,6 +872,7 @@ export default {
     discount_selected(newValue) {
       if((newValue == '' || newValue == null) && this.def_selected != 'deafult'){
         setTimeout(() => {this.discount_selected = 'subscribe'} , 1)
+        setTimeout(() => {this.$store.dispatch("changeSavedWdgt",false)} , 10)
       }else this.$store.dispatch("updWdgtDefSel", newValue);
     },
     radioSelect(newValue) {
@@ -942,6 +990,16 @@ export default {
 .parent_gat_message{
   margin-bottom: 36px !important;
 }
+/*@media only screen and (max-width: 1799px) {*/
+/*  .fix_image_pos{*/
+/*    margin-left: 11px;*/
+/*  }*/
+  .Eu_hint_NotAv{
+    height: 34px !important;
+    align-items: center !important;
+    padding-bottom: 0px !important;
+  }
+/*}*/
 </style>
 
 <style>
@@ -1122,13 +1180,10 @@ export default {
   margin-left: 18px;
 }
 .wdgt_font_dims .v-label{
-  font-size: 15px !important;
-  font-weight:lighter;
-  color: #4E5D6B !important;
+  font-size: 16px !important;
 }
 .wdgt_font_dims .v-input input{
-  font-size: 16px !important;
-  font-weight: normal;
+  font-size: 15px !important;
 }
 @media only screen and (max-width: 1799px) {
   .fix_image_pos{
