@@ -49,7 +49,7 @@
             :posRight="true"
             :nudgeBottom="30"
             :nudgeLeft="5"
-            :txt="$t('widgets.modalInfo')"
+            :txt="$t('widgets.channelsInfo')"
             class="infoicon_scale pt-0 mt-0"
           />
         </v-col>
@@ -79,14 +79,16 @@
               <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px" @click="rev()" :class="detectEuRegion ? 'fix_image_pos' : ''"
                      v-if="(ite.title !== 'Facebook' && detectEuRegion == true) ||detectEuRegion == false"
               ></v-img>
+              <!--
               <TooltipIcon
                 :posRight="true"
                 :nudgeBottom="30"
                 :nudgeLeft="5"
-                :txt="$t('widgets.modalInfo')"
+                :txt="$t('widgets.notAvailableInYourCountry')"
                 class="infoicon_scale pt-0 mt-0"
                 v-else
               />
+            -->
             </v-col>
           </v-col>
         </v-col>
@@ -103,7 +105,7 @@
             :posRight="true"
             :nudgeBottom="30"
             :nudgeLeft="5"
-            :txt="$t('widgets.modalInfo')"
+            :txt="$t('widgets.subscribeInfo')"
             class="infoicon_scale pt-0 mt-0"
           />
         </v-col>
@@ -116,7 +118,7 @@
               @change="def_selected == '' ? discount_selected = 'subscribe' : discount_selected = ''"
               v-model="def_selected"
               value="deafult"
-              label="Default"
+              :label="$t('widgets.subscribeTypeNoDiscount')"
               class="mt-0 ml-2"
             ></v-checkbox>
           </v-col >
@@ -126,7 +128,7 @@
               v-model="discount_selected"
               value="subscribe"
               class="checkbox_widget mt-0 mb-0"
-              label="Discount (recommended)"
+              :label="$t('widgets.subscribeTypeDiscount')"
             ></v-checkbox>
           </v-col>
         </v-row>
@@ -154,7 +156,7 @@
             </v-col>
             <v-container class="pr-12 py-0 pos_sm_cont">
               <v-col cols="12" class="pl-0 pr-2 py-0 d-flex justify-start">
-                <small class="smaller_text space_bottom ">{{$t('widgets.discSmallText')}}<b>{{ $t('widgets.discMarkHint')}}</b></small>
+                <small class="smaller_text space_bottom ">{{$t('widgets.discSmallText')}}<b>{{ $t('widgets.discMarkHint')}}</b>{{$t('widgets.discSmallTextManualCoupon')}}</small>
               </v-col>
             </v-container>
             <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 px-6 py-0 pos_smaller">
@@ -191,7 +193,7 @@
               :posRight="true"
               :nudgeBottom="30"
               :nudgeLeft="5"
-              :txt="$t('widgets.modalInfo')"
+              :txt="$t('widgets.customizePopupHint')"
               class="infoicon_scale pt-0 mt-0"
             />
           </v-row>
@@ -280,7 +282,7 @@
           <v-row align="start" class="pl-0">
             <v-select
               dense
-              :items="fontSize"
+              :items="titleFontSize"
               :label="$t('widgets.fontSize')"
               class="text-fonts label-scale"
               v-model="ttlFontSize"
@@ -618,7 +620,8 @@ export default {
         "Times new roman",
         "Verdana",
       ],
-      fontSize: [8, 9, 10, 11, 12, 14, 18, 24, 30, 36],
+      fontSize: [12, 13, 14, 15, 16, 17, 18, 19, 20],
+      titleFontSize: [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 34, 36],
       fontWeight: ["lighter", "normal", "bolder"],
       ttlFontWght: 0,
       ttlFontSize: 0,

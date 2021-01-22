@@ -37,6 +37,8 @@
                 </v-card-title>
               </v-col>
               <v-card-text class="px-0 pt-0 pb-0 spc_text">
+                <div v-if="getIsGdprAffected" class="step_fl fbNotAvailable">{{ $t("settingsPage.fbCard1.isGdprAffected") }}</div>
+
                 <span class="step_fl">{{ $t("ModalStepsCompleted.stepsToComplete") }}</span>
                 <v-row>
                   <v-col class="step_part_txt" cols="9">
@@ -224,7 +226,12 @@ export default {
     getYoutubeLink: function() {
       return this.recoveryType == 'sms' ? 'https://youtu.be/8zSKMZKK2Rw' :
         'https://youtu.be/8zSKMZKK2Rw';
+    },
+    getIsGdprAffected: function() {
+      return this.$store.getters.getWidgetsState.is_gdpr_affected &&
+        this.recoveryType == 'fb';
     }
+
   },
   methods: {
     closeStepsCompletedModal: function() {
@@ -382,5 +389,9 @@ export default {
   padding-left: 31px !important;
   padding-top: 9px !important;
   padding-bottom: 9px !important;
+}
+.fbNotAvailable {
+  color: red;
+  margin-bottom: 10px;
 }
 </style>
