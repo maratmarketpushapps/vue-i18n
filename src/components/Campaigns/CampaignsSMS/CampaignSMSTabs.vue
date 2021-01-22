@@ -11,10 +11,10 @@
           style="width:100%;"
         >
           <v-tab
-            class="font_dims"
+            class="font_dims "
             key="1"
             @click="refreshComp1()"
-            style="text-transform:none;"
+            style="text-transform:none;background-color: #0d47a1"
           >
             {{ $t("campaigns.tabs.item1") }}
             <TooltipIcon

@@ -15,13 +15,13 @@
       -->
 
       <v-row style="height:auto width: 100%;">
-        <v-col cols="12">
+        <v-col cols="12" class="pb-0">
           <v-row style="height:4vh">
             <v-col cols="12"> </v-col>
           </v-row>
           <v-row align="center" justify="center">
             <v-col cols="auto" style="width: 6vw;"> </v-col>
-            <v-col cols="12" class="px-0">
+            <v-col cols="12" class="px-0 pb-0">
               <v-row v-show="!isLoading">
                 <transition name="rtr">
                   <router-view></router-view>
