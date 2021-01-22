@@ -1,6 +1,6 @@
 <template>
   <v-card tile height="auto" class="pl-0 pt-3 pr-0 font_dims">
-    <v-row style="height:14%" class="pl-6" align="center">
+    <v-row style="height:14%" class="pl-6 " align="center">
       <v-col cols="4">
         <v-row
           class="pl-6"
@@ -8,7 +8,7 @@
           align="center"
           justify="start"
         >
-          <h3>{{ $t("campaigns.smscarts1.headerTxt") }}</h3>
+          <h3 class="title_top_size">{{ $t("campaigns.smscarts1.headerTxt") }}</h3>
         </v-row>
         <v-row style="height: 40%; width: 100%" justify="start" align="end" class="pl-6 mt-2">
           <span>
@@ -16,24 +16,26 @@
           </span>
         </v-row>
       </v-col>
-      <v-col cols="3">
+      <v-col cols="3" class="px-0">
         <v-row style="height: 50%; width: 100%" justify="center" align="start">
           <span class="msgCount">
             {{ getOrdrAbndCrtMsgCnt }}
           </span>
         </v-row>
-        <v-row style="height: 40%; width: 100%" justify="center" align="end"  class="mt-2">
+        <v-row style="height: 40%; width: 100%" justify="center" align="end"  class="mt-2 pr-5">
           <span>
             {{ $t("campaigns.msgCount") }}
           </span>
         </v-row>
       </v-col>
-      <v-col cols="4" class="pr-0">
-        <v-row style="width: 100%" justify="end" align="center" >
+      <v-col cols="3" class="pr-0" >
+        <v-row style="width: 100%" align="center" :class="cart1Edit ? 'justify-center' : 'justify-end'">
           <v-btn
             tile
             height="35px"
-            class="font_dims pad_resp btn_save px-10"
+            class="font_dims  btn_save"
+            :class="$vuetify.breakpoint.width  < 1350 ? 'px-5' : $vuetify.breakpoint.width < 1250
+             ? 'px-2' : $vuetify.breakpoint.width < 1100 ? 'px-0' : 'px-10 pad_resp'"
             :disabled="svBtnDsbldOrdrAbndCrt"
             style="font-size:100%; text-transform:none;"
             v-if="cart1Edit"
@@ -55,7 +57,7 @@
           >
         </v-row>
       </v-col>
-      <v-col class="px-0" cols="1">
+      <v-col class="px-0 d-flex " cols="2" :class="$vuetify.breakpoint.width < 1350 ? 'justify-start' : 'justify-center'">
 
           <v-switch
             v-model="ordrAbndCrtSwitchLive"
@@ -64,9 +66,6 @@
             @change="activeStateChng()"
             inset
           >
-<!--            <template slot="prepend-inner" >-->
-<!--              <span>On</span>-->
-<!--            </template>-->
           </v-switch>
 
       </v-col>
@@ -76,7 +75,7 @@
       <v-row
         style="height: auto; width: 100%"
         v-show="cart1Edit"
-        class="pl-6 pr-9 mt-9 med_no_spc"
+        class="pl-6 pr-0 mt-9 med_no_spc"
         align="start"
       >
         <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
@@ -182,7 +181,6 @@
             @change="activeStateChng()"
             @input="activeStateChng()"
             dense
-            style="font-size:110%"
             class="mt-3 pb-0 ml-6 mr-9"
             rows="3"
             hint="test"
@@ -201,7 +199,7 @@
             </template>
           </v-textarea>
         </v-row>
-        <v-row class="pl-4 pr-3 mb-0 ml-1 mt-1" >
+        <v-col class="pl-4 pr-3 mb-0 ml-1 mt-1" cols="12">
           <v-btn
             class="ma-2 btnAbon"
             outlined
@@ -210,7 +208,7 @@
           >
             {{$t("campaigns.btn.AddOptOut")}}
           </v-btn>
-        </v-row>
+        </v-col>
         <v-row style="height:19vh; width:100%" class="pl-4 pr-3"> </v-row>
       </v-row>
     </v-expand-transition>
@@ -553,6 +551,9 @@ export default {
 /*}*/
 .dbd svg{
   margin-top: 10px !important;
+}
+.title_top_size{
+  font: normal normal 600 14px/18px Poppins !important;
 }
 @media (max-width: 1479px) {
   .btn_sup{
