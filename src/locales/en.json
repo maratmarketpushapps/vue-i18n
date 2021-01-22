@@ -21,8 +21,8 @@
     }
   },
   "abandonedCarts": {
-    "ttlTxt": "Facebook Subscribers",
-    "headerInfo": "This section displays all the customers that have subscribed to receive Facebook notifications, along with the status of their order.",
+    "ttlTxt": "Subscribers",
+    "headerInfo": "This section displays all the customers that have subscribed to receive notifications from your Store, along with the status of their order.",
     "custRangeInfo": "Select a start date and an end date to see the data for that specific period.",
     "noDataTxt": "You currently have no abandoned carts. Please note that we only track the abandoned carts from the moment you installed the app.",
     "tabs": {
@@ -49,7 +49,7 @@
 
   "dashboard": {
     "header": "Dashboard",
-    "infoMsg": "The Dashboard shows performance statistics of the Cart Reminder app within a selected time range.",
+    "infoMsg": "The Dashboard shows performance statistics of MarketPush Cart Recovery app within a selected time range.",
     "card1": {
       "header": "Campaigns",
       "totalMsg": "Total Messages Sent",
@@ -73,7 +73,7 @@
     },
     "card4": {
       "header": "Cart Recovery",
-      "infoconMsg": "The metrics displayed represent: The number of Abandoned Carts (red), the number of Facebook Subscribers (blue), the number of Recovered Carts (green).",
+      "infoconMsg": "The metrics displayed represent: The number of Abandoned Carts (red), the number of SMS Subscribers (orange), the number of Facebook Subscribers (blue), the number of Recovered Carts (green).",
       "totalMsg": "Carts Recovered",
       "recovLabel": "Recovered Carts",
       "abndndLabel": "Abandoned Carts",
@@ -201,7 +201,9 @@
     "modalHdr": "Customize popup text & design",
     "modalInfo": "Customize the Consent Widget to match the style of your website.",
     "notAvailableInYourCountry": "Facebook is not available in your country for the moment, however, it will be available soon",
-    "channelsInfo": "Enable one or more channels that visitors can choose to subscribe to. If they abandon the cart, they will receive messages on the selected channel.",
+    "channelsInfo": "Enable one or more channels that visitors can choose to subscribe to. If they abandon the cart, they will receive messages on the selected channel to remind them of their lost order.",
+    "subscribeInfo": "It's recommended to provide the visitors an incentive to subscribe in the form of a discount code. Please note that you need to manually generate the coupon code and add it in the app.",
+    "customizePopupHint": "Customize the Popup to match the style of your site, modify or translate texts into the language of your users, if needed.",
     "hdrColor": "Header Background Color",
     "bdyColor": "Popup Background Color",
     "msngBtnText": "Send this to messenger",
@@ -217,11 +219,11 @@
     "fontWght": "Font Type",
     "fontSize": "Font Size",
     "msgTxt": "Popup Message",
-    "cnclHdr": "Cancel Link Settings",
-    "cnclInfo": "If the customer does not want to be contacted, this button will close the popup.",
+    "cnclHdr": "Customize Cancel Button",
+    "cnclInfo": "If the customer does not want to subscribe, this button will close the popup.",
     "cnclTxt": "Link Text",
-    "btnHdr": "Submit Button Settings",
-    "btnInfo": "The button will become clickable if the customer checks the Facebook checkbox. Once the button is clicked it will save the consent of the customer and close the modal.",
+    "btnHdr": "Customize Submit Button",
+    "btnInfo": "Once the customer grants the consent on a channel, the submit button becomes clickable. If you selected the Discount option, then it will reveal the reward to the user.",
     "btnTxt": "Button Text",
     "btnColor": "Background Color",
     "btnCrnr": "Button Corners",

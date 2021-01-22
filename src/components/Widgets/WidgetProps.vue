@@ -105,7 +105,7 @@
             :posRight="true"
             :nudgeBottom="30"
             :nudgeLeft="5"
-            :txt="$t('widgets.modalInfo')"
+            :txt="$t('widgets.subscribeInfo')"
             class="infoicon_scale pt-0 mt-0"
           />
         </v-col>
@@ -193,7 +193,7 @@
               :posRight="true"
               :nudgeBottom="30"
               :nudgeLeft="5"
-              :txt="$t('widgets.modalInfo')"
+              :txt="$t('widgets.customizePopupHint')"
               class="infoicon_scale pt-0 mt-0"
             />
           </v-row>
