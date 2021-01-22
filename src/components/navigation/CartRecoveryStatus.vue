@@ -5,8 +5,8 @@
       <template >
         <v-list-item >
           <v-list-item-avatar class="item_title_spc">
-            <v-img v-if="typeRecovery == 'fb'" src="@/assets/img/appBar/fb_icon.png" width="35px" class="pt-4"></v-img>
-            <v-img v-if="typeRecovery == 'sms'" src="@/assets/img/appBar/sms_icon.png" width="35px"></v-img>
+            <v-img v-if="typeRecovery == 'fb'" src="@/assets/img/appBar/fb_icon@2x.png" width="35px" class="pt-4"></v-img>
+            <v-img v-if="typeRecovery == 'sms'" src="@/assets/img/appBar/sms_icon@2x.png" width="35px"></v-img>
           </v-list-item-avatar>
 
           <v-list-item-content class="txt_posit">
@@ -119,4 +119,3 @@ padding: 20px 0 10px 0;
   margin-left: 40px;
 }
 </style>
-
