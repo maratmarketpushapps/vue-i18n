@@ -3,7 +3,7 @@
     <v-data-table
       :no-data-text="$t('abandonedCarts.noDataTxt')"
       :headers="headers"
-      :items="items"
+      :items="currentData"
       :footer-props="{
         showFirstLastPage: true,
         itemsPerPageOptions: [25, 50, -1],
@@ -66,6 +66,7 @@ export default {
           this.$store.dispatch("updIsLoading", false);
         });
     });
+    this.currentData = this.items
   },
   methods:{
     forceRerender() {
@@ -79,12 +80,15 @@ export default {
     subSelType(newVal){
       this.forceRerender()
       this.headers = this.currentHeader
+      this.currentData = this.items
       switch (newVal) {
         case "Facebook":
           this.headers = this.headers.filter(header => header.value !== 'phone')
+          this.currentData = this.currentData.filter(item => item.channel !== 'SMS')
           break;
         case "SMS":
-          this.headers = this.headers.filter(header => header.value !== 'channel')
+          // this.headers = this.headers.filter(header => header.value !== 'channel')
+          this.currentData = this.items.filter(oneitem => oneitem.channel !== 'Facebook')
           break;
         default:
           this.headers = this.currentHeader
@@ -151,7 +155,7 @@ export default {
         },
       ],
       currentHeader:"",
-
+      currentData:[],
     };
   },
   computed: {
