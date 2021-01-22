@@ -113,7 +113,7 @@
           <p class="subs_text">{{$t("widgets.discText")}}</p>
         </v-col>
         <v-row>
-          <v-col cols="2 offset-1" class="par_spc py-0 mb-0 px-0">
+          <v-col :cols="$vuetify.breakpoint.width < 1550 ? '3 offset-1' : '2 offset-1'" class="par_spc py-0 mb-0 px-0">
             <v-checkbox
               @change="def_selected == '' ? discount_selected = 'subscribe' : discount_selected = ''"
               v-model="def_selected"

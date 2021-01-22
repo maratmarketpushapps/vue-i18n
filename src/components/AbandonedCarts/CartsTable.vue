@@ -77,6 +77,9 @@ export default {
     },
   },
   watch:{
+    startDate(newVAL){
+      console.log(newVAL)
+    },
     subSelType(newVal){
       this.forceRerender()
       this.headers = this.currentHeader
@@ -101,7 +104,7 @@ export default {
     headers:{
       deep: true,
       handler(){
-        console.log(this);
+
       }
     }
   },
