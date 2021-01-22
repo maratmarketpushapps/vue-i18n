@@ -30,17 +30,17 @@ export default new Vuex.Store({
     widgetVars: {
       enabled_widgets: {
         sms: {
-          title: "sms",
+          title: "SMS",
           enabled: false,
           position: 1,
         },
         facebook: {
-          title: "facebook",
+          title: "Facebook",
           enabled: false,
           position: 2,
         },
         whatsapp: {
-          title: "whatsApp",
+          title: "WhatsApp",
           enabled: false,
           position: 3,
         },
@@ -874,7 +874,9 @@ export default new Vuex.Store({
     SET_IS_LOADING(state, val) {
       val ? state.isLoading++ : state.isLoading--;
     },
-
+    CHANGE_SAVED_WDGT(state,val){
+      state.widgetVars.changesSaved = val
+    },
     SET_DASH_VALS(state, obj) {
       state.dashVars.campaigns.total_messages = obj.campaigns.total_messages;
       state.dashVars.campaigns.fb_recovery_messages_nr1_sent =
@@ -1542,6 +1544,12 @@ export default new Vuex.Store({
     updQreplyEdit({ commit }, val) {
       return new Promise((resolve) => {
         commit("SET_MSG_QREPLY_EDIT", val);
+        resolve("success");
+      });
+    },
+    changeSavedWdgt({ commit }, val) {
+      return new Promise((resolve) => {
+        commit("CHANGE_SAVED_WDGT", val);
         resolve("success");
       });
     },
