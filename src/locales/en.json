@@ -37,11 +37,11 @@
       "headers": {
         "col1": "Subscribed At",
         "col2": "Order Value",
-        "col3": "First Message Sent At",
-        "col4": "Second Message Sent At",
+        "col3": "#1 Message Sent At",
+        "col4": "#2 Message Sent At",
         "col5": "Cart Status",
-        "col6": "Cart Recovered At",
-        "col7": "Channels",
+        "col6": "Recovered At",
+        "col7": "Channel",
         "col8": "Phone Number"
       }
     }

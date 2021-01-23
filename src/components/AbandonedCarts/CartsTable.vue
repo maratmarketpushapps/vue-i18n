@@ -201,14 +201,14 @@ export default {
 @media (min-width: 1400px) {
   .v-data-table thead th {
     font-weight: 5000;
-    font-size: 85%;
+    font-size: 75%;
     opacity: 2;
     color: black !important;
   }
 
   .v-data-table tbody td {
     font-weight: 100;
-    font-size: 80%;
+    font-size: 65%;
     text-justify: center !important;
   }
 }
