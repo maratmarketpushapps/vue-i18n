@@ -55,7 +55,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "CartsTable",
   mounted() {
-    this.currentHeader = this.headers
+    this.currentHeader = this.headers;
     this.$store.dispatch("updIsLoading", true).then(() => {
       this.$store
         .dispatch("getCarts", {
@@ -66,9 +66,9 @@ export default {
           this.$store.dispatch("updIsLoading", false);
         });
     });
-    this.currentData = this.items
+    this.currentData = this.items;
   },
-  methods:{
+  methods: {
     forceRerender() {
       this.renderComponent = false;
       this.$nextTick(() => {
@@ -76,37 +76,48 @@ export default {
       });
     },
   },
-  watch:{
-    startDate(newVAL){
-      console.log(newVAL)
+  watch: {
+    startDate(newVAL) {
+      console.log(newVAL);
     },
-    subSelType(newVal){
-      this.forceRerender()
-      this.headers = this.currentHeader
-      this.currentData = this.items
+    items(newVal) {
+      this.currentData = newVal;
+      this.tableKey++;
+    },
+    subSelType(newVal) {
+      console.log("subSel" + newVal);
+      console.log(this.currentHeader);
+      console.log(this.items);
+      this.forceRerender();
+      this.headers = this.currentHeader;
+      this.currentData = this.items;
       switch (newVal) {
         case "Facebook":
-          this.headers = this.headers.filter(header => header.value !== 'phone')
-          this.currentData = this.currentData.filter(item => item.channel !== 'SMS')
+          this.headers = this.headers.filter(
+            (header) => header.value !== "phone"
+          );
+          this.currentData = this.currentData.filter(
+            (item) => item.channel !== "SMS"
+          );
           break;
         case "SMS":
           // this.headers = this.headers.filter(header => header.value !== 'channel')
-          this.currentData = this.items.filter(oneitem => oneitem.channel !== 'Facebook')
+          this.currentData = this.items.filter(
+            (oneitem) => oneitem.channel !== "Facebook"
+          );
           break;
         default:
-          this.headers = this.currentHeader
+          this.headers = this.currentHeader;
           break;
       }
       this.$nextTick(() => {
-        this.tableKey++
-      })
+        this.tableKey++;
+      });
     },
-    headers:{
+    headers: {
       deep: true,
-      handler(){
-
-      }
-    }
+      handler() {},
+    },
   },
   props: ["startDate", "endDate"],
   data() {
@@ -157,19 +168,18 @@ export default {
           sortable: false,
         },
       ],
-      currentHeader:"",
-      currentData:[],
+      currentHeader: "",
+      currentData: [],
     };
   },
   computed: {
-    ...mapGetters(["getCartsState","getSubType"]),
+    ...mapGetters(["getCartsState", "getSubType"]),
     items() {
       return this.getCartsState;
     },
-    subSelType(){
-      return this.getSubType
+    subSelType() {
+      return this.getSubType;
     },
-
   },
 };
 </script>
