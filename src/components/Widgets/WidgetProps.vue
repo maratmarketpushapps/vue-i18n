@@ -2,15 +2,25 @@
   <v-card tile height="auto" width="100%" class="wdgt_font_dims card-scroll par_">
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 mt-0">
       <v-row style="height:20%;width:100%" class="">
-        <v-col cols="7 offset-1 py-0">
+        <v-col cols="3 offset-1 py-0">
           <v-row
             class="my-0 "
             style="height:100%;width:100%"
             align="center"
           >
-            <h3 class="pop_con_wdg">{{ $t('widgets.popConWidg') }}</h3>
+            <h3 class="pop_con_wdg">{{ $t('widgets.setUpPopupLive') }}</h3>
           </v-row>
         </v-col>
+
+        <v-col cols="5" class="">
+
+          <v-switch v-model="live" inset
+                    color="#006AFF"
+                    @change="wdgtLive()">
+          </v-switch>
+
+        </v-col>
+
         <v-col cols="3">
           <v-row
             class="my-0 mr-2"
@@ -30,14 +40,7 @@
             </v-btn>
           </v-row>
         </v-col>
-        <v-col cols="1" class="">
 
-          <v-switch v-model="live" inset
-                    color="#006AFF"
-                    @change="wdgtLive()">
-          </v-switch>
-
-        </v-col>
       </v-row>
 
       <v-row class=" pt-4">
