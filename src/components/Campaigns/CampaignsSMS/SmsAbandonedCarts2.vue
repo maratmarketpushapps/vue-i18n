@@ -121,7 +121,7 @@
                   :posRight="true"
                   :nudgeBottom="30"
                   :nudgeLeft="5"
-                  :txt="$t('campaigns.infocons.msg5')"
+                  :txt="$t('campaigns.infocons.placeholders')"
                   class="infoicon_scale mt-0 pt-0 ml-3"
                   style="top:30%; transform:scale(.85)"
                 />
