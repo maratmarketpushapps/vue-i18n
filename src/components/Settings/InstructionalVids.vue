@@ -6,7 +6,7 @@
       </v-col>
       <v-col cols="6"> </v-col>
     </v-row>
-    <!-- <v-row class="pl-3  mb-2">
+    <v-row class="pl-3  mb-2">
       <v-col cols="3">
         <v-img class="ml-3" :src="ytImg"> </v-img>
       </v-col>
@@ -26,7 +26,7 @@
         </v-row>
       </v-col>
     </v-row>
-    <v-divider></v-divider> -->
+    <v-divider></v-divider>
     <v-row class="pl-3  mt-2">
       <v-col cols="3">
         <v-img class="ml-3" :src="ytImg"> </v-img>
