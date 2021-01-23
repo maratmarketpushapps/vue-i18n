@@ -10,7 +10,7 @@
           :posLeft="true"
           :nudgeRight="10"
           :nudgeBottom="10"
-          :txt="$t('settingsPage.accInfoCard.tooltipText')"
+          :txt="$t('settingsPage.addYourPhoneNumberCardInfo')"
           class="infoicon_scale"
         /></v-row>
       </v-col>

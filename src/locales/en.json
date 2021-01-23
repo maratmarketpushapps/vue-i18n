@@ -241,6 +241,7 @@
     "titleCard": "SMS Cart Recovery",
     "addYourPhoneNumber":"Add Your Phone Number",
     "hintTelNumber": "You can add your phone number in the SMS Cart Recovery messages.",
+    "addYourPhoneNumberCardInfo": "This phone number is included in the sent SMS messages. Customers can use this phone number to get in touch with you.",
     "fbCard1": {
       "header": "Connect Your Facebook Page",
       "tooltipText": "Connect your Facebook page to the Cart Reminder App. Once connected, your Facebook page will send the messages to customers. Your personal details, such as your name, will not be visible to the message recipient - don't worry!",
