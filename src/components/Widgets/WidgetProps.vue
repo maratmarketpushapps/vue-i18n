@@ -98,7 +98,7 @@
     <v-container>
     <v-row class="Sub_Par">
         <v-col cols="6 offset-1 py-0 px-0" class="py-0 align-end">
-          <h3 class="subs_title">{{ $t("widgets.subsType") }}</h3>
+          <h3 class="subs_title gath_msg">{{ $t("widgets.subsType") }}</h3>
         </v-col>
         <v-col cols="5" class="justify-end row pr-6 py-0 mr-0">
           <TooltipIcon
@@ -184,7 +184,7 @@
       <v-row style="height:20%;width:100%" class="pa-0 ma-0" align="start">
         <v-col cols="6 offset-1" class="align-center pl-0">
           <v-row class="my-2 " style="width:100%" align="center">
-            <h3>{{ $t("widgets.modalHdr") }}</h3>
+            <h3 class="subs_title gath_msg">{{ $t("widgets.modalHdr") }}</h3>
           </v-row>
         </v-col>
         <v-col cols="5">
@@ -369,7 +369,7 @@
       <v-row style="height:20%;width:100%" class="pa-0 ma-0" align="start">
         <v-col cols="5 offset-1" class="px-0">
           <v-row class="my-2 px-0" style="width:100%" align="center">
-            <h3>{{ $t("widgets.btnHdr") }}</h3>
+            <h3 class="subs_title gath_msg">{{ $t("widgets.btnHdr") }}</h3>
           </v-row>
         </v-col>
         <v-col cols="6">
@@ -508,7 +508,7 @@
       <v-row style="height:20%;width:100%" class="pa-0 ma-0" align="start">
         <v-col cols="5 offset-1" class="px-0">
           <v-row class="my-2 " style="width:100%" align="center">
-            <h3>{{ $t("widgets.cnclHdr") }}</h3>
+            <h3 class="subs_title gath_msg">{{ $t("widgets.cnclHdr") }}</h3>
           </v-row>
         </v-col>
         <v-col cols="6">
@@ -1006,6 +1006,7 @@ export default {
 </style>
 
 <style>
+
 .par_spc .v-input__slot{
   margin-bottom: 0px !important;
 }
@@ -1018,7 +1019,7 @@ export default {
 }
 .wdgt_font_dims {
   text-align: center !important;
-  font: normal normal 600 12px/29px Poppins !important;
+  font: normal normal 12px/29px Poppins !important;
   letter-spacing: 0px !important;
 
   opacity: 1 !important;
@@ -1055,7 +1056,8 @@ export default {
 
 .cust-chkbx-label:checked + label {
   color: cornflowerblue;
-  font-weight: bold;
+  font-weight: bold !important;
+
 }
 
 .cust-chkbx:focus {
@@ -1170,6 +1172,7 @@ export default {
 .gath_msg{
   font-family: Poppins;
   font-size: 14px !important;
+  line-height: 16px;
 }
 .pop_con_wdg{
   font-family: Poppins;
@@ -1183,10 +1186,13 @@ export default {
   margin-left: 18px;
 }
 .wdgt_font_dims .v-label{
-  font-size: 16px !important;
+  font-size: 14px !important;
+  color:#4E5D6B !important;
 }
 .wdgt_font_dims .v-input input{
-  font-size: 15px !important;
+  font-size: 16px !important;
+  color:#323F4F !important;
+  font-weight:normal;
 }
 @media only screen and (max-width: 1799px) {
   .fix_image_pos{
