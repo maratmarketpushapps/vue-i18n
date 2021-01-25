@@ -116,7 +116,7 @@
           <v-col class=" py-0 my-0 px-0">
             <v-row style=" width:100%" align="center" class="py-0 my-0 pr-0">
               <v-col :cols="$vuetify.breakpoint.md ? 6 : $vuetify.breakpoint.sm ? 7 : 5" class="pl-0 ml-3 pr-0 py-0 my-0 d-flex justify-content-between">
-                <span class=" pb-1  mr-0 qckRpl av_short_code ">
+                <span class=" pb-1  mr-0 qckRpl av_short_code " :class="$vuetify.breakpoint.width < 1500 ? 'pb-0' : ''">
                   {{ $t("campaigns.smsordrrcpt.svashortcod") }}
                 </span>
                 <TooltipIcon
@@ -571,6 +571,11 @@ export default {
 .title_top_size{
   font: normal normal 600 14px/18px Poppins !important;
 }
+@media (max-width: 1500px) {
+.av_short_code{
+  margin-top: 12px !important;
+}
+}
 @media (max-width: 1479px) {
   .btn_sup{
     padding: 0px 7px !important;
@@ -587,7 +592,7 @@ export default {
     opacity: 1;
   }
   .btnsps{
-    margin-top: 10px !important;
+    margin-top: 8px !important;
   }
   .pad_resp{
     padding-right:50px !important;
@@ -598,6 +603,9 @@ export default {
   }
   .short_code_ic_toolt{
     padding-bottom: 19px !important;
+  }
+  .av_short_code{
+    padding-bottom: 0px !important;
   }
 }
 @media (max-width: 1151px) {

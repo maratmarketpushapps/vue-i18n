@@ -37,7 +37,9 @@
               outlined
             >
               {{ $t("widgets.svBtn") }}
+
             </v-btn>
+            <span style="color: red" v-if="discCodeNotValid">Add a discount code.</span>
           </v-row>
         </v-col>
 
@@ -143,8 +145,10 @@
               <v-text-field
                 v-model="discount_code"
                 :label="$t('widgets.addYourDiscCode')"
-                class="mb-0"
+                class="mb-0 dis_code"
+                :class="discCodeNotValid ? 'not_valid' : ''"
                 :value="discount_code"
+                :rules="nameRules"
               ></v-text-field>
             </v-col>
             <v-container class="pr-12 py-0 pos_sm_cont">
@@ -655,7 +659,12 @@ export default {
       subType:null,
       subscribe_type:null,
       notSel:false,
-      isGdprAffected: false
+      isGdprAffected: false,
+      discCodeNotValid:false,
+      nameRules: [
+        v => !!v || 'Name is required',
+        // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      ],
     };
   },
   methods: {
@@ -713,7 +722,8 @@ export default {
       this.$store.dispatch("updWdgtBtnBrdrClr", selectedColor);
     },
     svChanges() {
-      if(this.discount_selected == 'subscribe' && this.discount_code !== ''){
+      if((this.discount_selected == 'subscribe' && this.discount_code !== '') || this.def_selected == 'deafult'){
+        this.discCodeNotValid = false
         if(this.coneData[0].connection == true || this.coneData[1].connection == true){
           this.def_selected == null || this.def_selected == false || this.def_selected == ""
             ? this.subscribe_type = "subscribe" : this.subscribe_type = "default"
@@ -738,7 +748,7 @@ export default {
             });
           });
         } else this.notSel = true
-      }
+      }else this.discCodeNotValid = true
 
     },
     rev(){
@@ -881,9 +891,7 @@ export default {
     },
     discount_code(newValue) {
       this.$store.dispatch("updWdgtDiscCode", newValue);
-      if(newValue == ""){
-        setTimeout(() => {this.$store.dispatch("changeSavedWdgt",true)} , 10)
-      }
+
     },
     apply_discount_instruction(newValue) {
       this.$store.dispatch("updWdgtDiscInst", newValue);
@@ -1004,7 +1012,12 @@ export default {
 </style>
 
 <style>
-
+.dis_code .v-messages__message{
+  display: none;
+}
+.not_valid .v-text-field input{
+  border: 2px solid red !important;
+}
 .par_spc .v-input__slot{
   margin-bottom: 0px !important;
 }
