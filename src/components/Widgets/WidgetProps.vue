@@ -891,7 +891,7 @@ export default {
     },
     discount_code(newValue) {
       this.$store.dispatch("updWdgtDiscCode", newValue);
-
+      this.discCodeNotValid = false
     },
     apply_discount_instruction(newValue) {
       this.$store.dispatch("updWdgtDiscInst", newValue);
