@@ -82,6 +82,28 @@ export default {
     },
     items(newVal) {
       this.currentData = newVal;
+      this.headers = this.currentHeader;
+
+      switch (this.subSelType) {
+        case "Facebook":
+          this.headers = this.headers.filter(
+            (header) => header.value !== "phone"
+          );
+          this.currentData = this.currentData.filter(
+            (item) => item.channel !== "SMS"
+          );
+          break;
+        case "SMS":
+          // this.headers = this.headers.filter(header => header.value !== 'channel')
+          this.currentData = this.items.filter(
+            (oneitem) => oneitem.channel !== "Facebook"
+          );
+          break;
+        default:
+          this.headers = this.currentHeader;
+          break;
+      }
+
       this.tableKey++;
     },
     subSelType(newVal) {
