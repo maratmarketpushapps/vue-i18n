@@ -103,6 +103,14 @@
         </v-row>
 
         <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
+          <v-col cols="12" class="pl-0 ml-0  py-0 my-0">
+            <span class="smsNightTimeHint">
+              {{ $t("campaigns.smsNotSendNightTime")}}
+            </span>
+          </v-col>
+        </v-row>
+
+        <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
           <v-col class=" py-0 my-0 px-0">
             <v-row style=" width:100%" align="center" class="py-0 my-0">
               <v-col  :cols="$vuetify.breakpoint.md ? 6 : $vuetify.breakpoint.sm ? 7 : 5" class="pl-0 ml-3  py-0 my-0 d-flex justify-content-between">
@@ -113,7 +121,7 @@
                   :posRight="true"
                   :nudgeBottom="30"
                   :nudgeLeft="5"
-                  :txt="$t('campaigns.infocons.msg5')"
+                  :txt="$t('campaigns.infocons.placeholders')"
                   class="infoicon_scale mt-0 pt-0 ml-3"
                   style="top:30%; transform:scale(.85)"
                 />
@@ -453,6 +461,14 @@ export default {
 };
 </script>
 <style scoped>
+
+.smsNightTimeHint {
+  font: italic normal normal 10px/11px Arial;
+  letter-spacing: 0px;
+  color: #323F4F;
+  opacity: 1;
+}
+
 .tab-props {
   color: transparent;
 }

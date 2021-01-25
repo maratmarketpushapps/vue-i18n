@@ -87,6 +87,7 @@
     "header": "Facebook Campaigns",
     "msgCount": "Messages Sent",
     "sentAfther": "Sent after",
+    "smsNotSendNightTime": "SMS Messages are only sent to customers in the time frame 8AM - 10PM. Any message that is due during night-time will be sent at 8AM in the following day.",
     "ago": "ago",
     "modalText1": "This is the message that your customers will receive on Facebook.",
     "modalText2": "Please note that this interface is for showcasing purposes and it's not clickable.",
@@ -95,7 +96,10 @@
       "msg2": "First Facebook message used to recover the abandoned cart. This message will be sent to customers that have consented to receive Facebook notifications from you.",
       "msg3": "After completing an order, send customers a Facebook message to inform them that you've received their order. The customers have to consent in order to be contacted via Facebook. In order to drive repeated sales from the contacted customers, you can consider adding a voucher code with a discount that they can apply to a future order on your shop.",
       "msg4": "After processing an order, send customers a Facebook message to inform them that you've shipped their order. The customers have to consent in order to be contacted via Facebook.",
-      "msg5": "Quick Replies are possible reply variants that are offered to the user as part of your Facebook message. Feel free to customize the texts in your own language! There are 3 types of replies: \"Sounds good\" - the user can use this to let you know everything is fine. \"I have more questions\" - in this case, you should personally engage the user to clarify the questions related to the order. \"Unsubscribe\" - in this case, the user is not interested in purchasing and the app will not send any other messages to that particular user."
+      "msg5": "Quick Replies are possible reply variants that are offered to the user as part of your Facebook message. Feel free to customize the texts in your own language! There are 3 types of replies: \"Sounds good\" - the user can use this to let you know everything is fine. \"I have more questions\" - in this case, you should personally engage the user to clarify the questions related to the order. \"Unsubscribe\" - in this case, the user is not interested in purchasing and the app will not send any other messages to that particular user.",
+      "msg1SMS": "Send SMS to customers that abandon a cart to remind them of their lost order. The customers have to subscribe in order to be contacted via SMS and you can send them a maximum of 2 messages within 24 hours. You can consider adding a discount code within the messages in order to increase the sale conversion rate.",
+      "placeholders": "Placeholders are variables that you can use in your message which get replaced with the real values once the message is sent. {{CheckOutTotal}}, {{checkoutLink}} are only known at the moment of sending."
+
     },
     "btn": {
       "BusName": "BusinessName",
@@ -105,9 +109,10 @@
       "AddOptOut":"ADD OPT-OUT (recommended)"
     },
     "tabs": {
-      "item1": "Abandoned Cart Messages",
+      "item1": "FB Abandoned Cart Messages",
       "item2": "Order Receipt Message",
-      "item3": "Order Shipped Message"
+      "item3": "Order Shipped Message",
+      "itemSMS": "SMS Abandoned Cart Messages"
     },
     "carts1": {
       "headerTxt": "Facebook Abandoned Cart Message #1",
@@ -158,7 +163,7 @@
       "title": "Title",
       "subTitle": "Subtitle",
       "btnTxt": "Button Text",
-      "svashortcod": "Available ShortCodes",
+      "svashortcod": "Available Placeholders",
       "dateTime":"Thursday 20:13"
     },
 
@@ -304,8 +309,8 @@
     },
     "instVids": {
       "header": "Tutorials",
-      "vid1Title": "How does Cart Recovery work?",
-      "vid2Title": "How to setup Cart Recovery?",
+      "vid1Title": "How to Setup SMS Cart Recovery?",
+      "vid2Title": "How to Setup Facebook Cart Recovery?",
       "link": "Play video on Youtube ->"
     },
     "footers": {

@@ -70,7 +70,12 @@ export default {
           }
           return retStr;
         };
-        messageText = messageText.allReplace({'{{StorePhoneNumber}}': this.$store.getters.getAccountInfo.business_phone_number,
+        let storePhoneNumberPlaceholder = this.$store.getters.getAccountInfo.business_phone_number;
+        if (storePhoneNumberPlaceholder == ""
+          || storePhoneNumberPlaceholder == undefined) {
+          storePhoneNumberPlaceholder = "{{AddYourPhoneInSettingsPage}}";
+        }
+        messageText = messageText.allReplace({'{{StorePhoneNumber}}': storePhoneNumberPlaceholder,
           '{{BusinessName}}':this.$store.getters.getAccountInfo.business_name,'{{CheckOutTotal}}':'{{CheckOutTotal}}',
           '{{CheckOutLink}}':'{{CheckOutLink}}'})
         return messageText;
@@ -83,7 +88,12 @@ export default {
           }
           return retStr;
         };
-        messageText = messageText.allReplace({'{{StorePhoneNumber}}': this.$store.getters.getAccountInfo.business_phone_number,
+        let storePhoneNumberPlaceholder = this.$store.getters.getAccountInfo.business_phone_number;
+        if (storePhoneNumberPlaceholder == ""
+          || storePhoneNumberPlaceholder == undefined) {
+          storePhoneNumberPlaceholder = "{{AddYourPhoneInSettingsPage}}";
+        }
+        messageText = messageText.allReplace({'{{StorePhoneNumber}}': storePhoneNumberPlaceholder,
           '{{BusinessName}}':this.$store.getters.getAccountInfo.business_name,'{{CheckOutTotal}}':'{{CheckOutTotal}}',
           '{{CheckOutLink}}':'{{CheckOutLink}}'})
         return messageText;

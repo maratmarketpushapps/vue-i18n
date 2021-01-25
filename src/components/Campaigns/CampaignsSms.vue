@@ -9,6 +9,7 @@
               </h3>
             </v-col>
             <v-col cols="1" class="pl-0 ml-0 py-0">
+              <!--
               <TooltipIcon
                 :posRight="true"
                 :nudgeBottom="30"
@@ -16,6 +17,7 @@
                 :txt="$t('widgets.headerInfo')"
                 class="infoicon_scale pt-0"
               />
+              -->
             </v-col>
             <v-col cols="1" class="pl-0 ml-0 pt-0 "> </v-col>
             <v-col cols="8.75" class="pt-0 pb-0 mb-0">
@@ -33,14 +35,14 @@
       <v-row class=" pt-0 mt-0 pb-0 mb-0 row-style" align="center">
         <v-col cols="auto" class="popup_wdg_card pt-0 pb-0 par_title_popup_consent d-flex align-center" >
           <h3 class="title_popup_consent  pr-0 mr-0 pt-0 mt-0">
-            {{ $t("campaigns.tabs.item1") }}
+            {{ $t("campaigns.tabs.itemSMS") }}
           </h3>
 
           <TooltipIcon
             :posRight="true"
             :nudgeBottom="30"
             :nudgeLeft="5"
-            :txt="$t('campaigns.infocons.msg1')"
+            :txt="$t('campaigns.infocons.msg1SMS')"
             class="infoicon_scale pt-0 ml-3"
             style="top:30%"
           />
