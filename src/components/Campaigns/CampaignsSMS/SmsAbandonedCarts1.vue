@@ -286,11 +286,11 @@ export default {
   },
   watch:{
     ordrAbndCrtIntroMsg(){
-      let itemtext = this.ordrAbndCrtIntroMsg.length()
-      console.log(itemtext)
-        if(itemtext >250){
-          this.maxCharRule = true
-        }else this.maxCharRule = false
+      // let itemtext = this.ordrAbndCrtIntroMsg.length()
+      // console.log(itemtext)
+      //   if(itemtext >250){
+      //     this.maxCharRule = true
+      //   }else this.maxCharRule = false
 
     }
   },
