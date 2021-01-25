@@ -128,7 +128,7 @@
       "discountTxt3": ""
     },
     "carts2": {
-      "headerTxt": "Abandoned Cart Message #2",
+      "headerTxt": "Facebook Abandoned Cart Message #2",
       "selectLabel": "Send After",
       "sendAfter": "How much time should pass before sending this message.",
       "iconTxt": "Edit Message"

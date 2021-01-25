@@ -1,52 +1,54 @@
 <template>
   <v-card tile height="auto" class="pl-0 pt-3 pr-0 font_dims">
-    <v-row style="height:14%" class="pl-6" align="center">
+    <v-row style="height:14%" class="pl-6 " align="center">
       <v-col cols="4">
         <v-row
-          class="pl-6"
+          class="pl-6 title_message_fb"
           style="height: 50%; width:100%"
           align="center"
           justify="start"
         >
-          <h3>{{ $t("campaigns.carts2.headerTxt") }}</h3>
+          {{ $t("campaigns.carts2.headerTxt") }}
         </v-row>
-        <v-row style="height: 40%; width: 100%" justify="start" align="end" class="pl-6 mt-2">
+        <v-row style="height: 40%; width: 100%" justify="start" align="end" class="pl-6 mt-2 ">
           <span>
             {{ $t("campaigns.sentAfther")}} {{sent_after}}
-          </span>
+           </span>
         </v-row>
       </v-col>
-      <v-col cols="3">
+      <v-col cols="3" class="px-0">
         <v-row style="height: 50%; width: 100%" justify="center" align="start">
           <span class="msgCount">
             {{ getOrdrAbndCrtMsgCnt }}
           </span>
         </v-row>
-        <v-row style="height: 40%; width: 100%" justify="center" align="end">
+        <v-row style="height: 40%; width: 100%" justify="center" align="end"  class="mt-2 " :class="$vuetify.breakpoint.width > 1000 ? 'pr-5' : ''">
           <span>
             {{ $t("campaigns.msgCount") }}
-          </span>
+            </span>
         </v-row>
       </v-col>
-      <v-col cols="3">
-        <v-row style="width: 100%" justify="end" align="center">
+      <v-col cols="3" class="pr-0" >
+        <v-row style="width: 100%" align="center" :class="cart1Edit ? 'justify-center' : 'justify-center'">
           <v-btn
             tile
             height="35px"
-            class="primary font_dims pad_resp"
-            width="70%"
+            class="font_dims  btn_save"
+            :class="$vuetify.breakpoint.width  < 1350 && $vuetify.breakpoint.width  > 1249 ? 'px-5' : $vuetify.breakpoint.width < 1250
+            ? 'px-2' : $vuetify.breakpoint.width < 1100 ? 'px-0' : 'px-10 pad_resp'"
             :disabled="svBtnDsbldOrdrAbndCrt"
             style="font-size:100%; text-transform:none;"
             v-if="cart1Edit"
             @click="saveOrdrAbndCrt()"
+            outlined
           >
             {{ $t("widgets.svBtn") }}
           </v-btn>
-          <v-btn icon v-if="!cart1Edit" @click="editCart1" class="mr-4">
+          <v-btn icon v-if="!cart1Edit" @click="editCart1" >
             <iconEdit />
           </v-btn>
         </v-row>
-        <v-row justify="end" style="width: 100%">
+        <v-row justify="center" style="width: 100%">
           <span
             v-if="!cart1Edit"
             @click="editCart1"
@@ -55,16 +57,15 @@
           >
         </v-row>
       </v-col>
-      <v-col>
-        <v-row style="width:100%" align="center" justify="center">
+      <v-col class="px-0 d-flex " cols="2" :class="$vuetify.breakpoint.width < 1350 ? 'justify-start' : 'justify-center'">
           <v-switch
             v-model="ordrAbndCrtSwitchLive"
             color="#006AFF"
             :disabled="swtchDisabled"
             @change="activeStateChng()"
+            inset
           >
           </v-switch>
-        </v-row>
       </v-col>
     </v-row>
     <v-divider style="width:100%" class="pa-0 ma-0"></v-divider>
@@ -72,10 +73,10 @@
       <v-row
         style="height: auto; width: 100%"
         v-show="cart1Edit"
-        class="pl-6 pr-9 mt-9"
+        class="pl-6 mt-4"
         align="start"
       >
-        <v-row style="height:15%; width:100%" class="ml-4 pl-3 pr-3 mb-4">
+        <v-row style="width:100%" class="ml-4 pl-3 pr-3">
           <v-col cols="3" class="pl-0 ml-0">
             <v-select
               :label="$t('campaigns.carts2.selectLabel')"
@@ -108,7 +109,7 @@
             @input="activeStateChng()"
             dense
             style="font-size:110%"
-            class="mt-3 pb-0 ml-6 mr-9"
+            class="pb-0 ml-6 mr-9"
             hint="test"
             :persistent-hint="true"
           >
@@ -678,6 +679,13 @@ export default {
 </script>
 
 <style scoped>
+.title_message_fb{
+  text-align: left !important;
+  font: normal normal 600 14px/18px Poppins !important;
+  letter-spacing: 0px !important;
+  color: #323F4F !important;
+  opacity: 1 !important;
+}
 .tab-props {
   color: transparent;
 }
@@ -686,7 +694,9 @@ export default {
   font-weight: bold;
   font-size: 90% !important;
 }
-
+.qckRplBtn{
+  font: normal normal 300 10px/16px Poppins  !important;
+}
 .theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) {
   color: #323f4f !important;
   font-weight: bold;

@@ -2,7 +2,6 @@
   <v-col cols="12" class=" pb-0" style="background-color: #e6e7e8 !important">
     <v-col cols="12" class="py-0 d-flex justify-end">
       <v-col cols="11" class="py-0">
-        <v-container class="">
           <v-row class="pt-0 mt-0 pb-0 mb-0 row-style" align="center">
             <v-col cols="auto" class="pt-0 pb-0">
               <h3 class="header_dims page_headers pr-0 mr-0 pt-0 mt-0">
@@ -28,7 +27,6 @@
               </v-row>
             </v-col>
           </v-row>
-        </v-container>
       </v-col>
     </v-col>
     <v-col cols="12" class="py-0">
@@ -108,13 +106,7 @@ export default {
 .cmpgn-vw-ht {
   height: 92px;
 }
-.par_title_popup_consent{
-  width: 400px;
-  height: 77px;
-  background: #F2F2F2 0% 0% no-repeat padding-box;
-  opacity: 1;
-  border-bottom: 2px solid #006AFF;
-}
+
 @media (max-width: 1449px) {
   .popup_wdg_card{
     margin-left: 6% !important;
