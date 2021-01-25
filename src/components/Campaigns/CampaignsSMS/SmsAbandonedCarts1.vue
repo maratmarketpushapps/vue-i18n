@@ -1,5 +1,5 @@
 <template>
-  <v-card tile height="auto" class="pl-0 pt-3 pr-0 font_dims">
+  <v-card tile height="auto" class="pl-0 pt-3 pr-0 font_dims sms_camp_parent">
     <v-row style="height:14%" class="pl-6 " align="center">
       <v-col cols="4">
         <v-row
@@ -182,6 +182,7 @@
 
         <v-row class="pl-4 pr-3 mb-0" style="margin-top: 33px">
           <span v-if="reqMandFields" style="color: red" class="ml-6">Mandatory fields to be present in the SMS Message </span>
+          <span v-if="maxCharRule" style="color: red" class="ml-6">characters must be 250 or less </span>
           <v-textarea
             :label="$t('campaigns.smsordrrcpt.introMsg')"
             v-model="ordrAbndCrtIntroMsg"
@@ -192,6 +193,8 @@
             rows="3"
             hint="test"
             :persistent-hint="true"
+            :counter="250"
+            :rules="[v => (v || '' ).length <= 250 || 'Description must be 250 characters or less']"
           >
             <template slot="message"
               >
@@ -278,7 +281,18 @@ export default {
         "23 hour",
         "24 hour",
       ],
+      maxCharRule:false,
     };
+  },
+  watch:{
+    ordrAbndCrtIntroMsg(){
+      let itemtext = this.ordrAbndCrtIntroMsg.length()
+      console.log(itemtext)
+        if(itemtext >250){
+          this.maxCharRule = true
+        }else this.maxCharRule = false
+
+    }
   },
   computed: {
     getOrdrAbndCrtMsgCnt() {
@@ -457,14 +471,6 @@ export default {
         this.sent_after = this.$store.state.msgVars.sms_abandoned_cart_1.sent_after + " hour";
         this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts1.active;
         this.ordrAbndCrtIntroMsg = this.$store.getters.smsgetCarts1.intro_message;
-        // this.ordrAbndCrtSwitchLive = this.$store.getters.smsgetCarts1.active
-        // this.ordrAbndCrtTitle = this.$store.getters.smsgetCarts1.title;
-        // this.ordrAbndCrtSubTitle = this.$store.getters.smsgetCarts1.subtitle;
-        // this.ordrAbndCrtBtnText = this.$store.getters.smsgetCarts1.button_text;
-
-        // this.ordrAbndCrtQckRpl2 = this.$store.getters.getCarts1.quick_reply_more_questions_text;
-        // this.ordrAbndCrtQckRpl3 = this.$store.getters.SmsgetCarts1.quick_reply_unsubscribe_text;
-        // this.ordrAbndCrtBtnDisabled = true;
         this.$store.dispatch("updIsLoading", false);
       });
     });
@@ -617,5 +623,12 @@ export default {
     transform: scale(1);
     transform-origin: 0 0;
   }
+}
+</style>
+<style>
+
+.sms_camp_parent  .v-text-field__details{
+  height: 0px !important;
+  min-height: 0px !important;
 }
 </style>

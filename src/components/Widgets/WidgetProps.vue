@@ -44,10 +44,10 @@
       </v-row>
 
       <v-row class=" pt-4">
-        <v-col cols="6 offset-1" class="py-0 align-end px-0">
+        <v-col cols="9 offset-1 d-flex align-center" class="py-0 px-0">
           <h3 class="subs_title gath_msg">{{ $t("widgets.GathMess") }}</h3>
         </v-col>
-        <v-col cols="5" class="row justify-end pr-9 ma-0  py-0 px-0">
+        <v-col cols="2" class="row justify-end pr-9 ma-0  py-0 px-0">
           <TooltipIcon
             :posRight="true"
             :nudgeBottom="30"
@@ -82,16 +82,6 @@
               <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px" @click="rev()" :class="detectEuRegion ? 'fix_image_pos' : ''"
                      v-if="(ite.title !== 'Facebook' && detectEuRegion == true) ||detectEuRegion == false"
               ></v-img>
-              <!--
-              <TooltipIcon
-                :posRight="true"
-                :nudgeBottom="30"
-                :nudgeLeft="5"
-                :txt="$t('widgets.notAvailableInYourCountry')"
-                class="infoicon_scale pt-0 mt-0"
-                v-else
-              />
-            -->
             </v-col>
           </v-col>
         </v-col>
@@ -723,30 +713,32 @@ export default {
       this.$store.dispatch("updWdgtBtnBrdrClr", selectedColor);
     },
     svChanges() {
-      if(this.coneData[0].connection == true || this.coneData[1].connection == true){
-        this.def_selected == null || this.def_selected == false || this.def_selected == ""
-          ? this.subscribe_type = "subscribe" : this.subscribe_type = "default"
-        let objWidg = {
-          coneData:this.coneData,
-          subscribe_type:this.subscribe_type,
-          discount_statement:this.discount_statement,
-          discount_code:this.discount_code,
-          apply_discount_instruction:this.apply_discount_instruction,
-        };
-        this.$store.dispatch("updWdgtDiscForm",objWidg)
-        // this.$store.commit('SAVE_WIDGET_FORM',objWidg)
-        this.$store.dispatch("updIsLoading", true).then(() => {
-          this.$store.dispatch
-          ("setWdgts").then((response) => {
-            if (response) {
-              this.$store.dispatch("getStepsCompleted");
-              this.$store.dispatch("getWidgets").then(() => {
-                this.$store.dispatch("updIsLoading", false);
-              });
-            }
+      if(this.discount_selected == 'subscribe' && this.discount_code !== ''){
+        if(this.coneData[0].connection == true || this.coneData[1].connection == true){
+          this.def_selected == null || this.def_selected == false || this.def_selected == ""
+            ? this.subscribe_type = "subscribe" : this.subscribe_type = "default"
+          let objWidg = {
+            coneData:this.coneData,
+            subscribe_type:this.subscribe_type,
+            discount_statement:this.discount_statement,
+            discount_code:this.discount_code,
+            apply_discount_instruction:this.apply_discount_instruction,
+          };
+          this.$store.dispatch("updWdgtDiscForm",objWidg)
+          // this.$store.commit('SAVE_WIDGET_FORM',objWidg)
+          this.$store.dispatch("updIsLoading", true).then(() => {
+            this.$store.dispatch
+            ("setWdgts").then((response) => {
+              if (response) {
+                this.$store.dispatch("getStepsCompleted");
+                this.$store.dispatch("getWidgets").then(() => {
+                  this.$store.dispatch("updIsLoading", false);
+                });
+              }
+            });
           });
-        });
-      } else this.notSel = true
+        } else this.notSel = true
+      }
 
     },
     rev(){
@@ -889,6 +881,9 @@ export default {
     },
     discount_code(newValue) {
       this.$store.dispatch("updWdgtDiscCode", newValue);
+      if(newValue == ""){
+        setTimeout(() => {this.$store.dispatch("changeSavedWdgt",true)} , 10)
+      }
     },
     apply_discount_instruction(newValue) {
       this.$store.dispatch("updWdgtDiscInst", newValue);

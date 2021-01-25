@@ -1,7 +1,7 @@
 <template>
   <v-col cols="12" class="px-0 py-0">
       <v-container fluid class="app_background">
-        <v-row style="height:50%; width:100%; margin-bottom:10px" :class="$vuetify.breakpoint.sm || $vuetify.breakpoint.md ? 'mb-12' :''" >
+        <v-row style="height:100%; width:100%;" >
           <v-col cols="6">
             <v-card height="100%" width="100%" tile class="font_dims px-4">
               <v-row style="height:10%; width:100%" align="center">
@@ -189,7 +189,7 @@
                 </v-col>
               </v-row>
               <v-row
-                  style="height:15%; width:100%"
+                  style="height:15%; "
                   justify="center"
                   class="mt-0 mb-0 pt-0"
               >
@@ -203,7 +203,7 @@
               </span>
                 </v-row>
                 <v-row
-                    style="height:75%; width:100%"
+                    style="height:75%; "
                     justify="center"
                     class="mt-0 mx-2"
                 >
@@ -212,7 +212,7 @@
               </span>
                 </v-row>
               </v-row>
-              <v-row style="height:45%; width:100%" justify="center" align="center">
+              <v-row style="height:45%; " justify="center" align="center">
                 <v-progress-circular
                     :value="dashVars.carts_recovered.carts_recovered_percentage || 0"
                     rotate="270"
@@ -224,7 +224,7 @@
                 </v-progress-circular>
               </v-row>
               <v-row
-                  style="height:15%; width:100%"
+                  style="height:15%; "
                   justify="center"
                   class="mt-0 mb-0 pt-0"
               >
@@ -270,7 +270,7 @@
                 </v-col>
               </v-row>
               <v-row
-                  style="height:15%; width:100%"
+                  style="height:15%; "
                   justify="center"
                   class="mt-0 mb-0 pt-0"
               >
@@ -284,7 +284,7 @@
               </span>
                 </v-row>
                 <v-row
-                    style="height:75%; width:100%"
+                    style="height:75%; "
                     justify="center"
                     class="mt-0 mx-2"
                 >
@@ -293,7 +293,7 @@
               </span>
                 </v-row>
               </v-row>
-              <v-row style="height:45%; width:100%" justify="center" align="center">
+              <v-row style="height:45%;" justify="center" align="center">
                 <v-progress-circular
                     :value="
                 dashVars.revenue_recovered.revenue_recovered_percentage || 0
@@ -307,7 +307,7 @@
                 </v-progress-circular>
               </v-row>
               <v-row
-                  style="height:15%; width:100%"
+                  style="height:15%; "
                   justify="center"
                   class="mt-0 mb-0 pt-0"
               >
@@ -333,8 +333,8 @@
             </v-card>
           </v-col>
         </v-row>
-        <v-row style="height:50%; width:100%" :class="$vuetify.breakpoint.md ? 'mt-6' :'respspace'">
-          <v-col cols="12">
+        <v-row style="height:100%; width:100%">
+          <v-col cols="12 pt-4">
             <v-card height="100%" width="100%" tile class="font_dims px-4">
               <v-row style="height:15%; width:100%">
                 <v-col cols="6">
@@ -354,18 +354,6 @@
                   </v-row>
                 </v-col>
               </v-row>
-              <!--          <v-row style="height:20%; width:100%">-->
-              <!--            <v-col cols="auto">-->
-              <!--              <v-row justify="start" align="end" class="ml-5 mt-2">-->
-              <!--                <span class="msgCount">-->
-              <!--                  {{ dashVars.cart_recovery.total_recovered }}-->
-              <!--                </span>-->
-              <!--                <span class="mb-2 ml-2 countLabel">-->
-              <!--                  {{ $t("dashboard.card4.totalMsg") }}-->
-              <!--                </span>-->
-              <!--              </v-row>-->
-              <!--            </v-col>-->
-              <!--          </v-row>-->
               <v-row style="height:15%; width:100%" class="pt-0 mt-0">
                 <v-col cols="12">
                   <v-row style="width:100%" class="ml-5 mt-0 pr-0">

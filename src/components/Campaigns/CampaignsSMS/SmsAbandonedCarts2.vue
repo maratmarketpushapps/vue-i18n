@@ -1,5 +1,5 @@
 <template>
-  <v-card tile height="auto" class="pl-0 pt-3 pr-0 font_dims">
+  <v-card tile height="auto" class="pl-0 pt-3 pr-0 font_dims sms_camp_parent">
     <v-row style="height:14%" class="pl-6 " align="center">
       <v-col cols="4">
         <v-row
@@ -607,134 +607,9 @@ export default {
   }
 }
 </style>
-<!--<style scoped>-->
-<!--.tab-props {-->
-<!--  color: transparent;-->
-<!--}-->
-<!--.tab-item-color-active {-->
-<!--  color: #006aff !important;-->
-<!--  font-weight: bold;-->
-<!--  font-size: 90% !important;-->
-<!--}-->
-<!--.theme&#45;&#45;light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab&#45;&#45;active) {-->
-<!--  color: #323f4f !important;-->
-<!--  font-weight: bold;-->
-<!--  font-size: 90% !important;-->
-<!--}-->
-<!--.v-date-picker-table .v-btn.v-btn&#45;&#45;active {-->
-<!--  border-radius: 0px;-->
-<!--}-->
-<!--.refIcondim {-->
-<!--  transform: scale(0.9);-->
-<!--}-->
-<!--.tab-size {-->
-<!--  transform: scale(0.9);-->
-<!--  transform-origin: 0 0;-->
-<!--}-->
-<!--.msgCount {-->
-<!--  font-size: 120%;-->
-<!--  color: #5686f6;-->
-<!--  font-weight: bolder;-->
-<!--}-->
-<!--.qckRpl {-->
-<!--  font-size: 85%;-->
-<!--}-->
-<!--.qckRplBtn {-->
-<!--  color: #ffffff !important;-->
-<!--}-->
-<!--.txt-up{-->
-<!--  text-transform: none !important;-->
-<!--}-->
-<!--.v-messages__message {-->
-<!--  line-height: 20px;-->
-<!--  color: black;-->
-<!--  font-size: 90%;-->
-<!--}-->
-<!--.btnAbon{-->
-<!--  text-align: center;-->
-<!--  font: normal normal 600 12px/29px Poppins;-->
-<!--  letter-spacing: 0px;-->
-<!--  color: #5686F6 !important;-->
-<!--  opacity: 1;-->
-<!--  background: #FFFFFF 0% 0% no-repeat padding-box;-->
-<!--  border: 2px solid #5686F6;-->
-<!--  border-radius: 2px;-->
-<!--  opacity: 1;-->
-<!--}-->
-
-<!--.av_short_code{-->
-<!--  text-align: left;-->
-<!--  font: normal normal normal 12px/19px Poppins;-->
-<!--  letter-spacing: 0px;-->
-<!--  color: #4E5D6B;-->
-<!--  opacity: 1;-->
-<!--}-->
-<!--.btn_sup{-->
-<!--  text-align: center;-->
-<!--  font: normal normal 300 10px/16px Poppins !Important;-->
-<!--  letter-spacing: 0px !Important;-->
-<!--  color: #FFFFFF !Important;-->
-<!--  opacity: 1;-->
-<!--}-->
-<!--/*.dbd svg path{*/-->
-<!--/*  fill: black !important;*/-->
-<!--/*}*/-->
-<!--.dbd svg{-->
-<!--  margin-top: 10px !important;-->
-<!--}-->
-<!--.title_top_size{-->
-<!--  font: normal normal 600 14px/18px Poppins !important;-->
-<!--}-->
-<!--@media (max-width: 1479px) {-->
-<!--  .btn_sup{-->
-<!--    padding: 0px 7px !important;-->
-<!--  }-->
-<!--}-->
-
-<!--@media (max-width: 1349px) {-->
-<!--  .btn_sup{-->
-<!--    padding: 0px 7px !important;-->
-<!--    text-align: center;-->
-<!--    font: normal normal 200 8px/12px Poppins !Important;-->
-<!--    letter-spacing: 0px !Important;-->
-<!--    color: #FFFFFF !Important;-->
-<!--    opacity: 1;-->
-<!--  }-->
-<!--  .btnsps{-->
-<!--    margin-top: 10px !important;-->
-<!--  }-->
-<!--  .pad_resp{-->
-<!--    padding-right:50px !important;-->
-<!--    padding-left: 50px  !important;-->
-<!--  }-->
-<!--  .resp_short_code{-->
-<!--    line-height: 200%;-->
-<!--  }-->
-<!--  .short_code_ic_toolt{-->
-<!--    padding-bottom: 19px !important;-->
-<!--  }-->
-<!--}-->
-<!--@media (max-width: 1151px) {-->
-<!--  .btn_sup{-->
-<!--    padding: 0px 2px !important;-->
-<!--    margin-right: 4px !important;-->
-<!--    text-align: center;-->
-<!--    font: normal normal 100 8px/12px Poppins !Important;-->
-<!--    letter-spacing: 0px !Important;-->
-<!--    color: #FFFFFF !Important;-->
-<!--    opacity: 1;-->
-<!--  }-->
-<!--  .med_no_spc{-->
-<!--    padding-right: 0px !important;-->
-<!--  }-->
-<!--}-->
-<!--@media (min-width: 1400px) {-->
-<!--  .refIcondim {-->
-<!--    transform: scale(1.2);-->
-<!--  }-->
-<!--  .tab-size {-->
-<!--    transform: scale(1);-->
-<!--    transform-origin: 0 0;-->
-<!--  }-->
-<!--}-->
-<!--</style>-->
+<style>
+.sms_camp_parent  .v-text-field__details{
+  height: 0px !important;
+  min-height: 0px !important;
+}
+</style>

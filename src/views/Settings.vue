@@ -16,7 +16,7 @@
               <v-row class="height_247 space">
                 <SetTimezone />
               </v-row>
-              <v-row class="height_247">
+              <v-row class="" :class="$vuetify.breakpoint.width > 1450 ? 'height_320' : 'height_268'">
                 <InstructionalVids />
               </v-row>
             </v-col>
@@ -28,7 +28,7 @@
                 <UpgradeCard />
               </v-col>
 
-              <v-col class="height_365 space pad_no_space">
+              <v-col class=" space pad_no_space" :class="$vuetify.breakpoint.width > 1450 ? 'height_400' : 'height_395'">
                 <AccountInfo />
               </v-col>
             </v-col>
@@ -123,6 +123,21 @@ export default {
 
 .height_365{
   height:365px !important;;
+}
+.height_395{
+  height:398px !important;;
+}
+.height_320{
+  height: 320px !important;
+}
+.height_268{
+  height: 268px !important;
+}
+.height_280{
+  height: 280px !important;
+}
+.height_400{
+  height: 450px !important;
 }
 .pad_no_space{
   padding-top:0px !important;
