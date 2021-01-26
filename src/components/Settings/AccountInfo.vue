@@ -44,6 +44,16 @@
           >
           </v-text-field>
           <v-text-field
+            :label="$t('settingsPage.accInfoCard.label4')"
+            v-model="buss_name"
+            @change="detectChange"
+            @input="detectChange"
+            dense
+            style="font-size:110%"
+            class="pt-2 pb-1"
+          >
+          </v-text-field>
+          <v-text-field
             :label="$t('settingsPage.accInfoCard.label3')"
             v-model="email"
             @change="detectChange"
@@ -85,6 +95,7 @@ export default {
       btnDisabled: true,
       first_name: "",
       last_name: "",
+      buss_name:"",
       email: "",
       emailRules: [
         (v) =>
@@ -105,6 +116,8 @@ export default {
           this.first_name == "" ? this.accInfo.first_name : this.first_name,
         last_name:
           this.last_name == "" ? this.accInfo.last_name : this.last_name,
+        business_name:
+          this.buss_name == "" ? this.accInfo.business_name : this.buss_name,
         email: this.email == "" ? this.accInfo.email : this.email,
       };
 
@@ -131,6 +144,7 @@ export default {
         if (res === "success") {
           this.first_name = this.$store.getters.getAccountInfo.first_name;
           this.last_name = this.$store.getters.getAccountInfo.last_name;
+          this.buss_name = this.$store.getters.getAccountInfo.business_name
           this.email = this.$store.getters.getAccountInfo.email;
           this.$store.dispatch("updIsLoading", false);
         }

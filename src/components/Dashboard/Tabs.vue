@@ -89,20 +89,20 @@
             :startDate="yestDate"
             :endDate="currDate"
             :key="itemKeyDat1"
-          />
+        />
         </v-tab-item>
         <v-tab-item key="2" :eager="false">
           <DashboardView
-            :startDate="lstWeekDate"
-            :endDate="currDate"
-            :key="itemKeyDat2"
+              :startDate="lstWeekDate"
+              :endDate="currDate"
+              :key="itemKeyDat2"
           />
         </v-tab-item>
         <v-tab-item key="3" :eager="false">
           <DashboardView
-            :startDate="lstMonthDate"
-            :endDate="currDate"
-            :key="itemKeyDat3"
+              :startDate="lstMonthDate"
+              :endDate="currDate"
+              :key="itemKeyDat3"
           />
         </v-tab-item>
 

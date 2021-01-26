@@ -1,14 +1,15 @@
 <template>
-  <v-card height="auto" width="auto">
+  <v-card height="auto" width="auto" v-if="renderComponent">
     <v-data-table
       :no-data-text="$t('abandonedCarts.noDataTxt')"
       :headers="headers"
-      :items="items"
+      :items="currentData"
       :footer-props="{
         showFirstLastPage: true,
         itemsPerPageOptions: [25, 50, -1],
         showCurrentPage: true,
       }"
+      :key="tableKey"
     >
       <template #item.cart_status="{item}">
         <span
@@ -54,6 +55,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "CartsTable",
   mounted() {
+    this.currentHeader = this.headers;
     this.$store.dispatch("updIsLoading", true).then(() => {
       this.$store
         .dispatch("getCarts", {
@@ -64,16 +66,98 @@ export default {
           this.$store.dispatch("updIsLoading", false);
         });
     });
+    this.currentData = this.items;
+  },
+  methods: {
+    forceRerender() {
+      this.renderComponent = false;
+      this.$nextTick(() => {
+        this.renderComponent = true;
+      });
+    },
+  },
+  watch: {
+    startDate() {
+      // console.log(newVAL);
+    },
+    items(newVal) {
+      this.currentData = newVal;
+      this.headers = this.currentHeader;
+
+      switch (this.subSelType) {
+        case "Facebook":
+          this.headers = this.headers.filter(
+            (header) => header.value !== "phone"
+          );
+          this.currentData = this.currentData.filter(
+            (item) => item.channel !== "SMS"
+          );
+          break;
+        case "SMS":
+          // this.headers = this.headers.filter(header => header.value !== 'channel')
+          this.currentData = this.items.filter(
+            (oneitem) => oneitem.channel !== "Facebook"
+          );
+          break;
+        default:
+          this.headers = this.currentHeader;
+          break;
+      }
+
+      this.tableKey++;
+    },
+    subSelType(newVal) {
+      // console.log("subSel" + newVal);
+      // console.log(this.currentHeader);
+      // console.log(this.items);
+      this.forceRerender();
+      this.headers = this.currentHeader;
+      this.currentData = this.items;
+      switch (newVal) {
+        case "Facebook":
+          this.headers = this.headers.filter(
+            (header) => header.value !== "phone"
+          );
+          this.currentData = this.currentData.filter(
+            (item) => item.channel !== "SMS"
+          );
+          break;
+        case "SMS":
+          // this.headers = this.headers.filter(header => header.value !== 'channel')
+          this.currentData = this.items.filter(
+            (oneitem) => oneitem.channel !== "Facebook"
+          );
+          break;
+        default:
+          this.headers = this.currentHeader;
+          break;
+      }
+      this.$nextTick(() => {
+        this.tableKey++;
+      });
+    },
+    headers: {
+      deep: true,
+      handler() {},
+    },
   },
   props: ["startDate", "endDate"],
   data() {
     return {
+      renderComponent: true,
+      tableKey: 1,
       headers: [
         {
           text: this.$t("abandonedCarts.dataTab.headers.col1"),
           align: "start",
           sortable: false,
           value: "created_at",
+        },
+        {
+          text: this.$t("abandonedCarts.dataTab.headers.col7"),
+          align: "start",
+          sortable: false,
+          value: "channel",
         },
         {
           text: this.$t("abandonedCarts.dataTab.headers.col2"),
@@ -100,13 +184,23 @@ export default {
           value: "cart_recovered_at",
           sortable: false,
         },
+        {
+          text: this.$t("abandonedCarts.dataTab.headers.col8"),
+          value: "phone",
+          sortable: false,
+        },
       ],
+      currentHeader: "",
+      currentData: [],
     };
   },
   computed: {
-    ...mapGetters(["getCartsState"]),
+    ...mapGetters(["getCartsState", "getSubType"]),
     items() {
       return this.getCartsState;
+    },
+    subSelType() {
+      return this.getSubType;
     },
   },
 };
@@ -139,14 +233,14 @@ export default {
 @media (min-width: 1400px) {
   .v-data-table thead th {
     font-weight: 5000;
-    font-size: 85%;
+    font-size: 75%;
     opacity: 2;
     color: black !important;
   }
 
   .v-data-table tbody td {
     font-weight: 100;
-    font-size: 80%;
+    font-size: 65%;
     text-justify: center !important;
   }
 }

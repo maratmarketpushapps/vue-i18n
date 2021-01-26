@@ -8,7 +8,6 @@ export default new Vuex.Store({
   state: {
     TOKEN: "JWT_TOKEN",
     instance_id: "bb-cc-dd",
-    stepsCompOnload: true,
     isLoading: 0,
     globalVars: {
       locale: "",
@@ -29,10 +28,31 @@ export default new Vuex.Store({
     },
 
     widgetVars: {
+      enabled_widgets: {
+        sms: {
+          title: "SMS",
+          enabled: false,
+          position: 1,
+        },
+        facebook: {
+          title: "Facebook",
+          enabled: false,
+          position: 2,
+        },
+        whatsapp: {
+          title: "WhatsApp",
+          enabled: false,
+          position: 3,
+        },
+      },
+      subscribe_type: "",
+      apply_discount_instruction: "",
+      discount_code: "",
+      discount_statement: "",
       id: 0,
       instance_id: "",
       website_id: 0,
-      facebook_widget_type: "",
+      facebook_widget_type: "Checkbox",
       header_background_color: "",
       popup_background_color: "",
       pop_up_title: "",
@@ -60,6 +80,7 @@ export default new Vuex.Store({
       button_border_size: 0,
       button_border_color: "",
       active: false,
+      is_gdpr_affected: false,
       wdgt_key_internal: 0,
       changesSaved: true,
       step3Comp: true,
@@ -67,6 +88,8 @@ export default new Vuex.Store({
     settingsVars: {
       first_name: "",
       last_name: "",
+      business_name: "",
+      business_phone_number: "",
       email: "",
       facebook_page_name: "",
       facebook_page_id: "",
@@ -83,6 +106,7 @@ export default new Vuex.Store({
       setup_step_2_completed: true,
       setup_step_3_completed: true,
       cart_recovery_attempts_done: "",
+      install_popop_show: true,
     },
     planVars: {
       plans: [{ planName: "Dummy", cart_recovery_attempts: 0 }],
@@ -102,6 +126,16 @@ export default new Vuex.Store({
       cart1Active: true,
       qreplyEdit: false,
       step2Com: true,
+      sms_abandoned_cart_1: {
+        active: "",
+        intro_message: "",
+        sent_after: "",
+      },
+      sms_abandoned_cart_2: {
+        active: "",
+        intro_message: "",
+        sent_after: "",
+      },
       abandoned_cart_2: {
         button_text: "",
         quick_reply_thank_you_text: "",
@@ -129,6 +163,8 @@ export default new Vuex.Store({
         sent_count_order_receipt: 0,
         sent_count_abandoned_cart_1: 0,
         sent_count_order_shipped: 0,
+        sms_sent_count_abandoned_cart_1: 0,
+        sms_sent_count_abandoned_cart_2: 0,
       },
       order_shipped: {
         quick_reply_thank_you_text: "",
@@ -149,13 +185,20 @@ export default new Vuex.Store({
       },
     },
 
+    // Subscribers
+    subscribers: {
+      subType: "",
+    },
+
     //Dashboard state
 
     dashVars: {
       campaigns: {
         total_messages: 0,
-        recovery_messages_nr1_sent: 0,
-        recovery_messages_nr2_sent: 0,
+        sms_recovery_messages_nr1_sent: 0,
+        sms_recovery_messages_nr2_sent: 0,
+        fb_recovery_messages_nr1_sent: 0,
+        fb_recovery_messages_nr2_sent: 0,
       },
       carts_recovered: {
         total_recovered: 0,
@@ -170,9 +213,34 @@ export default new Vuex.Store({
       cart_recovery: {
         total_recovered: 0,
         abandoned_carts: 0,
+        sms_subscribers: 0,
         facebook_subscribers: 0,
         carts_recovered: 0,
       },
+    },
+
+    // Steps completed vars.
+    setupCompletedVars: {
+      smsCartRecovery: false,
+      smsCartRecoverySteps: {
+        step1: false,
+        step2: false,
+        step3: false,
+      },
+      fbCartRecovery: false,
+      fbCartRecoverySteps: {
+        step1: false,
+        step2: false,
+        step3: false,
+      },
+      waCartRecovery: false,
+      waCartRecoverySteps: {
+        step1: false,
+        step2: false,
+        step3: false,
+      },
+      smsShowCartRecoveryStepsModal: false,
+      fbShowCartRecoveryStepsModal: false,
     },
   },
   getters: {
@@ -194,19 +262,25 @@ export default new Vuex.Store({
     getUrl: (state) => {
       return state.globalVars.url;
     },
-    getStepsCompOnload: (state) => {
-      return state.stepsCompOnload;
-    },
     getisLoading: (state) => {
       return state.isLoading == 0 ? false : true;
     },
+    // getPhoneNumber:(state) => {
+    //   return phone_number:state.
+    // },
     getAccountInfo: (state) => {
       let obj = {
         first_name: state.settingsVars.first_name,
         last_name: state.settingsVars.last_name,
+        business_name: state.settingsVars.business_name,
         email: state.settingsVars.email,
+        business_phone_number: state.settingsVars.business_phone_number,
+        install_popop_show: state.settingsVars.install_popop_show,
       };
       return obj;
+    },
+    getSubType: (state) => {
+      return state.subscribers.subType;
     },
     getPricingPlan: (state) => {
       return state.globalVars.pricing_plan;
@@ -228,8 +302,14 @@ export default new Vuex.Store({
     getCarts1: (state) => {
       return state.msgVars.abandoned_cart_1;
     },
+    smsgetCarts1: (state) => {
+      return state.msgVars.sms_abandoned_cart_1;
+    },
     getCarts2: (state) => {
       return state.msgVars.abandoned_cart_2;
+    },
+    smsgetCarts2: (state) => {
+      return state.msgVars.sms_abandoned_cart_2;
     },
     getOrderReceipt: (state) => {
       return state.msgVars.order_receipt;
@@ -238,6 +318,9 @@ export default new Vuex.Store({
       return state.msgVars.order_shipped;
     },
     getMsgCounts: (state) => {
+      return state.msgVars.sent_count;
+    },
+    getMsgCountsSms: (state) => {
       return state.msgVars.sent_count;
     },
     getActiveTab: (state) => {
@@ -249,29 +332,34 @@ export default new Vuex.Store({
     getQreplyEdit: (state) => {
       return state.msgVars.qreplyEdit;
     },
-    getStep1Complete: (state) => {
-      return state.settingsVars.setup_step_1_completed;
-    },
-    getStep2Complete: (state) => {
-      return state.msgVars.step2Com;
-
-      // state.msgVars.abandoned_cart_1.active ||
-      //   state.msgVars.abandoned_cart_2.active
-      //   ? true
-      //   : false;
-    },
-    getStep3Complete: (state) => {
-      return state.widgetVars.step3Comp;
-    },
-
     getDash: (state) => {
       return state.dashVars;
+    },
+    getStepsCompleted: (state) => {
+      return state.setupCompletedVars;
     },
     getSubs: (state) => {
       return state.subVars;
     },
+    getWidgEU:(state) => {
+      return state.widgetVars.is_gdpr_affected
+    }
   },
   mutations: {
+    // Displays the modal with the cart recovery steps.
+    UPDATE_CART_RECOVERY_MODAL_SHOW(state, obj) {
+      // console.log("called " + obj.type + " " + obj.status);
+      state.setupCompletedVars[obj.type + "ShowCartRecoveryStepsModal"] =
+        obj.status;
+    },
+    // smscart 1
+    UPDATE_MSG_sms_cartOne(state, val) {
+      state.msgVars.sms_abandoned_cart_1.active = val;
+    },
+    // smscart2
+    UPDATE_MSG_sms_cartTwo(state, val) {
+      state.msgVars.sms_abandoned_cart_2.active = val;
+    },
     SET_SELECTED(state, id) {
       state.navState.currentSelected = id;
     },
@@ -296,9 +384,13 @@ export default new Vuex.Store({
 
     SET_WIDGETS_VAL(state, obj) {
       state.widgetVars.id = obj.id;
+      state.widgetVars.enabled_widgets = obj.enabled_widgets;
+      state.widgetVars.discount_code = obj.discount_code;
+      state.widgetVars.discount_statement = obj.discount_statement;
+      state.widgetVars.subscribe_type = obj.subscribe_type;
       state.widgetVars.instance_id = obj.instance_id;
       state.widgetVars.website_id = obj.website_id;
-      state.widgetVars.facebook_widget_type = obj.facebook_widget_type;
+      // state.widgetVars.facebook_widget_type = obj.facebook_widget_type;
       state.widgetVars.header_background_color = obj.header_background_color;
       state.widgetVars.popup_background_color = obj.popup_background_color;
       state.widgetVars.pop_up_title = obj.pop_up_title;
@@ -329,17 +421,19 @@ export default new Vuex.Store({
       state.widgetVars.button_border_size = obj.button_border_size;
       state.widgetVars.button_border_color = obj.button_border_color;
       state.widgetVars.active = obj.active;
+      state.widgetVars.is_gdpr_affected = obj.is_gdpr_affected;
       state.widgetVars.changesSaved = true;
       state.widgetVars.active
         ? (state.widgetVars.step3Comp = true)
         : (state.widgetVars.step3Comp = false);
-      state.widgetVars.active ? 1 : (state.stepsCompOnload = false);
     },
 
     SET_SETTINGS_VALS(state, obj) {
       state.settingsVars.first_name = obj.first_name;
       state.settingsVars.last_name = obj.last_name;
+      state.settingsVars.business_name = obj.business_name;
       state.settingsVars.email = obj.email;
+      state.settingsVars.business_phone_number = obj.business_phone_number;
       state.settingsVars.facebook_page_name = obj.facebook_page_name;
       state.settingsVars.facebook_page_id = obj.facebook_page_id;
       state.settingsVars.website_id = obj.website_id;
@@ -379,6 +473,8 @@ export default new Vuex.Store({
     SET_ACC_INFO(state, obj) {
       state.settingsVars.first_name = obj.first_name;
       state.settingsVars.last_name = obj.last_name;
+      state.settingsVars.business_name = obj.business_name;
+      state.settingsVars.business_phone_number = obj.business_phone_number;
       state.settingsVars.email = obj.email;
     },
 
@@ -386,6 +482,10 @@ export default new Vuex.Store({
       state.widgetVars.changesSaved = false;
       state.widgetVars.active = live;
     },
+
+    SET_WDGT_LIVE_TRUE(state) {
+      state.widgetVars.changesSaved = true;
+      },
 
     SET_WDGT_HDR_CLR(state, color) {
       state.widgetVars.header_background_color = color;
@@ -395,11 +495,61 @@ export default new Vuex.Store({
       state.widgetVars.popup_background_color = color;
       state.widgetVars.changesSaved = false;
     },
+    SET_WDGT_DEF_SEL(state, type) {
+      type == state.widgetVars.subscribe_type
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.subscribe_type = type;
+      type == "subscribe"
+        ? (state.widgetVars.subscribe_type = "subscribe")
+        : (state.widgetVars.subscribe_type = "default");
+    },
+    SET_SUBS_TYPE(state, type) {
+      state.subscribers.subType = type;
+    },
     SET_WDGT_TYPE(state, type) {
       type == state.widgetVars.facebook_widget_type
         ? (state.widgetVars.changesSaved = true)
         : (state.widgetVars.changesSaved = false);
       state.widgetVars.facebook_widget_type = type;
+    },
+    SET_WDGT_DISC_STATMENT(state, txt) {
+      txt == state.widgetVars.discount_statement
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.discount_statement = txt;
+    },
+    SET_WDGT_DISC_CODE(state, txt) {
+      txt == state.widgetVars.discount_code
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.discount_code = txt;
+    },
+    SET_WDGT_DISC_INST(state, txt) {
+      txt == state.widgetVars.apply_discount_instruction
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.apply_discount_instruction = txt;
+    },
+    SAVE_WIDGET_CHECKBOX(state, coneData) {
+      state.widgetVars.changesSaved = false;
+      if (coneData[0].title.toUpperCase() == "SMS") {
+        state.widgetVars.enabled_widgets.sms.title = coneData[0].title;
+        state.widgetVars.enabled_widgets.sms.enabled = coneData[0].connection;
+        state.widgetVars.enabled_widgets.sms.position = coneData[0].id;
+        state.widgetVars.enabled_widgets.facebook.title = coneData[1].title;
+        state.widgetVars.enabled_widgets.facebook.position = coneData[1].id;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          coneData[1].connection;
+      } else {
+        state.widgetVars.enabled_widgets.facebook.title = coneData[0].title;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          coneData[0].connection;
+        state.widgetVars.enabled_widgets.facebook.position = coneData[0].id;
+        state.widgetVars.enabled_widgets.sms.title = coneData[1].title;
+        state.widgetVars.enabled_widgets.sms.enabled = coneData[1].connection;
+        state.widgetVars.enabled_widgets.sms.position = coneData[1].id;
+      }
     },
     SET_WDGT_HDR_TXT(state, txt) {
       txt == state.widgetVars.pop_up_title
@@ -558,12 +708,35 @@ export default new Vuex.Store({
       state.settingsVars.facebook_user_id = obj.facebook_user_id;
       state.settingsVars.facebook_short_access_token =
         obj.facebook_short_access_token;
+
       state.settingsVars.setup_step_1_completed = obj.setup_step_1_completed;
-      !obj.setup_step_1_completed ? (state.stepsCompOnload = false) : 1;
     },
 
     //Messages Commits
     SET_MSG_VALS(state, obj) {
+      state.msgVars.sms_abandoned_cart_1.active =
+        obj.sms_abandoned_cart_1.active;
+      state.msgVars.sms_abandoned_cart_1.intro_message =
+        obj.sms_abandoned_cart_1.intro_message;
+      state.msgVars.sms_abandoned_cart_1.sent_after =
+        obj.sms_abandoned_cart_1.sent_after;
+      state.msgVars.sent_count.sms_sent_count_abandoned_cart_1 =
+        obj.sent_count.sms_sent_count_abandoned_cart_1;
+
+      state.msgVars.sms_abandoned_cart_2.active =
+        obj.sms_abandoned_cart_2.active;
+      state.msgVars.sms_abandoned_cart_2.intro_message =
+        obj.sms_abandoned_cart_2.intro_message;
+      state.msgVars.sms_abandoned_cart_2.sent_after =
+        obj.sms_abandoned_cart_2.sent_after;
+      state.msgVars.sent_count.sms_sent_count_abandoned_cart_2 =
+        obj.sent_count.sms_sent_count_abandoned_cart_2;
+      // sms_abandoned_cart_1 :{
+      //   active:"",
+      //     intro_message:"",
+      //     sent_after:""
+      // },
+
       state.msgVars.abandoned_cart_1.button_text =
         obj.abandoned_cart_1.button_text;
       state.msgVars.abandoned_cart_1.quick_reply_thank_you_text =
@@ -627,14 +800,6 @@ export default new Vuex.Store({
         obj.sent_count.sent_count_abandoned_cart_1;
       state.msgVars.sent_count.sent_count_order_shipped =
         obj.sent_count.sent_count_order_shipped;
-
-      obj.abandoned_cart_1.active || obj.abandoned_cart_2.active
-        ? (state.msgVars.step2Com = true)
-        : (state.msgVars.step2Com = false);
-
-      obj.abandoned_cart_1.active || obj.abandoned_cart_2.active
-        ? 1
-        : (state.stepsCompOnload = false);
     },
     SET_ORDR_RCPT(state, obj) {
       state.msgVars.order_receipt.button_text = obj.button_text;
@@ -673,6 +838,16 @@ export default new Vuex.Store({
       state.msgVars.abandoned_cart_1.quick_reply_more_questions_text =
         obj.quick_reply_more_questions_text;
     },
+    smsSET_ORDR_ABANDONED_CART(state, obj) {
+      state.msgVars.sms_abandoned_cart_1.intro_message = obj.intro_message;
+      state.msgVars.sms_abandoned_cart_1.active = obj.active;
+      state.msgVars.sms_abandoned_cart_1.sent_after = obj.sent_after;
+    },
+    sms_second_SET_ORDR_ABANDONED_CART(state, obj) {
+      state.msgVars.sms_abandoned_cart_2.intro_message = obj.intro_message;
+      state.msgVars.sms_abandoned_cart_2.active = obj.active;
+      state.msgVars.sms_abandoned_cart_2.sent_after = obj.sent_after;
+    },
     SET_ORDR_ABANDONED_CART2(state, obj) {
       state.msgVars.abandoned_cart_2.sent_after = obj.sent_after;
       state.msgVars.abandoned_cart_2.button_text = obj.button_text;
@@ -696,20 +871,23 @@ export default new Vuex.Store({
     SET_MSG_QREPLY_EDIT(state, val) {
       state.msgVars.qreplyEdit = val;
     },
-
-    SET_STEPS_COMP_ON_LOAD(state, val) {
-      state.stepsCompOnload = val;
-    },
     SET_IS_LOADING(state, val) {
       val ? state.isLoading++ : state.isLoading--;
     },
-
+    CHANGE_SAVED_WDGT(state,val){
+      state.widgetVars.changesSaved = val
+    },
     SET_DASH_VALS(state, obj) {
       state.dashVars.campaigns.total_messages = obj.campaigns.total_messages;
-      state.dashVars.campaigns.recovery_messages_nr1_sent =
+      state.dashVars.campaigns.fb_recovery_messages_nr1_sent =
         obj.campaigns.recovery_messages_nr1_sent;
-      state.dashVars.campaigns.recovery_messages_nr2_sent =
+      state.dashVars.campaigns.fb_recovery_messages_nr2_sent =
         obj.campaigns.recovery_messages_nr2_sent;
+
+      state.dashVars.campaigns.sms_recovery_messages_nr1_sent =
+        obj.campaigns.sms_recovery_messages_nr1_sent;
+      state.dashVars.campaigns.sms_recovery_messages_nr2_sent =
+        obj.campaigns.sms_recovery_messages_nr2_sent;
 
       state.dashVars.carts_recovered.total_recovered =
         obj.carts_recovered.total_recovered;
@@ -729,10 +907,29 @@ export default new Vuex.Store({
         obj.cart_recovery.total_recovered;
       state.dashVars.cart_recovery.abandoned_carts =
         obj.cart_recovery.abandoned_carts;
+      state.dashVars.cart_recovery.sms_subscribers =
+        obj.cart_recovery.sms_subscribers;
       state.dashVars.cart_recovery.facebook_subscribers =
         obj.cart_recovery.facebook_subscribers;
       state.dashVars.cart_recovery.carts_recovered =
         obj.cart_recovery.carts_recovered;
+    },
+    SET_STEPS_COMPLETED_VALS(state, obj) {
+      state.setupCompletedVars.smsCartRecovery = obj.smsCartRecovery;
+      state.setupCompletedVars.smsCartRecoverySteps.step1 =
+        obj.smsCartRecoverySteps.step1;
+      state.setupCompletedVars.smsCartRecoverySteps.step2 =
+        obj.smsCartRecoverySteps.step2;
+      state.setupCompletedVars.smsCartRecoverySteps.step3 =
+        obj.smsCartRecoverySteps.step3;
+
+      state.setupCompletedVars.fbCartRecovery = obj.fbCartRecovery;
+      state.setupCompletedVars.fbCartRecoverySteps.step1 =
+        obj.fbCartRecoverySteps.step1;
+      state.setupCompletedVars.fbCartRecoverySteps.step2 =
+        obj.fbCartRecoverySteps.step2;
+      state.setupCompletedVars.fbCartRecoverySteps.step3 =
+        obj.fbCartRecoverySteps.step3;
     },
     SET_SUB_VALS(state, obj) {
       state.subVars.former_subscription_plan = obj.former_subscription_plan;
@@ -740,8 +937,59 @@ export default new Vuex.Store({
       state.subVars.consumed_recovery_attempts = obj.consumed_recovery_attempts;
       state.subVars.subscription_plan = obj.subscription_plan;
     },
+    UPDATE_SET_VARS_POP(state, itemval) {
+      state.settingsVars.install_popop_show = itemval;
+    },
+    SAVE_WIDGET_FORM(state, formVidgData) {
+      state.widgetVars.apply_discount_instruction =
+        formVidgData.apply_discount_instruction;
+      state.widgetVars.discount_code = formVidgData.discount_code;
+      state.widgetVars.discount_statement = formVidgData.discount_statement;
+      if (formVidgData.coneData[0].title.toUpperCase() == "SMS") {
+        state.widgetVars.enabled_widgets.sms.title =
+          formVidgData.coneData[0].title;
+        state.widgetVars.enabled_widgets.sms.enabled =
+          formVidgData.coneData[0].connection;
+        state.widgetVars.enabled_widgets.sms.position =
+          formVidgData.coneData[0].id;
+        state.widgetVars.enabled_widgets.facebook.title =
+          formVidgData.coneData[1].title;
+        state.widgetVars.enabled_widgets.facebook.position =
+          formVidgData.coneData[1].id;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          formVidgData.coneData[1].connection;
+      } else {
+        state.widgetVars.enabled_widgets.facebook.title =
+          formVidgData.coneData[0].title;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          formVidgData.coneData[0].connection;
+        state.widgetVars.enabled_widgets.facebook.position =
+          formVidgData.coneData[0].id;
+        state.widgetVars.enabled_widgets.sms.title =
+          formVidgData.coneData[1].title;
+        state.widgetVars.enabled_widgets.sms.enabled =
+          formVidgData.coneData[1].connection;
+        state.widgetVars.enabled_widgets.sms.position =
+          formVidgData.coneData[1].id;
+      }
+      state.widgetVars.subscribe_type = formVidgData.subscribe_type;
+
+    },
+    SET_WIDGET_info(state, itemVidg) {
+      state.widgetVars.apply_discount_instruction =
+        itemVidg.apply_discount_instruction;
+      state.widgetVars.discount_code = itemVidg.discount_code;
+      state.widgetVars.discount_statement = itemVidg.discount_statement;
+    },
   },
   actions: {
+    updateCartRecoveryModalShow({ commit }, obj) {
+      return new Promise((resolve) => {
+        // console.log("updateCart :: " + JSON.stringify(obj));
+        commit("UPDATE_CART_RECOVERY_MODAL_SHOW", obj);
+        resolve("success");
+      });
+    },
     updateToken({ commit }, token) {
       return new Promise((resolve) => {
         commit("SET_TOKEN", token);
@@ -800,6 +1048,7 @@ export default new Vuex.Store({
         axios
           .get(url, headers)
           .then((res) => {
+            commit("UPDATE_SET_VARS_POP", res.data.install_popop_show);
             commit("SET_SETTINGS_VALS", JSON.parse(JSON.stringify(res.data)));
             resolve("success");
           })
@@ -821,6 +1070,7 @@ export default new Vuex.Store({
         axios
           .get(url, headers)
           .then((res) => {
+            commit("SET_WIDGET_info", res.data);
             commit("SET_WIDGETS_VAL", JSON.parse(JSON.stringify(res.data)));
             resolve("success");
           })
@@ -895,10 +1145,21 @@ export default new Vuex.Store({
           });
       });
     },
-
+    updSubsType({ commit }, txt) {
+      return new Promise((resolve) => {
+        commit("SET_SUBS_TYPE", txt);
+        resolve("success");
+      });
+    },
     updWdgtLive({ commit }, live) {
       return new Promise((resolve) => {
         commit("SET_WDGT_LIVE", live);
+        resolve("success");
+      });
+    },
+    updWdgtLiveTrue({ commit }) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_LIVE_TRUE");
         resolve("success");
       });
     },
@@ -915,9 +1176,51 @@ export default new Vuex.Store({
         resolve("success");
       });
     },
+    updWdgtDefSel({ commit }, type) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_DEF_SEL", type);
+        resolve("success");
+      });
+    },
+    updWdgtDisSel({ commit }, type) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_DIS_SEL", type);
+        resolve("success");
+      });
+    },
     updWdgtType({ commit }, type) {
       return new Promise((resolve) => {
         commit("SET_WDGT_TYPE", type);
+        resolve("success");
+      });
+    },
+    updWdgtDiscForm({ commit }, obj) {
+      return new Promise((resolve) => {
+        commit("SAVE_WIDGET_FORM", obj);
+        resolve("success");
+      });
+    },
+    updWdgtConcType({ commit }, arr) {
+      return new Promise((resolve) => {
+        commit("SAVE_WIDGET_CHECKBOX", arr);
+        resolve("success");
+      });
+    },
+    updWdgtDiscStatment({ commit }, txt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_DISC_STATMENT", txt);
+        resolve("success");
+      });
+    },
+    updWdgtDiscCode({ commit }, txt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_DISC_CODE", txt);
+        resolve("success");
+      });
+    },
+    updWdgtDiscInst({ commit }, txt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_DISC_INST", txt);
         resolve("success");
       });
     },
@@ -1142,6 +1445,27 @@ export default new Vuex.Store({
           });
       });
     },
+    smsgetMsg({ commit }) {
+      return new Promise((resolve, reject) => {
+        let url = `${process.env.VUE_APP_API_URL_DEV}/messages`;
+        let headers = {
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
+        };
+        // console.log("Messages called");
+        axios
+          .get(url, headers)
+          .then((res) => {
+            commit("SET_MSG_VALS", JSON.parse(JSON.stringify(res.data)));
+            resolve("success");
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    },
     setMsg() {
       return new Promise((resolve, reject) => {
         let url = `${process.env.VUE_APP_API_URL_DEV}/messages`;
@@ -1179,6 +1503,20 @@ export default new Vuex.Store({
         resolve("success");
       });
     },
+    smsUpdOrdrAbndCrt({ commit }, obj) {
+      return new Promise((resolve) => {
+        // console.log("updateCart :: " + JSON.stringify(obj));
+        commit("smsSET_ORDR_ABANDONED_CART", obj);
+        resolve("success");
+      });
+    },
+    smssecondUpdOrdrAbndCrt({ commit }, obj) {
+      return new Promise((resolve) => {
+        // console.log("updateCart :: " + JSON.stringify(obj));
+        commit("sms_second_SET_ORDR_ABANDONED_CART", obj);
+        resolve("success");
+      });
+    },
     updOrdrAbndCrt({ commit }, obj) {
       return new Promise((resolve) => {
         // console.log("updateCart :: " + JSON.stringify(obj));
@@ -1210,9 +1548,9 @@ export default new Vuex.Store({
         resolve("success");
       });
     },
-    updStepsCompOnload({ commit }, val) {
+    changeSavedWdgt({ commit }, val) {
       return new Promise((resolve) => {
-        commit("SET_STEPS_COMP_ON_LOAD", val);
+        commit("CHANGE_SAVED_WDGT", val);
         resolve("success");
       });
     },
@@ -1222,7 +1560,6 @@ export default new Vuex.Store({
         resolve("success");
       });
     },
-
     //Dashboard Actions
 
     getDash({ commit }, dateObj) {
@@ -1246,7 +1583,32 @@ export default new Vuex.Store({
           });
       });
     },
+    // Steps Completed API
+    getStepsCompleted({ commit }) {
+      return new Promise((resolve, reject) => {
+        let url = `${process.env.VUE_APP_API_URL_DEV}/getStepsCompleted`;
+        let headers = {
+          headers: {
+            authorization: this.state.TOKEN,
+            "Content-Type": "application/json",
+          },
+        };
 
+        axios
+          .get(url, headers)
+          .then((res) => {
+            // console.log(JSON.stringify(res.data));
+            commit(
+              "SET_STEPS_COMPLETED_VALS",
+              JSON.parse(JSON.stringify(res.data))
+            );
+            resolve("success");
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    },
     //Subscription API
     getSubs({ commit }) {
       return new Promise((resolve, reject) => {

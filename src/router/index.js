@@ -6,6 +6,7 @@ import Widgets from '../views/Widgets.vue';
 import Campaigns from '../views/Campaigns.vue';
 import AbandonedCarts from '../views/AbandonedCarts.vue';
 
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -27,9 +28,14 @@ const routes = [
     component: Widgets
   },
   {
-    path:"/campaigns",
+    path:"/campaigns-facebook",
     name: "Campaigns",
     component: Campaigns
+  },
+  {
+    path:"/campaigns-sms",
+    name: "CampaignsSms",
+    component: () => import("../components/Campaigns/CampaignsSms.vue")
   },
   {
     path:"/abandonedcarts",

@@ -22,7 +22,7 @@
           >
             <span class="upgheader-text white--text">{{ header }}</span>
           </v-row>
-          <v-row width="100%" justify="center" align="center" class="pt-3">
+          <v-row width="100%" justify="center" align="center" class="pt-3 upgText">
             <v-col>
               <p class="upgbody-text">
                 {{ body }}
@@ -97,8 +97,12 @@ export default {
       let planDetails = this.getPlanState.find(
         (o) => o.planName === this.getSubs.subscription_plan
       );
+      console.log(JSON.stringify(this.getSubs.subscription_plan));
+      console.log(JSON.stringify(this.getPlanState));
+
       let recAttempts =
         planDetails == undefined ? 0 : planDetails.cart_recovery_attempts;
+      console.log("recAttempts="+recAttempts);
       return (
         this.header +
         this.$t("settingsPage.upgradeCard.body1") +
@@ -106,7 +110,7 @@ export default {
         this.$t("settingsPage.upgradeCard.body2") +
         recAttempts +
         this.$t("settingsPage.upgradeCard.body3") +
-        this.getSubs.consumed_recovery_attempts +
+        (recAttempts - this.getSubs.consumed_recovery_attempts) +
         "/" +
         recAttempts +
         this.$t("settingsPage.upgradeCard.body4") +
@@ -126,6 +130,10 @@ export default {
 </script>
 
 <style>
+.upgText {
+  margin-bottom: -14px !important;
+}
+
 .upgheader-text {
   font-size: 110%;
   font-weight: 400;

@@ -56,10 +56,10 @@
             >
           </v-btn></v-row
         >
-        <v-row justify="center" class="pt-4">
-          <span class="pr-1">{{
-            $t("settingsPage.fbCard1.buttonFooter")
-          }}</span>
+        <v-row justify="center" class="pt-4" v-if="!isGdprAffected">
+          <span class="pr-1">
+            {{ $t("settingsPage.fbCard1.buttonFooter") }}
+          </span>
           <span>
             <a
               href="https://www.facebook.com/pages/create/?ref_type=universal_creation_hub"
@@ -69,6 +69,16 @@
             >
           </span>
         </v-row>
+        <v-row justify="center" class="pt-4" v-else>
+          <span
+            v-bind:class="{ fbNotAvailable: fbConnectClickedYetNA }"
+            class="pr-1"
+            style="font-size:85%; font-style: italic; text-align:center"
+          >
+            {{ $t("settingsPage.fbCard1.isGdprAffected") }}
+          </span>
+        </v-row>
+
       </v-col>
     </v-row>
     <v-row
@@ -353,6 +363,8 @@ export default {
   },
   data() {
     return {
+      fbConnectClickedYetNA: false,
+      isGdprAffected: false,
       showOverlay: false,
       showUnpubOverlay: false,
       absolute: false,
@@ -373,6 +385,12 @@ export default {
   },
   methods: {
     step1Comp() {
+
+      if (this.isGdprAffected) {
+        this.fbConnectClickedYetNA = true;
+        return false;
+      }
+
       Vue.FB.getLoginStatus((response) => {
         // console.log("FBAUTH status :: " + response.status);
 
@@ -551,6 +569,8 @@ export default {
         this.$store.dispatch("updFbSettings", pageObj).then(() => {
           // console.log(res);
           this.$store.dispatch("setSettings").then(() => {
+            this.$store.dispatch("getStepsCompleted");
+
             // console.log(response);
             this.$store.dispatch("updIsLoading", false);
             this.fbStep = 3;
@@ -570,6 +590,8 @@ export default {
         this.$store.dispatch("updFbSettings", fbObj).then(() => {
           // console.log(res);
           this.$store.dispatch("setSettings").then(() => {
+            this.$store.dispatch("getStepsCompleted");
+
             Vue.FB.getLoginStatus((response) => {
               // console.log("FBAUTH status :: " + response.status);
               this.$store.dispatch("updIsLoading", false);
@@ -610,6 +632,10 @@ export default {
               ? (this.fbStep = 3)
               : (this.fbStep = 1)
             : (this.fbStep = 2);
+
+          this.isGdprAffected =
+            this.$store.getters.getWidgetsState.is_gdpr_affected;
+
           this.$store.dispatch("updIsLoading", false);
         }
       });
@@ -681,5 +707,9 @@ export default {
 .font_dims_fb {
   font-size: 75% !important;
   overflow: hidden;
+}
+
+.fbNotAvailable {
+  color: #F25A5A;
 }
 </style>

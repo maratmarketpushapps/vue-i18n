@@ -11,7 +11,7 @@
         <v-list-item-content class="pa-0 ma-0">
           <router-link to="/dashboard">
             <div
-              class="logo_background navbar-div right-shadow"
+              class="logo_background navbar-div hgfix right-shadow"
               id="logo-container"
             >
               <NavIcon class="navicon" />
@@ -49,16 +49,36 @@
             ></v-list-item
           >
 
-          <v-list-item
-            class="list-dim"
-            @click="setSelected('Campaigns')"
-            @mouseenter="setHover('Campaigns')"
-            @mouseleave="setHover('')"
-            to="/campaigns"
-            ><v-icon class="navicon_scale"
-              >$vuetify.icons.campaigns</v-icon
-            ></v-list-item
-          >
+          <v-menu right offset-x :open-on-hover="campingsMenu">
+            <template v-slot:activator="{ on, attrs }">
+              <v-list-item
+                class="list-dim"
+                @mouseenter="setHover('Campaigns')"
+                @mouseover="campingsMenu = true"
+                @mouseleave="setHover('')"
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon class="navicon_scale">$vuetify.icons.campaigns </v-icon>
+              </v-list-item>
+            </template>
+
+            <v-col
+              cols="12"
+              class="par_tool_tip px-0 pl-5 my-0 py-0"
+              v-if="campingsMenu"
+            >
+              <v-col cols="12" class="tool_tip px-0 py-0 text-center">
+                <router-link class="tool_tip_span" to="/campaigns-sms">{{
+                  $t("campaigns.tooltip.sms")
+                }}</router-link>
+                <router-link class="tool_tip_span" to="/campaigns-facebook">{{
+                  $t("campaigns.tooltip.facebook")
+                }}</router-link>
+                <v-col cols="12" class="arrow-right py-0"></v-col>
+              </v-col>
+            </v-col>
+          </v-menu>
 
           <v-list-item
             class="list-dim"
@@ -98,7 +118,8 @@ export default {
   data() {
     return {
       model: 1,
-      preActive:''
+      preActive: "",
+      campingsMenu: false,
     };
   },
   methods: {
@@ -156,7 +177,48 @@ export default {
 .navicon_scale {
   transform: scale(0.75);
 }
+.tool_tip {
+  background-color: #4f5d6a;
+  width: 250px !important;
+}
+.par_tool_tip {
+  background-color: #e6e7e800 !important;
+  width: 250px !important;
+  height: 100% !important;
+}
+.tool_tip_span {
+  font-size: 10px;
+  padding: 12px 11px;
+  white-space: nowrap;
+  align-content: center;
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+  display: block;
+}
+.tool_tip_span:hover {
+  background-color: #323f4e;
+}
 
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 10px solid #4f5d6a;
+  position: absolute;
+  top: 8px;
+  left: -14px;
+}
+
+.v-menu__content {
+  box-shadow: none !important;
+  border-radius: 0px !important;
+  margin-top: 12px !important;
+  cursor: pointer;
+}
+.hgfix {
+  height: 80px !important;
+}
 @media (min-width: 1400px) {
   .navicon_scale {
     transform: scale(0.9);

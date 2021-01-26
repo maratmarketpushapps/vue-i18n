@@ -1,116 +1,46 @@
 <template>
   <v-app>
-    <v-content class="app_background app-style" style="height:auto">
+    <v-content class="app_background app-style pl-0" style="height:auto">
       <NavDrawer />
-      <AppBar style="height: 10vh" />
+      <AppBar class="app_bar_height" />
 
-      <v-overlay
-        :absolute="absolute"
-        :opacity="opacity"
-        :value="allStepsComp"
-        :z-index="zIndex"
-      >
-        <v-card tile light height="400px" width="35vw" class=" font_dims">
-          <v-row style="height:4%; width:100%" justify="end" class="mt-4">
-            <v-btn icon small>
-              <v-icon @click="canclOvrlyStepComp()">
-                mdi-window-close
-              </v-icon>
+<!--      /* modal for technical support */-->
+      <v-row justify="center">
+        <v-dialog
+          v-model="modal_technical_support"
+          persistent
+          max-width="290"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              color="primary"
+              dark
+              v-bind="attrs"
+              v-on="on"
+            >
+              Open Dialog
             </v-btn>
-          </v-row>
-          <v-row
-            style="height:20%; width:100%"
-            justify="center"
-            align="center"
-            class="mt-1 ml-2"
-          >
-            <iconSuccess class="sccssSvgStyle" />
-          </v-row>
-          <v-row style="height:15%; width:100%" class="mr-0 mt-2">
-            <v-col cols="12">
-              <v-row style="width:100%" justify="center" class="ml-4">
-                <h3 style="color:#4E5D6B; font-size:150%">
-                  {{ $t("navbar.appbar.allStepsCompHeader") }}
-                </h3>
-              </v-row>
-            </v-col>
-          </v-row>
-          <v-row
-            style="height:15%; width:100%"
-            justify="center"
-            align="center"
-            class="ma-2 pr-2"
-          >
-            <v-col>
-              <v-row
-                style="width:98%; text-align:center"
-                justify="center"
-                align="center"
-                class="ml-0"
-              >
-                {{ $t("navbar.appbar.allStepsCompTxt1") }}
-              </v-row>
-            </v-col>
-          </v-row>
-          <v-row
-            style="height:10%; width:100%"
-            justify="center"
-            align="start"
-            class="ma-2 pr-2"
-          >
-            <v-col>
-              <v-row
-                style="width:98%; text-align:center"
-                justify="center"
-                align="center"
-                class="ml-0"
-              >
-                <span
-                  ><span
-                    ><a target="_blank" :href="getUrl">
-                      {{ $t("navbar.appbar.urltxt") }}
-                    </a></span
-                  >
-                  <span>
-                    {{ $t("navbar.appbar.allStepsCompTxt2") }}
-                  </span></span
-                >
-              </v-row>
-            </v-col>
-          </v-row>
-          <v-row
-            style="height:20%; width:106%"
-            class="ma-0 mt-6"
-            justify="center"
-            align="end"
-          >
-            <v-col>
-              <v-row style="width:100%" justify="center" align="end">
-                <v-btn
-                  tile
-                  height="52px"
-                  class="ma-0 mt-3"
-                  width="100%"
-                  @click="canclOvrlyStepComp()"
-                  outlined
-                  color="#006AFF"
-                  style="border-color:#F2F2F2"
-                >
-                  {{ $t("navbar.appbar.buttonText") }}
-                </v-btn>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-card>
-      </v-overlay>
-      <v-row style="height:auto width: 100%;">
-        <v-col cols="12">
-          <v-row style="height:10vh">
+          </template>
+          <v-card>
+            <v-card-title class="headline">
+              Maintenance mode:
+            </v-card-title>
+            <v-card-text>
+              We are currently adding SMS cart recovery to the app.
+              Please come back to this page and refresh it in 2-3 hours. We apologize for the inconvenience.
+            </v-card-text>
+          </v-card>
+        </v-dialog>
+      </v-row>
+
+      <v-row style="height:auto width: 100%;" v-if="!modal_technical_support">
+        <v-col cols="12" class="pb-0">
+          <v-row style="height:4vh">
             <v-col cols="12"> </v-col>
           </v-row>
           <v-row align="center" justify="center">
             <v-col cols="auto" style="width: 6vw;"> </v-col>
-            <v-col cols="11">
+            <v-col cols="12" class="px-0 pb-0">
               <v-row v-show="!isLoading">
                 <transition name="rtr">
                   <router-view></router-view>
@@ -141,26 +71,9 @@
 
 //
 <script>
-//App Engine test.
+//Deployment test 3
 import AppBar from "@/components/navigation/AppBar.vue";
 import NavDrawer from "@/components/navigation/NavDrawer.vue";
-import iconSuccess from "@/assets/icons/misc/icon-success.svg";
-// import loaderAnim from "@/components/GlobalComponents/loaderAnim.vue";
-// import axios from "axios";
-
-(function(h, o, t, j, a, r) {
-  h.hj =
-    h.hj ||
-    function() {
-      (h.hj.q = h.hj.q || []).push(arguments);
-    };
-  h._hjSettings = { hjid: 2035266, hjsv: 6 };
-  a = o.getElementsByTagName("head")[0];
-  r = o.createElement("script");
-  r.async = 1;
-  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-  a.appendChild(r);
-})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
 
 export default {
   name: "App",
@@ -185,60 +98,23 @@ export default {
           // console.log(response);
           this.$store.dispatch("getSettings").then(() => {
             this.$store.dispatch("getWidgets").then(() => {
-              this.$store.getters.getStep1Complete &&
-              this.$store.getters.getStep2Complete &&
-              this.$store.getters.getStep3Complete
-                ? this.$store.dispatch("updStepsCompOnload", true).then(() => {
-                    // this.$store.dispatch("updIsLoading", false);
-                  })
-                : this.$store.dispatch("updStepsCompOnload", false).then(() => {
-                    // this.$store.dispatch("updIsLoading", false);
-                  });
+
             });
           });
         });
       });
     });
   },
-  // mounted() {
-
-  // },
-  // beforeUpdate() {
-  //   this.$store.dispatch("getGlobal").then((response) => {
-  //     console.log(response);
-  //     this.$i18n.locale = this.$store.getters.getLocale;
-  //   });
-  // },
-  // created() {
-  //   axios.interceptors.request.use(
-  //     (config) => {
-  //       this.isLoading = true;
-  //       this.nuRequests++;
-  //       return config;
-  //     },
-  //     (error) => {
-  //       this.isLoading = false;
-  //       return Promise.reject(error);
-  //     }
-  //   );
-
-  //   axios.interceptors.response.use(
-  //     (response) => {
-  //       this.isLoading = false;
-  //       return response;
-  //     },
-  //     (error) => {
-  //       this.isLoading = false;
-  //       return Promise.reject(error);
-  //     }
-  //   );
-  // },
+  mounted() {
+    this.$router.push("/dashboard");
+  },
+  //
 
   components: {
     AppBar,
-    NavDrawer,
-    iconSuccess,
-    // loaderAnim,
+    NavDrawer
+    //,
+    //ModalTestCartRecoveryMethod
   },
 
   data() {
@@ -249,6 +125,7 @@ export default {
       zIndex: 5,
       // isLoading: false,
       nuRequests: 0,
+      modal_technical_support:true,
     };
   },
   methods: {
@@ -260,21 +137,11 @@ export default {
     },
   },
   computed: {
-    allStepsComp() {
-      return (
-        this.$store.getters.getStep1Complete &&
-        this.$store.getters.getStep2Complete &&
-        this.$store.getters.getStep3Complete &&
-        !this.$store.getters.getStepsCompOnload
-      );
-    },
     isLoading() {
       return this.$store.getters.getisLoading;
-    },
-    getUrl() {
-      return this.$store.getters.getUrl;
-    },
+    }
   },
+
 };
 </script>
 
@@ -333,6 +200,17 @@ export default {
   align-content: center;
   fill: #fff;
   stroke: #323f4f;
+}
+
+.app_bar_height{
+  height: 80px !important;
+}
+
+.app_bar_height .v-toolbar__content, .v-toolbar__extension{
+  height: 80px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  padding-right: 0px !important;
 }
 
 @media (min-width: 1400px) {

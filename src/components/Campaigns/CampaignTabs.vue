@@ -1,84 +1,19 @@
 <template>
   <v-container fluid class="pl-0 ml-0">
-    <v-row class="pa-0 ma-0 mt-2 pl-0 ml-0" justify="start" style="width:100%">
-      <v-col class="pa-0 ma-0 pl-0 ml-0" cols="auto">
-        <v-tabs
-          background-color="transparent"
-          v-model="tab"
-          class="pa-0 mt-0 ml-0 tabs-color tab-size"
-          active-class="tab-item-color-active"
-          :show-arrows="showArr"
-          style="width:100%;"
-        >
-          <v-tab
-            class="font_dims"
-            key="1"
-            @click="refreshComp1()"
-            style="text-transform:none;"
-          >
-            {{ $t("campaigns.tabs.item1") }}
-            <TooltipIcon
-              :posRight="true"
-              :nudgeBottom="30"
-              :nudgeLeft="5"
-              :txt="$t('campaigns.infocons.msg1')"
-              class="infoicon_scale "
-              style="top:30%"
-            />
-          </v-tab>
-          <!-- <v-tab
-            class="font_dims"
-            key="2"
-            @click="refreshComp2()"
-            style="text-transform:none;"
-          >
-            {{ $t("campaigns.tabs.item2") }}
-            <TooltipIcon
-              :posRight="true"
-              :nudgeBottom="30"
-              :nudgeLeft="5"
-              :txt="$t('campaigns.infocons.msg3')"
-              class="infoicon_scale "
-              style="top:30%"
-            />
-          </v-tab>
-          <v-tab
-            class="font_dims"
-            key="3"
-            @click="refreshComp3()"
-            style="text-transform:none;"
-          >
-            {{ $t("campaigns.tabs.item3") }}
-            <TooltipIcon
-              :posRight="true"
-              :nudgeBottom="30"
-              :nudgeLeft="5"
-              :txt="$t('campaigns.infocons.msg4')"
-              class="infoicon_scale "
-              style="top:30%"
-            />
-          </v-tab> -->
-        </v-tabs>
-      </v-col>
-    </v-row>
-    <br />
     <v-row style="height:auto; width:100%">
-      <v-col cols="7">
-        <v-tabs-items
-          v-model="tab"
+      <v-col cols="7" class="py-0 px-0">
+        <v-col
           style="height:100%; width:100%"
-          class="app_background"
+          class="app_background px-0 py-0"
         >
-          <v-tab-item key="1" :eager="false">
+          <v-col key="1" class="py-0 px-0 fb_tabs_facebook" :eager="false">
             <AbandonedCarts1 />
             <br />
             <AbandonedCarts2 />
-          </v-tab-item>
-          <v-tab-item key="2" :eager="false"> <OrderReceipt /> </v-tab-item>
-          <v-tab-item key="3" :eager="false"><OrderShipped /> </v-tab-item>
-        </v-tabs-items>
+          </v-col>
+        </v-col>
       </v-col>
-      <v-col cols="5" style="padding-left: 2%">
+      <v-col cols="5" class="py-0" style="padding-left: 2%">
         <CampaignView />
       </v-col>
     </v-row>
@@ -86,9 +21,7 @@
 </template>
 
 <script>
-import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
-import OrderReceipt from "@/components/Campaigns/OrderReceipt.vue";
-import OrderShipped from "@/components/Campaigns/OrderShipped.vue";
+
 import AbandonedCarts1 from "@/components/Campaigns/AbandonedCarts1.vue";
 import AbandonedCarts2 from "@/components/Campaigns/AbandonedCarts2.vue";
 import CampaignView from "@/components/Campaigns/CampaignView.vue";
@@ -97,9 +30,7 @@ import CampaignView from "@/components/Campaigns/CampaignView.vue";
 export default {
   name: "CampaignTabs",
   components: {
-    TooltipIcon,
-    OrderReceipt,
-    OrderShipped,
+
     AbandonedCarts1,
     AbandonedCarts2,
     CampaignView,
@@ -114,6 +45,12 @@ export default {
       itemKeyDat3: 0,
       activeTab: "1",
     };
+  },
+  created() {
+    this.$store.dispatch("updActiveTab", "abndndcrt1").then(() => {
+      this.$store.dispatch("updCart1Active", true);
+      // console.log(response);
+    });
   },
   methods: {
     incrTabCount() {
@@ -197,6 +134,9 @@ export default {
   color: #ffffff !important;
 }
 
+.fb_tabs_facebook{
+  background-color: #F2F2F2 !important;
+}
 @media (min-width: 1500px) {
   .refIcondim {
     transform: scale(1.2);

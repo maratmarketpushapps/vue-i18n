@@ -133,6 +133,7 @@ export default {
       this.getSettingsState.timezone_id == ""
         ? moment.tz.guess()
         : this.getSettingsState.timezone_id;
+
   },
 };
 </script>

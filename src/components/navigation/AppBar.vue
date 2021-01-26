@@ -2,149 +2,74 @@
   <v-app-bar
     elevation="4"
     flat
-    height="100vh"
+
     class="appbar_background  text--bottom"
     align-content="center"
     fixed
-    style="z-index:1.5"
+    style="z-index:1.5;height: 80px !important;"
   >
-    <v-row style="height:100% !important" class="pb-0 mb-0">
-      <v-col cols="1"><v-spacer></v-spacer></v-col>
-      <!-- Stepper component -->
-      <v-col cols="8" class="pb-0">
-        <v-stepper class="stepper" :value="step" v-if="!allstepsComplete">
-          <v-stepper-header class="stepperhead">
-            <!-- Step 1 -->
-            <v-stepper-step
-              step="1"
-              :complete="step1Complete"
-              class="step-item"
-            >
-              <router-link
-                to="/settings"
-                @click.native="step1Click"
-                class="step-item-font"
-                >{{ $t("navbar.appbar.step1") }}
-              </router-link>
-            </v-stepper-step>
-
-            <v-divider class="divider"> </v-divider>
-
-            <!-- Step 2 -->
-            <v-stepper-step
-              step="2"
-              :complete="step2Complete"
-              class="step-item"
-            >
-              <router-link
-                v-if="step1Complete"
-                to="/campaigns"
-                @click.native="step2Click"
-                class="step-item-font"
-                >{{ $t("navbar.appbar.step2") }}
-              </router-link>
-              <router-link
-                v-else
-                to="/campaigns"
-                tag="button"
-                disabled
-                class="step-item-font"
-                >{{ $t("navbar.appbar.step2") }}
-              </router-link>
-            </v-stepper-step>
-
-            <v-divider class="divider"></v-divider>
-            <!-- Step 3 -->
-            <v-stepper-step
-              step="3"
-              :complete="step3Complete"
-              class="step-item"
-            >
-              <router-link
-                v-if="step2Complete"
-                to="/widgets"
-                @click.native="step3Click"
-                class="step-item-font"
-                >{{ $t("navbar.appbar.step3") }}
-              </router-link>
-              <router-link
-                v-else
-                to="/widgets"
-                tag="button"
-                disabled
-                class="step-item-font"
-                >{{ $t("navbar.appbar.step3") }}
-              </router-link>
-            </v-stepper-step>
-          </v-stepper-header>
-        </v-stepper></v-col
-      >
-      <v-col cols="1">
-        <v-row align="center" class="ml-0" v-if="!allstepsComplete">
-          <v-tooltip
-            :bottom="true"
-            open-on-click
-            nudge-top="10"
-            nudge-right="100"
-            content-class="tooltip_color"
-          >
-            <template v-slot:activator="{ on }">
-              <v-btn
-                icon
-                tile
-                href="https://youtu.be/8zSKMZKK2Rw"
-                target="_blank"
-                v-on="on"
-              >
-                <v-img
-                  :src="playImg"
-                  height="3vw"
-                  width="2vw"
-                  style="transform: scale(0.8)"
-                  class="mt-0"
-                >
-                </v-img>
-              </v-btn>
-            </template>
-            <span class="tooltip_text" tile>{{
-              $t("navbar.appbar.vidIconTxt")
-            }}</span>
-          </v-tooltip>
-        </v-row>
+    <v-row style="height:100% !important" class="pb-0 mb-0 py-0">
+      <v-col :cols="this.$vuetify.breakpoint.width > 1366 ? '3' : this.$vuetify.breakpoint.width < 1120  ? '2' : '3'"></v-col>
+      <v-col class="py-0 d-flex hgt_fix justify-end align-center" :cols=" this.$vuetify.breakpoint.width < 950 ? '7' : ''">
+        <CartRecoveryStatus recoveryType="sms"  />
+        <CartRecoveryStatus recoveryType="fb" />
+      </v-col>
+      <v-col :cols="showUpgrade ? 1 : this.$vuetify.breakpoint.width < 1120 && showUpgrade ? '2' : 3">
+        <ModalStepsCompleted
+          recoveryType="sms"
+          stepARoute="/settings"
+          stepBRoute="/campaigns-sms"
+          stepCRoute="/widgets"
+        />
+        <ModalStepsCompleted
+          recoveryType="fb"
+          stepARoute="/settings"
+          stepBRoute="/campaigns-facebook"
+          stepCRoute="/widgets"
+        />
       </v-col>
 
+<!--      <v-col v-if="this.$vuetify.breakpoint.width > 1366 && showUpgrade" :cols="this.$vuetify.breakpoint.width > 1366 && showUpgrade ? 1 : 3" ></v-col>-->
+<!--      <v-col v-if="showUpgrade" :cols="showUpgrade ? 1 : 3" ></v-col>-->
       <!-- Upgrade button component -->
-      <v-col cols="2" class="pl-8 mb-2"
-        ><v-btn
+      <v-col cols="2" class=" py-0 d-flex justify-end"  v-if="showUpgrade">
+        <v-btn
           tile
           elevation="1"
           outlined
-          class="appbar_btn_background white--text button-dims mt-0"
-          v-show="showUpgrade"
+          class="btn_upgr appbar_btn_background white--text button-dims mt-0"
+          id="none_shadow"
           :href="upgrdUrl"
           target="_blank"
+
         >
           {{ $t("navbar.appbar.buttonUpgrade") }}
-        </v-btn></v-col
-      >
+        </v-btn>
+      </v-col>
     </v-row>
   </v-app-bar>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-// import iconPlay from "@/assets/icons/misc/icon-play.svg";
+import CartRecoveryStatus from "@/components/navigation/CartRecoveryStatus.vue";
+import ModalStepsCompleted from "@/components/Modal/ModalStepsCompleted.vue";
+
 export default {
   name: "AppBar",
-  // components: {
-  //   iconPlay,
-  // },
+  components: {
+    CartRecoveryStatus,
+    ModalStepsCompleted
+  },
   data() {
     return {
       step: 1,
       showAlert: true,
       playImg: require("@/assets/img/icon-play.png"),
     };
+  },
+  mounted() {
+    console.log(this.$vuetify.breakpoint.width)
   },
   methods: {
     setStep(step) {
@@ -177,9 +102,6 @@ export default {
   },
   computed: {
     ...mapGetters(["getInstanceId"]),
-    step1Complete() {
-      return this.$store.getters.getStep1Complete;
-    },
     step2Complete() {
       return this.$store.getters.getStep2Complete;
     },
@@ -207,6 +129,7 @@ export default {
       // console.log(response);
       this.$store.dispatch("getSettings").then(() => {
         this.$store.dispatch("getWidgets");
+        // this.$store.dispatch("getStepsCompleted");
       });
     });
   },
@@ -244,22 +167,47 @@ a {
 }
 
 .button-dims {
-  height: 60% !important;
+  height: 100% !important;
   width: 80% !important;
   font-size: 60% !important;
   position: relative;
 }
+.btn_upgr{
+  font-size: 14px !important;
+  line-height: 13px !important;
+  font-family: 'Poppins' !important;
+  font-weight: normal !important;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+  text-align: center;
+}
 
+.pad_fix{
+  padding: 0px 24px !important;
+}
+#none_shadow {
+  box-shadow: none !important;
+}
 @media (min-width: 1400px) {
   .step-item-font {
     font-size: 90%;
   }
 
   .button-dims {
-    height: 70% !important;
+    height: 100% !important;
     width: 70% !important;
     font-size: 80% !important;
     position: relative;
   }
+}
+</style>
+
+<style lang="css" scoped>
+.v-stepper__step{
+  padding: 0px 24px !important;
+}
+.hgt_fix{
+  height: 72px !important;
 }
 </style>

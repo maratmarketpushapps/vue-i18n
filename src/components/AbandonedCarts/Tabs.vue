@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
-    <v-row class="pa-0 ma-0 mt-4" justify="start">
-      <v-col class="pa-0 ma-0" cols="auto">
+    <v-row class="pa-0 ma-0 mt-4" justify="start" >
+      <v-col class="pa-0 ma-0" cols="auto"  >
         <v-tabs
           background-color="transparent"
           v-model="tab"
@@ -71,10 +71,29 @@
               ></v-date-picker
             >
           </v-menu>
+
+
         </v-tabs>
       </v-col>
+      <div :class="!activeImage ? 'selTypecol line_active wid_space pt-1' : 'selTypecol wid_space pt-0'" >
+        <v-select
+          flat
+          v-model="selectedType"
+          :items="TypeForSel"
+          :label="selectedType"
+          hide-details
+          single-line
+          @click="minusModel(selectedType)"
 
-      <v-col>
+          :class="activeImage ? 'change_active' : 'line_active'"
+        >
+          <template slot="prepend-inner" >
+            <v-img src="@/assets/img/Subscribers/icon-channel.png" v-if="!activeImage"></v-img>
+            <v-img src="@/assets/img/Subscribers/icon_channel_active.png" v-if="activeImage"></v-img>
+          </template>
+        </v-select>
+      </div>
+      <v-col class="pt-0" >
         <v-row justify="end" class="pr-0 mr-0 mb-1">
           <v-btn depressed icon class="refIcondim mr-0" @click="incrTabCount">
             <v-icon color="#4E5D6B">refresh</v-icon>
@@ -122,6 +141,7 @@
 <script>
 import CartsTable from "@/components/AbandonedCarts/CartsTable.vue";
 import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
+
 import moment from "moment-timezone";
 import { mapGetters } from "vuex";
 export default {
@@ -142,7 +162,14 @@ export default {
       itemKeyDat2: 0,
       itemKeyDat3: 0,
       activeTab: "2",
+      TypeForSel:this.$t("abandonedCarts.TypeForSel"),
+      selectedType:"",
+      currData:this.$t("abandonedCarts.TypeForSel"),
+      activeImage:false,
     };
+  },
+  mounted() {
+    this.selectedType = this.$t("abandonedCarts.selectedType")
   },
   methods: {
     incrTabCount() {
@@ -164,11 +191,9 @@ export default {
       this.activeTab = "3";
       this.itemKeyDat3++;
     },
-
     setMenuactivator() {
       this.menuActivator = true;
     },
-
     setCustDt() {
       // console.log("DateTestsNew :: " + this.custDates[0]);
       // console.log("DateTestsNew :: " + this.custDates[1]);
@@ -185,6 +210,19 @@ export default {
       this.activeTab = "4";
       this.custKey++;
       this.menu = false;
+    },
+    minusModel(item){
+      this.activeImage = true
+      this.selectedType = item
+      this.TypeForSel = this.currData
+      this.TypeForSel = this.TypeForSel.filter(  t => t !== item)
+      this.selectedType = item
+    }
+  },
+  watch:{
+    selectedType(newVal){
+        this.activeImage = false
+        this.$store.dispatch("updSubsType",newVal)
     },
   },
   computed: {
@@ -259,6 +297,29 @@ export default {
   transform: scale(0.9);
   transform-origin: 0 0;
 }
+.selTypecol{
+  font: normal normal 600 12px/29px Poppins;
+  width: 157px !important;
+  text-align: left;
+  letter-spacing: 0px;
+  color: #5686F6;
+  opacity: 1;
+}
+.v-text-field{
+  padding-top: 0px !important;
+}
+.v-select__selection v-select__selection--comma{
+  color: #5686F6 !important;
+}
+.theme--light.v-select{
+  color: #5686F6 !important;
+}
+.theme--light.v-select .v-select__selection--comma{
+  color: #5686F6 !important;
+}
+.wid_space{
+  width: 175px !important;
+}
 
 @media (min-width: 1400px) {
   .refIcondim {
@@ -269,4 +330,21 @@ export default {
     transform-origin: 0 0;
   }
 }
+</style>
+
+<style>
+.change_active .theme--light.v-label{
+  color: #5686F6 ;
+}
+.line_active>.v-text-field > .v-input__control > .v-input__slot:before{
+  border-style: hidden;
+}
+
+.wid_space>.theme--light.v-select .v-select__selection--comma{
+  font-size: 85% !important;
+}
+@media (max-width: 1400px) {
+
+}
+
 </style>
