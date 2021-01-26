@@ -533,7 +533,7 @@ export default new Vuex.Store({
     },
     SAVE_WIDGET_CHECKBOX(state, coneData) {
       state.widgetVars.changesSaved = false;
-      if (coneData[0].title == "sms") {
+      if (coneData[0].title.toUpperCase() == "SMS") {
         state.widgetVars.enabled_widgets.sms.title = coneData[0].title;
         state.widgetVars.enabled_widgets.sms.enabled = coneData[0].connection;
         state.widgetVars.enabled_widgets.sms.position = coneData[0].id;
@@ -945,7 +945,7 @@ export default new Vuex.Store({
         formVidgData.apply_discount_instruction;
       state.widgetVars.discount_code = formVidgData.discount_code;
       state.widgetVars.discount_statement = formVidgData.discount_statement;
-      if (formVidgData.coneData[0].title == "sms") {
+      if (formVidgData.coneData[0].title.toUpperCase() == "SMS") {
         state.widgetVars.enabled_widgets.sms.title =
           formVidgData.coneData[0].title;
         state.widgetVars.enabled_widgets.sms.enabled =
@@ -973,6 +973,7 @@ export default new Vuex.Store({
           formVidgData.coneData[1].id;
       }
       state.widgetVars.subscribe_type = formVidgData.subscribe_type;
+
     },
     SET_WIDGET_info(state, itemVidg) {
       state.widgetVars.apply_discount_instruction =

@@ -80,7 +80,7 @@
             <v-col class="pt-0 d-flex justify-end Eu_hint_NotAv">
               <span v-if="detectEuRegion && ite.title == 'Facebook'">{{ $t("widgets.notAvEU") }}</span>
             </v-col>
-            <v-col cols="1 " class="pb-0 " justify="end" :class="detectEuRegion ? 'disabled_display pt-0' : 'pt-3'">
+            <v-col cols="1 " class="pb-0 cursor_pointer" justify="end" :class="detectEuRegion ? 'disabled_display pt-0' : 'pt-3'">
               <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px" @click="rev()" :class="detectEuRegion ? 'fix_image_pos' : ''"
                      v-if="(ite.title !== 'Facebook' && detectEuRegion == true) ||detectEuRegion == false"
               ></v-img>
@@ -999,10 +999,7 @@ export default {
 .parent_gat_message{
   margin-bottom: 36px !important;
 }
-/*@media only screen and (max-width: 1799px) {*/
-/*  .fix_image_pos{*/
-/*    margin-left: 11px;*/
-/*  }*/
+
   .Eu_hint_NotAv{
     height: 34px !important;
     align-items: center !important;
@@ -1012,6 +1009,9 @@ export default {
 </style>
 
 <style>
+.cursor_pointer{
+  cursor: pointer;
+}
 .dis_code .v-messages__message{
   display: none;
 }
