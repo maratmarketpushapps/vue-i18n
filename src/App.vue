@@ -4,17 +4,33 @@
       <NavDrawer />
       <AppBar class="app_bar_height" />
 
-      <!--
-      <ModalTestCartRecoveryMethod recoveryType="sms"  />
-      <ModalTestCartRecoveryMethod recoveryType="fb" />
-      -->
+<!--      /* modal for technical support */-->
+      <v-row justify="center">
+        <v-dialog
+          v-model="modal_technical_support"
+          persistent
+          max-width="290"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              color="primary"
+              dark
+              v-bind="attrs"
+              v-on="on"
+            >
+              Open Dialog
+            </v-btn>
+          </template>
+          <v-card>
+            <v-card-title class="headline">
+              Maintenance mode:
+            </v-card-title>
+            <v-card-text> We are currently adding SMS cart recovery to the app. Please come back to this page and refresh it in 2-3 hours. We apologize for inconvenience.</v-card-text>
+          </v-card>
+        </v-dialog>
+      </v-row>
 
-      <!--
-      <ModalTestCartRecoveryMethod recoveryType="sms"  />
-      <ModalTestCartRecoveryMethod recoveryType="fb" />
-      -->
-
-      <v-row style="height:auto width: 100%;">
+      <v-row style="height:auto width: 100%;" v-if="!modal_technical_support">
         <v-col cols="12" class="pb-0">
           <v-row style="height:4vh">
             <v-col cols="12"> </v-col>
@@ -89,39 +105,7 @@ export default {
   mounted() {
     this.$router.push("/dashboard");
   },
-  // mounted() {
-
-  // },
-  // beforeUpdate() {
-  //   this.$store.dispatch("getGlobal").then((response) => {
-  //     console.log(response);
-  //     this.$i18n.locale = this.$store.getters.getLocale;
-  //   });
-  // },
-  // created() {
-  //   axios.interceptors.request.use(
-  //     (config) => {
-  //       this.isLoading = true;
-  //       this.nuRequests++;
-  //       return config;
-  //     },
-  //     (error) => {
-  //       this.isLoading = false;
-  //       return Promise.reject(error);
-  //     }
-  //   );
-
-  //   axios.interceptors.response.use(
-  //     (response) => {
-  //       this.isLoading = false;
-  //       return response;
-  //     },
-  //     (error) => {
-  //       this.isLoading = false;
-  //       return Promise.reject(error);
-  //     }
-  //   );
-  // },
+  //
 
   components: {
     AppBar,
@@ -138,6 +122,7 @@ export default {
       zIndex: 5,
       // isLoading: false,
       nuRequests: 0,
+      modal_technical_support:false,
     };
   },
   methods: {
