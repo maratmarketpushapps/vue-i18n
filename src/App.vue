@@ -25,7 +25,10 @@
             <v-card-title class="headline">
               Maintenance mode:
             </v-card-title>
-            <v-card-text> We are currently adding SMS cart recovery to the app. Please come back to this page and refresh it in 2-3 hours. We apologize for inconvenience.</v-card-text>
+            <v-card-text>
+              We are currently adding SMS cart recovery to the app.
+              Please come back to this page and refresh it in 2-3 hours. We apologize for the inconvenience.
+            </v-card-text>
           </v-card>
         </v-dialog>
       </v-row>
