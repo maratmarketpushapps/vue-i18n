@@ -125,7 +125,7 @@ export default {
       zIndex: 5,
       // isLoading: false,
       nuRequests: 0,
-      modal_technical_support:false,
+      modal_technical_support:true,
     };
   },
   methods: {
