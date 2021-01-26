@@ -2,7 +2,7 @@
   <v-card tile height="auto" width="100%" class="wdgt_font_dims card-scroll par_">
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 mt-0">
       <v-row style="height:20%;width:100%" class="">
-        <v-col cols="3 offset-1 py-0">
+        <v-col :cols="$vuetify.breakpoint.width < 1190 ? '4 offset-1' : '3 offset-1 ' " >
           <v-row
             class="my-0 "
             style="height:100%;width:100%"
@@ -12,7 +12,7 @@
           </v-row>
         </v-col>
 
-        <v-col cols="5" class="">
+        <v-col :cols="$vuetify.breakpoint.width < 976 ? '2' : $vuetify.breakpoint.width < 1190 ? '3' :  '5'" class="">
 
           <v-switch v-model="live" inset
                     color="#006AFF"
@@ -21,7 +21,7 @@
 
         </v-col>
 
-        <v-col cols="3">
+        <v-col :cols="$vuetify.breakpoint.width < 976 ? '5' : $vuetify.breakpoint.width < 1190 ? '4' :'3'">
           <v-row
             class="my-0 mr-2"
             style="height:100%;width:100%"
@@ -80,8 +80,8 @@
             <v-col class="pt-0 d-flex justify-end Eu_hint_NotAv">
               <span v-if="detectEuRegion && ite.title == 'Facebook'">{{ $t("widgets.notAvEU") }}</span>
             </v-col>
-            <v-col cols="1 " class="pb-0 cursor_pointer" justify="end" :class="detectEuRegion ? 'disabled_display pt-0' : 'pt-3'">
-              <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px" @click="rev()" :class="detectEuRegion ? 'fix_image_pos' : ''"
+            <v-col @click="rev()" cols="1 " class="pb-0 cursor_pointer" justify="end" :class="detectEuRegion ? 'disabled_display pt-0' : 'pt-3'">
+              <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px"  :class="detectEuRegion ? 'fix_image_pos' : ''"
                      v-if="(ite.title !== 'Facebook' && detectEuRegion == true) ||detectEuRegion == false"
               ></v-img>
             </v-col>
@@ -105,7 +105,7 @@
           />
         </v-col>
         <v-col cols="12 offset-1 py-0 px-0">
-          <p class="subs_text">{{$t("widgets.discText")}}</p>
+          <p class="subs_text widg_hint_txt">{{$t("widgets.discText")}}</p>
         </v-col>
         <v-row>
           <v-col :cols="$vuetify.breakpoint.width < 1550 ? '3 offset-1' : '2 offset-1'" class="par_spc py-0 mb-0 px-0">
@@ -999,19 +999,23 @@ export default {
 .parent_gat_message{
   margin-bottom: 36px !important;
 }
-
+.widg_hint_txt{
+  width: 89% !important;
+}
   .Eu_hint_NotAv{
     height: 34px !important;
     align-items: center !important;
     padding-bottom: 0px !important;
   }
+.cursor_pointer{
+  cursor: pointer;
+}
 /*}*/
 </style>
 
 <style>
-.cursor_pointer{
-  cursor: pointer;
-}
+
+
 .dis_code .v-messages__message{
   display: none;
 }
