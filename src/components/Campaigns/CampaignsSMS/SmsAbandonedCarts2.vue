@@ -336,7 +336,7 @@ export default {
       this.activeStateChng()
     },
     saveOrdrAbndCrt() {
-      if(this.ordrAbndCrtIntroMsg.includes('BusinessName') && this.ordrAbndCrtIntroMsg.includes('CheckOutLink')){
+      if(this.ordrAbndCrtIntroMsg.includes('{{BusinessName}}') && this.ordrAbndCrtIntroMsg.includes('{{CheckOutLink}}')){
         this.$store.dispatch("updIsLoading", true).then(() => {
           let obj = {
             active: this.ordrAbndCrtSwitchLive,
