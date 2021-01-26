@@ -77,8 +77,8 @@ export default {
     },
   },
   watch: {
-    startDate(newVAL) {
-      console.log(newVAL);
+    startDate() {
+      // console.log(newVAL);
     },
     items(newVal) {
       this.currentData = newVal;
@@ -107,9 +107,9 @@ export default {
       this.tableKey++;
     },
     subSelType(newVal) {
-      console.log("subSel" + newVal);
-      console.log(this.currentHeader);
-      console.log(this.items);
+      // console.log("subSel" + newVal);
+      // console.log(this.currentHeader);
+      // console.log(this.items);
       this.forceRerender();
       this.headers = this.currentHeader;
       this.currentData = this.items;

@@ -194,6 +194,7 @@
             hint="test"
             :persistent-hint="true"
             :counter="250"
+            maxlength="250"
             :rules="[v => (v || '' ).length <= 250 || 'Description must be 250 characters or less']"
           >
             <template slot="message"
@@ -350,8 +351,8 @@ export default {
       this.activeStateChng()
     },
     saveOrdrAbndCrt() {
-      if(this.ordrAbndCrtIntroMsg.includes('{{BusinessName}}') && this.ordrAbndCrtIntroMsg.includes('{{StorePhoneNumber}}')
-        && this.ordrAbndCrtIntroMsg.includes('STOP')) {
+      if(this.ordrAbndCrtIntroMsg.includes('{{BusinessName}}') && this.ordrAbndCrtIntroMsg.includes('{{CheckOutLink}}')
+        ) {
         this.$store.dispatch("updIsLoading", true).then(() => {
           let obj = {
             active: this.ordrAbndCrtSwitchLive,

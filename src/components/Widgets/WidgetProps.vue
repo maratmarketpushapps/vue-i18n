@@ -760,7 +760,6 @@ export default {
         this.coneData[1].id = 2
       }
       setTimeout(() => this.coneData.reverse(), 200);
-      // let a =
     },
     changesWidg(){
       if(this.statusWidgets.facebook.position == 1){
