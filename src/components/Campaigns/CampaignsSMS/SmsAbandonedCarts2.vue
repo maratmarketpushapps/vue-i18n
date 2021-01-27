@@ -101,7 +101,6 @@
             </v-row>
           </v-col>
         </v-row>
-
         <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
           <v-col cols="12" class="pl-0 ml-0  py-0 my-0">
             <span class="smsNightTimeHint">

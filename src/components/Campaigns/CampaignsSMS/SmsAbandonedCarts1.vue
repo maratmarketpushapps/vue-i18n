@@ -193,15 +193,20 @@
             rows="3"
             hint="test"
             :persistent-hint="true"
-            :counter="250"
+            counter
             maxlength="250"
-            :rules="[v => (v || '' ).length <= 250 || 'Description must be 250 characters or less']"
+            :rules=" [v => v.length <= 250 || 'Max 250 characters']"
           >
             <template slot="message"
               >
               <span>
                 <span>{{ $t("campaigns.smscarts1.discountTxt1") }}</span>
               </span>
+            </template>
+            <template v-slot:label >
+                  <span >{{$t('campaigns.smsordrrcpt.introMsg')}}</span>
+                  <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 0px;">10</span>
+                  <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 0px;">20</span>
             </template>
           </v-textarea>
         </v-row>
