@@ -180,7 +180,7 @@
           </v-col>
         </v-row>
 
-        <v-row class="pl-4 pr-3 mb-0" style="margin-top: 33px">
+        <v-row class="pl-4 pr-3 mb-0 sms_msg_textarea" style="margin-top: 33px">
           <span v-if="reqMandFields" style="color: red" class="ml-6">Mandatory fields to be present in the SMS Message </span>
           <span v-if="maxCharRule" style="color: red" class="ml-6">characters must be 250 or less </span>
           <v-textarea
@@ -205,8 +205,8 @@
             </template>
             <template v-slot:label >
                   <span >{{$t('campaigns.smsordrrcpt.introMsg')}}</span>
-                  <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 0px;">10</span>
-                  <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 0px;">20</span>
+                  <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 28px;">{{ordrAbndCrtIntroMsg.length}}/</span>
+                  <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 0px;">250</span>
             </template>
           </v-textarea>
         </v-row>
@@ -639,7 +639,10 @@ export default {
 }
 </style>
 <style>
-
+.sms_msg_textarea .v-label{
+  display: block !important;
+  width: 127% !important;
+}
 .sms_camp_parent  .v-text-field__details{
   height: 0px !important;
   min-height: 0px !important;

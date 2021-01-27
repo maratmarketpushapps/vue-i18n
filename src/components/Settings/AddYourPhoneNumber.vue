@@ -23,6 +23,7 @@
     >
       <v-col>
         <vue-tel-input-vuetify
+          type="number"
           v-model="phone"
           v-bind="bindProps"
           v-on:country-changed="countryChanged"
@@ -111,6 +112,7 @@ export default {
   },
   watch:{
     phone(newVal){
+
       function isLetter(c) {
         return c.toLowerCase() != c.toUpperCase();
       }

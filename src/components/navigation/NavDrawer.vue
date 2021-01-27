@@ -49,10 +49,11 @@
             ></v-list-item
           >
 
-          <v-menu right offset-x :open-on-hover="campingsMenu">
+          <v-menu right offset-x :open-on-hover="campingsMenu" >
             <template v-slot:activator="{ on, attrs }">
               <v-list-item
                 class="list-dim"
+                :class="campingsMenu == true || $router.currentRoute.fullPath == '/campaigns-facebook' || $router.currentRoute.fullPath == '/campaigns-sms' ? campaignsList : ''"
                 @mouseenter="setHover('Campaigns')"
                 @mouseover="campingsMenu = true"
                 @mouseleave="setHover('')"
@@ -65,7 +66,7 @@
 
             <v-col
               cols="12"
-              class="par_tool_tip px-0 pl-5 my-0 py-0"
+              class="par_tool_tip px-0 pl-5 my-0 py-0 "
               v-if="campingsMenu"
             >
               <v-col cols="12" class="tool_tip px-0 py-0 text-center">
@@ -120,8 +121,22 @@ export default {
       model: 1,
       preActive: "",
       campingsMenu: false,
+      campaignsList:'campaign_list'
     };
   },
+ watch:{
+   "$route":{
+     deep: true,
+     handler(){
+       if(this.$route.name != 'CampaignsSms' || this.$route.name != 'Campaigns'){
+         this.campaignsList = false;
+         this.campingsMenu = false;
+       }
+
+
+    }
+  }
+ },
   methods: {
     setSelected(id) {
       // console.log(event);
@@ -146,6 +161,10 @@ export default {
 </script>
 
 <style>
+/*.v-list-item--link:before {*/
+/*  background-color: transparent !important;*/
+/*}*/
+
 .navbar-div {
   top: 0;
   left: 0;
@@ -156,16 +175,19 @@ export default {
   align-content: center;
   padding: 20%;
 }
-
 .list-dim {
   align-content: center;
   height: 70px;
 }
-
+.campaign_list{
+  background-color:#323f4e !important;
+}
+/*.campaign_list:hover{*/
+/*  background-color:#323f4e !important;*/
+/*}*/
 .navicon {
   fill: #ffd85c;
 }
-
 .right-shadow {
   box-shadow: 2px 0 8px rgb(146, 143, 143);
 }
@@ -184,7 +206,7 @@ export default {
 .par_tool_tip {
   background-color: #e6e7e800 !important;
   width: 250px !important;
-  height: 100% !important;
+  height: 78px !important;
 }
 .tool_tip_span {
   font-size: 10px;
@@ -194,9 +216,10 @@ export default {
   color: #ffffff !important;
   caret-color: #ffffff !important;
   display: block;
+  background-color: #323f4e;
 }
 .tool_tip_span:hover {
-  background-color: #323f4e;
+  color: #5685e9 !important;
 }
 
 .arrow-right {

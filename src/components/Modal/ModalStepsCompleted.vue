@@ -4,7 +4,7 @@
       <v-dialog
         v-model="showStepsCompletedDialog"
         persistent
-        max-width="832px"
+        max-width="925px"
       >
         <v-row class="pa-0 ml-0">
           <v-col
@@ -17,7 +17,7 @@
           </v-col>
           <v-col cols="7" class="pa-0">
             <v-card class="modal_right_section">
-              <v-col cols="11" class="pl-0 py-0">
+              <v-col cols="12" class="pl-0 py-0">
                 <v-card-title class="pa-0">
                   <v-fab-transition >
                     <v-btn
@@ -32,7 +32,7 @@
                       </v-img>
                     </v-btn>
                   </v-fab-transition>
-                  <span class="headline headline_title"
+                  <span class="headline headline_title" id="fix_font"
                   >{{ $t("ModalStepsCompleted." + recoveryType + "Title") }}</span>
                 </v-card-title>
               </v-col>
@@ -138,7 +138,7 @@
                       {{ $t("ModalStepsCompleted.done") }}
                     </v-btn>
                   </v-col>
-                  <v-col v-else class="px-0 py-0">
+                  <v-col v-else class="px-0 ">
                     <v-btn
                       tile
                       height="24px"
@@ -256,13 +256,17 @@ export default {
 }
 </script>
 
+
 <style scoped>
+#fix_font{
+  font: normal normal normal 22px/28px Poppins !important;
+}
 .modal_right_section{
   padding: 52px 25px 38px 51.41px;
 }
 .headline_title{
   text-align: left;
-  font: normal normal normal 22px/28px Poppins;
+
   letter-spacing: 0px;
   color: #323F4F;
   opacity: 1;
