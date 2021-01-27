@@ -87,6 +87,7 @@ export default {
             user_id: this.$store.getters.getInstanceId,
             instance_id: this.$store.getters.getInstanceId,
             subscription_plan: this.$store.getters.getSubs.subscription_plan,
+            consumed_recovery_attempts: this.$store.getters.getSubs.consumed_recovery_attempts,
             website_url: this.$store.getters.getUrl,
           });
         });
