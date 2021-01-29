@@ -28,6 +28,7 @@
           v-bind="bindProps"
           v-on:country-changed="countryChanged"
           @onValidate="btnDisabled = $event.valid"
+          @keydown="checkValidNumber($event)"
           required
           :placeholder="$t('settingsPage.addYourPhoneNumber')"
           :label="$t('settingsPage.addYourPhoneNumber')"
@@ -88,6 +89,29 @@ export default {
         this.country = '+' + country.dialCode
       }
     },
+    checkValidNumber(event){
+      switch (event.code){
+        case 'Backspace':
+
+        break;
+        case 'Delete':
+
+        break;
+        case 'ArrowUp':
+
+        break;
+        case 'ArrowDown':
+
+        break;
+        case 'ArrowLeft':
+
+        break;
+        case 'ArrowRight':
+
+        break;
+        default: (/[a-zA-Z]/).test( event.key) == true ? event.preventDefault() : ''
+      }
+    },
     savePhoneNumber(){
       let obj = {
         business_phone_number:this.phone
@@ -112,6 +136,7 @@ export default {
   },
   watch:{
     phone(newVal){
+      // console.log(newVal)
 
       function isLetter(c) {
         return c.toLowerCase() != c.toUpperCase();

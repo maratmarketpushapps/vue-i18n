@@ -120,7 +120,6 @@ export default {
           this.buss_name == "" ? this.accInfo.business_name : this.buss_name,
         email: this.email == "" ? this.accInfo.email : this.email,
       };
-
       this.$store.dispatch("updIsLoading", true).then(() => {
         this.$store.dispatch("updAccInfo", obj).then((res) => {
           if (res === "success") {
@@ -128,6 +127,10 @@ export default {
               this.$store.dispatch("updIsLoading", false);
               if (response === "success") {
                 // console.log("Settings API refreshed");
+                this.first_name = this.$store.getters.getAccountInfo.first_name
+                this.last_name = this.$store.getters.getAccountInfo.last_name
+                this.buss_name = this.$store.getters.getAccountInfo.business_name
+                this.email = this.$store.getters.getAccountInfo.email
                 this.btnDisabled = true;
               } else {
                 // console.log("Settings API not refreshed");

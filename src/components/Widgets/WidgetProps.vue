@@ -12,16 +12,14 @@
           </v-row>
         </v-col>
 
-        <v-col :cols="$vuetify.breakpoint.width < 976 ? '2' : $vuetify.breakpoint.width < 1190 ? '3' :  '5'" class="">
-
+        <v-col :cols="$vuetify.breakpoint.width < 976 ? '2' : $vuetify.breakpoint.width < 1249 ? '3' :  '5'" class="">
           <v-switch v-model="live" inset
                     color="#006AFF"
                     @change="wdgtLive()">
           </v-switch>
-
         </v-col>
 
-        <v-col :cols="$vuetify.breakpoint.width < 976 ? '5' : $vuetify.breakpoint.width < 1190 ? '4' :'3'">
+        <v-col :cols="$vuetify.breakpoint.width < 976 ? '5' : $vuetify.breakpoint.width < 1249 ? '4' :'3'">
           <v-row
             class="my-0 mr-2"
             style="height:100%;width:100%"
@@ -39,12 +37,12 @@
               {{ $t("widgets.svBtn") }}
 
             </v-btn>
-            <span style="color: red" v-if="discCodeNotValid">Add a discount code.</span>
+
           </v-row>
         </v-col>
 
       </v-row>
-
+      <span style="color: red" v-if="discCodeNotValid" class="d-flex justify-end mr-9">  {{ $t("widgets.requiredValidCode") }}</span>
       <v-row class=" pt-4">
         <v-col cols="9 offset-1 d-flex align-center" class="py-0 px-0">
           <h3 class="subs_title gath_msg">{{ $t("widgets.GathMess") }}</h3>

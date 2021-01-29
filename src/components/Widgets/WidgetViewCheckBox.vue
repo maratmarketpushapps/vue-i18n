@@ -1,16 +1,16 @@
 <template>
   <v-container fluid style="height:790px">
-    <v-row justify="center" style="height:90%">
+    <v-row justify="center" style="height:710px !important;">
       <v-card
         tile
-        height="95%"
-        style="border-radius: 25px 25px 0 0; pr-0"
+        height="100%"
+        style="border-radius: 25px 25px 0 0;"
         width="95%"
       >
         <v-container
           class="fluid"
           :style="bcgColor"
-          style="height:20%; width:100%;"
+          style="height:123px; width:100%;"
         >
           <v-row style="width:100%; height:30%" justify="end" align="center" @click="toggleDialog()">
             <v-icon>
@@ -46,33 +46,37 @@
           </v-card>
         </v-overlay>
         <v-container
-          class="fluid pr-2 pl-6"
+          class="fluid pr-2 pl-6 py-0"
           :style="bdyColor"
-          style="height:80%; width:100%;"
+          style=" width:100%;"
           id="modalContainer"
         >
           <v-row
-            style="height:17%;width:102.5%"
+            style="height:100%;width:102.5%"
+            class="pt-10 pb-10"
             align="center"
             justify="center"
             @click="toggleDialog()"
           >
             <span :style="titleProps">{{ titleText }}</span>
           </v-row>
+
           <v-row
-            style="height:19%;width:102.5%"
-            align="center"
+            style="width:102.5%"
+            class="pb-8"
             justify="center"
+            align="center"
             v-if="wdgtTabcheck"
             @click="toggleDialog()"
           >
-            <v-col>
-              <p :style="msgProps">{{ msgText }}</p>
+            <v-col class="py-0">
+              <p :style="msgProps" class="mb-0">{{ msgText }}</p>
             </v-col>
           </v-row>
 
           <v-row
-            style="height:25%;width:102.5%"
+            style="width:102.5%"
+            class="pb-8"
             align="center"
             justify="center"
             v-if="!wdgtTabcheck"
@@ -84,7 +88,189 @@
           </v-row>
 
           <v-row
-            style="height:40%;width:95%; border: 1px solid #C9CACB; margin-left:1%"
+            style="width:95%; border: 1px solid #C9CACB; margin-left:1%"
+            align="center"
+            justify="center"
+            class="pa-0 my-0"
+            v-if="wdgtSMScheck && wdgtIsDsc"
+          >
+            <v-col cols="3" class="ma-0 pa-0" style="height:100%;width:100%">
+              <v-img
+                src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
+                class="ma-0 pa-0"
+                height="100%"
+                width="100%"
+                style="background:#4E5D6B"
+              >
+              </v-img>
+            </v-col>
+            <v-col cols="9" class="" style="height:100%" v-if="checkOptin">
+              <v-row style="width:100%;height:15%" class="px-8">
+                <span style="font-weight:bold;font-size:120%; color:#5686F6">
+                  {{ dscntCd }}
+                </span>
+              </v-row>
+
+              <v-row style="width:100%" class="px-8" align="center">
+                <span>
+                  {{ dscntInstr }}
+                </span>
+              </v-row>
+              <v-row style="width:100%" class="pl-8" align="start">
+                <v-btn :style="buttonProps" outlined @click="resetOptin">
+                  <span :style="btnTextProps">
+                    {{ $t("widgets.cpDiscCode") }}
+                  </span>
+                </v-btn>
+              </v-row>
+            </v-col>
+            <v-col cols="9" class=""  v-if="!checkOptin">
+              <v-row style="width:100%;height:5%" class="px-8">
+                <span style="font-weight:bold; font-size:90%">
+                  {{ dscntStmt }}
+                </span>
+              </v-row>
+              <v-row style="width:100%;" class="mt-2">
+                <v-row style="width:125%; height:80%" align="center">
+                  <v-col cols="1"> </v-col>
+                  <v-col cols="10">
+                    <vue-tel-input
+                      v-model="optinNum"
+                      dark
+                      style="width:100%;"
+                      placeholder=""
+                      :showDialCode="true"
+                      mode="international"
+                    >
+                    </vue-tel-input>
+                  </v-col>
+                </v-row>
+              </v-row>
+              <v-row style="width:100%" class="px-9" align="start">
+                <v-btn
+                  :style="buttonProps"
+                  outlined
+                  :key="widgetKey"
+                  @click="submitClickDisc"
+                >
+                  <span :style="btnTextProps">
+                    {{ buttonText }}
+                  </span>
+                </v-btn>
+              </v-row>
+            </v-col>
+          </v-row>
+
+          <v-row
+            style="width:102.5%"
+            align="center"
+            justify="center"
+            v-if="wdgtFBcheck && !wdgtIsDsc"
+            @click="toggleDialog()"
+          >
+            <v-checkbox input-value="true" disabled> </v-checkbox>
+            <span class="pr-2">
+              {{ $t("widgets.chckBxTxt1") }}
+            </span>
+            <v-icon color="#0084FF">
+              mdi-facebook-messenger
+            </v-icon>
+            <span class="pl-2">
+              {{ $t("widgets.chckBxTxt2") }}
+            </span>
+          </v-row>
+
+          <v-row
+            style="width:102.5%"
+            align="start"
+            justify="center"
+            v-if="wdgtFBcheck && !wdgtIsDsc"
+            @click="toggleDialog()"
+          >
+            <v-container
+              style="height: 26px; width: 26px; border-radius:100%; background-color: #E6E7E8"
+              class="mx-2"
+            ></v-container>
+
+            <span
+              style="font-size: 14px; height:100%; color: #B3B7BA"
+              class="pt-1 mr-2"
+            >{{ $t("widgets.fbUserName") }}</span
+            >
+
+            <a
+              style="font-size: 13px; height:100%; color: #B3B7BA; text-decoration:underline"
+              class="pt-1"
+            >{{ $t("widgets.wrngUsrTxt") }}</a
+            >
+          </v-row>
+
+          <v-row
+            style="width:102.5%"
+            align="end"
+            justify="center"
+            v-if="wdgtFBcheck && !wdgtIsDsc"
+            @click="toggleDialog()"
+          >
+            <v-btn :style="buttonProps" outlined :key="widgetKey">
+              <span :style="btnTextProps">
+                {{ buttonText }}
+              </span>
+            </v-btn>
+          </v-row>
+
+          <v-row
+            style="width:102.5%"
+            align="end"
+            justify="center"
+            v-if="wdgtSMScheck && !wdgtIsDsc"
+            @click="toggleDialog()"
+          >
+            <vue-tel-input
+              v-model="optinNum"
+              dark
+              style="width:70%;"
+              placeholder=""
+              :showDialCode="true"
+              mode="international"
+              disabled
+            >
+            </vue-tel-input>
+          </v-row>
+
+          <v-row
+            style="width:102.5%"
+            align="center"
+            justify="center"
+            v-if="wdgtSMScheck && !wdgtIsDsc"
+            @click="toggleDialog()"
+          >
+            <v-btn :style="buttonProps" outlined :key="widgetKey">
+              <span :style="btnTextProps">
+                {{ buttonText }}
+              </span>
+            </v-btn>
+          </v-row>
+
+          <v-row
+            style="width:102.5%"
+            align="center"
+            justify="center"
+            v-if="wdgtTabcheck"
+          >
+            <v-tabs v-model="tab" light centered color="transparent">
+              <v-tab light>
+                <component v-bind:is="getTabHeader1"></component>
+              </v-tab>
+              <v-divider vertical></v-divider>
+              <v-tab light>
+                <component v-bind:is="getTabHeader2"></component>
+              </v-tab>
+            </v-tabs>
+          </v-row>
+
+          <v-row
+            style="width:95%; border: 1px solid #C9CACB; margin-left:1%"
             align="center"
             justify="center"
             class="pa-0 my-0"
@@ -101,7 +287,7 @@
               </v-img>
             </v-col>
             <v-col cols="9" class="" style="height:100%" v-if="checkOptin">
-              <v-row style="width:100%;height:15%" class="px-8">
+              <v-row style="width:100%;" class="px-8">
                 <span style="font-weight:bold;font-size:120%; color:#5686F6">
                   {{ dscntCd }}
                 </span>
@@ -126,7 +312,7 @@
                   {{ dscntStmt }}
                 </span>
               </v-row>
-              <v-row style="width:100%;height:70% " class="mt-2">
+              <v-row style="width:100%;" class="mt-2">
                 <v-row style="width:125%; height:100%">
                   <v-col cols="1"> </v-col>
                   <v-col cols="10" style="height:100%">
@@ -154,7 +340,7 @@
                       <span> </span>
                     </v-row>
 
-                    <v-row style="width:100%;height:30%" align="start">
+                    <v-row style="width:100%;" align="start">
                       <v-container
                         style="height: 15px; width: 15px; border-radius:100%; background-color: #E6E7E8; transform: scale(0.8)"
                         class="mx-2"
@@ -163,16 +349,16 @@
                       <span
                         style="font-size: 70%; height:100%; color: #B3B7BA"
                         class="pt-1 mr-2"
-                        >{{ $t("widgets.fbUserName") }}</span
+                      >{{ $t("widgets.fbUserName") }}</span
                       >
 
                       <a
                         style="font-size: 70%; height:100%; color: #B3B7BA; text-decoration:underline"
                         class="pt-1"
-                        >{{ $t("widgets.wrngUsrTxt") }}</a
+                      >{{ $t("widgets.wrngUsrTxt") }}</a
                       >
                     </v-row>
-                    <v-row style="height:40%; width:100%"> </v-row>
+                    <v-row style=" width:100%"> </v-row>
                   </v-col>
                 </v-row>
               </v-row>
@@ -192,189 +378,7 @@
           </v-row>
 
           <v-row
-            style="height:40%;width:95%; border: 1px solid #C9CACB; margin-left:1%"
-            align="center"
-            justify="center"
-            class="pa-0 my-0"
-            v-if="wdgtSMScheck && wdgtIsDsc"
-          >
-            <v-col cols="3" class="ma-0 pa-0" style="height:100%;width:100%">
-              <v-img
-                src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
-                class="ma-0 pa-0"
-                height="100%"
-                width="100%"
-                style="background:#4E5D6B"
-              >
-              </v-img>
-            </v-col>
-            <v-col cols="9" class="" style="height:100%" v-if="checkOptin">
-              <v-row style="width:100%;height:15%" class="px-8">
-                <span style="font-weight:bold;font-size:120%; color:#5686F6">
-                  {{ dscntCd }}
-                </span>
-              </v-row>
-
-              <v-row style="width:100%;height:58%" class="px-8" align="center">
-                <span>
-                  {{ dscntInstr }}
-                </span>
-              </v-row>
-              <v-row style="width:100%" class="pl-8" align="start">
-                <v-btn :style="buttonProps" outlined @click="resetOptin">
-                  <span :style="btnTextProps">
-                    {{ $t("widgets.cpDiscCode") }}
-                  </span>
-                </v-btn>
-              </v-row>
-            </v-col>
-            <v-col cols="9" class="" style="height:100%" v-if="!checkOptin">
-              <v-row style="width:100%;height:5%" class="px-8">
-                <span style="font-weight:bold; font-size:90%">
-                  {{ dscntStmt }}
-                </span>
-              </v-row>
-              <v-row style="width:100%;height:70% " class="mt-2">
-                <v-row style="width:125%; height:80%" align="center">
-                  <v-col cols="1"> </v-col>
-                  <v-col cols="10">
-                    <vue-tel-input
-                      v-model="optinNum"
-                      dark
-                      style="width:100%;"
-                      placeholder=""
-                      :showDialCode="true"
-                      mode="international"
-                    >
-                    </vue-tel-input>
-                  </v-col>
-                </v-row>
-              </v-row>
-              <v-row style="width:100%; height:20%" class="px-9" align="start">
-                <v-btn
-                  :style="buttonProps"
-                  outlined
-                  :key="widgetKey"
-                  @click="submitClickDisc"
-                >
-                  <span :style="btnTextProps">
-                    {{ buttonText }}
-                  </span>
-                </v-btn>
-              </v-row>
-            </v-col>
-          </v-row>
-
-          <v-row
-            style="height:15%;width:102.5%"
-            align="center"
-            justify="center"
-            v-if="wdgtFBcheck && !wdgtIsDsc"
-            @click="toggleDialog()"
-          >
-            <v-checkbox input-value="true" disabled> </v-checkbox>
-            <span class="pr-2">
-              {{ $t("widgets.chckBxTxt1") }}
-            </span>
-            <v-icon color="#0084FF">
-              mdi-facebook-messenger
-            </v-icon>
-            <span class="pl-2">
-              {{ $t("widgets.chckBxTxt2") }}
-            </span>
-          </v-row>
-
-          <v-row
-            style="height:7%;width:102.5%"
-            align="start"
-            justify="center"
-            v-if="wdgtFBcheck && !wdgtIsDsc"
-            @click="toggleDialog()"
-          >
-            <v-container
-              style="height: 26px; width: 26px; border-radius:100%; background-color: #E6E7E8"
-              class="mx-2"
-            ></v-container>
-
-            <span
-              style="font-size: 14px; height:100%; color: #B3B7BA"
-              class="pt-1 mr-2"
-              >{{ $t("widgets.fbUserName") }}</span
-            >
-
-            <a
-              style="font-size: 13px; height:100%; color: #B3B7BA; text-decoration:underline"
-              class="pt-1"
-              >{{ $t("widgets.wrngUsrTxt") }}</a
-            >
-          </v-row>
-
-          <v-row
-            style="height:15%;width:102.5%"
-            align="end"
-            justify="center"
-            v-if="wdgtFBcheck && !wdgtIsDsc"
-            @click="toggleDialog()"
-          >
-            <v-btn :style="buttonProps" outlined :key="widgetKey">
-              <span :style="btnTextProps">
-                {{ buttonText }}
-              </span>
-            </v-btn>
-          </v-row>
-
-          <v-row
-            style="height:20%;width:102.5%"
-            align="end"
-            justify="center"
-            v-if="wdgtSMScheck && !wdgtIsDsc"
-            @click="toggleDialog()"
-          >
-            <vue-tel-input
-              v-model="optinNum"
-              dark
-              style="width:70%;"
-              placeholder=""
-              :showDialCode="true"
-              mode="international"
-              disabled
-            >
-            </vue-tel-input>
-          </v-row>
-
-          <v-row
-            style="height:20%;width:102.5%"
-            align="center"
-            justify="center"
-            v-if="wdgtSMScheck && !wdgtIsDsc"
-            @click="toggleDialog()"
-          >
-            <v-btn :style="buttonProps" outlined :key="widgetKey">
-              <span :style="btnTextProps">
-                {{ buttonText }}
-              </span>
-            </v-btn>
-          </v-row>
-
-          <v-row
-            style="height:15%;width:102.5%"
-            align="center"
-            justify="center"
-            v-if="wdgtTabcheck"
-          >
-            <v-tabs v-model="tab" light centered color="transparent">
-              <v-tab light>
-                <component v-bind:is="getTabHeader1"></component>
-              </v-tab>
-              <v-divider vertical></v-divider>
-              <v-tab light>
-                <component v-bind:is="getTabHeader2"></component>
-              </v-tab>
-            </v-tabs>
-          </v-row>
-
-          <v-row
-            style="height:25%;width:102.5%"
+            style="width:102.5%"
             align="start"
             justify="center"
             v-if="wdgtTabcheck && !wdgtIsDsc"
@@ -434,13 +438,13 @@
                   <span
                     style="font-size: 14px; height:100%; color: #B3B7BA"
                     class="pt-1 mr-2"
-                    >{{ $t("widgets.fbUserName") }}</span
+                  >{{ $t("widgets.fbUserName") }}</span
                   >
 
                   <a
                     style="font-size: 13px; height:100%; color: #B3B7BA; text-decoration:underline"
                     class="pt-1"
-                    >{{ $t("widgets.wrngUsrTxt") }}</a
+                  >{{ $t("widgets.wrngUsrTxt") }}</a
                   >
                 </v-row>
               </v-tab-item>
@@ -448,11 +452,12 @@
           </v-row>
 
           <v-row
-            style="height:40%;width:95%;  border: 1px solid #C9CACB; margin-left:1%"
+            style="width:95%;  border: 1px solid #C9CACB; margin-left:1%"
             align="center"
             justify="center"
             v-if="wdgtTabcheck && wdgtIsDsc"
             :key="'key2' + wdgtTabKey"
+            class="mt-4"
           >
             <v-col cols="3" class="ma-0 pa-0" style="height:100%;width:100%">
               <v-img
@@ -548,13 +553,13 @@
                           <span
                             style="font-size: 70%; height:100%; color: #B3B7BA"
                             class="pt-1 mr-2"
-                            >{{ $t("widgets.fbUserName") }}</span
+                          >{{ $t("widgets.fbUserName") }}</span
                           >
 
                           <a
                             style="font-size: 70%; height:100%; color: #B3B7BA; text-decoration:underline"
                             class="pt-1"
-                            >{{ $t("widgets.wrngUsrTxt") }}</a
+                          >{{ $t("widgets.wrngUsrTxt") }}</a
                           >
                         </v-row>
                         <v-row style="height:40%; width:100%"> </v-row>
@@ -579,12 +584,13 @@
           </v-row>
 
           <v-row
-            style="height:10%;width:102.5%"
+            style="width:102.5%"
             align="center"
             justify="center"
             v-if="wdgtTabcheck && !wdgtIsDsc"
             :key="'key3' + wdgtTabKey"
             @click="toggleDialog()"
+            class="mt-12"
           >
             <v-btn :style="buttonProps" outlined :key="widgetKey">
               <span :style="btnTextProps">
@@ -594,7 +600,8 @@
           </v-row>
 
           <v-row
-            style="height:10%;width:102.5%"
+            class="mt-6"
+            style="width:102.5%"
             align="center"
             justify="center"
             @click="toggleDialog()"
@@ -605,11 +612,10 @@
       </v-card>
     </v-row>
 
-    <v-row justify="center">
+    <v-row justify="center"  class="mt-8">
       <v-btn
         tile
         outlined
-        height="5vh"
         class="#4E5D6B--text"
         color="#4E5D6B"
         style="border-width:1px"
@@ -725,7 +731,7 @@ export default {
     },
     buttonProps() {
       let borderRad =
-        this.getWidgetsState.button_corners == "Round" ? "4px" : "0px";
+        this.getWidgetsState.button_corners == "Round" ? "8px" : "0px";
       let buttonObj = {
         "background-color": this.getWidgetsState.button_background,
         "border-color": this.getWidgetsState.button_border_color,

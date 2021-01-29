@@ -128,12 +128,10 @@ export default {
    "$route":{
      deep: true,
      handler(){
-       if(this.$route.name != 'CampaignsSms' || this.$route.name != 'Campaigns'){
-         this.campaignsList = false;
-         this.campingsMenu = false;
-       }
-
-
+       if(this.$route.name == 'CampaignsSms' || this.$route.name == 'Campaigns'){
+         console.log(this.$route.name == 'CampaignsSms')
+         this.campaignsList = 'campaign_list';   this.campingsMenu = true;
+       }else  this.campaignsList = false;   this.campingsMenu = false;
     }
   }
  },
@@ -180,7 +178,7 @@ export default {
   height: 70px;
 }
 .campaign_list{
-  background-color:#323f4e !important;
+  background-color:#323f4e91 !important;
 }
 /*.campaign_list:hover{*/
 /*  background-color:#323f4e !important;*/
