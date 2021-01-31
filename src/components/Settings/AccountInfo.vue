@@ -127,6 +127,11 @@ export default {
             this.$store.dispatch("setSettings").then((response) => {
               this.$store.dispatch("updIsLoading", false);
               if (response === "success") {
+                this.$intercom.update({
+                  email: this.email,
+                  name: this.first_name + " " + this.last_name,
+                  business_name: this.buss_name
+                });
                 // console.log("Settings API refreshed");
                 this.btnDisabled = true;
               } else {
