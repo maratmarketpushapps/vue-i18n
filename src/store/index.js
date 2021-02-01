@@ -189,7 +189,7 @@ export default new Vuex.Store({
     subscribers: {
       subType: "",
     },
-
+    cartIsReady:false,
     //Dashboard state
 
     dashVars: {
@@ -244,6 +244,9 @@ export default new Vuex.Store({
     },
   },
   getters: {
+    cartReady: (state) => {
+      return state.cartIsReady
+    },
     checkClicked: (state) => (id) => {
       return state.navState.currentSelected === id ? true : false;
     },
@@ -975,6 +978,9 @@ export default new Vuex.Store({
       state.widgetVars.subscribe_type = formVidgData.subscribe_type;
 
     },
+    Change_cartReady(state,status){
+      state.cartIsReady = status
+    },
     SET_WIDGET_info(state, itemVidg) {
       state.widgetVars.apply_discount_instruction =
         itemVidg.apply_discount_instruction;
@@ -985,7 +991,7 @@ export default new Vuex.Store({
   actions: {
     updateCartRecoveryModalShow({ commit }, obj) {
       return new Promise((resolve) => {
-        // console.log("updateCart :: " + JSON.stringify(obj));
+        // getStepsCompleted("updateCart :: " + JSON.stringify(obj));
         commit("UPDATE_CART_RECOVERY_MODAL_SHOW", obj);
         resolve("success");
       });
@@ -1598,11 +1604,13 @@ export default new Vuex.Store({
           .get(url, headers)
           .then((res) => {
             // console.log(JSON.stringify(res.data));
+            commit("Change_cartReady",true)
             commit(
               "SET_STEPS_COMPLETED_VALS",
               JSON.parse(JSON.stringify(res.data))
             );
             resolve("success");
+
           })
           .catch((error) => {
             reject(error);

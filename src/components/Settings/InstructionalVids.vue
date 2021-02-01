@@ -18,7 +18,7 @@
         </v-row>
         <v-row style="height:40% ;width:100%" align="center">
           <a
-            href="https://www.youtube.com/channel/UCOKGEwMeTDMkQr3cMXjmkEQ"
+            href="https://www.youtube.com/watch?v=OXfKnRDVET4"
             target="_blank"
             style="text-decoration:underline; color:#323F4F"
             >{{ $t("settingsPage.instVids.link") }}</a
@@ -39,7 +39,7 @@
         </v-row>
         <v-row style="height:40% ;width:100%" align="center">
           <a
-            href="https://youtu.be/8zSKMZKK2Rw"
+            href="https://www.youtube.com/watch?v=1yhnt_hHoc8"
             target="_blank"
             style="text-decoration:underline; color:#323F4F"
             >{{ $t("settingsPage.instVids.link") }}</a

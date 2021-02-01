@@ -174,6 +174,11 @@ export default {
       this.$store.dispatch("updIsLoading", true).then(() => {
         this.$store.dispatch("updAccInfo", obj).then((res) => {
           if (res === "success") {
+            this.$intercom.update({
+              email: this.email,
+              name: this.first_name + " " + this.last_name,
+              business_name: this.business_name
+            });
 
             this.$store.dispatch("setSettings").then((response) => {
               this.$store.dispatch("updIsLoading", false);
