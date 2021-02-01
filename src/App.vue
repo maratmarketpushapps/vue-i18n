@@ -82,15 +82,6 @@ export default {
     this.$store.dispatch("updateToken", this.$route.query.instance).then(() => {
       // console.log(resp);
       this.$store.dispatch("getGlobal").then(() => {
-        this.$store.dispatch("getSubs").then(() => {
-          this.$intercom.boot({
-            user_id: this.$store.getters.getInstanceId,
-            instance_id: this.$store.getters.getInstanceId,
-            subscription_plan: this.$store.getters.getSubs.subscription_plan,
-            consumed_recovery_attempts: this.$store.getters.getSubs.consumed_recovery_attempts,
-            website_url: this.$store.getters.getUrl,
-          });
-        });
 
         // console.log(response);
         this.$i18n.locale = this.$store.getters.getLocale;
@@ -98,7 +89,19 @@ export default {
         this.$store.dispatch("getMsg").then(() => {
           // console.log(response);
           this.$store.dispatch("getSettings").then(() => {
+            this.$store.dispatch("getSubs").then(() => {
+              this.$intercom.boot({
+                user_id: this.$store.getters.getInstanceId,
+                instance_id: this.$store.getters.getInstanceId,
+                subscription_plan: this.$store.getters.getSubs.subscription_plan,
+                consumed_recovery_attempts: this.$store.getters.getSubs.consumed_recovery_attempts,
+                website_url: this.$store.getters.getUrl,
+                email: this.$store.getters.getSettingsState.email,
+              });
+            });
+
             this.$store.dispatch("getWidgets").then(() => {
+
 
             });
           });

@@ -10,9 +10,10 @@
   >
     <v-row style="height:100% !important" class="pb-0 mb-0 py-0">
       <v-col :cols="this.$vuetify.breakpoint.width > 1366 ? '3' : this.$vuetify.breakpoint.width < 1120  ? '2' : '3'"></v-col>
-      <v-col class="py-0 d-flex hgt_fix justify-end align-center" :cols=" this.$vuetify.breakpoint.width < 950 ? '7' : ''">
-        <CartRecoveryStatus recoveryType="sms"  />
-        <CartRecoveryStatus recoveryType="fb" />
+      <v-col class="py-0 d-flex hgt_fix justify-end align-center"
+             :cols=" this.$vuetify.breakpoint.width < 950 ? '7' : ''">
+        <CartRecoveryStatus recoveryType="sms" v-show="getstatusCartReady == true" />
+        <CartRecoveryStatus recoveryType="fb" v-show="getstatusCartReady == true" />
       </v-col>
       <v-col :cols="showUpgrade ? 1 : this.$vuetify.breakpoint.width < 1120 && showUpgrade ? '2' : 3">
         <ModalStepsCompleted
@@ -66,10 +67,8 @@ export default {
       step: 1,
       showAlert: true,
       playImg: require("@/assets/img/icon-play.png"),
+      ab:false,
     };
-  },
-  mounted() {
-    console.log(this.$vuetify.breakpoint.width)
   },
   methods: {
     setStep(step) {
@@ -102,6 +101,9 @@ export default {
   },
   computed: {
     ...mapGetters(["getInstanceId"]),
+    getstatusCartReady(){
+      return this.$store.getters.cartReady
+    },
     step2Complete() {
       return this.$store.getters.getStep2Complete;
     },
