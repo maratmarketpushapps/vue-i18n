@@ -225,7 +225,7 @@ export default {
     },
     getYoutubeLink: function() {
       return this.recoveryType == 'sms' ? 'https://www.youtube.com/watch?v=OXfKnRDVET4' :
-        'https://www.youtube.com/watch?v=OXfKnRDVET4';
+        'https://www.youtube.com/watch?v=1yhnt_hHoc8';
     },
     getIsGdprAffected: function() {
       return this.$store.getters.getWidgetsState.is_gdpr_affected &&
