@@ -177,7 +177,7 @@
           </v-col>
         </v-row>
 
-        <v-row class="pl-4 pr-3 mb-0" style="margin-top: 33px">
+        <v-row class="pl-4 pr-3 mb-0 sms_msg_textarea" style="margin-top: 33px">
           <span v-if="reqMandFields" style="color: red" class="ml-6">Mandatory fields to be present in the SMS Message </span>
           <v-textarea
             :label="$t('campaigns.smsordrrcpt.introMsg')"
@@ -190,17 +190,20 @@
             rows="3"
             hint="test"
             :persistent-hint="true"
+            counter
+            maxlength="250"
+            :rules=" [v => v.length <= 250 || 'Max 250 characters']"
           >
             <template slot="message"
             >
               <span>
                 <span>{{ $t("campaigns.smscarts1.discountTxt1") }}</span>
-                <!--                <b>-->
-                <!--                  {{ $t("campaigns.carts1.discountTxt2") }}-->
-                <!--                </b>-->
-
-                <!--                <span >{{ $t("campaigns.carts1.discountTxt3") }}</span>-->
               </span>
+            </template>
+            <template v-slot:label >
+              <span >{{$t('campaigns.smsordrrcpt.introMsg')}}</span>
+              <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 28px;">{{ordrAbndCrtIntroMsg.length}}/</span>
+              <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 0px;">250</span>
             </template>
           </v-textarea>
         </v-row>
@@ -611,4 +614,9 @@ export default {
   height: 0px !important;
   min-height: 0px !important;
 }
+.sms_msg_textarea .v-label{
+  display: block !important;
+  width: 127% !important;
+}
+
 </style>

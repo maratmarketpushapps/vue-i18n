@@ -112,13 +112,10 @@ export default {
     },
     updAccInfo() {
       let obj = {
-        first_name:
-          this.first_name == "" ? this.accInfo.first_name : this.first_name,
-        last_name:
-          this.last_name == "" ? this.accInfo.last_name : this.last_name,
-        business_name:
-          this.buss_name == "" ? this.accInfo.business_name : this.buss_name,
-        email: this.email == "" ? this.accInfo.email : this.email,
+        first_name:this.first_name,
+        last_name:this.last_name,
+        business_name:this.buss_name,
+        email:this.email,
       };
       this.$store.dispatch("updIsLoading", true).then(() => {
         this.$store.dispatch("updAccInfo", obj).then((res) => {

@@ -29,7 +29,7 @@
         <v-list-item-group mandatory dark>
           <v-list-item
             class="list-dim "
-            @click="setSelected('Dashboard')"
+            @click="setSelected('Dashboard'),campingsMenu = false,campaignsList = false"
             @mouseenter="setHover('Dashboard')"
             @mouseleave="setHover('')"
             to="/dashboard"
@@ -40,8 +40,7 @@
 
           <v-list-item
             class="list-dim "
-            @click="setSelected('Widgets')"
-            @mouseenter="setHover('Widgets')"
+            @mouseenter="setHover('Widgets'),campingsMenu = false,campaignsList = false"
             @mouseleave="setHover('')"
             to="/widgets"
             ><v-icon class="navicon_scale"
@@ -49,18 +48,18 @@
             ></v-list-item
           >
 
-          <v-menu right offset-x :open-on-hover="campingsMenu" >
-            <template v-slot:activator="{ on, attrs }">
+          <v-menu right offset-x  :open-on-hover="campingsMenu">
+            <template v-slot:activator="{ on, attrs }" >
               <v-list-item
                 class="list-dim"
-                :class="campingsMenu == true || $router.currentRoute.fullPath == '/campaigns-facebook' || $router.currentRoute.fullPath == '/campaigns-sms' ? campaignsList : ''"
+                :class="campingsMenu == true || $router.currentRoute.fullPath == '/campaigns-facebook' || $router.currentRoute.fullPath == '/campaigns-sms' ? campaignsList : 'none_style_active'"
                 @mouseenter="setHover('Campaigns')"
                 @mouseover="campingsMenu = true"
                 @mouseleave="setHover('')"
                 v-bind="attrs"
                 v-on="on"
               >
-                <v-icon class="navicon_scale">$vuetify.icons.campaigns </v-icon>
+                <v-icon class="navicon_scale" >$vuetify.icons.campaigns </v-icon>
               </v-list-item>
             </template>
 
@@ -83,7 +82,7 @@
 
           <v-list-item
             class="list-dim"
-            @click="setSelected('AbandonedCarts')"
+            @click="setSelected('AbandonedCarts'),campingsMenu = false,campaignsList = false"
             @mouseenter="setHover('AbandonedCarts')"
             @mouseleave="setHover('')"
             to="/abandonedcarts"
@@ -94,7 +93,7 @@
 
           <v-list-item
             class="list-dim"
-            @click="setSelected('Settings')"
+            @click="setSelected('Settings'),campingsMenu = false,campaignsList = false"
             @mouseenter="setHover('Settings')"
             @mouseleave="setHover('')"
             to="/settings"
@@ -121,17 +120,18 @@ export default {
       model: 1,
       preActive: "",
       campingsMenu: false,
-      campaignsList:'campaign_list'
+      campaignsList:'campaign_list',
+      noneStyleActive:false,
     };
   },
  watch:{
    "$route":{
      deep: true,
      handler(){
-       if(this.$route.name == 'CampaignsSms' || this.$route.name == 'Campaigns'){
-         console.log(this.$route.name == 'CampaignsSms')
-         this.campaignsList = 'campaign_list';   this.campingsMenu = true;
-       }else  this.campaignsList = false;   this.campingsMenu = false;
+       // if(this.$route.name == 'CampaignsSms' || this.$route.name == 'Campaigns'){
+       //   console.log(this.$route.name == 'CampaignsSms')
+       //   this.campaignsList = 'campaign_list';   this.campingsMenu = true;
+       // }else  this.campaignsList = false;   this.campingsMenu = false;
     }
   }
  },
@@ -158,6 +158,9 @@ export default {
 };
 </script>
 
+<style scoped>
+
+</style>
 <style>
 /*.v-list-item--link:before {*/
 /*  background-color: transparent !important;*/
@@ -231,7 +234,7 @@ export default {
   left: -14px;
 }
 
-.v-menu__content {
+ .v-menu__content {
   box-shadow: none !important;
   border-radius: 0px !important;
   margin-top: 12px !important;
@@ -240,6 +243,9 @@ export default {
 .hgfix {
   height: 80px !important;
 }
+.none_style_active>.v-list-item--link::before {
+   background-color:transparent !important;
+ }
 @media (min-width: 1400px) {
   .navicon_scale {
     transform: scale(0.9);
@@ -249,4 +255,20 @@ export default {
     height: 90px;
   }
 }
+@media only screen and (max-width: 1399px) {
+  .par_tool_tip {
+    margin-top: 0px !important;
+    height: 70px !important;
+  }
+ .v-menu__content {
+
+    margin-top: 0px !important;
+    cursor: pointer;
+  }
+  .par_tool_tip a{
+    padding-top: 10px !important;
+    padding-bottom:10px !important;
+  }
+}
+
 </style>

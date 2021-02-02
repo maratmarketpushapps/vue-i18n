@@ -1,5 +1,5 @@
 <template>
-  <v-card tile height="100%" width="97%" class=" pt-3 px-7 font_dims">
+  <v-card tile height="100%" width="97%" class=" pt-3 px-7 phone_number_section font_dims">
     <v-row>
       <v-col cols="6">
         <h3>{{ $t('settingsPage.titleCard') }}</h3>
@@ -32,6 +32,7 @@
           required
           :placeholder="$t('settingsPage.addYourPhoneNumber')"
           :label="$t('settingsPage.addYourPhoneNumber')"
+          class="phone_number_section"
         ></vue-tel-input-vuetify>
         <small class="hintTelNumber">{{$t('settingsPage.hintTelNumber')}}</small>
         <v-row justify="center" style="padding-top:3%">
@@ -155,7 +156,14 @@ export default {
 };
 </script>
 
+
+<style lang="css">
+.v-menu__content{
+  margin-top: 23px !important;
+}
+</style>
 <style scoped>
+
 .btn_save{
   padding: 9px 68px !important;
   text-align: center;

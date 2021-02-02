@@ -46,7 +46,6 @@
                       {{ $t("ModalStepsCompleted.stepIndex1") }}
                       {{ $t("ModalStepsCompleted." + recoveryType + "Instruction1") }}
                     </router-link>
-
                   </v-col>
                   <v-col v-if="getStep1Done" class="px-0" >
                     <v-btn
@@ -154,16 +153,7 @@
                     </v-btn>
                   </v-col>
                 </v-row>
-
-
-
                 <v-row>
-<!--                  <a-->
-<!--                    :href="getYoutubeLink"-->
-<!--                    target="_blank"-->
-<!--                    style="text-decoration:underline; color:#323F4F"-->
-<!--                    >{{ $t("ModalStepsCompleted.watchVideoButton") }}</a-->
-<!--                  >-->
                   <v-col class="py-0">
                     <span  class="step_hint_txt">
                       {{ $t("ModalStepsCompleted.stillHaveQuestions") }}
@@ -182,13 +172,9 @@
                       {{ $t("ModalStepsCompleted.watchVideoButton") }}
                     </v-btn>
                   </v-col>
-
                 </v-row>
-
               </v-card-text>
-
               <v-col class="px-0">
-
               </v-col>
             </v-card>
           </v-col>
@@ -231,7 +217,6 @@ export default {
       return this.$store.getters.getWidgetsState.is_gdpr_affected &&
         this.recoveryType == 'fb';
     }
-
   },
   methods: {
     closeStepsCompletedModal: function() {
@@ -242,7 +227,6 @@ export default {
       this.$store.dispatch("updateCartRecoveryModalShow", obj);
     },
     toYoutube(){
-
       let obj = {
         type: this.recoveryType,
         status: false
@@ -251,8 +235,6 @@ export default {
       window.open(this.getYoutubeLink)
     }
   },
-  mounted() {
-  }
 }
 </script>
 
@@ -263,6 +245,7 @@ export default {
 }
 .modal_right_section{
   padding: 52px 25px 38px 51.41px;
+  height: 100%;
 }
 .headline_title{
   text-align: left;
