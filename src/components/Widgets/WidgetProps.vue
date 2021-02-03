@@ -140,13 +140,13 @@
                     :label="$t('widgets.discState')"
                     class="mb-0"
                     :value="discount_statement"
-                    maxlength="25"
-                    :rules=" [v => v.length <= 25 || 'Max 25 characters']"
+                    maxlength="40"
+                    :rules=" [v => v.length <= 40 || 'Max 40 characters']"
                   >
                     <template v-slot:label v-if="discount_statement_focus" >
                       <span >{{$t('widgets.discState')}}</span>
                       <span v-if="discount_statement.length > 4" style="position: absolute;right: 18px;">{{discount_statement.length}}/</span>
-                      <span v-if="discount_statement.length > 4" style="position: absolute;right: 0px;">25</span>
+                      <span v-if="discount_statement.length > 4" style="position: absolute;right: 0px;">40</span>
                     </template>
                   </v-text-field>
                 </v-col>
@@ -764,6 +764,7 @@ export default {
       ttlText_focus:false,
       msgTxt_focus:false,
       btnTxt_focus:false,
+      cnclTxt_focus:false,
     };
   },
   methods: {

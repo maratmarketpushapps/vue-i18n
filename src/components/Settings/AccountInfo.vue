@@ -54,6 +54,7 @@
           >
           </v-text-field>
           <v-text-field
+           :validate-on-blur="true"
             :label="$t('settingsPage.accInfoCard.label3')"
             v-model="email"
             @change="detectChange"
@@ -63,6 +64,7 @@
             class="pt-2 pb-1"
             :rules="emailRules"
           >
+<!--            :rules="emailRules"-->
           </v-text-field>
         </v-form>
         <v-row justify="center" style="padding-top:3%">

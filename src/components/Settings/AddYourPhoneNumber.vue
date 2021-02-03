@@ -22,7 +22,7 @@
       class="pt-0 mt-0 pr-0"
     >
       <v-col>
-        <vue-tel-input-vuetify
+         <vue-tel-input-vuetify
           type="number"
           v-model="phone"
           v-bind="bindProps"
@@ -32,9 +32,13 @@
           required
           :placeholder="$t('settingsPage.addYourPhoneNumber')"
           :label="$t('settingsPage.addYourPhoneNumber')"
+          :hint="$t('settingsPage.hintTelNumber')"
           class="phone_number_section"
-        ></vue-tel-input-vuetify>
-        <small class="hintTelNumber">{{$t('settingsPage.hintTelNumber')}}</small>
+        >
+         </vue-tel-input-vuetify>
+<!--        <v-col class="px-0 py-0" style="z-index: 99">-->
+<!--          <small class="hintTelNumber" style="z-index: 99">{{$t('settingsPage.hintTelNumber')}}</small>-->
+<!--        </v-col>-->
         <v-row justify="center" style="padding-top:3%">
           <v-btn
             :disabled="!btnDisabled"
@@ -159,7 +163,7 @@ export default {
 
 <style lang="css">
 .v-menu__content{
-  margin-top: 23px !important;
+  /*margin-top: 23px !important;*/
 }
 </style>
 <style scoped>

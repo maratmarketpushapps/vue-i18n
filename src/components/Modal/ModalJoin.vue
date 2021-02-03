@@ -73,7 +73,7 @@
                       @input="detectChange"
                       v-model="business_name"
                       :label="$t('ModalJoin.BussinesName')"
-                      class="image_modal_text_color"
+                      class="image_modal_text_color pt-0"
 
                     ></v-text-field>
                   </v-col>
@@ -83,7 +83,7 @@
                       @input="detectChange"
                       v-model="email"
                       :label="$t('ModalJoin.Email')"
-                      class="image_modal_text_color"
+                      class="image_modal_text_color pt-0"
                       :rules="emailRules "
                     ></v-text-field>
 

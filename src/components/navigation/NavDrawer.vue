@@ -48,10 +48,11 @@
             ></v-list-item
           >
 
-          <v-menu right offset-x  :open-on-hover="campingsMenu">
+          <v-menu right offset-x  :open-on-hover="campingsMenu" :menu-props="{ 'margin-top': '0px !important'}">
             <template v-slot:activator="{ on, attrs }" >
               <v-list-item
                 class="list-dim"
+                to="/campaigns-sms"
                 :class="campingsMenu == true || $router.currentRoute.fullPath == '/campaigns-facebook' || $router.currentRoute.fullPath == '/campaigns-sms' ? campaignsList : 'none_style_active'"
                 @mouseenter="setHover('Campaigns')"
                 @mouseover="campingsMenu = true"
@@ -128,10 +129,10 @@ export default {
    "$route":{
      deep: true,
      handler(){
-       // if(this.$route.name == 'CampaignsSms' || this.$route.name == 'Campaigns'){
-       //   console.log(this.$route.name == 'CampaignsSms')
-       //   this.campaignsList = 'campaign_list';   this.campingsMenu = true;
-       // }else  this.campaignsList = false;   this.campingsMenu = false;
+       if(this.$route.name == 'CampaignsSms' || this.$route.name == 'Campaigns'){
+         console.log(this.$route.name == 'CampaignsSms')
+         this.campaignsList = 'campaign_list';   this.campingsMenu = true;
+       }else  this.campaignsList = false;   this.campingsMenu = false;
     }
   }
  },
