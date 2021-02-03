@@ -148,7 +148,7 @@ export default {
 <style scoped>
 .pos_sticky{
   position: sticky;
-  top: 74px;
+  top: -130px;
 }
 .popup_wdg_card{
   margin-left: 6% !important;

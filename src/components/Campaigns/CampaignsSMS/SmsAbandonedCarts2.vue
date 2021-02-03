@@ -16,7 +16,7 @@
             {{ $t("campaigns.sentAfther")}} {{sent_after}}
           </span>
         </v-row>
-        <v-row style="height: 24%;width: 100%" justify="start" align="center" class="pl-6" :class="!cart1 ? 'pb-12' :''">
+        <v-row style="height: 24%;width: 100%" justify="start" align="center" class="pl-6 pb-12">
           <span class="msgCountUnder">
             {{ $t("campaigns.msgCount") }}:   {{ getOrdrAbndCrtMsgCnt }}
           </span>

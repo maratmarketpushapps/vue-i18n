@@ -1,91 +1,21 @@
 <template>
   <v-card tile height="auto" class="pl-0 pt-3 pr-0 font_dims">
-<!--    <v-row style="height:14%" class="pl-6 " align="center">-->
-<!--      <v-col cols="4">-->
-<!--        <v-row-->
-<!--          class="pl-6 title_message_fb"-->
-<!--          style="height: 50%; width:100%"-->
-<!--          align="center"-->
-<!--          justify="start"-->
-<!--        >-->
-<!--          {{ $t("campaigns.carts1.headerTxt") }}-->
-<!--        </v-row>-->
-<!--        <v-row style="height: 40%; width: 100%" justify="start" align="end" class="pl-6 mt-2 ">-->
-<!--          <span>-->
-<!--               {{ $t("campaigns.sentAfther")}} {{sent_after}}-->
-<!--          </span>-->
-<!--        </v-row>-->
-<!--      </v-col>-->
-<!--      <v-col cols="3" class="px-0">-->
-<!--        <v-row style="height: 50%; width: 100%" justify="center" align="start">-->
-<!--          <span class="msgCount">-->
-<!--            {{ getOrdrAbndCrtMsgCnt }}-->
-<!--          </span>-->
-<!--        </v-row>-->
-<!--        <v-row style="height: 40%; width: 100%" justify="center" align="end"  class="mt-2 " :class="$vuetify.breakpoint.width > 1000 ? 'pr-5' : ''">-->
-<!--          <span>-->
-<!--            {{ $t("campaigns.msgCount") }}-->
-<!--          </span>-->
-<!--        </v-row>-->
-<!--      </v-col>-->
-<!--      <v-col cols="3" class="pr-0" >-->
-<!--        <v-row style="width: 100%" align="center" :class="cart1Edit ? 'justify-center' : 'justify-center'">-->
-<!--          <v-btn-->
-<!--            tile-->
-<!--            height="35px"-->
-<!--            class="font_dims  btn_save"-->
-<!--            :class="$vuetify.breakpoint.width  < 1350 && $vuetify.breakpoint.width  > 1249 ? 'px-5' : $vuetify.breakpoint.width < 1250-->
-<!--            ? 'px-2' : $vuetify.breakpoint.width < 1100 ? 'px-0' : 'px-10 pad_resp'"-->
-<!--            :disabled="svBtnDsbldOrdrAbndCrt"-->
-<!--            style="font-size:100%; text-transform:none;"-->
-<!--            v-if="cart1Edit"-->
-<!--            @click="saveOrdrAbndCrt()"-->
-<!--            outlined-->
-<!--          >-->
-<!--            {{ $t("widgets.svBtn") }}-->
-<!--          </v-btn>-->
-<!--          <v-btn icon v-if="!cart1Edit" @click="editCart1" >-->
-<!--            <iconEdit  />-->
-<!--          </v-btn>-->
-<!--        </v-row>-->
-<!--        <v-row justify="center" style="width: 100%" >-->
-<!--          <span-->
-<!--            v-if="!cart1Edit"-->
-<!--            @click="editCart1"-->
-<!--            style="font-size:85%; cursor: pointer;"-->
-<!--          >{{ $t("campaigns.carts1.iconTxt") }}</span-->
-<!--          >-->
-<!--        </v-row>-->
-<!--      </v-col>-->
-<!--      <v-col class="px-0 d-flex " cols="2" :class="$vuetify.breakpoint.width < 1350 ? 'justify-start' : 'justify-center'">-->
-<!--        <v-switch-->
-<!--          v-model="ordrAbndCrtSwitchLive"-->
-<!--          color="#006AFF"-->
-<!--          :disabled="swtchDisabled"-->
-<!--          @change="activeStateChng()"-->
-<!--          inset-->
-<!--        >-->
-<!--        </v-switch>-->
-<!--      </v-col>-->
-<!--    </v-row>-->
-    <v-row class="pl-6 ">
-      <v-col :cols="$vuetify.breakpoint.width > 1510 ? 5 : 6" class="pr-0">
+    <v-row class="pl-6">
+      <v-col :cols="$vuetify.breakpoint.width > 1510 ? 5 : 6" class="pr-0 pb-0">
         <v-row
           class="pl-6 "
           style="height:33%; width:100%;"
           align="center"
           justify="start"
         >
-          <h3 class="title_top_size">
-            {{ $t("campaigns.carts1.headerTxt") }}
-          </h3>
+          <h3 class="title_top_size"> {{ $t("campaigns.carts1.headerTxt") }}</h3>
         </v-row>
-        <v-row style="height: 33%; width: 100%" justify="start" align="end" class="pl-6 mt-2">
+        <v-row style="height: 19%; width: 100%" justify="start" align="center" class="pl-6 pt-0">
           <span>
-          {{ $t("campaigns.sentAfther")}} {{sent_after}}
+              {{ $t("campaigns.sentAfther")}} {{sent_after}}
           </span>
         </v-row>
-        <v-row style="height: 34%;width: 100%" justify="start" align="end" class="pl-6 mt-2" :class="!cart1 ? 'pb-12' :''">
+        <v-row style="height: 24%;width: 100%" justify="start" align="center" class="pl-6 pt-0 pb-12" >
           <span class="msgCountUnder">
             {{ $t("campaigns.msgCount") }}:   {{ getOrdrAbndCrtMsgCnt }}
           </span>
@@ -98,7 +28,7 @@
           color="#006AFF"
           :disabled="swtchDisabled"
           @change="activeStateChng()"
-          class="ma-0 pt-0"
+          class="ma-0 "
           inset
         >
         </v-switch>
@@ -757,6 +687,7 @@ export default {
   letter-spacing: 0px;
   color: #4E5D6B;
   opacity: 1;
+  border:2px solid #4E5D6B;
 }
 .tab-props {
   color: transparent;
