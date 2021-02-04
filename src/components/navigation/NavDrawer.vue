@@ -53,7 +53,6 @@
             <template v-slot:activator="{ on, attrs }" >
               <v-list-item
                 class="list-dim campaigns_section"
-                @click="noneStyleActive = true,eventName($event) "
                 :class="campingsMenu == true || $router.currentRoute.fullPath == '/campaigns-facebook'
                 || $router.currentRoute.fullPath == '/campaigns-sms' ? campaignsList : 'none_style_active'"
                 @mouseenter="setHover('Campaigns')"
@@ -63,7 +62,7 @@
                 v-on="on"
 
               >
-                <v-icon class="navicon_scale"  @click="eventName($event)">$vuetify.icons.campaigns </v-icon>
+                <v-icon class="navicon_scale"  >$vuetify.icons.campaigns </v-icon>
               </v-list-item>
             </template>
 
@@ -152,13 +151,7 @@ export default {
     setHover(id) {
         this.$store.dispatch("updateHover", id);
     },
-    eventName: function (event) {
-      var ele = event.target;
-      console.log(ele);
-      // ele.style.color = 'rgb(204, 204, 204)';
-      ele.style.cursor = 'initial';
-      ele.style.background = 'red !important'
-    },
+
   },
   computed: {
     ...mapActions(["updateClick"]),
