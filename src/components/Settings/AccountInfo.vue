@@ -54,6 +54,7 @@
           >
           </v-text-field>
           <v-text-field
+           :validate-on-blur="true"
             :label="$t('settingsPage.accInfoCard.label3')"
             v-model="email"
             @change="detectChange"
@@ -63,6 +64,7 @@
             class="pt-2 pb-1"
             :rules="emailRules"
           >
+<!--            :rules="emailRules"-->
           </v-text-field>
         </v-form>
         <v-row justify="center" style="padding-top:3%">
@@ -112,15 +114,11 @@ export default {
     },
     updAccInfo() {
       let obj = {
-        first_name:
-          this.first_name == "" ? this.accInfo.first_name : this.first_name,
-        last_name:
-          this.last_name == "" ? this.accInfo.last_name : this.last_name,
-        business_name:
-          this.buss_name == "" ? this.accInfo.business_name : this.buss_name,
-        email: this.email == "" ? this.accInfo.email : this.email,
+        first_name:this.first_name,
+        last_name:this.last_name,
+        business_name:this.buss_name,
+        email:this.email,
       };
-
       this.$store.dispatch("updIsLoading", true).then(() => {
         this.$store.dispatch("updAccInfo", obj).then((res) => {
           if (res === "success") {
@@ -133,6 +131,10 @@ export default {
                   business_name: this.buss_name
                 });
                 // console.log("Settings API refreshed");
+                this.first_name = this.$store.getters.getAccountInfo.first_name
+                this.last_name = this.$store.getters.getAccountInfo.last_name
+                this.buss_name = this.$store.getters.getAccountInfo.business_name
+                this.email = this.$store.getters.getAccountInfo.email
                 this.btnDisabled = true;
               } else {
                 // console.log("Settings API not refreshed");

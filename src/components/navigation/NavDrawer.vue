@@ -29,7 +29,7 @@
         <v-list-item-group mandatory dark>
           <v-list-item
             class="list-dim "
-            @click="setSelected('Dashboard')"
+            @click="setSelected('Dashboard'),campingsMenu = false,campaignsList = false"
             @mouseenter="setHover('Dashboard')"
             @mouseleave="setHover('')"
             to="/dashboard"
@@ -40,8 +40,8 @@
 
           <v-list-item
             class="list-dim "
-            @click="setSelected('Widgets')"
-            @mouseenter="setHover('Widgets')"
+            @click="setSelected('Widgets'),campingsMenu = false,campaignsList = false"
+            @mouseenter="setHover('Widgets'),campingsMenu = false,campaignsList = false"
             @mouseleave="setHover('')"
             to="/widgets"
             ><v-icon class="navicon_scale"
@@ -49,26 +49,29 @@
             ></v-list-item
           >
 
-          <v-menu right offset-x :open-on-hover="campingsMenu">
-            <template v-slot:activator="{ on, attrs }">
+          <v-menu right offset-x  :open-on-hover="campingsMenu" :menu-props="{ 'margin-top': '0px !important'}">
+            <template v-slot:activator="{ on, attrs }" >
               <v-list-item
-                class="list-dim"
+                class="list-dim campaigns_section"
+                :class="campingsMenu == true || $router.currentRoute.fullPath == '/campaigns-facebook'
+                || $router.currentRoute.fullPath == '/campaigns-sms' ? campaignsList : 'none_style_active'"
                 @mouseenter="setHover('Campaigns')"
                 @mouseover="campingsMenu = true"
                 @mouseleave="setHover('')"
                 v-bind="attrs"
                 v-on="on"
+
               >
-                <v-icon class="navicon_scale">$vuetify.icons.campaigns </v-icon>
+                <v-icon class="navicon_scale"  >$vuetify.icons.campaigns </v-icon>
               </v-list-item>
             </template>
 
             <v-col
               cols="12"
-              class="par_tool_tip px-0 pl-5 my-0 py-0"
+              class="par_tool_tip px-0 pl-5 my-0 py-0 "
               v-if="campingsMenu"
             >
-              <v-col cols="12" class="tool_tip px-0 py-0 text-center">
+              <v-col cols="12" class="tool_tip px-0 py-0 text-center" @click="setSelected('Campaigns')">
                 <router-link class="tool_tip_span" to="/campaigns-sms">{{
                   $t("campaigns.tooltip.sms")
                 }}</router-link>
@@ -82,7 +85,7 @@
 
           <v-list-item
             class="list-dim"
-            @click="setSelected('AbandonedCarts')"
+            @click="setSelected('AbandonedCarts'),campingsMenu = false,campaignsList = false"
             @mouseenter="setHover('AbandonedCarts')"
             @mouseleave="setHover('')"
             to="/abandonedcarts"
@@ -93,7 +96,7 @@
 
           <v-list-item
             class="list-dim"
-            @click="setSelected('Settings')"
+            @click="setSelected('Settings'),campingsMenu = false,campaignsList = false"
             @mouseenter="setHover('Settings')"
             @mouseleave="setHover('')"
             to="/settings"
@@ -120,24 +123,35 @@ export default {
       model: 1,
       preActive: "",
       campingsMenu: false,
+      campaignsList:'campaign_list',
+      noneStyleActive:false,
+
     };
   },
+ watch:{
+   "$route":{
+     deep: true,
+     handler(){
+       if(this.$route.name == 'CampaignsSms' || this.$route.name == 'Campaigns'){
+         this.campaignsList = 'campaign_list';   this.campingsMenu = true;
+       }else  this.campaignsList = false;   this.campingsMenu = false;
+    }
+  }
+ },
   methods: {
     setSelected(id) {
-      // console.log(event);
       this.$store.dispatch("updateClick", id);
       if (id == "Campaigns") {
         this.$store.dispatch("updActiveTab", "abndndcrt1").then(() => {
           this.$store.dispatch("updCart1Active", true);
-          // console.log(response);
+
         });
       }
     },
     setHover(id) {
-      // console.log(event);
-
-      this.$store.dispatch("updateHover", id);
+        this.$store.dispatch("updateHover", id);
     },
+
   },
   computed: {
     ...mapActions(["updateClick"]),
@@ -145,7 +159,19 @@ export default {
 };
 </script>
 
+<style  lang="scss">
+.campaigns_section{
+  &::before{
+    background-color: transparent !important;
+  }
+}
+</style>
 <style>
+
+.campaigns_section:hover{
+  /*color: #FFFFFF !important;*/
+  background-color:#ffffff16 !important;
+}
 .navbar-div {
   top: 0;
   left: 0;
@@ -156,16 +182,16 @@ export default {
   align-content: center;
   padding: 20%;
 }
-
 .list-dim {
   align-content: center;
   height: 70px;
 }
-
+.campaign_list{
+  background-color:#323f4e91 !important;
+}
 .navicon {
   fill: #ffd85c;
 }
-
 .right-shadow {
   box-shadow: 2px 0 8px rgb(146, 143, 143);
 }
@@ -184,7 +210,7 @@ export default {
 .par_tool_tip {
   background-color: #e6e7e800 !important;
   width: 250px !important;
-  height: 100% !important;
+  height: 78px !important;
 }
 .tool_tip_span {
   font-size: 10px;
@@ -194,9 +220,10 @@ export default {
   color: #ffffff !important;
   caret-color: #ffffff !important;
   display: block;
+  background-color: #323f4e;
 }
 .tool_tip_span:hover {
-  background-color: #323f4e;
+  color: #5685e9 !important;
 }
 
 .arrow-right {
@@ -210,7 +237,7 @@ export default {
   left: -14px;
 }
 
-.v-menu__content {
+ .v-menu__content {
   box-shadow: none !important;
   border-radius: 0px !important;
   margin-top: 12px !important;
@@ -219,6 +246,9 @@ export default {
 .hgfix {
   height: 80px !important;
 }
+.none_style_active>.v-list-item--link::before {
+   background-color:transparent !important;
+ }
 @media (min-width: 1400px) {
   .navicon_scale {
     transform: scale(0.9);
@@ -228,4 +258,20 @@ export default {
     height: 90px;
   }
 }
+@media only screen and (max-width: 1399px) {
+  .par_tool_tip {
+    margin-top: 0px !important;
+    height: 70px !important;
+  }
+ .v-menu__content {
+
+    margin-top: 0px !important;
+    cursor: pointer;
+  }
+  .par_tool_tip a{
+    padding-top: 10px !important;
+    padding-bottom:10px !important;
+  }
+}
+
 </style>

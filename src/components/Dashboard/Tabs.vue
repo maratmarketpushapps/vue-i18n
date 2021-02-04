@@ -1,6 +1,6 @@
 <template>
-  <v-container fluid>
-    <v-row class="pa-0 ma-0 mt-2" justify="start">
+  <v-container fluid class="py-0">
+    <v-row class="pa-0 ma-0 " justify="start">
       <v-col class="pa-0 ma-0" cols="auto">
         <v-tabs
           background-color="transparent"
@@ -74,7 +74,7 @@
         </v-tabs>
       </v-col>
 
-      <v-col>
+      <v-col class="py-2">
         <v-row justify="end" class="pr-5 mr-3 mb-1">
           <v-btn depressed icon class="refIcondim" @click="incrTabCount">
             <v-icon color="#4E5D6B">refresh</v-icon>

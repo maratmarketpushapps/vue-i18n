@@ -97,12 +97,12 @@ export default {
       let planDetails = this.getPlanState.find(
         (o) => o.planName === this.getSubs.subscription_plan
       );
-      console.log(JSON.stringify(this.getSubs.subscription_plan));
-      console.log(JSON.stringify(this.getPlanState));
+      // console.log(JSON.stringify(this.getSubs.subscription_plan));
+      // console.log(JSON.stringify(this.getPlanState));
 
       let recAttempts =
         planDetails == undefined ? 0 : planDetails.cart_recovery_attempts;
-      console.log("recAttempts="+recAttempts);
+      // console.log("recAttempts="+recAttempts);
       return (
         this.header +
         this.$t("settingsPage.upgradeCard.body1") +

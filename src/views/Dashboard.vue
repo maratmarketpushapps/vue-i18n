@@ -1,7 +1,7 @@
 <template>
-  <v-col cols="12" class="pl-4 d-flex justify-end">
-    <v-col cols="11">
-      <v-container fluid class="pt-0 mt-6">
+  <v-col cols="12" class="pl-4 d-flex justify-end py-0 dashboard-check">
+    <v-col cols="11" class="py-0">
+      <v-container fluid class="pt-0 ">
         <v-row class="pt-0 mt-0 pb-0 mb-0 row-style" align="center">
           <v-col cols="auto" class="pt-0">
             <h3 class="header_dims page_headers pr-0 mr-0 pt-0 mt-0">

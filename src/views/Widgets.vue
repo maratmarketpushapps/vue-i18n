@@ -63,7 +63,7 @@
                 <WidgetProps class="mt-3" />
               </v-row>
             </v-col>
-            <v-col cols="5" style="" class="pt-1">
+            <v-col cols="5" style="" class="pt-1 pos_sticky">
               <v-row
                 style="height:75vh; width:auto; "
                 align="start"
@@ -146,6 +146,10 @@ export default {
 </script>
 
 <style scoped>
+.pos_sticky{
+  position: sticky;
+  top: -130px;
+}
 .popup_wdg_card{
   margin-left: 6% !important;
   padding-left: 3.5% !important;

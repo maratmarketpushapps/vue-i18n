@@ -1,5 +1,5 @@
 <template>
-  <v-card tile height="100%" width="97%" class=" pt-3 px-7 font_dims">
+  <v-card tile height="100%" width="97%" class=" pt-3 px-7 phone_number_section font_dims">
     <v-row>
       <v-col cols="6">
         <h3>{{ $t('settingsPage.titleCard') }}</h3>
@@ -22,16 +22,23 @@
       class="pt-0 mt-0 pr-0"
     >
       <v-col>
-        <vue-tel-input-vuetify
+         <vue-tel-input-vuetify
+          type="number"
           v-model="phone"
           v-bind="bindProps"
           v-on:country-changed="countryChanged"
           @onValidate="btnDisabled = $event.valid"
+          @keydown="checkValidNumber($event)"
           required
           :placeholder="$t('settingsPage.addYourPhoneNumber')"
           :label="$t('settingsPage.addYourPhoneNumber')"
-        ></vue-tel-input-vuetify>
-        <small class="hintTelNumber">{{$t('settingsPage.hintTelNumber')}}</small>
+          :hint="$t('settingsPage.hintTelNumber')"
+          class="phone_number_section"
+        >
+         </vue-tel-input-vuetify>
+<!--        <v-col class="px-0 py-0" style="z-index: 99">-->
+<!--          <small class="hintTelNumber" style="z-index: 99">{{$t('settingsPage.hintTelNumber')}}</small>-->
+<!--        </v-col>-->
         <v-row justify="center" style="padding-top:3%">
           <v-btn
             :disabled="!btnDisabled"
@@ -87,6 +94,29 @@ export default {
         this.country = '+' + country.dialCode
       }
     },
+    checkValidNumber(event){
+      switch (event.code){
+        case 'Backspace':
+
+        break;
+        case 'Delete':
+
+        break;
+        case 'ArrowUp':
+
+        break;
+        case 'ArrowDown':
+
+        break;
+        case 'ArrowLeft':
+
+        break;
+        case 'ArrowRight':
+
+        break;
+        default: (/[a-zA-Z]/).test( event.key) == true ? event.preventDefault() : ''
+      }
+    },
     savePhoneNumber(){
       let obj = {
         business_phone_number:this.phone
@@ -111,6 +141,8 @@ export default {
   },
   watch:{
     phone(newVal){
+      // console.log(newVal)
+
       function isLetter(c) {
         return c.toLowerCase() != c.toUpperCase();
       }
@@ -128,7 +160,14 @@ export default {
 };
 </script>
 
+
+<style lang="css">
+.v-menu__content{
+  /*margin-top: 23px !important;*/
+}
+</style>
 <style scoped>
+
 .btn_save{
   padding: 9px 68px !important;
   text-align: center;
