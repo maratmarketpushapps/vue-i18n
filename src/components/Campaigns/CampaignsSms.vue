@@ -51,8 +51,7 @@
     </v-col>
     <v-col cols="12" class="py-0 d-flex justify-end" style="background-color: #F2F2F2">
       <v-col cols="11" class="py-0">
-        <v-container fluid class="pt-0 mt-12">
-
+        <v-container fluid class="pt-0 mt-4">
           <v-row class="pt-1 mt-0" align="start" style="height:auto; width:100%">
             <CampaignSMSTabs style="height:100%; width:100%" />
           </v-row>

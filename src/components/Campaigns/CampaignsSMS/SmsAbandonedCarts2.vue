@@ -16,7 +16,7 @@
             {{ $t("campaigns.sentAfther")}} {{sent_after}}
           </span>
         </v-row>
-        <v-row style="height: 24%;width: 100%" justify="start" align="center" class="pl-6 pb-12">
+        <v-row style="height: 24%;width: 100%" justify="start" align="center" class="pl-6 pb-10">
           <span class="msgCountUnder">
             {{ $t("campaigns.msgCount") }}:   {{ getOrdrAbndCrtMsgCnt }}
           </span>
@@ -39,7 +39,7 @@
         <v-btn
           tile
           height="35px"
-          class="font_dims  btn_save mt-4"
+          class="font_dims  btn_save mt-1"
           :class="$vuetify.breakpoint.width  < 1350 ? 'px-5' : $vuetify.breakpoint.width < 1250
                      ? 'px-2' : $vuetify.breakpoint.width < 1100 ? 'px-0' : 'px-10 pad_resp'"
           :disabled="svBtnDsbldOrdrAbndCrt"
@@ -53,7 +53,7 @@
         <v-btn
           tile
           height="35px"
-          class="font_dims  btn_edit mt-4"
+          class="font_dims  btn_edit mt-1"
           :class="$vuetify.breakpoint.width  < 1350 ? 'px-5' : $vuetify.breakpoint.width < 1250
                            ? 'px-2' : $vuetify.breakpoint.width < 1100 ? 'px-0' : 'px-6 pad_resp'"
           style="font-size:100%; text-transform:none; color: #4E5D6B !important;"

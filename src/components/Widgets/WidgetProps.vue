@@ -187,19 +187,22 @@
 <!--                  {{$t('widgets.discCopyCode')}}-->
 <!--                </v-btn>-->
                 <v-text-field
+                  v-model="copy_discount_code_button "
                   :label="$t('widgets.discCopyCode')"
                   class="mb-0"
                   :value="$t('widgets.discCopyCode')"
+                  maxlength="25"
+                  :rules=" [v => v.length <= 25 || 'Max 25 characters']"
                 >
 <!--                  v-model="discount_statement"-->
 <!--                  :value="discount_statement"-->
 <!--                  maxlength="25"-->
 <!--                  :rules=" [v => v.length <= 25 || 'Max 25 characters']"-->
-<!--                  <template v-slot:label>-->
-<!--                    <span >{{$t('widgets.discCopyCode')}}</span>-->
-<!--                    <span v-if="discount_statement.length > 4" style="position: absolute;right: 18px;">{{discount_statement.length}}/</span>-->
-<!--                    <span v-if="discount_statement.length > 4" style="position: absolute;right: 0px;">25</span>-->
-<!--                  </template>-->
+                  <template v-slot:label>
+                    <span >{{$t('widgets.discCopyCode')}}</span>
+                    <span v-if="copy_discount_code_button .length > 4" style="position: absolute;right: 18px;">{{copy_discount_code_button .length}}/</span>
+                    <span v-if="copy_discount_code_button .length > 4" style="position: absolute;right: 0px;">25</span>
+                  </template>
                 </v-text-field>
               </v-col>
 
@@ -747,6 +750,7 @@ export default {
       disCodeInst:null,
       discount_statement:"",
       discount_code:"",
+      copy_discount_code_button :"",
       apply_discount_instruction:"",
       statusWidgets:null,
       subType:null,
@@ -832,6 +836,7 @@ export default {
             subscribe_type:this.subscribe_type,
             discount_statement:this.discount_statement,
             discount_code:this.discount_code,
+            copy_discount_code_button:this.copy_discount_code_button,
             apply_discount_instruction:this.apply_discount_instruction,
           };
           this.$store.dispatch("updWdgtDiscForm",objWidg)
@@ -988,6 +993,10 @@ export default {
     discount_statement(newValue) {
       this.$store.dispatch("updWdgtDiscStatment", newValue);
     },
+    copy_discount_code_button(newValue){
+      this.$store.dispatch("updWdgtDiscCopyCode", newValue);
+      this.discCodeNotValid = false
+    },
     discount_code(newValue) {
       this.$store.dispatch("updWdgtDiscCode", newValue);
       this.discCodeNotValid = false
@@ -1086,6 +1095,7 @@ export default {
     setTimeout(() => ( this.subType = this.$store.state.widgetVars.subscribe_type,this.statusWidgets = this.$store.state.widgetVars.enabled_widgets,
       this.discount_statement = this.$store.state.widgetVars.discount_statement,
       this.discount_code = this.$store.state.widgetVars.discount_code,
+      this.copy_discount_code_button = this.$store.state.widgetVars.copy_discount_code_button,
       this.apply_discount_instruction = this.$store.state.widgetVars.apply_discount_instruction,this.changesWidg()), 500)
 
   },

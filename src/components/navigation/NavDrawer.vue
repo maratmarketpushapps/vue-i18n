@@ -40,6 +40,7 @@
 
           <v-list-item
             class="list-dim "
+            @click="setSelected('Widgets'),campingsMenu = false,campaignsList = false"
             @mouseenter="setHover('Widgets'),campingsMenu = false,campaignsList = false"
             @mouseleave="setHover('')"
             to="/widgets"
@@ -51,15 +52,18 @@
           <v-menu right offset-x  :open-on-hover="campingsMenu" :menu-props="{ 'margin-top': '0px !important'}">
             <template v-slot:activator="{ on, attrs }" >
               <v-list-item
-                class="list-dim"
-                :class="campingsMenu == true || $router.currentRoute.fullPath == '/campaigns-facebook' || $router.currentRoute.fullPath == '/campaigns-sms' ? campaignsList : 'none_style_active'"
+                class="list-dim campaigns_section"
+                @click="noneStyleActive = true,eventName($event) "
+                :class="campingsMenu == true || $router.currentRoute.fullPath == '/campaigns-facebook'
+                || $router.currentRoute.fullPath == '/campaigns-sms' ? campaignsList : 'none_style_active'"
                 @mouseenter="setHover('Campaigns')"
                 @mouseover="campingsMenu = true"
                 @mouseleave="setHover('')"
                 v-bind="attrs"
                 v-on="on"
+
               >
-                <v-icon class="navicon_scale" >$vuetify.icons.campaigns </v-icon>
+                <v-icon class="navicon_scale"  @click="eventName($event)">$vuetify.icons.campaigns </v-icon>
               </v-list-item>
             </template>
 
@@ -68,7 +72,7 @@
               class="par_tool_tip px-0 pl-5 my-0 py-0 "
               v-if="campingsMenu"
             >
-              <v-col cols="12" class="tool_tip px-0 py-0 text-center">
+              <v-col cols="12" class="tool_tip px-0 py-0 text-center" @click="setSelected('Campaigns')">
                 <router-link class="tool_tip_span" to="/campaigns-sms">{{
                   $t("campaigns.tooltip.sms")
                 }}</router-link>
@@ -122,6 +126,7 @@ export default {
       campingsMenu: false,
       campaignsList:'campaign_list',
       noneStyleActive:false,
+
     };
   },
  watch:{
@@ -136,19 +141,23 @@ export default {
  },
   methods: {
     setSelected(id) {
-      // console.log(event);
       this.$store.dispatch("updateClick", id);
       if (id == "Campaigns") {
         this.$store.dispatch("updActiveTab", "abndndcrt1").then(() => {
           this.$store.dispatch("updCart1Active", true);
-          // console.log(response);
+
         });
       }
     },
     setHover(id) {
-      // console.log(event);
-
-      this.$store.dispatch("updateHover", id);
+        this.$store.dispatch("updateHover", id);
+    },
+    eventName: function (event) {
+      var ele = event.target;
+      console.log(ele);
+      // ele.style.color = 'rgb(204, 204, 204)';
+      ele.style.cursor = 'initial';
+      ele.style.background = 'red !important'
     },
   },
   computed: {
@@ -157,14 +166,19 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style  lang="scss">
+.campaigns_section{
+  &::before{
+    background-color: transparent !important;
+  }
+}
 </style>
 <style>
-/*.v-list-item--link:before {*/
-/*  background-color: transparent !important;*/
-/*}*/
 
+.campaigns_section:hover{
+  /*color: #FFFFFF !important;*/
+  background-color:#ffffff16 !important;
+}
 .navbar-div {
   top: 0;
   left: 0;
@@ -182,9 +196,6 @@ export default {
 .campaign_list{
   background-color:#323f4e91 !important;
 }
-/*.campaign_list:hover{*/
-/*  background-color:#323f4e !important;*/
-/*}*/
 .navicon {
   fill: #ffd85c;
 }
