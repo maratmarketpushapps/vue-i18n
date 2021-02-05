@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="nav_section">
     <v-navigation-drawer
       app
       permanent
@@ -33,18 +33,20 @@
             @mouseenter="setHover('Dashboard')"
             @mouseleave="setHover('')"
             to="/dashboard"
-            ><v-icon class="navicon_scale"
+            >
+            <v-icon class="navicon_scale"
               >$vuetify.icons.dashboard</v-icon
             ></v-list-item
           >
 
           <v-list-item
-            class="list-dim "
+            class="list-dim widg_nav_item"
             @click="setSelected('Widgets'),campingsMenu = false,campaignsList = false"
-            @mouseenter="setHover('Widgets'),campingsMenu = false,campaignsList = false"
+            @mouseenter="setHover('Widgets')"
             @mouseleave="setHover('')"
             to="/widgets"
-            ><v-icon class="navicon_scale"
+            >
+            <v-icon class="navicon_scale"
               >$vuetify.icons.widgets</v-icon
             ></v-list-item
           >
@@ -52,16 +54,16 @@
           <v-menu right offset-x  :open-on-hover="campingsMenu" :menu-props="{ 'margin-top': '0px !important'}">
             <template v-slot:activator="{ on, attrs }" >
               <v-list-item
-                class="list-dim campaigns_section"
-                :class="campingsMenu == true || $router.currentRoute.fullPath == '/campaigns-facebook'
-                || $router.currentRoute.fullPath == '/campaigns-sms' ? campaignsList : 'none_style_active'"
-                @mouseenter="setHover('Campaigns')"
+                class="list-dim campaigns_section "
+                :class="[campingsMenu == true || $router.currentRoute.fullPath == '/campaigns-facebook'
+                || $router.currentRoute.fullPath == '/campaigns-sms' ? `${campaignsList}`  :  '',cmp_sec]"
                 @mouseover="campingsMenu = true"
+                @mouseenter="setHover('Campaigns')"
                 @mouseleave="setHover('')"
                 v-bind="attrs"
                 v-on="on"
-
               >
+
                 <v-icon class="navicon_scale"  >$vuetify.icons.campaigns </v-icon>
               </v-list-item>
             </template>
@@ -125,7 +127,7 @@ export default {
       campingsMenu: false,
       campaignsList:'campaign_list',
       noneStyleActive:false,
-
+      cmp_sec:'cmp_sec'
     };
   },
  watch:{
@@ -134,7 +136,8 @@ export default {
      handler(){
        if(this.$route.name == 'CampaignsSms' || this.$route.name == 'Campaigns'){
          this.campaignsList = 'campaign_list';   this.campingsMenu = true;
-       }else  this.campaignsList = false;   this.campingsMenu = false;
+         this.cmp_sec = false
+       }else  this.campaignsList = false;   this.campingsMenu = false; this.cmp_sec = 'cmp_sec'
     }
   }
  },
@@ -165,10 +168,21 @@ export default {
     background-color: transparent !important;
   }
 }
+.widg_nav_item{
+  .span-prop{
+    white-space: pre-line;
+    text-align: center;
+  }
+}
+.nav_section{
+  .span-prop{
+    font-size: 12px !important;
+  }
+}
 </style>
 <style>
 
-.campaigns_section:hover{
+.cmp_sec:hover{
   /*color: #FFFFFF !important;*/
   background-color:#ffffff16 !important;
 }
