@@ -245,6 +245,7 @@ export default new Vuex.Store({
     },
   },
   getters: {
+
     cartReady: (state) => {
       return state.cartIsReady
     },
@@ -317,6 +318,9 @@ export default new Vuex.Store({
     },
     getOrderReceipt: (state) => {
       return state.msgVars.order_receipt;
+    },
+    getCopyDiscountCodeButton: (state) => {
+      return state.widgetVars.copy_discount_code_button
     },
     getOrderShipped: (state) => {
       return state.msgVars.order_shipped;

@@ -32,13 +32,14 @@
           required
           :placeholder="$t('settingsPage.addYourPhoneNumber')"
           :label="$t('settingsPage.addYourPhoneNumber')"
-          :hint="$t('settingsPage.hintTelNumber')"
+
           class="phone_number_section"
         >
+<!--           :hint="$t('settingsPage.hintTelNumber')"-->
          </vue-tel-input-vuetify>
-<!--        <v-col class="px-0 py-0" style="z-index: 99">-->
-<!--          <small class="hintTelNumber" style="z-index: 99">{{$t('settingsPage.hintTelNumber')}}</small>-->
-<!--        </v-col>-->
+        <v-col class="px-0 py-0" style="z-index: 99">
+          <small class="hintTelNumber" style="z-index: 99">{{$t('settingsPage.hintTelNumber')}}</small>
+        </v-col>
         <v-row justify="center" style="padding-top:3%">
           <v-btn
             :disabled="!btnDisabled"
