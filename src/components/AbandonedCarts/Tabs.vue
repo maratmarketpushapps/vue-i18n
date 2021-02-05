@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-row class="pa-0 ma-0 mt-4" justify="start" >
+    <v-row class="pa-0 ma-0 " justify="start" >
       <v-col class="pa-0 ma-0" cols="auto"  >
         <v-tabs
           background-color="transparent"

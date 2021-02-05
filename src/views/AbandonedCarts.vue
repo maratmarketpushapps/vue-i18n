@@ -1,6 +1,6 @@
 <template>
-  <v-col cols="12" class="pl-4 d-flex justify-end">
-    <v-col cols="11">
+  <v-col cols="12" class="pl-4 d-flex justify-end pt-0">
+    <v-col cols="11" class="pt-0">
       <v-container fluid class="pt-0 mt-0">
         <v-row class="pt-0 mt-0 pb-0 mb-0 row-style" align="center">
           <v-col cols="auto" class="pt-0">
@@ -27,7 +27,7 @@
             </v-row>
           </v-col>
         </v-row>
-        <v-row class="pt-1 mt-0" align="start" style="height: auto">
+        <v-row class="pt-0 mt-0" align="start" style="height: auto">
           <v-col cols="12" style="height: 100%">
             <v-row style="height: 100%; width: 100%" justify="start">
               <Tabs style="height: 100%; width: 100%" />

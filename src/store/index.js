@@ -49,7 +49,7 @@ export default new Vuex.Store({
       apply_discount_instruction: "",
       discount_code: "",
       discount_statement: "",
-      copy_discount_code_button:"Copy discount code button",
+      copy_discount_code_button:"",
       id: 0,
       instance_id: "",
       website_id: 0,
@@ -390,6 +390,7 @@ export default new Vuex.Store({
       state.widgetVars.id = obj.id;
       state.widgetVars.enabled_widgets = obj.enabled_widgets;
       state.widgetVars.discount_code = obj.discount_code;
+      state.widgetVars.copy_discount_code_button = obj.copy_discount_code_button
       state.widgetVars.discount_statement = obj.discount_statement;
       state.widgetVars.subscribe_type = obj.subscribe_type;
       state.widgetVars.instance_id = obj.instance_id;
