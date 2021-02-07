@@ -188,6 +188,8 @@
 <!--                </v-btn>-->
                 <v-text-field
                   v-model="copy_discount_code_button "
+                  @focus="copy_discount_code_button_focus = true"
+                  @focusout="copy_discount_code_button_focus = false"
                   :label="$t('widgets.discCopyCode')"
                   class="mb-0"
                   :value="$t('widgets.discCopyCode')"
@@ -198,7 +200,7 @@
 <!--                  :value="discount_statement"-->
 <!--                  maxlength="25"-->
 <!--                  :rules=" [v => v.length <= 25 || 'Max 25 characters']"-->
-                  <template v-slot:label>
+                  <template v-slot:label v-if="copy_discount_code_button_focus">
                     <span >{{$t('widgets.discCopyCode')}}</span>
                     <span v-if="copy_discount_code_button .length > 4" style="position: absolute;right: 18px;">{{copy_discount_code_button .length}}/</span>
                     <span v-if="copy_discount_code_button .length > 4" style="position: absolute;right: 0px;">25</span>
@@ -765,6 +767,7 @@ export default {
       discount_statement_focus:false,
       discount_code_focus:false,
       apply_discount_instruction_focus:false,
+      copy_discount_code_button_focus:false,
       ttlText_focus:false,
       msgTxt_focus:false,
       btnTxt_focus:false,

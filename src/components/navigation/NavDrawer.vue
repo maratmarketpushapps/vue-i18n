@@ -70,7 +70,7 @@
 
             <v-col
               cols="12"
-              class="par_tool_tip px-0 pl-5 my-0 py-0 "
+              class="par_tool_tip px-0 pl-3 my-0 py-0 "
               v-if="campingsMenu"
             >
               <v-col cols="12" class="tool_tip px-0 py-0 text-center" @click="setSelected('Campaigns')">
@@ -223,7 +223,7 @@ export default {
 }
 .par_tool_tip {
   background-color: #e6e7e800 !important;
-  width: 250px !important;
+  width: 152px !important;
   height: 78px !important;
 }
 .tool_tip_span {
@@ -245,10 +245,10 @@ export default {
   height: 0;
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
-  border-right: 10px solid #4f5d6a;
+  border-right: 10px solid #323F4F;
   position: absolute;
-  top: 8px;
-  left: -14px;
+  top: 38%;
+  left: -22px;
 }
 
  .v-menu__content {

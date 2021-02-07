@@ -280,6 +280,7 @@
               <v-img
                 src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
                 class="ma-0 pa-0"
+                :class="$vuetify.breakpoint.width > 1400 ? 'img_vh_big' :'img_vh_sm'"
                 height="100%"
                 width="100%"
                 style="background:#4E5D6B"
@@ -301,7 +302,7 @@
               <v-row style="width:100%" class="pl-8" align="start">
                 <v-btn :style="buttonProps" outlined @click="resetOptin">
                   <span :style="btnTextProps">
-                    COPY DISCOUNT CODE
+                    {{cpDiscCode}}
                   </span>
                 </v-btn>
               </v-row>
@@ -768,14 +769,12 @@ export default {
         this.getWidgetsState.enabled_widgets.sms.enabled
       );
     },
-
     wdgtTabcheck() {
       return (
         this.getWidgetsState.enabled_widgets.facebook.enabled &&
         this.getWidgetsState.enabled_widgets.sms.enabled
       );
     },
-
     getTabHeader1() {
       if (this.getWidgetsState.enabled_widgets.facebook.position == 1) {
         return "FbIcon";
@@ -783,7 +782,6 @@ export default {
         return "SmsIcon";
       }
     },
-
     getTabHeader2() {
       if (this.getWidgetsState.enabled_widgets.facebook.position == 2) {
         return "FbIcon";
@@ -791,7 +789,6 @@ export default {
         return "SmsIcon";
       }
     },
-
     getTabKeySMS() {
       return this.getWidgetsState.enabled_widgets.sms.position - 1;
     },
@@ -815,6 +812,9 @@ export default {
     dscntInstr() {
       return this.getWidgetsState.apply_discount_instruction;
     },
+    cpDiscCode(){
+      return this.$store.getters.getCopyDiscountCodeButton
+    }
   },
   watch: {
     getTabHeader1(newValue) {
@@ -837,5 +837,11 @@ export default {
 .fb-btn {
   border-radius: 7px;
   text-transform: none;
+}
+.img_vh_big{
+  height: 21vh !important;
+}
+.img_vh_sm{
+  height: 25vh !important;
 }
 </style>

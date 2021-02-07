@@ -21,7 +21,7 @@
       justify="center"
       class="pt-0 mt-0 pr-0"
     >
-      <v-col>
+      <v-col class="Accountinfo">
         <v-form v-model="formValid">
           <v-text-field
             :label="$t('settingsPage.accInfoCard.label1')"
@@ -31,7 +31,10 @@
             dense
             style="font-size:110%"
             class="pt-0 pb-1"
+            maxlength="38"
+            :rules=" [v => v.length <= 38 || 'Max 38 characters']"
           >
+
           </v-text-field>
           <v-text-field
             :label="$t('settingsPage.accInfoCard.label2')"
@@ -41,7 +44,10 @@
             dense
             style="font-size:110%"
             class="pt-2 pb-1"
+            maxlength="38"
+            :rules=" [v => v.length <= 38 || 'Max 38 characters']"
           >
+
           </v-text-field>
           <v-text-field
             :label="$t('settingsPage.accInfoCard.label4')"
@@ -50,8 +56,11 @@
             @input="detectChange"
             dense
             style="font-size:110%"
+            maxlength="38"
+            :rules=" [v => v.length <= 38 || 'Max 38 characters']"
             class="pt-2 pb-1"
           >
+
           </v-text-field>
           <v-text-field
            :validate-on-blur="true"
@@ -62,8 +71,10 @@
             dense
             style="font-size:110%"
             class="pt-2 pb-1"
+            maxlength="38"
             :rules="emailRules"
           >
+
 <!--            :rules="emailRules"-->
           </v-text-field>
         </v-form>
@@ -104,6 +115,7 @@ export default {
           !v ||
           /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
           "E-mail must be valid",
+
       ],
       formValid: false,
     };
@@ -179,5 +191,9 @@ export default {
 .v-application--is-ltr .v-messages {
   text-align: left;
   font-style: oblique;
+}
+.Accountinfo .v-label {
+  display: block !important;
+  width: 135% !important;
 }
 </style>
