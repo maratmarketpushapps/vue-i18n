@@ -848,7 +848,7 @@ export default {
 }
 </style>
 <style>
-.img_vh  .v-responsive__content{
-  height: 21vh !Important;
+.v-responsive__content{
+  /*height: 21vh !Important;*/
 }
 </style>
