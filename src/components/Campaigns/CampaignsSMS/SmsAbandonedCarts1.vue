@@ -200,8 +200,10 @@
             </template>
             <template v-slot:label >
                   <span >{{$t('campaigns.smsordrrcpt.introMsg')}}</span>
-                  <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 28px;">{{ordrAbndCrtIntroMsg.length}}/</span>
-                  <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 0px;">250</span>
+                  <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 28px;"
+                        :class="suppasLenght ? 'col_red_txt': ''">{{ordrAbndCrtIntroMsg.length}}/</span>
+                  <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 0px;"
+                        :class="suppasLenght ? 'col_red_txt': ''">250</span>
             </template>
           </v-textarea>
         </v-row>
@@ -283,16 +285,17 @@ export default {
         "24 hour",
       ],
       maxCharRule:false,
+      suppasLenght:false
     };
   },
   watch:{
     ordrAbndCrtIntroMsg(){
+      this.suppasLenght = false
       // let itemtext = this.ordrAbndCrtIntroMsg.length()
       // console.log(itemtext)
       //   if(itemtext >250){
       //     this.maxCharRule = true
       //   }else this.maxCharRule = false
-
     }
   },
   computed: {
@@ -331,23 +334,33 @@ export default {
   },
   methods: {
     putNumberPhone(){
+      let currentItem = this.ordrAbndCrtIntroMsg
       this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{StorePhoneNumber}}'
+      this.ordrAbndCrtIntroMsg.length > 249 ? (this.ordrAbndCrtIntroMsg = currentItem ,this.suppasLenght = true) : ''
       this.activeStateChng()
     },
     putbussName(){
+      let currentItem = this.ordrAbndCrtIntroMsg
       this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{BusinessName}}'
+      this.ordrAbndCrtIntroMsg.length > 249 ? (this.ordrAbndCrtIntroMsg = currentItem ,this.suppasLenght = true) : ''
       this.activeStateChng()
     },
     putCheckOutTotal(){
+      let currentItem = this.ordrAbndCrtIntroMsg
       this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{CheckOutTotal}}'
+      this.ordrAbndCrtIntroMsg.length > 249 ? (this.ordrAbndCrtIntroMsg = currentItem ,this.suppasLenght = true) : ''
       this.activeStateChng()
     },
     putCheckOutLink(){
+      let currentItem = this.ordrAbndCrtIntroMsg
       this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{CheckOutLink}}'
+      this.ordrAbndCrtIntroMsg.length > 249 ? (this.ordrAbndCrtIntroMsg = currentItem ,this.suppasLenght = true) : ''
       this.activeStateChng()
     },
     putOPtOut(){
+      let currentItem = this.ordrAbndCrtIntroMsg
       this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ 'write STOP to unsubscribe'
+      this.ordrAbndCrtIntroMsg.length > 249 ? (this.ordrAbndCrtIntroMsg = currentItem ,this.suppasLenght = true) : ''
       this.activeStateChng()
     },
     saveOrdrAbndCrt() {
@@ -479,6 +492,9 @@ export default {
 </script>
 
 <style scoped>
+.col_red_txt{
+  color: red !important;
+}
 .msgCountUnder{
   font: normal normal 600 14px/23px Poppins;
   letter-spacing: 0px;

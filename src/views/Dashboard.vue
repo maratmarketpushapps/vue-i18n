@@ -52,8 +52,6 @@ export default {
   }),
   methods:{
     getTimeZone(){
-      // this.$store.getters.getSettingsState.timezone_id === "" &&
-      // alert(this.$store.getters.getAccountInfo.install_popop_show)
        this.$store.getters.getAccountInfo.install_popop_show == true
         ? this.modal = true : this.modal = false
     }

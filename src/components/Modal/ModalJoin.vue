@@ -33,7 +33,7 @@
                 <span class="headline headline_title"
                 >{{ $t("ModalJoin.joinUsTitle") }}</span>
               </v-card-title>
-              <v-card-text class="px-0 pb-0">
+              <v-card-text class="px-0 pb-0" style="padding-top: 10px !important;">
                 <v-form v-model="formValid">
                 <v-row>
                   <v-col
@@ -48,7 +48,6 @@
                       v-model="first_name"
                       :label="$t('ModalJoin.firstName')"
                       class="image_modal_text_color"
-
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -63,7 +62,6 @@
                       v-model="last_name"
                       :label="$t('ModalJoin.lastName')"
                       class="image_modal_text_color"
-
                     ></v-text-field>
                   </v-col>
 
@@ -87,7 +85,7 @@
                       :rules="emailRules "
                     ></v-text-field>
 
-                    <small class="image_modal_text_color">
+                    <small class="image_modal_text_color sm_font_size">
                       {{$t('ModalJoin.byJoining')}}
 
                       <a href="https://www.marketpushapps.com/terms-of-use" target="_blank">
@@ -115,7 +113,7 @@
                 </v-col>
               </v-card-actions>
               <v-col class="px-0">
-                <small class="image_modal_text_color">
+                <small class="image_modal_text_color sm_font_size">
                   {{$t('ModalJoin.PlsNoteTx')}}
                 </small>
               </v-col>
@@ -295,5 +293,9 @@ export default {
   opacity: 1;
   text-align: center;
   font: normal normal medium 14px/13px Poppins;
+}
+.sm_font_size{
+  font: normal normal normal 12px/19px Poppins !important;
+  font-size: 80%;
 }
 </style>

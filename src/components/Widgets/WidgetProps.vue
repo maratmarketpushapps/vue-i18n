@@ -371,15 +371,15 @@
               :label="$t('widgets.msgTxt')"
               v-model="msgTxt"
               class="text-fonts"
-              maxlength="340"
+              maxlength="280"
               @focus="msgTxt_focus = true"
               @focusout="msgTxt_focus = false"
-              :rules=" [v => v.length <= 340 || 'Max 340 characters']"
+              :rules=" [v => v.length <= 280 || 'Max 280 characters']"
             >
               <template v-slot:label v-if="msgTxt_focus">
                 <span >{{$t('widgets.msgTxt')}}</span>
                 <span v-if="msgTxt.length > 4" style="position: absolute;right: 26px;">{{msgTxt.length}}/</span>
-                <span v-if="msgTxt.length > 4" style="position: absolute;right: 0px;">340</span>
+                <span v-if="msgTxt.length > 4" style="position: absolute;right: 0px;">280</span>
               </template>
             </v-text-field>
           </v-row>
