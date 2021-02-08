@@ -9,12 +9,47 @@
           active-class="tab-item-color-active"
         >
           <v-tab class="font_dims" key="1" @click="refreshComp1()">
+<!--            <v-img src="@/assets/icons/AbandonedCarts/icon-calendar.svg"></v-img>-->
+<!--            <IconCalendar />-->
+<!--            <v-icon class="pr-1 infoicon_scale"> <IconCalendar /></v-icon>-->
+            <CalendarIcon
+              class="infoicon_scale "
+              style="top:30%"
+              v-if="!activeOne"
+            />
+            <ActiveCalendarIcon
+              class="infoicon_scale "
+              style="top:30%"
+              v-else
+            />
             {{ $t("abandonedCarts.tabs.item1") }}
           </v-tab>
           <v-tab class="font_dims" key="2" @click="refreshComp2()">
+<!--            <v-icon class="pr-1 infoicon_scale">event</v-icon>-->
+            <CalendarIcon
+              class="infoicon_scale "
+              style="top:30%"
+              v-if="!activeTwo"
+            />
+            <ActiveCalendarIcon
+              class="infoicon_scale "
+              style="top:30%"
+              v-else
+            />
             {{ $t("abandonedCarts.tabs.item2") }}
           </v-tab>
           <v-tab class="font_dims" key="3" @click="refreshComp3()">
+<!--            <v-icon class="pr-1 infoicon_scale">event</v-icon>-->
+            <CalendarIcon
+              class="infoicon_scale "
+              style="top:30%"
+              v-if="!activeThree"
+            />
+            <ActiveCalendarIcon
+              class="infoicon_scale "
+              style="top:30%"
+              v-else
+            />
             {{ $t("abandonedCarts.tabs.item3") }}
           </v-tab>
           <v-menu
@@ -26,8 +61,18 @@
             :nudge-bottom="20"
           >
             <template v-slot:activator="{ on }">
-              <v-tab class="font_dims" key="4" v-on="on" style="width:auto">
-                <v-icon class="pr-1 infoicon_scale">event</v-icon>
+              <v-tab class="font_dims" key="4" v-on="on" style="width:auto"  @click="refreshComp4()">
+<!--                <v-icon class="pr-1 infoicon_scale">event</v-icon>-->
+                <CalendarIcon
+                  class="infoicon_scale "
+                  style="top:30%"
+                  v-if="!activeFour"
+                />
+                <ActiveCalendarIcon
+                  class="infoicon_scale "
+                  style="top:30%"
+                  v-else
+                />
                 <span class="pr-2">{{ displayStDate }}</span
                 ><span>to</span> <span class="pl-2">{{ displayEnDate }}</span>
                 <v-icon class="infoicon_scale">keyboard_arrow_down</v-icon>
@@ -84,10 +129,34 @@
           hide-details
           single-line
           @click="minusModel(selectedType)"
-
+          @focusout="activeImage = false"
           :class="activeImage ? 'change_active' : 'line_active'"
         >
-          <template slot="prepend-inner" >
+
+          <template v-slot:append>
+            <v-icon class="infoicon_scale">keyboard_arrow_down</v-icon>
+<!--            <v-icon-->
+<!--              dark-->
+<!--              right-->
+<!--            >-->
+<!--              mdi-checkbox-marked-circle-->
+<!--            </v-icon>-->
+          </template>
+          <template slot="prepend-inner"  >
+            <ActiveChannelIcon
+              class="infoicon_scale "
+              style="top:30%"
+              v-if="activeImage"
+            />
+            <ChannelIcon
+              class="infoicon_scale "
+              style="top:30%"
+              v-if="!activeImage"
+            />
+<!--            <v-img src="@/assets/img/Subscribers/icon-channel.png" v-if="!activeImage"></v-img>-->
+<!--            <v-img src="@/assets/img/Subscribers/icon_channel_active.png" v-if="activeImage"></v-img>-->
+          </template>
+          <template slot="apend-inner" >
             <v-img src="@/assets/img/Subscribers/icon-channel.png" v-if="!activeImage"></v-img>
             <v-img src="@/assets/img/Subscribers/icon_channel_active.png" v-if="activeImage"></v-img>
           </template>
@@ -140,13 +209,16 @@
 
 <script>
 import CartsTable from "@/components/AbandonedCarts/CartsTable.vue";
+import CalendarIcon from "@/components/svgIcons/CalendarIcon.vue";
+import ActiveCalendarIcon from "@/components/svgIcons/ActiveCalendarIcon.vue";
+import ActiveChannelIcon from "@/components/svgIcons/ActiveIconChannel.vue";
+import ChannelIcon from "@/components/svgIcons/IconChannel.vue";
 import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
-
 import moment from "moment-timezone";
 import { mapGetters } from "vuex";
 export default {
   name: "Tabs",
-  components: { CartsTable, TooltipIcon },
+  components: { CartsTable, TooltipIcon,CalendarIcon,ActiveCalendarIcon,ChannelIcon,ActiveChannelIcon},
   data() {
     return {
       tab: 1,
@@ -166,6 +238,11 @@ export default {
       selectedType:"",
       currData:this.$t("abandonedCarts.TypeForSel"),
       activeImage:false,
+      calendarIcon:'@/assets/icons/AbandonedCarts/icon-calendar.svg',
+      activeOne:false,
+      activeTwo:true,
+      activeThree:false,
+      activeFour:false,
     };
   },
   mounted() {
@@ -178,18 +255,33 @@ export default {
       this.activeTab == "3" ? this.refreshComp3() : "";
       this.activeTab == "4" ? this.custKey++ : "";
     },
-
+    refIcon(){
+      this.activeOne = false;
+      this.activeTwo = false;
+      this.activeThree = false;
+      this.activeFour = false;
+    },
     refreshComp1() {
       this.activeTab = "1";
       this.itemKeyDat1++;
+      this.refIcon();
+      this.activeOne = true;
     },
     refreshComp2() {
       this.activeTab = "2";
       this.itemKeyDat2++;
+      this.refIcon();
+      this.activeTwo = true;
     },
     refreshComp3() {
       this.activeTab = "3";
       this.itemKeyDat3++;
+      this.refIcon();
+      this.activeThree = true;
+    },
+    refreshComp4() {
+      this.refIcon();
+      this.activeFour = true;
     },
     setMenuactivator() {
       this.menuActivator = true;
