@@ -273,7 +273,7 @@
             style="width:95%; border: 1px solid #C9CACB; margin-left:1%"
             align="center"
             justify="center"
-            class="pa-0 my-0"
+            class="pa-0 my-0 img_vh"
             v-if="wdgtFBcheck && wdgtIsDsc"
           >
             <v-col cols="3" class="ma-0 pa-0" style="width:100% ">
@@ -838,12 +838,17 @@ export default {
   text-transform: none;
 }
 .img_vh{
-  height: 18vh !important;
+
 }
 .img_vh_big{
   height: 21vh !important;
 }
 .img_vh_sm{
   height: 25vh !important;
+}
+</style>
+<style>
+.img_vh  .v-responsive__content{
+  height: 21vh !Important;
 }
 </style>
