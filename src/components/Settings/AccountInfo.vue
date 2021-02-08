@@ -72,7 +72,7 @@
             style="font-size:110%"
             class="pt-2 pb-1"
             maxlength="38"
-            :rules="emailRules"
+            :rules="[ v => (v.match(/^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) || 'Invalid Email address']"
           >
 
 <!--            :rules="emailRules"-->
@@ -112,7 +112,7 @@ export default {
       email: "",
       emailRules: [
         (v) =>
-          !v && v.length <= 38 &&
+          !v ||
           /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
           "E-mail must be valid",
 
