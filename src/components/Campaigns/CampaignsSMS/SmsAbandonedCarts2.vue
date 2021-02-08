@@ -177,6 +177,7 @@
 
         <v-row class="pl-4 pr-3 mb-0 sms_msg_textarea" style="margin-top: 33px">
           <span v-if="reqMandFields" style="color: red" class="ml-6">Mandatory fields to be present in the SMS Message </span>
+          <span v-if="maxCharRule" style="color: red" class="ml-6">characters must be 250 or less </span>
           <v-textarea
             :label="$t('campaigns.smsordrrcpt.introMsg')"
             v-model="ordrAbndCrtIntroMsg"
@@ -200,8 +201,10 @@
             </template>
             <template v-slot:label >
               <span >{{$t('campaigns.smsordrrcpt.introMsg')}}</span>
-              <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 28px;">{{ordrAbndCrtIntroMsg.length}}/</span>
-              <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 0px;">250</span>
+              <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 28px;"
+                    :class="suppasLenght ? 'col_red_txt': ''">{{ordrAbndCrtIntroMsg.length}}/</span>
+              <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 0px;"
+                    :class="suppasLenght ? 'col_red_txt': ''">250</span>
             </template>
           </v-textarea>
         </v-row>
@@ -282,6 +285,8 @@ export default {
         "23 hour",
         "24 hour",
       ],
+      maxCharRule:false,
+      suppasLenght:false
     };
   },
   computed: {
@@ -314,25 +319,45 @@ export default {
       );
     },
   },
+  watch:{
+    ordrAbndCrtIntroMsg(){
+      this.suppasLenght = false
+      // let itemtext = this.ordrAbndCrtIntroMsg.length()
+      // console.log(itemtext)
+      //   if(itemtext >250){
+      //     this.maxCharRule = true
+      //   }else this.maxCharRule = false
+    }
+  },
   methods: {
     putNumberPhone(){
+      let currentItem = this.ordrAbndCrtIntroMsg
       this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{StorePhoneNumber}}'
+      this.ordrAbndCrtIntroMsg.length > 249 ? (this.ordrAbndCrtIntroMsg = currentItem ,this.suppasLenght = true) : ''
       this.activeStateChng()
     },
     putbussName(){
+      let currentItem = this.ordrAbndCrtIntroMsg
       this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{BusinessName}}'
+      this.ordrAbndCrtIntroMsg.length > 249 ? (this.ordrAbndCrtIntroMsg = currentItem ,this.suppasLenght = true) : ''
       this.activeStateChng()
     },
     putCheckOutTotal(){
+      let currentItem = this.ordrAbndCrtIntroMsg
       this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{CheckOutTotal}}'
+      this.ordrAbndCrtIntroMsg.length > 249 ? (this.ordrAbndCrtIntroMsg = currentItem ,this.suppasLenght = true) : ''
       this.activeStateChng()
     },
     putCheckOutLink(){
+      let currentItem = this.ordrAbndCrtIntroMsg
       this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{CheckOutLink}}'
+      this.ordrAbndCrtIntroMsg.length > 249 ? (this.ordrAbndCrtIntroMsg = currentItem ,this.suppasLenght = true) : ''
       this.activeStateChng()
     },
     putOPtOut(){
+      let currentItem = this.ordrAbndCrtIntroMsg
       this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{write STOP to unsubscribe}}'
+      this.ordrAbndCrtIntroMsg.length > 249 ? (this.ordrAbndCrtIntroMsg = currentItem ,this.suppasLenght = true) : ''
       this.activeStateChng()
     },
     saveOrdrAbndCrt() {
@@ -461,6 +486,9 @@ export default {
 };
 </script>
 <style scoped>
+.col_red_txt{
+  color: red !important;
+}
 .msgCountUnder{
   font: normal normal 600 14px/23px Poppins;
   letter-spacing: 0px;

@@ -276,18 +276,18 @@
             class="pa-0 my-0"
             v-if="wdgtFBcheck && wdgtIsDsc"
           >
-            <v-col cols="3" class="ma-0 pa-0" style="height:100%;width:100%">
+            <v-col cols="3" class="ma-0 pa-0" style="width:100% ">
               <v-img
                 src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
-                class="ma-0 pa-0"
-                height="100%"
+                class="ma-0 pa-0 "
                 width="100%"
-                style="background:#4E5D6B;height:24vh"
+                height="20vh"
+                style="background:#4E5D6B;height: 21vh !important;"
               >
               </v-img>
             </v-col>
-            <v-col cols="9" class="" style="height:100%" v-if="checkOptin">
-              <v-row style="width:100%;" class="px-8">
+            <v-col cols="9" class="py-0" style="height:100%" v-if="checkOptin">
+              <v-row style="width:100%;" class="pl-6 pr-0">
                 <span style="font-weight:bold;font-size:120%; color:#5686F6">
                   {{ dscntCd }}
                 </span>
@@ -306,8 +306,8 @@
                 </v-btn>
               </v-row>
             </v-col>
-            <v-col cols="9" class="" style="height:100%" v-if="!checkOptin">
-              <v-row style="width:100%;height:5%" class="px-8">
+            <v-col cols="9" class="py-0" style="height:100%" v-if="!checkOptin">
+              <v-row style="width:100%;height:5%" class="pl-6 pr-0">
                 <span style="font-weight:bold; font-size:90%">
                   {{ dscntStmt }}
                 </span>
