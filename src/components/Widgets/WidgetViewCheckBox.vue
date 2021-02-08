@@ -280,10 +280,9 @@
               <v-img
                 src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
                 class="ma-0 pa-0"
-                :class="$vuetify.breakpoint.width > 1400 ? 'img_vh_big' :'img_vh_sm'"
                 height="100%"
                 width="100%"
-                style="background:#4E5D6B"
+                style="background:#4E5D6B;height:24vh"
               >
               </v-img>
             </v-col>
@@ -837,6 +836,9 @@ export default {
 .fb-btn {
   border-radius: 7px;
   text-transform: none;
+}
+.img_vh{
+  height: 18vh !important;
 }
 .img_vh_big{
   height: 21vh !important;

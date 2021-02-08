@@ -191,10 +191,10 @@
                   @focus="copy_discount_code_button_focus = true"
                   @focusout="copy_discount_code_button_focus = false"
                   :label="$t('widgets.discCopyCode')"
-                  class="mb-0"
+                  class="mb-0 txt_overflow_wdg_cdc"
                   :value="$t('widgets.discCopyCode')"
-                  maxlength="25"
-                  :rules=" [v => v.length <= 25 || 'Max 25 characters']"
+                  maxlength="22"
+                  :rules=" [v => v.length <= 22 || 'Max 22 characters']"
                 >
 <!--                  v-model="discount_statement"-->
 <!--                  :value="discount_statement"-->
@@ -203,7 +203,7 @@
                   <template v-slot:label v-if="copy_discount_code_button_focus">
                     <span >{{$t('widgets.discCopyCode')}}</span>
                     <span v-if="copy_discount_code_button .length > 4" style="position: absolute;right: 18px;">{{copy_discount_code_button .length}}/</span>
-                    <span v-if="copy_discount_code_button .length > 4" style="position: absolute;right: 0px;">25</span>
+                    <span v-if="copy_discount_code_button .length > 4" style="position: absolute;right: 0px;">22</span>
                   </template>
                 </v-text-field>
               </v-col>
@@ -1122,10 +1122,20 @@ export default {
 .cursor_pointer{
   cursor: pointer;
 }
+/*.txt_overflow{*/
+/*  max-width: 205px;*/
+/*  text-overflow: ellipsis;*/
+/*  white-space: nowrap;*/
+/*}*/
 /*}*/
 </style>
 
 <style>
+/*.txt_overflow_wdg_cdc .v-input input{*/
+/*  max-width: 205px;*/
+/*  text-overflow: ellipsis;*/
+/*  white-space: nowrap;*/
+/*}*/
 .wdg_disc_codes .v-label{
   display: block !important;
   width: 135% !important;

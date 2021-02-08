@@ -112,7 +112,7 @@ export default {
       email: "",
       emailRules: [
         (v) =>
-          !v ||
+          !v && v.length <= 38 &&
           /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
           "E-mail must be valid",
 
