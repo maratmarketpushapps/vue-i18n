@@ -133,7 +133,7 @@
               <v-row style="width:100%;" class="mt-2">
                 <v-row style="width:125%; height:80%" align="center">
                   <v-col cols="1"> </v-col>
-                  <v-col cols="10">
+                  <v-col cols="10"  :class="$vuetify.breakpoint.width > 1600 ? 'ml-0' : 'ml-2'">
                     <vue-tel-input
                       v-model="optinNum"
                       dark
@@ -225,6 +225,7 @@
             justify="center"
             v-if="wdgtSMScheck && !wdgtIsDsc"
             @click="toggleDialog()"
+            :class="$vuetify.breakpoint.width > 1600 ? 'ml-0' : 'ml-2'"
           >
             <vue-tel-input
               v-model="optinNum"
@@ -288,7 +289,7 @@
               </v-img>
             </v-col>
             <v-col cols="9" class="py-0" style="height:100%" v-if="checkOptin">
-              <v-row style="width:100%;" class="pl-6 pr-0">
+              <v-row style="width:100%;" class="pl-8 pr-0">
                 <span style="width:100%;font-weight:bold;font-size:120%; color:#5686F6">
                   {{ dscntCd }}
                 </span>
@@ -308,15 +309,15 @@
               </v-row>
             </v-col>
             <v-col cols="9" class="py-0" style="height:100%" v-if="!checkOptin">
-              <v-row style="width:100%;height:5%" class="pl-6 pr-0">
+              <v-row style="width:100%;height:100%" class="pl-6 pr-0">
                 <span style="font-weight:bold; font-size:90%">
                   {{ dscntStmt }}
                 </span>
               </v-row>
-              <v-row style="width:100%;" class="mt-2">
-                <v-row style="width:125%; height:100%">
-                  <v-col cols="1"> </v-col>
-                  <v-col cols="10" style="height:100%">
+              <v-row style="width:100%;">
+                <v-row style="width:100%; height:100%">
+                  <v-col cols="1" class="pt-0"> </v-col>
+                  <v-col cols="10" class="pl-0 pt-0 ml-11" style="height:100%">
                     <v-row
                       style="width:100%;height:auto"
                       align="center"
@@ -391,7 +392,7 @@
                 <v-row style="width:100%;height:2.5vh">
 
                 </v-row>
-                <v-row justify="center" style="width:100%" class="pl-4" @click="toggleDialog()">
+                <v-row justify="center" style="width:100%"  @click="toggleDialog()" :class="$vuetify.breakpoint.width > 1600 ? 'ml-0' : 'ml-2'">
                   <vue-tel-input
                     v-model="optinNum"
                     dark
@@ -505,7 +506,8 @@
                         <v-row
                           align="center"
                           style="width:100%"
-                          class="ml-0 pt-5"
+                          class="pt-5"
+                          :class="$vuetify.breakpoint.width > 1600 ? 'ml-0' : 'ml-2'"
                         >
                           <vue-tel-input
                             v-model="optinNum"
