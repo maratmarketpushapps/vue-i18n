@@ -5,7 +5,7 @@
         v-if="!detectClick"
         align-content="center"
         justify="center"
-        class="pb-3 pr-2"
+        class="pb-3 pr-1"
       >
         <svg-transition ref="transition" trigger="hover" class="svgicon_dim">
           <SettingsInactive slot="initial" />
