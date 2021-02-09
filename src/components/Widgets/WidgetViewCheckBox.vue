@@ -1,6 +1,6 @@
 <template>
-  <v-container fluid style="height:790px">
-    <v-row justify="center" style="height:710px !important;">
+  <v-container fluid >
+    <v-row justify="center" >
       <v-card
         tile
         height="100%"
@@ -10,7 +10,7 @@
         <v-container
           class="fluid"
           :style="bcgColor"
-          style="height:123px; width:100%;"
+          style=" width:100%;height: 120px"
         >
           <v-row style="width:100%; height:30%" justify="end" align="center" @click="toggleDialog()">
             <v-icon>
@@ -53,7 +53,7 @@
         >
           <v-row
             style="height:100%;width:102.5%"
-            class="pt-10 pb-10"
+            class="pt-8 pb-8"
             align="center"
             justify="center"
             @click="toggleDialog()"
@@ -63,7 +63,7 @@
 
           <v-row
             style="width:102.5%"
-            class="pb-8"
+            class="pb-7"
             justify="center"
             align="center"
             v-if="wdgtTabcheck"
@@ -76,7 +76,7 @@
 
           <v-row
             style="width:102.5%"
-            class="pb-8"
+            class="pb-7"
             align="center"
             justify="center"
             v-if="!wdgtTabcheck"
@@ -94,7 +94,7 @@
             class="pa-0 my-0"
             v-if="wdgtSMScheck && wdgtIsDsc"
           >
-            <v-col cols="3" class="ma-0 pa-0" style="height:100%;width:100%">
+            <v-col cols="3" class="img_vh ma-0 pa-0" style="height:100%;width:100%">
               <v-img
                 src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
                 class="ma-0 pa-0"
@@ -105,18 +105,18 @@
               </v-img>
             </v-col>
             <v-col cols="9" class="" style="height:100%" v-if="checkOptin">
-              <v-row style="width:100%;height:15%" class="px-8">
-                <span style="font-weight:bold;font-size:120%; color:#5686F6">
+              <v-row style="width:100%;height:15%" class="pl-8 pr-2">
+                <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%">
                   {{ dscntCd }}
                 </span>
               </v-row>
 
-              <v-row style="width:100%" class="px-8" align="center">
-                <span>
+              <v-row style="width:100%" class="pl-8 pr-2" align="center">
+                <span style="width: 100%">
                   {{ dscntInstr }}
                 </span>
               </v-row>
-              <v-row style="width:100%" class="pl-8" align="start">
+              <v-row style="width:100%" class="pl-8 pr-2" align="start">
                 <v-btn :style="buttonProps" outlined @click="resetOptin">
                   <span :style="btnTextProps">
                     {{ $t("widgets.cpDiscCode") }}
@@ -125,7 +125,7 @@
               </v-row>
             </v-col>
             <v-col cols="9" class=""  v-if="!checkOptin">
-              <v-row style="width:100%;height:5%" class="px-8">
+              <v-row style="width:100%;height:5%" class="pl-8 pr-2">
                 <span style="font-weight:bold; font-size:90%">
                   {{ dscntStmt }}
                 </span>
@@ -239,6 +239,7 @@
           </v-row>
 
           <v-row
+            class="mt-8"
             style="width:102.5%"
             align="center"
             justify="center"
@@ -273,10 +274,10 @@
             style="width:95%; border: 1px solid #C9CACB; margin-left:1%"
             align="center"
             justify="center"
-            class="pa-0 my-0 img_vh"
+            class="pa-0 my-0 "
             v-if="wdgtFBcheck && wdgtIsDsc"
           >
-            <v-col cols="3" class="ma-0 pa-0" style="width:100% ">
+            <v-col cols="3" class=" ma-0 pa-0" style="width:100% ">
               <v-img
                 src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
                 class="ma-0 pa-0 "
@@ -288,19 +289,19 @@
             </v-col>
             <v-col cols="9" class="py-0" style="height:100%" v-if="checkOptin">
               <v-row style="width:100%;" class="pl-6 pr-0">
-                <span style="font-weight:bold;font-size:120%; color:#5686F6">
+                <span style="width:100%;font-weight:bold;font-size:120%; color:#5686F6">
                   {{ dscntCd }}
                 </span>
               </v-row>
 
-              <v-row style="width:100%;height:58%" class="px-8" align="center">
-                <span>
+              <v-row style="width:100%;height:100%" class="pl-8 pr-2" align="center">
+                <span style="width: 100%">
                   {{ dscntInstr }}
                 </span>
               </v-row>
-              <v-row style="width:100%" class="pl-8" align="start">
+              <v-row style="width:100%" class="pl-8 pr-2" align="start">
                 <v-btn :style="buttonProps" outlined @click="resetOptin">
-                  <span :style="btnTextProps">
+                  <span :style="btnTextProps" style="width: 100%">
                     {{cpDiscCode}}
                   </span>
                 </v-btn>
@@ -387,7 +388,7 @@
           >
             <v-tabs-items v-model="tab" style="width:90%">
               <v-tab-item :value="getTabKeySMS" style="width:100%">
-                <v-row style="width:100%;height:5vh">
+                <v-row style="width:100%;height:2.5vh">
 
                 </v-row>
                 <v-row justify="center" style="width:100%" class="pl-4" @click="toggleDialog()">
@@ -459,7 +460,7 @@
             :key="'key2' + wdgtTabKey"
             class="mt-4"
           >
-            <v-col cols="3" class="ma-0 pa-0" style="height:100%;width:100%">
+            <v-col cols="3" class="img_vh ma-0 pa-0" style="height:100%;width:100%">
               <v-img
                 src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
                 class="ma-0 pa-0"
@@ -470,33 +471,33 @@
               </v-img>
             </v-col>
             <v-col cols="9" class="" style="height:100%" v-if="checkOptin">
-              <v-row style="width:100%;height:15%" class="px-8">
-                <span style="font-weight:bold;font-size:120%; color:#5686F6">
+              <v-row style="width:100%;height:15%" class="pl-8 pr-2">
+                <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%">
                   {{ dscntCd }}
                 </span>
               </v-row>
 
-              <v-row style="width:100%;height:58%" class="px-8" align="center">
-                <span>
+              <v-row style="width:100%;height:100%" class="pl-8 pr-2" align="center">
+                <span style="width: 100%">
                   {{ dscntInstr }}
                 </span>
               </v-row>
-              <v-row style="width:100%" class="pl-8" align="start">
+              <v-row style="width:100%" class="pl-8 pr-2" align="start">
                 <v-btn :style="buttonProps" outlined @click="resetOptin">
-                  <span :style="btnTextProps">
-                    COPY DISCOUNT CODE
+                  <span :style="btnTextProps" style="width: 100%">
+                    {{cpDiscCode}}
                   </span>
                 </v-btn>
               </v-row>
             </v-col>
             <v-col cols="9" class="" style="height:100%" v-if="!checkOptin">
-              <v-row style="width:100%;height:5%" class="px-8">
+              <v-row style="width:100%;height:100%" class="pl-8 pr-2">
                 <span style="font-weight:bold; font-size:90%">
                   {{ dscntStmt }}
                 </span>
               </v-row>
-              <v-row style="width:100%;height:70% " class="mt-2">
-                <v-row style="width:125%; height:80%" align="center">
+              <v-row style="width:100%;height:100% " class="">
+                <v-row style="width:125%; height:100%" align="center">
                   <v-col cols="1"> </v-col>
                   <v-col cols="10">
                     <v-tabs-items v-model="tab" style="width:90%">
@@ -568,7 +569,7 @@
                   </v-col>
                 </v-row>
               </v-row>
-              <v-row style="width:100%; height:20%" class="px-9" align="start">
+              <v-row style="width:100%; height:100%" class="pl-8 pr-9 " align="start">
                 <v-btn
                   :style="buttonProps"
                   outlined
@@ -590,7 +591,7 @@
             v-if="wdgtTabcheck && !wdgtIsDsc"
             :key="'key3' + wdgtTabKey"
             @click="toggleDialog()"
-            class="mt-12"
+            class="mt-8"
           >
             <v-btn :style="buttonProps" outlined :key="widgetKey">
               <span :style="btnTextProps">
@@ -600,7 +601,7 @@
           </v-row>
 
           <v-row
-            class="mt-6"
+            class="mt-6 mb-9"
             style="width:102.5%"
             align="center"
             justify="center"
@@ -847,8 +848,9 @@ export default {
   height: 25vh !important;
 }
 </style>
-<style>
-.v-responsive__content{
-  /*height: 21vh !Important;*/
-}
+
+<style >
+.img_vh  .v-responsive__content{
+    height: 21vh !Important;
+  }
 </style>
