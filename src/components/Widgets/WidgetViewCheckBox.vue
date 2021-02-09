@@ -206,6 +206,7 @@
           </v-row>
 
           <v-row
+            class="mt-8"
             style="width:102.5%"
             align="end"
             justify="center"
