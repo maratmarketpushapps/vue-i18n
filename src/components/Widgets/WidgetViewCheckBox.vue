@@ -847,7 +847,7 @@ export default {
 .img_vh{
   /*object-fit: cover;*/
   /*height: calc(100% - 10vh) !important;*/
-  height: 24vh !important;
+  /*height: 24vh !important;*/
 }
 /*.img_vh_big{*/
 /*  height: 21vh !important;*/
@@ -858,7 +858,7 @@ export default {
 </style>
 <style >
 .img_vh  .v-responsive__content{
-    height: 47vh !Important;
+    height: 23vh !Important;
     /*height: calc(100% - 100px);*/
   }
 
