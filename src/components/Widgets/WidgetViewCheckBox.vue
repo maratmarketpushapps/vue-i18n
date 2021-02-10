@@ -98,7 +98,7 @@
               <v-img
                 src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
                 class="ma-0 pa-0"
-                height="100%"
+
                 width="100%"
                 style="background:#4E5D6B"
               >
@@ -284,7 +284,6 @@
                 src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
                 class="ma-0 pa-0 "
                 width="100%"
-                height="20vh"
                 style="background:#4E5D6B;height: 21vh !important;"
               >
               </v-img>
@@ -467,7 +466,7 @@
                   <v-img
                     src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
                     class="ma-0 pa-0"
-                    height="100%"
+
                     width="100%"
                     style="background:#4E5D6B"
                   >
