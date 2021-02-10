@@ -15,7 +15,7 @@
     "navdrawer": {
       "Settings": "Settings",
       "AbandonedCarts": "Subscribers",
-      "Widgets": "Get Subscribers",
+      "Widgets": "Get\nSubscribers",
       "Dashboard": "Dashboard",
       "Campaigns": "Campaigns"
     }
@@ -118,16 +118,16 @@
       "headerTxt": "Facebook Abandoned Cart Message #1",
       "selectLabel": "Send After",
       "sendAfter": "How much time should pass before sending this message.",
-      "iconTxt": "Edit Message",
+      "iconTxt": "EDIT MESSAGE",
       "discountTxt1": "To increase the chances of recovering sales, you can include a discount coupon in your message. To generate a coupon, go to ",
       "discountTxt2": "Marketing & SEO / Coupons ",
       "discountTxt3": ""
     },
     "smscarts1": {
-      "headerTxt": "SMS Abandoned Cart Message #1",
+      "headerTxt": "Set Live SMS Abandoned Cart Message #1",
       "selectLabel": "Send After",
       "sendAfter": "How much time should pass before sending this message.",
-      "iconTxt": "Edit Message",
+      "iconTxt": "EDIT MESSAGE",
       "discountTxt1": "In order to SAVE your campaign you need to make sure you set all the variables that you add in the SMS Message.",
       "discountTxt2": "Marketing & SEO / Coupons ",
       "discountTxt3": ""
@@ -139,10 +139,10 @@
       "iconTxt": "Edit Message"
     },
     "smscarts2": {
-      "headerTxt": "SMS Abandoned Cart Message #2",
+      "headerTxt": "Set Live SMS Abandoned Cart Message #2",
       "selectLabel": "Send After",
       "sendAfter": "How much time should pass before sending this message.",
-      "iconTxt": "Edit Message",
+      "iconTxt": "EDIT MESSAGE",
       "discountTxt1": "In order to SAVE your campaign you need to make sure you set all the variables that you add in the SMS Message.",
       "discountTxt2": "Marketing & SEO / Coupons ",
       "discountTxt3": ""
@@ -184,7 +184,7 @@
     "discountLabelinstruction": "Apply discount code instructions",
     "subscribeTypeNoDiscount": "No Discount",
     "subscribeTypeDiscount": "Discount (Recommended)",
-
+    "requiredValidCode":"Add a discount code.",
     "discSmallText":"To increase the chances of recovering sales, you can include a discount coupon in your message. To generate a coupon, go to ",
     "getTen":"GET10",
     "discMarkHint":"Marketing & SEO / Coupons. ",
@@ -192,7 +192,8 @@
     "notSelTxt": "You need choose one",
     "cpDiscCode": "COPY DISCOUNT CODE",
     "addYourDiscCode":"Add your discount code",
-    "discState":"Subscribe discount hint",
+    "discState":"Discount statement",
+    "discCopyCode":"Copy discount code button",
     "getTenDisc":"Get 10% discount!",
     "popConWidg": "",
     "subsType": "Offer subscribers a discount coupon",

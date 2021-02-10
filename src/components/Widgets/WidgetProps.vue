@@ -12,16 +12,14 @@
           </v-row>
         </v-col>
 
-        <v-col :cols="$vuetify.breakpoint.width < 976 ? '2' : $vuetify.breakpoint.width < 1190 ? '3' :  '5'" class="">
-
+        <v-col :cols="$vuetify.breakpoint.width < 976 ? '2' : $vuetify.breakpoint.width < 1249 ? '3' :  '5'" class="">
           <v-switch v-model="live" inset
                     color="#006AFF"
                     @change="wdgtLive()">
           </v-switch>
-
         </v-col>
 
-        <v-col :cols="$vuetify.breakpoint.width < 976 ? '5' : $vuetify.breakpoint.width < 1190 ? '4' :'3'">
+        <v-col :cols="$vuetify.breakpoint.width < 976 ? '5' : $vuetify.breakpoint.width < 1249 ? '4' :'3'">
           <v-row
             class="my-0 mr-2"
             style="height:100%;width:100%"
@@ -39,12 +37,11 @@
               {{ $t("widgets.svBtn") }}
 
             </v-btn>
-            <span style="color: red" v-if="discCodeNotValid">Add a discount code.</span>
           </v-row>
         </v-col>
 
       </v-row>
-
+      <span style="color: red" v-if="discCodeNotValid" class="d-flex justify-end mr-9">  {{ $t("widgets.requiredValidCode") }}</span>
       <v-row class=" pt-4">
         <v-col cols="9 offset-1 d-flex align-center" class="py-0 px-0">
           <h3 class="subs_title gath_msg">{{ $t("widgets.GathMess") }}</h3>
@@ -132,31 +129,87 @@
     <v-container class="py-0">
       <v-row class="py-0">
         <v-col cols="11 offset-1" v-if="def_selected == ''" class="px-0 py-0">
-          <v-row  class="py-0 par_disc_fields">
-            <v-col cols="6" class="py-0 mb-0 ">
-              <v-text-field
-                v-model="discount_statement"
-                :label="$t('widgets.discState')"
-                class="mb-0"
-                :value="discount_statement"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="5" class="py-0 mb-0 ">
-              <v-text-field
-                v-model="discount_code"
-                :label="$t('widgets.addYourDiscCode')"
-                class="mb-0 dis_code"
-                :class="discCodeNotValid ? 'not_valid' : ''"
-                :value="discount_code"
-                :rules="nameRules"
-              ></v-text-field>
-            </v-col>
+          <v-row  class="py-0 par_disc_fields wdg_disc_codes">
+            <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 px-6 py-0 pos_smaller">
+              <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0 py-0">
+                <v-col cols="11" class="py-0 mb-0 pl-0 pr-0">
+                  <v-text-field
+                    v-model="discount_statement"
+                    @focus="discount_statement_focus = true"
+                    @focusout="discount_statement_focus = false"
+                    :label="$t('widgets.discState')"
+                    class="mb-0"
+                    :value="discount_statement"
+                    maxlength="40"
+                    :rules=" [v => v.length <= 40 || 'Max 40 characters']"
+                  >
+                    <template v-slot:label v-if="discount_statement_focus" >
+                      <span >{{$t('widgets.discState')}}</span>
+                      <span v-if="discount_statement.length > 4" style="position: absolute;right: 18px;">{{discount_statement.length}}/</span>
+                      <span v-if="discount_statement.length > 4" style="position: absolute;right: 0px;">40</span>
+                    </template>
+                  </v-text-field>
+                </v-col>
+                <v-col cols="1"></v-col>
+              </v-row>
+            </v-container>
             <v-container class="pr-12 py-0 pos_sm_cont">
               <v-col cols="12" class="pl-0 pr-2 py-0 d-flex justify-start">
-                <small class="smaller_text space_bottom ">{{$t('widgets.discSmallText')}}<b>{{ $t('widgets.discMarkHint')}}</b>{{$t('widgets.discSmallTextManualCoupon')}}</small>
+                <small class="smaller_text space_bottom ">{{$t('widgets.discSmallText')}}<b>{{ $t('widgets.discMarkHint')}}</b>
+<!--                  {{$t('widgets.discSmallTextManualCoupon')}}-->
+                </small>
               </v-col>
             </v-container>
-            <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 px-6 py-0 pos_smaller">
+              <v-col cols="5" class="py-0 mb-0 pr-0">
+                <v-text-field
+                  v-model="discount_code"
+                  @focus="discount_code_focus = true"
+                  @focusout="discount_code_focus = false"
+                  :label="$t('widgets.addYourDiscCode')"
+                  class="mb-0 dis_code"
+                  :class="discCodeNotValid ? 'not_valid' : ''"
+                  :value="discount_code"
+                  maxlength="20"
+                  :rules=" [v => v.length <= 20 || 'Max 20 characters']"
+                >
+                  <template v-slot:label v-if="discount_code_focus">
+                    <span >{{$t('widgets.addYourDiscCode')}}</span>
+                    <span v-if="discount_code.length > 4" style="position: absolute;right: 18px;">{{discount_code.length}}/</span>
+                    <span v-if="discount_code.length > 4" style="position: absolute;right: 0px;">20</span>
+                  </template>
+                </v-text-field>
+                <!--              :rules="nameRules"-->
+              </v-col>
+              <v-col cols="1" style="width: 33px !important;" class="px-0"></v-col>
+              <v-col cols="5" class="py-0 mb-0 pl-0">
+<!--                <v-btn block  color="primary"-->
+<!--                >-->
+<!--                  {{$t('widgets.discCopyCode')}}-->
+<!--                </v-btn>-->
+                <v-text-field
+                  v-model="copy_discount_code_button "
+                  @focus="copy_discount_code_button_focus = true"
+                  @focusout="copy_discount_code_button_focus = false"
+                  :label="$t('widgets.discCopyCode')"
+                  class="mb-0 txt_overflow_wdg_cdc"
+                  :value="$t('widgets.discCopyCode')"
+                  maxlength="22"
+                  :rules=" [v => v.length <= 22 || 'Max 22 characters']"
+                >
+<!--                  v-model="discount_statement"-->
+<!--                  :value="discount_statement"-->
+<!--                  maxlength="25"-->
+<!--                  :rules=" [v => v.length <= 25 || 'Max 25 characters']"-->
+                  <template v-slot:label v-if="copy_discount_code_button_focus">
+                    <span >{{$t('widgets.discCopyCode')}}</span>
+                    <span v-if="copy_discount_code_button .length > 4" style="position: absolute;right: 18px;">{{copy_discount_code_button .length}}/</span>
+                    <span v-if="copy_discount_code_button .length > 4" style="position: absolute;right: 0px;">22</span>
+                  </template>
+                </v-text-field>
+              </v-col>
+
+
+            <v-container fluid style="height:auto;width:100%" class="mb-0 mt-5 pb-0 px-6 py-0 pos_smaller">
               <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0 py-0">
                 <v-col cols="11" class="py-0">
                   <v-row align="start" style="height:70%" class="mb-0 pb-0 py-0">
@@ -165,7 +218,16 @@
                       :label="$t('widgets.discountLabelinstruction')"
                       class="text-fonts"
                       :value="apply_discount_instruction"
+                      maxlength="80"
+                      @focus="apply_discount_instruction_focus = true"
+                      @focusout="apply_discount_instruction_focus = false"
+                      :rules=" [v => v.length <= 80 || 'Max 80 characters']"
                     >
+                      <template v-slot:label v-if="apply_discount_instruction_focus">
+                        <span >{{$t('widgets.discountLabelinstruction')}}</span>
+                        <span v-if="apply_discount_instruction.length > 4" style="position: absolute;right: 18px;">{{apply_discount_instruction.length}}/</span>
+                        <span v-if="apply_discount_instruction.length > 4" style="position: absolute;right: 0px;">80</span>
+                      </template>
                     </v-text-field>
                   </v-row>
                 </v-col>
@@ -228,12 +290,21 @@
       <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0">
         <v-col cols="1"></v-col>
         <v-col cols="10">
-          <v-row align="start" style="height:70%" class="mb-0 pb-0">
+          <v-row align="start" style="height:70%" class="mb-0 pb-0 wdg_disc_codes">
             <v-text-field
               :label="$t('widgets.ttlTxt')"
               v-model="ttlText"
               class="text-fonts"
+              maxlength="25"
+              @focus="ttlText_focus = true"
+              @focusout="ttlText_focus = false"
+              :rules=" [v => v.length <= 25 || 'Max 25 characters']"
             >
+              <template v-slot:label v-if="ttlText_focus">
+                <span >{{$t('widgets.ttlTxt')}}</span>
+                <span v-if="ttlText.length > 4" style="position: absolute;right: 18px;">{{ttlText.length}}/</span>
+                <span v-if="ttlText.length > 4" style="position: absolute;right: 0px;">25</span>
+              </template>
             </v-text-field>
           </v-row>
         </v-col>
@@ -295,12 +366,21 @@
       <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0">
         <v-col cols="1"></v-col>
         <v-col cols="10">
-          <v-row align="start" style="height:70%" class="mb-0 pb-0">
+          <v-row align="start" style="height:70%" class="mb-0 pb-0 wdg_disc_codes">
             <v-text-field
               :label="$t('widgets.msgTxt')"
               v-model="msgTxt"
               class="text-fonts"
+              maxlength="280"
+              @focus="msgTxt_focus = true"
+              @focusout="msgTxt_focus = false"
+              :rules=" [v => v.length <= 280 || 'Max 280 characters']"
             >
+              <template v-slot:label v-if="msgTxt_focus">
+                <span >{{$t('widgets.msgTxt')}}</span>
+                <span v-if="msgTxt.length > 4" style="position: absolute;right: 26px;">{{msgTxt.length}}/</span>
+                <span v-if="msgTxt.length > 4" style="position: absolute;right: 0px;">280</span>
+              </template>
             </v-text-field>
           </v-row>
         </v-col>
@@ -360,7 +440,7 @@
     <v-container
       fluid
       style="height:auto;width:100%"
-      class="mb-0 pb-0"
+      class="mb-0 pb-0 wdg_disc_codes"
       v-show="radioSelect == 'Checkbox'"
     >
       <v-row style="height:20%;width:100%" class="pa-0 ma-0" align="start">
@@ -392,7 +472,16 @@
               v-model="btnTxt"
               class="text-fonts"
               dense
+              maxlength="25"
+              @focus="btnTxt_focus = true"
+              @focusout="btnTxt_focus = false"
+              :rules=" [v => v.length <= 25 || 'Max 25 characters']"
             >
+              <template v-slot:label v-if="btnTxt_focus">
+                <span >{{$t('widgets.btnTxt')}}</span>
+                <span v-if="btnTxt.length > 4" style="position: absolute;right: 18px;">{{btnTxt.length}}/</span>
+                <span v-if="btnTxt.length > 4" style="position: absolute;right: 0px;">25</span>
+              </template>
             </v-text-field>
           </v-row>
         </v-col>
@@ -520,7 +609,7 @@
           </v-row>
         </v-col>
       </v-row>
-      <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0">
+      <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0 wdg_disc_codes">
         <v-col cols="1"></v-col>
         <v-col cols="10">
           <v-row align="start" style="height:70%" class="mb-0 pb-0">
@@ -528,7 +617,16 @@
               :label="$t('widgets.cnclTxt')"
               v-model="cnclTxt"
               class="text-fonts"
+              maxlength="25"
+              @focus="cnclTxt_focus = true"
+              @focusout="cnclTxt_focus = false"
+              :rules=" [v => v.length <= 25 || 'Max 25 characters']"
             >
+              <template v-slot:label v-if="cnclTxt_focus">
+                <span >{{$t('widgets.cnclTxt')}}</span>
+                <span v-if="cnclTxt.length > 4" style="position: absolute;right: 18px;">{{cnclTxt.length}}/</span>
+                <span v-if="cnclTxt.length > 4" style="position: absolute;right: 0px;">25</span>
+              </template>
             </v-text-field>
           </v-row>
         </v-col>
@@ -607,7 +705,7 @@ export default {
       ttlText: "",
       ttlFont: "",
       fontLst: [
-        "Ariel",
+        "Arial",
         "Georgia",
         "Helvetica",
         "Impact",
@@ -654,6 +752,7 @@ export default {
       disCodeInst:null,
       discount_statement:"",
       discount_code:"",
+      copy_discount_code_button :"",
       apply_discount_instruction:"",
       statusWidgets:null,
       subType:null,
@@ -665,6 +764,14 @@ export default {
         v => !!v || 'Name is required',
         // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
       ],
+      discount_statement_focus:false,
+      discount_code_focus:false,
+      apply_discount_instruction_focus:false,
+      copy_discount_code_button_focus:false,
+      ttlText_focus:false,
+      msgTxt_focus:false,
+      btnTxt_focus:false,
+      cnclTxt_focus:false,
     };
   },
   methods: {
@@ -732,6 +839,7 @@ export default {
             subscribe_type:this.subscribe_type,
             discount_statement:this.discount_statement,
             discount_code:this.discount_code,
+            copy_discount_code_button:this.copy_discount_code_button,
             apply_discount_instruction:this.apply_discount_instruction,
           };
           this.$store.dispatch("updWdgtDiscForm",objWidg)
@@ -888,6 +996,10 @@ export default {
     discount_statement(newValue) {
       this.$store.dispatch("updWdgtDiscStatment", newValue);
     },
+    copy_discount_code_button(newValue){
+      this.$store.dispatch("updWdgtDiscCopyCode", newValue);
+      this.discCodeNotValid = false
+    },
     discount_code(newValue) {
       this.$store.dispatch("updWdgtDiscCode", newValue);
       this.discCodeNotValid = false
@@ -986,6 +1098,7 @@ export default {
     setTimeout(() => ( this.subType = this.$store.state.widgetVars.subscribe_type,this.statusWidgets = this.$store.state.widgetVars.enabled_widgets,
       this.discount_statement = this.$store.state.widgetVars.discount_statement,
       this.discount_code = this.$store.state.widgetVars.discount_code,
+      this.copy_discount_code_button = this.$store.state.widgetVars.copy_discount_code_button,
       this.apply_discount_instruction = this.$store.state.widgetVars.apply_discount_instruction,this.changesWidg()), 500)
 
   },
@@ -1009,12 +1122,24 @@ export default {
 .cursor_pointer{
   cursor: pointer;
 }
+/*.txt_overflow{*/
+/*  max-width: 205px;*/
+/*  text-overflow: ellipsis;*/
+/*  white-space: nowrap;*/
+/*}*/
 /*}*/
 </style>
 
 <style>
-
-
+/*.txt_overflow_wdg_cdc .v-input input{*/
+/*  max-width: 205px;*/
+/*  text-overflow: ellipsis;*/
+/*  white-space: nowrap;*/
+/*}*/
+.wdg_disc_codes .v-label{
+  display: block !important;
+  width: 135% !important;
+}
 .dis_code .v-messages__message{
   display: none;
 }
@@ -1136,7 +1261,7 @@ export default {
   color: #323F4F;
 }
 .space_bottom{
-  margin-bottom: 26px !important;
+  margin-bottom:16px !important;
 }
 .text_checkbox{
   font: normal normal normal 12px/19px Poppins;

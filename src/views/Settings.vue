@@ -1,7 +1,7 @@
 <template>
-  <v-col cols="12" class="pl-4 d-flex justify-end">
-    <v-col cols="11">
-        <v-container fluid class="pt-0 mt-4">
+  <v-col cols="12" class="pl-4 d-flex justify-end pt-0">
+    <v-col cols="11 pt-0">
+        <v-container fluid class="pt-0">
           <v-row class="pt-6 mt-0">
             <h3 class="header_dims page_headers">
               {{ $t("navbar.navdrawer.Settings") }}

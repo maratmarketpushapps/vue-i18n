@@ -1,9 +1,9 @@
 <template>
   <v-col cols="12" class="px-0 py-0">
-      <v-container fluid class="app_background">
+      <v-container fluid class="app_background py-0">
         <v-row style="height:100%; width:100%;" >
           <v-col cols="6">
-            <v-card height="100%" width="100%" tile class="font_dims px-4">
+            <v-card height="100%" width="100%" tile class="font_dims pl-4 pr-0">
               <v-row style="height:10%; width:100%" align="center">
                 <v-col cols="6">
                   <v-row justify="start" align="center" class="ml-5 mt-2">
@@ -335,7 +335,7 @@
         </v-row>
         <v-row style="height:100%; width:100%">
           <v-col cols="12 pt-4">
-            <v-card height="100%" width="100%" tile class="font_dims px-4">
+            <v-card height="100%" width="100%" tile class="font_dims pl-4 pr-0">
               <v-row style="height:15%; width:100%">
                 <v-col cols="6">
                   <v-row justify="start" class="ml-5 mt-2">

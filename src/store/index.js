@@ -49,6 +49,7 @@ export default new Vuex.Store({
       apply_discount_instruction: "",
       discount_code: "",
       discount_statement: "",
+      copy_discount_code_button:"",
       id: 0,
       instance_id: "",
       website_id: 0,
@@ -244,6 +245,7 @@ export default new Vuex.Store({
     },
   },
   getters: {
+
     cartReady: (state) => {
       return state.cartIsReady
     },
@@ -317,6 +319,9 @@ export default new Vuex.Store({
     getOrderReceipt: (state) => {
       return state.msgVars.order_receipt;
     },
+    getCopyDiscountCodeButton: (state) => {
+      return state.widgetVars.copy_discount_code_button
+    },
     getOrderShipped: (state) => {
       return state.msgVars.order_shipped;
     },
@@ -389,6 +394,7 @@ export default new Vuex.Store({
       state.widgetVars.id = obj.id;
       state.widgetVars.enabled_widgets = obj.enabled_widgets;
       state.widgetVars.discount_code = obj.discount_code;
+      state.widgetVars.copy_discount_code_button = obj.copy_discount_code_button
       state.widgetVars.discount_statement = obj.discount_statement;
       state.widgetVars.subscribe_type = obj.subscribe_type;
       state.widgetVars.instance_id = obj.instance_id;
@@ -527,6 +533,12 @@ export default new Vuex.Store({
         ? (state.widgetVars.changesSaved = true)
         : (state.widgetVars.changesSaved = false);
       state.widgetVars.discount_code = txt;
+    },
+    SET_WDGT_DISC_COPY_CODE(state, txt) {
+      txt == state.widgetVars.copy_discount_code_button
+        ? (state.widgetVars.changesSaved = true)
+        : (state.widgetVars.changesSaved = false);
+      state.widgetVars.copy_discount_code_button = txt;
     },
     SET_WDGT_DISC_INST(state, txt) {
       txt == state.widgetVars.apply_discount_instruction
@@ -947,6 +959,7 @@ export default new Vuex.Store({
       state.widgetVars.apply_discount_instruction =
         formVidgData.apply_discount_instruction;
       state.widgetVars.discount_code = formVidgData.discount_code;
+      state.widgetVars.copy_discount_code_button = formVidgData.copy_discount_code_button;
       state.widgetVars.discount_statement = formVidgData.discount_statement;
       if (formVidgData.coneData[0].title.toUpperCase() == "SMS") {
         state.widgetVars.enabled_widgets.sms.title =
@@ -1221,6 +1234,12 @@ export default new Vuex.Store({
     updWdgtDiscCode({ commit }, txt) {
       return new Promise((resolve) => {
         commit("SET_WDGT_DISC_CODE", txt);
+        resolve("success");
+      });
+    },
+    updWdgtDiscCopyCode({ commit }, txt) {
+      return new Promise((resolve) => {
+        commit("SET_WDGT_DISC_COPY_CODE", txt);
         resolve("success");
       });
     },

@@ -21,7 +21,7 @@
       justify="center"
       class="pt-0 mt-0 pr-0"
     >
-      <v-col>
+      <v-col class="Accountinfo">
         <v-form v-model="formValid">
           <v-text-field
             :label="$t('settingsPage.accInfoCard.label1')"
@@ -31,7 +31,10 @@
             dense
             style="font-size:110%"
             class="pt-0 pb-1"
+            maxlength="38"
+            :rules=" [v => v.length <= 38 || 'Max 38 characters']"
           >
+
           </v-text-field>
           <v-text-field
             :label="$t('settingsPage.accInfoCard.label2')"
@@ -41,7 +44,10 @@
             dense
             style="font-size:110%"
             class="pt-2 pb-1"
+            maxlength="38"
+            :rules=" [v => v.length <= 38 || 'Max 38 characters']"
           >
+
           </v-text-field>
           <v-text-field
             :label="$t('settingsPage.accInfoCard.label4')"
@@ -50,10 +56,14 @@
             @input="detectChange"
             dense
             style="font-size:110%"
+            maxlength="38"
+            :rules=" [v => v.length <= 38 || 'Max 38 characters']"
             class="pt-2 pb-1"
           >
+
           </v-text-field>
           <v-text-field
+           :validate-on-blur="true"
             :label="$t('settingsPage.accInfoCard.label3')"
             v-model="email"
             @change="detectChange"
@@ -61,8 +71,11 @@
             dense
             style="font-size:110%"
             class="pt-2 pb-1"
-            :rules="emailRules"
+            maxlength="38"
+            :rules="[ v => (v.match(/^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) || 'Invalid Email address']"
           >
+
+<!--            :rules="emailRules"-->
           </v-text-field>
         </v-form>
         <v-row justify="center" style="padding-top:3%">
@@ -102,6 +115,7 @@ export default {
           !v ||
           /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
           "E-mail must be valid",
+
       ],
       formValid: false,
     };
@@ -112,15 +126,11 @@ export default {
     },
     updAccInfo() {
       let obj = {
-        first_name:
-          this.first_name == "" ? this.accInfo.first_name : this.first_name,
-        last_name:
-          this.last_name == "" ? this.accInfo.last_name : this.last_name,
-        business_name:
-          this.buss_name == "" ? this.accInfo.business_name : this.buss_name,
-        email: this.email == "" ? this.accInfo.email : this.email,
+        first_name:this.first_name,
+        last_name:this.last_name,
+        business_name:this.buss_name,
+        email:this.email,
       };
-
       this.$store.dispatch("updIsLoading", true).then(() => {
         this.$store.dispatch("updAccInfo", obj).then((res) => {
           if (res === "success") {
@@ -133,6 +143,10 @@ export default {
                   business_name: this.buss_name
                 });
                 // console.log("Settings API refreshed");
+                this.first_name = this.$store.getters.getAccountInfo.first_name
+                this.last_name = this.$store.getters.getAccountInfo.last_name
+                this.buss_name = this.$store.getters.getAccountInfo.business_name
+                this.email = this.$store.getters.getAccountInfo.email
                 this.btnDisabled = true;
               } else {
                 // console.log("Settings API not refreshed");
@@ -177,5 +191,9 @@ export default {
 .v-application--is-ltr .v-messages {
   text-align: left;
   font-style: oblique;
+}
+.Accountinfo .v-label {
+  display: block !important;
+  width: 135% !important;
 }
 </style>
