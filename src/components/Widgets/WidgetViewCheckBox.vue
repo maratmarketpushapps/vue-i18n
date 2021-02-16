@@ -900,6 +900,7 @@ export default {
   }
 }
 </style>
+
 <style >
 .img_vh  .v-responsive__content{
     height: 23vh !Important;
