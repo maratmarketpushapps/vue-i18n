@@ -1,6 +1,6 @@
 <template>
   <div class="popupWindow">
-    <v-row justify="center">
+    <v-row justify="center" v-if="statusToken !== undefined || statusToken == ''">
       <v-dialog
         v-model="popupWindow"
         persistent
@@ -198,7 +198,9 @@ export default {
     btnStatus() {
       return this.btnDisabled || !this.formValid ? true : false;
     },
-
+    statusToken(){
+      return this.$store.getters.getToken
+    },
     accInfo() {
       let aa = this.getAccountInfo;
       return aa;

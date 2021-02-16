@@ -13,7 +13,7 @@
           style=" width:100%;height: 120px"
         >
           <v-row style="width:100%; height:30%" justify="end" align="center" @click="toggleDialog()">
-            <v-icon>
+            <v-icon color="#0247a7">
               mdi-close
             </v-icon>
           </v-row>
@@ -28,18 +28,18 @@
           <v-card color="white" tile class="pb-4 pt-2">
             <v-row justify="end" class="pr-5 pt-2">
               <v-btn x-small icon @click="ovrlyClose()">
-                <v-icon color="black">
+                <v-icon color="#323F4F"  >
                   mdi-window-close
                 </v-icon>
               </v-btn>
             </v-row>
             <v-card-text
-              style="color:black ;text-align: center; font-size:12px"
+              style="color:#323F4F ;text-align: center; font-size:14px ; padding-left: 15px ; padding-right: 15px"
             >
               {{ $t("widgets.modalText1") }}
             </v-card-text>
             <v-card-text
-              style="color:black ; text-align: center; font-size:12px"
+              style="color:#323F4F ; text-align: center; font-size:14px; padding-left: 15px ; padding-right: 15px"
             >
               {{ $t("widgets.modalText2") }}
             </v-card-text>
@@ -53,7 +53,7 @@
         >
           <v-row
             style="height:100%;width:102.5%"
-            class="pt-8 pb-8"
+            class=" title_offer"
             align="center"
             justify="center"
             @click="toggleDialog()"
@@ -63,7 +63,7 @@
 
           <v-row
             style="width:102.5%"
-            class="pb-7"
+            class="text_offer"
             justify="center"
             align="center"
             v-if="wdgtTabcheck"
@@ -76,7 +76,7 @@
 
           <v-row
             style="width:102.5%"
-            class="pb-7"
+            class="text_offer"
             align="center"
             justify="center"
             v-if="!wdgtTabcheck"
@@ -87,21 +87,21 @@
             </v-col>
           </v-row>
 
-          <v-col cols="11">
+          <v-col cols="11" v-if="wdgtSMScheck && wdgtIsDsc">
             <v-row
               style="width:100%; border: 1px solid #C9CACB; margin-left:1%"
               align="center"
               justify="center"
               class="pa-0 my-0"
-              v-if="wdgtSMScheck && wdgtIsDsc"
+
             >
               <v-col cols="3" class="img_vh ma-0 pa-0" style="height:100%;width:100%">
                 <v-img
                   src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
                   class="ma-0 pa-0"
-
                   width="100%"
                   style="background:#4E5D6B"
+
                 >
                 </v-img>
               </v-col>
@@ -239,7 +239,7 @@
               placeholder=""
               :showDialCode="true"
               mode="international"
-              disabled
+
             >
             </vue-tel-input>
           </v-row>
@@ -276,20 +276,21 @@
             </v-tabs>
           </v-row>
 
-          <v-col cols="11">
+          <v-col cols="11"  v-if="wdgtFBcheck && wdgtIsDsc">
             <v-row
               style="width:100%; border: 1px solid #C9CACB; margin-left:1%"
               align="center"
               justify="center"
               class="pa-0 my-0 "
-              v-if="wdgtFBcheck && wdgtIsDsc"
+
             >
-              <v-col cols="3" class=" ma-0 img_vh pa-0" style="width:100% ">
+              <v-col cols="3" class=" ma-0 img_vh_big pa-0" style="width:100% ">
                 <v-img
                   src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
                   class="ma-0 pa-0 "
                   width="100%"
-                  style="background:#4E5D6B;height: 21vh !important;"
+                  height="26vh"
+                  style="background:#4e5d6b;"
                 >
                 </v-img>
               </v-col>
@@ -406,7 +407,7 @@
                     placeholder=""
                     :showDialCode="true"
                     mode="international"
-                    disabled
+
                   >
                   </vue-tel-input>
                 </v-row>
@@ -459,21 +460,21 @@
             </v-tabs-items>
           </v-row>
 
-          <v-col cols="11" class="ml-3">
+          <v-col cols="11" class="ml-3 no_pad_min_width"   v-if="wdgtTabcheck && wdgtIsDsc">
             <v-row
               style=" border:1px solid #C9CACB;"
               align="center"
               justify="center"
-              v-if="wdgtTabcheck && wdgtIsDsc"
+
               :key="'key2' + wdgtTabKey"
               class="mt-4"
             >
-                <v-col cols="3" class="img_vh ma-0 pa-0" style="height:100%;width:100%">
+                <v-col cols="3" class="img_vh_med ma-0 pa-0" style="height:100%;width:100%">
                   <v-img
                     src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
                     class="ma-0 pa-0"
-
                     width="100%"
+                    height="24vh"
                     style="background:#4E5D6B"
                   >
                   </v-img>
@@ -523,7 +524,7 @@
                                 placeholder=""
                                 :showDialCode="true"
                                 mode="international"
-                                disabled
+
                               >
                               </vue-tel-input>
                             </v-row>
@@ -625,6 +626,32 @@
       </v-card>
     </v-row>
 
+<!--    /* SHOW DISC OR SUBMIT SCREEN */-->
+
+    <v-row justify="center"  class="mt-8"  v-if="didOptIn == true && subsTy == 'subscribe'">
+      <v-btn
+        tile
+        depressed
+        color="#4e5d6b"
+        style="border-width:1px;color: white;width:284px; "
+        @click="didOptIn = false;"
+      >
+        {{ $t("widgets.ShowSubmitButton") }}
+      </v-btn>
+    </v-row>
+
+    <v-row justify="center"  class="mt-8"   v-if="didOptIn == false && subsTy == 'subscribe'">
+      <v-btn
+        tile
+        depressed
+        color="#4e5d6b"
+        style="border-width:1px;color: white;width: 284px"
+        @click="didOptIn = true;"
+      >
+        {{ $t("widgets.ShowDiscountButton") }}
+      </v-btn>
+    </v-row>
+
     <v-row justify="center"  class="mt-8">
       <v-btn
         tile
@@ -683,6 +710,9 @@ export default {
   },
   computed: {
     ...mapGetters(["getWidgetsState"]),
+    subsTy(){
+      return this.$store.getters.getWdgSubType
+    },
     detectChange() {
       return this.getWidgetsState.changesSaved;
     },
@@ -850,22 +880,37 @@ export default {
   border-radius: 7px;
   text-transform: none;
 }
-.img_vh{
-  /*object-fit: cover;*/
-  /*height: calc(100% - 10vh) !important;*/
-  /*height: 24vh !important;*/
+ .title_offer{
+  padding-top: 32px !important;
+  padding-bottom: 32px !important;
 }
-/*.img_vh_big{*/
-/*  height: 21vh !important;*/
-/*}*/
-/*.img_vh_sm{*/
-/*  height: 25vh !important;*/
-/*}*/
+.text_offer{
+  padding-bottom: 28px !important;
+}
+@media (max-width: 1400px) {
+  .title_offer{
+    padding-top: 28px !important;
+    padding-bottom: 8px !important;
+  }
+  .text_offer{
+    padding-bottom: 0px !important;
+  }
+  .no_pad_min_width{
+    padding-top: 0px !important;
+  }
+}
 </style>
 <style >
 .img_vh  .v-responsive__content{
     height: 23vh !Important;
     /*height: calc(100% - 100px);*/
   }
+
+.img_vh_med v-responsive__content{
+  height: 24vh !Important;
+}
+.img_vh_big v-responsive__content{
+  height: 26vh !Important;
+}
 
 </style>

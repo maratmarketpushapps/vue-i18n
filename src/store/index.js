@@ -245,7 +245,15 @@ export default new Vuex.Store({
     },
   },
   getters: {
-
+    getMsgActiveCart: (state) => {
+      return state.msgVars.activeTab
+    },
+    getWdgSubType: (state) => {
+      return state.widgetVars.subscribe_type;
+    },
+    getToken: (state) => {
+      return state.TOKEN
+    },
     cartReady: (state) => {
       return state.cartIsReady
     },

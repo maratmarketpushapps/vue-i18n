@@ -32,7 +32,6 @@
           required
           :placeholder="$t('settingsPage.addYourPhoneNumber')"
           :label="$t('settingsPage.addYourPhoneNumber')"
-
           class="phone_number_section"
         >
 <!--           :hint="$t('settingsPage.hintTelNumber')"-->
