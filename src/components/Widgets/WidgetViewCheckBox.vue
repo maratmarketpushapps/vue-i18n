@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid >
+  <v-container fluid class="wdg_view_Check_box">
     <v-row justify="center" >
       <v-card
         tile
@@ -25,7 +25,7 @@
           class="pa-10"
           z-index="1"
         >
-          <v-card color="white" tile class="pb-4 pt-2">
+          <v-card color="white" tile class="pb-4  ovr_pd">
             <v-row justify="end" class="pr-5 pt-2">
               <v-btn x-small icon @click="ovrlyClose()">
                 <v-icon color="#323F4F"  >
@@ -239,7 +239,7 @@
               placeholder=""
               :showDialCode="true"
               mode="international"
-
+              disabled
             >
             </vue-tel-input>
           </v-row>
@@ -407,7 +407,7 @@
                     placeholder=""
                     :showDialCode="true"
                     mode="international"
-
+                    disabled
                   >
                   </vue-tel-input>
                 </v-row>
@@ -614,7 +614,7 @@
           </v-row>
 
           <v-row
-            class="mt-6 mb-9"
+            class="mt-4 mb-4"
             style="width:102.5%"
             align="center"
             justify="center"
@@ -628,7 +628,7 @@
 
 <!--    /* SHOW DISC OR SUBMIT SCREEN */-->
 
-    <v-row justify="center"  class="mt-8"  v-if="didOptIn == true && subsTy == 'subscribe'">
+    <v-row justify="center"  class="button_bottom_spaces"  v-if="didOptIn == true && subsTy == 'subscribe'">
       <v-btn
         tile
         depressed
@@ -640,7 +640,7 @@
       </v-btn>
     </v-row>
 
-    <v-row justify="center"  class="mt-8"   v-if="didOptIn == false && subsTy == 'subscribe'">
+    <v-row justify="center" class="button_bottom_spaces"  v-if="didOptIn == false && subsTy == 'subscribe'">
       <v-btn
         tile
         depressed
@@ -652,7 +652,7 @@
       </v-btn>
     </v-row>
 
-    <v-row justify="center"  class="mt-8">
+    <v-row justify="center"  >
       <v-btn
         tile
         outlined
@@ -876,6 +876,9 @@ export default {
 </script>
 
 <style scoped>
+.wdg_view_Check_box .ovr_pd{
+  padding: 8px 15px !important;
+}
 .fb-btn {
   border-radius: 7px;
   text-transform: none;
@@ -887,16 +890,26 @@ export default {
 .text_offer{
   padding-bottom: 28px !important;
 }
-@media (max-width: 1400px) {
+.button_bottom_spaces{
+  margin-top: 26px;
+  margin-bottom: 26px;
+}
+@media (max-width: 1450px) {
   .title_offer{
     padding-top: 28px !important;
     padding-bottom: 8px !important;
   }
   .text_offer{
     padding-bottom: 0px !important;
+    margin-bottom: 10px ;
   }
   .no_pad_min_width{
     padding-top: 0px !important;
+    padding-bottom: 0px !important;
+  }
+  .button_bottom_spaces{
+    margin-top: 19px;
+    margin-bottom: 19px;
   }
 }
 </style>
@@ -906,6 +919,8 @@ export default {
     height: 23vh !Important;
     /*height: calc(100% - 100px);*/
   }
+
+
 
 .img_vh_med v-responsive__content{
   height: 24vh !Important;

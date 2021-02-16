@@ -374,7 +374,7 @@
               maxlength="280"
               @focus="msgTxt_focus = true"
               @focusout="msgTxt_focus = false"
-              rows="3"
+              rows="2"
               :rules=" [v => v.length <= 280 || 'Max 280 characters']"
             >
               <template v-slot:label v-if="msgTxt_focus">

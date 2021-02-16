@@ -46,6 +46,7 @@
             height="40px"
             class=" btn_save"
             width="20%"
+            @focusin="checkNum()"
             @click="savePhoneNumber()"
           >
             {{ $t("settingsPage.accInfoCard.buttonText") }}
@@ -95,6 +96,7 @@ export default {
       }
     },
     checkValidNumber(event){
+
       switch (event.code){
         case 'Backspace':
 
@@ -116,6 +118,7 @@ export default {
         break;
         default: (/[a-zA-Z]/).test( event.key) == true ? event.preventDefault() : ''
       }
+
     },
     savePhoneNumber(){
       let obj = {
@@ -137,12 +140,19 @@ export default {
           }
         });
       });
+    },
+    checkNum(){
+      alert('asa')
+      let firstChar = this.phone.charAt(0)
+      if(firstChar != '+' ){
+        this.phone = '+' + this.phone
+        alert(this.phone)
+      } else  ''
+
     }
   },
   watch:{
     phone(newVal){
-      // console.log(newVal)
-
       function isLetter(c) {
         return c.toLowerCase() != c.toUpperCase();
       }
@@ -150,7 +160,9 @@ export default {
       isLetter(str) == true ? this.btnDisabled = false : this.btnDisabled
       newVal == '' ? setTimeout(() => this.btnDisabled = true ,400): this.btnDisabled
       newVal == '' ? setTimeout(() => this.btnDisabled = true ,400): this.btnDisabled
+
     }
+
   },
   mounted() {
     setTimeout(() => (this.phone = this.$store.state.settingsVars.business_phone_number),200)
