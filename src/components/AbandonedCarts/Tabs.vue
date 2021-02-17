@@ -120,7 +120,7 @@
 
         </v-tabs>
       </v-col>
-      <div :class="!activeImage ? 'selTypecol line_active wid_space pt-1' : 'selTypecol wid_space pt-0'" >
+      <div :class="!activeImage ? 'selTypecol line_active wid_space spc_resp_top' : 'selTypecol wid_space spc_resp_top'" >
         <v-select
           flat
           v-model="selectedType"
@@ -364,6 +364,9 @@ export default {
 </script>
 
 <style scoped>
+.spc_resp_top{
+ padding-top: 4px !important;
+}
 .tab-props {
   color: transparent;
 }
@@ -420,6 +423,12 @@ export default {
   .tab-size {
     transform: scale(1);
     transform-origin: 0 0;
+  }
+}
+
+@media (max-width: 1400px) {
+  .spc_resp_top {
+    padding-top: 0px !important;
   }
 }
 </style>

@@ -82,6 +82,8 @@
     }
   },
   "campaigns": {
+    "smsModalText1": "This is the message that your customers will receive on SMS",
+    "smsModalText2": " Please note that this interface is just for showcasing purposes and it’s not clickable.",
     "smsheader": "SMS Campaigns",
     "header": "Facebook Campaigns",
     "msgCount": "Messages Sent",

@@ -103,7 +103,7 @@
       class="pa-10"
       z-index="0.5"
     >
-      <v-card color="white" tile class="pb-4 pt-0" @click="toggleDialog()">
+      <v-card color="white" tile class="pb-4 ovr_spc pt-0" @click="toggleDialog()">
         <v-row justify="end" class="pr-4 pt-2">
           <v-btn x-small icon @click="toggleDialog()">
             <v-icon color="black">
@@ -111,10 +111,10 @@
             </v-icon>
           </v-btn>
         </v-row>
-        <v-card-text style="color:black ;text-align: center; font-size:12px">
+        <v-card-text style="color:#323F4F ;text-align: center; font-size:14px; padding-left: 15px ; padding-right: 15px">
           {{ $t("campaigns.modalText1") }}
         </v-card-text>
-        <v-card-text style="color:black ; text-align: center; font-size:12px">
+        <v-card-text style="color:#323F4F ; text-align: center; font-size:14px; padding-left: 15px ; padding-right: 15px">
           {{ $t("campaigns.modalText2") }}
         </v-card-text>
       </v-card>
@@ -204,6 +204,12 @@ export default {
 </script>
 
 <style scoped>
+.ovr_spc {
+  padding-right: 15px;
+  padding-left:15px;
+  color: #323f4f;
+  font-size: 14px;
+}
 .cv_font_dims {
   font-size: 72% !important;
   overflow: hidden;

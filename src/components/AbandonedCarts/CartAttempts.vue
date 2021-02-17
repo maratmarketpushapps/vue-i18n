@@ -36,6 +36,7 @@ export default {
         });
       }
     });
+    console.log(this.getSubs.consumed_recovery_attempts)
   },
   computed: {
     ...mapGetters(["getSubs", "getPlanState"]),
@@ -57,6 +58,10 @@ export default {
       );
       let recAttempts =
         planDetails == undefined ? 0 : planDetails.cart_recovery_attempts;
+      // console.log(this.getSubs.consumed_recovery_attempts)
+      // console.log(recAttempts)
+      // console.log(recAttempts - this.getSubs.consumed_recovery_attempts)
+
       return (
         recAttempts -
         this.getSubs.consumed_recovery_attempts +
@@ -64,6 +69,7 @@ export default {
         recAttempts +
         this.$t("settingsPage.upgradeCard.body4")
       );
+
     },
   },
 };
