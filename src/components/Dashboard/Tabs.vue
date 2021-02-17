@@ -233,6 +233,9 @@ export default {
 </script>
 
 <style scoped>
+.tab-item-color-active{
+  border-bottom: 2px solid #006aff !important;
+}
 .tab-props {
   color: transparent;
 }

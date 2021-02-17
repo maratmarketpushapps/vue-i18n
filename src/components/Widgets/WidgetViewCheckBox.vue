@@ -652,7 +652,7 @@
       </v-btn>
     </v-row>
 
-    <v-row justify="center"  >
+    <v-row justify="center" :class="subsTy !== 'subscribe' ? 'mt-5' : ''" >
       <v-btn
         tile
         outlined
