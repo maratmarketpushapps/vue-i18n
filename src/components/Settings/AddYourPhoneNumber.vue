@@ -142,11 +142,10 @@ export default {
       });
     },
     checkNum(){
-      alert('asa')
       let firstChar = this.phone.charAt(0)
       if(firstChar != '+' ){
         this.phone = '+' + this.phone
-        alert(this.phone)
+
       } else  ''
 
     }

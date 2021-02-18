@@ -289,6 +289,7 @@
     "upgradeCard": {
       "header1":"You are using the ",
       "header2":" plan.",
+      "attemptsLeft": "0 cart recovery attempts left this month",
       "body1": " With ",
       "body2": " you have up to ",
       "body3": " individual Cart Recovery attempts, with up to 2 messages per recovery attempt. ",

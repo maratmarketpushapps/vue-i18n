@@ -86,10 +86,10 @@
               <p :style="msgProps">{{ msgText }}</p>
             </v-col>
           </v-row>
-
+<!--          /* SMS with Discount */-->
           <v-col cols="11" v-if="wdgtSMScheck && wdgtIsDsc">
             <v-row
-              style="width:100%; border: 1px solid #C9CACB; margin-left:1%"
+              style="width:100%; border: 1px solid #c9cacb; margin-left:1%"
               align="center"
               justify="center"
               class="pa-0 my-0"
@@ -469,12 +469,11 @@
               :key="'key2' + wdgtTabKey"
               class="mt-4"
             >
-                <v-col cols="3" class="img_vh_med ma-0 pa-0" style="height:100%;width:100%">
+                <v-col cols="3" class="img_vh ma-0 pa-0" style="height:100%;width:100%">
                   <v-img
                     src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
                     class="ma-0 pa-0"
                     width="100%"
-                    height="24vh"
                     style="background:#4E5D6B"
                   >
                   </v-img>

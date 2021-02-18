@@ -2,8 +2,9 @@
   <div>
     <v-row justify="end">
       <v-col cols="auto">
-        <v-row class="font_dims" justify="end"> {{ header }}</v-row>
-        <v-row class="font_dims" justify="end">{{ body }}</v-row>
+        <v-row class="font_dims" justify="end" :class="colorBody == true ? 'txt_red' : '' "> {{ header }}</v-row>
+        <v-row class="font_dims" justify="end" v-if="!colorBody">{{ body }}</v-row>
+        <v-row class="font_dims txt_red" justify="end" v-if="colorBody" >{{ this.$t("settingsPage.upgradeCard.attemptsLeft") }}</v-row>
       </v-col>
       <v-col cols="auto">
         <abIcon class="abicon-dims" />
@@ -23,6 +24,7 @@ export default {
       globalApiCallSuccess: false,
       settingsApiCallSuccess: false,
       planApiCallSuccess: false,
+      textCartAttemptsLeft:false,
     };
   },
   mounted() {
@@ -36,7 +38,28 @@ export default {
         });
       }
     });
-    console.log(this.getSubs.consumed_recovery_attempts)
+    // setTimeout( this.changeStatusText(),9000)
+
+
+  },
+  watch: {
+  },
+  methods:{
+    changeStatusText(){
+      // let planDetails = this.getPlanState.find(
+      //   (o) => o.planName === this.getSubs.subscription_plan
+      // );
+      // let recAttempts =
+      //   planDetails == undefined ? 0 : planDetails.cart_recovery_attempts;
+      // console.log(recAttempts - this.getSubs.consumed_recovery_attempts)
+      // console.log(recAttempts)
+      // console.log(recAttempts - this.getSubs.consumed_recovery_attempts)
+      // if(recAttempts - this.getSubs.consumed_recovery_attempts == 0){
+      //   alert('aa')
+      //   console.log(this.textCartAttemptsLeft)
+      // }else     this.textCartAttemptsLeft = true
+
+    }
   },
   computed: {
     ...mapGetters(["getSubs", "getPlanState"]),
@@ -47,20 +70,26 @@ export default {
         this.$t("settingsPage.upgradeCard.header2")
       );
     },
+    colorBody(){
+      let planDetails = this.getPlanState.find(
+        (o) => o.planName === this.getSubs.subscription_plan
+      );
+      let recAttempts =
+        planDetails == undefined ? 0 : planDetails.cart_recovery_attempts;
+      return  (recAttempts - this.getSubs.consumed_recovery_attempts == 0 || recAttempts - this.getSubs.consumed_recovery_attempts == -1)
+        },
     body() {
       // console.log(
       //   this.getPlanState.find(
       //     (o) => o.planName === this.getSubs.subscription_plan
       //   )
       // );
+
       let planDetails = this.getPlanState.find(
         (o) => o.planName === this.getSubs.subscription_plan
       );
       let recAttempts =
         planDetails == undefined ? 0 : planDetails.cart_recovery_attempts;
-      // console.log(this.getSubs.consumed_recovery_attempts)
-      // console.log(recAttempts)
-      // console.log(recAttempts - this.getSubs.consumed_recovery_attempts)
 
       return (
         recAttempts -
@@ -68,8 +97,7 @@ export default {
         "/" +
         recAttempts +
         this.$t("settingsPage.upgradeCard.body4")
-      );
-
+      )
     },
   },
 };
@@ -90,6 +118,9 @@ export default {
 .abicon-dims {
   height: 30px;
   width: 30px;
+}
+.txt_red{
+  color: red;
 }
 
 @media (min-width: 1400px) {
