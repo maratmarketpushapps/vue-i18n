@@ -367,6 +367,9 @@ export default {
 .spc_resp_top{
  padding-top: 4px !important;
 }
+.tab-item-color-active{
+  border-bottom: 2px solid #006aff !important;
+}
 .tab-props {
   color: transparent;
 }
