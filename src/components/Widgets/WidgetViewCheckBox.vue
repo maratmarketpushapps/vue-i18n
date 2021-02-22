@@ -315,15 +315,15 @@
                 </v-row>
               </v-col>
               <v-col cols="9" class="py-0" style="height:100%" v-if="!checkOptin">
-                <v-row style="width:100%;height:100%" class="pl-6 pr-0">
+                <v-col style="width:100%;height:100%" class="py-0 pl-6 pr-0">
                 <span style="font-weight:bold; font-size:90%">
                   {{ dscntStmt }}
                 </span>
-                </v-row>
-                <v-row style="width:100%;">
+                </v-col>
+                <v-col style="width:100%;" class="py-0">
                   <v-row style="width:100%; height:100%">
-                    <v-col cols="1" class="pt-0"> </v-col>
-                    <v-col cols="10" class="pl-0 pt-0 ml-11" style="height:100%">
+
+                    <v-col cols="12" class="pl-0 pt-0 ml-7" style="height:100%">
                       <v-row
                         style="width:100%;height:auto"
                         align="center"
@@ -348,7 +348,7 @@
                         <span> </span>
                       </v-row>
 
-                      <v-row style="width:100%;" align="start">
+                      <v-row style="width:100%;" class="mr-5" align="start">
                         <v-container
                           style="height: 15px; width: 15px; border-radius:100%; background-color: #E6E7E8; transform: scale(0.8)"
                           class="mx-2"
@@ -369,8 +369,8 @@
                       <v-row style=" width:100%"> </v-row>
                     </v-col>
                   </v-row>
-                </v-row>
-                <v-row style="width:100%" class="px-7" align="start">
+                </v-col>
+                <v-col style="width:100%" class="px-6 py-0" align="start">
                   <v-btn
                     :style="buttonProps"
                     outlined
@@ -381,7 +381,7 @@
                     {{ buttonText }}
                   </span>
                   </v-btn>
-                </v-row>
+                </v-col>
               </v-col>
             </v-row>
           </v-col>

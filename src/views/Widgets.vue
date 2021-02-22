@@ -58,12 +58,12 @@
             justify="start"
             style="height:auto; width:100%"
           >
-            <v-col cols="7" style="height:100%" class="pt-1">
+            <v-col cols="6" style="height:100%" class="pt-1">
               <v-row style="height:100%" align="start" justify="start">
                 <WidgetProps class="mt-3" />
               </v-row>
             </v-col>
-            <v-col cols="5" style="" class="pt-1 pos_sticky">
+            <v-col cols="6" style="" class="pt-1 pos_sticky">
               <v-row
                 style="height:75vh; width:auto; "
                 align="start"
