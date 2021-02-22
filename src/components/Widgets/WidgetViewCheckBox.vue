@@ -101,40 +101,39 @@
                   class="ma-0 pa-0"
                   width="100%"
                   style="background:#4E5D6B"
-                  height="42vh"
+                  height="34vh"
                 >
                 </v-img>
               </v-col>
               <v-col cols="9"  style="height:100%" v-if="checkOptin">
-                <v-row style="width:100%;height:100%" class="pl-8 pr-2">
+                <v-col style="width:100%;height:100%" class="py-0">
                 <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%">
                   {{ dscntCd }}
                 </span>
-                </v-row>
+                </v-col>
 
-                <v-row style="width:100%" class="pl-8 pr-2" align="center">
+                <v-col style="width:100%" class="py-0" align="center">
                 <span style="width: 100%">
                   {{ dscntInstr }}
                 </span>
-                </v-row>
-                <v-row style="width:100%" class="pl-8 pr-2" align="start">
+                </v-col>
+                <v-col style="width:100%" class="py-0" align="start">
                   <v-btn :style="buttonProps" outlined @click="resetOptin">
                   <span :style="btnTextProps">
                     {{ $t("widgets.cpDiscCode") }}
                   </span>
                   </v-btn>
-                </v-row>
+                </v-col>
               </v-col>
-              <v-col cols="9" class=""  v-if="!checkOptin">
-                <v-row style="width:100%;height:5%" class="pl-8 pr-2">
+              <v-col cols="9" class="py-0"  v-if="!checkOptin">
+                <v-col style="width:100%;height:5%" class="py-0 pr-2">
                 <span style="font-weight:bold; font-size:90%">
                   {{ dscntStmt }}
                 </span>
-                </v-row>
-                <v-row style="width:100%;" class="mt-2">
-                  <v-row style="width:125%; height:80%" align="center">
-                    <v-col cols="1"> </v-col>
-                    <v-col cols="10"  :class="$vuetify.breakpoint.width > 1600 ? 'ml-0' : 'ml-2'">
+                </v-col>
+                <v-col style="width:100%;" class=" py-0 mt-2">
+
+                    <v-col cols="12"  class="pl-0">
                       <vue-tel-input
                         v-model="optinNum"
                         dark
@@ -145,9 +144,9 @@
                       >
                       </vue-tel-input>
                     </v-col>
-                  </v-row>
-                </v-row>
-                <v-row style="width:100%" class="px-9" align="start">
+
+                </v-col>
+                <v-col style="width:100%" class="px-3" align="start">
                   <v-btn
                     :style="buttonProps"
                     outlined
@@ -158,7 +157,7 @@
                     {{ buttonText }}
                   </span>
                   </v-btn>
-                </v-row>
+                </v-col>
               </v-col>
             </v-row>
           </v-col>
@@ -289,7 +288,7 @@
                   src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
                   class="ma-0 pa-0 "
                   width="100%"
-                  height="42vh"
+                  height="35vh"
                   style="background:#4e5d6b;"
                 >
                 </v-img>
@@ -460,6 +459,8 @@
             </v-tabs-items>
           </v-row>
 
+
+<!--          /* FB AND SMS DISCOUNT */-->
           <v-col cols="11" class="ml-3 no_pad_min_width"   v-if="wdgtTabcheck && wdgtIsDsc">
             <v-row
               style=" border:1px solid #C9CACB;"
@@ -474,49 +475,43 @@
                     src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
                     class="ma-0 pa-0"
                     width="100%"
-                    height="42vh"
+                    height="35vh"
                     style="background:#4E5D6B"
                   >
                   </v-img>
                 </v-col>
                 <v-col cols="9"  style="height:100%" v-if="checkOptin">
-                  <v-row style="width:100%;height:100%" class="pl-8 pr-2">
+                  <v-col style="width:100%;height:100%" class="py-0 pr-2">
                 <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%">
                   {{ dscntCd }}
                 </span>
-                  </v-row>
+                  </v-col>
 
-                  <v-row style="width:100%;height:100%" class="pl-8 pr-2" align="center">
-                <span style="width: 100%">
-                  {{ dscntInstr }}
-                </span>
-                  </v-row>
-                  <v-row style="width:100%" class="pl-8 pr-2" align="start">
+                  <v-col style="width:100%;height:100%" class="py-0 pr-2" align="center">
+                    <span style="width: 100%">
+                      {{ dscntInstr }}
+                    </span>
+                  </v-col>
+                  <v-col style="width:100%" class=" pr-2" align="start">
                     <v-btn :style="buttonProps" outlined @click="resetOptin">
-                  <span :style="btnTextProps" style="width: 100%">
-                    {{cpDiscCode}}
-                  </span>
+                    <span :style="btnTextProps" style="width: 100%">
+                      {{cpDiscCode}}
+                    </span>
                     </v-btn>
-                  </v-row>
+                  </v-col>
                 </v-col>
                 <v-col cols="9" class="" style="height:100%" v-if="!checkOptin">
-                  <v-row style="width:100%;height:100%" class="pl-8 pr-2">
-                <span style="font-weight:bold; font-size:90%">
-                  {{ dscntStmt }}
-                </span>
-                  </v-row>
-                  <v-row style="width:100%;height:100% " class="">
-                    <v-row style="width:125%; height:100%" align="center">
-                      <v-col cols="1"> </v-col>
-                      <v-col cols="10">
-                        <v-tabs-items v-model="tab" style="width:90%">
-                          <v-tab-item :value="getTabKeySMS" style="width:100%">
-                            <v-row
-                              align="center"
-                              style="width:100%"
-                              class="pt-5"
-                              :class="$vuetify.breakpoint.width > 1600 ? 'ml-0' : 'ml-2'"
-                            >
+                  <v-col style="width:100%;height:100%" class="py-0 pr-2">
+                      <span style="font-weight:bold; font-size:90%">
+                        {{ dscntStmt }}
+                      </span>
+                  </v-col>
+                  <v-col style="width:100%;height:100% " class="py-0">
+                    <v-col style="width:100%; height:100%" align="center" class="px-0 py-0">
+                      <v-col cols="12" class="px-0 py-0">
+                        <v-tabs-items v-model="tab" style="width:100%">
+                          <v-tab-item :value="getTabKeySMS" style="width:100%" class="pl-0 py-5">
+
                               <vue-tel-input
                                 v-model="optinNum"
                                 dark
@@ -527,7 +522,6 @@
 
                               >
                               </vue-tel-input>
-                            </v-row>
                           </v-tab-item>
 
                           <v-tab-item :value="getTabKeyFb">
@@ -577,9 +571,9 @@
                           </v-tab-item>
                         </v-tabs-items>
                       </v-col>
-                    </v-row>
-                  </v-row>
-                  <v-row style="width:100%; height:100%" class="pl-8 pr-9 " align="start">
+                    </v-col>
+                  </v-col>
+                  <v-row style="width:100%; height:100%" class="pl-6  " align="start">
                     <v-btn
                       :style="buttonProps"
                       outlined
