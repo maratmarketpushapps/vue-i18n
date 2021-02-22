@@ -655,7 +655,13 @@ export default {
 .col_red_txt{
   color: red !important;
 }
-
+.btn_save{
+  text-align: center;
+  font: normal normal 600 12px/29px Poppins;
+  letter-spacing: 0px;
+  color: #5686F6;
+  opacity: 1;
+}
 .msgCountUnder{
   font: normal normal 600 14px/23px Poppins;
   letter-spacing: 0px;

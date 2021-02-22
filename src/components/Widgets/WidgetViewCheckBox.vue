@@ -101,7 +101,7 @@
                   class="ma-0 pa-0"
                   width="100%"
                   style="background:#4E5D6B"
-
+                  height="32vh"
                 >
                 </v-img>
               </v-col>
@@ -275,21 +275,21 @@
               </v-tab>
             </v-tabs>
           </v-row>
-
+<!--          /* Facebook with Disc. */-->
           <v-col cols="11"  v-if="wdgtFBcheck && wdgtIsDsc">
             <v-row
               style="width:100%; border: 1px solid #C9CACB; margin-left:1%"
               align="center"
               justify="center"
-              class="pa-0 my-0 "
+              class="pa-0 my-0"
 
             >
-              <v-col cols="3" class=" ma-0 img_vh_big pa-0" style="width:100% ">
+              <v-col cols="3" class=" ma-0 img_vh_big pa-0" style="width:100%">
                 <v-img
                   src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
                   class="ma-0 pa-0 "
                   width="100%"
-                  height="26vh"
+                  height="32vh"
                   style="background:#4e5d6b;"
                 >
                 </v-img>
@@ -474,6 +474,7 @@
                     src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
                     class="ma-0 pa-0"
                     width="100%"
+                    height="32vh"
                     style="background:#4E5D6B"
                   >
                   </v-img>
