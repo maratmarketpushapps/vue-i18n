@@ -9,7 +9,6 @@
               </h3>
             </v-col>
             <v-col cols="1" class="pl-0 ml-0 py-0">
-              <!--
               <TooltipIcon
                 :posRight="true"
                 :nudgeBottom="30"
@@ -17,7 +16,6 @@
                 :txt="$t('widgets.headerInfo')"
                 class="infoicon_scale pt-0"
               />
-              -->
             </v-col>
             <v-col cols="1" class="pl-0 ml-0 pt-0 "> </v-col>
             <v-col cols="8.75" class="pt-0 pb-0 mb-0">

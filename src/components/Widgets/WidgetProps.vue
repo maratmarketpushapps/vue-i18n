@@ -2,7 +2,7 @@
   <v-card tile height="auto" width="100%" class="wdgt_font_dims card-scroll par_">
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 mt-0">
       <v-row style="height:20%;width:100%" class="">
-        <v-col :cols="$vuetify.breakpoint.width < 1190 ? '4 offset-1' : '3 offset-1 ' " >
+        <v-col :cols=" $vuetify.breakpoint.width < 1249 ? '4 offset-1' : '3 offset-1 ' " >
           <v-row
             class="my-0 "
             style="height:100%;width:100%"

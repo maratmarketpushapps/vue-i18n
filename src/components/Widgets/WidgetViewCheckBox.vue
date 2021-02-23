@@ -369,7 +369,7 @@
                     </v-col>
                   </v-row>
                 </v-col>
-                <v-col style="width:100%" class="px-6 py-0" align="start">
+                <v-col style="width:100%" class="px-6 mt-2 py-0" align="start">
                   <v-btn
                     :style="buttonProps"
                     outlined
@@ -646,19 +646,19 @@
       </v-btn>
     </v-row>
 
-    <v-row justify="center" :class="subsTy !== 'subscribe' ? 'mt-5' : ''" >
-      <v-btn
-        tile
-        outlined
-        class="#4E5D6B--text"
-        color="#4E5D6B"
-        style="border-width:1px"
-        :disabled="detectChange"
-        @click="resetChanges"
-      >
-        {{ $t("widgets.resetButton") }}
-      </v-btn>
-    </v-row>
+<!--    <v-row justify="center" :class="subsTy !== 'subscribe' ? 'mt-5' : ''" >-->
+<!--      <v-btn-->
+<!--        tile-->
+<!--        outlined-->
+<!--        class="#4E5D6B&#45;&#45;text"-->
+<!--        color="#4E5D6B"-->
+<!--        style="border-width:1px"-->
+<!--        :disabled="detectChange"-->
+<!--        @click="resetChanges"-->
+<!--      >-->
+<!--        {{ $t("widgets.resetButton") }}-->
+<!--      </v-btn>-->
+<!--    </v-row>-->
   </v-container>
 </template>
 
