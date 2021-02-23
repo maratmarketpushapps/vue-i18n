@@ -6,6 +6,7 @@
         height="100%"
         style="border-radius: 25px 25px 0 0;"
         width="95%"
+        :style="bdyColor"
       >
         <v-container
           class="fluid"
@@ -263,13 +264,14 @@
             align="center"
             justify="center"
             v-if="wdgtTabcheck"
+            :style="bdyColor"
           >
-            <v-tabs v-model="tab" light centered color="transparent">
-              <v-tab light>
+            <v-tabs v-model="tab" light centered color="transparent" :style="bdyColor" :background-color="getBgWidgCheckBody">
+              <v-tab light :style="bdyColor">
                 <component v-bind:is="getTabHeader1"></component>
               </v-tab>
               <v-divider vertical></v-divider>
-              <v-tab light>
+              <v-tab light :style="bdyColor">
                 <component v-bind:is="getTabHeader2"></component>
               </v-tab>
             </v-tabs>
@@ -394,11 +396,12 @@
             :key="'key1' + wdgtTabKey"
           >
             <v-tabs-items v-model="tab" style="width:90%">
-              <v-tab-item :value="getTabKeySMS" style="width:100%">
-                <v-row style="width:100%;height:2.5vh">
+              <v-tab-item :value="getTabKeySMS" style="width:100%" :style="bdyColor">
+                <v-row style="width:100%;height:2.5vh" :style="bdyColor">
 
                 </v-row>
-                <v-row justify="center" style="width:100%"  @click="toggleDialog()" :class="$vuetify.breakpoint.width > 1600 ? 'ml-0' : 'ml-2'">
+                <v-row justify="center" style="width:100%" :style="bdyColor"
+                       @click="toggleDialog()" :class="$vuetify.breakpoint.width > 1600 ? 'ml-0' : 'ml-2'">
                   <vue-tel-input
                     v-model="optinNum"
                     dark
@@ -510,7 +513,7 @@
                     <v-col style="width:100%; height:100%" align="center" class="px-0 py-0">
                       <v-col cols="12" class="px-0 py-0">
                         <v-tabs-items v-model="tab" style="width:100%">
-                          <v-tab-item :value="getTabKeySMS" style="width:100%" class="pl-0 py-5">
+                          <v-tab-item :value="getTabKeySMS" style="width:100%" class="pl-0 py-5" :style="bdyColor">
 
                               <vue-tel-input
                                 v-model="optinNum"
@@ -676,11 +679,12 @@ export default {
       btnId: 0,
       didOptIn: false,
       optinNum: "",
-
       tab: null,
       wdgtTabKey: 0,
+
     };
   },
+
   methods: {
     incrBtnId() {
       this.btnId++;
@@ -704,6 +708,9 @@ export default {
   },
   computed: {
     ...mapGetters(["getWidgetsState"]),
+    getBgWidgCheckBody(){
+     return this.$store.getters.getBgWidgCheckBody
+    },
     subsTy(){
       return this.$store.getters.getWdgSubType
     },

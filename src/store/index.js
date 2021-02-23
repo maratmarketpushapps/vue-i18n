@@ -359,6 +359,9 @@ export default new Vuex.Store({
     },
     getWidgEU:(state) => {
       return state.widgetVars.is_gdpr_affected
+    },
+    getBgWidgCheckBody:(state) => {
+      return state.widgetVars.popup_background_color
     }
   },
   mutations: {
