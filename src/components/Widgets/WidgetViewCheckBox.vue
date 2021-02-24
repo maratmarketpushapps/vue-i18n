@@ -87,7 +87,7 @@
               <p :style="msgProps">{{ msgText }}</p>
             </v-col>
           </v-row>
-<!--          /* SMS with Discount */-->
+          <!--          /* SMS with Discount */-->
           <v-col cols="11" v-if="wdgtSMScheck && wdgtIsDsc">
             <v-row
               style="width:100%; border: 1px solid #c9cacb; margin-left:1%"
@@ -106,48 +106,47 @@
                 >
                 </v-img>
               </v-col>
-              <v-col cols="9"  style="height:100%" v-if="checkOptin">
-                <v-col style="width:100%;height:100%" class="py-0">
-                <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%">
-                  {{ dscntCd }}
-                </span>
+              <v-col cols="9"  style="height:34vh" class="d-flex align-content-space-around  flex-wrap py-0 pl-12" v-if="checkOptin">
+                <v-col style="width:100%" class="py-0" v-if="dscntCd">
+                  <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%">
+                    {{ dscntCd }}
+                  </span>
                 </v-col>
-
-                <v-col style="width:100%" class="py-0" align="center">
-                <span style="width: 100%">
-                  {{ dscntInstr }}
-                </span>
-                </v-col>
-                <v-col style="width:100%" class="py-0" align="start">
+                <v-row style="width:100%" class="py-0" >
+                  <span style="width: 100%">
+                    {{ dscntInstr }}
+                  </span>
+                </v-row>
+                <v-row style="width:100%" class="py-0" >
                   <v-btn :style="buttonProps" outlined @click="resetOptin">
                   <span :style="btnTextProps">
                     {{ $t("widgets.cpDiscCode") }}
                   </span>
                   </v-btn>
-                </v-col>
+                </v-row>
               </v-col>
-              <v-col cols="9" class="py-0"  v-if="!checkOptin">
-                <v-col style="width:100%;height:5%" class="py-0 pr-2">
-                <span style="font-weight:bold; font-size:90%">
-                  {{ dscntStmt }}
-                </span>
-                </v-col>
-                <v-col style="width:100%;" class=" py-0 mt-2">
+              <v-col cols="9" class="py-0 d-flex align-content-space-around  flex-wrap py-0 pl-12" style="height: 34vh" v-if="!checkOptin">
+                <v-row style="width:100%;" class="py-0 pr-2">
+                  <span style="font-weight:bold; font-size:90%">
+                    {{ dscntStmt }}
+                  </span>
+                </v-row>
+                <v-row style="width:100%;" class=" py-0 mt-2">
 
-                    <v-col cols="12"  class="pl-0">
-                      <vue-tel-input
-                        v-model="optinNum"
-                        dark
-                        style="width:100%;"
-                        placeholder=""
-                        :showDialCode="true"
-                        mode="international"
-                      >
-                      </vue-tel-input>
-                    </v-col>
+                  <v-col cols="12"  class="pl-0">
+                    <vue-tel-input
+                      v-model="optinNum"
+                      dark
+                      style="width:100%;"
+                      placeholder=""
+                      :showDialCode="true"
+                      mode="international"
+                    >
+                    </vue-tel-input>
+                  </v-col>
 
-                </v-col>
-                <v-col style="width:100%" class="px-3" align="start">
+                </v-row>
+                <v-row style="width:100%" class="" align="start">
                   <v-btn
                     :style="buttonProps"
                     outlined
@@ -158,19 +157,20 @@
                     {{ buttonText }}
                   </span>
                   </v-btn>
-                </v-col>
+                </v-row>
               </v-col>
             </v-row>
           </v-col>
 
 
-
+          <!--        /* NO DISCOUNT FACEBOOK*/-->
           <v-row
             style="width:102.5%"
             align="center"
             justify="center"
             v-if="wdgtFBcheck && !wdgtIsDsc"
             @click="toggleDialog()"
+            :style="bdyColor"
           >
             <v-checkbox input-value="true" disabled> </v-checkbox>
             <span class="pr-2">
@@ -276,7 +276,7 @@
               </v-tab>
             </v-tabs>
           </v-row>
-<!--          /* Facebook with Disc. */-->
+          <!--          /* Facebook with Disc. */-->
           <v-col cols="11"  v-if="wdgtFBcheck && wdgtIsDsc">
             <v-row
               style="width:100%; border: 1px solid #C9CACB; margin-left:1%"
@@ -295,40 +295,39 @@
                 >
                 </v-img>
               </v-col>
-              <v-col cols="9"  style="height:100%" v-if="checkOptin">
-                <v-row style="width:100%;" class="pl-8 pr-0">
-                <span style="width:100%;font-weight:bold;font-size:120%; color:#5686F6">
-                  {{ dscntCd }}
-                </span>
+              <v-col cols="9" class="d-flex align-content-space-around  flex-wrap" style="height:35vh" v-if="checkOptin">
+                <v-row style="width:100%;" class="pl-8 pr-0" v-if="dscntCd">
+                  <span style="width:100%;font-weight:bold;font-size:120%; color:#5686F6">
+                    {{ dscntCd }}
+                  </span>
                 </v-row>
-
-                <v-row style="width:100%;height:100%" class="pl-8 pr-2" align="center">
-                <span style="width: 100%">
-                  {{ dscntInstr }}
-                </span>
+                <v-row style="width:100%" class="pl-8 pr-2" align="center">
+                  <span style="width: 100%">
+                    {{ dscntInstr }}
+                  </span>
                 </v-row>
                 <v-row style="width:100%" class="pl-8 pr-2" align="start">
                   <v-btn :style="buttonProps" outlined @click="resetOptin">
-                  <span :style="btnTextProps" style="width: 100%">
-                    {{cpDiscCode}}
-                  </span>
+                    <span :style="btnTextProps" style="width: 100%">
+                      {{cpDiscCode}}
+                    </span>
                   </v-btn>
                 </v-row>
               </v-col>
-              <v-col cols="9" class="py-0" style="height:100%" v-if="!checkOptin">
-                <v-col style="width:100%;height:100%" class="py-0 pl-6 pr-0">
-                <span style="font-weight:bold; font-size:90%">
-                  {{ dscntStmt }}
-                </span>
-                </v-col>
-                <v-col style="width:100%;" class="py-0">
-                  <v-row style="width:100%; height:100%">
+              <v-col cols="9" class="py-0 d-flex align-content-space-around  flex-wrap" style="height:35vh" v-if="!checkOptin">
+                <v-row style="width:100%;" class="py-0 pl-6 pr-0">
+                    <span style="font-weight:bold; font-size:90%">
+                      {{ dscntStmt }}
+                    </span>
+                </v-row>
+                <v-row style="width:100%;" class="py-0" :style="bdyColor">
 
-                    <v-col cols="12" class="pl-0 pt-0 ml-7" style="height:100%">
+                    <v-col cols="12" class="pl-0 pt-0 ml-7" style="height:100%" :style="bdyColor">
                       <v-row
                         style="width:100%;height:auto"
                         align="center"
                         class="pl-1"
+                        :style="bdyColor"
                       >
                         <v-checkbox
                           input-value="true"
@@ -338,14 +337,14 @@
                         >
                         </v-checkbox>
                         <span class="pr-0" style="font-size:80%">
-                        {{ $t("widgets.chckBxTxt1") }}
-                      </span>
+                           {{ $t("widgets.chckBxTxt1") }}
+                        </span>
                         <v-icon color="#0084FF" style="transform: scale(0.8)">
                           mdi-facebook-messenger
                         </v-icon>
                         <span class="pl-0" style="font-size:80%">
-                        {{ $t("widgets.chckBxTxt2") }}
-                      </span>
+                         {{ $t("widgets.chckBxTxt2") }}
+                         </span>
                         <span> </span>
                       </v-row>
 
@@ -369,9 +368,9 @@
                       </v-row>
                       <v-row style=" width:100%"> </v-row>
                     </v-col>
-                  </v-row>
-                </v-col>
-                <v-col style="width:100%" class="px-6 mt-2 py-0" align="start">
+          
+                </v-row>
+                <v-row style="width:100%" class="px-6 mt-2 py-0" align="start">
                   <v-btn
                     :style="buttonProps"
                     outlined
@@ -382,7 +381,7 @@
                     {{ buttonText }}
                   </span>
                   </v-btn>
-                </v-col>
+                </v-row>
               </v-col>
             </v-row>
           </v-col>
@@ -463,68 +462,68 @@
           </v-row>
 
 
-<!--          /* FB AND SMS DISCOUNT */-->
+          <!--          /* FB AND SMS DISCOUNT */-->
           <v-col cols="11" class="ml-3 no_pad_min_width"   v-if="wdgtTabcheck && wdgtIsDsc">
             <v-row
-              style=" border:1px solid #C9CACB;"
+              style="border:1px solid #C9CACB;"
               align="center"
               justify="center"
 
               :key="'key2' + wdgtTabKey"
               class="mt-4"
             >
-                <v-col cols="3" class="img_vh ma-0 pa-0" style="height:100%;width:100%">
-                  <v-img
-                    src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
-                    class="ma-0 pa-0"
-                    width="100%"
-                    height="35vh"
-                    style="background:#4E5D6B"
-                  >
-                  </v-img>
+              <v-col cols="3" class="img_vh ma-0 pa-0" style="height:100%;width:100%">
+                <v-img
+                  src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
+                  class="ma-0 pa-0"
+                  width="100%"
+                  height="35vh"
+                  style="background:#4E5D6B"
+                >
+                </v-img>
+              </v-col>
+              <v-col cols="9" class="d-flex align-content-space-around  flex-wrap py-0 pl-12" style="height: 35vh !important;" v-if="checkOptin">
+                <v-col style="width:100%" class="py-0 pr-2" v-if="dscntCd">
+                    <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%">
+                      {{ dscntCd }}
+                    </span>
                 </v-col>
-                <v-col cols="9"  style="height:100%" v-if="checkOptin">
-                  <v-col style="width:100%;height:100%" class="py-0 pr-2">
-                <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%">
-                  {{ dscntCd }}
-                </span>
-                  </v-col>
-
-                  <v-col style="width:100%;height:100%" class="py-0 pr-2" align="center">
+                <v-row style="width:100%" class="py-0 pr-2" >
                     <span style="width: 100%">
                       {{ dscntInstr }}
                     </span>
-                  </v-col>
-                  <v-col style="width:100%" class=" pr-2" align="start">
-                    <v-btn :style="buttonProps" outlined @click="resetOptin">
+                </v-row>
+
+                <v-row style="width:100%" class=" pr-2" >
+                  <v-btn :style="buttonProps" outlined @click="resetOptin">
                     <span :style="btnTextProps" style="width: 100%">
                       {{cpDiscCode}}
                     </span>
-                    </v-btn>
-                  </v-col>
-                </v-col>
-                <v-col cols="9" class="" style="height:100%" v-if="!checkOptin">
-                  <v-col style="width:100%;height:100%" class="py-0 pr-2">
+                  </v-btn>
+                </v-row>
+              </v-col>
+
+              <v-col cols="9" class="d-flex align-content-space-around  flex-wrap" v-if="!checkOptin" style="height: 35vh !important;">
+                <v-col style="width:100%" class="py-0 pr-2">
                       <span style="font-weight:bold; font-size:90%">
                         {{ dscntStmt }}
                       </span>
-                  </v-col>
-                  <v-col style="width:100%;height:100% " class="py-0">
-                    <v-col style="width:100%; height:100%" align="center" class="px-0 py-0">
+                  <v-col style="width:100%" class="py-0 pl-0 pt-8">
+                    <v-col style="width:100%; " align="center" class="px-0 py-0">
                       <v-col cols="12" class="px-0 py-0">
                         <v-tabs-items v-model="tab" style="width:100%">
                           <v-tab-item :value="getTabKeySMS" style="width:100%" class="pl-0 py-5" :style="bdyColor">
 
-                              <vue-tel-input
-                                v-model="optinNum"
-                                dark
-                                style="width:100%;"
-                                placeholder=""
-                                :showDialCode="true"
-                                mode="international"
+                            <vue-tel-input
+                              v-model="optinNum"
+                              dark
+                              style="width:100%;"
+                              placeholder=""
+                              :showDialCode="true"
+                              mode="international"
 
-                              >
-                              </vue-tel-input>
+                            >
+                            </vue-tel-input>
                           </v-tab-item>
 
                           <v-tab-item :value="getTabKeyFb">
@@ -576,19 +575,20 @@
                       </v-col>
                     </v-col>
                   </v-col>
-                  <v-row style="width:100%; height:100%" class="pl-6  " align="start">
-                    <v-btn
-                      :style="buttonProps"
-                      outlined
-                      :key="widgetKey"
-                      @click="submitClickDisc"
-                    >
-                  <span :style="btnTextProps">
-                    {{ buttonText }}
-                  </span>
-                    </v-btn>
-                  </v-row>
                 </v-col>
+                <v-row style="width:100%" class="pl-6  " align="start">
+                  <v-btn
+                    :style="buttonProps"
+                    outlined
+                    :key="widgetKey"
+                    @click="submitClickDisc"
+                  >
+                      <span :style="btnTextProps">
+                        {{ buttonText }}
+                      </span>
+                  </v-btn>
+                </v-row>
+              </v-col>
 
             </v-row>
           </v-col>
@@ -623,7 +623,7 @@
       </v-card>
     </v-row>
 
-<!--    /* SHOW DISC OR SUBMIT SCREEN */-->
+    <!--    /* SHOW DISC OR SUBMIT SCREEN */-->
 
     <v-row justify="center"  class="button_bottom_spaces"  v-if="didOptIn == true && subsTy == 'subscribe'">
       <v-btn
@@ -649,19 +649,19 @@
       </v-btn>
     </v-row>
 
-<!--    <v-row justify="center" :class="subsTy !== 'subscribe' ? 'mt-5' : ''" >-->
-<!--      <v-btn-->
-<!--        tile-->
-<!--        outlined-->
-<!--        class="#4E5D6B&#45;&#45;text"-->
-<!--        color="#4E5D6B"-->
-<!--        style="border-width:1px"-->
-<!--        :disabled="detectChange"-->
-<!--        @click="resetChanges"-->
-<!--      >-->
-<!--        {{ $t("widgets.resetButton") }}-->
-<!--      </v-btn>-->
-<!--    </v-row>-->
+    <!--    <v-row justify="center" :class="subsTy !== 'subscribe' ? 'mt-5' : ''" >-->
+    <!--      <v-btn-->
+    <!--        tile-->
+    <!--        outlined-->
+    <!--        class="#4E5D6B&#45;&#45;text"-->
+    <!--        color="#4E5D6B"-->
+    <!--        style="border-width:1px"-->
+    <!--        :disabled="detectChange"-->
+    <!--        @click="resetChanges"-->
+    <!--      >-->
+    <!--        {{ $t("widgets.resetButton") }}-->
+    <!--      </v-btn>-->
+    <!--    </v-row>-->
   </v-container>
 </template>
 
@@ -709,7 +709,7 @@ export default {
   computed: {
     ...mapGetters(["getWidgetsState"]),
     getBgWidgCheckBody(){
-     return this.$store.getters.getBgWidgCheckBody
+      return this.$store.getters.getBgWidgCheckBody
     },
     subsTy(){
       return this.$store.getters.getWdgSubType
@@ -884,7 +884,7 @@ export default {
   border-radius: 7px;
   text-transform: none;
 }
- .title_offer{
+.title_offer{
   padding-top: 32px !important;
   padding-bottom: 32px !important;
 }
@@ -917,9 +917,9 @@ export default {
 
 <style >
 .img_vh  .v-responsive__content{
-    height: 23vh !Important;
-    /*height: calc(100% - 100px);*/
-  }
+  height: 23vh !Important;
+  /*height: calc(100% - 100px);*/
+}
 
 
 
