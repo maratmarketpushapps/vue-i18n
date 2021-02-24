@@ -263,7 +263,7 @@
             style="width:102.5%"
             align="center"
             justify="center"
-            v-if="wdgtTabcheck"
+            v-if="wdgtTabcheck && !detectEuRegion"
             :style="bdyColor"
           >
             <v-tabs v-model="tab" light centered color="transparent" :style="bdyColor" :background-color="getBgWidgCheckBody">
@@ -509,8 +509,8 @@
                         {{ dscntStmt }}
                       </span>
                   <v-col style="width:100%" class="py-0 pl-0 pt-8">
-                    <v-col style="width:100%; " align="center" class="px-0 py-0">
-                      <v-col cols="12" class="px-0 py-0">
+                    <v-col style="width:100%; " align="center" class="px-0 py-0" :style="bdyColor">
+                      <v-col cols="12" class="px-0 py-0" :style="bdyColor">
                         <v-tabs-items v-model="tab" style="width:100%">
                           <v-tab-item :value="getTabKeySMS" style="width:100%" class="pl-0 py-5" :style="bdyColor">
 
@@ -526,11 +526,12 @@
                             </vue-tel-input>
                           </v-tab-item>
 
-                          <v-tab-item :value="getTabKeyFb">
+                          <v-tab-item :value="getTabKeyFb" :style="bdyColor">
                             <v-row
                               style="width:100%;height:auto"
                               align="center"
                               class="pl-1"
+                              :style="bdyColor"
                             >
                               <v-checkbox
                                 input-value="true"
@@ -707,7 +708,10 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["getWidgetsState"]),
+    ...mapGetters(["getWidgetsState","getWidgEU"]),
+    detectEuRegion(){
+      return this.getWidgEU
+    },
     getBgWidgCheckBody(){
       return this.$store.getters.getBgWidgCheckBody
     },
