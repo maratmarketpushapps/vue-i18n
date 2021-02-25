@@ -74,7 +74,7 @@
         </v-tabs>
       </v-col>
 
-      <v-col class="py-2">
+      <v-col class="py-0">
         <v-row justify="end" class="pr-5 mr-3 mb-1">
           <v-btn depressed icon class="refIcondim" @click="incrTabCount">
             <v-icon color="#4E5D6B">refresh</v-icon>
@@ -233,6 +233,9 @@ export default {
 </script>
 
 <style scoped>
+.tab-item-color-active{
+  border-bottom: 2px solid #006aff !important;
+}
 .tab-props {
   color: transparent;
 }

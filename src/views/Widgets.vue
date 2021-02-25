@@ -1,6 +1,6 @@
 <template>
   <v-col cols="12" class="pl-4 pb-0" style="background-color: #e6e7e8 !important">
-    <v-col cols="12" class="py-0 d-flex justify-end">
+    <v-col cols="12" class="py-0 d-flex justify-end pr-0">
       <v-col cols="11" class="py-0">
         <v-container fluid class="py-0 ">
           <v-row class="py-0  mt-0 mb-0 row-style" align="center">
@@ -49,21 +49,20 @@
       </v-row>
     </v-col>
     <v-col cols="12" class="py-0 d-flex justify-end" style="background-color: #F2F2F2;">
-      <v-col cols="11" class="py-0">
-        <v-container fluid class="pt-0">
-
+      <v-col cols="11" class="py-0 px-0">
+        <v-container fluid class="pt-0 px-0">
           <v-row
-            class="pt-1  bg_wdg_cards"
+            class="pt-1 px-0 bg_wdg_cards"
             align="start"
             justify="start"
             style="height:auto; width:100%"
           >
-            <v-col cols="7" style="height:100%" class="pt-1">
+            <v-col cols="6" style="height:100%" class="pt-1 pl-2">
               <v-row style="height:100%" align="start" justify="start">
                 <WidgetProps class="mt-3" />
               </v-row>
             </v-col>
-            <v-col cols="5" style="" class="pt-1 pos_sticky">
+            <v-col cols="6" style="" class="pt-1 pr-0 pos_sticky">
               <v-row
                 style="height:75vh; width:auto; "
                 align="start"
@@ -73,7 +72,7 @@
                 <WidgetView />
               </v-row>
               <v-row
-                style="height:75vh; width:auto;"
+                style=" width:auto;"
                 align="start"
                 justify="center"
                 v-show="widgetType == 'Checkbox'"
@@ -148,7 +147,7 @@ export default {
 <style scoped>
 .pos_sticky{
   position: sticky;
-  top: -130px;
+  top: -120px;
 }
 .popup_wdg_card{
   margin-left: 6% !important;
@@ -193,5 +192,16 @@ export default {
     font-size: 13px !Important;
   }
 }
-
+@media screen and (max-height: 830px) {
+  .pos_sticky{
+    position: sticky;
+    top: -190px !important;
+  }
+}
+@media screen and (max-height: 630px) {
+  .pos_sticky{
+    position: sticky;
+    top: -290px !important;
+  }
+}
 </style>

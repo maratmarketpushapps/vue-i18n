@@ -4,14 +4,40 @@
     <v-card
       class="cv_font_dims br_rad"
     >
-      <v-row class="px-0 mx-0 py-0 my-0 ">
+      <v-row class="px-0 mx-0 py-0 my-0 "   @click="toggleDialog()">
         <v-img src="@/assets/img/Campaigns/image-header-phone.png"></v-img>
       </v-row>
-
-      <v-col cols="12" class="px-0 mx-0 mb-1">
+      <v-overlay
+        absolute
+        :value="dialog"
+        style="border-radius: 25px 25px 0 0;"
+        class="pa-10 "
+        z-index="1"
+      >
+        <v-card color="white" tile class="pb-4 ovr_spc ovr_pd">
+          <v-row justify="end" class="pr-5 pt-2">
+            <v-btn x-small icon @click="ovrlyClose()">
+              <v-icon color="#323F4F"  >
+                mdi-window-close
+              </v-icon>
+            </v-btn>
+          </v-row>
+          <v-card-text
+            style="color:#323F4F ;text-align: center; font-size:14px ; padding-left: 15px ; padding-right: 15px"
+          >
+            {{ $t("campaigns.smsModalText1") }}
+          </v-card-text>
+          <v-card-text
+            style="color:#323F4F ; text-align: center; font-size:14px; padding-left: 15px ; padding-right: 15px"
+          >
+            {{ $t("campaigns.smsModalText2") }}
+          </v-card-text>
+        </v-card>
+      </v-overlay>
+      <v-col cols="12" class="px-0 mx-0 mb-1"   @click="toggleDialog()">
 
       </v-col>
-      <v-col cols="12 mb-0 pb-0 mt-10 pt-12" class="d-flex justify-center"> {{ $t("campaigns.smsordrrcpt.dateTime")}}</v-col>
+      <v-col cols="12 mb-0 pb-0 mt-10 pt-12" class="d-flex justify-center"   @click="toggleDialog()"> {{ $t("campaigns.smsordrrcpt.dateTime")}}</v-col>
       <v-row
         class=""
         @click="toggleDialog()"
@@ -30,7 +56,7 @@
           </v-container>
         </v-col>
       </v-row>
-      <v-row class="px-0 mx-0 py-0 my-0 bg_trans" >
+      <v-row class="px-0 mx-0 py-0 my-0 bg_trans"   @click="toggleDialog()">
         <v-img src="@/assets/img/Campaigns/input-image.png" ></v-img>
       </v-row>
 
@@ -53,7 +79,10 @@ export default {
   },
   methods: {
     toggleDialog() {
-      // this.dialog = !this.dialog;
+      this.dialog = !this.dialog;
+    },
+    ovrlyClose() {
+      this.dialog = !this.dialog;
     },
   },
   computed: {
@@ -154,6 +183,12 @@ export default {
 </script>
 
 <style scoped>
+.ovr_spc {
+  padding-right: 15px;
+  padding-left:15px;
+  color: #323f4f;
+  font-size: 14px;
+}
 .cv_font_dims {
   font-size: 72% !important;
   overflow: hidden;

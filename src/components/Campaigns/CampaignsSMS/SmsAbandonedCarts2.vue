@@ -1,5 +1,5 @@
 <template>
-  <v-card tile height="auto" class="pl-0 pt-3 pr-0 font_dims sms_camp_parent">
+  <v-card tile height="auto" class="pl-0 pt-3 pr-0 font_dims sms_camp_parent" v-on="cardListeners">
 
     <v-row class="pl-6 ">
       <v-col :cols="$vuetify.breakpoint.width > 1510 ? 5 : 6" class="pr-0 pb-0">
@@ -290,6 +290,16 @@ export default {
     };
   },
   computed: {
+    getActiveCart(){
+      return this.$store.getters.getMsgActiveCart
+    },
+    cardListeners(){
+      let eventListeners = {}
+      if(this.getActiveCart == "abndndcrt1"){
+        eventListeners.click = this.editCart1
+      }
+      return eventListeners
+    },
     getOrdrAbndCrtMsgCnt() {
       return this.$store.getters.getMsgCountsSms.sms_sent_count_abandoned_cart_2;
     },
@@ -598,6 +608,7 @@ export default {
     padding: 0px 7px !important;
   }
 }
+
 
 @media (max-width: 1349px) {
   .btn_sup{

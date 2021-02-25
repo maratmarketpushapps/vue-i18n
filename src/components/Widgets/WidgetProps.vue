@@ -2,7 +2,7 @@
   <v-card tile height="auto" width="100%" class="wdgt_font_dims card-scroll par_">
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0 mt-0">
       <v-row style="height:20%;width:100%" class="">
-        <v-col :cols="$vuetify.breakpoint.width < 1190 ? '4 offset-1' : '3 offset-1 ' " >
+        <v-col :cols=" $vuetify.breakpoint.width < 1249 ? '4 offset-1' : '3 offset-1 ' " >
           <v-row
             class="my-0 "
             style="height:100%;width:100%"
@@ -367,13 +367,14 @@
         <v-col cols="1"></v-col>
         <v-col cols="10">
           <v-row align="start" style="height:70%" class="mb-0 pb-0 wdg_disc_codes">
-            <v-text-field
+            <v-textarea
               :label="$t('widgets.msgTxt')"
               v-model="msgTxt"
-              class="text-fonts"
+              class="text_area_font text-fonts"
               maxlength="280"
               @focus="msgTxt_focus = true"
               @focusout="msgTxt_focus = false"
+              rows="2"
               :rules=" [v => v.length <= 280 || 'Max 280 characters']"
             >
               <template v-slot:label v-if="msgTxt_focus">
@@ -381,7 +382,7 @@
                 <span v-if="msgTxt.length > 4" style="position: absolute;right: 26px;">{{msgTxt.length}}/</span>
                 <span v-if="msgTxt.length > 4" style="position: absolute;right: 0px;">280</span>
               </template>
-            </v-text-field>
+            </v-textarea>
           </v-row>
         </v-col>
       </v-row>
@@ -1107,7 +1108,11 @@ export default {
 </script>
 
 <style scoped>
-
+.text_area_font{
+  font-size: 16px !important;
+  color: #323F4F !important;
+  font-weight: normal;
+}
 .parent_gat_message{
   margin-bottom: 36px !important;
 }

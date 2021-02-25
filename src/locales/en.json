@@ -46,7 +46,7 @@
       }
     }
   },
-
+  "absenseToken":"There seems to be an issue with your website. Please contact support at contact@marketpushapps.com to get this resolved quickly",
   "dashboard": {
     "header": "Dashboard",
     "infoMsg": "The Dashboard shows performance statistics of MarketPush Cart Recovery app within a selected time range.",
@@ -81,8 +81,9 @@
       "fbLabel": "Facebook Subscribers"
     }
   },
-
   "campaigns": {
+    "smsModalText1": "This is the message that your customers will receive on SMS",
+    "smsModalText2": " Please note that this interface is just for showcasing purposes and it’s not clickable.",
     "smsheader": "SMS Campaigns",
     "header": "Facebook Campaigns",
     "msgCount": "Messages Sent",
@@ -237,6 +238,8 @@
     "btnBrdrSz": "Border Size",
     "btnBrdrClr": "Border Color",
     "resetButton": "RESET TO LAST SAVED CHANGES",
+    "ShowSubmitButton": "SHOW SUBMIT SCREEN",
+    "ShowDiscountButton": "SHOW DISCOUNT CODE SCREEN",
     "liveLbl": "LIVE",
     "offLbl": "GO-LIVE",
     "chckBoxNote": "*In order to use the checkbox plugin, you need to",
@@ -286,6 +289,7 @@
     "upgradeCard": {
       "header1":"You are using the ",
       "header2":" plan.",
+      "attemptsLeft": "0 cart recovery attempts left this month",
       "body1": " With ",
       "body2": " you have up to ",
       "body3": " individual Cart Recovery attempts, with up to 2 messages per recovery attempt. ",

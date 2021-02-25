@@ -1,5 +1,5 @@
 <template>
-  <v-card tile height="auto" class="pl-0 pt-3 pr-0 font_dims">
+  <v-card tile height="auto" class="pl-0 pt-3 pr-0 font_dims sms_camp_parent" v-on="cardListeners">
     <v-row class="pl-6">
       <v-col :cols="$vuetify.breakpoint.width > 1510 ? 5 : 6" class="pr-0 pb-0">
         <v-row
@@ -461,8 +461,19 @@ export default {
         )
       );
     },
+    getActiveCart(){
+      return this.$store.getters.getMsgActiveCart
+    },
+    cardListeners(){
+      let eventListeners = {}
+      if(this.getActiveCart == "abndndcrt2"){
+        eventListeners.click = this.editCart1
+      }
+      return eventListeners
+    },
   },
   methods: {
+
     saveOrdrAbndCrt() {
       this.$store.dispatch("updIsLoading", true).then(() => {
         let obj = {

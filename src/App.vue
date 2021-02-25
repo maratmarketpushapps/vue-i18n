@@ -4,6 +4,17 @@
       <NavDrawer />
       <AppBar class="app_bar_height" />
 
+      <v-snackbar
+        v-model="snackbar"
+        elevation="24"
+        absolute
+        centered
+        shaped
+        top
+        :timeout="timeClose"
+      >
+        <span style="font-size: 18px">{{ $t("absenseToken") }}</span>
+      </v-snackbar>
 <!--      /* modal for technical support */-->
       <v-row justify="center">
         <v-dialog
@@ -111,16 +122,14 @@ export default {
   },
   mounted() {
     this.$router.push("/dashboard");
+    if(this.$store.getters.getToken == undefined || this.$store.getters.getToken == ''){
+      this.snackbar = true
+    } else this.snackbar = false
   },
-  //
-
   components: {
     AppBar,
     NavDrawer
-    //,
-    //ModalTestCartRecoveryMethod
   },
-
   data() {
     return {
       showAlert: true,
@@ -130,6 +139,9 @@ export default {
       // isLoading: false,
       nuRequests: 0,
       modal_technical_support:false,
+      snackbar:false,
+      multiLine: true,
+      timeClose:99999999,
     };
   },
   methods: {
