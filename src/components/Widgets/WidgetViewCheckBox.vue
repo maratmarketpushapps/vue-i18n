@@ -108,7 +108,7 @@
               </v-col>
               <v-col cols="9"  style="height:34vh" class="d-flex align-content-space-around  flex-wrap py-0 pl-12" v-if="checkOptin">
                 <v-col style="width:100%" class="py-0" v-if="dscntCd">
-                  <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%">
+                  <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%" :style="msgProps">
                     {{ dscntCd }}
                   </span>
                 </v-col>
@@ -127,7 +127,7 @@
               </v-col>
               <v-col cols="9" class="py-0 d-flex align-content-space-around  flex-wrap py-0 pl-12" style="height: 34vh" v-if="!checkOptin">
                 <v-row style="width:100%;" class="py-0 pr-2">
-                  <span style="font-weight:bold; font-size:90%">
+                  <span style="font-weight:bold; font-size:90%" :style="msgProps">
                     {{ dscntStmt }}
                   </span>
                 </v-row>
@@ -297,7 +297,7 @@
               </v-col>
               <v-col cols="9" class="d-flex align-content-space-around  flex-wrap" style="height:35vh" v-if="checkOptin">
                 <v-row style="width:100%;" class="pl-8 pr-0" v-if="dscntCd">
-                  <span style="width:100%;font-weight:bold;font-size:120%; color:#5686F6">
+                  <span style="width:100%;font-weight:bold;font-size:120%; color:#5686F6" :style="msgProps">
                     {{ dscntCd }}
                   </span>
                 </v-row>
@@ -316,7 +316,7 @@
               </v-col>
               <v-col cols="9" class="py-0 d-flex align-content-space-around  flex-wrap" style="height:35vh" v-if="!checkOptin">
                 <v-row style="width:100%;" class="py-0 pl-6 pr-0">
-                    <span style="font-weight:bold; font-size:90%">
+                    <span style="font-weight:bold; font-size:90%" :style="msgProps">
                       {{ dscntStmt }}
                     </span>
                 </v-row>
@@ -468,7 +468,6 @@
               style="border:1px solid #C9CACB;"
               align="center"
               justify="center"
-
               :key="'key2' + wdgtTabKey"
               class="mt-4"
             >
@@ -484,7 +483,7 @@
               </v-col>
               <v-col cols="9" class="d-flex align-content-space-around  flex-wrap py-0 pl-12" style="height: 35vh !important;" v-if="checkOptin">
                 <v-col style="width:100%" class="py-0 pr-2" v-if="dscntCd">
-                    <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%">
+                    <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%" :style="msgProps">
                       {{ dscntCd }}
                     </span>
                 </v-col>
@@ -505,7 +504,7 @@
 
               <v-col cols="9" class="d-flex align-content-space-around  flex-wrap" v-if="!checkOptin" style="height: 35vh !important;">
                 <v-col style="width:100%" class="py-0 pr-2">
-                      <span style="font-weight:bold; font-size:90%">
+                      <span style="font-weight:bold; font-size:90%" :style="msgProps">
                         {{ dscntStmt }}
                       </span>
                   <v-col style="width:100%" class="py-0 pl-0 pt-8">
@@ -526,52 +525,52 @@
                             </vue-tel-input>
                           </v-tab-item>
 
-                          <v-tab-item :value="getTabKeyFb" :style="bdyColor">
-                            <v-row
-                              style="width:100%;height:auto"
-                              align="center"
-                              class="pl-1"
-                              :style="bdyColor"
-                            >
-                              <v-checkbox
-                                input-value="true"
-                                disabled
-                                style="transform: scale(0.8)"
-                                class="pr-0 mr-0"
-                              >
-                              </v-checkbox>
-                              <span class="pr-0" style="font-size:80%">
-                            {{ $t("widgets.chckBxTxt1") }}
-                          </span>
-                              <v-icon color="#0084FF" style="transform: scale(0.8)">
-                                mdi-facebook-messenger
-                              </v-icon>
-                              <span class="pl-0" style="font-size:80%">
-                            {{ $t("widgets.chckBxTxt2") }}
-                          </span>
-                              <span> </span>
-                            </v-row>
+<!--                          <v-tab-item :value="getTabKeyFb" :style="bdyColor">-->
+<!--                            <v-row-->
+<!--                              style="width:100%;height:auto"-->
+<!--                              align="center"-->
+<!--                              class="pl-1"-->
+<!--                              :style="bdyColor"-->
+<!--                            >-->
+<!--                              <v-checkbox-->
+<!--                                input-value="true"-->
+<!--                                disabled-->
+<!--                                style="transform: scale(0.8)"-->
+<!--                                class="pr-0 mr-0"-->
+<!--                              >-->
+<!--                              </v-checkbox>-->
+<!--                              <span class="pr-0" style="font-size:80%">-->
+<!--                            {{ $t("widgets.chckBxTxt1") }}-->
+<!--                          </span>-->
+<!--                              <v-icon color="#0084FF" style="transform: scale(0.8)">-->
+<!--                                mdi-facebook-messenger-->
+<!--                              </v-icon>-->
+<!--                              <span class="pl-0" style="font-size:80%">-->
+<!--                            {{ $t("widgets.chckBxTxt2") }}-->
+<!--                          </span>-->
+<!--                              <span> </span>-->
+<!--                            </v-row>-->
 
-                            <v-row style="width:100%;height:30%" align="start">
-                              <v-container
-                                style="height: 15px; width: 15px; border-radius:100%; background-color: #E6E7E8; transform: scale(0.8)"
-                                class="mx-2"
-                              ></v-container>
+<!--                            <v-row style="width:100%;height:30%" align="start">-->
+<!--                              <v-container-->
+<!--                                style="height: 15px; width: 15px; border-radius:100%; background-color: #E6E7E8; transform: scale(0.8)"-->
+<!--                                class="mx-2"-->
+<!--                              ></v-container>-->
 
-                              <span
-                                style="font-size: 70%; height:100%; color: #B3B7BA"
-                                class="pt-1 mr-2"
-                              >{{ $t("widgets.fbUserName") }}</span
-                              >
+<!--                              <span-->
+<!--                                style="font-size: 70%; height:100%; color: #B3B7BA"-->
+<!--                                class="pt-1 mr-2"-->
+<!--                              >{{ $t("widgets.fbUserName") }}</span-->
+<!--                              >-->
 
-                              <a
-                                style="font-size: 70%; height:100%; color: #B3B7BA; text-decoration:underline"
-                                class="pt-1"
-                              >{{ $t("widgets.wrngUsrTxt") }}</a
-                              >
-                            </v-row>
-                            <v-row style="height:40%; width:100%"> </v-row>
-                          </v-tab-item>
+<!--                              <a-->
+<!--                                style="font-size: 70%; height:100%; color: #B3B7BA; text-decoration:underline"-->
+<!--                                class="pt-1"-->
+<!--                              >{{ $t("widgets.wrngUsrTxt") }}</a-->
+<!--                              >-->
+<!--                            </v-row>-->
+<!--                            <v-row style="height:40%; width:100%"> </v-row>-->
+<!--                          </v-tab-item>-->
                         </v-tabs-items>
                       </v-col>
                     </v-col>
