@@ -4,7 +4,12 @@
       <v-col cols="11" class="py-0">
         <v-row class="pt-0 mt-0 pb-0 mb-0 row-style" align="center">
           <v-col cols="auto" class="pt-0 pb-0">
-            <h3 class="header_dims page_headers pr-0 mr-0 pt-0 mt-0">
+            <h3 class="header_dims page_headers pr-0 mr-0 pt-0 mt-0"
+                style="color: #323f4f;
+                font-weight: bold !important;
+                text-transform: uppercase;
+                font-size: 18px !important;"
+            >
               {{ $t("campaigns.header") }}
             </h3>
           </v-col>
@@ -32,7 +37,9 @@
     <v-col cols="12" class="py-0">
       <v-row class=" pt-0 mt-0 pb-0 mb-0 row-style" align="center">
         <v-col cols="auto" class="popup_wdg_card pt-0 pb-0 par_title_popup_consent d-flex align-center" >
-          <h3 class="title_popup_consent  pr-0 mr-0 pt-0 mt-0">
+          <h3 class="title_popup_consent  pr-0 mr-0 pt-0 mt-0"
+
+          >
             {{ $t("campaigns.tabs.item1") }}
           </h3>
 
@@ -124,6 +131,13 @@ export default {
   font: normal normal bold 15px/25px Poppins !important;
   letter-spacing: 0px;
   color: #006AFF !important;
+}
+.title_popup_consent{
+  text-align: left !important;
+  font: normal normal bold 15px/25px Poppins !Important;
+  letter-spacing: 0px !important;
+  color: #006AFF !important;
+  opacity: 1 !important;
 }
 .popup_wdg_card{
   margin-left: 6% !important;

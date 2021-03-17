@@ -32,7 +32,8 @@
     <v-col cols="12" class="py-0">
       <v-row class=" pt-0 mt-0 pb-0 mb-0 row-style" align="center">
         <v-col cols="auto" class="popup_wdg_card pt-0 pb-0 par_title_popup_consent d-flex align-center" >
-          <h3 class="title_popup_consent  pr-0 mr-0 pt-0 mt-0">
+          <h3 class="title_popup_consent  pr-0 mr-0 pt-0 mt-0"
+             >
             {{ $t("campaigns.tabs.itemSMS") }}
           </h3>
 
