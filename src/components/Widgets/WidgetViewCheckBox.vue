@@ -88,7 +88,7 @@
             </v-col>
           </v-row>
           <!--          /* SMS with Discount */-->
-          <v-col cols="11" v-if="wdgtSMScheck && wdgtIsDsc">
+          <v-col cols="11" v-if="wdgtSMScheck && wdgtIsDsc" @click="toggleDialog">
             <v-row
               style="width:100%; border: 1px solid #c9cacb; margin-left:1%"
               align="center"
@@ -141,6 +141,7 @@
                       placeholder=""
                       :showDialCode="true"
                       mode="international"
+                      disabled
                     >
                     </vue-tel-input>
                   </v-col>
@@ -152,6 +153,7 @@
                     outlined
                     :key="widgetKey"
                     @click="submitClickDisc"
+                    disabled
                   >
                   <span :style="btnTextProps">
                     {{ buttonText }}
@@ -376,6 +378,7 @@
                     outlined
                     :key="widgetKey"
                     @click="submitClickDisc"
+                    disabled
                   >
                   <span :style="btnTextProps">
                     {{ buttonText }}
@@ -463,7 +466,7 @@
 
 
           <!--          /* FB AND SMS DISCOUNT */-->
-          <v-col cols="11" class="ml-3 no_pad_min_width"   v-if="wdgtTabcheck && wdgtIsDsc">
+          <v-col cols="11" class="ml-3 no_pad_min_width"   v-if="wdgtTabcheck && wdgtIsDsc" @click="toggleDialog()">
             <v-row
               style="border:1px solid #C9CACB;"
               align="center"
@@ -507,11 +510,11 @@
                       <span style="font-weight:bold; font-size:90%" :style="msgProps">
                         {{ dscntStmt }}
                       </span>
-                  <v-col style="width:100%" class="py-0 pl-0 pt-8">
+                  <v-col style="width:100%" class="py-0 pl-0 pt-8" disabled>
                     <v-col style="width:100%; " align="center" class="px-0 py-0" :style="bdyColor">
                       <v-col cols="12" class="px-0 py-0" :style="bdyColor">
                         <v-tabs-items v-model="tab" style="width:100%">
-                          <v-tab-item :value="getTabKeySMS" style="width:100%" class="pl-0 py-5" :style="bdyColor">
+                          <v-tab-item :value="getTabKeySMS" style="width:100%" class="pl-0 py-5" :style="bdyColor" disabled>
 
                             <vue-tel-input
                               v-model="optinNum"
@@ -520,7 +523,7 @@
                               placeholder=""
                               :showDialCode="true"
                               mode="international"
-
+                              disabled
                             >
                             </vue-tel-input>
                           </v-tab-item>
@@ -576,12 +579,13 @@
                     </v-col>
                   </v-col>
                 </v-col>
-                <v-row style="width:100%" class="pl-6  " align="start">
+                <v-row style="width:100%" class="pl-6  " align="start" disabled>
                   <v-btn
                     :style="buttonProps"
                     outlined
                     :key="widgetKey"
                     @click="submitClickDisc"
+                    disabled
                   >
                       <span :style="btnTextProps">
                         {{ buttonText }}
