@@ -366,7 +366,7 @@ export default {
     },
     putOPtOut(){
       let currentItem = this.ordrAbndCrtIntroMsg
-      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{write STOP to unsubscribe}}'
+      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ 'write STOP to unsubscribe'
       this.ordrAbndCrtIntroMsg.length > 249 ? (this.ordrAbndCrtIntroMsg = currentItem ,this.suppasLenght = true) : ''
       this.activeStateChng()
     },

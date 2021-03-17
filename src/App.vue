@@ -175,15 +175,15 @@ export default {
   background-color: yellow !important;
 }
 
-/* mouse over link */
-.vti__dropdown:hover {
-  background-color: yellow !important;
-}
+/* mouse over link  disapled by Marat*/
+/*.vti__dropdown:hover {*/
+/*  background-color: yellow !important;*/
+/*}*/
 
-/* selected link */
-.vti__dropdown:active {
-  background-color: yellow !important;
-}
+/*!* selected link *!*/
+/*.vti__dropdown:active {*/
+/*  background-color: yellow !important;*/
+/*}*/
 
 .router-content_style {
   padding: 0;

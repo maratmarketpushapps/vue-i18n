@@ -528,52 +528,52 @@
                             </vue-tel-input>
                           </v-tab-item>
 
-<!--                          <v-tab-item :value="getTabKeyFb" :style="bdyColor">-->
-<!--                            <v-row-->
-<!--                              style="width:100%;height:auto"-->
-<!--                              align="center"-->
-<!--                              class="pl-1"-->
-<!--                              :style="bdyColor"-->
-<!--                            >-->
-<!--                              <v-checkbox-->
-<!--                                input-value="true"-->
-<!--                                disabled-->
-<!--                                style="transform: scale(0.8)"-->
-<!--                                class="pr-0 mr-0"-->
-<!--                              >-->
-<!--                              </v-checkbox>-->
-<!--                              <span class="pr-0" style="font-size:80%">-->
-<!--                            {{ $t("widgets.chckBxTxt1") }}-->
-<!--                          </span>-->
-<!--                              <v-icon color="#0084FF" style="transform: scale(0.8)">-->
-<!--                                mdi-facebook-messenger-->
-<!--                              </v-icon>-->
-<!--                              <span class="pl-0" style="font-size:80%">-->
-<!--                            {{ $t("widgets.chckBxTxt2") }}-->
-<!--                          </span>-->
-<!--                              <span> </span>-->
-<!--                            </v-row>-->
+                          <v-tab-item :value="getTabKeyFb" :style="bdyColor">
+                            <v-row
+                              style="width:100%;height:auto"
+                              align="center"
+                              class="pl-1"
+                              :style="bdyColor"
+                            >
+                              <v-checkbox
+                                input-value="true"
+                                disabled
+                                style="transform: scale(0.8)"
+                                class="pr-0 mr-0"
+                              >
+                              </v-checkbox>
+                              <span class="pr-0" style="font-size:80%">
+                            {{ $t("widgets.chckBxTxt1") }}
+                          </span>
+                              <v-icon color="#0084FF" style="transform: scale(0.8)">
+                                mdi-facebook-messenger
+                              </v-icon>
+                              <span class="pl-0" style="font-size:80%">
+                            {{ $t("widgets.chckBxTxt2") }}
+                          </span>
+                              <span> </span>
+                            </v-row>
 
-<!--                            <v-row style="width:100%;height:30%" align="start">-->
-<!--                              <v-container-->
-<!--                                style="height: 15px; width: 15px; border-radius:100%; background-color: #E6E7E8; transform: scale(0.8)"-->
-<!--                                class="mx-2"-->
-<!--                              ></v-container>-->
+                            <v-row style="width:100%;height:30%" align="start">
+                              <v-container
+                                style="height: 15px; width: 15px; border-radius:100%; background-color: #E6E7E8; transform: scale(0.8)"
+                                class="mx-2"
+                              ></v-container>
 
-<!--                              <span-->
-<!--                                style="font-size: 70%; height:100%; color: #B3B7BA"-->
-<!--                                class="pt-1 mr-2"-->
-<!--                              >{{ $t("widgets.fbUserName") }}</span-->
-<!--                              >-->
+                              <span
+                                style="font-size: 70%; height:100%; color: #B3B7BA"
+                                class="pt-1 mr-2"
+                              >{{ $t("widgets.fbUserName") }}</span
+                              >
 
-<!--                              <a-->
-<!--                                style="font-size: 70%; height:100%; color: #B3B7BA; text-decoration:underline"-->
-<!--                                class="pt-1"-->
-<!--                              >{{ $t("widgets.wrngUsrTxt") }}</a-->
-<!--                              >-->
-<!--                            </v-row>-->
-<!--                            <v-row style="height:40%; width:100%"> </v-row>-->
-<!--                          </v-tab-item>-->
+                              <a
+                                style="font-size: 70%; height:100%; color: #B3B7BA; text-decoration:underline"
+                                class="pt-1"
+                              >{{ $t("widgets.wrngUsrTxt") }}</a
+                              >
+                            </v-row>
+                            <v-row style="height:40%; width:100%"> </v-row>
+                          </v-tab-item>
                         </v-tabs-items>
                       </v-col>
                     </v-col>
