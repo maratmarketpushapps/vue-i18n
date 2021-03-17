@@ -317,18 +317,18 @@
                 </v-row>
               </v-col>
               <v-col cols="9" class="py-0 d-flex align-content-space-around  flex-wrap" style="height:35vh" v-if="!checkOptin">
-                <v-row style="width:100%;" class="py-0 pl-6 pr-0">
+                <v-row style="width:100%;" class="py-0 pl-6 pr-2">
                     <span style="font-weight:bold; font-size:90%" :style="msgProps">
                       {{ dscntStmt }}
                     </span>
                 </v-row>
                 <v-row style="width:100%;" class="py-0" :style="bdyColor">
 
-                    <v-col cols="12" class="pl-0 pt-0 ml-7" style="height:100%" :style="bdyColor">
+                    <v-col cols="11" class="pl-0 pt-0 ml-6" style="height:100%;" :style="bdyColor" >
                       <v-row
                         style="width:100%;height:auto"
                         align="center"
-                        class="pl-1"
+                        class="pl-2"
                         :style="bdyColor"
                       >
                         <v-checkbox
@@ -353,7 +353,7 @@
                       <v-row style="width:100%;" class="mr-5" align="start">
                         <v-container
                           style="height: 15px; width: 15px; border-radius:100%; background-color: #E6E7E8; transform: scale(0.8)"
-                          class="mx-2"
+                          class="mx-2 "
                         ></v-container>
 
                         <span
