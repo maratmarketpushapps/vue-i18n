@@ -180,6 +180,15 @@
     }
   },
   "widgets": {
+    "widgetViewCheckboxTopText": {
+      "addToCart": "Appears when the customer clicks on Add to Cart.",
+      "exitIntent": "Appears on Exit Intent.",
+      "both": "Appears when the customer clicks on Add to Cart and on Exit Intent."
+    },
+    "hintTooltpiconTrigger":"With Discount you can capture more leads by offering customers that subscribe a discount coupon.",
+    "popupTriger":"When to show the popup to visitors",
+    "triggerAddToCart": "Trigger popup on Add to Cart",
+    "triggerExistIntent": "Trigger popup on Exist Intent",
     "setUpPopupLive": "Set Popup Live",
     "PopupConsentWidget":"Add a Subscribe Popup on your Site",
     "discountLabelinstruction": "Apply discount code instructions",

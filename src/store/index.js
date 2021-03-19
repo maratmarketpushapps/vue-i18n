@@ -26,7 +26,6 @@ export default new Vuex.Store({
       consumed_recovery_attempts: 0,
       subscription_plan: "",
     },
-
     widgetVars: {
       enabled_widgets: {
         sms: {
@@ -71,6 +70,10 @@ export default new Vuex.Store({
       pop_up_cancel_font_color: "",
       pop_up_cancel_font_type: "",
       pop_up_cancel_font_size: 0,
+      popup_triggers:{
+        add_to_cart:false,
+        exit_intent:false
+      },
       button_text: "",
       button_background: "",
       button_font_family: "",
@@ -245,11 +248,17 @@ export default new Vuex.Store({
     },
   },
   getters: {
+    getSubPlan: (state) => {
+      return state.subVars.subscription_plan
+    },
     getMsgActiveCart: (state) => {
       return state.msgVars.activeTab
     },
     getWdgSubType: (state) => {
       return state.widgetVars.subscribe_type;
+    },
+    getWdgPopupTriggers: (state) => {
+      return state.widgetVars.popup_triggers
     },
     getToken: (state) => {
       return state.TOKEN
@@ -431,6 +440,7 @@ export default new Vuex.Store({
       state.widgetVars.pop_up_cancel_font_color = obj.pop_up_cancel_font_color;
       state.widgetVars.pop_up_cancel_font_type = obj.pop_up_cancel_font_type;
       state.widgetVars.pop_up_cancel_font_size = obj.pop_up_cancel_font_size;
+      state.widgetVars.popup_triggers = obj.popup_triggers;
       state.widgetVars.button_text = obj.button_text;
       state.widgetVars.button_background = obj.button_background;
       state.widgetVars.button_font_family = obj.button_font_family;
@@ -1002,6 +1012,12 @@ export default new Vuex.Store({
       state.widgetVars.subscribe_type = formVidgData.subscribe_type;
 
     },
+    SAVE_WIDGET_TRIGGER_ADD_TO_CART(state,item){
+      state.widgetVars.popup_triggers.add_to_cart = item
+    },
+    SAVE_WIDGET_TRIGGER_EXIT_INTENT(state,item){
+      state.widgetVars.popup_triggers.exit_intent = item
+    },
     Change_cartReady(state,status){
       state.cartIsReady = status
     },
@@ -1227,6 +1243,18 @@ export default new Vuex.Store({
     updWdgtDiscForm({ commit }, obj) {
       return new Promise((resolve) => {
         commit("SAVE_WIDGET_FORM", obj);
+        resolve("success");
+      });
+    },
+    updWdgtTriggerAddToCart({ commit }, obj) {
+      return new Promise((resolve) => {
+        commit("SAVE_WIDGET_TRIGGER_ADD_TO_CART", obj);
+        resolve("success");
+      });
+    },
+    updWdgtTriggerExitIntent({ commit }, obj) {
+      return new Promise((resolve) => {
+        commit("SAVE_WIDGET_TRIGGER_EXIT_INTENT", obj);
         resolve("success");
       });
     },
