@@ -240,6 +240,120 @@
     </v-container>
     <v-divider class="mt-0"></v-divider>
     <v-container>
+      <v-row class="Sub_Par">
+        <v-col cols="6 offset-1 py-0 px-0" class="py-0 align-end">
+          <h3 class="subs_title gath_msg">{{ $t("widgets.popupTriger") }}</h3>
+        </v-col>
+        <v-col cols="5" class="justify-end row pr-6 py-0 mr-0" style="height: 28px !Important">
+          <TooltipIcon
+            :posRight="true"
+            :nudgeBottom="30"
+            :nudgeLeft="5"
+            :txt="$t('widgets.hintTooltpiconTrigger')"
+            class="infoicon_scale pt-0 mt-0"
+          />
+        </v-col>
+        <v-col class="pa-0 mb-4 py-0">
+          <!--      <draggable v-model="coneData" class="row pl-4 pr-5 mb-6">-->
+          <v-col    cols="11 offset-1"
+                    class="pl-0 py-0 mt-0 mb-0 height_row" align-self="end">
+            <!--            <small :class="notSel?'notSelTxt mt-10':''" v-if="notSel">{{ $t("widgets.notSelTxt") }}</small>-->
+            <v-col cols="12" class="py-0 height_row row py-0 my-0 pl-2 pr-0" row>
+              <!--              <v-col cols="" class="py-0 px-0 my-0 trigger_width_230" >-->
+              <div style="width: 271px !important;">
+                <v-checkbox
+                  v-model="popup_triggers_add_to_cart"
+                  class="mt-0 mb-0"
+                >
+                  <span slot="label"  :class="popup_triggers_add_to_cart ?'blue_color':''">{{$t('widgets.triggerAddToCart')}}</span>
+                </v-checkbox>
+              </div>
+              <!--                <div>-->
+
+              <!--                </div>-->
+
+              <!--              </v-col>-->
+              <v-col class="pt-0 px-0 d-flex justify-start ">
+                <TooltipIcon
+                  :posRight="true"
+                  :nudgeBottom="30"
+                  :nudgeLeft="5"
+                  :txt="$t('widgets.hintTooltpiconTrigger')"
+                  class="infoicon_scale pt-0 mt-0"
+                />
+              </v-col>
+            </v-col>
+          </v-col>
+          <v-col    cols="11 offset-1"
+                    class="pl-0 py-0 mt-0 height_row" align-self="end">
+            <!--            <small :class="notSel?'notSelTxt mt-10':''" v-if="notSel">{{ $t("widgets.notSelTxt") }}</small>-->
+            <v-col cols="12" class=" height_row row py-0 my-0 pl-2 pr-0" row>
+              <!--              <v-col cols="" class="py-0 px-0 my-0 trigger_width_230" >-->
+              <div style="width: 271px !important;">
+                <v-checkbox
+                  v-model="popup_triggers_exit_intent"
+                  class="mt-0 mb-0"
+                  :disabled="subPlan == 'Free'"
+                >
+                  <!--                    disabled-->
+                  <template v-slot:label>
+                    <span :class="popup_triggers_exit_intent?'blue_color':''" :disabled="subPlan == 'Free'">{{$t('widgets.triggerExistIntent')}}</span>
+                    <v-col v-if="subPlan == 'Free'">
+                      <v-img src="../../assets/img/Subscribers/icon-premium.png" width="16px" height="13px"></v-img>
+                    </v-col>
+                  </template>
+                </v-checkbox>
+              </div>
+              <!--              </v-col>-->
+              <v-col class="pt-0 px-0 d-flex justify-start">
+                <TooltipIcon
+                  :posRight="true"
+                  :nudgeBottom="30"
+                  :nudgeLeft="5"
+                  :txt="$t('widgets.hintTooltpiconTrigger')"
+                  class="infoicon_scale pt-0 mt-0"
+                />
+              </v-col>
+            </v-col>
+          </v-col>
+          <v-col cols="11 offset-1" class="pl-0  pr-8  py-0" v-if="subPlan == 'Free'">
+            <v-col class="trigger_text pl-0 py-0">
+              <v-col class="pl-5 brd_dot">
+                Not converting enough with your Ads? Get more leads with Exit Intent by enabling the popup when the customer tries to leave your site without adding anything to the cart.
+                <span class="upgrade_text_yellow">Upgrade to use this feature</span>
+              </v-col>
+
+            </v-col>
+          </v-col>
+        </v-col>
+
+        <!--        <v-col cols="12 offset-1 py-0 px-0">-->
+        <!--          <p class="subs_text widg_hint_txt">{{$t("widgets.discText")}}</p>-->
+        <!--        </v-col>-->
+        <!--        <v-row>-->
+        <!--          <v-col :cols="$vuetify.breakpoint.width < 1550 ? '3 offset-1' : '2 offset-1'" class="par_spc py-0 mb-0 px-0">-->
+        <!--            <v-checkbox-->
+        <!--              @change="def_selected == '' ? discount_selected = 'subscribe' : discount_selected = ''"-->
+        <!--              v-model="def_selected"-->
+        <!--              value="deafult"-->
+        <!--              :label="$t('widgets.subscribeTypeNoDiscount')"-->
+        <!--              class="mt-0 ml-2"-->
+        <!--            ></v-checkbox>-->
+        <!--          </v-col >-->
+        <!--          <v-col class="py-0">-->
+        <!--            <v-checkbox-->
+        <!--              @change="discount_selected == '' ? discount_selected = 'deafult' : def_selected = ''"-->
+        <!--              v-model="discount_selected"-->
+        <!--              value="subscribe"-->
+        <!--              class="checkbox_widget mt-0 mb-0"-->
+        <!--              :label="$t('widgets.subscribeTypeDiscount')"-->
+        <!--            ></v-checkbox>-->
+        <!--          </v-col>-->
+        <!--        </v-row>-->
+      </v-row>
+    </v-container>
+    <v-divider ></v-divider>
+    <v-container>
       <v-row style="height:20%;width:100%" class="pa-0 ma-0" align="start">
         <v-col cols="6 offset-1" class="align-center pl-0">
           <v-row class="my-2 " style="width:100%" align="center">
@@ -286,120 +400,6 @@
       </v-row>
     </v-container>
     <v-divider></v-divider>
-    <v-container>
-      <v-row class="Sub_Par">
-        <v-col cols="6 offset-1 py-0 px-0" class="py-0 align-end">
-          <h3 class="subs_title gath_msg">{{ $t("widgets.popupTriger") }}</h3>
-        </v-col>
-        <v-col cols="5" class="justify-end row pr-6 py-0 mr-0" style="height: 28px !Important">
-          <TooltipIcon
-            :posRight="true"
-            :nudgeBottom="30"
-            :nudgeLeft="5"
-            :txt="$t('widgets.hintTooltpiconTrigger')"
-            class="infoicon_scale pt-0 mt-0"
-          />
-        </v-col>
-        <v-col class="pa-0 mb-4 py-0">
-          <!--      <draggable v-model="coneData" class="row pl-4 pr-5 mb-6">-->
-          <v-col    cols="11 offset-1"
-                  class="pl-0 py-0 mt-0 mb-0 height_row" align-self="end">
-<!--            <small :class="notSel?'notSelTxt mt-10':''" v-if="notSel">{{ $t("widgets.notSelTxt") }}</small>-->
-            <v-col cols="12" class="py-0 height_row row py-0 my-0 pl-2 pr-0" row>
-<!--              <v-col cols="" class="py-0 px-0 my-0 trigger_width_230" >-->
-                <div style="width: 271px !important;">
-                  <v-checkbox
-                    v-model="popup_triggers_add_to_cart"
-                    class="mt-0 mb-0"
-                  >
-                    <span slot="label"  :class="popup_triggers_add_to_cart ?'blue_color':''">{{$t('widgets.triggerAddToCart')}}</span>
-                  </v-checkbox>
-                </div>
-<!--                <div>-->
-
-<!--                </div>-->
-
-<!--              </v-col>-->
-              <v-col class="pt-0 px-0 d-flex justify-start ">
-                <TooltipIcon
-                  :posRight="true"
-                  :nudgeBottom="30"
-                  :nudgeLeft="5"
-                  :txt="$t('widgets.hintTooltpiconTrigger')"
-                  class="infoicon_scale pt-0 mt-0"
-                />
-              </v-col>
-            </v-col>
-          </v-col>
-          <v-col    cols="11 offset-1"
-                    class="pl-0 py-0 mt-0 height_row" align-self="end">
-            <!--            <small :class="notSel?'notSelTxt mt-10':''" v-if="notSel">{{ $t("widgets.notSelTxt") }}</small>-->
-            <v-col cols="12" class=" height_row row py-0 my-0 pl-2 pr-0" row>
-<!--              <v-col cols="" class="py-0 px-0 my-0 trigger_width_230" >-->
-                <div style="width: 271px !important;">
-                  <v-checkbox
-                    v-model="popup_triggers_exit_intent"
-                    class="mt-0 mb-0"
-                    :disabled="subPlan == 'Free'"
-                  >
-<!--                    disabled-->
-                    <template v-slot:label>
-                      <span :class="popup_triggers_exit_intent?'blue_color':''" :disabled="subPlan == 'Free'">{{$t('widgets.triggerExistIntent')}}</span>
-                      <v-col v-if="subPlan == 'Free'">
-                        <v-img src="../../assets/img/Subscribers/icon-premium.png" width="16px" height="13px"></v-img>
-                      </v-col>
-                    </template>
-                  </v-checkbox>
-                </div>
-<!--              </v-col>-->
-              <v-col class="pt-0 px-0 d-flex justify-start">
-                <TooltipIcon
-                  :posRight="true"
-                  :nudgeBottom="30"
-                  :nudgeLeft="5"
-                  :txt="$t('widgets.hintTooltpiconTrigger')"
-                  class="infoicon_scale pt-0 mt-0"
-                />
-              </v-col>
-            </v-col>
-          </v-col>
-          <v-col cols="11 offset-1" class="pl-0  pr-8  py-0" v-if="subPlan == 'Free'">
-            <v-col class="trigger_text pl-0 py-0">
-              <v-col class="pl-5 brd_dot">
-                Not converting enough with your Ads? Get more leads with Exit Intent by enabling the popup when the customer tries to leave your site without adding anything to the cart.
-                <span class="upgrade_text_yellow">Upgrade to use this feature</span>
-              </v-col>
-
-            </v-col>
-          </v-col>
-        </v-col>
-
-<!--        <v-col cols="12 offset-1 py-0 px-0">-->
-<!--          <p class="subs_text widg_hint_txt">{{$t("widgets.discText")}}</p>-->
-<!--        </v-col>-->
-<!--        <v-row>-->
-<!--          <v-col :cols="$vuetify.breakpoint.width < 1550 ? '3 offset-1' : '2 offset-1'" class="par_spc py-0 mb-0 px-0">-->
-<!--            <v-checkbox-->
-<!--              @change="def_selected == '' ? discount_selected = 'subscribe' : discount_selected = ''"-->
-<!--              v-model="def_selected"-->
-<!--              value="deafult"-->
-<!--              :label="$t('widgets.subscribeTypeNoDiscount')"-->
-<!--              class="mt-0 ml-2"-->
-<!--            ></v-checkbox>-->
-<!--          </v-col >-->
-<!--          <v-col class="py-0">-->
-<!--            <v-checkbox-->
-<!--              @change="discount_selected == '' ? discount_selected = 'deafult' : def_selected = ''"-->
-<!--              v-model="discount_selected"-->
-<!--              value="subscribe"-->
-<!--              class="checkbox_widget mt-0 mb-0"-->
-<!--              :label="$t('widgets.subscribeTypeDiscount')"-->
-<!--            ></v-checkbox>-->
-<!--          </v-col>-->
-<!--        </v-row>-->
-      </v-row>
-    </v-container>
-    <v-divider ></v-divider>
     <v-container fluid style="height:auto;width:100%" class="mb-0 pb-0">
       <v-row align="start" style="height:30% width:100%" class="mb-0 pb-0">
         <v-col cols="1"></v-col>
