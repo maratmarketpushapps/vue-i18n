@@ -521,7 +521,7 @@
                             <vue-tel-input
                               v-model="optinNum"
                               dark
-                              style="width:100%;"
+                              style="width:103.5%;"
                               placeholder=""
                               :showDialCode="true"
                               mode="international"
@@ -587,7 +587,7 @@
                     outlined
                     :key="widgetKey"
                     @click="submitClickDisc"
-                    style="width: 97.5%"
+                    style="width: 96%"
                     disabled
                   >
                       <span :style="btnTextProps">
