@@ -195,6 +195,7 @@
     "subscribeTypeNoDiscount": "No Discount",
     "subscribeTypeDiscount": "Discount (Recommended)",
     "requiredValidCode":"Add a discount code.",
+    "requiredTrigger":"You must select at least 1 popup trigger.",
     "discSmallText":"To increase the chances of recovering sales, you can include a discount coupon in your message. To generate a coupon, go to ",
     "getTen":"GET10",
     "discMarkHint":"Marketing & SEO / Coupons. ",

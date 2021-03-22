@@ -41,7 +41,8 @@
         </v-col>
 
       </v-row>
-      <span style="color: red" v-if="discCodeNotValid" class="d-flex justify-end mr-9">  {{ $t("widgets.requiredValidCode") }}</span>
+      <span style="color: red" v-if="discCodeNotValid " class="d-flex justify-end mr-9">  {{ $t("widgets.requiredValidCode") }}</span>
+      <span style="color: red" v-if="triggerMustBe " class="d-flex justify-end mr-9">  {{ $t("widgets.requiredTrigger") }}</span>
       <v-row class=" pt-4">
         <v-col cols="9 offset-1 d-flex align-center" class="py-0 px-0">
           <h3 class="subs_title gath_msg">{{ $t("widgets.GathMess") }}</h3>
@@ -253,74 +254,80 @@
             class="infoicon_scale pt-0 mt-0"
           />
         </v-col>
-        <v-col class="pa-0 mb-4 py-0">
-          <!--      <draggable v-model="coneData" class="row pl-4 pr-5 mb-6">-->
-          <v-col    cols="11 offset-1"
-                    class="pl-0 py-0 mt-0 mb-0 height_row" align-self="end">
-            <!--            <small :class="notSel?'notSelTxt mt-10':''" v-if="notSel">{{ $t("widgets.notSelTxt") }}</small>-->
-            <v-col cols="12" class="py-0 height_row row py-0 my-0 pl-2 pr-0" row>
-              <!--              <v-col cols="" class="py-0 px-0 my-0 trigger_width_230" >-->
-              <div style="width: 271px !important;">
-                <v-checkbox
-                  v-model="popup_triggers_add_to_cart"
-                  class="mt-0 mb-0"
-                >
-                  <span slot="label"  :class="popup_triggers_add_to_cart ?'blue_color':''">{{$t('widgets.triggerAddToCart')}}</span>
-                </v-checkbox>
-              </div>
-              <!--                <div>-->
+        <v-col class="pa-0 mb-4 py-0" >
+<!--          <v-col cols="12 offset-1">-->
+<!--            <v-col :class="{ 'red-valid-border': triggerMustBe }" class="px-0 py-0  "  cols="12">-->
+            <v-col    cols="11 offset-1"
+                      class="pl-0 py-0 mt-0 mb-0 height_row" align-self="end" >
+              <!--            <small :class="notSel?'notSelTxt mt-10':''" v-if="notSel">{{ $t("widgets.notSelTxt") }}</small>-->
+              <v-col cols="12" class="py-0 height_row row py-0 my-0 pl-2 pr-0" row>
+                <!--              <v-col cols="" class="py-0 p
+                x-0 my-0 trigger_width_230" >-->
+                <div style="width: 271px !important; height: 35px" :class="{ 'red-valid-border': triggerMustBe }">
+                  <v-checkbox
+                    v-model="popup_triggers_add_to_cart"
+                    class="mt-0 mb-0"
+                  >
+                    <span slot="label"  :class="popup_triggers_add_to_cart ?'blue_color':'trigger_ft_span'">{{$t('widgets.triggerAddToCart')}}</span>
+                  </v-checkbox>
+                </div>
+                <!--                <div>-->
 
-              <!--                </div>-->
+                <!--                </div>-->
 
-              <!--              </v-col>-->
-              <v-col class="pt-0 px-0 d-flex justify-start ">
-                <TooltipIcon
-                  :posRight="true"
-                  :nudgeBottom="30"
-                  :nudgeLeft="5"
-                  :txt="$t('widgets.hintTooltpiconTrigger')"
-                  class="infoicon_scale pt-0 mt-0"
-                />
+                <!--              </v-col>-->
+                <v-col class="pt-0 px-0 d-flex justify-start ">
+                  <TooltipIcon
+                    :posRight="true"
+                    :nudgeBottom="30"
+                    :nudgeLeft="5"
+                    :txt="$t('widgets.hintTooltpiconTrigger')"
+                    class="infoicon_scale pt-0 mt-0"
+                  />
+                </v-col>
+              </v-col>
+            </v-col >
+            <v-col    cols="11 offset-1"
+                      class="pl-0 py-0 mt-0 height_row" align-self="end">
+              <!--            <small :class="notSel?'notSelTxt mt-10':''" v-if="notSel">{{ $t("widgets.notSelTxt") }}</small>-->
+              <v-col cols="12" class=" height_row row py-0 my-0 pl-2 pr-0" row>
+                <!--              <v-col cols="" class="py-0 px-0 my-0 trigger_width_230" >-->
+                <div style="width: 271px !important;height: 35px" :class="{ 'red-valid-border': triggerMustBe && subPlan !== 'Free'}">
+                  <v-checkbox
+                    v-model="popup_triggers_exit_intent"
+                    class="mt-0 mb-0"
+                    :disabled="subPlan == 'Free'"
+                  >
+                    <!--                    disabled-->
+                    <template v-slot:label>
+                      <span :class="popup_triggers_exit_intent && subPlan !== 'Free' ? 'blue_color':'trigger_ft_span'" :disabled="subPlan == 'Free'">{{$t('widgets.triggerExistIntent')}}</span>
+                      <v-col v-if="subPlan == 'Free'">
+                        <v-img src="../../assets/img/Subscribers/icon-premium.png" width="16px" height="13px"></v-img>
+                      </v-col>
+                    </template>
+                  </v-checkbox>
+                </div>
+                <!--              </v-col>-->
+                <v-col class="pt-0 px-0 d-flex justify-start">
+                  <TooltipIcon
+                    :posRight="true"
+                    :nudgeBottom="30"
+                    :nudgeLeft="5"
+                    :txt="$t('widgets.hintTooltpiconTrigger')"
+                    class="infoicon_scale pt-0 mt-0"
+                  />
+                </v-col>
               </v-col>
             </v-col>
-          </v-col>
-          <v-col    cols="11 offset-1"
-                    class="pl-0 py-0 mt-0 height_row" align-self="end">
-            <!--            <small :class="notSel?'notSelTxt mt-10':''" v-if="notSel">{{ $t("widgets.notSelTxt") }}</small>-->
-            <v-col cols="12" class=" height_row row py-0 my-0 pl-2 pr-0" row>
-              <!--              <v-col cols="" class="py-0 px-0 my-0 trigger_width_230" >-->
-              <div style="width: 271px !important;">
-                <v-checkbox
-                  v-model="popup_triggers_exit_intent"
-                  class="mt-0 mb-0"
-                  :disabled="subPlan == 'Free'"
-                >
-                  <!--                    disabled-->
-                  <template v-slot:label>
-                    <span :class="popup_triggers_exit_intent?'blue_color':''" :disabled="subPlan == 'Free'">{{$t('widgets.triggerExistIntent')}}</span>
-                    <v-col v-if="subPlan == 'Free'">
-                      <v-img src="../../assets/img/Subscribers/icon-premium.png" width="16px" height="13px"></v-img>
-                    </v-col>
-                  </template>
-                </v-checkbox>
-              </div>
-              <!--              </v-col>-->
-              <v-col class="pt-0 px-0 d-flex justify-start">
-                <TooltipIcon
-                  :posRight="true"
-                  :nudgeBottom="30"
-                  :nudgeLeft="5"
-                  :txt="$t('widgets.hintTooltpiconTrigger')"
-                  class="infoicon_scale pt-0 mt-0"
-                />
-              </v-col>
-            </v-col>
-          </v-col>
+<!--        </v-col>-->
+<!--        </v-col>-->
+
+
           <v-col cols="11 offset-1" class="pl-0  pr-8  py-0" v-if="subPlan == 'Free'">
             <v-col class="trigger_text pl-0 py-0">
               <v-col class="pl-5 brd_dot">
                 Not converting enough with your Ads? Get more leads with Exit Intent by enabling the popup when the customer tries to leave your site without adding anything to the cart.
-                <span class="upgrade_text_yellow">Upgrade to use this feature</span>
+                <a  :href="upgrdUrl"  class="upgrade_text_yellow">Upgrade to use this feature</a>
               </v-col>
 
             </v-col>
@@ -889,6 +896,7 @@ export default {
       cnclTxt_focus:false,
       popup_triggers_add_to_cart:false,
       popup_triggers_exit_intent:false,
+      triggerMustBe:false,
     };
   },
   methods: {
@@ -947,34 +955,36 @@ export default {
     },
     svChanges() {
       if((this.discount_selected == 'subscribe' && this.discount_code !== '') || this.def_selected == 'deafult'){
-        this.discCodeNotValid = false
-        if(this.coneData[0].connection == true || this.coneData[1].connection == true){
-          this.def_selected == null || this.def_selected == false || this.def_selected == ""
-            ? this.subscribe_type = "subscribe" : this.subscribe_type = "default"
-          let objWidg = {
-            coneData:this.coneData,
-            subscribe_type:this.subscribe_type,
-            discount_statement:this.discount_statement,
-            discount_code:this.discount_code,
-            copy_discount_code_button:this.copy_discount_code_button,
-            apply_discount_instruction:this.apply_discount_instruction,
-          };
-          this.$store.dispatch("updWdgtDiscForm",objWidg)
-          // this.$store.commit('SAVE_WIDGET_FORM',objWidg)
-          this.$store.dispatch("updIsLoading", true).then(() => {
-            this.$store.dispatch
-            ("setWdgts").then((response) => {
-              if (response) {
-                this.$store.dispatch("getStepsCompleted");
-                this.$store.dispatch("getWidgets").then(() => {
-                  this.$store.dispatch("updIsLoading", false);
-                });
-              }
+        this.popup_triggers_add_to_cart == false && this.popup_triggers_exit_intent == false ? this.triggerMustBe = true : this.triggerMustBe = false
+        if(this.triggerMustBe == false){
+          this.discCodeNotValid = false;this.triggerMustBe = false
+          if(this.coneData[0].connection == true || this.coneData[1].connection == true){
+            this.def_selected == null || this.def_selected == false || this.def_selected == ""
+              ? this.subscribe_type = "subscribe" : this.subscribe_type = "default"
+            let objWidg = {
+              coneData:this.coneData,
+              subscribe_type:this.subscribe_type,
+              discount_statement:this.discount_statement,
+              discount_code:this.discount_code,
+              copy_discount_code_button:this.copy_discount_code_button,
+              apply_discount_instruction:this.apply_discount_instruction,
+            };
+            this.$store.dispatch("updWdgtDiscForm",objWidg)
+            // this.$store.commit('SAVE_WIDGET_FORM',objWidg)
+            this.$store.dispatch("updIsLoading", true).then(() => {
+              this.$store.dispatch
+              ("setWdgts").then((response) => {
+                if (response) {
+                  this.$store.dispatch("getStepsCompleted");
+                  this.$store.dispatch("getWidgets").then(() => {
+                    this.$store.dispatch("updIsLoading", false);
+                  });
+                }
+              });
             });
-          });
-        } else this.notSel = true
+          } else this.notSel = true
+        }
       }else this.discCodeNotValid = true
-
     },
     rev(){
       if(this.coneData[0].id == 1 ){
@@ -1014,10 +1024,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["getWidgetsState", "getSettingsState","getWidgEU","getSubPlan"]),
+    ...mapGetters(["getWidgetsState", "getSettingsState","getWidgEU","getSubPlan","getInstanceId"]),
+    upgrdUrl() {
+      return `https://www.wix.com/apps/upgrade/1c15809f-0715-427d-969d-3f0f3939418f?appInstanceId=${this.getInstanceId}`;
+    },
     subPlan(){
-      return this.getSubPlan
-      // return "Free"
+      // return this.getSubPlan
+      return "Free"
     },
     detectEuRegion(){
       return this.getWidgEU
@@ -1104,7 +1117,7 @@ export default {
       this.$store.dispatch("updWdgtTriggerAddToCart", newValue);
     },
     popup_triggers_exit_intent(newValue){
-      this.$store.dispatch("updWdgtTriggerExitIntent",newValue)
+      this.$store.dispatch("updWdgtTriggerExitIntent",newValue);
     },
     def_selected(newValue) {
       if((newValue == '' || newValue == null) && this.discount_selected != 'subscribe'){
@@ -1219,7 +1232,10 @@ export default {
           this.isGdprAffected =
             this.$store.getters.getWidgetsState.is_gdpr_affected;
           this.popup_triggers_add_to_cart = this.$store.getters.getWdgPopupTriggers.add_to_cart
-          this.popup_triggers_exit_intent= this.$store.getters.getWdgPopupTriggers.exit_intent
+          this.popup_triggers_exit_intent = this.$store.getters.getWdgPopupTriggers.exit_intent
+          if(this.subPlan == 'Free'){
+            this.popup_triggers_exit_intent = false;
+          }
         }
       });
     });
@@ -1235,6 +1251,31 @@ export default {
 </script>
 
 <style scoped>
+.width_361{
+  max-width: 361px !important;
+}
+.red-valid-border {
+  /*width: 450px;*/
+  border: 2px #ff0000 solid !important;
+  animation: blink 1s !important;
+  animation-iteration-count: 2 !important;
+@keyframes blink {
+  50% {
+    border-color: #fff !important;
+  }
+}
+}
+
+.trigger_ft_span{
+  text-align: left !important;
+  font: normal normal bold 12px/19px Poppins;
+  font-family: Poppins !Important;
+  font-size: 12px !important;
+  font-weight: normal !important;
+  letter-spacing: 0px !important;
+  /*color: #5686F6 !important;*/
+  opacity: 1 !important;
+}
 .brd_dot{
   border: 2px dashed #323F4F;
   opacity: 1;
@@ -1259,6 +1300,14 @@ export default {
 }
 .blue_color{
   color: #5686f6 !Important;
+  text-align: left !important;
+  font: normal normal bold 12px/19px Poppins;
+  font-weight: normal !important;
+  font-size: 12px !important;
+  font-family: Poppins !important;
+  letter-spacing: 0px !important;
+  color: #5686F6 !important;
+  opacity: 1 !important;
 }
 .text_area_font{
   font-size: 16px !important;

@@ -150,6 +150,7 @@
                 <v-row style="width:100%" class="" align="start">
                   <v-btn
                     :style="buttonProps"
+                    style="width: 97.5%"
                     outlined
                     :key="widgetKey"
                     @click="submitClickDisc"
@@ -219,7 +220,7 @@
             v-if="wdgtFBcheck && !wdgtIsDsc"
             @click="toggleDialog()"
           >
-            <v-btn :style="buttonProps" outlined :key="widgetKey">
+            <v-btn :style="buttonProps" outlined :key="widgetKey" style="width: 249px !important;height: 50px !important;">
               <span :style="btnTextProps">
                 {{ buttonText }}
               </span>
@@ -254,7 +255,7 @@
             v-if="wdgtSMScheck && !wdgtIsDsc"
             @click="toggleDialog()"
           >
-            <v-btn :style="buttonProps" outlined :key="widgetKey">
+            <v-btn :style="buttonProps" outlined :key="widgetKey" style="width: 249px !important;height: 50px !important;">
               <span :style="btnTextProps">
                 {{ buttonText }}
               </span>
@@ -372,13 +373,14 @@
                     </v-col>
           
                 </v-row>
-                <v-row style="width:100%" class="px-6 mt-2 py-0" align="start">
+                <v-row style="width:100%" class="px-6 mt-2 py-0" align="start" >
                   <v-btn
                     :style="buttonProps"
                     outlined
                     :key="widgetKey"
                     @click="submitClickDisc"
                     disabled
+                    style="width: 97.5%"
                   >
                   <span :style="btnTextProps">
                     {{ buttonText }}
@@ -585,6 +587,7 @@
                     outlined
                     :key="widgetKey"
                     @click="submitClickDisc"
+                    style="width: 97.5%"
                     disabled
                   >
                       <span :style="btnTextProps">
@@ -604,10 +607,10 @@
             justify="center"
             v-if="wdgtTabcheck && !wdgtIsDsc"
             :key="'key3' + wdgtTabKey"
-            @click="toggleDialog()"
+            @click="submitClickDisc()"
             class="mt-8"
           >
-            <v-btn :style="buttonProps" outlined :key="widgetKey">
+            <v-btn :style="buttonProps" outlined :key="widgetKey" style="width: 249px !important;height: 50px !important;">
               <span :style="btnTextProps">
                 {{ buttonText }}
               </span>

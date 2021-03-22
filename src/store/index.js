@@ -1013,9 +1013,11 @@ export default new Vuex.Store({
 
     },
     SAVE_WIDGET_TRIGGER_ADD_TO_CART(state,item){
+      state.widgetVars.popup_triggers.add_to_cart == item ? state.widgetVars.changesSaved = true : state.widgetVars.changesSaved = false
       state.widgetVars.popup_triggers.add_to_cart = item
     },
     SAVE_WIDGET_TRIGGER_EXIT_INTENT(state,item){
+      state.widgetVars.popup_triggers.exit_intent == item ? state.widgetVars.changesSaved = true : state.widgetVars.changesSaved = false
       state.widgetVars.popup_triggers.exit_intent = item
     },
     Change_cartReady(state,status){
