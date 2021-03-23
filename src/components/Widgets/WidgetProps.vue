@@ -1029,8 +1029,8 @@ export default {
       return `https://www.wix.com/apps/upgrade/1c15809f-0715-427d-969d-3f0f3939418f?appInstanceId=${this.getInstanceId}`;
     },
     subPlan(){
-      // return this.getSubPlan
-      return "Free"
+      return this.getSubPlan
+      // return "Free"
     },
     detectEuRegion(){
       return this.getWidgEU
