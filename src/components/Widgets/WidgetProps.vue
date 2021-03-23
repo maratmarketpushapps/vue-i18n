@@ -327,7 +327,7 @@
             <v-col class="trigger_text pl-0 py-0">
               <v-col class="pl-5 brd_dot">
                 Not converting enough with your Ads? Get more leads with Exit Intent by enabling the popup when the customer tries to leave your site without adding anything to the cart.
-                <a  :href="upgrdUrl"  class="upgrade_text_yellow">Upgrade to use this feature</a>
+                <a  :href="upgrdUrl" target="_blank" class="upgrade_text_yellow">Upgrade to use this feature</a>
               </v-col>
 
             </v-col>
@@ -1029,8 +1029,8 @@ export default {
       return `https://www.wix.com/apps/upgrade/1c15809f-0715-427d-969d-3f0f3939418f?appInstanceId=${this.getInstanceId}`;
     },
     subPlan(){
-      return this.getSubPlan
-      // return "Free"
+      // return this.getSubPlan
+      return "Free"
     },
     detectEuRegion(){
       return this.getWidgEU
