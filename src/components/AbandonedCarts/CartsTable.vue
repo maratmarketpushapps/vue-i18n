@@ -179,11 +179,11 @@ export default {
           value: "cart_status",
           sortable: false,
         },
-        {
-          text: this.$t("abandonedCarts.dataTab.headers.col6"),
-          value: "cart_recovered_at",
-          sortable: false,
-        },
+        // {
+        //   text: this.$t("abandonedCarts.dataTab.headers.col6"),
+        //   value: "cart_recovered_at",
+        //   sortable: false,
+        // },
         {
           text: this.$t("abandonedCarts.dataTab.headers.col8"),
           value: "phone",

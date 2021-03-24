@@ -9,17 +9,29 @@
     style="z-index:1.5;height: 80px !important;"
   >
     <v-row style="height:100% !important" class="pb-0 mb-0 py-0">
-      <v-col :cols="this.$vuetify.breakpoint.width > 1366 ? '3' : this.$vuetify.breakpoint.width < 1120  ? '2' : '3'"></v-col>
-      <v-col class="py-0 d-flex hgt_fix justify-end align-center"
+      <v-col :cols="this.$vuetify.breakpoint.width > 1600 && showUpgrade == true ? '2' :this.$vuetify.breakpoint.width > 1300 && this.$vuetify.breakpoint.width < 1600 && showUpgrade == true ? '2'
+      : this.$vuetify.breakpoint.width > 1150 && this.$vuetify.breakpoint.width < 1300 && showUpgrade == true ? '1' :
+      this.$vuetify.breakpoint.width > 900 && this.$vuetify.breakpoint.width < 1150 && showUpgrade == true ? '0' : this.$vuetify.breakpoint.width < 1120  ? '' :
+      this.$vuetify.breakpoint.width > 1350 && showUpgrade == false ? '3' : this.$vuetify.breakpoint.width < 1400 && showUpgrade == false ? '2' : ''"
+             ></v-col>
+<!--      v-if="showUpgrade"-->
+      <v-col class="py-0 d-flex hgt_fix justify-end align-center" :class="this.$vuetify.breakpoint.width < 1120 ? 'px-0' : ''"
              :cols=" this.$vuetify.breakpoint.width < 950 ? '7' : ''">
-        <CartRecoveryStatus recoveryType="sms" v-show="getstatusCartReady == true" />
-        <CartRecoveryStatus recoveryType="fb" v-show="getstatusCartReady == true" />
+        <CartRecoveryStatus recoveryType="sms" v-show="getstatusCartReady == true"  :class="this.$vuetify.breakpoint.width < 1120 ? 'px-0' : ''" />
+        <CartRecoveryStatus recoveryType="wa" v-show="getstatusCartReady == true"  :class="this.$vuetify.breakpoint.width < 1120 ? 'px-0' : ''" />
+        <CartRecoveryStatus recoveryType="fb" v-show="getstatusCartReady == true"  :class="this.$vuetify.breakpoint.width < 1120 ? 'px-0' : ''" />
       </v-col>
-      <v-col :cols="showUpgrade ? 1 : this.$vuetify.breakpoint.width < 1120 && showUpgrade ? '2' : 3">
+      <v-col :cols="showUpgrade ? '0' : this.$vuetify.breakpoint.width < 1120 && showUpgrade ? '0' : '0'" v-if="!showUpgrade">
         <ModalStepsCompleted
           recoveryType="sms"
           stepARoute="/settings"
           stepBRoute="/campaigns-sms"
+          stepCRoute="/widgets"
+        />
+        <ModalStepsCompleted
+          recoveryType="wa"
+          stepARoute="/settings"
+          stepBRoute="/campaigns-whatsapp"
           stepCRoute="/widgets"
         />
         <ModalStepsCompleted
@@ -33,6 +45,7 @@
 <!--      <v-col v-if="this.$vuetify.breakpoint.width > 1366 && showUpgrade" :cols="this.$vuetify.breakpoint.width > 1366 && showUpgrade ? 1 : 3" ></v-col>-->
 <!--      <v-col v-if="showUpgrade" :cols="showUpgrade ? 1 : 3" ></v-col>-->
       <!-- Upgrade button component -->
+
       <v-col cols="2" class=" py-0 d-flex justify-end"  v-if="showUpgrade">
         <v-btn
           tile
@@ -121,6 +134,7 @@ export default {
       return this.$store.getters.getSubs.subscription_plan == "Mogul"
         ? false
         : true;
+      // return true
     },
     upgrdUrl() {
       return `https://www.wix.com/apps/upgrade/1c15809f-0715-427d-969d-3f0f3939418f?appInstanceId=${this.getInstanceId}`;

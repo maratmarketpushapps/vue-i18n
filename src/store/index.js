@@ -188,14 +188,12 @@ export default new Vuex.Store({
         title: "",
       },
     },
-
     // Subscribers
     subscribers: {
       subType: "",
     },
     cartIsReady:false,
     //Dashboard state
-
     dashVars: {
       campaigns: {
         total_messages: 0,
@@ -245,6 +243,7 @@ export default new Vuex.Store({
       },
       smsShowCartRecoveryStepsModal: false,
       fbShowCartRecoveryStepsModal: false,
+      waShowCartRecoveryStepsModal:false
     },
   },
   getters: {
@@ -376,7 +375,8 @@ export default new Vuex.Store({
   mutations: {
     // Displays the modal with the cart recovery steps.
     UPDATE_CART_RECOVERY_MODAL_SHOW(state, obj) {
-      // console.log("called " + obj.type + " " + obj.status);
+      console.log("called " + obj.type + " " + obj.status);
+      console.log(state.setupCompletedVars[obj.type + "ShowCartRecoveryStepsModal"])
       state.setupCompletedVars[obj.type + "ShowCartRecoveryStepsModal"] =
         obj.status;
     },
@@ -958,6 +958,16 @@ export default new Vuex.Store({
         obj.smsCartRecoverySteps.step2;
       state.setupCompletedVars.smsCartRecoverySteps.step3 =
         obj.smsCartRecoverySteps.step3;
+
+      state.setupCompletedVars.waCartRecovery = obj.waCartRecovery;
+      state.setupCompletedVars.waCartRecoverySteps.step1 =
+        // /* will apear whatsup put it */
+        // obj.whatsappCartRecovery.step1;
+        obj.waCartRecoverySteps.step1;
+      state.setupCompletedVars.waCartRecoverySteps.step2 =
+        obj.waCartRecovery.step2;
+      state.setupCompletedVars.waCartRecoverySteps.step3 =
+        obj.waCartRecovery.step3;
 
       state.setupCompletedVars.fbCartRecovery = obj.fbCartRecovery;
       state.setupCompletedVars.fbCartRecoverySteps.step1 =

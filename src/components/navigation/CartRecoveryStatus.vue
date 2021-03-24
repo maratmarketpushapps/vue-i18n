@@ -6,6 +6,7 @@
         <v-list-item >
           <v-list-item-avatar class="item_title_spc">
             <v-img v-if="typeRecovery == 'fb'" src="@/assets/img/appBar/fb_icon.png" width="35px" class="pt-4"></v-img>
+            <v-img v-if="typeRecovery == 'wa'" src="@/assets/img/appBar/whatsapp.png" width="35px"></v-img>
             <v-img v-if="typeRecovery == 'sms'" src="@/assets/img/appBar/sms_icon.png" width="35px"></v-img>
           </v-list-item-avatar>
 

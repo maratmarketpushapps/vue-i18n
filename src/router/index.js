@@ -38,6 +38,11 @@ const routes = [
     component: () => import("../components/Campaigns/CampaignsSms.vue")
   },
   {
+    path:"/campaigns-whatsapp",
+    name: "CampaignsWhatsApp",
+    component: () => import("../components/Campaigns/CampaignsWhatsApp.vue")
+  },
+  {
     path:"/abandonedcarts",
     name: "AbandonedCarts",
     component: AbandonedCarts

@@ -74,6 +74,9 @@
               v-if="campingsMenu"
             >
               <v-col cols="12" class="tool_tip px-0 py-0 text-center" @click="setSelected('Campaigns')">
+                <router-link class="tool_tip_span" to="/campaigns-whatsapp">{{
+                    $t("campaigns.tooltip.wa")
+                  }}</router-link>
                 <router-link class="tool_tip_span" to="/campaigns-sms">{{
                   $t("campaigns.tooltip.sms")
                 }}</router-link>
@@ -224,7 +227,8 @@ export default {
 .par_tool_tip {
   background-color: #e6e7e800 !important;
   width: 152px !important;
-  height: 78px !important;
+  height: 120px !important;
+
 }
 .tool_tip_span {
   font-size: 10px;
@@ -275,7 +279,7 @@ export default {
 @media only screen and (max-width: 1399px) {
   .par_tool_tip {
     margin-top: 0px !important;
-    height: 70px !important;
+    height: 110px !important;
   }
  .v-menu__content {
 

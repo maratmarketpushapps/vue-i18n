@@ -85,6 +85,7 @@
     "smsModalText1": "This is the message that your customers will receive on SMS",
     "smsModalText2": " Please note that this interface is just for showcasing purposes and it’s not clickable.",
     "smsheader": "SMS Campaigns",
+    "waheader": "WhatsApp Campaigns",
     "header": "Facebook Campaigns",
     "msgCount": "Messages Sent",
     "sentAfther": "Sent after",
@@ -113,7 +114,8 @@
       "item1": "FB Abandoned Cart Messages",
       "item2": "Order Receipt Message",
       "item3": "Order Shipped Message",
-      "itemSMS": "SMS Abandoned Cart Messages"
+      "itemSMS": "SMS Abandoned Cart Messages",
+      "itemWa": "WhatsApp Abandoned Cart Messages"
     },
     "carts1": {
       "headerTxt": "Facebook Abandoned Cart Message #1",
@@ -176,7 +178,8 @@
     },
     "tooltip": {
       "sms": "SMS Campaigns",
-      "facebook": "Facebook Campaigns"
+      "facebook": "Facebook Campaigns",
+      "wa": "WhatsApp Campaigns"
     }
   },
   "widgets": {
@@ -354,6 +357,7 @@
     "ON": "ON",
     "OFF": "OFF",
     "smsCartRecovery": "SMS Cart Recovery:",
+    "waCartRecovery": "Whatsapp Cart Recovery:",
     "fbCartRecovery": "Facebook Cart Recovery:",
     "howToTurnOn": "How to turn ON?"
   },
@@ -363,6 +367,10 @@
     "smsInstruction1": "Add your phone number in Settings.",
     "smsInstruction2": "Activate at least one SMS Campaign.",
     "smsInstruction3": "Activate site Popup Widget and enable SMS.",
+    "waTitle": "How to turn on WhatsAPP Cart Recovery?",
+    "waInstruction1": "Add your phone number in Settings.",
+    "waInstruction2": "Activate at least one WhatsAPP Campaign.",
+    "waInstruction3": "Activate site Popup Widget and enable WhatsAPP.",
     "fbTitle": "How to turn ON Facebook Cart Recovery?",
     "fbInstruction1": "Connect your Facebook Page.",
     "fbInstruction2": "Activate at least one FB Campaign.",
