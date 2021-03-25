@@ -90,6 +90,18 @@
     "msgCount": "Messages Sent",
     "sentAfther": "Sent after",
     "smsNotSendNightTime": "SMS Messages are only sent to customers in the time frame 8AM - 10PM. Any message that is due during night-time will be sent at 8AM in the following day.",
+    "waNotSendNightTime": "WhatsApp Messages are only sent to customers in the time frame 8AM - 10PM. Any message that is due during nighttime will be sent at 8AM in the following day.",
+    "waLanguageSelHint": "Messages sent through Whatsapp must be pre-approved by the Whatsapp team. Select the language of your visitors. If you can’t find your language above, please let us know and we will add your language.",
+    "whatsAppCampaigns": {
+      "titleDiscCoupon": "Include discount coupon",
+      "checkboxDiscCoupon": "Add discount coupon",
+      "waDiscountValue": "Discount value",
+      "waDiscountCoupon": "Discount coupon",
+      "placeHolderDiscountValue":"Exemple: 20%",
+      "placeHolderDiscountCoupon":"Exemple: WhatsApp20",
+      "hintDiscountRow":"To increase the chances of recovering sales, you can include a discount coupon in your message. To generate a coupon, go to ",
+      "hintDiscountRowBold": "Marketing & SEO / Coupons."
+    },
     "ago": "ago",
     "modalText1": "This is the message that your customers will receive on Facebook.",
     "modalText2": "Please note that this interface is for showcasing purposes and it's not clickable.",
@@ -129,6 +141,15 @@
     "smscarts1": {
       "headerTxt": "Set Live SMS Abandoned Cart Message #1",
       "selectLabel": "Send After",
+      "sendAfter": "How much time should pass before sending this message.",
+      "iconTxt": "EDIT MESSAGE",
+      "discountTxt1": "In order to SAVE your campaign you need to make sure you set all the variables that you add in the SMS Message.",
+      "discountTxt2": "Marketing & SEO / Coupons ",
+      "discountTxt3": ""
+    },
+    "wacarts1": {
+      "headerTxt": "Set Live WhatsApp Abandoned Cart Message #1",
+      "selectLabelLanguage": "Message language",
       "sendAfter": "How much time should pass before sending this message.",
       "iconTxt": "EDIT MESSAGE",
       "discountTxt1": "In order to SAVE your campaign you need to make sure you set all the variables that you add in the SMS Message.",

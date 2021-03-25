@@ -31,8 +31,16 @@
         }}</span>
       </template>
 
-      <template #item.created_at="{item}">
-        <span>{{ item.created_at }}</span>
+      <template #item.created_at="{item}" >
+         {{ item.created_at }}
+        <br>
+        {{ item.cart_recovered_at}}
+
+
+<!--        <span >{{-->
+<!--            item.cart_recovered_at-->
+<!--          }}</span>-->
+
       </template>
 
       <template #item.first_message_sent_at="{item}">
@@ -148,7 +156,7 @@ export default {
       tableKey: 1,
       headers: [
         {
-          text: this.$t("abandonedCarts.dataTab.headers.col1"),
+          text: this.$t("abandonedCarts.dataTab.headers.col1") + ' / ' + ' ' + this.$t("abandonedCarts.dataTab.headers.col6"),
           align: "start",
           sortable: false,
           value: "created_at",
