@@ -63,7 +63,7 @@
         <v-col  v-for="(ite,ke) in coneData" :key="ke+'item.id'" cols="11 offset-1"
                 :class="notSel?'notSelSpc pl-0 mt-6 height_row':'pl-0 mt-0 height_row'" align-self="end">
           <small :class="notSel?'notSelTxt mt-10':''" v-if="notSel">{{ $t("widgets.notSelTxt") }}</small>
-          <v-col cols="12" class="connection_row height_row row py-0 my-0 pl-2 pr-0" row
+          <v-col cols="12" class="connection_row height_row row py-0 my-0 pl-2 pr-0" row style="height: 36px !important;"
                  :class="notSel?'notSel connection_row height_row row py-0 my-0 pl-2 pr-0':'connection_row height_row row py-0 my-0 pl-2 pr-0'">
             <v-col cols="6" class="py-0 my-0 " >
               <v-checkbox
@@ -78,10 +78,19 @@
             <v-col class="pt-0 d-flex justify-end Eu_hint_NotAv">
               <span v-if="detectEuRegion && ite.title == 'Facebook'">{{ $t("widgets.notAvEU") }}</span>
             </v-col>
-            <v-col @click="rev()" cols="1 " class="pb-0 cursor_pointer" justify="end" :class="detectEuRegion ? 'disabled_display pt-0' : 'pt-3'">
+            <v-col  cols="1 " class="pb-0 cursor_pointer" justify="end" :class="detectEuRegion ? 'disabled_display pt-0' : ''">
+              <div
+               style="color: transparent !important;position: relative;top:-10px !important;left:-4px !important;height: 18px !important;"
+                @click="tpTest(ite.title)"
+              >.
+<!--                @click="array_move(coneData,ke,ke + 2 > 2 ?  1 :  2 )"-->
+<!--                @click="array_move(coneData,ke,ke + 2 > 2 ?  1 :  2 )" style="height: 15px !Important"-->
+              </div>
               <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px"  :class="detectEuRegion ? 'fix_image_pos' : ''"
                      v-if="(ite.title !== 'Facebook' && detectEuRegion == true) ||detectEuRegion == false"
+                     style="position: relative;top:-19px !important;"
               ></v-img>
+              <div style="height: 15px; color: transparent !important;position: relative;top:-25px !important;left:-4px !important" @click="btTest(ite.title)">.</div>
             </v-col>
           </v-col>
         </v-col>
@@ -870,6 +879,7 @@ export default {
       coneData: [
         { id:1,connection: true, title: "Facebook" },
         { id:2,connection: false, title: "SMS" },
+        { id:3,connection: false, title: "WhatsApp" },
       ],
       disCodeInst:null,
       discount_statement:"",
@@ -986,7 +996,27 @@ export default {
         }
       }else this.discCodeNotValid = true
     },
-    rev(){
+    btTest(item){
+      alert('move the block bottom',item)
+    },
+    tpTest(item){
+
+      alert('move the block to top',item)
+    },
+    array_move(arr, old_index, new_index) {
+      if (new_index >= arr.length) {
+        var k = new_index - arr.length + 1;
+        while (k--) {
+          arr.push(undefined);
+        }
+      }
+      arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+      return arr; // for testing
+    },
+
+// returns [2, 1, 3]
+// console.log(array_move([1, 2, 3], 0, 1));
+rev(){
       if(this.coneData[0].id == 1 ){
         this.coneData[0].id = 2
         this.coneData[1].id = 1

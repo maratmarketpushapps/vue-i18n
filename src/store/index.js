@@ -132,7 +132,6 @@ export default new Vuex.Store({
       step2Com: true,
       wa_abandoned_cart_1: {
         active: "",
-        intro_message: "",
         sent_after: "",
         discount_cupon:false,
         discount_value:'',
@@ -141,8 +140,11 @@ export default new Vuex.Store({
       },
       wa_abandoned_cart_2: {
         active: "",
-        intro_message: "",
         sent_after: "",
+        discount_cupon:false,
+        discount_value:'',
+        discount_coupon:'',
+        SelectedLanguage:'English',
       },
       sms_abandoned_cart_1: {
         active: "",
@@ -183,6 +185,8 @@ export default new Vuex.Store({
         sent_count_order_shipped: 0,
         sms_sent_count_abandoned_cart_1: 0,
         sms_sent_count_abandoned_cart_2: 0,
+        wa_sent_count_abandoned_cart_1:0,
+        wa_sent_count_abandoned_cart_2:0,
       },
       order_shipped: {
         quick_reply_thank_you_text: "",
@@ -342,6 +346,9 @@ export default new Vuex.Store({
     },
     wagetCarts1: (state) => {
       return state.msgVars.wa_abandoned_cart_1;
+    },
+    wagetCartsSec: (state) => {
+      return state.msgVars.wa_abandoned_cart_2;
     },
     getCarts2: (state) => {
       return state.msgVars.abandoned_cart_2;
@@ -788,6 +795,21 @@ export default new Vuex.Store({
         obj.sent_count.sms_sent_count_abandoned_cart_1;
 
 
+      // /* whatsapp values */
+      state.msgVars.wa_abandoned_cart_1.active = obj.wa_abandoned_cart_1.active;
+      state.msgVars.wa_abandoned_cart_1.sent_after = obj.wa_abandoned_cart_1.sent_after;
+      state.msgVars.wa_abandoned_cart_1.discount_cupon = obj.wa_abandoned_cart_1.discount_cupon;
+      state.msgVars.wa_abandoned_cart_1.discount_value = obj.wa_abandoned_cart_1.discount_value
+      state.msgVars.wa_abandoned_cart_1.discount_coupon = obj.wa_abandoned_cart_1.discount_coupon
+      state.msgVars.wa_abandoned_cart_1.SelectedLanguage  = obj.wa_abandoned_cart_1.SelectedLanguage;
+
+      state.msgVars.wa_abandoned_cart_2.active = obj.wa_abandoned_cart_2.active;
+      state.msgVars.wa_abandoned_cart_2.sent_after = obj.wa_abandoned_cart_2.sent_after;
+      state.msgVars.wa_abandoned_cart_2.discount_cupon = obj.wa_abandoned_cart_2.discount_cupon;
+      state.msgVars.wa_abandoned_cart_2.discount_value = obj.wa_abandoned_cart_2.discount_value
+      state.msgVars.wa_abandoned_cart_2.discount_coupon = obj.wa_abandoned_cart_2.discount_coupon
+      state.msgVars.wa_abandoned_cart_2.SelectedLanguage  = obj.wa_abandoned_cart_2.SelectedLanguage;
+
       // /* comment */
       // state.msgVars.wa_abandoned_cart_2.active =
       //   obj.sms_abandoned_cart_2.active;
@@ -801,7 +823,6 @@ export default new Vuex.Store({
        //whatsapp abandoned cart
 
       // state.msgVars.wa_abandoned_cart_1.active = obj.active
-      // state.msgVars.wa_abandoned_cart_1.intro_message = obj.intro_message
       // state.msgVars.wa_abandoned_cart_1.sent_after = obj.sent_after
       // state.msgVars.wa_abandoned_cart_1.discount_cupon = obj.discount_cupon
       // state.msgVars.wa_abandoned_cart_1.discount_value = obj.discount_value
@@ -864,6 +885,11 @@ export default new Vuex.Store({
       state.msgVars.order_shipped.quick_reply_more_questions_text =
         obj.order_shipped.quick_reply_more_questions_text;
 
+
+      state.msgVars.sent_count.wa_sent_count_abandoned_cart_1 =
+        obj.sent_count.wa_sent_count_abandoned_cart_1;
+      state.msgVars.sent_count.wa_sent_count_abandoned_cart_2 =
+        obj.sent_count.wa_sent_count_abandoned_cart_2;
       state.msgVars.sent_count.sent_count_abandoned_cart_2 =
         obj.sent_count.sent_count_abandoned_cart_2;
       state.msgVars.sent_count.sent_count_order_receipt =
@@ -916,13 +942,22 @@ export default new Vuex.Store({
       state.msgVars.sms_abandoned_cart_1.sent_after = obj.sent_after;
     },
     waSET_ORDR_ABANDONED_CART(state, obj) {
+
         state.msgVars.wa_abandoned_cart_1.active = obj.active;
-        state.msgVars.wa_abandoned_cart_1.intro_message = obj.intro_message;
         state.msgVars.wa_abandoned_cart_1.sent_after = obj.sent_after;
         state.msgVars.wa_abandoned_cart_1.discount_cupon = obj.discount_cupon;
         state.msgVars.wa_abandoned_cart_1.discount_value = obj.discount_value
         state.msgVars.wa_abandoned_cart_1.discount_coupon = obj.discount_coupon
         state.msgVars.wa_abandoned_cart_1.SelectedLanguage  = obj.SelectedLanguage;
+    },
+    waSET_ORDR_ABANDONED_CART_2(state, obj) {
+
+      state.msgVars.wa_abandoned_cart_2.active = obj.active;
+      state.msgVars.wa_abandoned_cart_2.sent_after = obj.sent_after;
+      state.msgVars.wa_abandoned_cart_2.discount_cupon = obj.discount_cupon;
+      state.msgVars.wa_abandoned_cart_2.discount_value = obj.discount_value
+      state.msgVars.wa_abandoned_cart_2.discount_coupon = obj.discount_coupon
+      state.msgVars.wa_abandoned_cart_2.SelectedLanguage  = obj.SelectedLanguage;
     },
     sms_second_SET_ORDR_ABANDONED_CART(state, obj) {
       state.msgVars.sms_abandoned_cart_2.intro_message = obj.intro_message;
@@ -1601,6 +1636,7 @@ export default new Vuex.Store({
             "Content-Type": "application/json",
           },
         };
+
         let data = this.state.msgVars;
         // console.log("headers" + JSON.stringify(headers));
         // console.log("data" + JSON.stringify(data));
@@ -1640,6 +1676,20 @@ export default new Vuex.Store({
       return new Promise((resolve) => {
         // console.log("updateCart :: " + JSON.stringify(obj));
         commit("waSET_ORDR_ABANDONED_CART", obj);
+        resolve("success");
+      });
+    },
+    waUpdOrdrAbndCrt_2({ commit }, obj) {
+      return new Promise((resolve) => {
+        // console.log("updateCart :: " + JSON.stringify(obj));
+        commit("waSET_ORDR_ABANDONED_CART_2", obj);
+        resolve("success");
+      });
+    },
+    getCarts2({ commit }, obj) {
+      return new Promise((resolve) => {
+        // console.log("updateCart :: " + JSON.stringify(obj));
+        commit("waSET_ORDR_ABANDONED_CART_2", obj);
         resolve("success");
       });
     },

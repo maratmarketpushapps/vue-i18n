@@ -28,10 +28,11 @@
           v-model="ordrAbndCrtSwitchLive"
           color="#006AFF"
           :disabled="swtchDisabled"
-          @change="activeStateChng()"
+          @change="haveChanges"
           class="ma-0 "
           inset
         >
+<!--          @change="activeStateChng()"-->
         </v-switch>
       </v-col>
 
@@ -79,11 +80,12 @@
             <v-select
               :label="$t('campaigns.carts1.selectLabel')"
               :items="timeListCart1"
-              @change="activeStateChng()"
               v-model="sent_after"
+              @change="haveChanges()"
               dense
               style="font-size:110%"
             >
+
             </v-select>
           </v-col>
           <v-col class=" py-0 my-0">
@@ -113,11 +115,11 @@
             <v-select
               :label="$t('campaigns.wacarts1.selectLabelLanguage')"
               :items="languageList"
-              @change="activeStateChng()"
               v-model="SelectedLanguage"
               dense
               style="font-size:110%"
             >
+<!--              @change="activeStateChng()"-->
             </v-select>
           </v-col>
         </v-row>
@@ -329,26 +331,10 @@ export default {
   data() {
     return {
       reqMandFields:false,
-      phoneNumber:"",
-      bussName:"",
       ordrAbndCrtSwitchLive: false,
       ordrAbndCrtBtnDisabled: true,
       sent_after: "",
-      ordrAbndCrtTitle: "",
-      ordrAbndCrtSubTitle: "",
-      ordrAbndCrtBtnText: "",
-      ordrAbndCrtQckRpl1: "",
-      ordrAbndCrtQckRpl2: "",
-      ordrAbndCrtQckRpl3: "",
       overlayOrdrAbndCrtQckRpl1: false,
-      ordrAbndCrtQckRplEdit1: "",
-      ordrAbndCrtQckRplEdit1Btn: true,
-      overlayOrdrAbndCrtQckRpl2: false,
-      ordrAbndCrtQckRplEdit2: "",
-      ordrAbndCrtQckRplEdit2Btn: true,
-      overlayOrdrAbndCrtQckRpl3: false,
-      ordrAbndCrtQckRplEdit3: "",
-      ordrAbndCrtQckRplEdit3Btn: true,
       absolute: false,
       opacity: 0.46,
       zIndex: 5,
@@ -408,11 +394,11 @@ export default {
       return this.$store.getters.getMsgActiveCart
     },
     getOrdrAbndCrtMsgCnt() {
-      return this.$store.getters.getMsgCountsSms.sms_sent_count_abandoned_cart_1;
+      return this.$store.getters.getMsgCountsSms.wa_sent_count_abandoned_cart_1;
     },
     cart1Edit() {
-      return this.$store.getters.getActiveTab == "abndndcrt1" ||
-      this.$store.getters.getCart1Active
+      return this.$store.getters.getActiveTab == "abndndcrt1"
+      // || this.$store.getters.getCart1Active
         ? true
         : false;
     },
@@ -450,13 +436,27 @@ export default {
   methods: {
     hasChanges(){
       this.ordrAbndCrtBtnDisabled = false;
+      // waSET_ORDR_ABANDONED_CART
+      // this.ordrAbndCrtSwitchLive = !this.ordrAbndCrtSwitchLive;
+      let obj = {
+        active: this.ordrAbndCrtSwitchLive,
+        sent_after: Number(this.sent_after.split(" ")[0]),
+        discount_cupon:this.waDiscountCupon,
+        discount_value:this.discount_value,
+        discount_coupon:this.discount_coupon,
+        SelectedLanguage:this.SelectedLanguage,
+      };
+      this.$store.dispatch("waSET_ORDR_ABANDONED_CART", obj).then(() => {
+        // console.log(response);
+        // this.ordrAbndCrtBtnDisabled = false;
+      });
     },
     saveOrdrAbndCrt() {
         this.$store.dispatch("updIsLoading", true).then(() => {
           let obj = {
             active: this.ordrAbndCrtSwitchLive,
             sent_after: Number(this.sent_after.split(" ")[0]),
-            discount_cupon:false,
+            discount_cupon:this.waDiscountCupon,
             discount_value:this.discount_value,
             discount_coupon:this.discount_coupon,
             SelectedLanguage:this.SelectedLanguage,
@@ -485,21 +485,23 @@ export default {
     saveCart1() {
       this.cart1Edit = false;
     },
+    haveChanges(){
+      this.hasChanges()
+    },
     activeStateChng() {
-      this.reqMandFields = false
-      // this.ordrAbndCrtSwitchLive = !this.ordrAbndCrtSwitchLive;
-      let obj = {
-        active: this.ordrAbndCrtSwitchLive,
-
-        title: this.ordrAbndCrtTitle,
-        subtitle: this.ordrAbndCrtSubTitle,
-        button_text: this.ordrAbndCrtBtnText,
-        sent_after: Number(this.sent_after.split(" ")[0]),
-      };
-      this.$store.dispatch("smsUpdOrdrAbndCrt", obj).then(() => {
-        // console.log(response);
-        this.ordrAbndCrtBtnDisabled = false;
-      });
+      // this.reqMandFields = false
+      // // this.ordrAbndCrtSwitchLive = !this.ordrAbndCrtSwitchLive;
+      // let obj = {
+      //   active: this.ordrAbndCrtSwitchLive,
+      //   title: this.ordrAbndCrtTitle,
+      //   subtitle: this.ordrAbndCrtSubTitle,
+      //   button_text: this.ordrAbndCrtBtnText,
+      //   sent_after: Number(this.sent_after.split(" ")[0]),
+      // };
+      // this.$store.dispatch("smsUpdOrdrAbndCrt", obj).then(() => {
+      //   // console.log(response);
+      //   this.ordrAbndCrtBtnDisabled = false;
+      // });
       // console.log("new active status" + this.ordrAbndCrtSwitchLive);
     },
     ovrlyOrdrAbndCrt1() {
@@ -568,16 +570,18 @@ export default {
         this.$store.dispatch("updIsLoading", false);
       });
     });
+
   },
   mounted() {
 
-    console.log(this.$store.state.msgVars.wa_abandoned_cart_1)
-    this.sent_after = this.$store.state.msgVars.sms_abandoned_cart_1.sent_after + " hour";
+    this.sent_after = this.$store.getters.wagetCarts1.sent_after + " hour";
     this.ordrAbndCrtSwitchLive = this.$store.getters.wagetCarts1.active;
     this.SelectedLanguage = this.$store.getters.wagetCarts1.SelectedLanguage;
-    this.waDiscountCupon = this.$store.getters.wagetCarts1.waDiscountCupon;
+    this.waDiscountCupon = this.$store.getters.wagetCarts1.discount_cupon;
     this.discount_value = this.$store.getters.wagetCarts1.discount_value;
     this.discount_coupon = this.$store.getters.wagetCarts1.discount_coupon;
+
+
 
   }
 };
