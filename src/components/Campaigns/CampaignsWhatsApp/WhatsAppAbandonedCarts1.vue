@@ -438,18 +438,18 @@ export default {
       this.ordrAbndCrtBtnDisabled = false;
       // waSET_ORDR_ABANDONED_CART
       // this.ordrAbndCrtSwitchLive = !this.ordrAbndCrtSwitchLive;
-      let obj = {
-        active: this.ordrAbndCrtSwitchLive,
-        sent_after: Number(this.sent_after.split(" ")[0]),
-        discount_cupon:this.waDiscountCupon,
-        discount_value:this.discount_value,
-        discount_coupon:this.discount_coupon,
-        SelectedLanguage:this.SelectedLanguage,
-      };
-      this.$store.dispatch("waSET_ORDR_ABANDONED_CART", obj).then(() => {
-        // console.log(response);
+      // let obj = {
+      //   active: this.ordrAbndCrtSwitchLive,
+      //   sent_after: Number(this.sent_after.split(" ")[0]),
+      //   discount_cupon:this.waDiscountCupon,
+      //   discount_value:this.discount_value,
+      //   discount_coupon:this.discount_coupon,
+      //   SelectedLanguage:this.SelectedLanguage,
+      // };
+      // this.$store.dispatch("wa_SET_ORDR_ABANDONED_CART", obj).then(() => {
+      //   console.log('response');
         // this.ordrAbndCrtBtnDisabled = false;
-      });
+      // });
     },
     saveOrdrAbndCrt() {
         this.$store.dispatch("updIsLoading", true).then(() => {

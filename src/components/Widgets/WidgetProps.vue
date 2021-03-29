@@ -80,8 +80,8 @@
             </v-col>
             <v-col  cols="1 " class="pb-0 cursor_pointer" justify="end" :class="detectEuRegion ? 'disabled_display pt-0' : ''">
               <div
-               style="color: transparent !important;position: relative;top:-10px !important;left:-4px !important;height: 18px !important;"
-                @click="tpTest(ite.title)"
+               class="tpMove"
+                @click="tpMove(coneData,ke,ke == 0 ?  2 : ke == 1 ?  -2 : -1)"
               >.
 <!--                @click="array_move(coneData,ke,ke + 2 > 2 ?  1 :  2 )"-->
 <!--                @click="array_move(coneData,ke,ke + 2 > 2 ?  1 :  2 )" style="height: 15px !Important"-->
@@ -90,7 +90,7 @@
                      v-if="(ite.title !== 'Facebook' && detectEuRegion == true) ||detectEuRegion == false"
                      style="position: relative;top:-19px !important;"
               ></v-img>
-              <div style="height: 15px; color: transparent !important;position: relative;top:-25px !important;left:-4px !important" @click="btTest(ite.title)">.</div>
+              <div class="bottomMove"  @click="btMove(coneData,ke,ke == 0 ?  1 : ke == 1 ?  2 : 0)">.</div>
             </v-col>
           </v-col>
         </v-col>
@@ -996,14 +996,7 @@ export default {
         }
       }else this.discCodeNotValid = true
     },
-    btTest(item){
-      alert('move the block bottom',item)
-    },
-    tpTest(item){
-
-      alert('move the block to top',item)
-    },
-    array_move(arr, old_index, new_index) {
+    btMove(arr,old_index,new_index){
       if (new_index >= arr.length) {
         var k = new_index - arr.length + 1;
         while (k--) {
@@ -1011,12 +1004,46 @@ export default {
         }
       }
       arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+      this.coneData = arr
+      arr[0].id = 1
+      arr[1].id = 2
+      arr[2].id = 3
+      this.coneData = arr
       return arr; // for testing
     },
+    tpMove(arr,old_index,new_index){
+      if (new_index >= arr.length) {
+        var k = new_index - arr.length + 1;
+        while (k--) {
+          arr.push(undefined);
+        }
+      }
+      arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+      arr[0].id = 1
+      arr[1].id = 2
+      arr[2].id = 3
+      this.coneData = arr
+      return arr; // for testing
+
+    },
+    // array_move(arr, old_index, new_index) {
+    //   if (new_index >= arr.length) {
+    //     var k = new_index - arr.length + 1;
+    //     while (k--) {
+    //       arr.push(undefined);
+    //     }
+    //   }
+    //   arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+    //   arr[0].id = 1
+    //   arr[1].id = 2
+    //   arr[2].id = 3
+    //   this.coneData = arr
+    //   return arr; // for testing
+    // },
 
 // returns [2, 1, 3]
 // console.log(array_move([1, 2, 3], 0, 1));
-rev(){
+    rev(){
       if(this.coneData[0].id == 1 ){
         this.coneData[0].id = 2
         this.coneData[1].id = 1
@@ -1027,7 +1054,7 @@ rev(){
       setTimeout(() => this.coneData.reverse(), 200);
     },
     changesWidg(){
-      if(this.statusWidgets.facebook.position == 1){
+      if(this.statusWidgets.facebook.position == 1 && this.statusWidgets.sms.position == 2){
         this.detectEuRegion == true ? this.coneData[0].connection = false
         : this.coneData[0].connection = this.statusWidgets.facebook.enabled
         this.coneData[0].id = this.statusWidgets.facebook.position
@@ -1035,15 +1062,74 @@ rev(){
         this.coneData[1].connection = this.statusWidgets.sms.enabled
         this.coneData[1].id = this.statusWidgets.sms.position
         this.coneData[1].title = "SMS"
-      }else {
-        this.detectEuRegion == true ? this.coneData[1].connection = false
-        : this.coneData[1].connection = this.statusWidgets.facebook.enabled
-        this.coneData[1].id = this.statusWidgets.facebook.position
-        this.coneData[1].title = "Facebook"
+        this.coneData[2].connection = this.statusWidgets.whatsapp.enabled
+        this.coneData[2].id = this.statusWidgets.whatsapp.position
+        this.coneData[2].title = "Whatsapp"
+      } else if(this.statusWidgets.facebook.position == 1  && this.statusWidgets.sms.position == 3){
+        this.detectEuRegion == true ? this.coneData[0].connection = false
+          : this.coneData[0].connection = this.statusWidgets.facebook.enabled
+        this.coneData[0].id = this.statusWidgets.facebook.position
+        this.coneData[0].title = "Facebook"
+        this.coneData[1].connection = this.statusWidgets.whatsapp.enabled
+        this.coneData[1].id = this.statusWidgets.whatsapp.position
+        this.coneData[1].title = "Whatsapp"
+        this.coneData[2].connection = this.statusWidgets.sms.enabled
+        this.coneData[2].id = this.statusWidgets.sms.position
+        this.coneData[2].title = "SMS"
+      }else if(this.statusWidgets.facebook.position == 2 && this.statusWidgets.sms.position == 1){
         this.coneData[0].connection = this.statusWidgets.sms.enabled
         this.coneData[0].id = this.statusWidgets.sms.position
         this.coneData[0].title = "SMS"
+        this.detectEuRegion == true ? this.coneData[1].connection = false
+          : this.coneData[1].connection = this.statusWidgets.facebook.enabled
+        this.coneData[1].id = this.statusWidgets.facebook.position
+        this.coneData[1].title = "Facebook"
+        this.coneData[2].connection = this.statusWidgets.whatsapp.enabled
+        this.coneData[2].id = this.statusWidgets.whatsapp.position
+        this.coneData[2].title = "Whatsapp"
+      }else if(this.statusWidgets.facebook.position == 3 && this.statusWidgets.sms.position == 1){
+        this.coneData[0].connection = this.statusWidgets.sms.enabled
+        this.coneData[0].id = this.statusWidgets.sms.position
+        this.coneData[0].title = "SMS"
+        this.coneData[1].connection = this.statusWidgets.whatsapp.enabled
+        this.coneData[1].id = this.statusWidgets.whatsapp.position
+        this.coneData[1].title = "Whatsapp"
+        this.detectEuRegion == true ? this.coneData[2].connection = false
+          : this.coneData[2].connection = this.statusWidgets.facebook.enabled
+        this.coneData[2].id = this.statusWidgets.facebook.position
+        this.coneData[2].title = "Facebook"
+      }else if(this.statusWidgets.facebook.position == 2 && this.statusWidgets.sms.position == 3){
+        this.coneData[0].connection = this.statusWidgets.whatsapp.enabled
+        this.coneData[0].id = this.statusWidgets.whatsapp.position
+        this.coneData[0].title = "Whatsapp"
+        this.coneData[2].connection = this.statusWidgets.sms.enabled
+        this.coneData[2].id = this.statusWidgets.sms.position
+        this.coneData[2].title = "SMS"
+        this.detectEuRegion == true ? this.coneData[1].connection = false
+          : this.coneData[1].connection = this.statusWidgets.facebook.enabled
+        this.coneData[1].id = this.statusWidgets.facebook.position
+        this.coneData[1].title = "Facebook"
+      }else if(this.statusWidgets.facebook.position == 3 && this.statusWidgets.sms.position == 2){
+        this.coneData[0].connection = this.statusWidgets.whatsapp.enabled
+        this.coneData[0].id = this.statusWidgets.whatsapp.position
+        this.coneData[0].title = "Whatsapp"
+        this.coneData[1].connection = this.statusWidgets.sms.enabled
+        this.coneData[1].id = this.statusWidgets.sms.position
+        this.coneData[1].title = "SMS"
+        this.detectEuRegion == true ? this.coneData[2].connection = false
+          : this.coneData[2].connection = this.statusWidgets.facebook.enabled
+        this.coneData[2].id = this.statusWidgets.facebook.position
+        this.coneData[2].title = "Facebook"
       }
+      // else {
+      //   this.detectEuRegion == true ? this.coneData[1].connection = false
+      //   : this.coneData[1].connection = this.statusWidgets.facebook.enabled
+      //   this.coneData[1].id = this.statusWidgets.facebook.position
+      //   this.coneData[1].title = "Facebook"
+      //   this.coneData[0].connection = this.statusWidgets.sms.enabled
+      //   this.coneData[0].id = this.statusWidgets.sms.position
+      //   this.coneData[0].title = "SMS"
+      // }
       if(this.subType == "subscribe"){
         this.discount_selected = 'subscribe'
         this.def_selected = ''
@@ -1281,6 +1367,12 @@ rev(){
 </script>
 
 <style scoped>
+.tpMove{
+  color: transparent !important;position: relative;top:-10px !important;left:-9px !important;height: 18px !important;width: 150%
+}
+.bottomMove{
+  height: 15px; color: transparent !important;position: relative;top:-25px !important;left:-9px !important;width:150%
+}
 .width_361{
   max-width: 361px !important;
 }
@@ -1364,6 +1456,31 @@ rev(){
 /*  white-space: nowrap;*/
 /*}*/
 /*}*/
+@media screen and (max-width: 1600px) and (min-width: 1350px) {
+  .tpMove{
+    width: 200%
+  }
+  .bottomMove{
+    width: 200%
+  }
+}
+@media screen and (max-width: 1349px) and (min-width: 1100px) {
+  .tpMove{
+    width: 300%
+  }
+  .bottomMove{
+    width: 300%
+  }
+}
+@media screen and (max-width: 1099px) and (min-width: 900px) {
+  .tpMove{
+    width: 500%
+  }
+  .bottomMove{
+    width: 500%
+  }
+}
+
 </style>
 
 <style>

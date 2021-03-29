@@ -273,10 +273,13 @@
               <v-tab light :style="bdyColor">
                 <component v-bind:is="getTabHeader1"></component>
               </v-tab>
-              <v-divider vertical></v-divider>
               <v-tab light :style="bdyColor">
                 <component v-bind:is="getTabHeader2"></component>
               </v-tab>
+              <v-tab light :style="bdyColor">
+                <component v-bind:is="getTabHeader3"></component>
+              </v-tab>
+              <!--              <v-divider vertical></v-divider>-->
             </v-tabs>
           </v-row>
           <!--          /* Facebook with Disc. */-->
@@ -673,13 +676,15 @@
 </template>
 
 <script>
+/* eslint-disable vue/return-in-computed-property */
 import { mapGetters } from "vuex";
 import SmsIcon from "@/assets/icons/sms-icon.svg";
 import FbIcon from "@/assets/icons/facebook-icon.svg";
+import WaIcon from "@/assets/icons/wa-icon.svg";
 
 export default {
   name: "WidgetViewCheckBox",
-  components: { SmsIcon, FbIcon },
+  components: { SmsIcon, FbIcon,WaIcon },
   data() {
     return {
       dialog: false,
@@ -831,14 +836,27 @@ export default {
     getTabHeader1() {
       if (this.getWidgetsState.enabled_widgets.facebook.position == 1) {
         return "FbIcon";
-      } else {
+      }else if(this.getWidgetsState.enabled_widgets.whatsapp.position == 1){
+        return "WaIcon";
+      }else if(this.getWidgetsState.enabled_widgets.sms.position == 1){
         return "SmsIcon";
       }
     },
     getTabHeader2() {
       if (this.getWidgetsState.enabled_widgets.facebook.position == 2) {
         return "FbIcon";
-      } else {
+      }else if(this.getWidgetsState.enabled_widgets.whatsapp.position == 2){
+        return "WaIcon";
+      }else if(this.getWidgetsState.enabled_widgets.sms.position == 2){
+        return "SmsIcon";
+      }
+    },
+    getTabHeader3() {
+      if (this.getWidgetsState.enabled_widgets.facebook.position == 3) {
+        return "FbIcon";
+      }else if(this.getWidgetsState.enabled_widgets.whatsapp.position == 3){
+        return "WaIcon";
+      }else if(this.getWidgetsState.enabled_widgets.sms.position == 3){
         return "SmsIcon";
       }
     },
@@ -872,7 +890,15 @@ export default {
   watch: {
     getTabHeader1(newValue) {
       console.log("new value of header 1 ::" + newValue);
-      this.wdgtTabKey++;
+      // this.wdgtTabKey++;
+    },
+    getTabHeader2(newValue) {
+      console.log("new value of header 1 ::" + newValue);
+      // this.wdgtTabKey++;
+    },
+    getTabHeader3(newValue) {
+      console.log("new value of header 1 ::" + newValue);
+      // this.wdgtTabKey++;
     },
   },
 

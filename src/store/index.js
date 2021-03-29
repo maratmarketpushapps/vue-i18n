@@ -604,22 +604,120 @@ export default new Vuex.Store({
     },
     SAVE_WIDGET_CHECKBOX(state, coneData) {
       state.widgetVars.changesSaved = false;
-      if (coneData[0].title.toUpperCase() == "SMS") {
-        state.widgetVars.enabled_widgets.sms.title = coneData[0].title;
-        state.widgetVars.enabled_widgets.sms.enabled = coneData[0].connection;
-        state.widgetVars.enabled_widgets.sms.position = coneData[0].id;
-        state.widgetVars.enabled_widgets.facebook.title = coneData[1].title;
-        state.widgetVars.enabled_widgets.facebook.position = coneData[1].id;
+      if (coneData[0].title.toUpperCase() == "SMS" && coneData[1].title.toUpperCase() == "FACEBOOK") {
+        state.widgetVars.enabled_widgets.sms.title =
+          coneData[0].title;
+        state.widgetVars.enabled_widgets.sms.enabled =
+          coneData[0].connection;
+        state.widgetVars.enabled_widgets.sms.position =
+          coneData[0].id;
+        state.widgetVars.enabled_widgets.facebook.title =
+          coneData[1].title;
+        state.widgetVars.enabled_widgets.facebook.position =
+          coneData[1].id;
         state.widgetVars.enabled_widgets.facebook.enabled =
           coneData[1].connection;
-      } else {
-        state.widgetVars.enabled_widgets.facebook.title = coneData[0].title;
+        state.widgetVars.enabled_widgets.whatsapp.title =
+          coneData[2].title;
+        state.widgetVars.enabled_widgets.whatsapp.position =
+          coneData[2].id;
+        state.widgetVars.enabled_widgets.whatsapp.enabled =
+          coneData[2].connection;
+      } else if (coneData[0].title.toUpperCase() == "SMS" && coneData[1].title.toUpperCase() == "WHATSAPP") {
+        state.widgetVars.enabled_widgets.sms.title =
+          coneData[0].title;
+        state.widgetVars.enabled_widgets.sms.enabled =
+          coneData[0].connection;
+        state.widgetVars.enabled_widgets.sms.position =
+          coneData[0].id;
+        state.widgetVars.enabled_widgets.whatsapp.title =
+          coneData[1].title;
+        state.widgetVars.enabled_widgets.whatsapp.position =
+          coneData[1].id;
+        state.widgetVars.enabled_widgets.whatsapp.enabled =
+          coneData[1].connection;
+        state.widgetVars.enabled_widgets.facebook.title =
+          coneData[2].title;
+        state.widgetVars.enabled_widgets.facebook.position =
+          coneData[2].id;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          coneData[2].connection;
+      } else if (coneData[0].title.toUpperCase() == "FACEBOOK" && coneData[1].title.toUpperCase() == "SMS" ) {
+        state.widgetVars.enabled_widgets.facebook.title =
+          coneData[0].title;
+        state.widgetVars.enabled_widgets.facebook.position =
+          coneData[0].id;
         state.widgetVars.enabled_widgets.facebook.enabled =
           coneData[0].connection;
-        state.widgetVars.enabled_widgets.facebook.position = coneData[0].id;
-        state.widgetVars.enabled_widgets.sms.title = coneData[1].title;
-        state.widgetVars.enabled_widgets.sms.enabled = coneData[1].connection;
-        state.widgetVars.enabled_widgets.sms.position = coneData[1].id;
+        state.widgetVars.enabled_widgets.sms.title =
+          coneData[1].title;
+        state.widgetVars.enabled_widgets.sms.enabled =
+          coneData[1].connection;
+        state.widgetVars.enabled_widgets.sms.position =
+          coneData[1].id;
+        state.widgetVars.enabled_widgets.whatsapp.title =
+          coneData[2].title;
+        state.widgetVars.enabled_widgets.whatsapp.position =
+          coneData[2].id;
+        state.widgetVars.enabled_widgets.whatsapp.enabled =
+          coneData[2].connection;
+      } else if (coneData[0].title.toUpperCase() == "FACEBOOK" && coneData[1].title.toUpperCase() == "WHATSAPP" ) {
+        state.widgetVars.enabled_widgets.facebook.title =
+          coneData[0].title;
+        state.widgetVars.enabled_widgets.facebook.position =
+          coneData[0].id;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          coneData[0].connection;
+        state.widgetVars.enabled_widgets.whatsapp.title =
+          coneData[1].title;
+        state.widgetVars.enabled_widgets.whatsapp.enabled =
+          coneData[1].connection;
+        state.widgetVars.enabled_widgets.whatsapp.position =
+          coneData[1].id;
+        state.widgetVars.enabled_widgets.sms.title =
+          coneData[2].title;
+        state.widgetVars.enabled_widgets.sms.position =
+          coneData[2].id;
+        state.widgetVars.enabled_widgets.sms.enabled =
+          coneData[2].connection;
+      }else if (coneData[0].title.toUpperCase() == "WHATSAPP" && coneData[1].title.toUpperCase() == "SMS" ) {
+        state.widgetVars.enabled_widgets.whatsapp.title =
+          coneData[0].title;
+        state.widgetVars.enabled_widgets.whatsapp.position =
+          coneData[0].id;
+        state.widgetVars.enabled_widgets.whatsapp.enabled =
+          coneData[0].connection;
+        state.widgetVars.enabled_widgets.sms.title =
+          coneData[1].title;
+        state.widgetVars.enabled_widgets.sms.enabled =
+          coneData[1].connection;
+        state.widgetVars.enabled_widgets.sms.position =
+          coneData[1].id;
+        state.widgetVars.enabled_widgets.facebook.title =
+          coneData[2].title;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          coneData[2].connection;
+        state.widgetVars.enabled_widgets.facebook.position =
+          coneData[2].id;
+      } else if (coneData[0].title.toUpperCase() == "WHATSAPP" && coneData[1].title.toUpperCase() == "FACEBOOK" ) {
+        state.widgetVars.enabled_widgets.whatsapp.title =
+          coneData[0].title;
+        state.widgetVars.enabled_widgets.whatsapp.position =
+          coneData[0].id;
+        state.widgetVars.enabled_widgets.whatsapp.enabled =
+          coneData[0].connection;
+        state.widgetVars.enabled_widgets.facebook.title =
+          coneData[1].title;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          coneData[1].connection;
+        state.widgetVars.enabled_widgets.facebook.position =
+          coneData[1].id;
+        state.widgetVars.enabled_widgets.sms.title =
+          coneData[2].title;
+        state.widgetVars.enabled_widgets.sms.enabled =
+          coneData[2].connection;
+        state.widgetVars.enabled_widgets.sms.position =
+          coneData[2].id;
       }
     },
     SET_WDGT_HDR_TXT(state, txt) {
@@ -941,8 +1039,7 @@ export default new Vuex.Store({
       state.msgVars.sms_abandoned_cart_1.active = obj.active;
       state.msgVars.sms_abandoned_cart_1.sent_after = obj.sent_after;
     },
-    waSET_ORDR_ABANDONED_CART(state, obj) {
-
+    wa_SET_ORDR_ABANDONED_CART(state, obj) {
         state.msgVars.wa_abandoned_cart_1.active = obj.active;
         state.msgVars.wa_abandoned_cart_1.sent_after = obj.sent_after;
         state.msgVars.wa_abandoned_cart_1.discount_cupon = obj.discount_cupon;
@@ -951,7 +1048,6 @@ export default new Vuex.Store({
         state.msgVars.wa_abandoned_cart_1.SelectedLanguage  = obj.SelectedLanguage;
     },
     waSET_ORDR_ABANDONED_CART_2(state, obj) {
-
       state.msgVars.wa_abandoned_cart_2.active = obj.active;
       state.msgVars.wa_abandoned_cart_2.sent_after = obj.sent_after;
       state.msgVars.wa_abandoned_cart_2.discount_cupon = obj.discount_cupon;
@@ -1077,7 +1173,7 @@ export default new Vuex.Store({
       state.widgetVars.discount_code = formVidgData.discount_code;
       state.widgetVars.copy_discount_code_button = formVidgData.copy_discount_code_button;
       state.widgetVars.discount_statement = formVidgData.discount_statement;
-      if (formVidgData.coneData[0].title.toUpperCase() == "SMS") {
+      if (formVidgData.coneData[0].title.toUpperCase() == "SMS" && formVidgData.coneData[1].title.toUpperCase() == "FACEBOOK") {
         state.widgetVars.enabled_widgets.sms.title =
           formVidgData.coneData[0].title;
         state.widgetVars.enabled_widgets.sms.enabled =
@@ -1090,20 +1186,122 @@ export default new Vuex.Store({
           formVidgData.coneData[1].id;
         state.widgetVars.enabled_widgets.facebook.enabled =
           formVidgData.coneData[1].connection;
-      } else {
+        state.widgetVars.enabled_widgets.whatsapp.title =
+          formVidgData.coneData[2].title;
+        state.widgetVars.enabled_widgets.whatsapp.position =
+          formVidgData.coneData[2].id;
+        state.widgetVars.enabled_widgets.whatsapp.enabled =
+          formVidgData.coneData[2].connection;
+      } else if (formVidgData.coneData[0].title.toUpperCase() == "SMS" && formVidgData.coneData[1].title.toUpperCase() == "WHATSAPP") {
+        state.widgetVars.enabled_widgets.sms.title =
+          formVidgData.coneData[0].title;
+        state.widgetVars.enabled_widgets.sms.enabled =
+          formVidgData.coneData[0].connection;
+        state.widgetVars.enabled_widgets.sms.position =
+          formVidgData.coneData[0].id;
+        state.widgetVars.enabled_widgets.whatsapp.title =
+          formVidgData.coneData[1].title;
+        state.widgetVars.enabled_widgets.whatsapp.position =
+          formVidgData.coneData[1].id;
+        state.widgetVars.enabled_widgets.whatsapp.enabled =
+          formVidgData.coneData[1].connection;
+        state.widgetVars.enabled_widgets.facebook.title =
+          formVidgData.coneData[2].title;
+        state.widgetVars.enabled_widgets.facebook.position =
+          formVidgData.coneData[2].id;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          formVidgData.coneData[2].connection;
+      } else if (formVidgData.coneData[0].title.toUpperCase() == "FACEBOOK" && formVidgData.coneData[1].title.toUpperCase() == "SMS" ) {
         state.widgetVars.enabled_widgets.facebook.title =
           formVidgData.coneData[0].title;
-        state.widgetVars.enabled_widgets.facebook.enabled =
-          formVidgData.coneData[0].connection;
         state.widgetVars.enabled_widgets.facebook.position =
           formVidgData.coneData[0].id;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          formVidgData.coneData[0].connection;
         state.widgetVars.enabled_widgets.sms.title =
           formVidgData.coneData[1].title;
         state.widgetVars.enabled_widgets.sms.enabled =
           formVidgData.coneData[1].connection;
         state.widgetVars.enabled_widgets.sms.position =
           formVidgData.coneData[1].id;
+        state.widgetVars.enabled_widgets.whatsapp.title =
+          formVidgData.coneData[2].title;
+        state.widgetVars.enabled_widgets.whatsapp.position =
+          formVidgData.coneData[2].id;
+        state.widgetVars.enabled_widgets.whatsapp.enabled =
+          formVidgData.coneData[2].connection;
+      } else if (formVidgData.coneData[0].title.toUpperCase() == "FACEBOOK" && formVidgData.coneData[1].title.toUpperCase() == "WHATSAPP" ) {
+        state.widgetVars.enabled_widgets.facebook.title =
+          formVidgData.coneData[0].title;
+        state.widgetVars.enabled_widgets.facebook.position =
+          formVidgData.coneData[0].id;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          formVidgData.coneData[0].connection;
+        state.widgetVars.enabled_widgets.whatsapp.title =
+          formVidgData.coneData[1].title;
+        state.widgetVars.enabled_widgets.whatsapp.enabled =
+          formVidgData.coneData[1].connection;
+        state.widgetVars.enabled_widgets.whatsapp.position =
+          formVidgData.coneData[1].id;
+        state.widgetVars.enabled_widgets.sms.title =
+          formVidgData.coneData[2].title;
+        state.widgetVars.enabled_widgets.sms.position =
+          formVidgData.coneData[2].id;
+        state.widgetVars.enabled_widgets.sms.enabled =
+          formVidgData.coneData[2].connection;
+      }else if (formVidgData.coneData[0].title.toUpperCase() == "WHATSAPP" && formVidgData.coneData[1].title.toUpperCase() == "SMS" ) {
+        state.widgetVars.enabled_widgets.whatsapp.title =
+          formVidgData.coneData[0].title;
+        state.widgetVars.enabled_widgets.whatsapp.position =
+          formVidgData.coneData[0].id;
+        state.widgetVars.enabled_widgets.whatsapp.enabled =
+          formVidgData.coneData[0].connection;
+        state.widgetVars.enabled_widgets.sms.title =
+          formVidgData.coneData[1].title;
+        state.widgetVars.enabled_widgets.sms.enabled =
+          formVidgData.coneData[1].connection;
+        state.widgetVars.enabled_widgets.sms.position =
+          formVidgData.coneData[1].id;
+        state.widgetVars.enabled_widgets.facebook.title =
+          formVidgData.coneData[2].title;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          formVidgData.coneData[2].connection;
+        state.widgetVars.enabled_widgets.facebook.position =
+          formVidgData.coneData[2].id;
+      } else if (formVidgData.coneData[0].title.toUpperCase() == "WHATSAPP" && formVidgData.coneData[1].title.toUpperCase() == "FACEBOOK" ) {
+        state.widgetVars.enabled_widgets.whatsapp.title =
+          formVidgData.coneData[0].title;
+        state.widgetVars.enabled_widgets.whatsapp.position =
+          formVidgData.coneData[0].id;
+        state.widgetVars.enabled_widgets.whatsapp.enabled =
+          formVidgData.coneData[0].connection;
+        state.widgetVars.enabled_widgets.facebook.title =
+          formVidgData.coneData[1].title;
+        state.widgetVars.enabled_widgets.facebook.enabled =
+          formVidgData.coneData[1].connection;
+        state.widgetVars.enabled_widgets.facebook.position =
+          formVidgData.coneData[1].id;
+        state.widgetVars.enabled_widgets.sms.title =
+          formVidgData.coneData[2].title;
+        state.widgetVars.enabled_widgets.sms.enabled =
+          formVidgData.coneData[2].connection;
+        state.widgetVars.enabled_widgets.sms.position =
+          formVidgData.coneData[2].id;
       }
+      // else {
+      //   state.widgetVars.enabled_widgets.facebook.title =
+      //     formVidgData.coneData[0].title;
+      //   state.widgetVars.enabled_widgets.facebook.enabled =
+      //     formVidgData.coneData[0].connection;
+      //   state.widgetVars.enabled_widgets.facebook.position =
+      //     formVidgData.coneData[0].id;
+      //   state.widgetVars.enabled_widgets.sms.title =
+      //     formVidgData.coneData[1].title;
+      //   state.widgetVars.enabled_widgets.sms.enabled =
+      //     formVidgData.coneData[1].connection;
+      //   state.widgetVars.enabled_widgets.sms.position =
+      //     formVidgData.coneData[1].id;
+      // }
       state.widgetVars.subscribe_type = formVidgData.subscribe_type;
 
     },
@@ -1675,7 +1873,7 @@ export default new Vuex.Store({
     waUpdOrdrAbndCrt({ commit }, obj) {
       return new Promise((resolve) => {
         // console.log("updateCart :: " + JSON.stringify(obj));
-        commit("waSET_ORDR_ABANDONED_CART", obj);
+        commit("wa_SET_ORDR_ABANDONED_CART", obj);
         resolve("success");
       });
     },

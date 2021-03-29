@@ -85,12 +85,12 @@
     "smsModalText1": "This is the message that your customers will receive on SMS",
     "smsModalText2": " Please note that this interface is just for showcasing purposes and it’s not clickable.",
     "smsheader": "SMS Campaigns",
-    "waheader": "WhatsApp Campaigns",
+    "waheader": "Whatsapp Campaigns",
     "header": "Facebook Campaigns",
     "msgCount": "Messages Sent",
     "sentAfther": "Sent after",
     "smsNotSendNightTime": "SMS Messages are only sent to customers in the time frame 8AM - 10PM. Any message that is due during night-time will be sent at 8AM in the following day.",
-    "waNotSendNightTime": "WhatsApp Messages are only sent to customers in the time frame 8AM - 10PM. Any message that is due during nighttime will be sent at 8AM in the following day.",
+    "waNotSendNightTime": "Whatsapp Messages are only sent to customers in the time frame 8AM - 10PM. Any message that is due during nighttime will be sent at 8AM in the following day.",
     "waLanguageSelHint": "Messages sent through Whatsapp must be pre-approved by the Whatsapp team. Select the language of your visitors. If you can’t find your language above, please let us know and we will add your language.",
     "whatsAppCampaigns": {
       "titleDiscCoupon": "Include discount coupon",
@@ -127,7 +127,7 @@
       "item2": "Order Receipt Message",
       "item3": "Order Shipped Message",
       "itemSMS": "SMS Abandoned Cart Messages",
-      "itemWa": "WhatsApp Abandoned Cart Messages"
+      "itemWa": "Whatsapp Abandoned Cart Messages"
     },
     "carts1": {
       "headerTxt": "Facebook Abandoned Cart Message #1",
@@ -148,7 +148,7 @@
       "discountTxt3": ""
     },
     "wacarts1": {
-      "headerTxt": "Set Live WhatsApp Abandoned Cart Message #1",
+      "headerTxt": "Set Live Whatsapp Abandoned Cart Message #1",
       "selectLabelLanguage": "Message language",
       "sendAfter": "How much time should pass before sending this message.",
       "iconTxt": "EDIT MESSAGE",
@@ -200,7 +200,7 @@
     "tooltip": {
       "sms": "SMS Campaigns",
       "facebook": "Facebook Campaigns",
-      "wa": "WhatsApp Campaigns"
+      "wa": "Whatsapp Campaigns"
     }
   },
   "widgets": {
@@ -388,9 +388,9 @@
     "smsInstruction1": "Add your phone number in Settings.",
     "smsInstruction2": "Activate at least one SMS Campaign.",
     "smsInstruction3": "Activate site Popup Widget and enable SMS.",
-    "waTitle": "How to turn on WhatsAPP Cart Recovery?",
+    "waTitle": "How to turn on Whatsapp Cart Recovery?",
     "waInstruction1": "Add your phone number in Settings.",
-    "waInstruction2": "Activate at least one WhatsAPP Campaign.",
+    "waInstruction2": "Activate at least one Whatsapp Campaign.",
     "waInstruction3": "Activate site Popup Widget and enable WhatsAPP.",
     "fbTitle": "How to turn ON Facebook Cart Recovery?",
     "fbInstruction1": "Connect your Facebook Page.",

@@ -74,12 +74,12 @@
               v-if="campingsMenu"
             >
               <v-col cols="12" class="tool_tip px-0 py-0 text-center" @click="setSelected('Campaigns')">
+                <router-link class="tool_tip_span" to="/campaigns-sms">{{
+                    $t("campaigns.tooltip.sms")
+                  }}</router-link>
                 <router-link class="tool_tip_span" to="/campaigns-whatsapp">{{
                     $t("campaigns.tooltip.wa")
                   }}</router-link>
-                <router-link class="tool_tip_span" to="/campaigns-sms">{{
-                  $t("campaigns.tooltip.sms")
-                }}</router-link>
                 <router-link class="tool_tip_span" to="/campaigns-facebook">{{
                   $t("campaigns.tooltip.facebook")
                 }}</router-link>
