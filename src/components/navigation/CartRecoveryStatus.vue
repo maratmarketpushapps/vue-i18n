@@ -9,7 +9,6 @@
             <v-img v-if="typeRecovery == 'wa'" src="@/assets/img/appBar/whatsapp.png" width="35px"></v-img>
             <v-img v-if="typeRecovery == 'sms'" src="@/assets/img/appBar/sms_icon.png" width="35px"></v-img>
           </v-list-item-avatar>
-
           <v-list-item-content class="txt_posit">
             <v-list-item-title >  <span class="cart_rec_txt">{{ $t("cartRecoveryStatus." + recoveryType + "CartRecovery") }}</span>
               <span v-if="getCartRecoveryStatus" class="cartRecoveryStatusON">

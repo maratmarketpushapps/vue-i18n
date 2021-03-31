@@ -87,8 +87,36 @@
               <p :style="msgProps">{{ msgText }}</p>
             </v-col>
           </v-row>
+
+          <v-row
+            style="width:102.5%"
+            align="center"
+            justify="center"
+
+            v-show="wdgtTabHaveTwo"
+            :style="bdyColor"
+          >
+            <!--            && !detectEuRegion-->
+            <!--            v-if="getTwoRight"-->
+            <v-tabs v-model="tab" light centered color="transparent" :style="bdyColor" :background-color="getBgWidgCheckBody">
+              <v-tab light :style="bdyColor" v-if="getTabHeader1">
+                <!--                v-if="getWidgetsState.enabled_widgets.keTabHeader1.enabled"-->
+                <component v-bind:is="getTabHeader1"></component>
+              </v-tab>
+              <v-tab light :style="bdyColor" v-if="getTabHeader2">
+                <!--                v-if="getWidgetsState.enabled_widgets.keTabHeader2.enabled"-->
+                <component v-bind:is="getTabHeader2"></component>
+              </v-tab>
+              <v-tab light :style="bdyColor" v-if="getTabHeader3">
+                <!--                v-if="getWidgetsState.enabled_widgets.keTabHeader3.enabled"-->
+                <component v-bind:is="getTabHeader3"></component>
+              </v-tab>
+              <!--              <v-divider vertical></v-divider>-->
+            </v-tabs>
+          </v-row>
+
           <!--          /* SMS with Discount */-->
-          <v-col cols="11" v-if="wdgtSMScheck && wdgtIsDsc" @click="toggleDialog">
+          <v-col cols="11" v-if="!wdgtTabWhatsappOnly && wdgtSMScheck && wdgtIsDsc" @click="toggleDialog">
             <v-row
               style="width:100%; border: 1px solid #c9cacb; margin-left:1%"
               align="center"
@@ -164,14 +192,219 @@
               </v-col>
             </v-row>
           </v-col>
+          <!--          /* SMS with Whatsapp Discount */-->
+          <v-col cols="11" class="ml-3 no_pad_min_width"   v-if="wdgtTabWhatsappOnly &&wdgtSMScheck && wdgtIsDsc" @click="toggleDialog()">
+              <v-row
+                style="border:1px solid #C9CACB;"
+                align="center"
+                justify="center"
+                :key="'key2' + wdgtTabKey"
+                class="mt-4"
+              >
+                <v-col cols="3" class="img_vh ma-0 pa-0" style="height:100%;width:100%">
+                  <v-img
+                    src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
+                    class="ma-0 pa-0"
+                    width="100%"
+                    height="35vh"
+                    style="background:#4E5D6B"
+                  >
+                  </v-img>
+                </v-col>
+                <v-col cols="9" class="d-flex align-content-space-around  flex-wrap py-0 pl-12" style="height: 35vh !important;" v-if="checkOptin">
+                  <v-col style="width:100%" class="py-0 pr-2" v-if="dscntCd">
+                    <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%" :style="msgProps">
+                      {{ dscntCd }}
+                    </span>
+                  </v-col>
+                  <v-row style="width:100%" class="py-0 pr-2" >
+                    <span style="width: 100%">
+                      {{ dscntInstr }}
+                    </span>
+                  </v-row>
 
+                  <v-row style="width:100%" class=" pr-2" >
+                    <v-btn :style="buttonProps" outlined @click="resetOptin">
+                    <span :style="btnTextProps" style="width: 100%">
+                      {{cpDiscCode}}
+                    </span>
+                    </v-btn>
+                  </v-row>
+                </v-col>
 
+                <v-col cols="9" class="d-flex align-content-space-around  flex-wrap" v-if="!checkOptin" style="height: 35vh !important;">
+                  <v-col style="width:100%" class="py-0 pr-2">
+                      <span style="font-weight:bold; font-size:90%" :style="msgProps">
+                        {{ dscntStmt }}
+                      </span>
+                    <v-col style="width:100%" class="py-0 pl-0 pt-8" disabled>
+                      <v-col style="width:100%; " align="center" class="px-0 py-0" :style="bdyColor">
+                        <v-col cols="12" class="px-0 py-0" :style="bdyColor">
+                          <v-tabs-items v-model="tab" style="width:100%">
+                            <v-tab-item :value="getTabKeySMS" style="width:100%" class="pl-0 py-5" :style="bdyColor" disabled>
+
+                              <vue-tel-input
+                                v-model="optinNum"
+                                dark
+                                style="width:103.5%;"
+                                placeholder=""
+                                :showDialCode="true"
+                                mode="international"
+                                disabled
+                              >
+                              </vue-tel-input>
+                            </v-tab-item>
+                            <v-tab-item :value="getTabKeyWa">
+                              <vue-tel-input
+                                v-model="optinNum"
+                                dark
+                                style="width:103.5%;"
+                                placeholder=""
+                                :showDialCode="true"
+                                mode="international"
+                                disabled
+                              >
+                              </vue-tel-input>
+                            </v-tab-item>
+                          </v-tabs-items>
+                        </v-col>
+                      </v-col>
+                    </v-col>
+                  </v-col>
+                  <v-row style="width:100%" class="pl-6  " align="start" disabled>
+                    <v-btn
+                      :style="buttonProps"
+                      outlined
+                      :key="widgetKey"
+                      @click="submitClickDisc"
+                      style="width: 96%"
+                      disabled
+                    >
+                      <span :style="btnTextProps">
+                        {{ buttonText }}
+                      </span>
+                    </v-btn>
+                  </v-row>
+                </v-col>
+
+              </v-row>
+            </v-col>
+<!--          /* Whatsapp with Discount*/-->
+          <v-col cols="11" v-if="wdgtTabWhatsapp && wdgtIsDsc" @click="toggleDialog">
+            <v-row
+              style="width:100%; border: 1px solid #c9cacb; margin-left:1%"
+              align="center"
+              justify="center"
+              class="pa-0 my-0"
+
+            >
+              <v-col cols="3" class="img_vh ma-0 pa-0" style="height:100%;width:100%">
+                <v-img
+                  src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
+                  class="ma-0 pa-0"
+                  width="100%"
+                  style="background:#4E5D6B"
+                  height="34vh"
+                >
+                </v-img>
+              </v-col>
+              <v-col cols="9"  style="height:34vh" class="d-flex align-content-space-around  flex-wrap py-0 pl-12" v-if="checkOptin">
+                <v-col style="width:100%" class="py-0" v-if="dscntCd">
+                  <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%" :style="msgProps">
+                    {{ dscntCd }}
+                  </span>
+                </v-col>
+                <v-row style="width:100%" class="py-0" >
+                  <span style="width: 100%">
+                    {{ dscntInstr }}
+                  </span>
+                </v-row>
+                <v-row style="width:100%" class="py-0" >
+                  <v-btn :style="buttonProps" outlined @click="resetOptin">
+                  <span :style="btnTextProps">
+                    {{ $t("widgets.cpDiscCode") }}
+                  </span>
+                  </v-btn>
+                </v-row>
+              </v-col>
+              <v-col cols="9" class="py-0 d-flex align-content-space-around  flex-wrap py-0 pl-12" style="height: 34vh" v-if="!checkOptin">
+                <v-row style="width:100%;" class="py-0 pr-2">
+                  <span style="font-weight:bold; font-size:90%" :style="msgProps">
+                    {{ dscntStmt }}
+                  </span>
+                </v-row>
+                <v-row style="width:100%;" class=" py-0 mt-2">
+
+                  <v-col cols="12"  class="pl-0">
+                    <vue-tel-input
+                      v-model="optinNum"
+                      dark
+                      style="width:100%;"
+                      placeholder=""
+                      :showDialCode="true"
+                      mode="international"
+                      disabled
+                    >
+                    </vue-tel-input>
+                  </v-col>
+
+                </v-row>
+                <v-row style="width:100%" class="" align="start">
+                  <v-btn
+                    :style="buttonProps"
+                    style="width: 97.5%"
+                    outlined
+                    :key="widgetKey"
+                    @click="submitClickDisc"
+                    disabled
+                  >
+                  <span :style="btnTextProps">
+                    {{ buttonText }}
+                  </span>
+                  </v-btn>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-col>
+          <!--          /* Whatsapp No Discount*/-->
+          <v-row
+            style="width:102.5%"
+            align="end"
+            justify="center"
+            v-if="wdgtTabWhatsapp && !wdgtIsDsc"
+            @click="toggleDialog()"
+            :class="$vuetify.breakpoint.width > 1600 ? 'ml-0' : 'ml-2'"
+          >
+            <vue-tel-input
+              v-model="optinNum"
+              dark
+              style="width:70%;"
+              placeholder=""
+              :showDialCode="true"
+              mode="international"
+              disabled
+            >
+            </vue-tel-input>
+            <v-row
+              style="width:102.5%"
+              align="center"
+              justify="center"
+              @click="submitClickDisc()"
+              class="mt-8"
+            >
+              <v-btn :style="buttonProps" outlined :key="widgetKey" style="width: 249px !important;height: 50px !important;">
+              <span :style="btnTextProps">
+                {{ buttonText }}
+              </span>
+              </v-btn>
+            </v-row>
+          </v-row>
           <!--        /* NO DISCOUNT FACEBOOK*/-->
           <v-row
             style="width:102.5%"
             align="center"
             justify="center"
-            v-if="wdgtFBcheck && !wdgtIsDsc"
+            v-if="wdgtFBcheck && !wdgtIsDsc && !wdgtTabWhatsappOnly"
             @click="toggleDialog()"
             :style="bdyColor"
           >
@@ -186,32 +419,108 @@
               {{ $t("widgets.chckBxTxt2") }}
             </span>
           </v-row>
-
+          <!--        /* NO DISCOUNT FACEBOOK with Whatsapp*/-->
           <v-row
             style="width:102.5%"
             align="start"
             justify="center"
-            v-if="wdgtFBcheck && !wdgtIsDsc"
-            @click="toggleDialog()"
+            v-if="wdgtFBcheck && !wdgtIsDsc && wdgtTabWhatsappOnly"
+            class="pl-2"
+            :key="'key1' + wdgtTabKey"
           >
-            <v-container
-              style="height: 26px; width: 26px; border-radius:100%; background-color: #E6E7E8"
-              class="mx-2"
-            ></v-container>
+            <v-tabs-items v-model="tab" style="width:90%">
+              <v-tab-item :value="getTabKeyFb">
+                <v-row
+                  style="width:100%;height:60%"
+                  align="center"
+                  class="pl-1"
+                  justify="center"
+                  @click="toggleDialog()"
+                >
+                  <v-checkbox input-value="true" disabled> </v-checkbox>
+                  <span class="pr-1">
+                    {{ $t("widgets.chckBxTxt1") }}
+                  </span>
+                  <v-icon color="#0084FF">
+                    mdi-facebook-messenger
+                  </v-icon>
+                  <span class="pl-2">
+                    {{ $t("widgets.chckBxTxt2") }}
+                  </span>
+                </v-row>
 
-            <span
-              style="font-size: 14px; height:100%; color: #B3B7BA"
-              class="pt-1 mr-2"
-            >{{ $t("widgets.fbUserName") }}</span
-            >
+                <v-row
+                  style="width:100%;height:40%"
+                  align="center"
+                  justify="center"
+                  @click="toggleDialog()"
+                >
+                  <v-container
+                    style="height: 26px; width: 26px; border-radius:100%; background-color: #E6E7E8"
+                    class="mx-2"
+                  ></v-container>
 
-            <a
-              style="font-size: 13px; height:100%; color: #B3B7BA; text-decoration:underline"
-              class="pt-1"
-            >{{ $t("widgets.wrngUsrTxt") }}</a
-            >
+                  <span
+                    style="font-size: 14px; height:100%; color: #B3B7BA"
+                    class="pt-1 mr-2"
+                  >{{ $t("widgets.fbUserName") }}</span
+                  >
+
+                  <a
+                    style="font-size: 13px; height:100%; color: #B3B7BA; text-decoration:underline"
+                    class="pt-1"
+                  >{{ $t("widgets.wrngUsrTxt") }}</a
+                  >
+                </v-row>
+              </v-tab-item>
+              <v-tab-item :value="getTabKeyWa">
+                <v-row style="width:100%;height:2.5vh" :style="bdyColor">
+                </v-row>
+                <v-row justify="center" style="width:100%" :style="bdyColor"
+                       @click="toggleDialog()" :class="$vuetify.breakpoint.width > 1600 ? 'ml-0' : 'ml-2'">
+                  <vue-tel-input
+                    v-model="optinNum"
+                    dark
+                    style="width:80%;"
+                    placeholder=""
+                    :showDialCode="true"
+                    mode="international"
+                    disabled
+                  >
+                  </vue-tel-input>
+                </v-row>
+              </v-tab-item>
+            </v-tabs-items>
           </v-row>
 
+<!--          <v-row-->
+<!--            style="width:102.5%"-->
+<!--            align="start"-->
+<!--            justify="center"-->
+<!--            v-if="wdgtFBcheck && !wdgtIsDsc"-->
+<!--            @click="toggleDialog()"-->
+<!--          >-->
+<!--            <v-container-->
+<!--              style="height: 26px; width: 26px; border-radius:100%; background-color: #E6E7E8"-->
+<!--              class="mx-2"-->
+<!--            ></v-container>-->
+
+<!--            <span-->
+<!--              style="font-size: 14px; height:100%; color: #B3B7BA"-->
+<!--              class="pt-1 mr-2"-->
+<!--            >{{ $t("widgets.fbUserName") }}</span-->
+<!--            >-->
+
+<!--            <a-->
+<!--              style="font-size: 13px; height:100%; color: #B3B7BA; text-decoration:underline"-->
+<!--              class="pt-1"-->
+<!--            >{{ $t("widgets.wrngUsrTxt") }}</a-->
+<!--            >-->
+<!--          </v-row>-->
+
+
+
+<!--        /*  button submit (wrong way) */-->
           <v-row
             class="mt-8"
             style="width:102.5%"
@@ -226,12 +535,12 @@
               </span>
             </v-btn>
           </v-row>
-
+          <!--        /* NO DISCOUNT SMS*/-->
           <v-row
             style="width:102.5%"
             align="end"
             justify="center"
-            v-if="wdgtSMScheck && !wdgtIsDsc"
+            v-if="wdgtSMScheck && !wdgtIsDsc && !wdgtTabWhatsappOnly"
             @click="toggleDialog()"
             :class="$vuetify.breakpoint.width > 1600 ? 'ml-0' : 'ml-2'"
           >
@@ -246,6 +555,52 @@
             >
             </vue-tel-input>
           </v-row>
+          <!--        /* NO DISCOUNT SMS with Whatsapp*/-->
+          <v-row
+            style="width:102.5%"
+            align="end"
+            justify="center"
+            v-if="wdgtSMScheck && !wdgtIsDsc && wdgtTabWhatsappOnly"
+            @click="toggleDialog()"
+            :class="$vuetify.breakpoint.width > 1600 ? 'ml-0' : 'ml-2'"
+          >
+            <v-tabs-items v-model="tab" style="width:90%">
+              <v-tab-item :value="getTabKeySMS">
+                <v-row style="width:100%;height:2.5vh" :style="bdyColor">
+                </v-row>
+                <v-row justify="center" style="width:100%" :style="bdyColor"
+                       @click="toggleDialog()" :class="$vuetify.breakpoint.width > 1600 ? 'ml-0' : 'ml-2'">
+                  <vue-tel-input
+                    v-model="optinNum"
+                    dark
+                    style="width:80%;"
+                    placeholder=""
+                    :showDialCode="true"
+                    mode="international"
+                    disabled
+                  >
+                  </vue-tel-input>
+                </v-row>
+              </v-tab-item>
+              <v-tab-item :value="getTabKeyWa">
+                <v-row style="width:100%;height:2.5vh" :style="bdyColor">
+                </v-row>
+                <v-row justify="center" style="width:100%" :style="bdyColor"
+                       @click="toggleDialog()" :class="$vuetify.breakpoint.width > 1600 ? 'ml-0' : 'ml-2'">
+                  <vue-tel-input
+                    v-model="optinNum"
+                    dark
+                    style="width:80%;"
+                    placeholder=""
+                    :showDialCode="true"
+                    mode="international"
+                    disabled
+                  >
+                  </vue-tel-input>
+                </v-row>
+              </v-tab-item>
+            </v-tabs-items>
+          </v-row>
 
           <v-row
             class="mt-8"
@@ -262,28 +617,9 @@
             </v-btn>
           </v-row>
 
-          <v-row
-            style="width:102.5%"
-            align="center"
-            justify="center"
-            v-if="wdgtTabcheck && !detectEuRegion"
-            :style="bdyColor"
-          >
-            <v-tabs v-model="tab" light centered color="transparent" :style="bdyColor" :background-color="getBgWidgCheckBody">
-              <v-tab light :style="bdyColor">
-                <component v-bind:is="getTabHeader1"></component>
-              </v-tab>
-              <v-tab light :style="bdyColor">
-                <component v-bind:is="getTabHeader2"></component>
-              </v-tab>
-              <v-tab light :style="bdyColor">
-                <component v-bind:is="getTabHeader3"></component>
-              </v-tab>
-              <!--              <v-divider vertical></v-divider>-->
-            </v-tabs>
-          </v-row>
+
           <!--          /* Facebook with Disc. */-->
-          <v-col cols="11"  v-if="wdgtFBcheck && wdgtIsDsc">
+          <v-col cols="11"  v-if="!wdgtTabWhatsappOnly && wdgtFBcheck && wdgtIsDsc">
             <v-row
               style="width:100%; border: 1px solid #C9CACB; margin-left:1%"
               align="center"
@@ -393,12 +729,145 @@
               </v-col>
             </v-row>
           </v-col>
+          <!--          /* Facebook and Whatsapp with Disc. */-->
+          <v-col cols="11" class="ml-3 no_pad_min_width"   v-if="wdgtTabWhatsappOnly && wdgtFBcheck && wdgtIsDsc" @click="toggleDialog()">
+            <v-row
+              style="border:1px solid #C9CACB;"
+              align="center"
+              justify="center"
+              :key="'key2' + wdgtTabKey"
+              class="mt-4"
+            >
+              <v-col cols="3" class="img_vh ma-0 pa-0" style="height:100%;width:100%">
+                <v-img
+                  src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
+                  class="ma-0 pa-0"
+                  width="100%"
+                  height="35vh"
+                  style="background:#4E5D6B"
+                >
+                </v-img>
+              </v-col>
+              <v-col cols="9" class="d-flex align-content-space-around  flex-wrap py-0 pl-12" style="height: 35vh !important;" v-if="checkOptin">
+                <v-col style="width:100%" class="py-0 pr-2" v-if="dscntCd">
+                    <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%" :style="msgProps">
+                      {{ dscntCd }}
+                    </span>
+                </v-col>
+                <v-row style="width:100%" class="py-0 pr-2" >
+                    <span style="width: 100%">
+                      {{ dscntInstr }}
+                    </span>
+                </v-row>
 
+                <v-row style="width:100%" class=" pr-2" >
+                  <v-btn :style="buttonProps" outlined @click="resetOptin">
+                    <span :style="btnTextProps" style="width: 100%">
+                      {{cpDiscCode}}
+                    </span>
+                  </v-btn>
+                </v-row>
+              </v-col>
+
+              <v-col cols="9" class="d-flex align-content-space-around  flex-wrap" v-if="!checkOptin" style="height: 35vh !important;">
+                <v-col style="width:100%" class="py-0 pr-2">
+                      <span style="font-weight:bold; font-size:90%" :style="msgProps">
+                        {{ dscntStmt }}
+                      </span>
+                  <v-col style="width:100%" class="py-0 pl-0 pt-8" disabled>
+                    <v-col style="width:100%; " align="center" class="px-0 py-0" :style="bdyColor">
+                      <v-col cols="12" class="px-0 py-0" :style="bdyColor">
+                        <v-tabs-items v-model="tab" style="width:100%">
+                          <v-tab-item :value="getTabKeyWa" style="width:100%" class="pl-0 py-5" :style="bdyColor" disabled>
+
+                            <vue-tel-input
+                              v-model="optinNum"
+                              dark
+                              style="width:103.5%;"
+                              placeholder=""
+                              :showDialCode="true"
+                              mode="international"
+                              disabled
+                            >
+                            </vue-tel-input>
+                          </v-tab-item>
+
+                          <v-tab-item :value="getTabKeyFb" :style="bdyColor">
+                            <v-row
+                              style="width:100%;height:auto"
+                              align="center"
+                              class="pl-1"
+                              :style="bdyColor"
+                            >
+                              <v-checkbox
+                                input-value="true"
+                                disabled
+                                style="transform: scale(0.8)"
+                                class="pr-0 mr-0"
+                              >
+                              </v-checkbox>
+                              <span class="pr-0" style="font-size:80%">
+                            {{ $t("widgets.chckBxTxt1") }}
+                          </span>
+                              <v-icon color="#0084FF" style="transform: scale(0.8)">
+                                mdi-facebook-messenger
+                              </v-icon>
+                              <span class="pl-0" style="font-size:80%">
+                            {{ $t("widgets.chckBxTxt2") }}
+                          </span>
+                              <span> </span>
+                            </v-row>
+
+                            <v-row style="width:100%;height:30%" align="start">
+                              <v-container
+                                style="height: 15px; width: 15px; border-radius:100%; background-color: #E6E7E8; transform: scale(0.8)"
+                                class="mx-2"
+                              ></v-container>
+
+                              <span
+                                style="font-size: 70%; height:100%; color: #B3B7BA"
+                                class="pt-1 mr-2"
+                              >{{ $t("widgets.fbUserName") }}</span
+                              >
+
+                              <a
+                                style="font-size: 70%; height:100%; color: #B3B7BA; text-decoration:underline"
+                                class="pt-1"
+                              >{{ $t("widgets.wrngUsrTxt") }}</a
+                              >
+                            </v-row>
+                            <v-row style="height:40%; width:100%"> </v-row>
+                          </v-tab-item>
+
+                        </v-tabs-items>
+                      </v-col>
+                    </v-col>
+                  </v-col>
+                </v-col>
+                <v-row style="width:100%" class="pl-6  " align="start" disabled>
+                  <v-btn
+                    :style="buttonProps"
+                    outlined
+                    :key="widgetKey"
+                    @click="submitClickDisc"
+                    style="width: 96%"
+                    disabled
+                  >
+                      <span :style="btnTextProps">
+                        {{ buttonText }}
+                      </span>
+                  </v-btn>
+                </v-row>
+              </v-col>
+
+            </v-row>
+          </v-col>
+          <!--          /*FB AND SMS NO DISCOUNT */-->
           <v-row
             style="width:102.5%"
             align="start"
             justify="center"
-            v-if="wdgtTabcheck && !wdgtIsDsc"
+            v-if="!wdgtTabWhatsappOnly && wdgtTabcheck && !wdgtIsDsc"
             class="pl-2"
             :key="'key1' + wdgtTabKey"
           >
@@ -421,7 +890,6 @@
                   </vue-tel-input>
                 </v-row>
               </v-tab-item>
-
               <v-tab-item :value="getTabKeyFb">
                 <v-row
                   style="width:100%;height:60%"
@@ -466,12 +934,103 @@
                   >
                 </v-row>
               </v-tab-item>
+
+            </v-tabs-items>
+          </v-row>
+          <!--          /*Whatsapp and FB AND SMS NO DISCOUNT */-->
+          <v-row
+            style="width:102.5%"
+            align="start"
+            justify="center"
+            v-if="wdgtTabWhatsappOnly && wdgtTabcheck && !wdgtIsDsc"
+            class="pl-2"
+            :key="'key1' + wdgtTabKey"
+          >
+            <v-tabs-items v-model="tab" style="width:90%">
+              <v-tab-item :value="getTabKeySMS" style="width:100%" :style="bdyColor">
+                <v-row style="width:100%;height:2.5vh" :style="bdyColor">
+
+                </v-row>
+                <v-row justify="center" style="width:100%" :style="bdyColor"
+                       @click="toggleDialog()" :class="$vuetify.breakpoint.width > 1600 ? 'ml-0' : 'ml-2'">
+                  <vue-tel-input
+                    v-model="optinNum"
+                    dark
+                    style="width:80%;"
+                    placeholder=""
+                    :showDialCode="true"
+                    mode="international"
+                    disabled
+                  >
+                  </vue-tel-input>
+                </v-row>
+              </v-tab-item>
+              <v-tab-item :value="getTabKeyFb">
+                <v-row
+                  style="width:100%;height:60%"
+                  align="center"
+                  class="pl-1"
+                  justify="center"
+                  @click="toggleDialog()"
+                >
+                  <v-checkbox input-value="true" disabled> </v-checkbox>
+                  <span class="pr-1">
+                    {{ $t("widgets.chckBxTxt1") }}
+                  </span>
+                  <v-icon color="#0084FF">
+                    mdi-facebook-messenger
+                  </v-icon>
+                  <span class="pl-2">
+                    {{ $t("widgets.chckBxTxt2") }}
+                  </span>
+                </v-row>
+
+                <v-row
+                  style="width:100%;height:40%"
+                  align="center"
+                  justify="center"
+                  @click="toggleDialog()"
+                >
+                  <v-container
+                    style="height: 26px; width: 26px; border-radius:100%; background-color: #E6E7E8"
+                    class="mx-2"
+                  ></v-container>
+
+                  <span
+                    style="font-size: 14px; height:100%; color: #B3B7BA"
+                    class="pt-1 mr-2"
+                  >{{ $t("widgets.fbUserName") }}</span
+                  >
+
+                  <a
+                    style="font-size: 13px; height:100%; color: #B3B7BA; text-decoration:underline"
+                    class="pt-1"
+                  >{{ $t("widgets.wrngUsrTxt") }}</a
+                  >
+                </v-row>
+              </v-tab-item>
+              <v-tab-item :value="getTabKeyWa">
+                <v-row style="width:100%;height:2.5vh" :style="bdyColor">
+                </v-row>
+                <v-row justify="center" style="width:100%" :style="bdyColor"
+                       @click="toggleDialog()" :class="$vuetify.breakpoint.width > 1600 ? 'ml-0' : 'ml-2'">
+                  <vue-tel-input
+                    v-model="optinNum"
+                    dark
+                    style="width:80%;"
+                    placeholder=""
+                    :showDialCode="true"
+                    mode="international"
+                    disabled
+                  >
+                  </vue-tel-input>
+                </v-row>
+              </v-tab-item>
             </v-tabs-items>
           </v-row>
 
-
-          <!--          /* FB AND SMS DISCOUNT */-->
-          <v-col cols="11" class="ml-3 no_pad_min_width"   v-if="wdgtTabcheck && wdgtIsDsc" @click="toggleDialog()">
+          <!--          /*FB AND SMS DISCOUNT */-->
+          <v-col cols="11" class="ml-3 no_pad_min_width"   v-if="!wdgtTabWhatsappOnly && wdgtTabcheck && wdgtIsDsc" @click="toggleDialog()">
             <v-row
               style="border:1px solid #C9CACB;"
               align="center"
@@ -578,6 +1137,151 @@
                               >
                             </v-row>
                             <v-row style="height:40%; width:100%"> </v-row>
+                          </v-tab-item>
+
+                        </v-tabs-items>
+                      </v-col>
+                    </v-col>
+                  </v-col>
+                </v-col>
+                <v-row style="width:100%" class="pl-6  " align="start" disabled>
+                  <v-btn
+                    :style="buttonProps"
+                    outlined
+                    :key="widgetKey"
+                    @click="submitClickDisc"
+                    style="width: 96%"
+                    disabled
+                  >
+                      <span :style="btnTextProps">
+                        {{ buttonText }}
+                      </span>
+                  </v-btn>
+                </v-row>
+              </v-col>
+
+            </v-row>
+          </v-col>
+          <!--          /*Whatsapp AND FB AND SMS DISCOUNT */-->
+          <v-col cols="11" class="ml-3 no_pad_min_width"   v-if="wdgtTabWhatsappOnly && wdgtTabcheck && wdgtIsDsc" @click="toggleDialog()">
+            <v-row
+              style="border:1px solid #C9CACB;"
+              align="center"
+              justify="center"
+              :key="'key2' + wdgtTabKey"
+              class="mt-4"
+            >
+              <v-col cols="3" class="img_vh ma-0 pa-0" style="height:100%;width:100%">
+                <v-img
+                  src="https://storage.googleapis.com/dev-facebook-cart-recovery.appspot.com/widget/img/discount-icon.png"
+                  class="ma-0 pa-0"
+                  width="100%"
+                  height="35vh"
+                  style="background:#4E5D6B"
+                >
+                </v-img>
+              </v-col>
+              <v-col cols="9" class="d-flex align-content-space-around  flex-wrap py-0 pl-12" style="height: 35vh !important;" v-if="checkOptin">
+                <v-col style="width:100%" class="py-0 pr-2" v-if="dscntCd">
+                    <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%" :style="msgProps">
+                      {{ dscntCd }}
+                    </span>
+                </v-col>
+                <v-row style="width:100%" class="py-0 pr-2" >
+                    <span style="width: 100%">
+                      {{ dscntInstr }}
+                    </span>
+                </v-row>
+
+                <v-row style="width:100%" class=" pr-2" >
+                  <v-btn :style="buttonProps" outlined @click="resetOptin">
+                    <span :style="btnTextProps" style="width: 100%">
+                      {{cpDiscCode}}
+                    </span>
+                  </v-btn>
+                </v-row>
+              </v-col>
+
+              <v-col cols="9" class="d-flex align-content-space-around  flex-wrap" v-if="!checkOptin" style="height: 35vh !important;">
+                <v-col style="width:100%" class="py-0 pr-2">
+                      <span style="font-weight:bold; font-size:90%" :style="msgProps">
+                        {{ dscntStmt }}
+                      </span>
+                  <v-col style="width:100%" class="py-0 pl-0 pt-8" disabled>
+                    <v-col style="width:100%; " align="center" class="px-0 py-0" :style="bdyColor">
+                      <v-col cols="12" class="px-0 py-0" :style="bdyColor">
+                        <v-tabs-items v-model="tab" style="width:100%">
+                          <v-tab-item :value="getTabKeySMS" style="width:100%" class="pl-0 py-5" :style="bdyColor" disabled>
+
+                            <vue-tel-input
+                              v-model="optinNum"
+                              dark
+                              style="width:103.5%;"
+                              placeholder=""
+                              :showDialCode="true"
+                              mode="international"
+                              disabled
+                            >
+                            </vue-tel-input>
+                          </v-tab-item>
+
+                          <v-tab-item :value="getTabKeyFb" :style="bdyColor">
+                            <v-row
+                              style="width:100%;height:auto"
+                              align="center"
+                              class="pl-1"
+                              :style="bdyColor"
+                            >
+                              <v-checkbox
+                                input-value="true"
+                                disabled
+                                style="transform: scale(0.8)"
+                                class="pr-0 mr-0"
+                              >
+                              </v-checkbox>
+                              <span class="pr-0" style="font-size:80%">
+                            {{ $t("widgets.chckBxTxt1") }}
+                          </span>
+                              <v-icon color="#0084FF" style="transform: scale(0.8)">
+                                mdi-facebook-messenger
+                              </v-icon>
+                              <span class="pl-0" style="font-size:80%">
+                            {{ $t("widgets.chckBxTxt2") }}
+                          </span>
+                              <span> </span>
+                            </v-row>
+
+                            <v-row style="width:100%;height:30%" align="start">
+                              <v-container
+                                style="height: 15px; width: 15px; border-radius:100%; background-color: #E6E7E8; transform: scale(0.8)"
+                                class="mx-2"
+                              ></v-container>
+
+                              <span
+                                style="font-size: 70%; height:100%; color: #B3B7BA"
+                                class="pt-1 mr-2"
+                              >{{ $t("widgets.fbUserName") }}</span
+                              >
+
+                              <a
+                                style="font-size: 70%; height:100%; color: #B3B7BA; text-decoration:underline"
+                                class="pt-1"
+                              >{{ $t("widgets.wrngUsrTxt") }}</a
+                              >
+                            </v-row>
+                            <v-row style="height:40%; width:100%"> </v-row>
+                          </v-tab-item>
+                          <v-tab-item :value="getTabKeyWa">
+                              <vue-tel-input
+                            v-model="optinNum"
+                            dark
+                            style="width:103.5%;"
+                            placeholder=""
+                            :showDialCode="true"
+                            mode="international"
+                            disabled
+                          >
+                          </vue-tel-input>
                           </v-tab-item>
                         </v-tabs-items>
                       </v-col>
@@ -693,10 +1397,8 @@ export default {
       optinNum: "",
       tab: null,
       wdgtTabKey: 0,
-
     };
   },
-
   methods: {
     incrBtnId() {
       this.btnId++;
@@ -833,30 +1535,93 @@ export default {
         this.getWidgetsState.enabled_widgets.sms.enabled
       );
     },
+    wdgtTabWhatsapp(){
+      return(
+        !this.getWidgetsState.enabled_widgets.facebook.enabled &&
+        !this.getWidgetsState.enabled_widgets.sms.enabled &&
+        this.getWidgetsState.enabled_widgets.whatsapp.enabled
+      )
+    },
+    wdgtTabWhatsappOnly(){
+      return(
+        this.getWidgetsState.enabled_widgets.whatsapp.enabled
+      )
+    },
+    wdgtTabHaveTwo() {
+      return (
+        (this.getWidgetsState.enabled_widgets.facebook.enabled &&
+        this.getWidgetsState.enabled_widgets.sms.enabled) ||
+        (this.getWidgetsState.enabled_widgets.facebook.enabled &&
+          this.getWidgetsState.enabled_widgets.whatsapp.enabled) ||
+        (this.getWidgetsState.enabled_widgets.sms.enabled &&
+          this.getWidgetsState.enabled_widgets.whatsapp.enabled)
+      );
+    },
+    getTwoRight(){
+       if(
+        (this.getWidgetsState.enabled_widgets.sms.enabled && this.getWidgetsState.enabled_widgets.whatsapp.enabled) ||
+        (this.getWidgetsState.enabled_widgets.sms.enabled && this.getWidgetsState.enabled_widgets.facebook.enabled) ||
+        (this.getWidgetsState.enabled_widgets.whatsapp.enabled && this.getWidgetsState.enabled_widgets.facebook.enabled)
+      ){
+        return true
+      }
+    },
+    // keTabHeader1(){
+    //   if(this.getTabHeader1 == 'WaIcon'){
+    //     return "whatsapp"
+    //   }else if(this.getTabHeader1 == 'FbIcon') {
+    //     return "facebook"
+    //   }else if(this.getTabHeader1 == 'SmsIcon') {
+    //     return "sms"
+    //   }
+    // },
+    // keTabHeader2(){
+    //   if(this.getTabHeader2 == 'WaIcon'){
+    //     return "whatsapp"
+    //   }else if(this.getTabHeader2 == 'FbIcon') {
+    //     return "facebook"
+    //   }else if(this.getTabHeader2 == 'SmsIcon') {
+    //     return "sms"
+    //   }
+    // },
+    // keTabHeader3(){
+    //   if(this.getTabHeader3 == 'WaIcon'){
+    //     return "whatsapp"
+    //   }else if(this.getTabHeader3 == 'FbIcon') {
+    //     return "facebook"
+    //   }else if(this.getTabHeader3 == 'SmsIcon') {
+    //     return "sms"
+    //   }
+    // },
+    /*  see keTabHeader1 and continue keTabHeader2*/
+    // keTabHeader2(getTabHeader1 == 'FbIcon'){
+    //     return facebook
+    // },
+    // keTabHeader3(){},
     getTabHeader1() {
-      if (this.getWidgetsState.enabled_widgets.facebook.position == 1) {
+      if (this.getWidgetsState.enabled_widgets.facebook.position == 1 && this.getWidgetsState.enabled_widgets.facebook.enabled) {
         return "FbIcon";
-      }else if(this.getWidgetsState.enabled_widgets.whatsapp.position == 1){
+      }else if(this.getWidgetsState.enabled_widgets.whatsapp.position == 1 && this.getWidgetsState.enabled_widgets.whatsapp.enabled){
         return "WaIcon";
-      }else if(this.getWidgetsState.enabled_widgets.sms.position == 1){
+      }else if(this.getWidgetsState.enabled_widgets.sms.position == 1 && this.getWidgetsState.enabled_widgets.sms.enabled){
         return "SmsIcon";
       }
     },
     getTabHeader2() {
-      if (this.getWidgetsState.enabled_widgets.facebook.position == 2) {
+      if (this.getWidgetsState.enabled_widgets.facebook.position == 2 && this.getWidgetsState.enabled_widgets.facebook.enabled) {
         return "FbIcon";
-      }else if(this.getWidgetsState.enabled_widgets.whatsapp.position == 2){
+      }else if(this.getWidgetsState.enabled_widgets.whatsapp.position == 2 && this.getWidgetsState.enabled_widgets.whatsapp.enabled){
         return "WaIcon";
-      }else if(this.getWidgetsState.enabled_widgets.sms.position == 2){
+      }else if(this.getWidgetsState.enabled_widgets.sms.position == 2 && this.getWidgetsState.enabled_widgets.sms.enabled){
         return "SmsIcon";
       }
     },
     getTabHeader3() {
-      if (this.getWidgetsState.enabled_widgets.facebook.position == 3) {
+      if (this.getWidgetsState.enabled_widgets.facebook.position == 3 && this.getWidgetsState.enabled_widgets.facebook.enabled) {
         return "FbIcon";
-      }else if(this.getWidgetsState.enabled_widgets.whatsapp.position == 3){
+      }else if(this.getWidgetsState.enabled_widgets.whatsapp.position == 3 && this.getWidgetsState.enabled_widgets.whatsapp.enabled){
         return "WaIcon";
-      }else if(this.getWidgetsState.enabled_widgets.sms.position == 3){
+      }else if(this.getWidgetsState.enabled_widgets.sms.position == 3 && this.getWidgetsState.enabled_widgets.sms.enabled){
         return "SmsIcon";
       }
     },
@@ -867,7 +1632,9 @@ export default {
     getTabKeyFb() {
       return this.getWidgetsState.enabled_widgets.facebook.position - 1;
     },
-
+    getTabKeyWa(){
+      return this.getWidgetsState.enabled_widgets.whatsapp.position-1;
+    },
     wdgtIsDsc() {
       return this.getWidgetsState.subscribe_type != "default";
     },

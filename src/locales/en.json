@@ -378,7 +378,7 @@
     "ON": "ON",
     "OFF": "OFF",
     "smsCartRecovery": "SMS Cart Recovery:",
-    "waCartRecovery": "Whatsapp Cart Recovery:",
+    "waCartRecovery": "WhatsApp Cart Recovery:",
     "fbCartRecovery": "Facebook Cart Recovery:",
     "howToTurnOn": "How to turn ON?"
   },
@@ -388,7 +388,7 @@
     "smsInstruction1": "Add your phone number in Settings.",
     "smsInstruction2": "Activate at least one SMS Campaign.",
     "smsInstruction3": "Activate site Popup Widget and enable SMS.",
-    "waTitle": "How to turn on Whatsapp Cart Recovery?",
+    "waTitle": "How to turn on WhatsApp Cart Recovery?",
     "waInstruction1": "Add your phone number in Settings.",
     "waInstruction2": "Activate at least one Whatsapp Campaign.",
     "waInstruction3": "Activate site Popup Widget and enable WhatsAPP.",

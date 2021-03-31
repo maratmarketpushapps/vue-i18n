@@ -162,6 +162,11 @@ export default {
 </script>
 
 <style>
+/*.v-tab:focus {*/
+/*  background-color: transparent !important;*/
+/*  cursor: inherit;*/
+/*}*/
+
 .vti__dropdown:visited{
   background-color: yellow !important;
 }
