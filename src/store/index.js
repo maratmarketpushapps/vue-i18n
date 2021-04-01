@@ -719,6 +719,12 @@ export default new Vuex.Store({
         state.widgetVars.enabled_widgets.sms.position =
           coneData[2].id;
       }
+      if (coneData[0].enabled == false){
+          coneData[0].position = 3
+          coneData[1].positions = 1
+          coneData[2].position = 2
+        alert('aas')
+      }
     },
     SET_WDGT_HDR_TXT(state, txt) {
       txt == state.widgetVars.pop_up_title

@@ -1397,7 +1397,14 @@ export default {
       optinNum: "",
       tab: null,
       wdgtTabKey: 0,
+      keyDependPosit:1
     };
+  },
+  mounted(){
+    // if(this.getTabHeader1 == undefined){
+    //   this.keyDependPosit = 2;
+    // }
+    // console.log(this.keyDependPosit)
   },
   methods: {
     incrBtnId() {
@@ -1626,14 +1633,17 @@ export default {
       }
     },
     getTabKeySMS() {
-      return this.getWidgetsState.enabled_widgets.sms.position - 1;
+      return this.getWidgetsState.enabled_widgets.sms.position
+        - this.keyDependPosit;
     },
 
     getTabKeyFb() {
-      return this.getWidgetsState.enabled_widgets.facebook.position - 1;
+      return this.getWidgetsState.enabled_widgets.facebook.position
+        - this.keyDependPosit;
     },
     getTabKeyWa(){
-      return this.getWidgetsState.enabled_widgets.whatsapp.position-1;
+      return this.getWidgetsState.enabled_widgets.whatsapp.position
+        - this.keyDependPosit;
     },
     wdgtIsDsc() {
       return this.getWidgetsState.subscribe_type != "default";
@@ -1657,7 +1667,17 @@ export default {
   watch: {
     getTabHeader1(newValue) {
       console.log("new value of header 1 ::" + newValue);
-      // this.wdgtTabKey++;
+      //
+      // if(newValue != undefined){
+      //   this.wdgtTabKey+3;
+      //   // this.keyDependPosit = 1
+      //   // alert(this.keyDependPosit)
+      // }else if(newValue == undefined ){
+      //   // alert(newValue)
+      //   // alert(oldValue)
+      //   this.keyDependPosit = 2;
+      //   // alert(this.keyDependPosit)
+      // }
     },
     getTabHeader2(newValue) {
       console.log("new value of header 1 ::" + newValue);
