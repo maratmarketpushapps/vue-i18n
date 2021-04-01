@@ -603,6 +603,12 @@ export default new Vuex.Store({
       state.widgetVars.apply_discount_instruction = txt;
     },
     SAVE_WIDGET_CHECKBOX(state, coneData) {
+      if (coneData[0].connection == false){
+        coneData[0].id = 3
+        coneData[1].id = 1
+        coneData[2].id = 2
+        alert('aas')
+      }
       state.widgetVars.changesSaved = false;
       if (coneData[0].title.toUpperCase() == "SMS" && coneData[1].title.toUpperCase() == "FACEBOOK") {
         state.widgetVars.enabled_widgets.sms.title =
@@ -719,12 +725,8 @@ export default new Vuex.Store({
         state.widgetVars.enabled_widgets.sms.position =
           coneData[2].id;
       }
-      if (coneData[0].enabled == false){
-          coneData[0].position = 3
-          coneData[1].positions = 1
-          coneData[2].position = 2
-        alert('aas')
-      }
+      console.log(coneData)
+
     },
     SET_WDGT_HDR_TXT(state, txt) {
       txt == state.widgetVars.pop_up_title
