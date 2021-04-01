@@ -607,8 +607,23 @@ export default new Vuex.Store({
         coneData[0].id = 3
         coneData[1].id = 1
         coneData[2].id = 2
-        alert('aas')
       }
+      if(coneData[0].connection == true){
+        coneData[0].id = 1
+        coneData[1].id = 2
+        coneData[2].id = 3
+      }
+      // if (coneData[1].connection == false){
+      //   coneData[0].id = 1
+      //   coneData[1].id = 3
+      //   coneData[2].id = 2
+      //   // alert('second')
+      // }
+      // if(coneData[1].connection == true){
+      //   coneData[0].id = 1
+      //   coneData[1].id = 2
+      //   coneData[2].id = 3
+      // }
       state.widgetVars.changesSaved = false;
       if (coneData[0].title.toUpperCase() == "SMS" && coneData[1].title.toUpperCase() == "FACEBOOK") {
         state.widgetVars.enabled_widgets.sms.title =
