@@ -968,7 +968,7 @@ export default {
         this.popup_triggers_add_to_cart == false && this.popup_triggers_exit_intent == false ? this.triggerMustBe = true : this.triggerMustBe = false
         if(this.triggerMustBe == false){
           this.discCodeNotValid = false;this.triggerMustBe = false
-          if(this.coneData[0].connection == true || this.coneData[1].connection == true){
+          if(this.coneData[0].connection == true || this.coneData[1].connection == true || this.coneData[2].connection == true){
             this.def_selected == null || this.def_selected == false || this.def_selected == ""
               ? this.subscribe_type = "subscribe" : this.subscribe_type = "default"
             let objWidg = {
