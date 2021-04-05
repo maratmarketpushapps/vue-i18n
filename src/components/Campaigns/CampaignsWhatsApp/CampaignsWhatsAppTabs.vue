@@ -14,7 +14,7 @@
         </v-col>
       </v-col>
       <v-col cols="5" class="py-0" style="padding-left: 2%">
-<!--        <CampaignView />-->
+        <CampaignView />
       </v-col>
     </v-row>
   </v-container>
@@ -24,14 +24,14 @@
 //
 import AbandonedCarts1 from "@/components/Campaigns/CampaignsWhatsApp/WhatsAppAbandonedCarts1.vue";
 import AbandonedCarts2 from "@/components/Campaigns/CampaignsWhatsApp/WhatsAppAbandonedCarts2.vue";
-//import CampaignView from "@/components/Campaigns/CampaignsSMS/WhatsAppCampaignView.vue";
+import CampaignView from "@/components/Campaigns/CampaignsWhatsApp/WhatsAppCampaignView.vue";
 
 export default {
   name: "CampaignTabsWhatsApp",
   components: {
     AbandonedCarts1,
     AbandonedCarts2,
-    // CampaignView,
+    CampaignView,
   },
   data() {
     return {

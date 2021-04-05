@@ -133,18 +133,18 @@ export default new Vuex.Store({
       wa_abandoned_cart_1: {
         active: "",
         sent_after: "",
-        discount_cupon:false,
+        discount_coupon_enabled:false,
         discount_value:'',
         discount_coupon:'',
-        SelectedLanguage:'English',
+        selected_language:'English',
       },
       wa_abandoned_cart_2: {
         active: "",
         sent_after: "",
-        discount_cupon:false,
+        discount_coupon_enabled:false,
         discount_value:'',
         discount_coupon:'',
-        SelectedLanguage:'English',
+        selected_language:'English',
       },
       sms_abandoned_cart_1: {
         active: "",
@@ -215,6 +215,8 @@ export default new Vuex.Store({
     dashVars: {
       campaigns: {
         total_messages: 0,
+        wa_recovery_messages_nr1_sent:0,
+        wa_recovery_messages_nr2_sent:0,
         sms_recovery_messages_nr1_sent: 0,
         sms_recovery_messages_nr2_sent: 0,
         fb_recovery_messages_nr1_sent: 0,
@@ -234,6 +236,7 @@ export default new Vuex.Store({
         total_recovered: 0,
         abandoned_carts: 0,
         sms_subscribers: 0,
+        wa_subscribers: 0,
         facebook_subscribers: 0,
         carts_recovered: 0,
       },
@@ -403,7 +406,6 @@ export default new Vuex.Store({
     // Displays the modal with the cart recovery steps.
     UPDATE_CART_RECOVERY_MODAL_SHOW(state, obj) {
       console.log("called " + obj.type + " " + obj.status);
-      console.log(state.setupCompletedVars[obj.type + "ShowCartRecoveryStepsModal"])
       state.setupCompletedVars[obj.type + "ShowCartRecoveryStepsModal"] =
         obj.status;
     },
@@ -740,8 +742,6 @@ export default new Vuex.Store({
         state.widgetVars.enabled_widgets.sms.position =
           coneData[2].id;
       }
-      console.log(coneData)
-
     },
     SET_WDGT_HDR_TXT(state, txt) {
       txt == state.widgetVars.pop_up_title
@@ -919,17 +919,17 @@ export default new Vuex.Store({
       // /* whatsapp values */
       state.msgVars.wa_abandoned_cart_1.active = obj.wa_abandoned_cart_1.active;
       state.msgVars.wa_abandoned_cart_1.sent_after = obj.wa_abandoned_cart_1.sent_after;
-      state.msgVars.wa_abandoned_cart_1.discount_cupon = obj.wa_abandoned_cart_1.discount_cupon;
+      state.msgVars.wa_abandoned_cart_1.discount_coupon_enabled = obj.wa_abandoned_cart_1.discount_cupon;
       state.msgVars.wa_abandoned_cart_1.discount_value = obj.wa_abandoned_cart_1.discount_value
       state.msgVars.wa_abandoned_cart_1.discount_coupon = obj.wa_abandoned_cart_1.discount_coupon
-      state.msgVars.wa_abandoned_cart_1.SelectedLanguage  = obj.wa_abandoned_cart_1.SelectedLanguage;
+      state.msgVars.wa_abandoned_cart_1.selected_language  = obj.wa_abandoned_cart_1.SelectedLanguage;
 
       state.msgVars.wa_abandoned_cart_2.active = obj.wa_abandoned_cart_2.active;
       state.msgVars.wa_abandoned_cart_2.sent_after = obj.wa_abandoned_cart_2.sent_after;
-      state.msgVars.wa_abandoned_cart_2.discount_cupon = obj.wa_abandoned_cart_2.discount_cupon;
+      state.msgVars.wa_abandoned_cart_2.discount_coupon_enabled = obj.wa_abandoned_cart_2.discount_cupon;
       state.msgVars.wa_abandoned_cart_2.discount_value = obj.wa_abandoned_cart_2.discount_value
       state.msgVars.wa_abandoned_cart_2.discount_coupon = obj.wa_abandoned_cart_2.discount_coupon
-      state.msgVars.wa_abandoned_cart_2.SelectedLanguage  = obj.wa_abandoned_cart_2.SelectedLanguage;
+      state.msgVars.wa_abandoned_cart_2.selected_language  = obj.wa_abandoned_cart_2.SelectedLanguage;
 
       // /* comment */
       // state.msgVars.wa_abandoned_cart_2.active =
@@ -1065,18 +1065,18 @@ export default new Vuex.Store({
     wa_SET_ORDR_ABANDONED_CART(state, obj) {
         state.msgVars.wa_abandoned_cart_1.active = obj.active;
         state.msgVars.wa_abandoned_cart_1.sent_after = obj.sent_after;
-        state.msgVars.wa_abandoned_cart_1.discount_cupon = obj.discount_cupon;
+        state.msgVars.wa_abandoned_cart_1.discount_coupon_enabled = obj.discount_cupon;
         state.msgVars.wa_abandoned_cart_1.discount_value = obj.discount_value
         state.msgVars.wa_abandoned_cart_1.discount_coupon = obj.discount_coupon
-        state.msgVars.wa_abandoned_cart_1.SelectedLanguage  = obj.SelectedLanguage;
+        state.msgVars.wa_abandoned_cart_1.selected_language  = obj.SelectedLanguage;
     },
     waSET_ORDR_ABANDONED_CART_2(state, obj) {
       state.msgVars.wa_abandoned_cart_2.active = obj.active;
       state.msgVars.wa_abandoned_cart_2.sent_after = obj.sent_after;
-      state.msgVars.wa_abandoned_cart_2.discount_cupon = obj.discount_cupon;
+      state.msgVars.wa_abandoned_cart_2.discount_coupon_enabled = obj.discount_cupon;
       state.msgVars.wa_abandoned_cart_2.discount_value = obj.discount_value
       state.msgVars.wa_abandoned_cart_2.discount_coupon = obj.discount_coupon
-      state.msgVars.wa_abandoned_cart_2.SelectedLanguage  = obj.SelectedLanguage;
+      state.msgVars.wa_abandoned_cart_2.selected_language  = obj.SelectedLanguage;
     },
     sms_second_SET_ORDR_ABANDONED_CART(state, obj) {
       state.msgVars.sms_abandoned_cart_2.intro_message = obj.intro_message;
@@ -1129,6 +1129,11 @@ export default new Vuex.Store({
       state.dashVars.campaigns.sms_recovery_messages_nr2_sent =
         obj.campaigns.sms_recovery_messages_nr2_sent;
 
+      state.dashVars.campaigns.wa_recovery_messages_nr1_sent =
+        obj.campaigns.wa_recovery_messages_nr1_sent;
+      state.dashVars.campaigns.wa_recovery_messages_nr2_sent =
+        obj.campaigns.wa_recovery_messages_nr2_sent;
+
       state.dashVars.carts_recovered.total_recovered =
         obj.carts_recovered.total_recovered;
       state.dashVars.carts_recovered.carts_recovered_percentage =
@@ -1149,6 +1154,8 @@ export default new Vuex.Store({
         obj.cart_recovery.abandoned_carts;
       state.dashVars.cart_recovery.sms_subscribers =
         obj.cart_recovery.sms_subscribers;
+      state.dashVars.cart_recovery.wa_subscribers =
+        obj.cart_recovery.whatsapp_subscribers;
       state.dashVars.cart_recovery.facebook_subscribers =
         obj.cart_recovery.facebook_subscribers;
       state.dashVars.cart_recovery.carts_recovered =

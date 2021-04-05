@@ -152,7 +152,16 @@
           </v-checkbox>
         </v-col>
 
-        <v-container class="py-0 mt-2">
+        <v-col cols="12" class="pl-0 ml-7 py-0 my-0" style="position: relative;top: -15px !important;">
+            <span class="smsNightTimeHint">
+              {{ $t("campaigns.whatsAppCampaigns.hintDiscountRow")}}
+            </span>
+          <span class="smsNightTimeHint" style="font-weight: bold">
+                {{ $t("campaigns.whatsAppCampaigns.hintDiscountRowBold")}}
+            </span>
+        </v-col>
+
+        <v-container class="py-0 mt-2" v-show="waDiscountCupon">
           <v-row class="py-0 ml-4">
             <v-col cols="12 "  class="px-0 py-0">
               <v-row  class="py-0 par_disc_fields wdg_disc_codes">
@@ -196,14 +205,7 @@
         </v-container>
 
         <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 mt-0 spc_bottom">
-          <v-col cols="12" class="pl-0 ml-0  py-0 my-0">
-            <span class="smsNightTimeHint">
-              {{ $t("campaigns.whatsAppCampaigns.hintDiscountRow")}}
-            </span>
-            <span class="smsNightTimeHint" style="font-weight: bold">
-                {{ $t("campaigns.whatsAppCampaigns.hintDiscountRowBold")}}
-            </span>
-          </v-col>
+
         </v-row>
         <!--        <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">-->
         <!--          <v-col class=" py-0 my-0 px-0">-->
@@ -562,8 +564,8 @@ export default {
 
     this.sent_after = this.$store.getters.wagetCartsSec.sent_after + " hour";
     this.ordrAbndCrtSwitchLive = this.$store.getters.wagetCartsSec.active;
-    this.SelectedLanguage = this.$store.getters.wagetCartsSec.SelectedLanguage;
-    this.waDiscountCupon = this.$store.getters.wagetCartsSec.discount_cupon;
+    this.SelectedLanguage = this.$store.getters.wagetCartsSec.selected_language;
+    this.waDiscountCupon = this.$store.getters.wagetCartsSec.discount_coupon_enabled;
     this.discount_value = this.$store.getters.wagetCartsSec.discount_value;
     this.discount_coupon = this.$store.getters.wagetCartsSec.discount_coupon;
 

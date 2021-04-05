@@ -99,15 +99,15 @@
             <!--            && !detectEuRegion-->
             <!--            v-if="getTwoRight"-->
             <v-tabs v-model="tab" light centered color="transparent" :style="bdyColor" :background-color="getBgWidgCheckBody">
-              <v-tab light :style="bdyColor" v-if="getTabHeader1">
+              <v-tab light :style="bdyColor" v-if="getTabHeader1" :class="tab != 0 ? 'opacPresent' : '' ">
                 <!--                v-if="getWidgetsState.enabled_widgets.keTabHeader1.enabled"-->
                 <component v-bind:is="getTabHeader1"></component>
               </v-tab>
-              <v-tab light :style="bdyColor" v-if="getTabHeader2">
+              <v-tab light :style="bdyColor" v-if="getTabHeader2" :class="tab != 1 ? 'opacPresent' : '' ">
                 <!--                v-if="getWidgetsState.enabled_widgets.keTabHeader2.enabled"-->
                 <component v-bind:is="getTabHeader2"></component>
               </v-tab>
-              <v-tab light :style="bdyColor" v-if="getTabHeader3">
+              <v-tab light :style="bdyColor" v-if="getTabHeader3" :class="tab != 2 ? 'opacPresent' : '' ">
                 <!--                v-if="getWidgetsState.enabled_widgets.keTabHeader3.enabled"-->
                 <component v-bind:is="getTabHeader3"></component>
               </v-tab>
@@ -1211,8 +1211,7 @@
                     <v-col style="width:100%; " align="center" class="px-0 py-0" :style="bdyColor">
                       <v-col cols="12" class="px-0 py-0" :style="bdyColor">
                         <v-tabs-items v-model="tab" style="width:100%">
-                          <v-tab-item :value="getTabKeySMS" style="width:100%" class="pl-0 py-5" :style="bdyColor" disabled>
-
+                          <v-tab-item :value="getTabKeySMS" style="width:100%" class="pl-0 py-5" :style="bdyColor" disabled >
                             <vue-tel-input
                               v-model="optinNum"
                               dark
@@ -1224,8 +1223,7 @@
                             >
                             </vue-tel-input>
                           </v-tab-item>
-
-                          <v-tab-item :value="getTabKeyFb" :style="bdyColor">
+                          <v-tab-item :value="getTabKeyFb" :style="bdyColor" >
                             <v-row
                               style="width:100%;height:auto"
                               align="center"
@@ -1271,7 +1269,7 @@
                             </v-row>
                             <v-row style="height:40%; width:100%"> </v-row>
                           </v-tab-item>
-                          <v-tab-item :value="getTabKeyWa">
+                          <v-tab-item :value="getTabKeyWa" >
                               <vue-tel-input
                             v-model="optinNum"
                             dark
@@ -1700,6 +1698,9 @@ export default {
 </script>
 
 <style scoped>
+.opacPresent{
+  opacity: 0.5 !important;
+}
 .wdg_view_Check_box .ovr_pd{
   padding: 8px 15px !important;
 }

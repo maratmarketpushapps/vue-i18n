@@ -55,6 +55,8 @@
       "totalMsg": "Total Messages Sent",
       "smsRecov1Msg": "SMS Recovery Message #1 Sent",
       "smsRecov2Msg": "SMS Recovery Message #2 Sent",
+      "waRecov1Msg": "WhatsApp Recovery Message #1 Sent",
+      "wsRecov2Msg": "WhatsApp Recovery Message #2 Sent",
       "fbRecov1Msg": "Facebook Recovery Message #1 Sent",
       "fbRecov2Msg": "Facebook Recovery Message #2 Sent",
       "infoconMsg": "How many times each message type was sent within the selected time period."
@@ -78,6 +80,7 @@
       "recovLabel": "Recovered Carts",
       "abndndLabel": "Abandoned Carts",
       "smsLabel": "SMS Subscribers",
+      "waLabel": "WhatsApp Subscribers",
       "fbLabel": "Facebook Subscribers"
     }
   },
@@ -200,7 +203,7 @@
     "tooltip": {
       "sms": "SMS Campaigns",
       "facebook": "Facebook Campaigns",
-      "wa": "Whatsapp Campaigns"
+      "wa": "WhatsApp Campaigns"
     }
   },
   "widgets": {

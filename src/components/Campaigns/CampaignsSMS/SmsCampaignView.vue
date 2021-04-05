@@ -71,9 +71,6 @@ export default {
   name: "CampaignView",
   data() {
     return {
-      headerImg: require("@/assets/img/campaign-view-header.png"),
-      logoImg: require("@/assets/img/campaign-view-page-logo.png"),
-      footerImg: require("@/assets/img/campaign-view-footer.png"),
       dialog: false,
     };
   },
