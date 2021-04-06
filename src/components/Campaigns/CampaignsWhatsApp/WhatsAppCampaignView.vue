@@ -2,6 +2,7 @@
   <v-col cols="12" class="my-0 py-0 ">
     <v-card
       class="cv_font_dims br_rad"
+      style="background-color: #E0E0E0 !important;"
     >
       <v-row class="px-0 mx-0 py-0 my-0" @click="toggleDialog()">
         <v-img src="@/assets/img/whatsappCampaigns/header.png"></v-img>
@@ -40,13 +41,14 @@
 
       <v-row
         class="d-flex justify-end ml-10"
-        style="margin-top:80px"
+        style="margin-top:80px;"
         @click="toggleDialog()"
+
       >
         <v-col cols="11" class=" pa-0">
           <v-container
             fluid
-            style="background-color:#F0F1F2;height:auto;border-radius: 15px 15px 15px 15px; "
+            style="height:auto;border-radius: 15px 15px 15px 15px; "
             class="pa-0"
           >
             <v-row style="height:79%; width:100%">
