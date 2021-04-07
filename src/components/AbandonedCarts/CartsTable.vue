@@ -98,20 +98,25 @@ export default {
             (header) => header.value !== "phone"
           );
           this.currentData = this.currentData.filter(
-            (item) => item.channel !== "SMS"
+            (item) => item.channel.toUpperCase() !== "SMS" && item.channel.toUpperCase() !== "WHASTAPP"
           );
           break;
         case "SMS":
           // this.headers = this.headers.filter(header => header.value !== 'channel')
           this.currentData = this.items.filter(
-            (oneitem) => oneitem.channel !== "Facebook"
+            (oneitem) => oneitem.channel.toUpperCase() !== "FACEBOOK" && oneitem.channel.toUpperCase() !== "WHASTAPP"
+          );
+          break;
+        case "Whatsapp":
+          // this.headers = this.headers.filter(header => header.value !== 'channel')
+          this.currentData = this.items.filter(
+            (oneitem) => oneitem.channel.toUpperCase() !== "FACEBOOK" &&  oneitem.channel.toUpperCase() !== "SMS"
           );
           break;
         default:
           this.headers = this.currentHeader;
           break;
       }
-
       this.tableKey++;
     },
     subSelType(newVal) {
@@ -121,19 +126,26 @@ export default {
       this.forceRerender();
       this.headers = this.currentHeader;
       this.currentData = this.items;
+
       switch (newVal) {
         case "Facebook":
           this.headers = this.headers.filter(
-            (header) => header.value !== "phone"
+            (header) => header.value.toUpperCase() !== "PHONE"
           );
           this.currentData = this.currentData.filter(
-            (item) => item.channel !== "SMS"
+            (item) => item.channel.toUpperCase() !== "SMS" && item.channel.toUpperCase() !== "WHASTAPP"
           );
           break;
         case "SMS":
           // this.headers = this.headers.filter(header => header.value !== 'channel')
           this.currentData = this.items.filter(
-            (oneitem) => oneitem.channel !== "Facebook"
+            (oneitem) => oneitem.channel.toUpperCase() !== "FACEBOOK" && oneitem.channel.toUpperCase() !== "WHASTAPP"
+          );
+          break;
+        case "WhatsApp":
+          // this.headers = this.headers.filter(header => header.value !== 'channel')
+          this.currentData = this.items.filter(
+            (oneitem) => oneitem.channel.toUpperCase() !== "FACEBOOK" && oneitem.channel.toUpperCase() !== "SMS"
           );
           break;
         default:

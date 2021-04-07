@@ -9,7 +9,7 @@
           align="center"
           justify="start"
         >
-          <h3 class="title_top_size">{{ $t("campaigns.wacarts1.headerTxt") }}</h3>
+          <h3 class="title_top_size">{{ $t("campaigns.wacarts1.headerTxtSecond") }}</h3>
         </v-row>
         <v-row style="height: 19%; width: 100%" justify="start" align="center" class="pl-6 pt-0">
           <span>
@@ -115,7 +115,6 @@
             <v-select
               :label="$t('campaigns.wacarts1.selectLabelLanguage')"
               :items="languageList"
-
               v-model="SelectedLanguage"
               dense
               style="font-size:110%"
@@ -125,7 +124,7 @@
           </v-col>
         </v-row>
         <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
-          <v-col cols="12" class="pl-0 ml-0  py-0 my-0">
+          <v-col cols="12" class="pl-0 ml-0  py-0 mb-0 mt-1">
             <span class="smsNightTimeHint">
               {{ $t("campaigns.waLanguageSelHint")}}
             </span>

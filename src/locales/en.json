@@ -31,7 +31,7 @@
       "item3": "LAST 30 DAYS",
       "item4": "CUSTOM RANGE"
     },
-    "TypeForSel": ["All Channels","SMS","Facebook"],
+    "TypeForSel": ["All Channels","SMS","WhatsApp","Facebook"],
     "selectedType": "All Channels",
     "dataTab": {
       "headers": {
@@ -53,11 +53,13 @@
     "card1": {
       "header": "Campaigns",
       "totalMsg": "Total Messages Sent",
-      "smsRecov1Msg": "SMS Recovery Message #1 Sent",
+      "smsRecov1Msg": "SMS Recovery Message ",
       "smsRecov2Msg": "SMS Recovery Message #2 Sent",
-      "waRecov1Msg": "WhatsApp Recovery Message #1 Sent",
+      "waRecov1Msg": "WhatsApp Recovery Message ",
       "wsRecov2Msg": "WhatsApp Recovery Message #2 Sent",
-      "fbRecov1Msg": "Facebook Recovery Message #1 Sent",
+      "fbRecov1Msg": "Facebook Recovery Message ",
+      "Recov1MsgNumberOne": " #1",
+      "Recov1MsgNumberTwo": " #2",
       "fbRecov2Msg": "Facebook Recovery Message #2 Sent",
       "infoconMsg": "How many times each message type was sent within the selected time period."
     },
@@ -152,6 +154,7 @@
     },
     "wacarts1": {
       "headerTxt": "Set Live Whatsapp Abandoned Cart Message #1",
+      "headerTxtSecond": "Set Live Whatsapp Abandoned Cart Message #2",
       "selectLabelLanguage": "Message language",
       "sendAfter": "How much time should pass before sending this message.",
       "iconTxt": "EDIT MESSAGE",
@@ -393,7 +396,7 @@
     "smsInstruction3": "Activate site Popup Widget and enable SMS.",
     "waTitle": "How to turn on WhatsApp Cart Recovery?",
     "waInstruction1": "Add your phone number in Settings.",
-    "waInstruction2": "Activate at least one Whatsapp Campaign.",
+    "waInstruction2": "Activate at least one WhatsApp Campaign.",
     "waInstruction3": "Activate site Popup Widget and enable WhatsAPP.",
     "fbTitle": "How to turn ON Facebook Cart Recovery?",
     "fbInstruction1": "Connect your Facebook Page.",
