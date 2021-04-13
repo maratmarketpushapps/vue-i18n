@@ -1,6 +1,6 @@
 <template>
-  <v-app>
-    <v-content class="app_background app-style pl-0" style="height:auto">
+  <v-app class="width_overflow">
+    <v-content class="app_background app-style pl-0 " style="height:auto">
       <NavDrawer />
       <AppBar class="app_bar_height" />
 
@@ -269,4 +269,10 @@ export default {
     font-size: 85% !important;
   }
 }
+@media (max-width: 1000px) {
+  .width_overflow {
+    overflow: scroll !important;
+  }
+}
+
 </style>

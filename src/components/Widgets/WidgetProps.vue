@@ -78,19 +78,35 @@
             <v-col class="pt-0 d-flex justify-end Eu_hint_NotAv">
               <span v-if="detectEuRegion && ite.title == 'Facebook'">{{ $t("widgets.notAvEU") }}</span>
             </v-col>
-            <v-col  cols="1 " class="pb-0 cursor_pointer" justify="end" :class="detectEuRegion ? 'disabled_display pt-0' : ''">
-              <div
-               class="tpMove"
-                @click="tpMove(coneData,ke,ke == 0 ?  2 : ke == 1 ?  -2 : -1)"
-              >.
-<!--                @click="array_move(coneData,ke,ke + 2 > 2 ?  1 :  2 )"-->
-<!--                @click="array_move(coneData,ke,ke + 2 > 2 ?  1 :  2 )" style="height: 15px !Important"-->
-              </div>
-              <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px"  :class="detectEuRegion ? 'fix_image_pos' : ''"
-                     v-if="(ite.title !== 'Facebook' && detectEuRegion == true) ||detectEuRegion == false"
-                     style="position: relative;top:-19px !important;"
-              ></v-img>
-              <div class="bottomMove"  @click="btMove(coneData,ke,ke == 0 ?  1 : ke == 1 ?  2 : 0)">.</div>
+            <v-col  cols="1 " class="pl-0 pr-0 pb-0 pt-2" justify="end" :class="detectEuRegion ? 'disabled_display pt-0' : ''" style="height: 35px !important;">
+              <!--                @click="array_move(coneData,ke,ke + 2 > 2 ?  1 :  2 )"-->
+              <!--                @click="array_move(coneData,ke,ke + 2 > 2 ?  1 :  2 )" style="height: 15px !Important"-->
+<!--              /* event click top*/-->
+<!--              <div-->
+<!--               class="tpMove"-->
+<!--                @click="tpMove(coneData,ke,ke == 0 ?  2 : ke == 1 ?  -2 : -1)"-->
+<!--              >-->
+<!--              </div>-->
+              <v-row aligns="center" justify="center" :class="activeIconArrow ? 'arrow_icon_fill' : ''" @focus="activeIconArrow = true"
+                      @mouseenter="activeIconArrow = true" @mouseleave="activeIconArrow = false"
+                     style="height:11px !important;" @click="tpMove(coneData,ke,ke == 0 ?  2 : ke == 1 ?  -2 : -1)">
+                <arrow-up />
+              </v-row>
+              <v-row style="height: 5px"></v-row>
+              <v-row aligns="center" justify="center" :class="activeIconArrowSecond ? 'arrow_icon_fill' : ''" @focus="activeIconArrowSecond = true"
+                     @mouseenter="activeIconArrowSecond = true" @mouseleave="activeIconArrowSecond = false"
+                     style="height:11px !important;" @click="btMove(coneData,ke,ke == 0 ?  1 : ke == 1 ?  2 : 0)">
+                <arrow-down  />
+              </v-row>
+
+<!--            /* image arrow previous*/-->
+<!--              <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px"  :class="detectEuRegion ? 'fix_image_pos' : ''"-->
+<!--                     v-if="(ite.title !== 'Facebook' && detectEuRegion == true) ||detectEuRegion == false"-->
+<!--                     style="position: relative;top:-19px !important;"-->
+<!--              ></v-img>-->
+
+<!--              /*event click bottom */-->
+<!--              <div class="bottomMove"  @click="btMove(coneData,ke,ke == 0 ?  1 : ke == 1 ?  2 : 0)">.</div>-->
             </v-col>
           </v-col>
         </v-col>
@@ -819,12 +835,16 @@
 
 <script>
 import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
+import ArrowUp from "@/assets/icons/GetSub/arrow-up-inactiv.svg";
+import ArrowDown from "@/assets/icons/GetSub/arrow-down-inactiv.svg";
 import ColorSelect from "@/components/GlobalComponents/ColorSelect.vue";
 import { mapGetters } from "vuex";
 
 export default {
   name: "WidgetProps",
-  components: { TooltipIcon, ColorSelect },
+  components: { TooltipIcon, ColorSelect
+    ,ArrowUp,ArrowDown
+  },
   data() {
     return {
       live: false,
@@ -907,6 +927,8 @@ export default {
       popup_triggers_add_to_cart:false,
       popup_triggers_exit_intent:false,
       triggerMustBe:false,
+      activeIconArrow:false,
+      activeIconArrowSecond:false,
     };
   },
   methods: {
@@ -1489,6 +1511,10 @@ export default {
 /*  text-overflow: ellipsis;*/
 /*  white-space: nowrap;*/
 /*}*/
+.arrow_icon_fill path{
+  /*fill:#5686F6 !important;*/
+  stroke:#5686F6 !important;
+}
 .wdg_disc_codes .v-label{
   display: block !important;
   width: 135% !important;

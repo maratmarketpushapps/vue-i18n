@@ -3,10 +3,11 @@
     <v-navigation-drawer
       app
       permanent
-      class="right-shadow sidebar_background drawer-dims"
+      class="right-shadow sidebar_background drawer-dims naw_drawer_width"
       mini-variant
       mini-variant-width="6vw"
     >
+<!--      mini-variant-width="7vw"-->
       <v-list-item class="logo_background pa-0 ma-0">
         <v-list-item-content class="pa-0 ma-0">
           <router-link to="/dashboard">
@@ -182,7 +183,46 @@ export default {
     font-size: 12px !important;
   }
 }
+
 </style>
+
+<style scoped>
+.naw_drawer_width{
+  min-width: 6vw !Important;
+}
+@media only screen and (max-width: 1099px) {
+  .naw_drawer_width {
+    min-width: 7vw !important;
+  }
+}
+@media only screen and (max-width: 999px) {
+  .naw_drawer_width {
+    min-width: 8vw !important;
+  }
+}
+@media only screen and (max-width: 899px) {
+  .naw_drawer_width {
+    min-width: 9vw !important;
+  }
+}
+@media only screen and (max-width: 799px) {
+  .naw_drawer_width {
+    min-width: 10vw !important;
+  }
+  .span-prop{
+    font-size: 10px !important;
+  }
+}
+@media only screen and (max-width: 599px) {
+  .naw_drawer_width {
+    min-width: 12vw !important;
+  }
+  .span-prop{
+    font-size: 10px !important;
+  }
+}
+</style>
+
 <style>
 
 .cmp_sec:hover{
@@ -292,4 +332,9 @@ export default {
   }
 }
 
+@media only screen and (max-width: 799px) {
+  .span-prop{
+    font-size: 10px !important;
+  }
+}
 </style>
