@@ -5,7 +5,7 @@
         <v-tabs
           background-color="transparent"
           v-model="tab"
-          class="pa-0 mt-0 tabs-color tab-size"
+          class="pa-0 no_pr mt-0 tabs-color tab-size"
           active-class="tab-item-color-active"
         >
           <v-tab class="font_dims" key="1" @click="refreshComp1()">
@@ -42,6 +42,7 @@
               </v-tab>
             </template>
             <v-date-picker
+              v-show="menuReady"
               v-model="custDates"
               color="grey-ligten-4"
               scrollable
@@ -141,7 +142,15 @@ export default {
       itemKeyDat2: 0,
       itemKeyDat3: 0,
       activeTab: "2",
+      menuReady:false,
     };
+  },
+  watch:{
+    menu(newValue){
+      if(newValue == true){
+        setTimeout(()=> this.menuReady = true,1300)
+      }
+    }
   },
   methods: {
     incrTabCount() {

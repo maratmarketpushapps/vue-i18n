@@ -222,6 +222,7 @@ export default {
     subSelType() {
       return this.getSubType;
     },
+
   },
 };
 </script>

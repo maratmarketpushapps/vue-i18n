@@ -15,9 +15,9 @@
       this.$vuetify.breakpoint.width > 1350 && showUpgrade == false ? '3' : this.$vuetify.breakpoint.width < 1400 && showUpgrade == false ? '2' : ''"
              ></v-col>
 <!--      v-if="showUpgrade"-->
-      <v-col class="py-0 d-flex hgt_fix justify-end align-center" :class="this.$vuetify.breakpoint.width < 1120 ? 'px-0' : ''"
+      <v-col class="py-0 d-flex hgt_fix justify-end align-center " :class="this.$vuetify.breakpoint.width < 1120 ? 'px-0' : ''"
              :cols=" this.$vuetify.breakpoint.width < 950 ? '7' : ''">
-        <CartRecoveryStatus recoveryType="sms" v-show="getstatusCartReady == true"  :class="this.$vuetify.breakpoint.width < 1120 ? 'px-0' : ''" />
+        <CartRecoveryStatus recoveryType="sms" class="mobileCpcLeft" v-show="getstatusCartReady == true"  :class="this.$vuetify.breakpoint.width < 1120 ? 'px-0' : ''" />
         <CartRecoveryStatus recoveryType="wa" v-show="getstatusCartReady == true"  :class="this.$vuetify.breakpoint.width < 1120 ? 'px-0' : ''" />
         <CartRecoveryStatus recoveryType="fb" v-show="getstatusCartReady == true"  :class="this.$vuetify.breakpoint.width < 1120 ? 'px-0' : ''" />
       </v-col>
@@ -209,7 +209,6 @@ a {
   .step-item-font {
     font-size: 90%;
   }
-
   .button-dims {
     height: 100% !important;
     width: 70% !important;
@@ -225,5 +224,10 @@ a {
 }
 .hgt_fix{
   height: 72px !important;
+}
+@media (max-width: 950px) {
+  .mobileCpcLeft{
+    margin-left: 280px !important;
+  }
 }
 </style>

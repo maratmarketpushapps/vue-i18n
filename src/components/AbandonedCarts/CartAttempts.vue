@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row justify="end">
-      <v-col cols="auto">
+      <v-col cols="auto" class="no_pr">
         <v-row class="font_dims" justify="end" :class="colorBody == true ? 'txt_red' : '' "> {{ header }}</v-row>
         <v-row class="font_dims" justify="end" v-if="!colorBody">{{ body }}</v-row>
         <v-row class="font_dims txt_red" justify="end" v-if="colorBody" >{{ this.$t("settingsPage.upgradeCard.attemptsLeft") }}</v-row>

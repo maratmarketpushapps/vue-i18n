@@ -1,6 +1,6 @@
 <template>
-  <v-app class="width_overflow">
-    <v-content class="app_background app-style pl-0 " style="height:auto">
+  <v-app class="width_overflow no_pr">
+    <v-content class="app_background app-style pl-0 no_pr" style="height:auto">
       <NavDrawer />
       <AppBar class="app_bar_height" />
 
@@ -45,13 +45,14 @@
       </v-row>
 
       <v-row style="height:auto width: 100%;" v-if="!modal_technical_support">
-        <v-col cols="12" class="pb-0">
-          <v-row style="height:4vh">
-            <v-col cols="12"> </v-col>
-          </v-row>
+        <v-col cols="12" class="pb-0 no_pr">
+<!--          /* by andra task*/-->
+<!--          <v-row style="height:4vh">-->
+<!--            <v-col cols="12" class="no_pr"> </v-col>-->
+<!--          </v-row>-->
           <v-row align="center" justify="center">
-            <v-col cols="auto" style="width: 6vw;"> </v-col>
-            <v-col cols="12" class="px-0 pb-0">
+            <v-col cols="auto" style="width: 6vw;" class="no_pr"> </v-col>
+            <v-col cols="12" class="px-0 no_pr pb-0">
               <v-row v-show="!isLoading">
                 <transition name="rtr">
                   <router-view></router-view>

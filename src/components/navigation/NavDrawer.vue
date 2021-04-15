@@ -45,6 +45,7 @@
             @click="setSelected('Widgets'),campingsMenu = false,campaignsList = false"
             @mouseenter="setHover('Widgets')"
             @mouseleave="setHover('')"
+            @focusout="campingsMenu = false"
             to="/widgets"
             >
             <v-icon class="navicon_scale"
@@ -52,27 +53,33 @@
             ></v-list-item
           >
 
-          <v-menu right offset-x  :open-on-hover="campingsMenu" :menu-props="{ 'margin-top': '0px !important'}">
+          <v-menu right offset-x  :open-on-hover="campingsMenu" :menu-props="{ 'margin-top': '0px !important'}" >
             <template v-slot:activator="{ on, attrs }" >
-              <v-list-item
-                class="list-dim campaigns_section "
-                :class="[campingsMenu == true || $router.currentRoute.fullPath == '/campaigns-facebook'
-                || $router.currentRoute.fullPath == '/campaigns-sms' ? `${campaignsList}`  :  '',cmp_sec]"
-                @mouseover="campingsMenu = true"
-                @mouseenter="setHover('Campaigns')"
-                @mouseleave="setHover('')"
-                v-bind="attrs"
-                v-on="on"
-              >
+              <div  @mouseleave="activeCamp = ''">
+                <v-list-item
+                  class="list-dim campaigns_section "
+                  :class="[campingsMenu == true || $router.currentRoute.fullPath == '/campaigns-facebook'
+                || $router.currentRoute.fullPath == '/campaigns-sms' || $router.currentRoute.fullPath == '/campaigns-whatsapp'
+                 ? `${campaignsList,activeCamp}`  :  '',cmp_sec]"
+                  @mouseover="campingsMenu = true"
+                  @mouseenter="setHover('Campaigns'), activeCamp = 'activeBg'"
+                  @mouseleave="setHover('') "
+                  v-bind="attrs"
+                  v-on="on"
 
-                <v-icon class="navicon_scale"  >$vuetify.icons.campaigns </v-icon>
-              </v-list-item>
+                >
+                  <v-icon class="navicon_scale"  >$vuetify.icons.campaigns </v-icon>
+                </v-list-item>
+              </div>
+
             </template>
 
             <v-col
               cols="12"
               class="par_tool_tip px-0 pl-3 my-0 py-0 "
               v-if="campingsMenu"
+              @mouseenter="activeCamp = 'activeBg'"
+              @mouseleave="activeCamp = ''"
             >
               <v-col cols="12" class="tool_tip px-0 py-0 text-center" @click="setSelected('Campaigns')">
                 <router-link class="tool_tip_span" to="/campaigns-sms">{{
@@ -131,7 +138,8 @@ export default {
       campingsMenu: false,
       campaignsList:'campaign_list',
       noneStyleActive:false,
-      cmp_sec:'cmp_sec'
+      cmp_sec:'cmp_sec',
+      activeCamp:'activeBg'
     };
   },
  watch:{
@@ -143,7 +151,8 @@ export default {
          this.cmp_sec = false
        }else  this.campaignsList = false;   this.campingsMenu = false; this.cmp_sec = 'cmp_sec'
     }
-  }
+  },
+
  },
   methods: {
     setSelected(id) {
@@ -187,6 +196,9 @@ export default {
 </style>
 
 <style scoped>
+.activeBg{
+  background-color: #323f4e91 !important;;
+}
 .naw_drawer_width{
   min-width: 6vw !Important;
 }

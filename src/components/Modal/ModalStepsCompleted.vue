@@ -12,7 +12,7 @@
           </v-col>
           <v-col cols="7" class="pa-0">
             <v-card class="modal_right_section">
-              <v-col cols="12" class="pl-0 py-0">
+              <v-col cols="12" class="pl-0 pr-0 py-0">
                 <v-card-title class="pa-0">
                   <v-fab-transition>
                     <v-btn
@@ -79,18 +79,20 @@
                     <v-btn
                       tile
                       height="24px"
-                      class="primary font_not_done pad_resp_nt btn_save ml-0"
+                      class="primary font_not_done pad_resp_nt btn_save ml-0 "
                       style="font-size:100%; text-transform:none;"
                       :to="stepARoute"
                       @click.native="closeStepsCompletedModal"
                     >
-                      <template left>
+                      <template left >
                         <v-img
                           src="@/assets/img/ModalStep/icon-check.png"
                           class="mr-1"
                         ></v-img>
                       </template>
-                      {{ $t("ModalStepsCompleted.notDone") }}
+                      <div style="position: relative;left:-8px;top:1px">
+                        {{ $t("ModalStepsCompleted.notDone") }}
+                      </div>
                     </v-btn>
                   </v-col>
                 </v-row>
@@ -142,7 +144,9 @@
                           class="mr-1"
                         ></v-img>
                       </template>
-                      {{ $t("ModalStepsCompleted.notDone") }}
+                      <div style="position: relative;left:-8px;top:1px">
+                        {{ $t("ModalStepsCompleted.notDone") }}
+                      </div>
                     </v-btn>
                   </v-col>
                 </v-row>
@@ -194,7 +198,9 @@
                           class="mr-1"
                         ></v-img>
                       </template>
-                      {{ $t("ModalStepsCompleted.notDone") }}
+                      <div style="position: relative;left:-8px;top:1px">
+                        {{ $t("ModalStepsCompleted.notDone") }}
+                      </div>
                     </v-btn>
                   </v-col>
                 </v-row>

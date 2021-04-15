@@ -79,34 +79,17 @@
               <span v-if="detectEuRegion && ite.title == 'Facebook'">{{ $t("widgets.notAvEU") }}</span>
             </v-col>
             <v-col  cols="1 " class="pl-0 pr-0 pb-0 pt-2" justify="end" :class="detectEuRegion ? 'disabled_display pt-0' : ''" style="height: 35px !important;">
-              <!--                @click="array_move(coneData,ke,ke + 2 > 2 ?  1 :  2 )"-->
-              <!--                @click="array_move(coneData,ke,ke + 2 > 2 ?  1 :  2 )" style="height: 15px !Important"-->
-<!--              /* event click top*/-->
-<!--              <div-->
-<!--               class="tpMove"-->
-<!--                @click="tpMove(coneData,ke,ke == 0 ?  2 : ke == 1 ?  -2 : -1)"-->
-<!--              >-->
-<!--              </div>-->
-              <v-row aligns="center" justify="center" :class="activeIconArrow ? 'arrow_icon_fill' : ''" @focus="activeIconArrow = true"
-                      @mouseenter="activeIconArrow = true" @mouseleave="activeIconArrow = false"
+              <v-row aligns="center" justify="center" :class="activeIconArrow == ke + 1 ? 'arrow_icon_fill' : ''"
+                      @mouseenter="activeIconArrow = ke + 1" @mouseleave="activeIconArrow = false"
                      style="height:11px !important;" @click="tpMove(coneData,ke,ke == 0 ?  2 : ke == 1 ?  -2 : -1)">
                 <arrow-up />
               </v-row>
               <v-row style="height: 5px"></v-row>
-              <v-row aligns="center" justify="center" :class="activeIconArrowSecond ? 'arrow_icon_fill' : ''" @focus="activeIconArrowSecond = true"
-                     @mouseenter="activeIconArrowSecond = true" @mouseleave="activeIconArrowSecond = false"
+              <v-row aligns="center" justify="center" :class="activeIconArrowSecond == ke + 3 ? 'arrow_icon_fill' : ''"
+                     @mouseenter="activeIconArrowSecond = ke + 3" @mouseleave="activeIconArrowSecond = false"
                      style="height:11px !important;" @click="btMove(coneData,ke,ke == 0 ?  1 : ke == 1 ?  2 : 0)">
                 <arrow-down  />
               </v-row>
-
-<!--            /* image arrow previous*/-->
-<!--              <v-img src="../../assets/img/arrowmove.png" width="11px" height="14px"  :class="detectEuRegion ? 'fix_image_pos' : ''"-->
-<!--                     v-if="(ite.title !== 'Facebook' && detectEuRegion == true) ||detectEuRegion == false"-->
-<!--                     style="position: relative;top:-19px !important;"-->
-<!--              ></v-img>-->
-
-<!--              /*event click bottom */-->
-<!--              <div class="bottomMove"  @click="btMove(coneData,ke,ke == 0 ?  1 : ke == 1 ?  2 : 0)">.</div>-->
             </v-col>
           </v-col>
         </v-col>

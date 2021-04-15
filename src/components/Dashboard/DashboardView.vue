@@ -1,6 +1,6 @@
 <template>
   <v-col cols="12" class="px-0 py-0">
-      <v-container fluid class="app_background py-0">
+      <v-container fluid class="app_background py-0 no_pr">
         <v-row style=" width:100%;" >
           <v-col cols="6">
             <v-card  width="100%" height="332px" tile class="font_dims pl-4 pr-0">
@@ -339,7 +339,7 @@
                     justify="center"
                     class="mt-0 mb-6"
                 >
-                  <span class="countLabel">
+                  <span class="countLabel smFont">
                     {{ $t("dashboard.card2.abndndLabel") }}
                   </span>
                 </v-row>
@@ -496,7 +496,7 @@
                     </v-col>
                     <v-col cols="6">
                       <v-row style="width:100%" justify="end">
-                    <span style="color:#F5A623; font-weight:900">{{
+                    <span style="color:#5686F6; font-weight:900">{{
                         dashVars.cart_recovery.sms_subscribers
                       }}</span>
                       </v-row>
@@ -509,7 +509,7 @@
                       style="width:100%"
                   >
                     <v-progress-linear
-                        color="#F5A623"
+                        color="#5686F6"
                         :value="smsSubPcnt"
                         height="5px"
                         background-color="#E6E7E8"
@@ -530,7 +530,7 @@
                     </v-col>
                     <v-col cols="6">
                       <v-row style="width:100%" justify="end">
-                    <span style="color:#F5A623; font-weight:900">{{
+                    <span style="color:#5686F6; font-weight:900">{{
                         dashVars.cart_recovery.wa_subscribers
                       }}</span>
                       </v-row>
@@ -543,7 +543,7 @@
                     style="width:100%"
                   >
                     <v-progress-linear
-                      color="#F5A623"
+                      color="#5686F6"
                       :value="waSubPcnt"
                       height="5px"
                       background-color="#E6E7E8"
@@ -609,7 +609,7 @@
                       style="width:100%"
                   >
                     <v-progress-linear
-                        color="#6DE889"
+                        color="#5686F6"
                         :value="cartRecovPcnt"
                         height="5px"
                         background-color="#E6E7E8"
@@ -796,10 +796,19 @@ export default {
 .circularProgress {
   font-size: 200%;
 }
+@media only screen and (max-width: 1001px){
+  .smFont{
+    font-size: 100%;
+  }
+  .no_pr{
+    padding-right: 0px !important;
+  }
+}
 @media only screen and (max-width: 924px) {
   .respspace {
     margin-top: 85px !important;
   }
+
 }
 
 </style>

@@ -249,6 +249,11 @@ export default {
     this.selectedType = this.$t("abandonedCarts.selectedType")
   },
   methods: {
+    setCurChannel(){
+      let currData = this.selectedType
+      this.selectedType = 'All Channels'
+      setTimeout(() =>  this.selectedType = currData,700)
+    },
     incrTabCount() {
       this.activeTab == "1" ? this.refreshComp1() : "";
       this.activeTab == "2" ? this.refreshComp2() : "";
@@ -266,22 +271,28 @@ export default {
       this.itemKeyDat1++;
       this.refIcon();
       this.activeOne = true;
+      this.setCurChannel()
     },
     refreshComp2() {
       this.activeTab = "2";
       this.itemKeyDat2++;
       this.refIcon();
       this.activeTwo = true;
+      this.setCurChannel()
     },
     refreshComp3() {
       this.activeTab = "3";
       this.itemKeyDat3++;
       this.refIcon();
       this.activeThree = true;
+      this.setCurChannel()
     },
     refreshComp4() {
       this.refIcon();
       this.activeFour = true;
+      let currData = this.selectedType
+      this.selectedType = 'All Channels'
+      setTimeout(() =>  this.selectedType = currData,1200)
     },
     setMenuactivator() {
       this.menuActivator = true;
