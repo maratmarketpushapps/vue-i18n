@@ -12,44 +12,44 @@
 <!--            <v-img src="@/assets/icons/AbandonedCarts/icon-calendar.svg"></v-img>-->
 <!--            <IconCalendar />-->
 <!--            <v-icon class="pr-1 infoicon_scale"> <IconCalendar /></v-icon>-->
-            <CalendarIcon
-              class="infoicon_scale "
-              style="top:30%"
-              v-if="!activeOne"
-            />
-            <ActiveCalendarIcon
-              class="infoicon_scale "
-              style="top:30%"
-              v-else
-            />
+<!--            <CalendarIcon-->
+<!--              class="infoicon_scale "-->
+<!--              style="top:30%"-->
+<!--              v-if="!activeOne"-->
+<!--            />-->
+<!--            <ActiveCalendarIcon-->
+<!--              class="infoicon_scale "-->
+<!--              style="top:30%"-->
+<!--              v-else-->
+<!--            />-->
             {{ $t("abandonedCarts.tabs.item1") }}
           </v-tab>
           <v-tab class="font_dims" key="2" @click="refreshComp2()">
 <!--            <v-icon class="pr-1 infoicon_scale">event</v-icon>-->
-            <CalendarIcon
-              class="infoicon_scale "
-              style="top:30%"
-              v-if="!activeTwo"
-            />
-            <ActiveCalendarIcon
-              class="infoicon_scale "
-              style="top:30%"
-              v-else
-            />
+<!--            <CalendarIcon-->
+<!--              class="infoicon_scale "-->
+<!--              style="top:30%"-->
+<!--              v-if="!activeTwo"-->
+<!--            />-->
+<!--            <ActiveCalendarIcon-->
+<!--              class="infoicon_scale "-->
+<!--              style="top:30%"-->
+<!--              v-else-->
+<!--            />-->
             {{ $t("abandonedCarts.tabs.item2") }}
           </v-tab>
           <v-tab class="font_dims" key="3" @click="refreshComp3()">
 <!--            <v-icon class="pr-1 infoicon_scale">event</v-icon>-->
-            <CalendarIcon
-              class="infoicon_scale "
-              style="top:30%"
-              v-if="!activeThree"
-            />
-            <ActiveCalendarIcon
-              class="infoicon_scale "
-              style="top:30%"
-              v-else
-            />
+<!--            <CalendarIcon-->
+<!--              class="infoicon_scale "-->
+<!--              style="top:30%"-->
+<!--              v-if="!activeThree"-->
+<!--            />-->
+<!--            <ActiveCalendarIcon-->
+<!--              class="infoicon_scale "-->
+<!--              style="top:30%"-->
+<!--              v-else-->
+<!--            />-->
             {{ $t("abandonedCarts.tabs.item3") }}
           </v-tab>
           <v-menu
@@ -76,14 +76,14 @@
                 <span class="pr-2">{{ displayStDate }}</span
                 ><span>to</span> <span class="pl-2">{{ displayEnDate }}</span>
                 <v-icon class="infoicon_scale">keyboard_arrow_down</v-icon>
-                <TooltipIcon
-                  :posRight="true"
-                  :nudgeBottom="30"
-                  :nudgeLeft="5"
-                  :txt="$t('abandonedCarts.custRangeInfo')"
-                  class="infoicon_scale "
-                  style="top:30%"
-                />
+<!--                <TooltipIcon-->
+<!--                  :posRight="true"-->
+<!--                  :nudgeBottom="30"-->
+<!--                  :nudgeLeft="5"-->
+<!--                  :txt="$t('abandonedCarts.custRangeInfo')"-->
+<!--                  class="infoicon_scale "-->
+<!--                  style="top:30%"-->
+<!--                />-->
               </v-tab>
             </template>
             <v-date-picker
@@ -213,12 +213,12 @@ import CalendarIcon from "@/components/svgIcons/CalendarIcon.vue";
 import ActiveCalendarIcon from "@/components/svgIcons/ActiveCalendarIcon.vue";
 import ActiveChannelIcon from "@/components/svgIcons/ActiveIconChannel.vue";
 import ChannelIcon from "@/components/svgIcons/IconChannel.vue";
-import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
+// import TooltipIcon from "@/components/svgIcons/TooltipIcon.vue";
 import moment from "moment-timezone";
 import { mapGetters } from "vuex";
 export default {
   name: "Tabs",
-  components: { CartsTable, TooltipIcon,CalendarIcon,ActiveCalendarIcon,ChannelIcon,ActiveChannelIcon},
+  components: { CartsTable, CalendarIcon,ActiveCalendarIcon,ChannelIcon,ActiveChannelIcon},
   data() {
     return {
       tab: 1,

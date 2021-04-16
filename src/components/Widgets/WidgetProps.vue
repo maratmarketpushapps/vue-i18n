@@ -284,7 +284,7 @@
                 <!--                </div>-->
 
                 <!--              </v-col>-->
-                <v-col class="pt-0 px-0 d-flex justify-start ">
+                <v-col class="pt-0 pl-0 d-flex justify-end ">
                   <TooltipIcon
                     :posRight="true"
                     :nudgeBottom="30"
@@ -316,7 +316,7 @@
                   </v-checkbox>
                 </div>
                 <!--              </v-col>-->
-                <v-col class="pt-0 px-0 d-flex justify-start">
+                <v-col class="pt-0 pl-0 d-flex justify-end">
                   <TooltipIcon
                     :posRight="true"
                     :nudgeBottom="30"

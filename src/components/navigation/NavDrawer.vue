@@ -52,7 +52,6 @@
               >$vuetify.icons.widgets</v-icon
             ></v-list-item
           >
-
           <v-menu right offset-x  :open-on-hover="campingsMenu" :menu-props="{ 'margin-top': '0px !important'}" >
             <template v-slot:activator="{ on, attrs }" >
               <div  @mouseleave="activeCamp = ''">
@@ -71,7 +70,6 @@
                   <v-icon class="navicon_scale"  >$vuetify.icons.campaigns </v-icon>
                 </v-list-item>
               </div>
-
             </template>
 
             <v-col
@@ -146,7 +144,7 @@ export default {
    "$route":{
      deep: true,
      handler(){
-       if(this.$route.name == 'CampaignsSms' || this.$route.name == 'Campaigns'){
+       if(this.$route.name == 'CampaignsSms' || this.$route.name == 'Campaigns' || this.$route.name == 'CampaignsWhatsApp'){
          this.campaignsList = 'campaign_list';   this.campingsMenu = true;
          this.cmp_sec = false
        }else  this.campaignsList = false;   this.campingsMenu = false; this.cmp_sec = 'cmp_sec'

@@ -22,8 +22,8 @@
           </v-col>
           <v-col cols="8.75" class="pt-0 pb-0 mb-0 no_pr">
             <v-row align="center" justify="end" style="width:100%">
-              <v-col cols="auto" class="no_pr"> </v-col>
-              <v-col cols="auto" class="no_pr">
+              <v-col cols="auto" class=""> </v-col>
+              <v-col cols="auto" class="">
                 <span><CartAttempts class="pt-0 pr-6"/></span>
               </v-col>
             </v-row>
