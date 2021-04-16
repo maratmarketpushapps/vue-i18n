@@ -98,7 +98,7 @@
             </v-row>
           </v-col>
         </v-row>
-        <v-row style="height:15%; width:100%" class="mt-1 pl-4 pr-3 mb-0">
+        <v-row style="height:15%; width:100%" class="mt-3 pl-4 pr-3 mb-0">
           <v-text-field
             :label="$t('campaigns.ordrrcpt.introMsg')"
             v-model="ordrAbndCrtIntroMsg"

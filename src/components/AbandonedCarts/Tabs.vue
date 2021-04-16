@@ -87,6 +87,7 @@
               </v-tab>
             </template>
             <v-date-picker
+              v-show="readyPicker"
               v-model="custDates"
               color="grey-ligten-4"
               scrollable
@@ -243,6 +244,7 @@ export default {
       activeTwo:true,
       activeThree:false,
       activeFour:false,
+      readyPicker:false,
     };
   },
   mounted() {
@@ -252,7 +254,7 @@ export default {
     setCurChannel(){
       let currData = this.selectedType
       this.selectedType = 'All Channels'
-      setTimeout(() =>  this.selectedType = currData,700)
+      setTimeout(() =>  this.selectedType = currData,1000)
     },
     incrTabCount() {
       this.activeTab == "1" ? this.refreshComp1() : "";
@@ -292,7 +294,7 @@ export default {
       this.activeFour = true;
       let currData = this.selectedType
       this.selectedType = 'All Channels'
-      setTimeout(() =>  this.selectedType = currData,1200)
+      setTimeout(() =>  this.selectedType = currData,1500)
     },
     setMenuactivator() {
       this.menuActivator = true;
@@ -327,6 +329,11 @@ export default {
         this.activeImage = false
         this.$store.dispatch("updSubsType",newVal)
     },
+    menu(newVal){
+      if (newVal == true) {
+        setTimeout(() => this.readyPicker = true,1000)
+      }
+    }
   },
   computed: {
     ...mapGetters(["getCreatedAt"]),

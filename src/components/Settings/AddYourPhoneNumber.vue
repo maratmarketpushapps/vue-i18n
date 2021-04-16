@@ -174,7 +174,7 @@ export default {
 
 <style lang="css">
 .v-menu__content{
-  /*margin-top: 23px !important;*/
+  margin-top: 23px !important;
 }
 </style>
 <style scoped>
