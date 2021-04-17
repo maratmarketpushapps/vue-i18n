@@ -23,7 +23,9 @@
             :close-on-content-click="false"
             transition="scale-transition"
             offset-y
-            :nudge-bottom="20"
+            :nudge-bottom="-15"
+            elevation="15"
+            class="elevation-15"
           >
             <template v-slot:activator="{ on }">
               <v-tab class="font_dims" key="4" v-on="on" style="width:auto">
@@ -42,6 +44,8 @@
               </v-tab>
             </template>
             <v-date-picker
+              class="elevation-15"
+              elevation="15"
               v-show="menuReady"
               v-model="custDates"
               color="grey-ligten-4"

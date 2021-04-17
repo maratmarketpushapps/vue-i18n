@@ -12,7 +12,7 @@
         <v-list-item-content class="pa-0 ma-0">
           <router-link to="/dashboard">
             <div
-              class="logo_background navbar-div hgfix right-shadow"
+              class="logo_background navbar-div hgfix "
               id="logo-container"
             >
               <NavIcon class="navicon" />

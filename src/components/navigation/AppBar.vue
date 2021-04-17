@@ -2,7 +2,6 @@
   <v-app-bar
     elevation="4"
     flat
-
     class="appbar_background  text--bottom"
     align-content="center"
     fixed
@@ -55,7 +54,6 @@
           id="none_shadow"
           :href="upgrdUrl"
           target="_blank"
-
         >
           {{ $t("navbar.appbar.buttonUpgrade") }}
         </v-btn>

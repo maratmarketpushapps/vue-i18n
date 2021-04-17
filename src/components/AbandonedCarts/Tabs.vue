@@ -58,7 +58,7 @@
             :close-on-content-click="false"
             transition="scale-transition"
             offset-y
-            :nudge-bottom="20"
+            :nudge-bottom="-15"
           >
             <template v-slot:activator="{ on }">
               <v-tab class="font_dims" key="4" v-on="on" style="width:auto"  @click="refreshComp4()">
@@ -99,6 +99,7 @@
               style="height:100%;width:100%"
               :min="getStartDate"
               :max="getCurrDate"
+
             >
               <v-spacer /><v-spacer />
               <v-btn

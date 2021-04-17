@@ -163,11 +163,21 @@ export default {
 </script>
 
 <style>
+
+.v-application .elevation-15{
+  box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%) !important;
+}
+.v-menu__content{
+  box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%) !important;
+}
 /*.v-tab:focus {*/
 /*  background-color: transparent !important;*/
 /*  cursor: inherit;*/
 /*}*/
-
+menuable__content__active{
+  position: relative !important;
+  top:-90px !important;
+}
 .vti__dropdown:visited{
   background-color: yellow !important;
 }
