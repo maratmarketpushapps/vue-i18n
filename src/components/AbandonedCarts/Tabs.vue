@@ -383,6 +383,10 @@ export default {
 </script>
 
 <style scoped>
+/*.v-input .v-label {*/
+/*  color: 1.2em;*/
+/*}*/
+
 .spc_resp_top{
  padding-top: 4px !important;
 }
