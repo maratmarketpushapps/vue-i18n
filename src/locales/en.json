@@ -193,7 +193,7 @@
     "hintTooltpiconTrigger":"With Discount you can capture more leads by offering customers that subscribe a discount coupon.",
     "popupTriger":"When to show the popup to visitors",
     "triggerAddToCart": "Trigger popup on Add to Cart",
-    "triggerExistIntent": "Trigger popup on Exist Intent",
+    "triggerExistIntent": "Trigger popup on Exit Intent",
     "setUpPopupLive": "Set Popup Live",
     "PopupConsentWidget":"Add a Subscribe Popup on your Site",
     "discountLabelinstruction": "Apply discount code instructions",
