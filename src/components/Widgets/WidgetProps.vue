@@ -250,7 +250,7 @@
             :posRight="true"
             :nudgeBottom="30"
             :nudgeLeft="5"
-            :txt="$t('widgets.hintTooltpiconTrigger')"
+            :txt="$t('widgets.hintTooltpiconHeader')"
             class="infoicon_scale pt-0 mt-0"
           />
         </v-col>
@@ -281,7 +281,7 @@
                     :posRight="true"
                     :nudgeBottom="30"
                     :nudgeLeft="5"
-                    :txt="$t('widgets.hintTooltpiconTrigger')"
+                    :txt="$t('widgets.hintTooltpiconTrrigerOne')"
                     class="infoicon_scale pt-0 mt-0"
                   />
                 </v-col>
@@ -313,7 +313,7 @@
                     :posRight="true"
                     :nudgeBottom="30"
                     :nudgeLeft="5"
-                    :txt="$t('widgets.hintTooltpiconTrigger')"
+                    :txt="$t('widgets.hintTooltpiconTrrigerSec')"
                     class="infoicon_scale pt-0 mt-0"
                   />
                 </v-col>
@@ -326,8 +326,8 @@
           <v-col cols="11 offset-1" class="pl-0  pr-8  py-0" v-if="subPlan == 'Free'">
             <v-col class="trigger_text pl-0 py-0">
               <v-col class="pl-5 brd_dot">
-                Not converting enough with your Ads? Get more leads with Exit Intent by enabling the popup when the customer tries to leave your site without adding anything to the cart.
-                <a  :href="upgrdUrl" target="_blank" class="upgrade_text_yellow">Upgrade to use this feature</a>
+                {{$t('widgets.EUregionHint')}}
+                <a  :href="upgrdUrl" target="_blank" class="upgrade_text_yellow"> {{$t('widgets.EUregionUpgrade')}}</a>
               </v-col>
 
             </v-col>
