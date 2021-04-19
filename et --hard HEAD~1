@@ -1,0 +1,269 @@
+[33mcommit 13ede37ee7372f686c5e5354388182c320c34bb4[m[33m ([m[1;36mHEAD -> [m[1;32mdevelopment[m[33m, [m[1;31morigin/development[m[33m)[m
+Merge: 15a8d28 470d0b9
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Mon Apr 19 13:59:59 2021 +0400
+
+    Merge branch 'popup-story', remote-tracking branch 'origin' into development
+
+[33mcommit 470d0b92ebb6d0ddb77a7e59fb840a37a22afbb9[m[33m ([m[1;31morigin/popup-story[m[33m, [m[1;32mpopup-story[m[33m)[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Tue Mar 23 11:40:07 2021 +0400
+
+    commented to change
+
+[33mcommit 01cdf46089f2ec1ed9e420c2cc17c42c2bae842d[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Tue Mar 23 11:18:39 2021 +0400
+
+    taRGET BLANK in new tab
+
+[33mcommit 561a2e2787c81db58a8bd63d42ee16a2bd032ec3[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Mon Mar 22 23:09:05 2021 +0400
+
+    trigger and button style
+
+[33mcommit 8544142e8ff6c6bcc8ebbbe01e372506869d161a[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Mon Mar 22 22:30:01 2021 +0400
+
+    trigger popup story
+
+[33mcommit 4e90e35318de8762e5dbe4e5553027573ad2f4f6[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Mon Mar 22 22:27:44 2021 +0400
+
+    popup-story
+
+[33mcommit aa98c36446bf2584e94082a96dba5bfea9a33f66[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Sat Mar 20 18:13:18 2021 +0400
+
+    update position
+
+[33mcommit c13cb6c63e411d37effec6d252a91a3f1d94e59a[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Fri Mar 19 17:44:32 2021 +0400
+
+    popup trigger story
+
+[33mcommit a8962cdcc2773aba1f837dcb3bde1f088bddedbc[m[33m ([m[1;31morigin/cart-recovery-marat[m[33m)[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Thu Mar 18 00:03:05 2021 +0400
+
+    Widget and sms part changes
+
+[33mcommit 3fdbca354500f8171f4cfcc4e2641668a8aaa3cc[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Wed Mar 17 19:49:55 2021 +0400
+
+    facebook and sms section like each other
+
+[33mcommit b5822656f3b87268c973ac7718d6b562496f0439[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Wed Mar 17 18:54:13 2021 +0400
+
+    Fb widget border
+
+[33mcommit 89b51b158526aeb8aa4edc74da4e4610d88f2cf6[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Wed Mar 17 18:26:52 2021 +0400
+
+    not clickable widget
+
+[33mcommit 495f053b78a43447abf10379b154c7d1454c138b[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Sun Mar 7 00:08:16 2021 +0400
+
+    checkout changes
+
+[33mcommit 15a8d287b79a88e980f5bfa7863f81c2ab5f2fd3[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: adc5e1c 535e056
+Author: test <test@x.com>
+Date:   Thu Feb 25 12:38:43 2021 +0200
+
+    merged dev and masters
+
+[33mcommit 3dffbce34fdafbbb072478146533327d1627e5e1[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Wed Feb 24 20:19:50 2021 +0400
+
+    EU region Icons show
+
+[33mcommit 535e056250f6a25dcc081e11d39533a56b4148c3[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Wed Feb 24 18:47:54 2021 +0400
+
+    Get Subscribers flex
+
+[33mcommit 3df972386735022a9c473c0f273102e2c8801fc3[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Tue Feb 23 23:27:18 2021 +0400
+
+    background color widget Subscribers
+
+[33mcommit fb96810df5b2ab892b1d1673f9c5d006fe1d4906[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Tue Feb 23 16:45:42 2021 +0400
+
+    Subscribers changes
+
+[33mcommit 7010fd073806e80eefa08acd54a15ac67b1fa393[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Mon Feb 22 22:24:14 2021 +0400
+
+    widgetViewCheckBox changes
+
+[33mcommit 2b7e1830e19bbe08697f09d8ce5f88544bec118f[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Mon Feb 22 19:34:51 2021 +0400
+
+    widget 50 to 50 width
+
+[33mcommit 136ff68ecdc8f98db124a192c96e44479bf7f892[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Mon Feb 22 18:38:09 2021 +0400
+
+    sticky and image
+
+[33mcommit b10d206c34e565405e2298f03bb10e4b7023963c[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Mon Feb 22 17:35:53 2021 +0400
+
+    image disc
+
+[33mcommit 41defae4bf2ecf02e09dc3c34784b027d99f4502[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Thu Feb 18 22:35:23 2021 +0400
+
+    abanomendTabs
+
+[33mcommit 939437958c455a845526ef664ffbce7f4b204504[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Thu Feb 18 17:11:53 2021 +0400
+
+    wiodget and settings phone number
+
+[33mcommit b12d0ff27b237cf8a83fe6f1be1181dac6eac5e7[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Wed Feb 17 17:02:13 2021 +0400
+
+    update my changes
+
+[33mcommit 55d3c0fcc9fbdef7d44adecd6c84032cd725fdd6[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Wed Feb 17 12:08:58 2021 +0400
+
+    line mising line
+
+[33mcommit 3e296e47fc11ad69d24ab78ff62ca8d0fcc82e8c[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Tue Feb 16 23:47:41 2021 +0400
+
+    heights widgets and some bugfix
+
+[33mcommit 80a3369844365be42eec5d95dcd27f060af774f8[m
+Merge: a9b11e4 54deaa6
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Tue Feb 16 13:52:17 2021 +0400
+
+    fix conflict
+
+[33mcommit a9b11e4e5d4c5f943842a0363d023dd813231911[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Tue Feb 16 13:32:11 2021 +0400
+
+    my lasr changes max-width-1400
+
+[33mcommit adc5e1c93213ba663b641340accf0599e6d3a311[m
+Merge: b2eb741 54deaa6
+Author: test <test@x.com>
+Date:   Wed Feb 10 15:04:21 2021 +0200
+
+    merged dev and masters
+
+[33mcommit 54deaa610557246fd22e2b008727ef454fedf45c[m
+Merge: e7978c3 84245d4
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Wed Feb 10 16:00:23 2021 +0400
+
+    margins fix
+
+[33mcommit 84245d451a776045facc04af86592d4a905f6a99[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Wed Feb 10 15:58:31 2021 +0400
+
+    margins auto
+
+[33mcommit e7978c311d1b4adfcd11f21ca937ffdcc4327c6a[m
+Merge: 625290c 0f62f30
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Wed Feb 10 15:38:30 2021 +0400
+
+    fix image parent height
+
+[33mcommit 0f62f30299c789f95b755ba232037ae7cfc4a010[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Wed Feb 10 15:35:03 2021 +0400
+
+    img height fix
+
+[33mcommit 625290c88ed10d61a9fef526acab4458b7bcdba5[m
+Merge: 4adefc7 59f13d8
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Wed Feb 10 14:40:42 2021 +0400
+
+    fix height image
+
+[33mcommit 59f13d8f63d1f3166076d243232ee58a8178da6d[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Wed Feb 10 14:37:43 2021 +0400
+
+    fix image
+
+[33mcommit 52a8589c769e1e047bea7a07e047e1dc33c35e2d[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Wed Feb 10 14:30:18 2021 +0400
+
+    fix height image
+
+[33mcommit 4adefc7cd4f2c01b146ac26cfc1dc3cb4cd90cd6[m
+Merge: e67236c e32252d
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Wed Feb 10 11:59:18 2021 +0400
+
+    fix picture height
+
+[33mcommit e32252def0dda3518b1fc25f8e32ac5babbc14c1[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Wed Feb 10 11:57:16 2021 +0400
+
+    widget image height
+
+[33mcommit e67236c3b6091f836a7fec2b454953eb22e39292[m
+Merge: 06302af bebe052
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Tue Feb 9 17:47:29 2021 +0400
+
+    space responsive
+
+[33mcommit bebe0527080ef04671571caa47a867daf46ddb01[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Tue Feb 9 17:45:42 2021 +0400
+
+    button margin
+
+[33mcommit 06302af1ab45e988ab6c8dad863c85f8ee05e14a[m
+Merge: 69a3e71 048d221
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Tue Feb 9 17:09:25 2021 +0400
+
+    widgetView spaces
+
+[33mcommit 048d221b8a2334a63595e431d88c8e4fc6caf8d8[m
+Author: maratmarketpushapps <marat@marketpushapps.com>
+Date:   Tue Feb 9 17:07:11 2021 +0400
+
+    widgetCheckbox spacies responsive
+
+[33mcommit 69a3e71b6d2c6c0c4f2a59cfa200d
