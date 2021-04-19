@@ -88,7 +88,7 @@
             </v-col>
           </v-row>
           <!--          /* SMS with Discount */-->
-          <v-col cols="11" v-if="wdgtSMScheck && wdgtIsDsc">
+          <v-col cols="11" v-if="wdgtSMScheck && wdgtIsDsc" @click="toggleDialog">
             <v-row
               style="width:100%; border: 1px solid #c9cacb; margin-left:1%"
               align="center"
@@ -108,7 +108,7 @@
               </v-col>
               <v-col cols="9"  style="height:34vh" class="d-flex align-content-space-around  flex-wrap py-0 pl-12" v-if="checkOptin">
                 <v-col style="width:100%" class="py-0" v-if="dscntCd">
-                  <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%">
+                  <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%" :style="msgProps">
                     {{ dscntCd }}
                   </span>
                 </v-col>
@@ -127,7 +127,7 @@
               </v-col>
               <v-col cols="9" class="py-0 d-flex align-content-space-around  flex-wrap py-0 pl-12" style="height: 34vh" v-if="!checkOptin">
                 <v-row style="width:100%;" class="py-0 pr-2">
-                  <span style="font-weight:bold; font-size:90%">
+                  <span style="font-weight:bold; font-size:90%" :style="msgProps">
                     {{ dscntStmt }}
                   </span>
                 </v-row>
@@ -141,6 +141,7 @@
                       placeholder=""
                       :showDialCode="true"
                       mode="international"
+                      disabled
                     >
                     </vue-tel-input>
                   </v-col>
@@ -149,9 +150,11 @@
                 <v-row style="width:100%" class="" align="start">
                   <v-btn
                     :style="buttonProps"
+                    style="width: 97.5%"
                     outlined
                     :key="widgetKey"
                     @click="submitClickDisc"
+                    disabled
                   >
                   <span :style="btnTextProps">
                     {{ buttonText }}
@@ -217,7 +220,7 @@
             v-if="wdgtFBcheck && !wdgtIsDsc"
             @click="toggleDialog()"
           >
-            <v-btn :style="buttonProps" outlined :key="widgetKey">
+            <v-btn :style="buttonProps" outlined :key="widgetKey" style="width: 249px !important;height: 50px !important;">
               <span :style="btnTextProps">
                 {{ buttonText }}
               </span>
@@ -252,7 +255,7 @@
             v-if="wdgtSMScheck && !wdgtIsDsc"
             @click="toggleDialog()"
           >
-            <v-btn :style="buttonProps" outlined :key="widgetKey">
+            <v-btn :style="buttonProps" outlined :key="widgetKey" style="width: 249px !important;height: 50px !important;">
               <span :style="btnTextProps">
                 {{ buttonText }}
               </span>
@@ -263,7 +266,7 @@
             style="width:102.5%"
             align="center"
             justify="center"
-            v-if="wdgtTabcheck"
+            v-if="wdgtTabcheck && !detectEuRegion"
             :style="bdyColor"
           >
             <v-tabs v-model="tab" light centered color="transparent" :style="bdyColor" :background-color="getBgWidgCheckBody">
@@ -297,7 +300,7 @@
               </v-col>
               <v-col cols="9" class="d-flex align-content-space-around  flex-wrap" style="height:35vh" v-if="checkOptin">
                 <v-row style="width:100%;" class="pl-8 pr-0" v-if="dscntCd">
-                  <span style="width:100%;font-weight:bold;font-size:120%; color:#5686F6">
+                  <span style="width:100%;font-weight:bold;font-size:120%; color:#5686F6" :style="msgProps">
                     {{ dscntCd }}
                   </span>
                 </v-row>
@@ -315,18 +318,18 @@
                 </v-row>
               </v-col>
               <v-col cols="9" class="py-0 d-flex align-content-space-around  flex-wrap" style="height:35vh" v-if="!checkOptin">
-                <v-row style="width:100%;" class="py-0 pl-6 pr-0">
-                    <span style="font-weight:bold; font-size:90%">
+                <v-row style="width:100%;" class="py-0 pl-6 pr-2">
+                    <span style="font-weight:bold; font-size:90%" :style="msgProps">
                       {{ dscntStmt }}
                     </span>
                 </v-row>
                 <v-row style="width:100%;" class="py-0" :style="bdyColor">
 
-                    <v-col cols="12" class="pl-0 pt-0 ml-7" style="height:100%" :style="bdyColor">
+                    <v-col cols="11" class="pl-0 pt-0 ml-6" style="height:100%;" :style="bdyColor" >
                       <v-row
                         style="width:100%;height:auto"
                         align="center"
-                        class="pl-1"
+                        class="pl-2"
                         :style="bdyColor"
                       >
                         <v-checkbox
@@ -351,7 +354,7 @@
                       <v-row style="width:100%;" class="mr-5" align="start">
                         <v-container
                           style="height: 15px; width: 15px; border-radius:100%; background-color: #E6E7E8; transform: scale(0.8)"
-                          class="mx-2"
+                          class="mx-2 "
                         ></v-container>
 
                         <span
@@ -370,12 +373,14 @@
                     </v-col>
           
                 </v-row>
-                <v-row style="width:100%" class="px-6 mt-2 py-0" align="start">
+                <v-row style="width:100%" class="px-6 mt-2 py-0" align="start" >
                   <v-btn
                     :style="buttonProps"
                     outlined
                     :key="widgetKey"
                     @click="submitClickDisc"
+                    disabled
+                    style="width: 97.5%"
                   >
                   <span :style="btnTextProps">
                     {{ buttonText }}
@@ -463,12 +468,11 @@
 
 
           <!--          /* FB AND SMS DISCOUNT */-->
-          <v-col cols="11" class="ml-3 no_pad_min_width"   v-if="wdgtTabcheck && wdgtIsDsc">
+          <v-col cols="11" class="ml-3 no_pad_min_width"   v-if="wdgtTabcheck && wdgtIsDsc" @click="toggleDialog()">
             <v-row
               style="border:1px solid #C9CACB;"
               align="center"
               justify="center"
-
               :key="'key2' + wdgtTabKey"
               class="mt-4"
             >
@@ -484,7 +488,7 @@
               </v-col>
               <v-col cols="9" class="d-flex align-content-space-around  flex-wrap py-0 pl-12" style="height: 35vh !important;" v-if="checkOptin">
                 <v-col style="width:100%" class="py-0 pr-2" v-if="dscntCd">
-                    <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%">
+                    <span style="font-weight:bold;font-size:120%; color:#5686F6;width: 100%" :style="msgProps">
                       {{ dscntCd }}
                     </span>
                 </v-col>
@@ -505,32 +509,33 @@
 
               <v-col cols="9" class="d-flex align-content-space-around  flex-wrap" v-if="!checkOptin" style="height: 35vh !important;">
                 <v-col style="width:100%" class="py-0 pr-2">
-                      <span style="font-weight:bold; font-size:90%">
+                      <span style="font-weight:bold; font-size:90%" :style="msgProps">
                         {{ dscntStmt }}
                       </span>
-                  <v-col style="width:100%" class="py-0 pl-0 pt-8">
-                    <v-col style="width:100%; " align="center" class="px-0 py-0">
-                      <v-col cols="12" class="px-0 py-0">
+                  <v-col style="width:100%" class="py-0 pl-0 pt-8" disabled>
+                    <v-col style="width:100%; " align="center" class="px-0 py-0" :style="bdyColor">
+                      <v-col cols="12" class="px-0 py-0" :style="bdyColor">
                         <v-tabs-items v-model="tab" style="width:100%">
-                          <v-tab-item :value="getTabKeySMS" style="width:100%" class="pl-0 py-5" :style="bdyColor">
+                          <v-tab-item :value="getTabKeySMS" style="width:100%" class="pl-0 py-5" :style="bdyColor" disabled>
 
                             <vue-tel-input
                               v-model="optinNum"
                               dark
-                              style="width:100%;"
+                              style="width:103.5%;"
                               placeholder=""
                               :showDialCode="true"
                               mode="international"
-
+                              disabled
                             >
                             </vue-tel-input>
                           </v-tab-item>
 
-                          <v-tab-item :value="getTabKeyFb">
+                          <v-tab-item :value="getTabKeyFb" :style="bdyColor">
                             <v-row
                               style="width:100%;height:auto"
                               align="center"
                               class="pl-1"
+                              :style="bdyColor"
                             >
                               <v-checkbox
                                 input-value="true"
@@ -576,12 +581,14 @@
                     </v-col>
                   </v-col>
                 </v-col>
-                <v-row style="width:100%" class="pl-6  " align="start">
+                <v-row style="width:100%" class="pl-6  " align="start" disabled>
                   <v-btn
                     :style="buttonProps"
                     outlined
                     :key="widgetKey"
                     @click="submitClickDisc"
+                    style="width: 96%"
+                    disabled
                   >
                       <span :style="btnTextProps">
                         {{ buttonText }}
@@ -600,10 +607,10 @@
             justify="center"
             v-if="wdgtTabcheck && !wdgtIsDsc"
             :key="'key3' + wdgtTabKey"
-            @click="toggleDialog()"
+            @click="submitClickDisc()"
             class="mt-8"
           >
-            <v-btn :style="buttonProps" outlined :key="widgetKey">
+            <v-btn :style="buttonProps" outlined :key="widgetKey" style="width: 249px !important;height: 50px !important;">
               <span :style="btnTextProps">
                 {{ buttonText }}
               </span>
@@ -707,7 +714,10 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["getWidgetsState"]),
+    ...mapGetters(["getWidgetsState","getWidgEU"]),
+    detectEuRegion(){
+      return this.getWidgEU
+    },
     getBgWidgCheckBody(){
       return this.$store.getters.getBgWidgCheckBody
     },

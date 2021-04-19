@@ -142,13 +142,13 @@
                   to="/settings"
                 />
               </router-link>
-              <v-btn
-                class="mr-3 qckRplBtn font_dims txt-up btnsps btn_sup"
-                color="#7DA2F7"
-                @click="putCheckOutTotal"
-              >
-                {{$t("campaigns.btn.CheckOutTotal")}}
-              </v-btn>
+<!--              <v-btn-->
+<!--                class="mr-3 qckRplBtn font_dims txt-up btnsps btn_sup"-->
+<!--                color="#7DA2F7"-->
+<!--                @click="putCheckOutTotal"-->
+<!--              >-->
+<!--                {{$t("campaigns.btn.CheckOutTotal")}}-->
+<!--              </v-btn>-->
 
               <v-btn
                 class="mr-3 qckRplBtn font_dims txt-up btnsps btn_sup"
@@ -366,7 +366,7 @@ export default {
     },
     putOPtOut(){
       let currentItem = this.ordrAbndCrtIntroMsg
-      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ '{{write STOP to unsubscribe}}'
+      this.ordrAbndCrtIntroMsg = this.ordrAbndCrtIntroMsg + ' '+ 'write STOP to unsubscribe'
       this.ordrAbndCrtIntroMsg.length > 249 ? (this.ordrAbndCrtIntroMsg = currentItem ,this.suppasLenght = true) : ''
       this.activeStateChng()
     },

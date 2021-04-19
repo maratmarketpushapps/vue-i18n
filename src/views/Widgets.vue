@@ -77,8 +77,11 @@
                 justify="center"
                 v-show="widgetType == 'Checkbox'"
               >
-                <v-col class="d-flex justify-center wdgt_top_text">Appears when the customer clicks on Add to Cart.</v-col>
-                <WidgetViewCheckBox />
+                <v-col class="d-flex justify-center wdgt_top_text" v-if="triggerPopup.add_to_cart == true && triggerPopup.exit_intent == false">{{$t('widgets.widgetViewCheckboxTopText.addToCart')}}</v-col>
+                <v-col class="d-flex justify-center wdgt_top_text" v-if="triggerPopup.add_to_cart == false && triggerPopup.exit_intent == true">{{$t('widgets.widgetViewCheckboxTopText.exitIntent')}}</v-col>
+                <v-col class="d-flex justify-center wdgt_top_text" v-if="triggerPopup.add_to_cart == true && triggerPopup.exit_intent == true">{{$t('widgets.widgetViewCheckboxTopText.both')}}</v-col>
+
+               <WidgetViewCheckBox />
               </v-row>
             </v-col>
           </v-row>
@@ -136,6 +139,9 @@ export default {
       //   "widget type :: " + this.getWidgetsState.facebook_widget_type
       // );
       return this.getWidgetsState.facebook_widget_type;
+    },
+    triggerPopup(){
+      return this.getWidgetsState.popup_triggers
     },
     liveLbl() {
       return this.live ? this.$t("widgets.liveLbl") : this.$t("widgets.offLbl");

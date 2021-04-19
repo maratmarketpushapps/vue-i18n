@@ -144,13 +144,13 @@
                   to="/settings"
                 />
               </router-link>
-              <v-btn
-                class="mr-3 qckRplBtn font_dims txt-up btn_sup btnsps"
-                color="#7DA2F7"
-                @click="putCheckOutTotal"
-              >
-                {{$t("campaigns.btn.CheckOutTotal")}}
-              </v-btn>
+<!--              <v-btn-->
+<!--                class="mr-3 qckRplBtn font_dims txt-up btn_sup btnsps"-->
+<!--                color="#7DA2F7"-->
+<!--                @click="putCheckOutTotal"-->
+<!--              >-->
+<!--                {{$t("campaigns.btn.CheckOutTotal")}}-->
+<!--              </v-btn>-->
 
               <v-btn
                 class="mr-3 qckRplBtn font_dims txt-up btn_sup btnsps"

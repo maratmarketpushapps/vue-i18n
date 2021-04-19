@@ -162,6 +162,29 @@ export default {
 </script>
 
 <style>
+.vti__dropdown:visited{
+  background-color: yellow !important;
+}
+
+.vti__dropdown:link {
+  background-color: yellow !important;
+}
+
+/* visited link */
+.vti__dropdown:visited {
+  background-color: yellow !important;
+}
+
+/* mouse over link  disapled by Marat*/
+/*.vti__dropdown:hover {*/
+/*  background-color: yellow !important;*/
+/*}*/
+
+/*!* selected link *!*/
+/*.vti__dropdown:active {*/
+/*  background-color: yellow !important;*/
+/*}*/
+
 .router-content_style {
   padding: 0;
 }
