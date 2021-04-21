@@ -208,6 +208,11 @@
     }
   },
   "widgets": {
+    "EUregionHint":" Not converting enough with your Ads? Get more leads with Exit Intent by enabling the popup when the customer tries to leave your site without adding anything to the cart.",
+    "EUregionUpgrade": "Upgrade to use this feature",
+    "hintTooltpiconHeader": "Using these options you can control when the popup will appear to your visitors. It can show when the visitors add an item to the cart or when they exit the website. Please note that the popup will appear to a visitor once per browsing session even if multiple triggers are selected.",
+    "hintTooltpiconTrrigerOne": "When this option is checked, the popup trigger appears if the visitor clicks on Add To Cart for a product.",
+    "hintTooltpiconTrrigerSec": "When this option is checked, the popup trigger appears if the visitor exits the website. Please note that the popup will appear to a visitor once per browsing session even if multiple triggers are selected (ex Add to cart triggered the popup already).",
     "widgetViewCheckboxTopText": {
       "addToCart": "Appears when the customer clicks on Add to Cart.",
       "exitIntent": "Appears on Exit Intent.",
@@ -216,7 +221,7 @@
     "hintTooltpiconTrigger":"With Discount you can capture more leads by offering customers that subscribe a discount coupon.",
     "popupTriger":"When to show the popup to visitors",
     "triggerAddToCart": "Trigger popup on Add to Cart",
-    "triggerExistIntent": "Trigger popup on Exist Intent",
+    "triggerExistIntent": "Trigger popup on Exit Intent",
     "setUpPopupLive": "Set Popup Live",
     "PopupConsentWidget":"Add a Subscribe Popup on your Site",
     "discountLabelinstruction": "Apply discount code instructions",
