@@ -61,7 +61,8 @@
             :nudge-bottom="-15"
           >
             <template v-slot:activator="{ on }">
-              <v-tab class="font_dims" key="4" v-on="on" style="width:auto"  @click="refreshComp4()">
+              <v-tab class="font_dims" key="4" v-on="on" style="width:auto"  @click="refreshComp4()"
+                     :class="activeFour && $vuetify.breakpoint.width > 1110 ? 'mr-4' : ''">
 <!--                <v-icon class="pr-1 infoicon_scale">event</v-icon>-->
                 <CalendarIcon
                   class="infoicon_scale "
@@ -73,8 +74,8 @@
                   style="top:30%"
                   v-else
                 />
-                <span class="pr-2">{{ displayStDate }}</span
-                ><span>to</span> <span class="pl-2">{{ displayEnDate }}</span>
+                <span class="pr-2 font_85">{{ displayStDate }}</span
+                ><span class="font_85">to</span> <span class="pl-2 font_85">{{ displayEnDate }}</span>
                 <v-icon class="infoicon_scale">keyboard_arrow_down</v-icon>
 <!--                <TooltipIcon-->
 <!--                  :posRight="true"-->
@@ -133,8 +134,8 @@
           @click="minusModel(selectedType)"
           @focusout="activeImage = false"
           :class="activeImage ? 'change_active' : 'line_active'"
-        >
 
+        >
           <template v-slot:append>
             <v-icon class="infoicon_scale">keyboard_arrow_down</v-icon>
 <!--            <v-icon-->
@@ -387,6 +388,9 @@ export default {
 /*  color: 1.2em;*/
 /*}*/
 
+.font_85{
+  font-size: 85% !important;
+}
 .spc_resp_top{
  padding-top: 4px !important;
 }
@@ -467,6 +471,15 @@ export default {
 </style>
 
 <style>
+.v-text-field > .v-input__control > .v-input__slot:before, .v-text-field > .v-input__control > .v-input__slot:after{
+  bottom: -7px !important;
+}
+
+.v-select__selection,
+.v-select__selection--comma,
+.v-select.v-text-field input {
+  color: #323f4f !important;
+}
 .change_active .theme--light.v-label{
   color: #5686F6 ;
 }

@@ -169,8 +169,9 @@
                     v-model="discount_value"
                     :label="$t('campaigns.whatsAppCampaigns.waDiscountValue')"
 
-                    :rules=" [v => v.length <= 20 || 'Max 20 characters']"
+
                   >
+<!--                    :rules=" [v => v.length <= 20 || 'Max 20 characters']"-->
                     <!--                    <template v-slot:label v-if="discount_code_focus">-->
                     <!--                      <span >{{$t('widgets.addYourDiscCode')}}</span>-->
                     <!--                      <span v-if="discount_code.length > 4" style="position: absolute;right: 18px;">{{discount_code.length}}/</span>-->
@@ -185,8 +186,9 @@
                     v-model="discount_coupon "
                     :label="$t('campaigns.whatsAppCampaigns.waDiscountCoupon')"
 
-                    :rules=" [v => v.length <= 22 || 'Max 22 characters']"
+
                   >
+<!--                    :rules=" [v => v.length <= 22 || 'Max 22 characters']"-->
                     <!--                  v-model="discount_statement"-->
                     <!--                  :value="discount_statement"-->
                     <!--                  maxlength="25"-->

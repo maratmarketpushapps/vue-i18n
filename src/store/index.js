@@ -431,6 +431,10 @@ export default new Vuex.Store({
     SET_HOVER(state, id) {
       state.navState.currentHover = id;
     },
+    SET_DEFAULT_NAVSTATE(state){
+      state.navState.currentSelected = ""
+      state.navState.currentHover = ""
+    },
     SET_CARTS_VAL(state, obj) {
       let cleanedObj = [];
       for (let loopObj of obj.subscribers) {

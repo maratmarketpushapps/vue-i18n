@@ -39,7 +39,6 @@
               >$vuetify.icons.dashboard</v-icon
             ></v-list-item
           >
-
           <v-list-item
             class="list-dim widg_nav_item"
             @click="setSelected('Widgets'),campingsMenu = false,campaignsList = false"
@@ -76,8 +75,8 @@
               cols="12"
               class="par_tool_tip px-0 pl-3 my-0 py-0 "
               v-if="campingsMenu"
-              @mouseenter="activeCamp = 'activeBg'"
-              @mouseleave="activeCamp = ''"
+              @mouseenter="activeCamp = 'activeBg',setHover('Campaigns')"
+              @mouseleave="activeCamp = '',setHover('')"
             >
               <v-col cols="12" class="tool_tip px-0 py-0 text-center" @click="setSelected('Campaigns')">
                 <router-link class="tool_tip_span" to="/campaigns-sms">{{
@@ -148,9 +147,58 @@ export default {
          this.campaignsList = 'campaign_list';   this.campingsMenu = true;
          this.cmp_sec = false
        }else  this.campaignsList = false;   this.campingsMenu = false; this.cmp_sec = 'cmp_sec'
+       // /* conitnue below tommorow*/
+       // if(this.$route.name == 'Dashboard'){
+       //   this.$store.commit('SET_DEFAULT_NAVSTATE')
+       //   setTimeout(() =>  this.setHover("Dashboard"),500)
+       // }else if(this.$route.name == 'AbandonedCarts'){
+       //   this.$store.commit('SET_DEFAULT_NAVSTATE')
+       //   setTimeout(() =>  this.setHover("AbandonedCarts"),500)
+       // }
+       switch(this.$route.name) {
+         case 'Dashboard':
+           // this.$store.commit('SET_DEFAULT_NAVSTATE')
+           setTimeout(() =>  this.setHover("Dashboard"),500)
+           break;
+         case 'Widgets':
+           this.$store.commit('SET_DEFAULT_NAVSTATE')
+           setTimeout(() =>  this.setHover("Widgets"),500)
+           break;
+         case 'Campaigns':
+           this.activeCamp = 'activeBg'
+           this.$store.commit('SET_DEFAULT_NAVSTATE')
+           setTimeout(() =>  this.setHover("Campaigns"),500)
+           break;
+         case 'CampaignsSms':
+           this.activeCamp = 'activeBg'
+           this.$store.commit('SET_DEFAULT_NAVSTATE')
+           setTimeout(() =>  this.setHover("Campaigns"),500)
+           break;
+         case 'CampaignsWhatsApp':
+           this.activeCamp = 'activeBg'
+           this.$store.commit('SET_DEFAULT_NAVSTATE')
+           setTimeout(() =>  this.setHover("Campaigns"),500)
+           break;
+         case 'AbandonedCarts':
+           this.$store.commit('SET_DEFAULT_NAVSTATE')
+           setTimeout(() =>  this.setHover("AbandonedCarts"),500)
+           break;
+         case 'Settings':
+           this.$store.commit('SET_DEFAULT_NAVSTATE')
+           setTimeout(() =>  this.setHover("Settings"),500)
+           break;
+         default:
+           // this.$store.commit('SET_DEFAULT_NAVSTATE')
+           // setTimeout(() =>  this.setHover("Dashboard"),500)
+       }
     }
   },
-
+    activeCamp(){
+      if(this.$route.name == 'CampaignsSms' || this.$route.name == 'Campaigns' || this.$route.name == 'CampaignsWhatsApp'){
+        this.activeCamp = 'activeBg'
+        this.setHover("Campaigns")
+      }
+    }
  },
   methods: {
     setSelected(id) {
