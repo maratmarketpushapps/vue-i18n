@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="12" class=" pb-0" style="background-color: #e6e7e8 !important">
+  <v-col cols="12" class=" pb-0" style="background-color: #e6e7e8 !important;overflow-x: auto;white-space: nowrap;" >
     <v-col cols="12" class="py-0 d-flex justify-end">
       <v-col cols="11" class="py-0">
         <v-row class="pt-0 mt-0 pb-0 mb-0 row-style" align="center">

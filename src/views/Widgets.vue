@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="12" class="pl-4 pb-0" style="background-color: #e6e7e8 !important">
+  <v-col cols="12" class="pl-4 pb-0" style="background-color: #e6e7e8 !important; min-width: 1000px !important;" >
     <v-col cols="12" class="py-0 d-flex justify-end pr-0">
       <v-col cols="11" class="py-0">
         <v-container fluid class="py-0 ">

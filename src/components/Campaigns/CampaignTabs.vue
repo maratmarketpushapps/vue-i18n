@@ -1,15 +1,15 @@
 <template>
-  <v-container fluid class="pl-0 ml-0">
-    <v-row style="height:auto; width:100%">
-      <v-col cols="7" class="py-0 px-0">
+  <v-container fluid class="pl-0 ml-0" >
+    <v-row style="height:auto"  >
+      <v-col cols="7" class="py-0 px-0" >
         <v-col
           style="height:100%; width:100%"
           class="app_background px-0 py-0"
         >
-          <v-col key="1" class="py-0 px-0 fb_tabs_facebook" :eager="false">
-            <AbandonedCarts1 />
+          <v-col key="1" class="py-0 px-0 fb_tabs_facebook" :eager="false" >
+            <AbandonedCarts1  />
             <br />
-            <AbandonedCarts2 />
+            <AbandonedCarts2  />
           </v-col>
         </v-col>
       </v-col>

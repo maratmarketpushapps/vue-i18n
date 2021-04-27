@@ -22,16 +22,50 @@
         </v-row>
       </v-col>
 
-      <v-col class="px-0 d-flex " cols="1" :class="$vuetify.breakpoint.width < 1350 ? 'justify-start' : 'justify-center'">
-        <v-switch
-          v-model="ordrAbndCrtSwitchLive"
-          color="#006AFF"
-          :disabled="swtchDisabled"
-          @change="activeStateChng()"
-          class="ma-0 "
-          inset
+      <v-col class="px-0 d-flex " cols="1" :class="$vuetify.breakpoint.width < 1350 ? 'justify-start' : 'justify-center'" >
+        <v-container
+          fluid
+          class="text-center"
         >
-        </v-switch>
+          <v-row
+          >
+            <v-col cols="12" class="px-0 py-0">
+              <v-switch
+                @mouseover="showTooltip = true"
+                @mouseleave="showTooltip = false"
+                v-model="ordrAbndCrtSwitchLive"
+                color="#006AFF"
+                :disabled="swtchDisabled"
+                @change="activeStateChng()"
+                class="ma-0 "
+                inset >
+              </v-switch>
+            </v-col>
+
+            <v-col
+              cols="12"
+              class="mt-12 "
+              v-if="!ordrAbndCrtSwitchLive"
+            >
+              <v-tooltip
+                v-model="showTooltip"
+                content-class="tooltip_color "
+                top
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    icon
+                    v-bind="attrs"
+                    v-on="on"
+                    style="position: relative;top:25px !important;visibility: hidden;"
+                  >
+                  </v-btn>
+                </template>
+                <span class="tooltip_text " tile  v-if="!ordrAbndCrtSwitchLive">{{$t("campaigns.hint")}}</span>
+              </v-tooltip>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-col>
 
       <v-col  class="d-flex justify-end pr-12">
@@ -378,6 +412,7 @@ export default {
   components: { TooltipIcon, iconEdit },
   data() {
     return {
+      showTooltip:false,
       ordrAbndCrtSwitchLive: false,
       ordrAbndCrtBtnDisabled: true,
       ordrAbndCrtIntroMsg: "",
@@ -473,8 +508,11 @@ export default {
     },
   },
   methods: {
-
     saveOrdrAbndCrt() {
+      if(this.ordrAbndCrtSwitchLive == false){
+        setTimeout(() => this.showTooltip = true,500)
+        setTimeout(() => this.showTooltip = false,5000)
+      }
       this.$store.dispatch("updIsLoading", true).then(() => {
         let obj = {
           active: this.ordrAbndCrtSwitchLive,
@@ -687,6 +725,10 @@ export default {
 </script>
 
 <style scoped>
+.pos_tooltip{
+  position: relative !important;
+  top:-150px !important;
+}
 .msgCountUnder{
   font: normal normal 600 14px/23px Poppins;
   letter-spacing: 0px;
@@ -766,8 +808,8 @@ export default {
     transform-origin: 0 0;
   }
 }
-@media (max-width: 1349px) {
 
+@media (max-width: 1349px) {
   .pad_resp{
     padding-right:50px !important;
     padding-left: 50px  !important;
@@ -775,6 +817,27 @@ export default {
 }
 </style>
 <style>
+.backgr_transp{
+  background-color: transparent !important;
+}
+.v-input.v-input--switch--inset .v-input--switch__track:after {
+  content: "No";
+  color: #333333;
+  font-size: 10px;
+}
+
+.post_rel{
+  position: relative !important;
+}
+
+.post_rel .v-input--selection-controls__input input{
+  display: none !important;
+}
+
+.v-input.v-input--switch--inset.v-input--is-label-active.v-input--is-dirty .v-input--switch__track:after{
+  content: "Yes";
+  color: #28A745;
+}
 .v-messages__message {
   line-height: 20px;
   color: black;

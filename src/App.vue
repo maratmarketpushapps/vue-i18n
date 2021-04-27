@@ -1,6 +1,6 @@
 <template>
   <v-app class="width_overflow">
-    <v-content class="app_background app-style pl-0 width_overflow_hidden" style="height:auto;">
+    <v-content class="app_background app-style pl-0 width_overflow_hidden" style="height:auto;min-width: 1060px !important;">
       <NavDrawer />
       <AppBar class="app_bar_height" />
 
@@ -283,6 +283,7 @@ menuable__content__active{
 @media (max-width: 1000px) {
   .width_overflow {
     overflow: scroll !important;
+
   }
   .width_overflow_hidden{
     overflow: hidden !important;

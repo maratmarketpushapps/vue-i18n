@@ -24,16 +24,59 @@
       </v-col>
 
       <v-col class="px-0 d-flex " cols="1" :class="$vuetify.breakpoint.width < 1350 ? 'justify-start' : 'justify-center'">
-        <v-switch
-          v-model="ordrAbndCrtSwitchLive"
-          color="#006AFF"
-          :disabled="swtchDisabled"
-          @change="haveChanges"
-          class="ma-0 "
-          inset
+        <v-container
+          fluid
+          class="text-center"
         >
-<!--          @change="activeStateChng()"-->
-        </v-switch>
+          <v-row
+          >
+            <v-col cols="12" class="px-0 py-0">
+              <v-switch
+                @mouseover="showTooltip = true"
+                @mouseleave="showTooltip = false"
+                v-model="ordrAbndCrtSwitchLive"
+                color="#006AFF"
+                :disabled="swtchDisabled"
+                @change="activeStateChng()"
+                class="ma-0 "
+                inset >
+              </v-switch>
+            </v-col>
+
+            <v-col
+              cols="12"
+              class="mt-12 "
+              v-if="!ordrAbndCrtSwitchLive"
+            >
+              <v-tooltip
+                v-model="showTooltip"
+                content-class="tooltip_color "
+                top
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    icon
+                    v-bind="attrs"
+                    v-on="on"
+                    style="position: relative;top:25px !important;visibility: hidden;"
+                  >
+                  </v-btn>
+                </template>
+                <span class="tooltip_text " tile  v-if="!ordrAbndCrtSwitchLive">{{$t("campaigns.hint")}}</span>
+              </v-tooltip>
+            </v-col>
+          </v-row>
+        </v-container>
+<!--        <v-switch-->
+<!--          v-model="ordrAbndCrtSwitchLive"-->
+<!--          color="#006AFF"-->
+<!--          :disabled="swtchDisabled"-->
+<!--          @change="haveChanges"-->
+<!--          class="ma-0 "-->
+<!--          inset-->
+<!--        >-->
+<!--&lt;!&ndash;          @change="activeStateChng()"&ndash;&gt;-->
+<!--        </v-switch>-->
       </v-col>
 
       <v-col  class="d-flex justify-end pr-12">
@@ -206,126 +249,8 @@
         </v-container>
 
         <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 mt-0 spc_bottom">
-<!--          <v-col cols="12" class="pl-0 ml-0  py-0 my-0">-->
-<!--            <span class="smsNightTimeHint">-->
-<!--              {{ $t("campaigns.whatsAppCampaigns.hintDiscountRow")}}-->
-<!--            </span>-->
-<!--            <span class="smsNightTimeHint" style="font-weight: bold">-->
-<!--                {{ $t("campaigns.whatsAppCampaigns.hintDiscountRowBold")}}-->
-<!--            </span>-->
-<!--          </v-col>-->
         </v-row>
-<!--        <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">-->
-<!--          <v-col class=" py-0 my-0 px-0">-->
-<!--            <v-row style=" width:100%" align="center" class="py-0 my-0 pr-0">-->
-<!--              <v-col :cols="$vuetify.breakpoint.md ? 6 : $vuetify.breakpoint.sm ? 7 : 5" class="pl-0 ml-3 pr-0 py-0 my-0 d-flex justify-content-between">-->
-<!--                <span class=" pb-1  mr-0 qckRpl av_short_code " :class="$vuetify.breakpoint.width < 1500 ? 'pb-0' : ''">-->
-<!--                  {{ $t("campaigns.smsordrrcpt.svashortcod") }}-->
-<!--                </span>-->
-<!--                <TooltipIcon-->
-<!--                  :posRight="true"-->
-<!--                  :nudgeBottom="30"-->
-<!--                  :nudgeLeft="5"-->
-<!--                  :txt="$t('campaigns.infocons.placeholders')"-->
-<!--                  class="infoicon_scale mt-0 pt-0  ml-3"-->
-<!--                  style="top:80%; transform:scale(.85)"-->
-<!--                />-->
-<!--              </v-col>-->
-<!--              <v-col class=" py-0 my-0 pl-0">-->
-<!--                <v-row class="mt-0  py-0 my-0 pl-0">-->
 
-<!--                </v-row>-->
-<!--              </v-col>-->
-<!--            </v-row>-->
-<!--            <v-row class="mx-0 px-0  py-0 my-0">-->
-<!--              <v-btn-->
-<!--                class="mr-3 qckRplBtn font_dims txt-up btn_sup btnsps"-->
-<!--                color="#7DA2F7"-->
-<!--                @click="putbussName()"-->
-<!--              >-->
-<!--                {{$t("campaigns.btn.BusName")}}-->
-<!--              </v-btn>-->
-<!--              <router-link  to="/settings" class="dbd  btnsps">-->
-<!--                <iconEdit-->
-<!--                  class="mt-1 pt-0 mr-3 ml-0 px-0 "-->
-<!--                  to="/settings"-->
-<!--                />-->
-<!--              </router-link>-->
-<!--              &lt;!&ndash;              <v-btn&ndash;&gt;-->
-<!--              &lt;!&ndash;                class="mr-3 qckRplBtn font_dims txt-up btn_sup btnsps"&ndash;&gt;-->
-<!--              &lt;!&ndash;                color="#7DA2F7"&ndash;&gt;-->
-<!--              &lt;!&ndash;                @click="putCheckOutTotal"&ndash;&gt;-->
-<!--              &lt;!&ndash;              >&ndash;&gt;-->
-<!--              &lt;!&ndash;                {{$t("campaigns.btn.CheckOutTotal")}}&ndash;&gt;-->
-<!--              &lt;!&ndash;              </v-btn>&ndash;&gt;-->
-
-<!--              <v-btn-->
-<!--                class="mr-3 qckRplBtn font_dims txt-up btn_sup btnsps"-->
-<!--                color="#7DA2F7"-->
-<!--                @click="putCheckOutLink"-->
-<!--              >-->
-<!--                {{$t("campaigns.btn.CheckOutLink")}}-->
-<!--              </v-btn>-->
-
-<!--              <v-btn-->
-<!--                class="mr-3 qckRplBtn font_dims txt-up btn_sup btnsps"-->
-<!--                color="#7DA2F7"-->
-<!--                @click="putNumberPhone()"-->
-<!--              >-->
-<!--                {{$t("campaigns.btn.StorePhoneNumber")}}-->
-<!--              </v-btn>-->
-<!--              <router-link  to="/settings" class="dbd btnsps">-->
-<!--                <iconEdit-->
-<!--                  class="mt-1 pt-0 mr-3 ml-0 px-0"-->
-<!--                />-->
-<!--              </router-link>-->
-<!--            </v-row>-->
-<!--          </v-col>-->
-<!--        </v-row>-->
-
-<!--        <v-row class="pl-4 pr-3 mb-0 sms_msg_textarea" style="margin-top: 33px">-->
-<!--          <span v-if="reqMandFields" style="color: red" class="ml-6">Mandatory fields to be present in the SMS Message </span>-->
-<!--          <span v-if="maxCharRule" style="color: red" class="ml-6">characters must be 250 or less </span>-->
-<!--          <v-textarea-->
-<!--            :label="$t('campaigns.smsordrrcpt.introMsg')"-->
-<!--            v-model="ordrAbndCrtIntroMsg"-->
-<!--            @change="activeStateChng()"-->
-<!--            @input="activeStateChng()"-->
-<!--            dense-->
-<!--            class="mt-3 pb-0 ml-6 mr-9"-->
-<!--            rows="3"-->
-<!--            hint="test"-->
-<!--            :persistent-hint="true"-->
-<!--            counter-->
-<!--            maxlength="250"-->
-<!--            :rules=" [v => v.length <= 250 || 'Max 250 characters']"-->
-<!--          >-->
-<!--            <template slot="message"-->
-<!--            >-->
-<!--              <span>-->
-<!--                <span>{{ $t("campaigns.smscarts1.discountTxt1") }}</span>-->
-<!--              </span>-->
-<!--            </template>-->
-<!--            <template v-slot:label >-->
-<!--              <span >{{$t('campaigns.smsordrrcpt.introMsg')}}</span>-->
-<!--              <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 28px;"-->
-<!--                    :class="suppasLenght ? 'col_red_txt': ''">{{ordrAbndCrtIntroMsg.length}}/</span>-->
-<!--              <span v-if="ordrAbndCrtIntroMsg.length > 4" style="position: absolute;right: 0px;"-->
-<!--                    :class="suppasLenght ? 'col_red_txt': ''">250</span>-->
-<!--            </template>-->
-<!--          </v-textarea>-->
-<!--        </v-row>-->
-<!--        <v-col class="pl-4 pr-3 mb-0 ml-1 mt-1" cols="12">-->
-<!--          <v-btn-->
-<!--            class="ma-2 btnAbon"-->
-<!--            outlined-->
-<!--            color="indigo"-->
-<!--            @click="putOPtOut()"-->
-<!--          >-->
-<!--            {{$t("campaigns.btn.AddOptOut")}}-->
-<!--          </v-btn>-->
-<!--        </v-col>-->
-<!--        <v-row style="height:19vh; width:100%" class="pl-4 pr-3"> </v-row>-->
       </v-row>
     </v-expand-transition>
 
@@ -341,6 +266,7 @@ export default {
   components: { TooltipIcon, iconEdit },
   data() {
     return {
+      showTooltip:false,
       reqMandFields:false,
       ordrAbndCrtSwitchLive: false,
       ordrAbndCrtBtnDisabled: true,
@@ -463,6 +389,10 @@ export default {
       // });
     },
     saveOrdrAbndCrt() {
+        if(this.ordrAbndCrtSwitchLive == false){
+          setTimeout(() => this.showTooltip = true,500)
+          setTimeout(() => this.showTooltip = false,5000)
+        }
         this.$store.dispatch("updIsLoading", true).then(() => {
           let obj = {
             active: this.ordrAbndCrtSwitchLive,

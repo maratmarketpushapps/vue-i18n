@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="pl-0 ml-0">
+  <v-container fluid class="pl-0 ml-0" style="min-width: 1000px !important;">
     <v-row style="height:auto; width:100%">
       <v-col cols="7" class="py-0 px-0">
         <v-col

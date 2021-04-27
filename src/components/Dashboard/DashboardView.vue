@@ -7,7 +7,11 @@
               <v-row style=" width:100%" align="center">
                 <v-col cols="6" class="py-0">
                   <v-row justify="start" align="center" class="ml-5 mt-2">
-                    <h3>{{ $t("dashboard.card1.header") }}</h3>
+                    <h3 class="curs_point_underline">
+                     <router-link :to="{name:'Campaigns'}" style="color:rgba(0, 0, 0, 0.87)">
+                       {{ $t("dashboard.card1.header") }}
+                     </router-link>
+                    </h3>
                   </v-row>
                 </v-col>
                 <v-col cols="6" class="py-0 mt-2">
@@ -250,7 +254,6 @@
                         :value="waRecovMsg2Percent"
                         height="5px"
                         background-color="#E6E7E8"
-
                       >
                       </v-progress-linear>
                     </v-col>
@@ -272,7 +275,11 @@
               <v-row style=" width:100%" align="center">
                 <v-col cols="10" class="pb-0">
                   <v-row justify="center" align="center" class="ml-8 mt-0">
-                    <h3>{{ $t("dashboard.card2.header") }}</h3>
+                    <h3 class="curs_point_underline" >
+                      <router-link :to="{name:'AbandonedCarts'}" style="color:rgba(0, 0, 0, 0.87)">
+                        {{ $t("dashboard.card2.header") }}
+                      </router-link>
+                    </h3>
                   </v-row>
                 </v-col>
                 <v-col cols="2" class="pb-0">
@@ -354,7 +361,11 @@
               <v-row style=" width:100%" align="center">
                 <v-col cols="10" class="pb-0">
                   <v-row justify="center" align="center" class="ml-8 mt-0">
-                    <h3>{{ $t("dashboard.card3.header") }}</h3>
+                    <h3 class="curs_point_underline">
+                      <router-link :to="{name:'AbandonedCarts'}" style="color:rgba(0, 0, 0, 0.87)">
+                      {{ $t("dashboard.card3.header") }}
+                      </router-link>
+                    </h3>
                   </v-row>
                 </v-col>
                 <v-col cols="2" class="pb-0">
@@ -437,7 +448,11 @@
               <v-row style="height:12%; width:100%">
                 <v-col cols="6">
                   <v-row justify="start" class="ml-5 mt-2">
-                    <h3>{{ $t("dashboard.card4.header") }}</h3>
+                    <h3 class="curs_point_underline" >
+                      <router-link :to="{name:'AbandonedCarts'}" style="color:rgba(0, 0, 0, 0.87)">
+                      {{ $t("dashboard.card4.header") }}
+                      </router-link>
+                    </h3>
                   </v-row>
                 </v-col>
                 <v-col cols="6">
@@ -781,6 +796,13 @@ export default {
 </script>
 
 <style scoped>
+.curs_point_underline{
+  cursor: pointer;
+
+}
+.curs_point_underline:hover{
+  text-decoration: underline;
+}
 .msgCount {
   font-size: 250%;
   color: #006aff;

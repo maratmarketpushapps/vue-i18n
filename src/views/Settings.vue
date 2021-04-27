@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="12" class="pl-4 d-flex justify-end pt-0">
+  <v-col cols="12" class="pl-4 d-flex justify-end pt-0" style="min-width: 1000px !important;">
     <v-col cols="11 pt-0">
         <v-container fluid class="pt-0">
           <v-row class="pt-6 mt-0">

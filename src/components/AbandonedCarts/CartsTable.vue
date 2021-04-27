@@ -174,11 +174,12 @@ export default {
       tableKey: 1,
       headers: [
         {
-          text: this.$t("abandonedCarts.dataTab.headers.col1") + ' / ' + ' ' + this.$t("abandonedCarts.dataTab.headers.col6"),
+          text: this.$t("abandonedCarts.dataTab.headers.col1") + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + '/' +
+          '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + this.$t("abandonedCarts.dataTab.headers.col6"),
           align: "start",
           sortable: false,
           value: "created_at",
-          class: "hd_bg"
+          class: "hd_bg "
         },
         {
           text: this.$t("abandonedCarts.dataTab.headers.col7"),
@@ -245,7 +246,8 @@ export default {
   text-align: left;
   font-family: Poppins !important;
   font-weight: 300 !important;
-  font-size: 14px/23px !important;
+  font-size: 14px !important;
+  line-height: 23px !important;
   letter-spacing: 0px;
   color: #4E5D6B !important;
   opacity: 1;
@@ -254,7 +256,8 @@ export default {
   text-align: left;
   font-family: Poppins !important;
   font-weight: 600 !important;
-  font-size: 14px/23px !important;
+  font-size: 14px !important;
+  line-height: 23px !important;
   letter-spacing: 0px;
   color: #4E5D6B !important;
   opacity: 1;
@@ -263,7 +266,8 @@ export default {
   text-align: left;
   font-family: Poppins !important;
   font-weight: normal !important;
-  font-size: 14px/23px !important;
+  font-size: 14px !important;
+  line-height: 23px !important;
   letter-spacing: 0px;
   color: #39D989 !important;
   opacity: 1;
@@ -272,17 +276,20 @@ export default {
   text-align: left;
   font-family: Poppins !important;
   font-weight: normal !important;
-  font-size: 14px/23px !important;
+  font-size: 14px !important;
+  line-height: 23px !important;
   letter-spacing: 0px !important;
   color: #4E5D6B !important;
   opacity: 1;
 }
 .hd_bg{
+  height: 80px !important;
   background-color: #4E5D6B;
   text-align: left;
   font-family: Poppins !important;
   font-weight: normal !important;
-  font-size: 12px/18px !important;
+  font-size: 12px !important;
+  line-height: 18px !important;
   letter-spacing: 0px !important;
   color: #FFFFFF !important;
   opacity: 1 !important;

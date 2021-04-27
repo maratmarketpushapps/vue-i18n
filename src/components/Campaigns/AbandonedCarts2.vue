@@ -23,16 +23,60 @@
       </v-col>
 
       <v-col class="px-0 d-flex " cols="1" :class="$vuetify.breakpoint.width < 1350 ? 'justify-start' : 'justify-center'">
-        <v-switch
-          v-model="ordrAbndCrtSwitchLive"
-          color="#006AFF"
-          :disabled="swtchDisabled"
-          @change="activeStateChng()"
-          class="ma-0 "
-          inset
+        <v-container
+          fluid
+          class="text-center"
         >
-        </v-switch>
+          <v-row
+          >
+            <v-col cols="12" class="px-0 py-0">
+              <v-switch
+                @mouseover="showTooltip = true"
+                @mouseleave="showTooltip = false"
+                v-model="ordrAbndCrtSwitchLive"
+                color="#006AFF"
+                :disabled="swtchDisabled"
+                @change="activeStateChng()"
+                class="ma-0 "
+                inset >
+              </v-switch>
+            </v-col>
+
+            <v-col
+              cols="12"
+              class="mt-12 "
+              v-if="!ordrAbndCrtSwitchLive"
+            >
+              <v-tooltip
+                v-model="showTooltip"
+                content-class="tooltip_color "
+                top
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    icon
+                    v-bind="attrs"
+                    v-on="on"
+                    style="position: relative;top:0px !important;left: -75px;visibility: hidden;"
+                  >
+                  </v-btn>
+                </template>
+                <span class="tooltip_text " tile  v-if="!ordrAbndCrtSwitchLive">{{$t("campaigns.hint")}}</span>
+              </v-tooltip>
+            </v-col>
+    <!--        <v-switch-->
+    <!--          v-model="ordrAbndCrtSwitchLive"-->
+    <!--          color="#006AFF"-->
+    <!--          :disabled="swtchDisabled"-->
+    <!--          @change="activeStateChng()"-->
+    <!--          class="ma-0 "-->
+    <!--          inset-->
+    <!--        >-->
+    <!--        </v-switch>-->
+          </v-row>
+        </v-container>
       </v-col>
+
 
       <v-col  class="d-flex justify-end pr-12">
         <v-btn
@@ -340,6 +384,7 @@ export default {
   components: { TooltipIcon, iconEdit },
   data() {
     return {
+      showTooltip:false,
       ordrAbndCrtSwitchLive: false,
       ordrAbndCrtBtnDisabled: true,
       ordrAbndCrtIntroMsg: "",
@@ -433,6 +478,10 @@ export default {
   },
   methods: {
     saveOrdrAbndCrt() {
+      if(this.ordrAbndCrtSwitchLive == false){
+        setTimeout(() => this.showTooltip = true,500)
+        setTimeout(() => this.showTooltip = false,5000)
+      }
       this.$store.dispatch("updIsLoading", true).then(() => {
         let obj = {
           active: this.ordrAbndCrtSwitchLive,
@@ -652,6 +701,10 @@ export default {
 </script>
 
 <style scoped>
+.pos_tooltip{
+  position: relative !important;
+  top:-50px !important;
+}
 .col_red_txt{
   color: red !important;
 }
