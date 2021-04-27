@@ -32,12 +32,13 @@
           >
             <v-col cols="12" class="px-0 py-0">
               <v-switch
+                @change="haveChanges"
                 @mouseover="showTooltip = true"
                 @mouseleave="showTooltip = false"
                 v-model="ordrAbndCrtSwitchLive"
                 color="#006AFF"
                 :disabled="swtchDisabled"
-                @change="activeStateChng()"
+
                 class="ma-0 "
                 inset >
               </v-switch>
