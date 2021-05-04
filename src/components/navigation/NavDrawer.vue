@@ -51,7 +51,9 @@
               >$vuetify.icons.widgets</v-icon
             ></v-list-item
           >
-          <v-menu right offset-x  :open-on-hover="campingsMenu" :menu-props="{ 'margin-top': '0px !important'}" >
+          <v-menu right offset-x  :open-on-hover="campingsMenu" :menu-props="{ 'margin-top': '0px !important'}"
+                  content-class="elevation-0 mt-0"
+                  class="box_shadow_none">
             <template v-slot:activator="{ on, attrs }" >
               <div  @mouseleave="activeCamp = ''">
                 <v-list-item
@@ -88,7 +90,7 @@
                 <router-link class="tool_tip_span" to="/campaigns-facebook">{{
                   $t("campaigns.tooltip.facebook")
                 }}</router-link>
-                <v-col cols="12" class="arrow-right py-0"></v-col>
+                <v-col cols="12" class="arrow-right_nav py-0"></v-col>
               </v-col>
             </v-col>
           </v-menu>
@@ -282,7 +284,9 @@ export default {
 </style>
 
 <style>
-
+.box_shadow_none{
+  box-shadow: navy;
+}
 .cmp_sec:hover{
   /*color: #FFFFFF !important;*/
   background-color:#ffffff16 !important;
@@ -342,7 +346,7 @@ export default {
   color: #5685e9 !important;
 }
 
-.arrow-right {
+.arrow-right_nav {
   width: 0;
   height: 0;
   border-top: 8px solid transparent;

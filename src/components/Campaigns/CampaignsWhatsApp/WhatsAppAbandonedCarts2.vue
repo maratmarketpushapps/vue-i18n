@@ -503,7 +503,10 @@ export default {
 
     this.sent_after = this.$store.getters.wagetCartsSec.sent_after + " hour";
     this.ordrAbndCrtSwitchLive = this.$store.getters.wagetCartsSec.active;
-    this.SelectedLanguage = this.$store.getters.wagetCartsSec.selected_language;
+
+    /* when backend will be ready uncomment it */
+    // this.SelectedLanguage = this.$store.getters.wagetCartsSec.selected_language;
+
     this.waDiscountCupon = this.$store.getters.wagetCartsSec.discount_coupon_enabled;
     this.discount_value = this.$store.getters.wagetCartsSec.discount_value;
     this.discount_coupon = this.$store.getters.wagetCartsSec.discount_coupon;

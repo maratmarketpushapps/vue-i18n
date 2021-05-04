@@ -921,6 +921,7 @@ export default new Vuex.Store({
 
 
       // /* whatsapp values */
+      console.log(obj.wa_abandoned_cart_1)
       state.msgVars.wa_abandoned_cart_1.active = obj.wa_abandoned_cart_1.active;
       state.msgVars.wa_abandoned_cart_1.sent_after = obj.wa_abandoned_cart_1.sent_after;
       state.msgVars.wa_abandoned_cart_1.discount_coupon_enabled = obj.wa_abandoned_cart_1.discount_cupon;

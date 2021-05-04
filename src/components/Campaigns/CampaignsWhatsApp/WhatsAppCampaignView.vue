@@ -52,13 +52,18 @@
             class="pa-0"
           >
             <v-row style="height:79%; width:100%">
-              <v-col class="px-0">
-                <v-img src="@/assets/img/whatsappCampaigns/message-box.png" height="185px" width="82%" class="pl-3 pt-6 pr-9 pb-10">
-                 Hi <b>CustomerName</b>, the payment for your order of <b>order of</b>from <b>BusinessName</b> is
-                  still pending. Click on the link to complete the payment and conﬁrm your order:
-                  <a href="#">https://www.marketpushapps.com/cart</a>
-                  Chat with us at: <a href="#">wa.me/+18559305560</a>
-                </v-img>
+              <v-col class="px-0 mr-8">
+                <div class="wa_chat_bg ">
+                  <div class="arrow-right_wa"></div>
+                  {{ $t("campaigns.waRightText") }}
+                  </div>
+<!--                <v-img src="@/assets/img/whatsappCampaigns/message-box.png" height="100%" width="82%" class="pl-3 pt-6 pr-9 ">-->
+<!--&lt;!&ndash;                 Hi <b>CustomerName</b>, the payment for your order of <b>order of</b>from <b>BusinessName</b> is&ndash;&gt;-->
+<!--&lt;!&ndash;                  still pending. Click on the link to complete the payment and conﬁrm your order:&ndash;&gt;-->
+<!--&lt;!&ndash;                  <a href="#">https://www.marketpushapps.com/cart</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                  Chat with us at: <a href="#">wa.me/+18559305560</a>&ndash;&gt;-->
+<!--                  {{ $t("campaigns.waRightText") }}-->
+<!--                </v-img>-->
               </v-col>
             </v-row>
           </v-container>
@@ -74,6 +79,8 @@
 </template>
 
 <script>
+
+import { mapGetters } from "vuex";
 
 export default {
   name: "whatsAppCampaignView",
@@ -91,8 +98,13 @@ export default {
     },
   },
   computed: {
+    ...mapGetters(["wagetCarts1"]),
+    // ...mapGetters(["checkClicked", "checkHover"]),
     dialogShow() {
       return this.dialog && !this.$store.getters.getQreplyEdit;
+    },
+    selectedLanguage(){
+      return this.wagetCarts1.selected_language
     },
     msgTxt() {
       if (this.$store.getters.getActiveTab == "abndndcrt1") {
@@ -189,6 +201,32 @@ export default {
 </script>
 
 <style scoped>
+.wa_chat_bg{
+  background-color: #e1ffc7 !important;
+  max-width: 441px;
+  width: 100%;
+  padding-top: 23px ;
+  padding-right: 23px;
+  padding-left: 11px;
+  padding-bottom: 23px;
+  /*border-radius: 15px;*/
+  border-top-left-radius:15px;
+  border-top-right-radius:15px;
+  border-bottom-left-radius:15px;
+  position: relative !important;
+  /*max-height: 261px;*/
+}
+.arrow-right_wa {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  /*border-bottom: 20px solid transparent;*/
+  border-left: 20px solid  #e1ffc7;
+  border-right: transparent;
+  position: absolute;
+  right: -20px;
+  bottom: 0px;
+}
 .ovr_spc {
   padding-right: 15px;
   padding-left:15px;

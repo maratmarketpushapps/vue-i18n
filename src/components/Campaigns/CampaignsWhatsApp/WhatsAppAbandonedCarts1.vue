@@ -514,10 +514,11 @@ export default {
 
   },
   mounted() {
-
     this.sent_after = this.$store.getters.wagetCarts1.sent_after + " hour";
     this.ordrAbndCrtSwitchLive = this.$store.getters.wagetCarts1.active;
-    this.SelectedLanguage = this.$store.getters.wagetCarts1.selected_language;
+    // /* when backend will be ready uncomment it */
+    // this.SelectedLanguage = this.$store.getters.wagetCarts1.selected_language;
+
     this.waDiscountCupon = this.$store.getters.wagetCarts1.discount_coupon_enabled;
     this.discount_value = this.$store.getters.wagetCarts1.discount_value;
     this.discount_coupon = this.$store.getters.wagetCarts1.discount_coupon;

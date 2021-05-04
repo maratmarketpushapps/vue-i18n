@@ -37,7 +37,7 @@
 <!--           :hint="$t('settingsPage.hintTelNumber')"-->
          </vue-tel-input-vuetify>
         <v-col class="px-0 py-0" style="z-index: 99">
-          <small class="hintTelNumber" style="z-index: 99">{{$t('settingsPage.hintTelNumber')}}</small>
+          <small class="hintTelNumber" style="z-index: 99" >{{$t('settingsPage.hintTelNumber')}}</small>
         </v-col>
         <v-row justify="center" style="padding-top:3%">
           <v-btn
@@ -192,6 +192,6 @@ export default {
 }
 .hintTelNumber{
   position: relative !important;
-  bottom: 21px !important;
+  bottom: 19px !important;
 }
 </style>

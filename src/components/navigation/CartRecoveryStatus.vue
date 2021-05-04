@@ -15,7 +15,7 @@
                         {{ $t("cartRecoveryStatus.ON") }}
               </span>
               <span class="red_off cartRecoveryStatusOFF" v-else >{{ " " +  $t("cartRecoveryStatus.OFF") }}</span></v-list-item-title>
-            <v-list-item-subtitle :class="typeRecovery == 'fb' ? 'txt_sub_fb' : 'txt_sub'">
+            <v-list-item-subtitle :class="typeRecovery == 'fb' ? 'txt_sub_fb' : typeRecovery == 'wa'? 'txt_sub_wa':'txt_sub'">
               <span class="trn_on_txt cartRecoveryHowToTurnOn" @click="showStepsCompletedModal">
               {{ $t("cartRecoveryStatus.howToTurnOn") }}
               </span>
@@ -113,9 +113,12 @@ align-items:end;
 padding: 20px 0 10px 0;
 }
 .txt_sub{
-  margin-left: 19px ;
+  margin-left: 20px ;
 }
 .txt_sub_fb{
+  margin-left: 37px;
+}
+.txt_sub_wa{
   margin-left: 40px;
 }
 </style>

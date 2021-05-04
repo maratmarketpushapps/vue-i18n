@@ -82,13 +82,13 @@
               <v-row aligns="center" justify="center" :class="activeIconArrow == ke + 1 ? 'arrow_icon_fill' : ''"
                       @mouseenter="activeIconArrow = ke + 1" @mouseleave="activeIconArrow = false"
                      style="height:11px !important;" @click="tpMove(coneData,ke,ke == 0 ?  2 : ke == 1 ?  -2 : -1)">
-                <arrow-up />
+                <arrow-up class="cursPoint" />
               </v-row>
               <v-row style="height: 5px"></v-row>
               <v-row aligns="center" justify="center" :class="activeIconArrowSecond == ke + 3 ? 'arrow_icon_fill' : ''"
                      @mouseenter="activeIconArrowSecond = ke + 3" @mouseleave="activeIconArrowSecond = false"
                      style="height:11px !important;" @click="btMove(coneData,ke,ke == 0 ?  1 : ke == 1 ?  2 : 0)">
-                <arrow-down  />
+                <arrow-down class="cursPoint" />
               </v-row>
             </v-col>
           </v-col>
@@ -1372,6 +1372,9 @@ export default {
 </script>
 
 <style scoped>
+.cursPoint{
+  cursor: pointer !important;
+}
 .tpMove{
   color: transparent !important;position: relative;top:-10px !important;left:-9px !important;height: 18px !important;width: 150%
 }
