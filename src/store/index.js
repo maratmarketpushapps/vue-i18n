@@ -266,10 +266,14 @@ export default new Vuex.Store({
       fbShowCartRecoveryStepsModal: false,
       waShowCartRecoveryStepsModal:false
     },
+    vsMenuContent:false
   },
   getters: {
     getSubPlan: (state) => {
       return state.subVars.subscription_plan
+    },
+    getVsMenuContent: (state) => {
+      return state.vsMenuContent
     },
     getMsgActiveCart: (state) => {
       return state.msgVars.activeTab
@@ -430,6 +434,9 @@ export default new Vuex.Store({
     },
     SET_HOVER(state, id) {
       state.navState.currentHover = id;
+    },
+    UPDATE_VSMENUCONTENT(state,val){
+      this.state.vsMenuContent = val
     },
     SET_DEFAULT_NAVSTATE(state){
       state.navState.currentSelected = ""

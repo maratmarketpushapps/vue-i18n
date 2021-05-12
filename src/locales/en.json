@@ -1,4 +1,5 @@
 {
+  "hello": "no wolf | one wolf | a pack of {numberOfWolves} wolves",
   "navbar": {
     "appbar": {
       "step1": "Connect Your Facebook Page",
@@ -107,7 +108,7 @@
       "placeHolderDiscountValue":"Exemple: 20%",
       "placeHolderDiscountCoupon":"Exemple: WhatsApp20",
       "hintDiscountRow":"To increase the chances of recovering sales, you can include a discount coupon in your message. To generate a coupon, go to ",
-      "hintDiscountRowBold": "Marketing & SEO / Coupons."
+      "hintDiscountRowBold": "Marketing & SEO \n / \n Coupons. "
     },
     "ago": "ago",
     "modalText1": "This is the message that your customers will receive on Facebook.",
@@ -294,7 +295,7 @@
   "settingsPage": {
     "titleCard": "SMS Cart Recovery",
     "addYourPhoneNumber":"Add Your Phone Number",
-    "hintTelNumber": "You can add your phone number in the SMS Cart Recovery messages.",
+    "hintTelNumber": "You can add your phone number in the SMS & WhatsApp Cart Recovery messages.",
     "addYourPhoneNumberCardInfo": "This phone number is included in the sent SMS messages. Customers can use this phone number to get in touch with you.",
     "fbCard1": {
       "header": "Connect Your Facebook Page",
@@ -401,7 +402,7 @@
     "waTitle": "How to turn on WhatsApp Cart Recovery?",
     "waInstruction1": "Add your phone number in Settings.",
     "waInstruction2": "Activate at least one WhatsApp Campaign.",
-    "waInstruction3": "Activate site Popup Widget and enable WhatsAPP.",
+    "waInstruction3": "Activate site Popup Widget and enable WhatsApp.",
     "fbTitle": "How to turn ON Facebook Cart Recovery?",
     "fbInstruction1": "Connect your Facebook Page.",
     "fbInstruction2": "Activate at least one FB Campaign.",

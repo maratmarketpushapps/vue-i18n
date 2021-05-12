@@ -38,17 +38,17 @@
                 v-model="ordrAbndCrtSwitchLive"
                 color="#006AFF"
                 :disabled="swtchDisabled"
-
                 class="ma-0 "
                 inset >
               </v-switch>
             </v-col>
             <v-col
               cols="12"
-              class="mt-12 "
-              v-if="!ordrAbndCrtSwitchLive"
+              class="mt-12"
             >
+<!--              v-if="ordrAbndCrtSwitchLive"-->
               <v-tooltip
+                :disabled="ordrAbndCrtSwitchLive"
                 v-model="showTooltip"
                 content-class="tooltip_color "
                 top
@@ -118,7 +118,7 @@
         class="pl-6 pr-0 mt-9 med_no_spc"
         align="start"
       >
-        <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
+        <v-row style="width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
           <v-col cols="3" class="pl-0 ml-0  py-0 my-0">
             <v-select
               :label="$t('campaigns.carts1.selectLabel')"
@@ -154,13 +154,16 @@
         </v-row>
 
         <v-row style=" width:100%" class="ml-4 pl-3 mt-6 pr-3  py-0 my-0">
-          <v-col cols="12" class="pl-0 ml-0  py-0 my-0">
+          <v-col cols="12" class="pl-0 ml-0  py-0 my-0" @click="setDefMenuContent">
             <v-select
               :label="$t('campaigns.wacarts1.selectLabelLanguage')"
               :items="languageList"
               v-model="SelectedLanguage"
               dense
               style="font-size:110%"
+              nudge-top="-150"
+              @click="setClassMenuContent()"
+              ref="languagesel"
             >
               <!--              @change="activeStateChng()"-->
             </v-select>
@@ -195,12 +198,14 @@
         </v-col>
 
         <v-col cols="12" class="pl-0 ml-7 py-0 my-0" style="position: relative;top: -15px !important;">
+          <div class="pr-6">
             <span class="smsNightTimeHint">
               {{ $t("campaigns.whatsAppCampaigns.hintDiscountRow")}}
             </span>
-          <span class="smsNightTimeHint" style="font-weight: bold">
-                {{ $t("campaigns.whatsAppCampaigns.hintDiscountRowBold")}}
+            <span class="smsNightTimeHint" style="font-weight: bold">
+                  {{ $t("campaigns.whatsAppCampaigns.hintDiscountRowBold")}}
             </span>
+          </div>
         </v-col>
 
         <v-container class="py-0 mt-2" v-show="waDiscountCupon">
@@ -341,7 +346,7 @@ export default {
         : false;
     },
     swtchDisabled() {
-      return this.$store.getters.getActiveTab == "abndndcrt1" ? false : true;
+      return this.$store.getters.getActiveTab == "abndndcrt2" ? false : true;
     },
     svBtnDsbldOrdrAbndCrt() {
       return this.ordrAbndCrtBtnDisabled;
@@ -366,12 +371,18 @@ export default {
     cardListeners(){
       let eventListeners = {}
       if(this.getActiveCart == "abndndcrt1"){
-        eventListeners.click = this.editCart1
+        eventListeners.click = this.editCart1,this.$store.commit("UPDATE_VSMENUCONTENT",false)
       }
       return eventListeners
     },
   },
   methods: {
+    setClassMenuContent(){
+      setTimeout(() => this.$store.commit("UPDATE_VSMENUCONTENT",true),50)
+    },
+    setDefMenuContent(){
+      this.$store.commit("UPDATE_VSMENUCONTENT",false)
+    },
     hasChanges(){
       this.ordrAbndCrtBtnDisabled = false;
     },
@@ -415,22 +426,19 @@ export default {
     },
     haveChanges() {
       this.hasChanges()
+      this.activeStateChng()
     },
     activeStateChng() {
-      // this.reqMandFields = false
-      // // this.ordrAbndCrtSwitchLive = !this.ordrAbndCrtSwitchLive;
-      // let obj = {
-      //   active: this.ordrAbndCrtSwitchLive,
-      //   title: this.ordrAbndCrtTitle,
-      //   subtitle: this.ordrAbndCrtSubTitle,
-      //   button_text: this.ordrAbndCrtBtnText,
-      //   sent_after: Number(this.sent_after.split(" ")[0]),
-      // };
-      // this.$store.dispatch("smsUpdOrdrAbndCrt", obj).then(() => {
-      //   // console.log(response);
-      //   this.ordrAbndCrtBtnDisabled = false;
-      // });
-      // console.log("new active status" + this.ordrAbndCrtSwitchLive);
+      this.reqMandFields = false
+      // this.ordrAbndCrtSwitchLive = !this.ordrAbndCrtSwitchLive;
+      let obj = {
+        active: this.ordrAbndCrtSwitchLive,
+        sent_after: Number(this.sent_after.split(" ")[0]),
+      };
+      this.$store.dispatch("waUpdOrdrAbndCrt_2", obj).then(() => {
+        // console.log(response);
+        this.ordrAbndCrtBtnDisabled = false;
+      });
     },
     ovrlyOrdrAbndCrt1() {
       this.ordrAbndCrtQckRplEdit1 = this.ordrAbndCrtQckRpl1;

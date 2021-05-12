@@ -44,10 +44,10 @@
 
             <v-col
               cols="12"
-              class="mt-12 "
-              v-if="!ordrAbndCrtSwitchLive"
+              class="mt-12"
             >
               <v-tooltip
+                :disabled="ordrAbndCrtSwitchLive"
                 v-model="showTooltip"
                 content-class="tooltip_color "
                 top

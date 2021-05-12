@@ -1,5 +1,5 @@
 <template>
-  <v-app class="width_overflow">
+  <v-app class="width_overflow " :class="{vs_menu_content:vsMenuContent}">
     <v-content class="app_background app-style pl-0 width_overflow_hidden" style="height:auto;min-width: 1060px !important;">
       <NavDrawer />
       <AppBar class="app_bar_height" />
@@ -77,13 +77,14 @@
           </v-overlay>
         </v-col>
       </v-row>
+
     </v-content>
   </v-app>
 </template>
 
 //
 <script>
-//Deployment test 3
+
 import AppBar from "@/components/navigation/AppBar.vue";
 import NavDrawer from "@/components/navigation/NavDrawer.vue";
 
@@ -111,10 +112,7 @@ export default {
                 email: this.$store.getters.getSettingsState.email,
               });
             });
-
             this.$store.dispatch("getWidgets").then(() => {
-
-
             });
           });
         });
@@ -133,6 +131,7 @@ export default {
   },
   data() {
     return {
+      langs: ['en', 'es'],
       showAlert: true,
       absolute: false,
       opacity: 0.46,
@@ -146,6 +145,9 @@ export default {
     };
   },
   methods: {
+    setDefMenuContent(){
+      this.$store.commit("UPDATE_VSMENUCONTENT",false)
+    },
     canclOvrlyStepComp() {
       this.$store.dispatch("updStepsCompOnload", true);
     },
@@ -156,8 +158,19 @@ export default {
   computed: {
     isLoading() {
       return this.$store.getters.getisLoading;
+    },
+    vsMenuContent(){
+      return this.$store.getters.getVsMenuContent
     }
   },
+  watch:{
+    "$route":{
+      deep: true,
+      handler(){
+        this.setDefMenuContent()
+      }
+    },
+  }
 
 };
 </script>

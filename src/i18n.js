@@ -25,4 +25,5 @@ export default new VueI18n({
   fallbackLocale: "en",
   messages: loadLocaleMessages(),
   silentTranslationWarn: true,
+
 });

@@ -330,7 +330,7 @@ export default {
       };
 
       this.$store.dispatch("updOrdrShipped", obj).then((response) => {
-        console.log(response);
+
       });
       this.ordrRcptBtnDisabled = false;
     },

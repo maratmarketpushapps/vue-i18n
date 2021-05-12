@@ -45,10 +45,10 @@
 
             <v-col
               cols="12"
-              class="mt-12 "
-              v-if="!ordrAbndCrtSwitchLive"
+              class="mt-12"
             >
               <v-tooltip
+                :disabled="ordrAbndCrtSwitchLive"
                 v-model="showTooltip"
                 content-class="tooltip_color "
                 top
@@ -119,7 +119,7 @@
         align="start"
       >
         <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
-          <v-col cols="3" class="pl-0 ml-0  py-0 my-0">
+          <v-col cols="3" class="pl-0 ml-0  py-0 my-0"   @click="setDefMenuContent">
             <v-select
               :label="$t('campaigns.carts1.selectLabel')"
               :items="timeListCart1"
@@ -127,6 +127,7 @@
               @change="haveChanges()"
               dense
               style="font-size:110%"
+              @click="setDefMenuContent"
             >
 
             </v-select>
@@ -146,7 +147,8 @@
         </v-row>
 
         <v-row style=" width:100%" class="ml-4 pl-3 pr-3  py-0 my-0">
-          <v-col cols="12" class="pl-0 ml-0  py-0 my-0">
+          <v-col cols="12" class="pl-0 pr-3 mr-3 ml-0  py-0 my-0">
+
             <span class="smsNightTimeHint">
               {{ $t("campaigns.waNotSendNightTime")}}
             </span>
@@ -161,7 +163,12 @@
               v-model="SelectedLanguage"
               dense
               style="font-size:110%"
+              nudge-top="-150"
+              @click="setClassMenuContent()"
+              ref="languagesel"
             >
+<!--        above event  isMenuActive pass true or false -->
+
 <!--              @change="activeStateChng()"-->
             </v-select>
           </v-col>
@@ -194,13 +201,16 @@
           </v-checkbox>
         </v-col>
 
-          <v-col cols="12" class="pl-0 ml-7  py-0 my-0" style="position: relative;top: -15px !important;">
-            <span class="smsNightTimeHint">
-              {{ $t("campaigns.whatsAppCampaigns.hintDiscountRow")}}
-            </span>
-            <span class="smsNightTimeHint" style="font-weight: bold">
+          <v-col cols="12" class="pl-0 ml-7 pr-3 mr-3 py-0 my-0" style="position: relative;top: -15px !important;">
+            <div class="pr-6">
+              <span class="smsNightTimeHint">
+                {{ $t("campaigns.whatsAppCampaigns.hintDiscountRow")}}
+              </span>
+              <span class="smsNightTimeHint" style="font-weight: bold">
                 {{ $t("campaigns.whatsAppCampaigns.hintDiscountRowBold")}}
-            </span>
+              </span>
+            </div>
+
           </v-col>
 
         <v-container class="py-0 mt-2" v-show="waDiscountCupon">
@@ -309,7 +319,8 @@ export default {
       SelectedLanguage:'English',
       waDiscountCupon:false,
       discount_value:'',
-      discount_coupon:''
+      discount_coupon:'',
+      menuContentPos:false
     };
   },
   watch:{
@@ -365,28 +376,20 @@ export default {
     cardListeners(){
       let eventListeners = {}
       if(this.getActiveCart == "abndndcrt2"){
-        eventListeners.click = this.editCart1
+        eventListeners.click = this.editCart1,this.$store.commit("UPDATE_VSMENUCONTENT",false)
       }
       return eventListeners
     },
   },
   methods: {
+    setClassMenuContent(){
+      setTimeout(() => this.$store.commit("UPDATE_VSMENUCONTENT",this.$refs.languagesel.isMenuActive),50)
+    },
+    setDefMenuContent(){
+      this.$store.commit("UPDATE_VSMENUCONTENT",false)
+    },
     hasChanges(){
       this.ordrAbndCrtBtnDisabled = false;
-      // waSET_ORDR_ABANDONED_CART
-      // this.ordrAbndCrtSwitchLive = !this.ordrAbndCrtSwitchLive;
-      // let obj = {
-      //   active: this.ordrAbndCrtSwitchLive,
-      //   sent_after: Number(this.sent_after.split(" ")[0]),
-      //   discount_cupon:this.waDiscountCupon,
-      //   discount_value:this.discount_value,
-      //   discount_coupon:this.discount_coupon,
-      //   SelectedLanguage:this.SelectedLanguage,
-      // };
-      // this.$store.dispatch("wa_SET_ORDR_ABANDONED_CART", obj).then(() => {
-      //   console.log('response');
-        // this.ordrAbndCrtBtnDisabled = false;
-      // });
     },
     saveOrdrAbndCrt() {
         if(this.ordrAbndCrtSwitchLive == false){
@@ -430,20 +433,16 @@ export default {
       this.hasChanges()
     },
     activeStateChng() {
-      // this.reqMandFields = false
-      // // this.ordrAbndCrtSwitchLive = !this.ordrAbndCrtSwitchLive;
-      // let obj = {
-      //   active: this.ordrAbndCrtSwitchLive,
-      //   title: this.ordrAbndCrtTitle,
-      //   subtitle: this.ordrAbndCrtSubTitle,
-      //   button_text: this.ordrAbndCrtBtnText,
-      //   sent_after: Number(this.sent_after.split(" ")[0]),
-      // };
-      // this.$store.dispatch("smsUpdOrdrAbndCrt", obj).then(() => {
-      //   // console.log(response);
-      //   this.ordrAbndCrtBtnDisabled = false;
-      // });
-      // console.log("new active status" + this.ordrAbndCrtSwitchLive);
+      this.reqMandFields = false
+      // this.ordrAbndCrtSwitchLive = !this.ordrAbndCrtSwitchLive;
+      let obj = {
+        active: this.ordrAbndCrtSwitchLive,
+        sent_after: Number(this.sent_after.split(" ")[0]),
+      };
+      this.$store.dispatch("waUpdOrdrAbndCrt", obj).then(() => {
+        // console.log(response);
+        this.ordrAbndCrtBtnDisabled = false;
+      });
     },
     ovrlyOrdrAbndCrt1() {
       this.ordrAbndCrtQckRplEdit1 = this.ordrAbndCrtQckRpl1;
@@ -514,17 +513,16 @@ export default {
 
   },
   mounted() {
+    this.setDefMenuContent()
     this.sent_after = this.$store.getters.wagetCarts1.sent_after + " hour";
     this.ordrAbndCrtSwitchLive = this.$store.getters.wagetCarts1.active;
+
     // /* when backend will be ready uncomment it */
     // this.SelectedLanguage = this.$store.getters.wagetCarts1.selected_language;
 
     this.waDiscountCupon = this.$store.getters.wagetCarts1.discount_coupon_enabled;
     this.discount_value = this.$store.getters.wagetCarts1.discount_value;
     this.discount_coupon = this.$store.getters.wagetCarts1.discount_coupon;
-
-
-
   }
 };
 </script>
@@ -714,6 +712,11 @@ export default {
 }
 </style>
 <style>
+
+  .vs_menu_content .v-menu__content {
+    margin-top: 12px !important;
+  }
+
 .sms_msg_textarea .v-label{
   display: block !important;
   width: 127% !important;
