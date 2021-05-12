@@ -92,24 +92,23 @@
             style="width:102.5%"
             align="center"
             justify="center"
-
             v-show="wdgtTabHaveTwo"
             :style="bdyColor"
           >
             <!--            && !detectEuRegion-->
             <!--            v-if="getTwoRight"-->
             <v-tabs v-model="tab" light centered color="transparent" :style="bdyColor" :background-color="getBgWidgCheckBody">
-              <v-tab light :style="bdyColor" v-if="getTabHeader1" :class="tab != 0 ? 'opacPresent' : '' ">
+              <v-tab light :style="bdyColor" @click="activeIcon(getTabHeader1)" v-if="getTabHeader1 !== undefined">
                 <!--                v-if="getWidgetsState.enabled_widgets.keTabHeader1.enabled"-->
-                <component v-bind:is="getTabHeader1"></component>
+                <component v-bind:is="getTabHeader1" :class="opacity != getTabHeader1 ? 'opacPresent' : ''" ></component>
               </v-tab>
-              <v-tab light :style="bdyColor" v-if="getTabHeader2" :class="tab != 1 ? 'opacPresent' : '' ">
+              <v-tab light :style="bdyColor" @click="activeIcon(getTabHeader2)" v-if="getTabHeader2 !== undefined">
                 <!--                v-if="getWidgetsState.enabled_widgets.keTabHeader2.enabled"-->
-                <component v-bind:is="getTabHeader2"></component>
+                <component v-bind:is="getTabHeader2" :class="opacity != getTabHeader2 ? 'opacPresent' : ''" ></component>
               </v-tab>
-              <v-tab light :style="bdyColor" v-if="getTabHeader3" :class="tab != 2 ? 'opacPresent' : '' ">
+              <v-tab light :style="bdyColor"  @click="activeIcon(getTabHeader3)" v-if="getTabHeader3 !== undefined">
                 <!--                v-if="getWidgetsState.enabled_widgets.keTabHeader3.enabled"-->
-                <component v-bind:is="getTabHeader3"></component>
+                <component v-bind:is="getTabHeader3" :class="opacity != getTabHeader3 ? 'opacPresent' : ''" ></component>
               </v-tab>
               <!--              <v-divider vertical></v-divider>-->
             </v-tabs>
@@ -1395,14 +1394,12 @@ export default {
       optinNum: "",
       tab: null,
       wdgtTabKey: 0,
-      keyDependPosit:1
+      keyDependPosit:1,
+      opacity:'',
     };
   },
   mounted(){
-    // if(this.getTabHeader1 == undefined){
-    //   this.keyDependPosit = 2;
-    // }
-    // console.log(this.keyDependPosit)
+    this.activeIcon(this.getTabHeader1)
   },
   methods: {
     incrBtnId() {
@@ -1424,6 +1421,9 @@ export default {
     resetOptin() {
       this.didOptIn = false;
     },
+    activeIcon(item){
+      this.opacity = item
+    }
   },
   computed: {
     ...mapGetters(["getWidgetsState","getWidgEU"]),
@@ -1571,38 +1571,6 @@ export default {
         return true
       }
     },
-    // keTabHeader1(){
-    //   if(this.getTabHeader1 == 'WaIcon'){
-    //     return "whatsapp"
-    //   }else if(this.getTabHeader1 == 'FbIcon') {
-    //     return "facebook"
-    //   }else if(this.getTabHeader1 == 'SmsIcon') {
-    //     return "sms"
-    //   }
-    // },
-    // keTabHeader2(){
-    //   if(this.getTabHeader2 == 'WaIcon'){
-    //     return "whatsapp"
-    //   }else if(this.getTabHeader2 == 'FbIcon') {
-    //     return "facebook"
-    //   }else if(this.getTabHeader2 == 'SmsIcon') {
-    //     return "sms"
-    //   }
-    // },
-    // keTabHeader3(){
-    //   if(this.getTabHeader3 == 'WaIcon'){
-    //     return "whatsapp"
-    //   }else if(this.getTabHeader3 == 'FbIcon') {
-    //     return "facebook"
-    //   }else if(this.getTabHeader3 == 'SmsIcon') {
-    //     return "sms"
-    //   }
-    // },
-    /*  see keTabHeader1 and continue keTabHeader2*/
-    // keTabHeader2(getTabHeader1 == 'FbIcon'){
-    //     return facebook
-    // },
-    // keTabHeader3(){},
     getTabHeader1() {
       if (this.getWidgetsState.enabled_widgets.facebook.position == 1 && this.getWidgetsState.enabled_widgets.facebook.enabled) {
         return "FbIcon";
@@ -1665,25 +1633,12 @@ export default {
   watch: {
     getTabHeader1(newValue) {
       console.log("new value of header 1 ::" + newValue);
-      //
-      // if(newValue != undefined){
-      //   this.wdgtTabKey+3;
-      //   // this.keyDependPosit = 1
-      //   // alert(this.keyDependPosit)
-      // }else if(newValue == undefined ){
-      //   // alert(newValue)
-      //   // alert(oldValue)
-      //   this.keyDependPosit = 2;
-      //   // alert(this.keyDependPosit)
-      // }
     },
     getTabHeader2(newValue) {
       console.log("new value of header 1 ::" + newValue);
-      // this.wdgtTabKey++;
     },
     getTabHeader3(newValue) {
       console.log("new value of header 1 ::" + newValue);
-      // this.wdgtTabKey++;
     },
   },
 
@@ -1699,7 +1654,7 @@ export default {
 
 <style scoped>
 .opacPresent{
-  opacity: 0.5 !important;
+  opacity: 0.5 ;
 }
 .wdg_view_Check_box .ovr_pd{
   padding: 8px 15px !important;
