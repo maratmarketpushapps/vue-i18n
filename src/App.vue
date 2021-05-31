@@ -95,7 +95,6 @@ export default {
     this.$store.dispatch("updateToken", this.$route.query.instance).then(() => {
       // console.log(resp);
       this.$store.dispatch("getGlobal").then(() => {
-
         // console.log(response);
         this.$i18n.locale = this.$store.getters.getLocale;
         // console.log("Query Parameters :: " + this.$route.query.instance);

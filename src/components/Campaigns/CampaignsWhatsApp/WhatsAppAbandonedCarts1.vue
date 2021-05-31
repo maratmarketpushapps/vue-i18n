@@ -48,11 +48,12 @@
               class="mt-12"
             >
               <v-tooltip
-                :disabled="ordrAbndCrtSwitchLive"
                 v-model="showTooltip"
                 content-class="tooltip_color "
-                top
+                top="0"
+                :nudge-right="30"
               >
+<!--                :disabled="ordrAbndCrtSwitchLive"-->
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
                     icon
@@ -62,7 +63,8 @@
                   >
                   </v-btn>
                 </template>
-                <span class="tooltip_text " tile  v-if="!ordrAbndCrtSwitchLive">{{$t("campaigns.hint")}}</span>
+<!--                v-if="!ordrAbndCrtSwitchLive"-->
+                <span class="tooltip_text" tile  >{{$t("campaigns.hint")}}</span>
               </v-tooltip>
             </v-col>
           </v-row>
@@ -221,36 +223,15 @@
                   <v-text-field
                     v-model="discount_value"
                     :label="$t('campaigns.whatsAppCampaigns.waDiscountValue')"
-
-
                   >
-<!--                    :rules=" [v => v.length <= 20 || 'Max 20 characters']"-->
-<!--                    <template v-slot:label v-if="discount_code_focus">-->
-<!--                      <span >{{$t('widgets.addYourDiscCode')}}</span>-->
-<!--                      <span v-if="discount_code.length > 4" style="position: absolute;right: 18px;">{{discount_code.length}}/</span>-->
-<!--                      <span v-if="discount_code.length > 4" style="position: absolute;right: 0px;">20</span>-->
-<!--                    </template>-->
                   </v-text-field>
-                  <!--              :rules="nameRules"-->
                 </v-col>
-<!--                <v-col cols="1" style="width: 33px !important;" class="px-0"></v-col>-->
+
                 <v-col cols="6" class="py-0 mb-0 pl-0 pr-6">
                   <v-text-field
                     v-model="discount_coupon "
                     :label="$t('campaigns.whatsAppCampaigns.waDiscountCoupon')"
-
-
                   >
-<!--                    :rules=" [v => v.length <= 22 || 'Max 22 characters']"-->
-                    <!--                  v-model="discount_statement"-->
-                    <!--                  :value="discount_statement"-->
-                    <!--                  maxlength="25"-->
-                    <!--                  :rules=" [v => v.length <= 25 || 'Max 25 characters']"-->
-<!--                    <template v-slot:label v-if="copy_discount_code_button_focus">-->
-<!--                      <span >{{$t('widgets.discCopyCode')}}</span>-->
-<!--                      <span v-if="copy_discount_code_button .length > 4" style="position: absolute;right: 18px;">{{copy_discount_code_button .length}}/</span>-->
-<!--                      <span v-if="copy_discount_code_button .length > 4" style="position: absolute;right: 0px;">22</span>-->
-<!--                    </template>-->
                   </v-text-field>
                 </v-col>
               </v-row>
@@ -390,6 +371,13 @@ export default {
     },
     hasChanges(){
       this.ordrAbndCrtBtnDisabled = false;
+      var waData = {
+        waDiscountCupon:this.waDiscountCupon,
+        discount_coupon:this.discount_coupon,
+        discount_value:this.discount_value,
+
+      }
+      this.$store.commit("UPDATE_DISCOUNT_COUPON",waData)
     },
     saveOrdrAbndCrt() {
         if(this.ordrAbndCrtSwitchLive == false){
@@ -528,6 +516,10 @@ export default {
 </script>
 
 <style scoped>
+.tooltip_color{
+
+
+}
 .spc_bottom{
   margin-bottom: 112px !important;
 }

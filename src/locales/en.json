@@ -88,7 +88,6 @@
     }
   },
   "campaigns": {
-    "waRightText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     "hint": "Turn On to send live messages to your abandoned carts",
     "smsModalText1": "This is the message that your customers will receive on SMS",
     "smsModalText2": " Please note that this interface is just for showcasing purposes and it’s not clickable.",
@@ -134,7 +133,7 @@
       "item2": "Order Receipt Message",
       "item3": "Order Shipped Message",
       "itemSMS": "SMS Abandoned Cart Messages",
-      "itemWa": "Whatsapp Abandoned Cart Messages"
+      "itemWa": "Whatsapp Abandoned Cart Message"
     },
     "carts1": {
       "headerTxt": "Facebook Abandoned Cart Message #1",
@@ -155,8 +154,7 @@
       "discountTxt3": ""
     },
     "wacarts1": {
-      "headerTxt": "Set Live Whatsapp Abandoned Cart Message #1",
-      "headerTxtSecond": "Set Live Whatsapp Abandoned Cart Message #2",
+      "headerTxt": "Set Live Whatsapp Abandoned Cart Message",
       "selectLabelLanguage": "Message language",
       "sendAfter": "How much time should pass before sending this message.",
       "iconTxt": "EDIT MESSAGE",

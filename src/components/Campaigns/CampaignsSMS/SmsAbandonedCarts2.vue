@@ -48,11 +48,13 @@
               class="mt-12 pos_tooltip"
             >
               <v-tooltip
-                :disabled="ordrAbndCrtSwitchLive"
+                :nudgeTop="0"
+                :nudge-right="80"
                 v-model="showTooltip"
                 content-class="tooltip_color "
                 top
               >
+<!--                :disabled="ordrAbndCrtSwitchLive"-->
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
                     icon
@@ -62,7 +64,8 @@
                   >
                   </v-btn>
                 </template>
-                <span class="tooltip_text " tile  v-if="!ordrAbndCrtSwitchLive">{{$t("campaigns.hint")}}</span>
+<!--                v-if="!ordrAbndCrtSwitchLive"-->
+                <span class="tooltip_text " tile  >{{$t("campaigns.hint")}}</span>
               </v-tooltip>
             </v-col>
           </v-row>

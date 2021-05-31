@@ -226,7 +226,6 @@
                         :value="waRecovMsg1Percent"
                         height="5px"
                         background-color="#E6E7E8"
-
                       >
                       </v-progress-linear>
                     </v-col>
@@ -236,33 +235,33 @@
                           }}</span>
                     </v-col>
                   </v-row>
-                  <v-row
-                    justify="start"
-                    align="center"
-                    class="ml-5 mt-0 pr-6"
-                    style="width:100%"
-                  >
-                    <v-col cols="1" style="max-width: 12px" class="py-0">
-                      <v-row >
-                        <span>{{ $t("dashboard.card1.Recov1MsgNumberTwo") }}</span>
-                      </v-row>
-                    </v-col>
+<!--                  <v-row-->
+<!--                    justify="start"-->
+<!--                    align="center"-->
+<!--                    class="ml-5 mt-0 pr-6"-->
+<!--                    style="width:100%"-->
+<!--                  >-->
+<!--                    <v-col cols="1" style="max-width: 12px" class="py-0">-->
+<!--                      <v-row >-->
+<!--                        <span>{{ $t("dashboard.card1.Recov1MsgNumberTwo") }}</span>-->
+<!--                      </v-row>-->
+<!--                    </v-col>-->
 
-                    <v-col cols="" class="px-0 py-0">
-                      <v-progress-linear
-                        color="#5686F6"
-                        :value="waRecovMsg2Percent"
-                        height="5px"
-                        background-color="#E6E7E8"
-                      >
-                      </v-progress-linear>
-                    </v-col>
-                    <v-col cols="1" class="d-flex justify-end px-0 py-0">
-                        <span style="color:#5686F6; font-weight:900">{{
-                            dashVars.campaigns.wa_recovery_messages_nr2_sent
-                          }}</span>
-                    </v-col>
-                  </v-row>
+<!--                    <v-col cols="" class="px-0 py-0">-->
+<!--                      <v-progress-linear-->
+<!--                        color="#5686F6"-->
+<!--                        :value="waRecovMsg2Percent"-->
+<!--                        height="5px"-->
+<!--                        background-color="#E6E7E8"-->
+<!--                      >-->
+<!--                      </v-progress-linear>-->
+<!--                    </v-col>-->
+<!--                    <v-col cols="1" class="d-flex justify-end px-0 py-0">-->
+<!--                        <span style="color:#5686F6; font-weight:900">{{-->
+<!--                            dashVars.campaigns.wa_recovery_messages_nr2_sent-->
+<!--                          }}</span>-->
+<!--                    </v-col>-->
+<!--                  </v-row>-->
                 </v-col>
               </v-row>
             </v-card>
@@ -656,7 +655,7 @@ export default {
       smsRecovMsg1Percent: 0,
       smsRecovMsg2Percent: 0,
       waRecovMsg1Percent: 0,
-      waRecovMsg2Percent: 0,
+
       abndndCartPcnt: 0,
       smsSubPcnt: 0,
       waSubPcnt: 0,
@@ -701,10 +700,10 @@ export default {
                       100) /
                     this.$store.getters.getDash.campaigns.total_messages;
 
-                  this.waRecovMsg2Percent =
-                    (this.$store.getters.getDash.campaigns.wa_recovery_messages_nr2_sent *
-                      100) /
-                    this.$store.getters.getDash.campaigns.total_messages;
+                  // this.waRecovMsg2Percent =
+                  //   (this.$store.getters.getDash.campaigns.wa_recovery_messages_nr2_sent *
+                  //     100) /
+                  //   this.$store.getters.getDash.campaigns.total_messages;
 
                   this.abndndCartPcnt =
                     (this.$store.getters.getDash.cart_recovery.abandoned_carts *

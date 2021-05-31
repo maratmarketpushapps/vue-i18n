@@ -5,12 +5,23 @@
       :headers="headers"
       :items="currentData"
       :footer-props="{
-        showFirstLastPage: true,
-        itemsPerPageOptions: [25, 50, -1],
-        showCurrentPage: true,
+      showFirstLastPage: true,
+      itemsPerPageOptions: [25, 50, -1],
+      showCurrentPage: true,
       }"
       :key="tableKey"
     >
+      <template v-slot:item.phone="{ item }">
+          <waIcon
+            class="infoicon_scale mr-2 mt-3"
+            v-if="item.channel == 'WhatsApp'"
+          />
+        <span class="phoneNumber">
+          {{ item.phone }}
+        </span>
+
+
+      </template>
       <template #item.cart_status="{item}">
         <span
           :style="
@@ -65,9 +76,11 @@
 </template>
 
 <script>
+import waIcon from "@/components/svgIcons/WaIcon.vue";
 import { mapGetters } from "vuex";
 export default {
   name: "CartsTable",
+  components: { waIcon },
   mounted() {
     this.currentHeader = this.headers;
     this.$store.dispatch("updIsLoading", true).then(() => {
@@ -81,6 +94,7 @@ export default {
         });
     });
     this.currentData = this.items;
+
   },
   methods: {
     forceRerender() {
@@ -97,26 +111,31 @@ export default {
     items(newVal) {
       this.currentData = newVal;
       this.headers = this.currentHeader;
-
+      // uncomment it
+      for(var i = 0; i < this.currentData.length; i++) {
+        this.currentData[i].phone = this.currentData[i].phone.replace('whatsapp:','')
+      }
       switch (this.subSelType) {
+
         case "Facebook":
           this.headers = this.headers.filter(
             (header) => header.value !== "phone"
           );
           this.currentData = this.currentData.filter(
-            (item) => item.channel.toUpperCase() !== "SMS" && item.channel.toUpperCase() !== "WHASTAPP"
+            (item) => item.channel.toUpperCase() !== "SMS" && item.channel.toUpperCase() !== "WHATSAPP"
           );
           break;
         case "SMS":
-          // this.headers = this.headers.filter(header => header.value !== 'channel')
+
           this.currentData = this.items.filter(
-            (oneitem) => oneitem.channel.toUpperCase() !== "FACEBOOK" && oneitem.channel.toUpperCase() !== "WHASTAPP"
+            (oneitem) => oneitem.channel.toUpperCase() !== "FACEBOOK" && oneitem.channel.toUpperCase() !== "WHATSAPP"
           );
           break;
-        case "Whatsapp":
-          // this.headers = this.headers.filter(header => header.value !== 'channel')
+        case "WhatsApp":
+
           this.currentData = this.items.filter(
             (oneitem) => oneitem.channel.toUpperCase() !== "FACEBOOK" &&  oneitem.channel.toUpperCase() !== "SMS"
+            // && oneitem.phone.replace("whatsapp","")
           );
           break;
         default:
@@ -126,9 +145,6 @@ export default {
       this.tableKey++;
     },
     subSelType(newVal) {
-      // console.log("subSel" + newVal);
-      // console.log(this.currentHeader);
-      // console.log(this.items);
       this.forceRerender();
       this.headers = this.currentHeader;
       this.currentData = this.items;
@@ -139,13 +155,13 @@ export default {
             (header) => header.value.toUpperCase() !== "PHONE"
           );
           this.currentData = this.currentData.filter(
-            (item) => item.channel.toUpperCase() !== "SMS" && item.channel.toUpperCase() !== "WHASTAPP"
+            (item) => item.channel.toUpperCase() !== "SMS" && item.channel !== "WhatsApp"
           );
           break;
         case "SMS":
           // this.headers = this.headers.filter(header => header.value !== 'channel')
           this.currentData = this.items.filter(
-            (oneitem) => oneitem.channel.toUpperCase() !== "FACEBOOK" && oneitem.channel.toUpperCase() !== "WHASTAPP"
+            (oneitem) => oneitem.channel.toUpperCase() !== "FACEBOOK" && oneitem.channel !== "WhatsApp"
           );
           break;
         case "WhatsApp":
@@ -242,6 +258,16 @@ export default {
 </script>
 
 <style>
+.phoneNumber{
+  text-align: left;
+  text-decoration: underline;
+  font: normal normal 300 14px/23px Poppins;
+  letter-spacing: 0px;
+  color: #5686F6;
+  opacity: 1;
+  position: relative;
+  bottom: 5px;
+}
 .table_design{
   text-align: left;
   font-family: Poppins !important;

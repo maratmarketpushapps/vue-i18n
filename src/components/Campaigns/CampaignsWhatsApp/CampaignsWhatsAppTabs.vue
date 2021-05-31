@@ -9,7 +9,6 @@
           <v-col key="1" class="py-0 px-0 sms_campaigns_font_dims" :eager="false">
             <AbandonedCarts1 />
             <br />
-            <AbandonedCarts2 />
           </v-col>
         </v-col>
       </v-col>
@@ -23,14 +22,13 @@
 <script>
 //
 import AbandonedCarts1 from "@/components/Campaigns/CampaignsWhatsApp/WhatsAppAbandonedCarts1.vue";
-import AbandonedCarts2 from "@/components/Campaigns/CampaignsWhatsApp/WhatsAppAbandonedCarts2.vue";
+
 import CampaignView from "@/components/Campaigns/CampaignsWhatsApp/WhatsAppCampaignView.vue";
 
 export default {
   name: "CampaignTabsWhatsApp",
   components: {
     AbandonedCarts1,
-    AbandonedCarts2,
     CampaignView,
   },
   data() {

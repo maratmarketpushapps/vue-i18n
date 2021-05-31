@@ -55,7 +55,12 @@
               <v-col class="px-0 mr-8">
                 <div class="wa_chat_bg ">
                   <div class="arrow-right_wa"></div>
-                  {{ $t("campaigns.waRightText") }}
+                    <span v-if="wagetCarts1.active">
+                      <b>{{getAccountInfo.business_name}}</b>: Hi! It looks like you left some great items in your shopping cart. Get <b>{{wagetCarts1.discount_value}}%</b> OFF by applying the discount coupon <b>{{wagetCarts1.discount_coupon}}</b>. Easy checkout link 👉<b>https://tinyurl.com/checkout-link</b>. <i>Chat with customer support at wa.me/{{ getAccountInfo.business_phone_number }}.</i>
+                    </span>
+                    <span v-else>
+                      <b>{{getAccountInfo.business_name}}</b>: Hi! It looks like you left some great items in your shopping cart. Easy checkout link 👉<b>https://tinyurl.com/checkout-link</b>. <i>Chat with customer support at wa.me/{{ getAccountInfo.business_phone_number }}.</i>
+                    </span>
                   </div>
 <!--                <v-img src="@/assets/img/whatsappCampaigns/message-box.png" height="100%" width="82%" class="pl-3 pt-6 pr-9 ">-->
 <!--&lt;!&ndash;                 Hi <b>CustomerName</b>, the payment for your order of <b>order of</b>from <b>BusinessName</b> is&ndash;&gt;-->
@@ -98,7 +103,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["wagetCarts1"]),
+    ...mapGetters(["wagetCarts1","getAccountInfo"]),
     // ...mapGetters(["checkClicked", "checkHover"]),
     dialogShow() {
       return this.dialog && !this.$store.getters.getQreplyEdit;

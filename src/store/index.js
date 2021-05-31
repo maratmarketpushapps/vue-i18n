@@ -216,7 +216,7 @@ export default new Vuex.Store({
       campaigns: {
         total_messages: 0,
         wa_recovery_messages_nr1_sent:0,
-        wa_recovery_messages_nr2_sent:0,
+        // wa_recovery_messages_nr2_sent:0,
         sms_recovery_messages_nr1_sent: 0,
         sms_recovery_messages_nr2_sent: 0,
         fb_recovery_messages_nr1_sent: 0,
@@ -429,6 +429,11 @@ export default new Vuex.Store({
     UPDATE_MSG_wa_cartTwo(state, val) {
       state.msgVars.wa_abandoned_cart_2.active = val;
     },
+    UPDATE_DISCOUNT_COUPON(state,val){
+      state.msgVars.wa_abandoned_cart_1.active = val.waDiscountCupon
+      state.msgVars.wa_abandoned_cart_1.discount_value = val.discount_coupon
+      state.msgVars.wa_abandoned_cart_1.discount_value = val.discount_value
+    },
     SET_SELECTED(state, id) {
       state.navState.currentSelected = id;
     },
@@ -626,17 +631,6 @@ export default new Vuex.Store({
         coneData[1].id = 2
         coneData[2].id = 3
       }
-      // if (coneData[1].connection == false){
-      //   coneData[0].id = 1
-      //   coneData[1].id = 3
-      //   coneData[2].id = 2
-      //   // alert('second')
-      // }
-      // if(coneData[1].connection == true){
-      //   coneData[0].id = 1
-      //   coneData[1].id = 2
-      //   coneData[2].id = 3
-      // }
       state.widgetVars.changesSaved = false;
       if (coneData[0].title.toUpperCase() == "SMS" && coneData[1].title.toUpperCase() == "FACEBOOK") {
         state.widgetVars.enabled_widgets.sms.title =
@@ -928,7 +922,6 @@ export default new Vuex.Store({
 
 
       // /* whatsapp values */
-      console.log(obj.wa_abandoned_cart_1)
       state.msgVars.wa_abandoned_cart_1.active = obj.wa_abandoned_cart_1.active;
       state.msgVars.wa_abandoned_cart_1.sent_after = obj.wa_abandoned_cart_1.sent_after;
       state.msgVars.wa_abandoned_cart_1.discount_coupon_enabled = obj.wa_abandoned_cart_1.discount_cupon;
@@ -1143,8 +1136,8 @@ export default new Vuex.Store({
 
       state.dashVars.campaigns.wa_recovery_messages_nr1_sent =
         obj.campaigns.wa_recovery_messages_nr1_sent;
-      state.dashVars.campaigns.wa_recovery_messages_nr2_sent =
-        obj.campaigns.wa_recovery_messages_nr2_sent;
+      // state.dashVars.campaigns.wa_recovery_messages_nr2_sent =
+      //   obj.campaigns.wa_recovery_messages_nr2_sent;
 
       state.dashVars.carts_recovered.total_recovered =
         obj.carts_recovered.total_recovered;
@@ -1159,7 +1152,7 @@ export default new Vuex.Store({
         obj.revenue_recovered.revenue_recovered_percentage;
       state.dashVars.revenue_recovered.total_revenue_lost =
         obj.revenue_recovered.total_revenue_lost;
-
+    
       state.dashVars.cart_recovery.total_recovered =
         obj.cart_recovery.total_recovered;
       state.dashVars.cart_recovery.abandoned_carts =
@@ -1188,9 +1181,9 @@ export default new Vuex.Store({
         // obj.whatsappCartRecovery.step1;
         obj.waCartRecoverySteps.step1;
       state.setupCompletedVars.waCartRecoverySteps.step2 =
-        obj.waCartRecovery.step2;
+        obj.waCartRecoverySteps.step2;
       state.setupCompletedVars.waCartRecoverySteps.step3 =
-        obj.waCartRecovery.step3;
+        obj.waCartRecoverySteps.step3;
 
       state.setupCompletedVars.fbCartRecovery = obj.fbCartRecovery;
       state.setupCompletedVars.fbCartRecoverySteps.step1 =

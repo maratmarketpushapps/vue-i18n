@@ -51,6 +51,8 @@
                 v-model="showTooltip"
                 content-class="tooltip_color "
                 top
+                :nudge-bottom="5"
+                :nudge-right="90"
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
