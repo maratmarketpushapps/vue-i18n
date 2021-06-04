@@ -110,7 +110,7 @@ export default new Vuex.Store({
       setup_step_2_completed: true,
       setup_step_3_completed: true,
       cart_recovery_attempts_done: "",
-      install_popop_show: true,
+      install_popop_show: false,
     },
     planVars: {
       plans: [{ planName: "Dummy", cart_recovery_attempts: 0 }],

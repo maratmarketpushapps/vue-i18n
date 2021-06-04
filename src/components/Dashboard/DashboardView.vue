@@ -79,9 +79,11 @@
                     </v-progress-linear>
                    </v-col>
                     <v-col cols="1" class="d-flex justify-end px-0 py-0">
+                      <v-div class="d-flex justify-center px-0 py-0">
                         <span style="color:#5686F6; font-weight:900">{{
                             dashVars.campaigns.fb_recovery_messages_nr1_sent
                           }}</span>
+                      </v-div>
                     </v-col>
                   </v-row>
                   <v-row
@@ -107,9 +109,11 @@
                       </v-progress-linear>
                     </v-col>
                     <v-col cols="1" class="d-flex justify-end px-0 py-0">
+                      <div class="d-flex justify-center px-0 py-0">
                         <span style="color:#5686F6; font-weight:900">{{
                             dashVars.campaigns.fb_recovery_messages_nr1_sent
                           }}</span>
+                      </div>
                     </v-col>
                   </v-row>
                 </v-col>
@@ -155,9 +159,11 @@
                       </v-progress-linear>
                     </v-col>
                     <v-col cols="1" class="d-flex justify-end px-0 py-0">
+                      <div class="d-flex justify-center px-0 py-0">
                         <span style="color:#5686F6; font-weight:900">{{
                             dashVars.campaigns.fb_recovery_messages_nr1_sent
                           }}</span>
+                      </div>
                     </v-col>
                   </v-row>
                   <v-row
@@ -183,9 +189,11 @@
                       </v-progress-linear>
                     </v-col>
                     <v-col cols="1" class="d-flex justify-end px-0 py-0">
+                      <div class="d-flex justify-center px-0 py-0">
                         <span style="color:#5686F6; font-weight:900">{{
                             dashVars.campaigns.fb_recovery_messages_nr1_sent
                           }}</span>
+                      </div>
                     </v-col>
                   </v-row>
                 </v-col>
@@ -230,9 +238,9 @@
                       </v-progress-linear>
                     </v-col>
                     <v-col cols="1" class="d-flex justify-end px-0 py-0">
-                        <span style="color:#5686F6; font-weight:900">{{
-                            dashVars.campaigns.wa_recovery_messages_nr1_sent
-                          }}</span>
+                      <div class="d-flex justify-center px-0 py-0">
+                         <span style="color:#5686F6; font-weight:900">1</span>
+                      </div>
                     </v-col>
                   </v-row>
 <!--                  <v-row-->
